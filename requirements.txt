@@ -14,6 +14,8 @@
 #    pip install --upgrade <package> && pip freeze > requirements.txt
 # =============================================================================
 
+# ── Phase 1: Data Pipeline ──────────────────────────────────────────────────
+
 # Data manipulation and CSV reading (used by 3_build_dataset.py)
 pandas==2.2.0
 
@@ -26,3 +28,22 @@ python-dotenv==1.0.1
 # Required by pandas 2.x to silence the pyarrow deprecation warning
 pyarrow==15.0.0
 
+# ── Phase 2: LLM Inference + Evaluation ─────────────────────────────────────
+
+# OpenAI API client (GPT-4o-mini — default backend, as used in LAMD paper)
+openai>=1.0.0
+
+# Google Gemini API client (alternative backend)
+google-generativeai>=0.5.0
+
+# Token counting for context window management
+tiktoken>=0.5.0
+
+# Progress bars for long-running inference
+tqdm>=4.65.0
+
+# Metrics computation (F1, precision, recall, confusion matrix)
+scikit-learn>=1.3.0
+
+# PDF text extraction (for reading research papers)
+PyMuPDF>=1.23.0
