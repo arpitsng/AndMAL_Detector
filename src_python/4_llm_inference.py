@@ -135,6 +135,55 @@ class OpenAIBackend(LLMBackend):
         return response.choices[0].message.content.strip()
 
 
+class GroqBackend(LLMBackend):
+    """Groq backend (using OpenAI client compatibility)."""
+
+    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+        from openai import OpenAI
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://api.groq.com/openai/v1",
+        )
+        self.model = model
+
+    def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
+        import time
+        from openai import RateLimitError
+        max_retries = 5
+        base_wait = 5
+        
+        # Groq free tier allows ~30 RPM, so we pace ourselves at ~28 RPM.
+        time.sleep(2.1)
+        
+        for attempt in range(max_retries):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
+                    ],
+                    temperature=temperature,
+                    max_tokens=2048,
+                )
+                return response.choices[0].message.content.strip()
+            except RateLimitError as e:
+                if attempt == max_retries - 1:
+                    raise
+                wait_time = base_wait * (2 ** attempt)
+                print(f"\n    [WARN] Groq rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                time.sleep(wait_time)
+            except Exception as e:
+                if "429" in str(e):
+                    if attempt == max_retries - 1:
+                        raise
+                    wait_time = base_wait * (2 ** attempt)
+                    print(f"\n    [WARN] Groq rate limit hit (429). Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    time.sleep(wait_time)
+                else:
+                    raise
+
+
 class GeminiBackend(LLMBackend):
     """Google Gemini backend."""
 
@@ -189,6 +238,14 @@ def create_backend(backend_name: str) -> LLMBackend:
             print("[ERROR] OPENAI_API_KEY not found in .env", file=sys.stderr)
             sys.exit(1)
         return OpenAIBackend(api_key=key)
+
+    elif backend_name == "groq":
+        key = os.environ.get("GROQ_API_KEY", "").strip()
+        if not key:
+            print("[ERROR] GROQ_API_KEY not found in .env", file=sys.stderr)
+            sys.exit(1)
+        model = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
+        return GroqBackend(api_key=key, model=model)
 
     elif backend_name == "gemini":
         key = os.environ.get("GEMINI_API_KEY", "").strip()
@@ -547,7 +604,7 @@ def main() -> None:
              "malware logs), 'direct' (single-shot on CFG without tiers)."
     )
     parser.add_argument(
-        "--backend", choices=["openai", "gemini", "ollama"], default="openai",
+        "--backend", choices=["openai", "gemini", "ollama", "groq"], default="openai",
         help="LLM backend to use (default: openai)."
     )
     parser.add_argument(

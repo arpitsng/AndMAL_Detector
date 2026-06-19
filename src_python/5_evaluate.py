@@ -270,7 +270,7 @@ def main() -> None:
         print("  Per-Family Detection Rates:")
         for family, stats in list(family_analysis.items())[:15]:
             rate = stats["detection_rate"] * 100
-            bar = "█" * int(rate / 5) + "░" * (20 - int(rate / 5))
+            bar = "#" * int(rate / 5) + "." * (20 - int(rate / 5))
             print(f"    {family:<20s} {bar} {rate:5.1f}% "
                   f"({stats['detected']}/{stats['total']})")
         if len(family_analysis) > 15:
