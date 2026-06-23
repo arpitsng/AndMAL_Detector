@@ -1,4 +1,5 @@
 import os
+# pyrefly: ignore [missing-import]
 from openai import OpenAI
 
 key = os.environ.get("GROQ_API_KEY", "").strip()

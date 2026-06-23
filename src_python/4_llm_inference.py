@@ -38,6 +38,7 @@ from pathlib import Path
 from dataclasses import dataclass, field
 
 import pandas as pd
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
 # Allow running from project root or src_python/
@@ -118,6 +119,7 @@ class OpenAIBackend(LLMBackend):
     """OpenAI GPT-4o-mini backend (default — as used in LAMD paper)."""
 
     def __init__(self, api_key: str, model: str = "gpt-4o-mini"):
+        # pyrefly: ignore [missing-import]
         from openai import OpenAI
         self.client = OpenAI(api_key=api_key)
         self.model = model
@@ -138,7 +140,8 @@ class OpenAIBackend(LLMBackend):
 class GroqBackend(LLMBackend):
     """Groq backend (using OpenAI client compatibility)."""
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "llama-3.1-8b-instant"):
+        # pyrefly: ignore [import, missing-import]
         from openai import OpenAI
         self.client = OpenAI(
             api_key=api_key,
@@ -148,12 +151,14 @@ class GroqBackend(LLMBackend):
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
         import time
+        # pyrefly: ignore [missing-import]
         from openai import RateLimitError
         max_retries = 5
-        base_wait = 5
+        base_wait = 15
         
-        # Groq free tier allows ~30 RPM, so we pace ourselves at ~28 RPM.
-        time.sleep(2.1)
+        # Groq free tier: 30 RPM *and* 12,000 TPM.
+        # Each call uses ~700-1000 tokens, so we need ~12s gaps to stay under TPM.
+        time.sleep(12)
         
         for attempt in range(max_retries):
             try:
@@ -188,6 +193,7 @@ class GeminiBackend(LLMBackend):
     """Google Gemini backend."""
 
     def __init__(self, api_key: str, model: str = "gemini-2.0-flash"):
+        # pyrefly: ignore [missing-import]
         import google.generativeai as genai
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model)
@@ -244,7 +250,7 @@ def create_backend(backend_name: str) -> LLMBackend:
         if not key:
             print("[ERROR] GROQ_API_KEY not found in .env", file=sys.stderr)
             sys.exit(1)
-        model = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile").strip()
+        model = os.environ.get("GROQ_MODEL", "llama-3.1-8b-instant").strip()
         return GroqBackend(api_key=key, model=model)
 
     elif backend_name == "gemini":
@@ -331,7 +337,12 @@ def parse_cfg_file(cfg_path: Path) -> list[FunctionSlice]:
 
 def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
     """Analyse a single sliced CFG at function level."""
-    prompt = TIER1_USER_TEMPLATE.format(cfg_content=func_slice.raw_text)
+    # Truncate CFG text to prevent blowing through token-per-minute limits
+    # on rate-limited backends like Groq free tier.
+    cfg_text = func_slice.raw_text
+    if len(cfg_text) > 1500:
+        cfg_text = cfg_text[:1500] + "\n... [truncated for brevity] ..."
+    prompt = TIER1_USER_TEMPLATE.format(cfg_content=cfg_text)
     response = llm.chat(TIER1_SYSTEM, prompt)
 
     # Extract risk level from response
@@ -514,6 +525,12 @@ def analyse_one_apk(
                            analysis="No suspicious APIs found.")
 
     # ── Tier 1: Function-level analysis ───────────────────────────────────────
+    # Limit to 10 functions to stay within Groq free-tier token budget.
+    if len(slices) > 10:
+        if verbose:
+            print(f"    [INFO] {len(slices)} functions found, limiting to top 10")
+        slices = slices[:10]
+
     tier1_results: list[Tier1Result] = []
     for func_slice in slices:
         try:
@@ -726,6 +743,9 @@ def main() -> None:
                 # Single-shot analysis without tiers
                 try:
                     cfg_text = cfg_path.read_text(encoding="utf-8")
+                    # Truncate for rate-limited backends
+                    if len(cfg_text) > 1500:
+                        cfg_text = cfg_text[:1500] + "\n... [truncated] ..."
                     prompt = DIRECT_ANALYSIS_TEMPLATE.format(cfg_content=cfg_text)
                     response = llm.chat(DIRECT_ANALYSIS_SYSTEM, prompt)
                     prediction = "MALWARE" if "MALWARE" in response.upper().split("PREDICTION")[0:2].__repr__() else "BENIGN"
