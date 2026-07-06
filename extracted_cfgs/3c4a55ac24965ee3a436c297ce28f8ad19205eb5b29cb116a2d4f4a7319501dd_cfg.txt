@@ -1,0 +1,501 @@
+=== FUNCTION: com.zad.bnuthaymeen.Search.getData ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#25 = newarray (int)[2]
+NODE 2: $u-1#28 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#25)
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.Search.getData2 ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#25 = newarray (int)[2]
+NODE 2: $u-1#28 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#25)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.callback.LocationAjaxCallback.getBestLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.androidquery.callback.LocationAjaxCallback
+NODE 2: $u2 = this.<com.androidquery.callback.LocationAjaxCallback: android.location.LocationManager lm>
+NODE 3: $u-1 = virtualinvoke $u2.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.callback.LocationAjaxCallback.getBestLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.androidquery.callback.LocationAjaxCallback
+NODE 2: $u2 = this.<com.androidquery.callback.LocationAjaxCallback: android.location.LocationManager lm>
+NODE 3: $u-1#7 = virtualinvoke $u2.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.callback.LocationAjaxCallback.work ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.androidquery.callback.LocationAjaxCallback
+NODE 2: $u0#6 = this.<com.androidquery.callback.LocationAjaxCallback: android.location.LocationManager lm>
+NODE 3: $u2 = this.<com.androidquery.callback.LocationAjaxCallback: long interval>
+NODE 4: $u0#5 = this.<com.androidquery.callback.LocationAjaxCallback: com.androidquery.callback.LocationAjaxCallback$Listener networkListener>
+NODE 5: $u-1#10 = staticinvoke <android.os.Looper: android.os.Looper getMainLooper()>()
+NODE 6: virtualinvoke $u0#6.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>("network", $u2, 0.0F, $u0#5, $u-1#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.callback.LocationAjaxCallback.work ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.androidquery.callback.LocationAjaxCallback
+NODE 2: $u0#6 = this.<com.androidquery.callback.LocationAjaxCallback: android.location.LocationManager lm>
+NODE 3: $u2 = this.<com.androidquery.callback.LocationAjaxCallback: long interval>
+NODE 4: $u0#5 = this.<com.androidquery.callback.LocationAjaxCallback: com.androidquery.callback.LocationAjaxCallback$Listener gpsListener>
+NODE 5: $u-1#10 = staticinvoke <android.os.Looper: android.os.Looper getMainLooper()>()
+NODE 6: virtualinvoke $u0#6.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>("gps", $u2, 0.0F, $u0#5, $u-1#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.SystemFacade.getActiveNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.SystemFacade
+NODE 2: $u3 = this.<com.google.android.vending.expansion.downloader.SystemFacade: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivity = (android.net.ConnectivityManager) $u-1
+NODE 5: if connectivity != null goto $u-1#9 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#9 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.SystemFacade.isNetworkRoaming ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.SystemFacade
+NODE 2: $u7 = this.<com.google.android.vending.expansion.downloader.SystemFacade: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivity = (android.net.ConnectivityManager) $u-1
+NODE 5: if connectivity != null goto $u-1#10 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#10 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.vending.expansion.zipfile.APKExpansionSupport.getAPKExpansionFiles ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto $u11 = virtualinvoke ret.<java.util.Vector: int size()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.auth.FacebookHandle.webAuth ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.androidquery.auth.FacebookHandle
+NODE 2: if $u4 == null goto $u3#19 = this.<com.androidquery.auth.FacebookHandle: com.androidquery.WebDialog dialog>
+NODE 3: $u3#19 = this.<com.androidquery.auth.FacebookHandle: com.androidquery.WebDialog dialog>
+NODE 4: virtualinvoke $u3#19.<com.androidquery.WebDialog: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.licensing.AESObfuscator.obfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.vending.licensing.AESObfuscator
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: java.lang.String
+NODE 4: if $u5 != null goto $u1 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 5: $u1 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 6: $u2 = new java.lang.StringBuilder
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 9: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 11: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.licensing.AESObfuscator.unobfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.vending.licensing.AESObfuscator
+NODE 2: $u7 := @parameter0: java.lang.String
+NODE 3: $u3 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mDecryptor>
+NODE 4: $u-1 = staticinvoke <com.google.android.vending.licensing.util.Base64: byte[] decode(java.lang.String)>($u7)
+NODE 5: $u-1 = virtualinvoke $u3.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.FtwaContent.playSound ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.FtwaContent.playSound ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.getFilesystemRoot ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.getSaveFilePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.isFilenameValid ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#9 != 0 goto return 1
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.setBehindWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
+NODE 2: $u-1 = virtualinvoke this.<com.jeremyfeinstein.slidingmenu.lib.SlidingMenu: android.content.Context getContext()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 4: $u7 = (android.view.WindowManager) $u-1#4
+NODE 5: $u-1#7 = interfaceinvoke $u7.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 6: cls = class "Landroid/view/Display;"
+NODE 7: parameterTypes = newarray (java.lang.Class)[1]
+NODE 8: $u-1#12 = virtualinvoke cls.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", parameterTypes)
+NODE 9: $u7#14 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#7, $u7#14)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.ftawa2.getData ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#20 = newarray (int)[2]
+NODE 2: $u-1#23 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#20)
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.ftawa2.getData2 ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#20 = newarray (int)[2]
+NODE 2: $u-1#23 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#20)
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.FtwaContent$16.callback ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.Fav.getData ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#12 = newarray (int)[2]
+NODE 2: $u-1#15 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#12)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.checkScrolledBottom ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u2#6 = newarray (java.lang.Object)[2]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u2#6)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.onClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u0 = newarray (java.lang.Object)[1]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.onItemClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u0 = newarray (java.lang.Object)[4]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.onItemSelected ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u1 = newarray (java.lang.Object)[4]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.onLongClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u2 = newarray (java.lang.Object)[1]
+NODE 3: $u-1 = specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u2)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.onTextChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u0 = newarray (java.lang.Object)[4]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.Common.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.util.Common
+NODE 2: $u0 = newarray (java.lang.Object)[0]
+NODE 3: specialinvoke this.<com.androidquery.util.Common: java.lang.Object invoke(java.lang.Object[])>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.auth.TwitterHandle$Task.onPostExecute ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.androidquery.auth.TwitterHandle$Task
+NODE 2: $u0 = this.<com.androidquery.auth.TwitterHandle$Task: com.androidquery.auth.TwitterHandle this$0>
+NODE 3: $u1 = staticinvoke <com.androidquery.auth.TwitterHandle: com.androidquery.WebDialog access$4(com.androidquery.auth.TwitterHandle)>($u0)
+NODE 4: virtualinvoke $u1.<com.androidquery.WebDialog: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper$1.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.AbstractAQuery.ajax ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.AbstractAQuery
+NODE 2: callback := @parameter0: com.androidquery.callback.AjaxCallback
+NODE 3: this = virtualinvoke this.<com.androidquery.AbstractAQuery: com.androidquery.AbstractAQuery invoke(com.androidquery.callback.AbstractAjaxCallback)>(callback)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.AbstractAQuery.create ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.androidquery.AbstractAQuery
+NODE 2: $u-1 = specialinvoke this.<com.androidquery.AbstractAQuery: java.lang.reflect.Constructor getConstructor()>()
+NODE 3: $u4 = newarray (java.lang.Object)[1]
+NODE 4: $u-1#5 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.AbstractAQuery.image ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.androidquery.AbstractAQuery
+NODE 2: $u2 := @parameter0: com.androidquery.callback.BitmapAjaxCallback
+NODE 3: virtualinvoke this.<com.androidquery.AbstractAQuery: com.androidquery.AbstractAQuery invoke(com.androidquery.callback.AbstractAjaxCallback)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.AbstractAQuery.webImage ===
+SUSPICIOUS_API: load
+NODE 1: wi = new com.androidquery.util.WebImage
+NODE 2: virtualinvoke wi.<com.androidquery.util.WebImage: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.Home.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.ftawa.getData ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#19 = newarray (int)[2]
+NODE 2: $u-1#22 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#19)
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.ftawa.getData2 ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#17 = newarray (int)[2]
+NODE 2: $u-1#20 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#17)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.DownloaderService.pollNetworkState ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.impl.DownloaderService
+NODE 2: if $u1#6 != null goto $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 3: $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 4: if $u1 != null goto $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 5: $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 6: $u-1#14 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.AQUtility.getTempDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.AQUtility.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.Object
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u7 := @parameter3: java.lang.Class[]
+NODE 4: $u9 := @parameter5: java.lang.Object[]
+NODE 5: if $u4 == null goto return null
+NODE 6: if $u5 != null goto (branch)
+NODE 7: if $u7 != null goto $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u7 = newarray (java.lang.Class)[0]
+NODE 9: $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u5, $u7)
+NODE 11: $u-1#9 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u9)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.AQUtility.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.Object
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: if $u6 == 0 goto return null
+NODE 4: if $u8 != null goto $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u7 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u5, $u7)
+NODE 8: $u9 = newarray (java.lang.Object)[0]
+NODE 9: $u4 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.AQUtility.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.Object
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u8 := @parameter4: java.lang.Class[]
+NODE 4: $u9 := @parameter5: java.lang.Object[]
+NODE 5: if $u6 == 0 goto return null
+NODE 6: if $u8 != null goto $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u5, $u8)
+NODE 9: $u4 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper.checkDataBase ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper.createDataBase ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper.createDataBase ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper.open ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.zad.bnuthaymeen.DataBaseHelper.openDataBase ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.SSLSessionCache")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient newInstance(java.lang.String,android.content.Context)>($u1, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u15 == null goto $r0 = (org.apache.http.params.HttpParams) params
+NODE 2: $u9 = <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: java.lang.Class sSslSessionCacheClass>
+NODE 3: if $u9 == null goto $r0 = (org.apache.http.params.HttpParams) params
+NODE 4: $u9 = <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: java.lang.Class sSslSessionCacheClass>
+NODE 5: $u10 = newarray (java.lang.Class)[1]
+NODE 6: $u-1 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u10)
+NODE 7: $u9#13 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#15 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u9#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if sessionCache == null goto (branch)
+NODE 2: $u9 = class "Landroid/net/SSLCertificateSocketFactory;"
+NODE 3: $u10 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#30 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHttpSocketFactory", $u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: if sessionCache == null goto (branch)
+NODE 2: $u9 = class "Landroid/net/SSLCertificateSocketFactory;"
+NODE 3: $u10 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#30 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHttpSocketFactory", $u10)
+NODE 5: $u9#13 = newarray (java.lang.Object)[2]
+NODE 6: sessionCache = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u9#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.androidquery.util.XmlDom.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.DownloadThread.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.impl.DownloadThread
+NODE 2: $u-1#18 = specialinvoke this.<com.google.android.vending.expansion.downloader.impl.DownloadThread: java.lang.String userAgent()>()
+NODE 3: $u1#10 = this.<com.google.android.vending.expansion.downloader.impl.DownloadThread: android.content.Context mContext>
+NODE 4: $u-1#22 = staticinvoke <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient newInstance(java.lang.String,android.content.Context)>($u-1#18, $u1#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

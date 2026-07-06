@@ -1,0 +1,82 @@
+=== FUNCTION: org.NsApplication.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = class "Ldalvik/system/DexClassLoader;"
+NODE 2: $u3 = newarray (java.lang.Class)[4]
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3)
+NODE 4: $u2 = newarray (java.lang.Object)[4]
+NODE 5: $u-1#11 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.NsApplication.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.NsApplication
+NODE 2: $u-1 = this.<org.NsApplication: java.lang.Class c>
+NODE 3: $u2 = "11CrEATe"
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.String: java.lang.String substring(int)>(2)
+NODE 5: $u2 = virtualinvoke $u2.<java.lang.String: java.lang.String toLowerCase()>()
+NODE 6: $u3 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#23 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u2, $u3)
+NODE 8: $u1#25 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#27 = virtualinvoke $u-1#23.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u1#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.DoMainService.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.DoMainService
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u0 = this.<org.DoMainService: java.lang.reflect.Method b>
+NODE 4: $u2 = newarray (java.lang.Object)[3]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.DoMainService.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.DoMainService
+NODE 2: $u-1 = virtualinvoke this.<org.DoMainService: android.app.Application getApplication()>()
+NODE 3: $u0 = (org.NsApplication) $u-1
+NODE 4: $u1 = $u0.<org.NsApplication: java.lang.Object a>
+NODE 5: if $u1 == null goto return
+NODE 6: $u1#5 = $u0.<org.NsApplication: java.lang.Class c>
+NODE 7: $u4 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#7 = virtualinvoke $u1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onStop", $u4)
+NODE 9: $u1 = $u0.<org.NsApplication: java.lang.Object a>
+NODE 10: $u2 = newarray (java.lang.Object)[0]
+NODE 11: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.VasActivity.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.VasActivity
+NODE 2: $u0 = class "Landroid/app/Activity;"
+NODE 3: $u3 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getPackageManager", $u3)
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
