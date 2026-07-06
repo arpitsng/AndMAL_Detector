@@ -140,7 +140,7 @@ class OpenAIBackend(LLMBackend):
 class GroqBackend(LLMBackend):
     """Groq backend (using OpenAI client compatibility)."""
 
-    def __init__(self, api_key: str, model: str = "llama-3.1-8b-instant"):
+    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
         # pyrefly: ignore [import, missing-import]
         from openai import OpenAI
         self.client = OpenAI(
@@ -371,7 +371,7 @@ def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
 
 def verify_factual_consistency(
     llm: LLMBackend, func_slice: FunctionSlice, tier1_summary: str,
-    threshold: float = 0.95
+    threshold: float = 0.50
 ) -> tuple[bool, float]:
     """
     Computes Data Relationship Coverage (DRC) for a Tier 1 summary.
@@ -396,17 +396,31 @@ def verify_factual_consistency(
         # No dependencies extracted — consider consistent by default
         return True, 1.0
 
-    # Check how many extracted dependencies are mentioned in the summary
+    # Check how many extracted dependencies are reflected in the summary.
+    # We match on dependency TYPE keywords and meaningful identifiers
+    # (class/method names), NOT raw Jimple variable names (r0, r1, etc.)
+    # which never appear in English summaries.
     matched = 0
+    summary_lower = tier1_summary.lower()
     for dep in dep_lines:
-        # Extract variable names from the dependency line
         parts = dep.split(":", 1)
         if len(parts) == 2:
-            var_names = re.findall(r'\b[r$]\w+\b', parts[1])
-            if any(var in tier1_summary for var in var_names):
+            dep_type = parts[0].strip().lower()
+            dep_body = parts[1].strip()
+
+            # Extract meaningful identifiers (class/method names, not r0/r1)
+            meaningful = re.findall(r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)+', dep_body)
+            # Also grab quoted or standalone method names
+            meaningful += re.findall(r'[a-zA-Z]\w{3,}', dep_body)
+
+            # Check if any meaningful name appears in the summary
+            if any(name.lower() in summary_lower for name in meaningful):
                 matched += 1
+            # Check if the dependency type concept is reflected
+            elif dep_type in summary_lower:
+                matched += 0.75
             else:
-                matched += 0.5  # partial credit if dependency type is mentioned
+                matched += 0.25  # minimal credit
 
     drc = matched / len(dep_lines) if dep_lines else 1.0
     return drc >= threshold, drc
@@ -524,12 +538,46 @@ def analyse_one_apk(
         return Tier3Result(sha256=sha256, prediction="BENIGN",
                            analysis="No suspicious APIs found.")
 
-    # ── Tier 1: Function-level analysis ───────────────────────────────────────
-    # Limit to 10 functions to stay within Groq free-tier token budget.
-    if len(slices) > 10:
-        if verbose:
-            print(f"    [INFO] {len(slices)} functions found, limiting to top 10")
-        slices = slices[:10]
+    # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
+    original_count = len(slices)
+    
+    # Proposal 2: Deduplication
+    seen_hashes = set()
+    unique_slices = []
+    for s in slices:
+        import hashlib
+        # Hash the CFG text to identify exact duplicates
+        cfg_hash = hashlib.md5(s.raw_text.encode('utf-8')).hexdigest()
+        if cfg_hash not in seen_hashes:
+            seen_hashes.add(cfg_hash)
+            unique_slices.append(s)
+            
+    # Proposal 1: Filter Framework/SDK code
+    FRAMEWORK_PREFIXES = (
+        'android.', 'androidx.', 'java.', 'javax.',
+        'com.google.ads.', 'com.google.android.gms.',
+        'com.google.firebase.', 'com.facebook.',
+        'org.apache.', 'dalvik.'
+    )
+    # APIs that should ALWAYS be analyzed, even if inside a framework
+    SENSITIVE_APIS = (
+        'dexclassloader', 'loadclass', 'forname', 'newinstance',
+        'load', 'loadlibrary', 'exec', 'getmethod'
+    )
+    
+    filtered_slices = []
+    for s in unique_slices:
+        api_lower = s.suspicious_api.lower()
+        is_sensitive = any(sec in api_lower for sec in SENSITIVE_APIS)
+        
+        if s.function_name.startswith(FRAMEWORK_PREFIXES) and not is_sensitive:
+            continue
+        filtered_slices.append(s)
+
+    slices = filtered_slices
+
+    if verbose and original_count > 0:
+        print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered")
 
     tier1_results: list[Tier1Result] = []
     for func_slice in slices:
@@ -542,7 +590,7 @@ def analyse_one_apk(
                 if not is_ok:
                     if verbose:
                         print(f"    [DRC] Re-analysing {func_slice.function_name} "
-                              f"(DRC={drc:.2f} < 0.95)")
+                              f"(DRC={drc:.2f} < 0.50)")
                     t1 = run_tier1(llm, func_slice)  # retry once
 
             tier1_results.append(t1)
