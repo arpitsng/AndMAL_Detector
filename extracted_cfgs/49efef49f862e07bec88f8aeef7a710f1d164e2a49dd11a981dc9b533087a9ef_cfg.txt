@@ -1,0 +1,1480 @@
+=== FUNCTION: com.rhomobile.rhodes.NavBar.create ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.NavBar$CreateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable,boolean)>($u1, 0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.NavBar.remove ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.NavBar$RemoveTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable,boolean)>($u1, 0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.event.EventStore.fetch ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <com.rhomobile.rhodes.event.EventStore: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u2 = <com.rhomobile.rhodes.event.EventStore: android.net.Uri EVENTS_URI>
+NODE 4: $u-1#5 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($u10)
+NODE 5: $u2 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u2, $u-1#5)
+NODE 6: $u2#9 = newarray (java.lang.String)[8]
+NODE 7: $u-1#28 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2, $u2#9, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.event.EventStore.fetch ===
+SUSPICIOUS_API: query
+NODE 1: $u-1#26 = staticinvoke <com.rhomobile.rhodes.event.EventStore: android.content.ContentResolver getContentResolver()>()
+NODE 2: if $u27 == 0 goto $u4#77 = newarray (java.lang.Object)[4]
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u4 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("content://")
+NODE 5: $u-1 = <com.rhomobile.rhodes.event.EventStore: java.lang.String AUTHORITY>
+NODE 6: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/instances/when")
+NODE 8: $u-1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#39 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u-1)
+NODE 10: $u-1#41 = virtualinvoke $u-1#39.<android.net.Uri: android.net.Uri$Builder buildUpon()>()
+NODE 11: $u-1#39 = virtualinvoke $u-1#41.<android.net.Uri$Builder: android.net.Uri build()>()
+NODE 12: $u4#49 = newarray (java.lang.String)[8]
+NODE 13: $u-1#69 = virtualinvoke $u-1#26.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#39, $u4#49, null, null, "startDay ASC, startMinute ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.event.EventStore.fetch ===
+SUSPICIOUS_API: query
+NODE 1: $u-1#26 = staticinvoke <com.rhomobile.rhodes.event.EventStore: android.content.ContentResolver getContentResolver()>()
+NODE 2: if $u27 == 0 goto $u4#77 = newarray (java.lang.Object)[4]
+NODE 3: $u4#77 = newarray (java.lang.Object)[4]
+NODE 4: $u-1 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("(%s >= ? and %s <= ?) or (%s >= ? and %s <= ?)", $u4#77)
+NODE 5: $u-1#39 = <com.rhomobile.rhodes.event.EventStore: android.net.Uri EVENTS_URI>
+NODE 6: $u4#49 = newarray (java.lang.String)[10]
+NODE 7: $u6 = newarray (java.lang.String)[4]
+NODE 8: $u-1#69 = virtualinvoke $u-1#26.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#39, $u4#49, $u-1, $u6, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.event.EventStore.getDefaultCalendarId ===
+SUSPICIOUS_API: query
+NODE 1: $u-1 = staticinvoke <com.rhomobile.rhodes.event.EventStore: android.content.ContentResolver getContentResolver()>()
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("content://")
+NODE 4: $u2 = <com.rhomobile.rhodes.event.EventStore: java.lang.String AUTHORITY>
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u2)
+NODE 6: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/calendars")
+NODE 7: $u2 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#16 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u2)
+NODE 9: $u2#19 = newarray (java.lang.String)[1]
+NODE 10: $u-1#23 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#16, $u2#19, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.event.EventStore.save ===
+SUSPICIOUS_API: update
+NODE 1: $u13 := @parameter0: com.rhomobile.rhodes.event.Event
+NODE 2: values = new android.content.ContentValues
+NODE 3: $u-1#57 = staticinvoke <com.rhomobile.rhodes.event.EventStore: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u10#65 = <com.rhomobile.rhodes.event.EventStore: android.net.Uri EVENTS_URI>
+NODE 5: $u11 = $u13.<com.rhomobile.rhodes.event.Event: java.lang.String id>
+NODE 6: $u-1 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($u11)
+NODE 7: $u10#65 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u10#65, $u-1)
+NODE 8: virtualinvoke $u-1#57.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u10#65, values, null, null)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.executeJs ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$NavigateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.navigate ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$NavigateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.navigateBack ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$NavigateBackTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.navigateForward ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$NavigateForwardTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.refresh ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$RefreshTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.saveCurrentPage ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.setCookie ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$SetCookieTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.setTextZoom ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$SetTextZoomTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.setZoom ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$SetZoomTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.WebView.stopNavigate ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.WebView$StopNavigateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.signature.Signature.inlineSignatureClear ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.signature.Signature$2
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.signature.Signature.inlineSignatureHide ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.signature.Signature$3
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.signature.Signature.inlineSignatureVisible ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.signature.Signature$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.signature.Signature.takeSignature ===
+SUSPICIOUS_API: exec
+NODE 1: runnable = new com.rhomobile.rhodes.signature.Signature$Picture
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>(runnable)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.Phonebook.createAccessor ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 >= 5 goto $u6 = "ContactAccessorNew"
+NODE 2: $u6 = "ContactAccessorOld"
+NODE 3: $u6#5 = class "Lcom/rhomobile/rhodes/phonebook/ContactAccessor;"
+NODE 4: $u-1#6 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Package: java.lang.String getName()>()
+NODE 6: $u6#9 = new java.lang.StringBuilder
+NODE 7: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 9: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 10: $u6 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u6#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+NODE 12: $u6 = "ContactAccessorNew"
+NODE 13: goto [?= $u6#5 = class "Lcom/rhomobile/rhodes/phonebook/ContactAccessor;"]
+EDGE: 1 -> 2
+EDGE: 1 -> 12
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.Phonebook.createAccessor ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 >= 5 goto $u6 = "ContactAccessorNew"
+NODE 2: $u6 = "ContactAccessorOld"
+NODE 3: $u6#5 = class "Lcom/rhomobile/rhodes/phonebook/ContactAccessor;"
+NODE 4: $u-1#6 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Package: java.lang.String getName()>()
+NODE 6: $u6#9 = new java.lang.StringBuilder
+NODE 7: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 9: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 10: $u6 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u6#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+NODE 12: $u6#5 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/rhomobile/rhodes/phonebook/ContactAccessor;")
+NODE 13: $u-1#22 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 14: $u6 = "ContactAccessorNew"
+NODE 15: goto [?= $u6#5 = class "Lcom/rhomobile/rhodes/phonebook/ContactAccessor;"]
+EDGE: 1 -> 2
+EDGE: 1 -> 14
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.geolocation.GeoLocation$1.run ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.geolocation.GeoLocation$1$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.create ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#26 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "_id=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.create ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: if $u-1#4 != 0 goto $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 4: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u2 = newarray (java.lang.String)[1]
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#26 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "_id=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.queryContactId ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "lookup=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.saveData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u30 := @parameter3: java.lang.String[]
+NODE 3: w0 = new java.lang.StringBuilder
+NODE 4: wvSize0 = 2
+NODE 5: if $u30 == null goto wv0 = newarray (java.lang.String)[wvSize0]
+NODE 6: wvSize0 = lengthof $u30
+NODE 7: wvSize0 = 2 + wvSize0
+NODE 8: wv0 = newarray (java.lang.String)[wvSize0]
+NODE 9: if $u30 == null goto $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 10: $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 11: $u8 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 12: $u4 = newarray (java.lang.String)[2]
+NODE 13: $u-1#38 = virtualinvoke w0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#41 = virtualinvoke $u2#30.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, $u4, $u-1#38, wv0, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.saveData ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u28 := @parameter1: android.content.ContentValues
+NODE 3: $u29 := @parameter2: java.lang.String
+NODE 4: $u30 := @parameter3: java.lang.String[]
+NODE 5: if $u2#51 == 0 goto $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 6: w0 = new java.lang.StringBuilder
+NODE 7: if $u29 == null goto wvSize0 = 2
+NODE 8: wvSize0 = 2
+NODE 9: if $u30 == null goto wv0 = newarray (java.lang.String)[wvSize0]
+NODE 10: wvSize0 = lengthof $u30
+NODE 11: wvSize0 = 2 + wvSize0
+NODE 12: wv0 = newarray (java.lang.String)[wvSize0]
+NODE 13: $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 14: $u8 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 15: $u29 = virtualinvoke w0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 16: wvSize0 = virtualinvoke $u2#30.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u8, $u28, $u29, wv0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 12
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.saveData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: if $u2#51 == 0 goto $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u2#30 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 4: $u8 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 5: $u30 = newarray (java.lang.String)[1]
+NODE 6: wv0 = newarray (java.lang.String)[1]
+NODE 7: $u-1#41 = virtualinvoke $u2#30.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, $u30, "contact_id=?", wv0, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.fillCompany ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "contact_id=? AND mimetype=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.fillEmails ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "contact_id=? AND mimetype=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.fillName ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[3]
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "contact_id=? AND mimetype=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.fillPhones ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "contact_id=? AND mimetype=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.getContact ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "lookup=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: selection = new java.lang.StringBuilder
+NODE 3: $u3 = virtualinvoke selection.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(44)
+NODE 4: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id")
+NODE 5: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ASC")
+NODE 6: $u3#60 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 7: $u4 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 8: $u5 = newarray (java.lang.String)[3]
+NODE 9: $u-1#72 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#74 = virtualinvoke $u3#60.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5, null, null, $u-1#72)
+NODE 11: if $u-1#145 == 0 goto $u3#60 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: if conditions != null goto (branch)
+NODE 3: if $u32 <= 0 goto (branch)
+NODE 4: if $u31 <= 0 goto $u-1#30 = new java.lang.StringBuilder
+NODE 5: $u-1#30 = new java.lang.StringBuilder
+NODE 6: selection = $u-1#30
+NODE 7: $u3 = new java.util.LinkedList
+NODE 8: selectionArgs = $u3
+NODE 9: $u-1#76 = virtualinvoke selection.<java.lang.StringBuilder: int length()>()
+NODE 10: if $u-1#76 == 0 goto pos = 0L
+NODE 11: $u-1#76 = interfaceinvoke selectionArgs.<java.util.List: int size()>()
+NODE 12: $u5 = newarray (java.lang.String)[$u-1#76]
+NODE 13: $u3#60 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 14: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 15: $u5#86 = newarray (java.lang.String)[7]
+NODE 16: $u-1#72 = virtualinvoke selection.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 17: selection = new java.lang.StringBuilder
+NODE 18: $u3 = virtualinvoke selection.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(44)
+NODE 19: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id")
+NODE 20: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ASC")
+NODE 21: $u-1#118 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 22: dataCursor = virtualinvoke $u3#60.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5#86, $u-1#72, $u5, $u-1#118)
+NODE 23: goto [?= $u-1#30 = new java.lang.StringBuilder]
+NODE 24: goto [?= $u-1#30 = new java.lang.StringBuilder]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 23 -> 5
+EDGE: 24 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.getCount ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: if conditions != null goto (branch)
+NODE 3: if $u33 <= 0 goto (branch)
+NODE 4: if $u32 <= 0 goto $u-1#94 = new java.lang.StringBuilder
+NODE 5: $u-1#94 = new java.lang.StringBuilder
+NODE 6: selection = $u-1#94
+NODE 7: $u2 = new java.util.LinkedList
+NODE 8: selectionArgs = $u2
+NODE 9: goto [?= $u-1#94 = new java.lang.StringBuilder]
+NODE 10: goto [?= $u-1#94 = new java.lang.StringBuilder]
+NODE 11: if $u-1#32 == 0 goto $u-1#76 = interfaceinvoke selectionArgs.<java.util.List: int size()>()
+NODE 12: $u-1#76 = interfaceinvoke selectionArgs.<java.util.List: int size()>()
+NODE 13: selectionArray = newarray (java.lang.String)[$u-1#76]
+NODE 14: $u3#115 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 15: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 16: $u5 = newarray (java.lang.String)[7]
+NODE 17: key = virtualinvoke selection.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 18: $u-1#94 = new java.lang.StringBuilder
+NODE 19: selection = virtualinvoke $u-1#94.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(44)
+NODE 20: selection = virtualinvoke selection.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id")
+NODE 21: selection = virtualinvoke selection.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ASC")
+NODE 22: $u-1#146 = virtualinvoke selection.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 23: dataCursor = virtualinvoke $u3#115.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5, key, selectionArray, $u-1#146)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 5
+EDGE: 10 -> 5
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorNew.getCount ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorNew
+NODE 2: selection = new java.lang.StringBuilder
+NODE 3: $u3 = virtualinvoke selection.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(44)
+NODE 4: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id")
+NODE 5: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ASC")
+NODE 6: if conditions == null goto $u3#115 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 7: $u3#115 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorNew: android.content.ContentResolver cr>
+NODE 8: $u4 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 9: selectionArray = newarray (java.lang.String)[3]
+NODE 10: key = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1#163 = virtualinvoke $u3#115.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, selectionArray, null, null, key)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mainview.SimpleMainView$ActionCustom.onClick ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.mainview.SimpleMainView$ActionCustom$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.webview.RhoWebChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesActivity.initConfig ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: configXmlFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesActivity.initConfig ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = new com.rhomobile.rhodes.util.Config
+NODE 2: config = $u0
+NODE 3: $u3 = new java.io.File
+NODE 4: configXmlFile = $u3
+NODE 5: $u5 = new java.io.FileInputStream
+NODE 6: configIs1 = $u5
+NODE 7: $u13 = virtualinvoke configXmlFile.<java.io.File: java.lang.String getParent()>()
+NODE 8: virtualinvoke config.<com.rhomobile.rhodes.util.Config: void load(java.io.InputStream,java.lang.String)>(configIs1, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesActivity.initConfig ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.rhomobile.rhodes.RhodesActivity
+NODE 2: $u0 = new com.rhomobile.rhodes.util.Config
+NODE 3: config = $u0
+NODE 4: $u-1 = specialinvoke this.<com.rhomobile.rhodes.RhodesActivity: android.content.pm.ApplicationInfo getAppInfo()>()
+NODE 5: $u1 = new java.lang.StringBuilder
+NODE 6: configXmlFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 7: $u-1#6 = virtualinvoke configXmlFile.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 8: $u9 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#6)
+NODE 9: $u9 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/Android/data/")
+NODE 10: $u-1#6 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 11: $u9 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#6)
+NODE 12: $u-1#6 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u-1#53 = virtualinvoke this.<com.rhomobile.rhodes.RhodesActivity: android.content.res.Resources getResources()>()
+NODE 14: $u-1#43 = staticinvoke <com.rhomobile.rhodes.extmanager.RhoExtManager: int getResourceId(java.lang.String,java.lang.String)>("raw", "config")
+NODE 15: $u-1#59 = virtualinvoke $u-1#53.<android.content.res.Resources: java.io.InputStream openRawResource(int)>($u-1#43)
+NODE 16: virtualinvoke config.<com.rhomobile.rhodes.util.Config: void load(java.io.InputStream,java.lang.String)>($u-1#59, $u-1#6)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesActivity.readRhoElementsConfig ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesActivity.setFullscreen ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.RhodesActivity$3
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.NativeBar.create ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.NativeBar$CreateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.NativeBar.remove ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.NativeBar$CreateTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.NativeBar.switchTab ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.NativeBar$SwitchTabTask
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.downloadPackage ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u-1 = staticinvoke <com.rhomobile.rhodes.RhodesActivity: android.content.Context getContext()>()
+NODE 2: $u3 = new java.lang.StringBuilder
+NODE 3: $u-1#19 = staticinvoke <java.util.UUID: java.util.UUID randomUUID()>()
+NODE 4: $u-1#21 = virtualinvoke $u-1#19.<java.util.UUID: java.lang.String toString()>()
+NODE 5: $u24 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#21)
+NODE 6: $u24 = virtualinvoke $u24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".apk")
+NODE 7: $u-1#21 = virtualinvoke $u24.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#31 = virtualinvoke $u-1.<android.content.Context: java.io.File getFileStreamPath(java.lang.String)>($u-1#21)
+NODE 9: $u-1#21 = virtualinvoke $u-1#31.<java.io.File: java.lang.String getName()>()
+NODE 10: $u-1#37 = virtualinvoke $u-1.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#21, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.exit ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.RhodesService$3
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.getProperty ===
+SUSPICIOUS_API: getLine1Number
+NODE 1: if $u-1 == 0 goto $u-1 = virtualinvoke $u11.<java.lang.String: boolean equalsIgnoreCase(java.lang.String)>("device_owner_name")
+NODE 2: $u-1#87 = staticinvoke <com.rhomobile.rhodes.util.ContextFactory: android.content.Context getContext()>()
+NODE 3: if $u-1#87 == null goto return ""
+NODE 4: $u-1#90 = virtualinvoke $u-1#87.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: manager = (android.telephony.TelephonyManager) $u-1#90
+NODE 6: strDevice = virtualinvoke manager.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.isMotorolaDevice ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.motorolasolutions.rhoelements.Common")
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.isMotorolaDevice ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.motorolasolutions.rhoelements.Common")
+NODE 2: $u5 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("isEmdkDevice", $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.isMotorolaDevice ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.motorolasolutions.rhoelements.Common")
+NODE 2: $u5 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("isEmdkDevice", $u5)
+NODE 4: $u5#11 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#12 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u5#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.rho_sys_set_sleeping ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1#14 == null goto return wasEnabled
+NODE 2: if $u7 == 0 goto $u2 = new com.rhomobile.rhodes.RhodesService$10
+NODE 3: goto [?= (branch)]
+NODE 4: $u2 = new com.rhomobile.rhodes.RhodesService$10
+NODE 5: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 4
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.showAboutDialog ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.RhodesService$4
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.showLogOptions ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.RhodesService$6
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.showLogView ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.RhodesService$5
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.startServiceForeground ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.rhomobile.rhodes.RhodesService
+NODE 2: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mStartForeground>
+NODE 3: if $u1 == null goto $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 4: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mStartForeground>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.startServiceForeground ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.rhomobile.rhodes.RhodesService
+NODE 2: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mStartForeground>
+NODE 3: if $u1 == null goto $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 4: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 5: if $u1 == null goto $u1#23 = this.<com.rhomobile.rhodes.RhodesService: android.app.NotificationManager mNM>
+NODE 6: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 7: $u2 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.stopServiceForeground ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.rhomobile.rhodes.RhodesService
+NODE 2: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mStopForeground>
+NODE 3: if $u1 == null goto $u1#14 = this.<com.rhomobile.rhodes.RhodesService: android.app.NotificationManager mNM>
+NODE 4: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mStopForeground>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService.stopServiceForeground ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.rhomobile.rhodes.RhodesService
+NODE 2: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 3: if $u1 == null goto return
+NODE 4: $u1 = this.<com.rhomobile.rhodes.RhodesService: java.lang.reflect.Method mSetForeground>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesApplication$5.run ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.RhodesApplication$5$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.sendMessage ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#14 <= 0 goto return
+NODE 2: $u-1#23 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.startClient ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$5
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.startServer ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$6
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.create_custom_client_session ===
+SUSPICIOUS_API: exec
+NODE 1: $u1#21 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$7
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1#21)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.onActivityResultPrivate ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$4
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.onSessionConnectedOK ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.onSessionDisconnected ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$2
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew.onSessionReadMessage ===
+SUSPICIOUS_API: exec
+NODE 1: $u2 = new com.rhomobile.rhodes.bluetooth.RhoBluetoothManagerNew$3
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u2)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.util.PhoneId.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.util.PhoneId.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u8)
+NODE 4: $u7 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#13 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u7)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhoCryptImpl.db_decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.rhomobile.rhodes.RhoCryptImpl
+NODE 2: $u6 := @parameter1: java.nio.ByteBuffer
+NODE 3: $u7 := @parameter2: java.nio.ByteBuffer
+NODE 4: $u2 = this.<com.rhomobile.rhodes.RhoCryptImpl: javax.crypto.Cipher m_decryptCipher>
+NODE 5: if $u2 != null goto $u-1 = virtualinvoke $u6.<java.nio.ByteBuffer: int capacity()>()
+NODE 6: $u-1 = virtualinvoke $u6.<java.nio.ByteBuffer: int capacity()>()
+NODE 7: $u-1#7 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>($u-1)
+NODE 8: $u2 = this.<com.rhomobile.rhodes.RhoCryptImpl: javax.crypto.Cipher m_decryptCipher>
+NODE 9: virtualinvoke $u2.<javax.crypto.Cipher: int doFinal(java.nio.ByteBuffer,java.nio.ByteBuffer)>($u-1#7, $u7)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhoCryptImpl.db_encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.rhomobile.rhodes.RhoCryptImpl
+NODE 2: $u6 := @parameter1: java.nio.ByteBuffer
+NODE 3: $u7 := @parameter2: java.nio.ByteBuffer
+NODE 4: $u2 = this.<com.rhomobile.rhodes.RhoCryptImpl: javax.crypto.Cipher m_encryptCipher>
+NODE 5: if $u2 != null goto $u-1 = virtualinvoke $u6.<java.nio.ByteBuffer: int capacity()>()
+NODE 6: $u-1 = virtualinvoke $u6.<java.nio.ByteBuffer: int capacity()>()
+NODE 7: $u-1#7 = staticinvoke <java.nio.ByteBuffer: java.nio.ByteBuffer allocate(int)>($u-1)
+NODE 8: $u2 = this.<com.rhomobile.rhodes.RhoCryptImpl: javax.crypto.Cipher m_encryptCipher>
+NODE 9: virtualinvoke $u2.<javax.crypto.Cipher: int doFinal(java.nio.ByteBuffer,java.nio.ByteBuffer)>($u-1#7, $u7)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.extmanager.RhoExtManagerImpl.getResId ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u3 = new java.lang.StringBuilder
+NODE 3: $u4 = class "Lcom/rhomobile/rhodes/R;"
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.String getCanonicalName()>()
+NODE 5: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$")
+NODE 7: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 8: $u6 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u4 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.extmanager.RhoExtManagerImpl.getResId ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = new java.lang.StringBuilder
+NODE 4: $u4 = class "Lcom/rhomobile/rhodes/R;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.String getCanonicalName()>()
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$")
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u6 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u4 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+NODE 11: $u-1#16 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.extmanager.RhoExtManagerImpl.createRhoListeners ===
+SUSPICIOUS_API: forName
+NODE 1: arr$ = <com.rhomobile.rhodes.extmanager.RhodesStartupListeners: java.lang.String[] ourRunnableList>
+NODE 2: i$ = 0
+NODE 3: if i$ >= len$ goto return
+NODE 4: classname = arr$[i$]
+NODE 5: if $u-1 != 0 goto klass = null
+NODE 6: i$ = i$ + 1
+NODE 7: goto [?= (branch)]
+NODE 8: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(classname)
+NODE 9: if klass == null goto (branch)
+NODE 10: if listener == null goto i$ = i$ + 1
+NODE 11: goto [?= i$ = i$ + 1]
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 3
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 6
+EDGE: 12 -> 10
+EDGE: 13 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.extmanager.RhoExtManagerImpl.createRhoListeners ===
+SUSPICIOUS_API: newInstance
+NODE 1: arr$ = <com.rhomobile.rhodes.extmanager.RhodesStartupListeners: java.lang.String[] ourRunnableList>
+NODE 2: i$ = 0
+NODE 3: if i$ >= len$ goto return
+NODE 4: classname = arr$[i$]
+NODE 5: if $u-1 != 0 goto klass = null
+NODE 6: i$ = i$ + 1
+NODE 7: goto [?= (branch)]
+NODE 8: klass = null
+NODE 9: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(classname)
+NODE 10: $u-1#5 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/rhomobile/rhodes/extmanager/IRhoListener;")
+NODE 11: klass = $u-1#5
+NODE 12: if klass == null goto (branch)
+NODE 13: $u-1#10 = virtualinvoke klass.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 14: if listener == null goto i$ = i$ + 1
+NODE 15: goto [?= i$ = i$ + 1]
+NODE 16: goto [?= (branch)]
+NODE 17: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 3
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 12 -> 14
+EDGE: 14 -> 6
+EDGE: 15 -> 6
+EDGE: 16 -> 14
+EDGE: 17 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.util.PerformOnUiThread.exec ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 := @parameter0: java.lang.Runnable
+NODE 2: if $u1 == 0 goto staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+NODE 3: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.fillPhones ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 3: $u1 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "person=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: $u2 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 3: orgUri = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 4: $u-1 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(orgUri, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: if $u26 < $u27 goto $u1 = new com.rhomobile.rhodes.phonebook.Contact
+NODE 3: $u1 = new com.rhomobile.rhodes.phonebook.Contact
+NODE 4: contact = $u1
+NODE 5: orgUri = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#28 = virtualinvoke contact.<com.rhomobile.rhodes.phonebook.Contact: java.lang.String id()>()
+NODE 7: $u-1#45 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($u-1#28)
+NODE 8: orgUri = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>(orgUri, $u-1#45)
+NODE 9: orgUri = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>(orgUri, "organizations")
+NODE 10: $u9 = newarray (java.lang.String)[1]
+NODE 11: $u2 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 12: $u6 = newarray (java.lang.String)[1]
+NODE 13: $u-1#63 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(orgUri, $u9, "person=?", $u6, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: $u6 = newarray (java.lang.String)[2]
+NODE 3: $u2 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 4: orgUri = <android.provider.Contacts$ContactMethods: android.net.Uri CONTENT_URI>
+NODE 5: $u9 = newarray (java.lang.String)[1]
+NODE 6: $u-1#63 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(orgUri, $u6, "person=?", $u9, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.getCount ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: sortMode = new java.lang.StringBuilder
+NODE 3: if $u11 > 0 goto $u-1 = virtualinvoke sortMode.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id")
+NODE 4: if $u10 <= 0 goto $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 5: if $u11 <= 0 goto (branch)
+NODE 6: if $u10 <= 0 goto $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 7: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 8: $u1 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 9: $u-1#13 = virtualinvoke sortMode.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#14 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, $u-1#13)
+EDGE: 3 -> 4
+EDGE: 4 -> 7
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.save ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: $u33 := @parameter0: com.rhomobile.rhodes.phonebook.Contact
+NODE 3: $u-1 = virtualinvoke $u33.<com.rhomobile.rhodes.phonebook.Contact: java.lang.String id()>()
+NODE 4: if $u-1#26 != 0 goto isNew = 1
+NODE 5: $u-1#28 = staticinvoke <java.lang.Long: long parseLong(java.lang.String)>($u-1)
+NODE 6: $u28#29 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 7: $u28#29 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u28#29, $u-1#28)
+NODE 8: if $u28#29 != null goto (branch)
+NODE 9: $u2 = new android.content.ContentValues
+NODE 10: company = $u2
+NODE 11: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 12: $u28#29 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 13: $u28#29 = virtualinvoke $u0.<android.content.ContentResolver: android.net.Uri insert(android.net.Uri,android.content.ContentValues)>($u28#29, company)
+NODE 14: goto [?= (branch)]
+NODE 15: if isNew != 0 goto $u-1#59 = virtualinvoke $u28#29.<android.net.Uri: java.util.List getPathSegments()>()
+NODE 16: $u2 = new android.content.ContentValues
+NODE 17: company = $u2
+NODE 18: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 19: virtualinvoke $u0.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u28#29, company, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 15
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 8
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.phonebook.ContactAccessorOld.save ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.rhomobile.rhodes.phonebook.ContactAccessorOld
+NODE 2: if $u-1#6 != null goto $u2 = new android.content.ContentValues
+NODE 3: $u2 = new android.content.ContentValues
+NODE 4: company = $u2
+NODE 5: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 6: $u29 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 7: $u29 = virtualinvoke $u0.<android.content.ContentResolver: android.net.Uri insert(android.net.Uri,android.content.ContentValues)>($u29, company)
+NODE 8: if $u29 != null goto $u-1#63 = $u-1#63 + 1
+NODE 9: $u0 = this.<com.rhomobile.rhodes.phonebook.ContactAccessorOld: android.content.ContentResolver cr>
+NODE 10: $u29 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 11: $u0#81 = virtualinvoke $u0.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u29, company, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.alert.Alert$3.run ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.alert.Alert$3$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesApplication.<clinit> ===
+SUSPICIOUS_API: load
+NODE 1: staticinvoke <com.rhomobile.rhodes.NativeLibraries: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mainview.SplashScreen$1$1.run ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.mainview.SplashScreen$1$1$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.createTouchHandler ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 >= 5 goto $u6 = "MultiTouchHandler"
+NODE 2: $u6 = "OneTouchHandler"
+NODE 3: $u6#5 = class "Lcom/rhomobile/rhodes/mapview/TouchHandler;"
+NODE 4: $u-1#6 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Package: java.lang.String getName()>()
+NODE 6: $u6#9 = new java.lang.StringBuilder
+NODE 7: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 9: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 10: $u6 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u6#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+NODE 12: $u6 = "MultiTouchHandler"
+NODE 13: goto [?= $u6#5 = class "Lcom/rhomobile/rhodes/mapview/TouchHandler;"]
+EDGE: 1 -> 2
+EDGE: 1 -> 12
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.createTouchHandler ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 >= 5 goto $u6 = "MultiTouchHandler"
+NODE 2: $u6 = "OneTouchHandler"
+NODE 3: $u6#5 = class "Lcom/rhomobile/rhodes/mapview/TouchHandler;"
+NODE 4: $u-1#6 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Package: java.lang.String getName()>()
+NODE 6: $u6#9 = new java.lang.StringBuilder
+NODE 7: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 9: $u6#9 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 10: $u6 = virtualinvoke $u6#9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u6#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+NODE 12: $u6#5 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/rhomobile/rhodes/mapview/TouchHandler;")
+NODE 13: $u-1#22 = virtualinvoke $u6#5.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 14: $u6 = "MultiTouchHandler"
+NODE 15: goto [?= $u6#5 = class "Lcom/rhomobile/rhodes/mapview/TouchHandler;"]
+EDGE: 1 -> 2
+EDGE: 1 -> 14
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.destroy ===
+SUSPICIOUS_API: exec
+NODE 1: $u1#7 = new com.rhomobile.rhodes.mapview.MapView$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1#7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.mapengine_delete_mapview_in_ui_thread ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.mapview.MapView$7
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.onKeyDown ===
+SUSPICIOUS_API: exec
+NODE 1: $u0#7 = new com.rhomobile.rhodes.mapview.MapView$4
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0#7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.mapview.MapView.redraw ===
+SUSPICIOUS_API: exec
+NODE 1: if $u0#2 == null goto return
+NODE 2: $u0#3 = new com.rhomobile.rhodes.mapview.MapView$6
+NODE 3: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0#3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.ConnectionChangeReceiver.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.camera.ImageCapture.access$100 ===
+SUSPICIOUS_API: takePicture
+NODE 1: $u0 := @parameter0: com.rhomobile.rhodes.camera.ImageCapture
+NODE 2: specialinvoke $u0.<com.rhomobile.rhodes.camera.ImageCapture: void takePicture()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.camera.ImageCapture.takePicture ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: com.rhomobile.rhodes.camera.ImageCapture
+NODE 2: if $u4#122 == null goto iccb = new com.rhomobile.rhodes.camera.ImageCaptureCallback
+NODE 3: if $u-1#86 == null goto iccb = new com.rhomobile.rhodes.camera.ImageCaptureCallback
+NODE 4: if $u4#74 == 0 goto iccb = new com.rhomobile.rhodes.camera.ImageCaptureCallback
+NODE 5: iccb = new com.rhomobile.rhodes.camera.ImageCaptureCallback
+NODE 6: $u4 = this.<com.rhomobile.rhodes.camera.ImageCapture: android.hardware.Camera camera>
+NODE 7: $u5#257 = this.<com.rhomobile.rhodes.camera.ImageCapture: android.hardware.Camera$ShutterCallback mShutterCallback>
+NODE 8: $u7#259 = this.<com.rhomobile.rhodes.camera.ImageCapture: android.hardware.Camera$PictureCallback mPictureCallbackRaw>
+NODE 9: virtualinvoke $u4.<android.hardware.Camera: void takePicture(android.hardware.Camera$ShutterCallback,android.hardware.Camera$PictureCallback,android.hardware.Camera$PictureCallback)>($u5#257, $u7#259, iccb)
+NODE 10: iccb = null
+NODE 11: goto [?= $u4 = this.<com.rhomobile.rhodes.camera.ImageCapture: android.hardware.Camera camera>]
+EDGE: 2 -> 5
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.camera.ImageCapture.takePictureWithAutofocus ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: com.rhomobile.rhodes.camera.ImageCapture
+NODE 2: if $u-1#7 == 0 goto specialinvoke this.<com.rhomobile.rhodes.camera.ImageCapture: void takePicture()>()
+NODE 3: specialinvoke this.<com.rhomobile.rhodes.camera.ImageCapture: void takePicture()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.webview.GoogleWebView.applyWebSettings ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new com.rhomobile.rhodes.webview.GoogleWebView$1
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.webview.GoogleWebView.setWebClient ===
+SUSPICIOUS_API: exec
+NODE 1: $u0#3 = new com.rhomobile.rhodes.webview.GoogleWebView$2
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0#3)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.NativeLibraries.load ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("rhodes")
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.RhodesService$9.run ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1#3 == null goto return
+NODE 2: $u0 = new com.rhomobile.rhodes.RhodesService$9$1
+NODE 3: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener.register ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener
+NODE 2: if $u0 == null goto $u-1#23 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: boolean available>
+NODE 3: $u0#15 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: android.location.LocationManager manager>
+NODE 4: $u2 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: java.lang.String providerName>
+NODE 5: $u-1 = staticinvoke <android.os.Looper: android.os.Looper getMainLooper()>()
+NODE 6: virtualinvoke $u0#15.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>($u2, 250L, 0.0F, this, $u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener.requestLastLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener
+NODE 2: if $u1 == null goto return
+NODE 3: $u1#2 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: android.location.LocationManager manager>
+NODE 4: if $u1#2 == null goto return
+NODE 5: $u1#2 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: android.location.LocationManager manager>
+NODE 6: $u2 = this.<com.rhomobile.rhodes.geolocation.GeoLocationImpl$RhoLocationListener: java.lang.String providerName>
+NODE 7: $u-1 = virtualinvoke $u1#2.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.camera.Camera.choosePicture ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.rhomobile.rhodes.camera.Camera$Picture
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.camera.Camera.takePicture ===
+SUSPICIOUS_API: exec
+NODE 1: runnable = new com.rhomobile.rhodes.camera.Camera$CameraDisabled
+NODE 2: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable)>(runnable)
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.signature.SignatureView.setupView ===
+SUSPICIOUS_API: exec
+NODE 1: if $u0#51 == 0 goto return
+NODE 2: $u3 = new com.rhomobile.rhodes.signature.SignatureView$1
+NODE 3: staticinvoke <com.rhomobile.rhodes.util.PerformOnUiThread: void exec(java.lang.Runnable,long)>($u3, 10L)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManager$1.run ===
+SUSPICIOUS_API: forName
+NODE 1: className = "RhoBluetoothManagerNew"
+NODE 2: if $u-1 >= 5 goto $u6#9 = class "Lcom/rhomobile/rhodes/bluetooth/RhoBluetoothManager;"
+NODE 3: className = "RhoBluetoothManagerOld"
+NODE 4: $u6#9 = class "Lcom/rhomobile/rhodes/bluetooth/RhoBluetoothManager;"
+NODE 5: $u-1#10 = virtualinvoke $u6#9.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 6: $u6 = virtualinvoke $u-1#10.<java.lang.Package: java.lang.String getName()>()
+NODE 7: $u6#13 = new java.lang.StringBuilder
+NODE 8: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 10: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(className)
+NODE 11: className = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: $u6#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.bluetooth.RhoBluetoothManager$1.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: className = "RhoBluetoothManagerNew"
+NODE 2: if $u-1 >= 5 goto $u6#9 = class "Lcom/rhomobile/rhodes/bluetooth/RhoBluetoothManager;"
+NODE 3: className = "RhoBluetoothManagerOld"
+NODE 4: $u6#9 = class "Lcom/rhomobile/rhodes/bluetooth/RhoBluetoothManager;"
+NODE 5: $u-1#10 = virtualinvoke $u6#9.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 6: $u6 = virtualinvoke $u-1#10.<java.lang.Package: java.lang.String getName()>()
+NODE 7: $u6#13 = new java.lang.StringBuilder
+NODE 8: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 10: $u6#13 = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(className)
+NODE 11: className = virtualinvoke $u6#13.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: $u6#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 13: $u6#9 = virtualinvoke $u6#9.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/rhomobile/rhodes/bluetooth/IRhoBluetoothManager;")
+NODE 14: $u-1#26 = virtualinvoke $u6#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.socket.SSLImpl.getSecureFactory ===
+SUSPICIOUS_API: load
+NODE 1: $u-1#7 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#19 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1#7)
+NODE 3: virtualinvoke $u-1#19.<java.security.KeyStore: void load(java.security.KeyStore$LoadStoreParameter)>(null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.rhomobile.rhodes.socket.SSLImpl.getSecureFactory ===
+SUSPICIOUS_API: load
+NODE 1: if $u-1#50 == 0 goto (branch)
+NODE 2: $u-1#7 = staticinvoke <com.rhomobile.rhodes.RhoConf: java.lang.String getString(java.lang.String)>("clientSSLCertificate")
+NODE 3: $u-1#61 = ""
+NODE 4: if $u-1#50 == 0 goto $u-1#19 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")
+NODE 5: $u-1#61 = staticinvoke <com.rhomobile.rhodes.RhoConf: java.lang.String getString(java.lang.String)>("clientSSLCertificatePassword")
+NODE 6: $u-1#19 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")
+NODE 7: $u-1#78 = staticinvoke <com.rhomobile.rhodes.file.RhoFileApi: java.io.InputStream open(java.lang.String)>($u-1#7)
+NODE 8: $u-1#80 = virtualinvoke $u-1#61.<java.lang.String: char[] toCharArray()>()
+NODE 9: virtualinvoke $u-1#19.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#78, $u-1#80)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+

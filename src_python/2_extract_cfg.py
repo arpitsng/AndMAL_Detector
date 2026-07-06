@@ -83,7 +83,7 @@ def load_api_key() -> str:
 #  Step 1 — Load hashes + labels from the CSV
 # =============================================================================
 
-def load_csv(csv_path: Path, limit: int | None) -> list[dict]:
+def load_csv(csv_path: Path, limit: int | None, offset: int = 0) -> list[dict]:
     """
     Reads the training CSV and returns a list of sample dicts.
 
@@ -110,6 +110,11 @@ def load_csv(csv_path: Path, limit: int | None) -> list[dict]:
     df["sha256"] = df["sha256"].str.strip().str.lower()
     df.dropna(subset=["sha256"], inplace=True)
     df.drop_duplicates(subset=["sha256"], inplace=True)
+
+    # Apply offset first, then limit
+    if offset > 0:
+        df = df.iloc[offset:]
+        print(f"[INFO] Skipping first {offset} samples (--offset).")
 
     if limit:
         df = df.head(limit)
@@ -204,7 +209,7 @@ def safe_delete(path: Path) -> None:
 #  Main pipeline loop
 # =============================================================================
 
-def main(csv_path: Path, limit: int | None) -> None:
+def main(csv_path: Path, limit: int | None, offset: int = 0) -> None:
     print("=" * 65)
     print("  LAMD Phase 1 — Step 2: Download + Analyse + Clean Up")
     print("=" * 65)
@@ -231,7 +236,7 @@ def main(csv_path: Path, limit: int | None) -> None:
     print()
 
     # ── Load work list ─────────────────────────────────────────────────────────
-    samples = load_csv(csv_path, limit)
+    samples = load_csv(csv_path, limit, offset)
     total   = len(samples)
     if total == 0:
         print("[INFO] No samples to process.")
@@ -355,5 +360,9 @@ if __name__ == "__main__":
         "--limit", type=int, default=None, metavar="N",
         help="Process only the first N samples (useful for testing)."
     )
+    parser.add_argument(
+        "--offset", type=int, default=0, metavar="N",
+        help="Skip the first N samples (use to split work across machines)."
+    )
     args = parser.parse_args()
-    main(csv_path=args.csv, limit=args.limit)
+    main(csv_path=args.csv, limit=args.limit, offset=args.offset)
