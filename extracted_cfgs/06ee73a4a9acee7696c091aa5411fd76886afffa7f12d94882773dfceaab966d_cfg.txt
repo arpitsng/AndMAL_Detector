@@ -1,0 +1,63 @@
+=== FUNCTION: com.samsung.android.sdk.cup.ScupMediaController.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = newarray (int)[2]
+NODE 2: $u2 = <java.lang.Long: java.lang.Class TYPE>
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u2, $u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.samsung.android.sdk.cup.ScupMediaController.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = newarray (int)[2]
+NODE 2: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Landroid/graphics/Bitmap;", $u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.samsung.android.sdk.cup.Scup.initialize ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: if v10 == null goto $u17#14 = new com.samsung.android.sdk.SsdkUnsupportedException
+NODE 3: if v11 != null goto $u-1 = virtualinvoke $u21.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1 = virtualinvoke $u21.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#21 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(128)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.samsung.android.sdk.cup.Scup.initialize ===
+SUSPICIOUS_API: load
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: if $u21 != null goto v10 = <android.os.Build: java.lang.String BRAND>
+NODE 3: v10 = <android.os.Build: java.lang.String BRAND>
+NODE 4: if v10 == null goto $u17#14 = new com.samsung.android.sdk.SsdkUnsupportedException
+NODE 5: if v11 != null goto $u-1 = virtualinvoke $u21.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 6: $u-1 = virtualinvoke $u21.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 7: $u-1#21 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(128)
+NODE 8: $u-1#23 = interfaceinvoke $u-1#21.<java.util.List: java.util.Iterator iterator()>()
+NODE 9: if $u-1#24 == 0 goto (branch)
+NODE 10: $u-1#26 = interfaceinvoke $u-1#23.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u18 = new java.lang.StringBuilder
+NODE 12: $u18 = virtualinvoke $u18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/data/data/")
+NODE 13: $u17#29 = (android.content.pm.ApplicationInfo) $u-1#26
+NODE 14: v10 = $u17#29.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 15: $u18 = virtualinvoke $u18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(v10)
+NODE 16: $u18 = virtualinvoke $u18.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/lib/libSpiCodec.so")
+NODE 17: v10 = virtualinvoke $u18.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 18: staticinvoke <java.lang.System: void load(java.lang.String)>(v10)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.samsung.android.sdk.cup.Scup.initialize ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("SpiCodec")
+=== END FUNCTION ===
+

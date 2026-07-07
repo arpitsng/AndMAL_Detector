@@ -1,0 +1,4026 @@
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.<clinit> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: tm = (android.telephony.TelephonyManager) $u-1#6
+NODE 4: $u-1#9 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.<clinit> ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: tm = (android.telephony.TelephonyManager) $u-1#6
+NODE 4: $u-1#9 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.<clinit> ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifi = (android.net.wifi.WifiManager) $u-1#6
+NODE 4: $u-1#30 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.<clinit> ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifi = (android.net.wifi.WifiManager) $u-1#6
+NODE 4: $u-1#30 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#9 = virtualinvoke $u-1#30.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.getConnectType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1#4
+NODE 4: $u-1#7 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.getInstallPackages ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u-1 = staticinvoke <com.bjshinesky.util.AndroidUtil: android.content.Context getContext()>()
+NODE 2: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1#3.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.getRoot ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.AndroidUtil.showNotify ===
+SUSPICIOUS_API: forName
+NODE 1: if $u11 == null goto virtualinvoke nm.<android.app.NotificationManager: void notify(int,android.app.Notification)>($u7, notification)
+NODE 2: $u-1#15 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$id")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.seleuco.mame4all.views.InputView.setMAME4all ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0#71 != null goto return
+NODE 2: $u-1#73 = newarray (int)[2]
+NODE 3: $u-1#76 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Landroid/graphics/drawable/BitmapDrawable;", $u-1#73)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u-1#3 = virtualinvoke $u6.<android.content.Context: java.io.File getCacheDir()>()
+NODE 2: $u-1#3 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u-1#16 = virtualinvoke $u8.<android.content.Context: java.io.File getCacheDir()>()
+NODE 2: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.FileUtils")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.FileUtils")
+NODE 2: $u4 = newarray (java.lang.Class)[4]
+NODE 3: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setPermissions", $u4)
+NODE 4: $u4#20 = newarray (java.lang.Object)[4]
+NODE 5: virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4#20)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u2 = virtualinvoke $u4.<android.content.Context: java.io.File getCacheDir()>()
+NODE 2: $u2 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.r.execute ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter1: java.lang.Class
+NODE 2: if $u-1#10 != null goto $u2#21 = newarray (java.lang.Class)[1]
+NODE 3: goto [?= (branch)]
+NODE 4: $u2#21 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#24 = virtualinvoke $u7.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2#21)
+NODE 6: $u3 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#29 = virtualinvoke $u-1#24.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+NODE 8: goto [?= (branch)]
+EDGE: 2 -> 4
+EDGE: 3 -> 2
+EDGE: 5 -> 6
+EDGE: 8 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+NODE 2: $u-1#45 = virtualinvoke $u-1#42.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("notify_panel_notification_icon_bg_tile")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#6 < 14 goto $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+NODE 2: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u-1#6 < 14 goto $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+NODE 2: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$drawable")
+NODE 3: $u-1#45 = virtualinvoke $u-1#42.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("status_bar_notification_icon_bg")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+NODE 2: $u-1#45 = virtualinvoke $u-1#42.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("status_bar_edge_ignore")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#42 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+NODE 2: $u-1#45 = virtualinvoke $u-1#42.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("status_bar_height")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.i.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCacheEnabled", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.i.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#26 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.i.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCachePath", $u2)
+NODE 5: if $u-1#23 != 0 goto $u1 = newarray (java.lang.Object)[1]
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.i.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCacheMaxSize", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.tottero.uIH: short[] hlc>
+NODE 2: $u3#14 = $u3[52]
+NODE 3: $u1 = (int) $u3#14
+NODE 4: $u1 = $u1 + 1
+NODE 5: $u-1#6 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(94, 289, $u1)
+NODE 6: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.tottero.uIH: short[] hlc>
+NODE 2: $u3#14 = $u3[17]
+NODE 3: $u1 = (int) $u3#14
+NODE 4: $u-1#6 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(88, 316, $u1)
+NODE 5: $u-1#68 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = <com.tottero.uIH: short[] hlc>
+NODE 2: $u3#14 = $u3[52]
+NODE 3: $u1 = (int) $u3#14
+NODE 4: $u1 = $u1 + 1
+NODE 5: $u-1#6 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(94, 289, $u1)
+NODE 6: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+NODE 7: $u2 = newarray (java.lang.Class)[4]
+NODE 8: $u-1#70 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2)
+NODE 9: $u3#86 = newarray (java.lang.Object)[4]
+NODE 10: $u-1#102 = virtualinvoke $u-1#70.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#86)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = <com.tottero.uIH: short[] hlc>
+NODE 2: $u3#14 = $u3[52]
+NODE 3: $u1 = (int) $u3#14
+NODE 4: $u1 = $u1 + 1
+NODE 5: $u-1#6 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(94, 289, $u1)
+NODE 6: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+NODE 7: $u2 = newarray (java.lang.Class)[4]
+NODE 8: $u-1#70 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2)
+NODE 9: $u3 = <com.tottero.uIH: short[] hlc>
+NODE 10: $u3#14 = $u3[20]
+NODE 11: $u1 = (int) $u3#14
+NODE 12: $u-1#6 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(86, 261, $u1)
+NODE 13: $u2 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#83 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#6, $u2)
+NODE 15: $u3#86 = newarray (java.lang.Object)[4]
+NODE 16: $u-1#102 = virtualinvoke $u-1#70.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#86)
+NODE 17: $u3#86 = newarray (java.lang.Object)[1]
+NODE 18: $u-1#102 = virtualinvoke $u-1#83.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#102, $u3#86)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u19 := @parameter1: java.lang.String
+NODE 2: $u3 = newarray (java.lang.Object)[1]
+NODE 3: $u1#13 = class "Ljava/lang/String;"
+NODE 4: $u4 = <com.tottero.uIH: short[] hlc>
+NODE 5: $u4#7 = $u4[34]
+NODE 6: $u1 = (int) $u4#7
+NODE 7: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(86, 269, $u1)
+NODE 8: $u5 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 10: $u-1#28 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u19, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u19 := @parameter1: java.lang.String
+NODE 2: $u3 = newarray (java.lang.Object)[2]
+NODE 3: $u1#13 = class "Ljava/lang/String;"
+NODE 4: $u1 = <com.tottero.uIH: int iBzaWR>
+NODE 5: $u1 = $u1 & 992
+NODE 6: $u4 = <com.tottero.uIH: short[] hlc>
+NODE 7: $u4#7 = $u4[20]
+NODE 8: $u10 = (int) $u4#7
+NODE 9: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String mVlbmV(int,int,int)>(79, $u1, $u10)
+NODE 10: $u5 = newarray (java.lang.Class)[2]
+NODE 11: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 12: $u-1#28 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u19, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[81]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(216, $u1, 97)
+NODE 5: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u18 := @parameter0: android.content.Context
+NODE 2: $u-1#70 = virtualinvoke $u18.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 3: $u3 = newarray (java.lang.Object)[1]
+NODE 4: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 5: $u4#7 = $u4[81]
+NODE 6: $u1 = (int) $u4#7
+NODE 7: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(216, $u1, 97)
+NODE 8: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 9: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 10: $u4#7 = $u4[222]
+NODE 11: $u1 = (int) $u4#7
+NODE 12: $u1 = neg $u1
+NODE 13: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 14: $u4#7 = $u4[8]
+NODE 15: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 16: $u9 = $u4[95]
+NODE 17: $u10 = (int) $u4#7
+NODE 18: $i8 = (int) $u9
+NODE 19: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $u10, $i8)
+NODE 20: $u5 = newarray (java.lang.Class)[1]
+NODE 21: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 22: $u-1#28 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#70, $u3)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[10]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = neg $u1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u4#7 = $u4[97]
+NODE 7: $u10 = (int) $u4#7
+NODE 8: $u10 = $u10 + 1
+NODE 9: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 10: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 3: $u4#7 = $u4[10]
+NODE 4: $u1 = (int) $u4#7
+NODE 5: $u1 = neg $u1
+NODE 6: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 7: $u4#7 = $u4[97]
+NODE 8: $u10 = (int) $u4#7
+NODE 9: $u10 = $u10 + 1
+NODE 10: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 11: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 12: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 13: $u4#7 = $u4[45]
+NODE 14: $u1 = (int) $u4#7
+NODE 15: $u1 = $u1 + -1
+NODE 16: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 17: $u4#7 = $u4[195]
+NODE 18: $u9 = $u4#7 | 82
+NODE 19: $u10 = (int) $u4#7
+NODE 20: $i8 = (int) $u9
+NODE 21: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $u10, $i8)
+NODE 22: $u5 = newarray (java.lang.Class)[2]
+NODE 23: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 24: $u-1#165 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[152]
+NODE 3: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 4: $u9 = $u4[30]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u10 = (int) $u9
+NODE 7: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(149, $u1, $u10)
+NODE 8: $u3 = newarray (java.lang.Object)[1]
+NODE 9: $u1#13 = class "Ljava/lang/String;"
+NODE 10: $u1 = <com.tottero.uIH: int BvdG>
+NODE 11: $u1 = $u1 | 101
+NODE 12: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 13: $u4#7 = $u4[58]
+NODE 14: $u10 = (int) $u4#7
+NODE 15: $u-1#127 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $u10, 91)
+NODE 16: $u5 = newarray (java.lang.Class)[1]
+NODE 17: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#127, $u5)
+NODE 18: $u-1#205 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[30]
+NODE 3: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 4: $u9 = $u4[176]
+NODE 5: $u1 = (int) $u9
+NODE 6: $u1 = neg $u1
+NODE 7: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 8: $u9 = $u4[97]
+NODE 9: $u10 = (int) $u9
+NODE 10: $u10 = $u10 + 1
+NODE 11: $i8 = (int) $u4#7
+NODE 12: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($i8, $u1, $u10)
+NODE 13: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 3: $u4#7 = $u4[30]
+NODE 4: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 5: $u9 = $u4[176]
+NODE 6: $u1 = (int) $u9
+NODE 7: $u1 = neg $u1
+NODE 8: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 9: $u9 = $u4[97]
+NODE 10: $u10 = (int) $u9
+NODE 11: $u10 = $u10 + 1
+NODE 12: $i8 = (int) $u4#7
+NODE 13: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($i8, $u1, $u10)
+NODE 14: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 15: $u5 = newarray (java.lang.Class)[2]
+NODE 16: $u-1#239 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 17: $u-1#205 = virtualinvoke $u-1#239.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[96]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = neg $u1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u4#7 = $u4[0]
+NODE 7: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 8: $u9 = $u4[97]
+NODE 9: $u10 = (int) $u9
+NODE 10: $u10 = $u10 + 1
+NODE 11: $i8 = (int) $u4#7
+NODE 12: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $i8, $u10)
+NODE 13: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[1]
+NODE 2: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 3: $u4#7 = $u4[96]
+NODE 4: $u1 = (int) $u4#7
+NODE 5: $u1 = neg $u1
+NODE 6: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 7: $u4#7 = $u4[0]
+NODE 8: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 9: $u9 = $u4[97]
+NODE 10: $u10 = (int) $u9
+NODE 11: $u10 = $u10 + 1
+NODE 12: $i8 = (int) $u4#7
+NODE 13: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $i8, $u10)
+NODE 14: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 15: $u5 = newarray (java.lang.Class)[1]
+NODE 16: $u-1#239 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 17: $u-1#273 = virtualinvoke $u-1#239.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[10]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = neg $u1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u4#7 = $u4[97]
+NODE 7: $u10 = (int) $u4#7
+NODE 8: $u10 = $u10 + 1
+NODE 9: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 10: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[35]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = neg $u1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u4#7 = $u4[97]
+NODE 7: $u10 = (int) $u4#7
+NODE 8: $u10 = $u10 + 1
+NODE 9: $u-1#127 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(81, $u1, $u10)
+NODE 10: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#127)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[180]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = $u1 + -1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u9 = $u4[97]
+NODE 7: $u10 = (int) $u9
+NODE 8: $u10 = $u10 + 1
+NODE 9: $i8 = (int) $u4#7
+NODE 10: $u-1#127 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($i8, $u1, $u10)
+NODE 11: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#127)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 3: $u4#7 = $u4[10]
+NODE 4: $u1 = (int) $u4#7
+NODE 5: $u1 = neg $u1
+NODE 6: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 7: $u4#7 = $u4[97]
+NODE 8: $u10 = (int) $u4#7
+NODE 9: $u10 = $u10 + 1
+NODE 10: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 11: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 12: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 13: $u4#7 = $u4[45]
+NODE 14: $u1 = (int) $u4#7
+NODE 15: $u1 = $u1 + -1
+NODE 16: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 17: $u4#7 = $u4[195]
+NODE 18: $u9 = $u4#7 | 82
+NODE 19: $u10 = (int) $u4#7
+NODE 20: $i8 = (int) $u9
+NODE 21: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $u10, $i8)
+NODE 22: $u5 = newarray (java.lang.Class)[2]
+NODE 23: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 24: $u-1#165 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 25: $u3 = newarray (java.lang.Object)[3]
+NODE 26: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 27: $u4#7 = $u4[10]
+NODE 28: $u1 = (int) $u4#7
+NODE 29: $u1 = neg $u1
+NODE 30: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 31: $u4#7 = $u4[97]
+NODE 32: $u10 = (int) $u4#7
+NODE 33: $u10 = $u10 + 1
+NODE 34: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 35: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 36: $u1 = <com.tottero.uIH: int BvdG>
+NODE 37: $u1 = $u1 + -4
+NODE 38: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 39: $u4#7 = $u4[8]
+NODE 40: $u10 = (int) $u4#7
+NODE 41: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>($u1, $u10, 89)
+NODE 42: $u5 = newarray (java.lang.Class)[3]
+NODE 43: $u-1#25 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 44: virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#165, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 37 -> 38
+EDGE: 38 -> 39
+EDGE: 39 -> 40
+EDGE: 40 -> 41
+EDGE: 41 -> 42
+EDGE: 43 -> 44
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[20]
+NODE 3: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 4: $u9 = $u4[97]
+NODE 5: $u1 = (int) $u9
+NODE 6: $u1 = $u1 + 1
+NODE 7: $u10 = (int) $u4#7
+NODE 8: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(185, $u10, $u1)
+NODE 9: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 2: $u4#7 = $u4[10]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = neg $u1
+NODE 5: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 6: $u4#7 = $u4[97]
+NODE 7: $u10 = (int) $u4#7
+NODE 8: $u10 = $u10 + 1
+NODE 9: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(131, $u1, $u10)
+NODE 10: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.cyBnc ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 3: $u4#7 = $u4[20]
+NODE 4: $u4 = <com.tottero.uIH: short[] RoZS>
+NODE 5: $u9 = $u4[97]
+NODE 6: $u1 = (int) $u9
+NODE 7: $u1 = $u1 + 1
+NODE 8: $u10 = (int) $u4#7
+NODE 9: $u-1 = staticinvoke <com.tottero.uIH: java.lang.String cyBnc(int,int,int)>(185, $u10, $u1)
+NODE 10: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 11: $u5 = newarray (java.lang.Class)[2]
+NODE 12: $u-1#239 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 13: $u-1#28 = virtualinvoke $u-1#239.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.uIH.mVlbmV ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u-1 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u-1 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#9 = $u1[37]
+NODE 5: $u2 = $u1#9 | 113
+NODE 6: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 7: $u3 = $u1[53]
+NODE 8: $i0 = (int) $u1#9
+NODE 9: $i1 = (int) $u2
+NODE 10: $i2 = (int) $u3
+NODE 11: $u-1#14 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u2#17 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#24 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u2#17)
+NODE 14: $u-1#4 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 15: $u2#28 = newarray (java.lang.Object)[3]
+NODE 16: virtualinvoke $u-1#24.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u2#28)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.BtY ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[2]
+NODE 5: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u2 = $u1[76]
+NODE 7: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 8: $u3 = $u1[146]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u2
+NODE 11: $i2 = (int) $u3
+NODE 12: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $i1, $i2)
+NODE 13: $u2#13 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#14 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 15: $u1#16 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 16: $u2#18 = newarray (java.lang.Object)[0]
+NODE 17: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#16, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.BtY ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[128]
+NODE 5: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u2 = $u1[16]
+NODE 7: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 8: $u3 = $u1[146]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u2
+NODE 11: $i2 = (int) $u3
+NODE 12: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $i1, $i2)
+NODE 13: $u2#14 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#17 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#14)
+NODE 15: $u1#19 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 16: $u2#21 = newarray (java.lang.Object)[1]
+NODE 17: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#19, $u2#21)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.WtlIG ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u2#4 = $u2[19]
+NODE 5: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u4 = $u2[146]
+NODE 7: $i0 = (int) $u2#4
+NODE 8: $i1 = (int) $u4
+NODE 9: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, 98, $i1)
+NODE 10: $u3 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#15 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3)
+NODE 12: $u2#17 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 13: $u3#19 = newarray (java.lang.Object)[1]
+NODE 14: $u2#17 = virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#17, $u3#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u2#4 = $u2[17]
+NODE 5: $u3 = $u2#4 | 78
+NODE 6: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 7: $u4 = $u2[146]
+NODE 8: $i0 = (int) $u2#4
+NODE 9: $i1 = (int) $u3
+NODE 10: $i2 = (int) $u4
+NODE 11: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u3#12 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#12)
+NODE 14: $u2#21 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 15: $u3#23 = newarray (java.lang.Object)[3]
+NODE 16: $u2#21 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#21, $u3#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[18]
+NODE 5: $u1#5 = (int) $u1#4
+NODE 6: $u1#5 = neg $u1#5
+NODE 7: $u2 = <com.totterp.WtlIG: int EgY>
+NODE 8: $u2 = $u2 | 32
+NODE 9: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 10: $u1#4 = $u1[146]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($u1#5, $u2, $i1)
+NODE 13: $u2#13 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#14 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 15: $u1#16 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 16: $u2#18 = newarray (java.lang.Object)[0]
+NODE 17: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#16, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: int EgY>
+NODE 4: $u1 = $u1 & 59
+NODE 5: $u3 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u3#7 = $u3[43]
+NODE 7: $u3#8 = (int) $u3#7
+NODE 8: $u3#8 = $u3#8 + -1
+NODE 9: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($u1, 76, $u3#8)
+NODE 10: $u2 = newarray (java.lang.Class)[3]
+NODE 11: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 12: $u1#21 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 13: $u2#23 = newarray (java.lang.Object)[3]
+NODE 14: virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#21, $u2#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[37]
+NODE 5: $u2 = <com.totterp.WtlIG: int EgY>
+NODE 6: $u2 = $u2 & 493
+NODE 7: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 8: $u3 = $u1[53]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u3
+NODE 11: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $u2, $i1)
+NODE 12: $u2#13 = newarray (java.lang.Class)[4]
+NODE 13: $u-1#22 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 14: $u1#24 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 15: $u2#26 = newarray (java.lang.Object)[4]
+NODE 16: virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#24, $u2#26)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[18]
+NODE 5: $u1#5 = (int) $u1#4
+NODE 6: $u1#5 = neg $u1#5
+NODE 7: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 8: $u1#4 = $u1[48]
+NODE 9: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 10: $u3 = $u1[146]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $i2 = (int) $u3
+NODE 13: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($u1#5, $i1, $i2)
+NODE 14: $u2 = newarray (java.lang.Class)[2]
+NODE 15: $u-1#20 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 16: $u1#22 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 17: $u2#24 = newarray (java.lang.Object)[2]
+NODE 18: virtualinvoke $u-1#20.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#22, $u2#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0#13 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u0 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u0#3 = $u0[37]
+NODE 5: $u0 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u1 = $u0[97]
+NODE 7: $u2#20 = (int) $u1
+NODE 8: $u2#20 = neg $u2#20
+NODE 9: $u0 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 10: $u1 = $u0[146]
+NODE 11: $i1 = (int) $u0#3
+NODE 12: $i2 = (int) $u1
+NODE 13: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i1, $u2#20, $i2)
+NODE 14: $u2#27 = newarray (java.lang.Class)[3]
+NODE 15: $u-1#34 = virtualinvoke $u0#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#27)
+NODE 16: $u1#36 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 17: $u2#38 = newarray (java.lang.Object)[3]
+NODE 18: virtualinvoke $u-1#34.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#36, $u2#38)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[2]
+NODE 5: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u3 = $u1[146]
+NODE 7: $i0 = (int) $u1#4
+NODE 8: $i1 = (int) $u3
+NODE 9: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, 133, $i1)
+NODE 10: $u2 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#15 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 12: $u1#17 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 13: $u2#19 = newarray (java.lang.Object)[1]
+NODE 14: virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#17, $u2#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u1#4 = $u1[28]
+NODE 5: $u2 = $u1#4 | 48
+NODE 6: $u1 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 7: $u3 = $u1[146]
+NODE 8: $i0 = (int) $u1#4
+NODE 9: $i1 = (int) $u2
+NODE 10: $i2 = (int) $u3
+NODE 11: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u2#12 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#12)
+NODE 14: $u1#21 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 15: $u2#23 = newarray (java.lang.Object)[3]
+NODE 16: virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#21, $u2#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.WtlIG.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totterp.WtlIG
+NODE 2: $u0 = this.<com.totterp.WtlIG: java.lang.Class oa9sbC>
+NODE 3: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 4: $u2#4 = $u2[37]
+NODE 5: $u2 = <com.totterp.WtlIG: byte[] WtlIG>
+NODE 6: $u4 = $u2[146]
+NODE 7: $i0 = (int) $u2#4
+NODE 8: $i1 = (int) $u4
+NODE 9: $u-1 = staticinvoke <com.totterp.WtlIG: java.lang.String oa9sbC(int,int,int)>($i0, 147, $i1)
+NODE 10: $u3 = newarray (java.lang.Class)[2]
+NODE 11: $u-1#17 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3)
+NODE 12: $u2#19 = this.<com.totterp.WtlIG: java.lang.Object BtY>
+NODE 13: $u3#21 = newarray (java.lang.Object)[2]
+NODE 14: $u2#19 = virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#19, $u3#21)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.LandingWebViewDialog.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#5 < 11 goto $u1 = new com.umeng.newxp.view.aj
+NODE 2: $u2#38 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u4 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#43 = virtualinvoke $u2#38.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setDisplayZoomControls", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.LandingWebViewDialog.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.umeng.newxp.view.LandingWebViewDialog
+NODE 2: $u8 = this.<com.umeng.newxp.view.LandingWebViewDialog: android.content.Context b>
+NODE 3: $u0#5 = staticinvoke <com.umeng.newxp.a.c: int G(android.content.Context)>($u8)
+NODE 4: $u-1#18 = virtualinvoke this.<com.umeng.newxp.view.LandingWebViewDialog: android.view.View findViewById(int)>($u0#5)
+NODE 5: $u0#30 = (android.webkit.WebView) $u-1#18
+NODE 6: $u-1#31 = virtualinvoke $u0#30.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 7: $u0#5 = <android.os.Build$VERSION: int SDK_INT>
+NODE 8: if $u0#5 < 8 goto $u0#5 = <android.os.Build$VERSION: int SDK_INT>
+NODE 9: $u0#5 = <android.os.Build$VERSION: int SDK_INT>
+NODE 10: if $u0#5 < 11 goto $u1 = new com.umeng.newxp.view.aj
+NODE 11: $u2#38 = class "Landroid/webkit/WebSettings;"
+NODE 12: $u4 = newarray (java.lang.Class)[1]
+NODE 13: $u-1#43 = virtualinvoke $u2#38.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setDisplayZoomControls", $u4)
+NODE 14: $u3 = newarray (java.lang.Object)[1]
+NODE 15: virtualinvoke $u-1#43.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.V2Whr3 ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 2: $u2#12 = $u2[210]
+NODE 3: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 4: $u3 = $u2[41]
+NODE 5: $u3#53 = (int) $u3
+NODE 6: $u3#53 = neg $u3#53
+NODE 7: $u6 = (int) $u2#12
+NODE 8: $u-1#5 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(290, $u6, $u3#53)
+NODE 9: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 2: $u2#12 = $u2[11]
+NODE 3: $u3#53 = (int) $u2#12
+NODE 4: $u3#53 = neg $u3#53
+NODE 5: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 6: $u2#12 = $u2[25]
+NODE 7: $u6 = (int) $u2#12
+NODE 8: $u6 = neg $u6
+NODE 9: $u-1#5 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(317, $u3#53, $u6)
+NODE 10: $u-1#78 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 2: $u2#12 = $u2[210]
+NODE 3: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 4: $u3 = $u2[41]
+NODE 5: $u3#53 = (int) $u3
+NODE 6: $u3#53 = neg $u3#53
+NODE 7: $u6 = (int) $u2#12
+NODE 8: $u-1#5 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(290, $u6, $u3#53)
+NODE 9: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 10: $u2#59 = newarray (java.lang.Class)[4]
+NODE 11: $u-1#80 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2#59)
+NODE 12: $u3#99 = newarray (java.lang.Object)[4]
+NODE 13: $u-1#115 = virtualinvoke $u-1#80.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#99)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 2: $u2#12 = $u2[210]
+NODE 3: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 4: $u3 = $u2[41]
+NODE 5: $u3#53 = (int) $u3
+NODE 6: $u3#53 = neg $u3#53
+NODE 7: $u6 = (int) $u2#12
+NODE 8: $u-1#5 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(290, $u6, $u3#53)
+NODE 9: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 10: $u2#59 = newarray (java.lang.Class)[4]
+NODE 11: $u-1#80 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2#59)
+NODE 12: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 13: $u2#12 = $u2[326]
+NODE 14: $u3#53 = (int) $u2#12
+NODE 15: $u3#53 = neg $u3#53
+NODE 16: $u2 = <com.totteri.HRha2: short[] b3du>
+NODE 17: $u2#12 = $u2[72]
+NODE 18: $u6 = (int) $u2#12
+NODE 19: $u-1#5 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(262, $u3#53, $u6)
+NODE 20: $u2#59 = newarray (java.lang.Class)[1]
+NODE 21: $u-1#96 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#5, $u2#59)
+NODE 22: $u3#99 = newarray (java.lang.Object)[4]
+NODE 23: $u-1#115 = virtualinvoke $u-1#80.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#99)
+NODE 24: $u3#99 = newarray (java.lang.Object)[1]
+NODE 25: $u-1#115 = virtualinvoke $u-1#96.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#115, $u3#99)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u15 := @parameter1: java.lang.String
+NODE 2: $u3#13 = newarray (java.lang.Object)[1]
+NODE 3: $u0 = class "Ljava/lang/String;"
+NODE 4: $u3 = <com.totteri.HRha2: short[] b3du>
+NODE 5: $u3#6 = $u3[326]
+NODE 6: $u6 = (int) $u3#6
+NODE 7: $u6 = neg $u6
+NODE 8: $u3 = <com.totteri.HRha2: short[] b3du>
+NODE 9: $u3#6 = $u3[46]
+NODE 10: $u7 = (int) $u3#6
+NODE 11: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>(270, $u6, $u7)
+NODE 12: $u6#27 = newarray (java.lang.Class)[1]
+NODE 13: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 14: $u-1#32 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u15, $u3#13)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u15 := @parameter1: java.lang.String
+NODE 2: $u3#13 = newarray (java.lang.Object)[2]
+NODE 3: $u0 = class "Ljava/lang/String;"
+NODE 4: $u6 = <com.totteri.HRha2: int IGxpdm>
+NODE 5: $u6 = $u6 & 940
+NODE 6: $u3 = <com.totteri.HRha2: short[] b3du>
+NODE 7: $u3#6 = $u3[222]
+NODE 8: $u3 = <com.totteri.HRha2: short[] b3du>
+NODE 9: $u5 = $u3[72]
+NODE 10: $u7 = (int) $u3#6
+NODE 11: $i5 = (int) $u5
+NODE 12: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String V2Whr3(int,int,int)>($u6, $u7, $i5)
+NODE 13: $u6#27 = newarray (java.lang.Class)[2]
+NODE 14: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 15: $u-1#32 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u15, $u3#13)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[0]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + -1
+NODE 5: $u7 = $u6 | 96
+NODE 6: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(194, $u6, $u7)
+NODE 7: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: if $u-1#69 != 0 goto $u-1#71 = virtualinvoke $u14.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 3: $u-1#71 = virtualinvoke $u14.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 4: $u3#13 = newarray (java.lang.Object)[1]
+NODE 5: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 6: $u3#6 = $u3[0]
+NODE 7: $u6 = (int) $u3#6
+NODE 8: $u6 = $u6 + -1
+NODE 9: $u7 = $u6 | 96
+NODE 10: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(194, $u6, $u7)
+NODE 11: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 12: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 13: $u3#6 = $u3[20]
+NODE 14: $u6 = (int) $u3#6
+NODE 15: $u6 = $u6 + 1
+NODE 16: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 17: $u3#6 = $u3[4]
+NODE 18: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 19: $u5 = $u3[22]
+NODE 20: $u7 = (int) $u5
+NODE 21: $u7 = $u7 + -1
+NODE 22: $i5 = (int) $u3#6
+NODE 23: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $i5, $u7)
+NODE 24: $u6#27 = newarray (java.lang.Class)[1]
+NODE 25: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 26: $u-1#32 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#71, $u3#13)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 25 -> 26
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[19]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + 1
+NODE 5: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 6: $u3#6 = $u3[153]
+NODE 7: $u5 = $u3#6 | 100
+NODE 8: $u7 = (int) $u3#6
+NODE 9: $i5 = (int) $u5
+NODE 10: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 11: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3#13 = newarray (java.lang.Object)[2]
+NODE 2: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 3: $u3#6 = $u3[19]
+NODE 4: $u6 = (int) $u3#6
+NODE 5: $u6 = $u6 + 1
+NODE 6: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 7: $u3#6 = $u3[153]
+NODE 8: $u5 = $u3#6 | 100
+NODE 9: $u7 = (int) $u3#6
+NODE 10: $i5 = (int) $u5
+NODE 11: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 12: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 13: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 14: $u3#6 = $u3[92]
+NODE 15: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 16: $u5 = $u3[81]
+NODE 17: $u6 = (int) $u3#6
+NODE 18: $u7 = (int) $u5
+NODE 19: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 120)
+NODE 20: $u6#27 = newarray (java.lang.Class)[2]
+NODE 21: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 22: $u-1#165 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[72]
+NODE 3: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 4: $u5 = $u3[46]
+NODE 5: $u6 = (int) $u3#6
+NODE 6: $u7 = (int) $u5
+NODE 7: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(225, $u6, $u7)
+NODE 8: $u3#13 = newarray (java.lang.Object)[1]
+NODE 9: $u0 = class "Ljava/lang/String;"
+NODE 10: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 11: $u3#6 = $u3[54]
+NODE 12: $u6 = (int) $u3#6
+NODE 13: $u-1#129 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(240, $u6, 120)
+NODE 14: $u6#27 = newarray (java.lang.Class)[1]
+NODE 15: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#129, $u6#27)
+NODE 16: $u-1#204 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[46]
+NODE 3: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 4: $u5 = $u3[231]
+NODE 5: $u6 = (int) $u3#6
+NODE 6: $u7 = (int) $u5
+NODE 7: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 117)
+NODE 8: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3#13 = newarray (java.lang.Object)[2]
+NODE 2: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 3: $u3#6 = $u3[46]
+NODE 4: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 5: $u5 = $u3[231]
+NODE 6: $u6 = (int) $u3#6
+NODE 7: $u7 = (int) $u5
+NODE 8: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 117)
+NODE 9: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 10: $u6#27 = newarray (java.lang.Class)[2]
+NODE 11: $u-1#237 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u6#27)
+NODE 12: $u-1#204 = virtualinvoke $u-1#237.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[22]
+NODE 3: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 4: $u5 = $u3[0]
+NODE 5: $u6 = (int) $u3#6
+NODE 6: $u7 = (int) $u5
+NODE 7: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 117)
+NODE 8: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3#13 = newarray (java.lang.Object)[1]
+NODE 2: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 3: $u3#6 = $u3[22]
+NODE 4: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 5: $u5 = $u3[0]
+NODE 6: $u6 = (int) $u3#6
+NODE 7: $u7 = (int) $u5
+NODE 8: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 117)
+NODE 9: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 10: $u6#27 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#237 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u6#27)
+NODE 12: $u-1#268 = virtualinvoke $u-1#237.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[19]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + 1
+NODE 5: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 6: $u3#6 = $u3[153]
+NODE 7: $u5 = $u3#6 | 100
+NODE 8: $u7 = (int) $u3#6
+NODE 9: $i5 = (int) $u5
+NODE 10: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 11: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[9]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u-1#129 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(81, $u6, 117)
+NODE 5: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#129)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[99]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + -1
+NODE 5: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 6: $u3#6 = $u3[74]
+NODE 7: $u7 = (int) $u3#6
+NODE 8: $u-1#129 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 117)
+NODE 9: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#129)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3#13 = newarray (java.lang.Object)[2]
+NODE 2: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 3: $u3#6 = $u3[19]
+NODE 4: $u6 = (int) $u3#6
+NODE 5: $u6 = $u6 + 1
+NODE 6: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 7: $u3#6 = $u3[153]
+NODE 8: $u5 = $u3#6 | 100
+NODE 9: $u7 = (int) $u3#6
+NODE 10: $i5 = (int) $u5
+NODE 11: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 12: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 13: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 14: $u3#6 = $u3[92]
+NODE 15: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 16: $u5 = $u3[81]
+NODE 17: $u6 = (int) $u3#6
+NODE 18: $u7 = (int) $u5
+NODE 19: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, 120)
+NODE 20: $u6#27 = newarray (java.lang.Class)[2]
+NODE 21: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 22: $u-1#165 = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3#13)
+NODE 23: $u3#13 = newarray (java.lang.Object)[3]
+NODE 24: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 25: $u3#6 = $u3[19]
+NODE 26: $u6 = (int) $u3#6
+NODE 27: $u6 = $u6 + 1
+NODE 28: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 29: $u3#6 = $u3[153]
+NODE 30: $u5 = $u3#6 | 100
+NODE 31: $u7 = (int) $u3#6
+NODE 32: $i5 = (int) $u5
+NODE 33: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 34: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 35: $u6 = <com.totteri.HRha2: int vdXIg>
+NODE 36: $u6 = $u6 + -4
+NODE 37: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 38: $u3#6 = $u3[4]
+NODE 39: $u5 = $u3#6 | 116
+NODE 40: $u7 = (int) $u3#6
+NODE 41: $i5 = (int) $u5
+NODE 42: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 43: $u6#27 = newarray (java.lang.Class)[3]
+NODE 44: $u-1#30 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u6#27)
+NODE 45: virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#165, $u3#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 37 -> 38
+EDGE: 38 -> 39
+EDGE: 39 -> 40
+EDGE: 40 -> 41
+EDGE: 41 -> 42
+EDGE: 42 -> 43
+EDGE: 44 -> 45
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[231]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + -1
+NODE 5: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(163, $u6, 117)
+NODE 6: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 2: $u3#6 = $u3[19]
+NODE 3: $u6 = (int) $u3#6
+NODE 4: $u6 = $u6 + 1
+NODE 5: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 6: $u3#6 = $u3[153]
+NODE 7: $u5 = $u3#6 | 100
+NODE 8: $u7 = (int) $u3#6
+NODE 9: $i5 = (int) $u5
+NODE 10: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>($u6, $u7, $i5)
+NODE 11: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.HRha2.Zw0K ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3#13 = newarray (java.lang.Object)[2]
+NODE 2: $u3 = <com.totteri.HRha2: short[] luZyB>
+NODE 3: $u3#6 = $u3[231]
+NODE 4: $u6 = (int) $u3#6
+NODE 5: $u6 = $u6 + -1
+NODE 6: $u-1 = staticinvoke <com.totteri.HRha2: java.lang.String Zw0K(int,int,int)>(163, $u6, 117)
+NODE 7: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 8: $u6#27 = newarray (java.lang.Class)[2]
+NODE 9: $u-1#237 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u6#27)
+NODE 10: $u-1#32 = virtualinvoke $u-1#237.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.j.e ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 < 16 goto return
+NODE 2: $u0#3 = class "Landroid/app/Notification$Builder;"
+NODE 3: $u-1 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mActions")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.j.e ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.umeng.common.util.j
+NODE 2: if $u0 < 16 goto return
+NODE 3: $u0#3 = class "Landroid/app/Notification$Builder;"
+NODE 4: $u-1 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mActions")
+NODE 5: $u2 = this.<com.umeng.common.util.j: android.app.Notification$Builder c>
+NODE 6: $u-1#10 = virtualinvoke $u-1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u2)
+NODE 7: $u0#3 = virtualinvoke $u-1#10.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#10 = virtualinvoke $u0#3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.b.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 4: $u2 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>($u5)
+NODE 5: $u2 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.b.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u2 = staticinvoke <com.umeng.common.util.c: byte[] b(java.lang.String)>($u4)
+NODE 4: $u2 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.aN.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCacheEnabled", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.aN.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#26 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.aN.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCachePath", $u2)
+NODE 5: if $u-1#23 != 0 goto $u1 = newarray (java.lang.Object)[1]
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.aN.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.webkit.WebSettings
+NODE 2: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setAppCacheMaxSize", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.seleuco.mame4all.Emulator.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("mame4all-jni")
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u-1 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u-1 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#9 = $u1[37]
+NODE 5: $u2 = $u1#9 | 113
+NODE 6: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 7: $u3 = $u1[53]
+NODE 8: $i0 = (int) $u1#9
+NODE 9: $i1 = (int) $u2
+NODE 10: $i2 = (int) $u3
+NODE 11: $u-1#14 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u2#17 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#24 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u2#17)
+NODE 14: $u-1#4 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 15: $u2#28 = newarray (java.lang.Object)[3]
+NODE 16: virtualinvoke $u-1#24.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u2#28)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u2#4 = $u2[17]
+NODE 5: $u3 = $u2#4 | 78
+NODE 6: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 7: $u4 = $u2[146]
+NODE 8: $i0 = (int) $u2#4
+NODE 9: $i1 = (int) $u3
+NODE 10: $i2 = (int) $u4
+NODE 11: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u3#12 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#12)
+NODE 14: $u2#21 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 15: $u3#23 = newarray (java.lang.Object)[3]
+NODE 16: $u2#21 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#21, $u3#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[18]
+NODE 5: $u1#5 = (int) $u1#4
+NODE 6: $u1#5 = neg $u1#5
+NODE 7: $u2 = <com.tottero.yIG9: int uIH>
+NODE 8: $u2 = $u2 | 32
+NODE 9: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 10: $u1#4 = $u1[146]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($u1#5, $u2, $i1)
+NODE 13: $u2#13 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#14 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 15: $u1#16 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 16: $u2#18 = newarray (java.lang.Object)[0]
+NODE 17: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#16, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: int uIH>
+NODE 4: $u1 = $u1 & 59
+NODE 5: $u3 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u3#7 = $u3[43]
+NODE 7: $u3#8 = (int) $u3#7
+NODE 8: $u3#8 = $u3#8 + -1
+NODE 9: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($u1, 76, $u3#8)
+NODE 10: $u2 = newarray (java.lang.Class)[4]
+NODE 11: $u-1#21 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 12: $u1#23 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 13: $u2#25 = newarray (java.lang.Object)[4]
+NODE 14: virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#23, $u2#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[37]
+NODE 5: $u2 = <com.tottero.yIG9: int uIH>
+NODE 6: $u2 = $u2 & 493
+NODE 7: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 8: $u3 = $u1[53]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u3
+NODE 11: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $u2, $i1)
+NODE 12: $u2#13 = newarray (java.lang.Class)[4]
+NODE 13: $u-1#22 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 14: $u1#24 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 15: $u2#26 = newarray (java.lang.Object)[4]
+NODE 16: virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#24, $u2#26)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[18]
+NODE 5: $u1#5 = (int) $u1#4
+NODE 6: $u1#5 = neg $u1#5
+NODE 7: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 8: $u1#4 = $u1[48]
+NODE 9: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 10: $u3 = $u1[146]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $i2 = (int) $u3
+NODE 13: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($u1#5, $i1, $i2)
+NODE 14: $u2 = newarray (java.lang.Class)[2]
+NODE 15: $u-1#20 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 16: $u1#22 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 17: $u2#24 = newarray (java.lang.Object)[2]
+NODE 18: virtualinvoke $u-1#20.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#22, $u2#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0#13 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u0 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u0#3 = $u0[37]
+NODE 5: $u0 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u1 = $u0[97]
+NODE 7: $u2#20 = (int) $u1
+NODE 8: $u2#20 = neg $u2#20
+NODE 9: $u0 = <com.tottero.yIG9: byte[] yIG9>
+NODE 10: $u1 = $u0[146]
+NODE 11: $i1 = (int) $u0#3
+NODE 12: $i2 = (int) $u1
+NODE 13: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i1, $u2#20, $i2)
+NODE 14: $u2#27 = newarray (java.lang.Class)[3]
+NODE 15: $u-1#34 = virtualinvoke $u0#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#27)
+NODE 16: $u1#36 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 17: $u2#38 = newarray (java.lang.Object)[3]
+NODE 18: virtualinvoke $u-1#34.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#36, $u2#38)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[2]
+NODE 5: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u3 = $u1[146]
+NODE 7: $i0 = (int) $u1#4
+NODE 8: $i1 = (int) $u3
+NODE 9: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, 133, $i1)
+NODE 10: $u2 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#15 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 12: $u1#17 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 13: $u2#19 = newarray (java.lang.Object)[1]
+NODE 14: virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#17, $u2#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[28]
+NODE 5: $u2 = $u1#4 | 48
+NODE 6: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 7: $u3 = $u1[146]
+NODE 8: $i0 = (int) $u1#4
+NODE 9: $i1 = (int) $u2
+NODE 10: $i2 = (int) $u3
+NODE 11: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $i1, $i2)
+NODE 12: $u2#12 = newarray (java.lang.Class)[3]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#12)
+NODE 14: $u1#21 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 15: $u2#23 = newarray (java.lang.Object)[3]
+NODE 16: virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#21, $u2#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.cyBnc ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u2#4 = $u2[37]
+NODE 5: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u4 = $u2[146]
+NODE 7: $i0 = (int) $u2#4
+NODE 8: $i1 = (int) $u4
+NODE 9: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, 147, $i1)
+NODE 10: $u3 = newarray (java.lang.Class)[2]
+NODE 11: $u-1#17 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3)
+NODE 12: $u2#19 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 13: $u3#21 = newarray (java.lang.Object)[2]
+NODE 14: $u2#19 = virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#19, $u3#21)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.mVlbmV ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[2]
+NODE 5: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u2 = $u1[76]
+NODE 7: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 8: $u3 = $u1[146]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u2
+NODE 11: $i2 = (int) $u3
+NODE 12: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $i1, $i2)
+NODE 13: $u2#13 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#14 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 15: $u1#16 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 16: $u2#18 = newarray (java.lang.Object)[0]
+NODE 17: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#16, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.mVlbmV ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u1#4 = $u1[128]
+NODE 5: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u2 = $u1[16]
+NODE 7: $u1 = <com.tottero.yIG9: byte[] yIG9>
+NODE 8: $u3 = $u1[146]
+NODE 9: $i0 = (int) $u1#4
+NODE 10: $i1 = (int) $u2
+NODE 11: $i2 = (int) $u3
+NODE 12: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, $i1, $i2)
+NODE 13: $u2#14 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#17 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#14)
+NODE 15: $u1#19 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 16: $u2#21 = newarray (java.lang.Object)[1]
+NODE 17: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#19, $u2#21)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.tottero.yIG9.yIG9 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tottero.yIG9
+NODE 2: $u0 = this.<com.tottero.yIG9: java.lang.Class cyBnc>
+NODE 3: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 4: $u2#4 = $u2[19]
+NODE 5: $u2 = <com.tottero.yIG9: byte[] yIG9>
+NODE 6: $u4 = $u2[146]
+NODE 7: $i0 = (int) $u2#4
+NODE 8: $i1 = (int) $u4
+NODE 9: $u-1 = staticinvoke <com.tottero.yIG9: java.lang.String cyBnc(int,int,int)>($i0, 98, $i1)
+NODE 10: $u3 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#15 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3)
+NODE 12: $u2#17 = this.<com.tottero.yIG9: java.lang.Object mVlbmV>
+NODE 13: $u3#19 = newarray (java.lang.Object)[1]
+NODE 14: $u2#17 = virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#17, $u3#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.update.UmengUpdateAgent.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u-1#5 = virtualinvoke $u9.<android.content.Context: java.lang.String getPackageName()>()
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#5)
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".BuildConfig")
+NODE 7: $u-1#5 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.update.UmengUpdateAgent.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u0#37 != 0 goto $u0 = new java.lang.StringBuilder
+NODE 3: goto [?= (branch)]
+NODE 4: $u0 = new java.lang.StringBuilder
+NODE 5: $u-1#5 = virtualinvoke $u9.<android.content.Context: java.lang.String getPackageName()>()
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#5)
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$string")
+NODE 8: $u-1#5 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 2 -> 4
+EDGE: 3 -> 2
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getUidRxBytes", $u3)
+NODE 4: $u0 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getUidTxBytes", $u3)
+NODE 4: $u0 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.bjshinesky.util.HttpUtil.downloadFile ===
+SUSPICIOUS_API: load
+NODE 1: $u15 := @parameter0: java.lang.String
+NODE 2: $u17 := @parameter2: com.bjshinesky.util.HttpUtil$DownloadListener
+NODE 3: if $u-1 == 0 goto $u-1#7 = staticinvoke <com.bjshinesky.util.HttpUtil: org.apache.http.HttpEntity getEntity(java.lang.String,java.util.Map,int)>($u15, null, 20000)
+NODE 4: $u-1#7 = staticinvoke <com.bjshinesky.util.HttpUtil: org.apache.http.HttpEntity getEntity(java.lang.String,java.util.Map,int)>($u15, null, 20000)
+NODE 5: if $u-1#7 != null goto $u-1#9 = interfaceinvoke $u-1#7.<org.apache.http.HttpEntity: long getContentLength()>()
+NODE 6: $u-1#9 = interfaceinvoke $u-1#7.<org.apache.http.HttpEntity: long getContentLength()>()
+NODE 7: if $u-1 != 0 goto $u-1#18 = interfaceinvoke $u-1#7.<org.apache.http.HttpEntity: java.io.InputStream getContent()>()
+NODE 8: $u-1#18 = interfaceinvoke $u-1#7.<org.apache.http.HttpEntity: java.io.InputStream getContent()>()
+NODE 9: buffer = newarray (byte)[1024]
+NODE 10: count = 0L
+NODE 11: $u-1#23 = virtualinvoke $u-1#18.<java.io.InputStream: int read(byte[])>(buffer)
+NODE 12: if $u17 == null goto $u-1#23 = virtualinvoke $u-1#18.<java.io.InputStream: int read(byte[])>(buffer)
+NODE 13: $u13 = (long) $u-1#23
+NODE 14: count = count + $u13
+NODE 15: $u13 = 100L * count
+NODE 16: $u13 = $u13 / $u-1#9
+NODE 17: interfaceinvoke $u17.<com.bjshinesky.util.HttpUtil$DownloadListener: void load(long)>($u13)
+NODE 18: goto [?= $u-1#23 = virtualinvoke $u-1#18.<java.io.InputStream: int read(byte[])>(buffer)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 12 -> 11
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.DownloadingService$b.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.umeng.common.net.DownloadingService$b
+NODE 2: $u1 = this.<com.umeng.common.net.DownloadingService$b: java.io.File d>
+NODE 3: $u-1 = virtualinvoke $u1.<java.io.File: java.lang.String getName()>()
+NODE 4: $u5#17 = this.<com.umeng.common.net.DownloadingService$b: android.content.Context b>
+NODE 5: $u2 = virtualinvoke $u5#17.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1, 32771)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.newxp.view.widget.SwipeView$b.b ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u16 := @parameter0: android.view.MotionEvent
+NODE 2: $u1 = virtualinvoke $u16.<android.view.MotionEvent: int getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.DeltaUpdate.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("bspatch")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.h.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: if $u-1#6 == 0 goto $u-1#10 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#10 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#10
+NODE 5: $u-1#13 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.j.a ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.umeng.analytics.j: java.lang.String g(android.content.Context)>($u4)
+NODE 3: if $u-1#7 == 0 goto $u-1#9 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1)
+NODE 4: $u-1#9 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.j.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u-1 = staticinvoke <com.umeng.analytics.j: java.lang.String g(android.content.Context)>($u2)
+NODE 3: $u-1 = staticinvoke <com.umeng.analytics.j: java.lang.String g(android.content.Context)>($u2)
+NODE 4: $u-1#5 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1, 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$drawable")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$layout")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$id")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$anim")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$style")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$string")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.Res.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$array")
+NODE 5: $u3 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u-1 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u-1 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u1#9 = $u1[23]
+NODE 5: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2 = $u1[53]
+NODE 7: $u2#13 = (int) $u2
+NODE 8: $u2#13 = neg $u2#13
+NODE 9: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2 = $u1[84]
+NODE 11: $i1 = (int) $u1#9
+NODE 12: $i2 = (int) $u2
+NODE 13: $u-1#17 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($i1, $u2#13, $i2)
+NODE 14: $u2#20 = newarray (java.lang.Class)[3]
+NODE 15: $u-1#27 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#17, $u2#20)
+NODE 16: $u-1#4 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 17: $u2#31 = newarray (java.lang.Object)[3]
+NODE 18: virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u2#31)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.JlI ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u2#4 = $u2[33]
+NODE 5: $u2#5 = (int) $u2#4
+NODE 6: $u2#5 = $u2#5 + -1
+NODE 7: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 8: $u2#4 = $u2[149]
+NODE 9: $u3 = (int) $u2#4
+NODE 10: $u3 = neg $u3
+NODE 11: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 12: $u2#4 = $u2[0]
+NODE 13: $i3 = (int) $u2#4
+NODE 14: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u2#5, $u3, $i3)
+NODE 15: $u3#16 = newarray (java.lang.Class)[1]
+NODE 16: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#16)
+NODE 17: $u2#21 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 18: $u3#23 = newarray (java.lang.Object)[1]
+NODE 19: $u2#21 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#21, $u3#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.V2Whr3 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: int HRha2>
+NODE 4: $u1 = $u1 | 48
+NODE 5: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2#6 = $u2[149]
+NODE 7: $u2#7 = (int) $u2#6
+NODE 8: $u2#7 = neg $u2#7
+NODE 9: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2#6 = $u2[120]
+NODE 11: $i1 = (int) $u2#6
+NODE 12: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u1, $u2#7, $i1)
+NODE 13: $u2#13 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#14 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 15: $u1#16 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 16: $u2#18 = newarray (java.lang.Object)[0]
+NODE 17: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#16, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.V2Whr3 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u2#5 = $u2[43]
+NODE 5: $u2#6 = (int) $u2#5
+NODE 6: $u2#6 = neg $u2#6
+NODE 7: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 8: $u2#5 = $u2[16]
+NODE 9: $i1 = (int) $u2#5
+NODE 10: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>(82, $u2#6, $i1)
+NODE 11: $u2#13 = newarray (java.lang.Class)[2]
+NODE 12: $u-1#18 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 13: $u1 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 14: $u2#22 = newarray (java.lang.Object)[2]
+NODE 15: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.V2Whr3 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u2#5 = $u2[149]
+NODE 5: $u2#6 = (int) $u2#5
+NODE 6: $u2#6 = neg $u2#6
+NODE 7: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 8: $u2#5 = $u2[18]
+NODE 9: $i1 = (int) $u2#5
+NODE 10: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>(151, $u2#6, $i1)
+NODE 11: $u2#13 = newarray (java.lang.Class)[1]
+NODE 12: $u-1#16 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 13: $u1 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 14: $u2#20 = newarray (java.lang.Object)[1]
+NODE 15: virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#20)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: int HRha2>
+NODE 4: $u3 = <com.totteri.JlI: byte[] JlI>
+NODE 5: $u3#5 = $u3[149]
+NODE 6: $u3#6 = (int) $u3#5
+NODE 7: $u3#6 = neg $u3#6
+NODE 8: $u4 = $u3#6 & 114
+NODE 9: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u2, $u3#6, $u4)
+NODE 10: $u3#11 = newarray (java.lang.Class)[3]
+NODE 11: $u-1#18 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#11)
+NODE 12: $u2#20 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 13: $u3#22 = newarray (java.lang.Object)[3]
+NODE 14: $u2#20 = virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#20, $u3#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u1#4 = $u1[157]
+NODE 5: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2 = $u1[149]
+NODE 7: $u2#8 = (int) $u2
+NODE 8: $u2#8 = neg $u2#8
+NODE 9: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2 = $u1[11]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $i2 = (int) $u2
+NODE 13: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($i1, $u2#8, $i2)
+NODE 14: $u2#14 = newarray (java.lang.Class)[0]
+NODE 15: $u-1#15 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#14)
+NODE 16: $u1#17 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 17: $u2#19 = newarray (java.lang.Object)[0]
+NODE 18: virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#17, $u2#19)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: int HRha2>
+NODE 4: $u1 = $u1 + 2
+NODE 5: $u2 = <com.totteri.JlI: int HRha2>
+NODE 6: $u2 = $u2 >>> 1
+NODE 7: $u3 = <com.totteri.JlI: byte[] JlI>
+NODE 8: $u3#8 = $u3[17]
+NODE 9: $i0 = (int) $u3#8
+NODE 10: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u1, $u2, $i0)
+NODE 11: $u2#12 = newarray (java.lang.Class)[3]
+NODE 12: $u-1#19 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#12)
+NODE 13: $u1#21 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 14: $u2#23 = newarray (java.lang.Object)[3]
+NODE 15: virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#21, $u2#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: int HRha2>
+NODE 4: $u1 = $u1 | 10
+NODE 5: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2#6 = $u2[53]
+NODE 7: $u2#7 = (int) $u2#6
+NODE 8: $u2#7 = neg $u2#7
+NODE 9: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2#6 = $u2[84]
+NODE 11: $i1 = (int) $u2#6
+NODE 12: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u1, $u2#7, $i1)
+NODE 13: $u2#14 = newarray (java.lang.Class)[4]
+NODE 14: $u-1#23 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#14)
+NODE 15: $u1#25 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 16: $u2#27 = newarray (java.lang.Object)[4]
+NODE 17: virtualinvoke $u-1#23.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#25, $u2#27)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u2#5 = $u2[149]
+NODE 5: $u2#6 = (int) $u2#5
+NODE 6: $u2#6 = neg $u2#6
+NODE 7: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 8: $u2#5 = $u2[11]
+NODE 9: $i1 = (int) $u2#5
+NODE 10: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>(124, $u2#6, $i1)
+NODE 11: $u2#13 = newarray (java.lang.Class)[2]
+NODE 12: $u-1#18 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#13)
+NODE 13: $u1 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 14: $u2#22 = newarray (java.lang.Object)[2]
+NODE 15: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1#12 = <com.totteri.JlI: int HRha2>
+NODE 4: $u1#12 = $u1#12 | 34
+NODE 5: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u1#4 = $u1[149]
+NODE 7: $u2#17 = (int) $u1#4
+NODE 8: $u2#17 = neg $u2#17
+NODE 9: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u1#4 = $u1[84]
+NODE 11: $i3 = (int) $u1#4
+NODE 12: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u1#12, $u2#17, $i3)
+NODE 13: $u2#24 = newarray (java.lang.Class)[3]
+NODE 14: $u-1#31 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#24)
+NODE 15: $u1#33 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 16: $u2#35 = newarray (java.lang.Object)[3]
+NODE 17: virtualinvoke $u-1#31.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#33, $u2#35)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u1#4 = $u1[78]
+NODE 5: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2 = $u1[149]
+NODE 7: $u2#8 = (int) $u2
+NODE 8: $u2#8 = neg $u2#8
+NODE 9: $u1 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2 = $u1[120]
+NODE 11: $i1 = (int) $u1#4
+NODE 12: $i2 = (int) $u2
+NODE 13: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($i1, $u2#8, $i2)
+NODE 14: $u2#15 = newarray (java.lang.Class)[1]
+NODE 15: $u-1#18 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#15)
+NODE 16: $u1#20 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 17: $u2#22 = newarray (java.lang.Object)[1]
+NODE 18: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#20, $u2#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u1 = <com.totteri.JlI: int HRha2>
+NODE 4: $u1 = $u1 | 26
+NODE 5: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u2#6 = $u2[149]
+NODE 7: $u2#7 = (int) $u2#6
+NODE 8: $u2#7 = neg $u2#7
+NODE 9: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u2#6 = $u2[75]
+NODE 11: $i1 = (int) $u2#6
+NODE 12: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($u1, $u2#7, $i1)
+NODE 13: $u2#14 = newarray (java.lang.Class)[3]
+NODE 14: $u-1#21 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#14)
+NODE 15: $u1#23 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 16: $u2#25 = newarray (java.lang.Object)[3]
+NODE 17: virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#23, $u2#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totteri.JlI.Zw0K ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.totteri.JlI
+NODE 2: $u0 = this.<com.totteri.JlI: java.lang.Class Zw0K>
+NODE 3: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 4: $u2#4 = $u2[17]
+NODE 5: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 6: $u3 = $u2[149]
+NODE 7: $u3#8 = (int) $u3
+NODE 8: $u3#8 = neg $u3#8
+NODE 9: $u2 = <com.totteri.JlI: byte[] JlI>
+NODE 10: $u3 = $u2[84]
+NODE 11: $i1 = (int) $u2#4
+NODE 12: $i2 = (int) $u3
+NODE 13: $u-1 = staticinvoke <com.totteri.JlI: java.lang.String Zw0K(int,int,int)>($i1, $u3#8, $i2)
+NODE 14: $u3#15 = newarray (java.lang.Class)[2]
+NODE 15: $u-1#20 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#15)
+NODE 16: $u2#22 = this.<com.totteri.JlI: java.lang.Object V2Whr3>
+NODE 17: $u3#24 = newarray (java.lang.Object)[2]
+NODE 18: $u2#22 = virtualinvoke $u-1#20.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#22, $u3#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.seleuco.mame4all.helpers.MainHelper.getDefaultROMsDIR ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter1: java.lang.String
+NODE 2: $u0 = class "Landroid/util/DisplayMetrics;"
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.b ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.g ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#9 == 0 goto $u1 = ""
+NODE 5: $u1 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.k ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 == 0 goto $u-1#17 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#17 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#17
+NODE 5: if $u0 != null goto $u-1#24 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+NODE 6: $u-1#24 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.k ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 == 0 goto $u-1#17 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#17 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#17
+NODE 5: if $u-1#26 != $u3 goto $u-1#24 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 6: $u-1#24 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.m ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#6 = staticinvoke <com.umeng.common.b: boolean a(android.content.Context,java.lang.String)>($u6, "android.permission.ACCESS_COARSE_LOCATION")
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.m ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u0#11 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.n ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.r ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#10 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.r ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#10 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#10 = virtualinvoke $u-1#8.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.BtY ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 2: $u3#14 = $u3[1]
+NODE 3: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 4: $u3#50 = $u3[26]
+NODE 5: $u1 = (int) $u3#14
+NODE 6: $u1#145 = (int) $u3#50
+NODE 7: $u-1#6 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, 276, $u1#145)
+NODE 8: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 2: $u3#14 = $u3[30]
+NODE 3: $u3#50 = $u3#14 | 290
+NODE 4: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 5: $u6 = $u3[10]
+NODE 6: $u1 = (int) $u3#14
+NODE 7: $u1#145 = (int) $u3#50
+NODE 8: $i7 = (int) $u6
+NODE 9: $u-1#6 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, $u1#145, $i7)
+NODE 10: $u-1#73 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 2: $u3#14 = $u3[1]
+NODE 3: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 4: $u3#50 = $u3[26]
+NODE 5: $u1 = (int) $u3#14
+NODE 6: $u1#145 = (int) $u3#50
+NODE 7: $u-1#6 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, 276, $u1#145)
+NODE 8: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+NODE 9: $u2 = newarray (java.lang.Class)[4]
+NODE 10: $u-1#75 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2)
+NODE 11: $u3#94 = newarray (java.lang.Object)[4]
+NODE 12: $u-1#110 = virtualinvoke $u-1#75.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#94)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 2: $u3#14 = $u3[1]
+NODE 3: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 4: $u3#50 = $u3[26]
+NODE 5: $u1 = (int) $u3#14
+NODE 6: $u1#145 = (int) $u3#50
+NODE 7: $u-1#6 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, 276, $u1#145)
+NODE 8: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+NODE 9: $u2 = newarray (java.lang.Class)[4]
+NODE 10: $u-1#75 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2)
+NODE 11: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 12: $u3#14 = $u3[23]
+NODE 13: $u1 = <com.totterp.EgY: int F5I>
+NODE 14: $u1 = $u1 | 104
+NODE 15: $u3 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 16: $u3#50 = $u3[155]
+NODE 17: $u1#145 = (int) $u3#14
+NODE 18: $i7 = (int) $u3#50
+NODE 19: $u-1#6 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1#145, $u1, $i7)
+NODE 20: $u2 = newarray (java.lang.Class)[1]
+NODE 21: $u-1#91 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#6, $u2)
+NODE 22: $u3#94 = newarray (java.lang.Object)[4]
+NODE 23: $u-1#110 = virtualinvoke $u-1#75.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#94)
+NODE 24: $u3#94 = newarray (java.lang.Object)[1]
+NODE 25: $u-1#110 = virtualinvoke $u-1#91.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#110, $u3#94)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u19 := @parameter1: java.lang.String
+NODE 2: $u3 = newarray (java.lang.Object)[1]
+NODE 3: $u1#13 = class "Ljava/lang/String;"
+NODE 4: $u4 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 5: $u4#7 = $u4[23]
+NODE 6: $u4 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 7: $u6 = $u4[108]
+NODE 8: $u1 = (int) $u4#7
+NODE 9: $u9#94 = (int) $u6
+NODE 10: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, 256, $u9#94)
+NODE 11: $u5 = newarray (java.lang.Class)[1]
+NODE 12: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 13: $u-1#30 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u19, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u19 := @parameter1: java.lang.String
+NODE 2: $u3 = newarray (java.lang.Object)[2]
+NODE 3: $u1#13 = class "Ljava/lang/String;"
+NODE 4: $u4 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 5: $u4#7 = $u4[7]
+NODE 6: $u4 = <com.totterp.EgY: short[] ZXIgZG>
+NODE 7: $u6 = $u4[155]
+NODE 8: $u1 = (int) $u4#7
+NODE 9: $u9#94 = (int) $u6
+NODE 10: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String BtY(int,int,int)>($u1, 121, $u9#94)
+NODE 11: $u5 = newarray (java.lang.Class)[2]
+NODE 12: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 13: $u-1#30 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u19, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = <com.totterp.EgY: int Z2h0>
+NODE 2: $u1 = $u1 | 101
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u4#7 = $u4[0]
+NODE 5: $u9#94 = (int) $u4#7
+NODE 6: $u9#94 = $u9#94 + -1
+NODE 7: $u10 = $u9#94 & 119
+NODE 8: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 9: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u18 := @parameter0: android.content.Context
+NODE 2: $u-1#73 = virtualinvoke $u18.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 3: $u3 = newarray (java.lang.Object)[1]
+NODE 4: $u1 = <com.totterp.EgY: int Z2h0>
+NODE 5: $u1 = $u1 | 101
+NODE 6: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 7: $u4#7 = $u4[0]
+NODE 8: $u9#94 = (int) $u4#7
+NODE 9: $u9#94 = $u9#94 + -1
+NODE 10: $u10 = $u9#94 & 119
+NODE 11: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 12: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 13: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 14: $u4#7 = $u4[4]
+NODE 15: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 16: $u6 = $u4[73]
+NODE 17: $u1 = (int) $u4#7
+NODE 18: $u9#94 = (int) $u6
+NODE 19: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(91, $u1, $u9#94)
+NODE 20: $u5 = newarray (java.lang.Class)[1]
+NODE 21: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 22: $u-1#30 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#73, $u3)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[130]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[43]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u9#94 = (int) $u6
+NODE 7: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 8: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 3: $u4#7 = $u4[130]
+NODE 4: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 5: $u6 = $u4[43]
+NODE 6: $u1 = (int) $u4#7
+NODE 7: $u9#94 = (int) $u6
+NODE 8: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 9: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 10: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 11: $u4#7 = $u4[58]
+NODE 12: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 13: $u6 = $u4[130]
+NODE 14: $u1 = (int) $u6
+NODE 15: $u1 = $u1 + -1
+NODE 16: $u9#94 = (int) $u4#7
+NODE 17: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(110, $u9#94, $u1)
+NODE 18: $u5 = newarray (java.lang.Class)[2]
+NODE 19: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 20: $u-1#170 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[49]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[23]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u9#94 = (int) $u6
+NODE 7: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(85, $u1, $u9#94)
+NODE 8: $u3 = newarray (java.lang.Object)[1]
+NODE 9: $u1#13 = class "Ljava/lang/String;"
+NODE 10: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 11: $u4#7 = $u4[31]
+NODE 12: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 13: $u6 = $u4[130]
+NODE 14: $u1 = (int) $u6
+NODE 15: $u1 = $u1 + -1
+NODE 16: $u9#94 = (int) $u4#7
+NODE 17: $u-1#134 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(262, $u9#94, $u1)
+NODE 18: $u5 = newarray (java.lang.Class)[1]
+NODE 19: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#134, $u5)
+NODE 20: $u-1#209 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[0]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = $u1 + -1
+NODE 5: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 6: $u4#7 = $u4[223]
+NODE 7: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 8: $u6 = $u4[43]
+NODE 9: $u9#94 = (int) $u4#7
+NODE 10: $u10 = (int) $u6
+NODE 11: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 12: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 3: $u4#7 = $u4[0]
+NODE 4: $u1 = (int) $u4#7
+NODE 5: $u1 = $u1 + -1
+NODE 6: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 7: $u4#7 = $u4[223]
+NODE 8: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 9: $u6 = $u4[43]
+NODE 10: $u9#94 = (int) $u4#7
+NODE 11: $u10 = (int) $u6
+NODE 12: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 13: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 14: $u5 = newarray (java.lang.Class)[2]
+NODE 15: $u-1#244 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 16: $u-1#209 = virtualinvoke $u-1#244.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = <com.totterp.EgY: int Z2h0>
+NODE 2: $u1 = $u1 | 20
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u4#7 = $u4[0]
+NODE 5: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 6: $u6 = $u4[43]
+NODE 7: $u9#94 = (int) $u4#7
+NODE 8: $u10 = (int) $u6
+NODE 9: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 10: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[1]
+NODE 2: $u1 = <com.totterp.EgY: int Z2h0>
+NODE 3: $u1 = $u1 | 20
+NODE 4: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 5: $u4#7 = $u4[0]
+NODE 6: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 7: $u6 = $u4[43]
+NODE 8: $u9#94 = (int) $u4#7
+NODE 9: $u10 = (int) $u6
+NODE 10: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 11: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 12: $u5 = newarray (java.lang.Class)[1]
+NODE 13: $u-1#244 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 14: $u-1#276 = virtualinvoke $u-1#244.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[130]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[43]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u9#94 = (int) $u6
+NODE 7: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 8: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[9]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[43]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u9#94 = (int) $u6
+NODE 7: $u-1#134 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(126, $u1, $u9#94)
+NODE 8: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#134)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[41]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[51]
+NODE 5: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 6: $u9 = $u4[43]
+NODE 7: $u1 = (int) $u4#7
+NODE 8: $u9#94 = (int) $u6
+NODE 9: $u10 = (int) $u9
+NODE 10: $u-1#134 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>($u1, $u9#94, $u10)
+NODE 11: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#134)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 3: $u4#7 = $u4[130]
+NODE 4: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 5: $u6 = $u4[43]
+NODE 6: $u1 = (int) $u4#7
+NODE 7: $u9#94 = (int) $u6
+NODE 8: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 9: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 10: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 11: $u4#7 = $u4[58]
+NODE 12: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 13: $u6 = $u4[130]
+NODE 14: $u1 = (int) $u6
+NODE 15: $u1 = $u1 + -1
+NODE 16: $u9#94 = (int) $u4#7
+NODE 17: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(110, $u9#94, $u1)
+NODE 18: $u5 = newarray (java.lang.Class)[2]
+NODE 19: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 20: $u-1#170 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 21: $u3 = newarray (java.lang.Object)[3]
+NODE 22: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 23: $u4#7 = $u4[130]
+NODE 24: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 25: $u6 = $u4[43]
+NODE 26: $u1 = (int) $u4#7
+NODE 27: $u9#94 = (int) $u6
+NODE 28: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 29: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 30: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 31: $u4#7 = $u4[4]
+NODE 32: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 33: $u6 = $u4[49]
+NODE 34: $u1 = (int) $u4#7
+NODE 35: $u9#94 = (int) $u6
+NODE 36: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(179, $u1, $u9#94)
+NODE 37: $u5 = newarray (java.lang.Class)[3]
+NODE 38: $u-1#27 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u5)
+NODE 39: virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#170, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 38 -> 39
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[223]
+NODE 3: $u1 = (int) $u4#7
+NODE 4: $u1 = $u1 + -1
+NODE 5: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 6: $u4#7 = $u4[43]
+NODE 7: $u9#94 = (int) $u4#7
+NODE 8: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(208, $u1, $u9#94)
+NODE 9: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 2: $u4#7 = $u4[130]
+NODE 3: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 4: $u6 = $u4[43]
+NODE 5: $u1 = (int) $u4#7
+NODE 6: $u9#94 = (int) $u6
+NODE 7: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(176, $u1, $u9#94)
+NODE 8: $u7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.totterp.EgY.oa9sbC ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = newarray (java.lang.Object)[2]
+NODE 2: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 3: $u4#7 = $u4[223]
+NODE 4: $u1 = (int) $u4#7
+NODE 5: $u1 = $u1 + -1
+NODE 6: $u4 = <com.totterp.EgY: short[] nJp>
+NODE 7: $u4#7 = $u4[43]
+NODE 8: $u9#94 = (int) $u4#7
+NODE 9: $u-1 = staticinvoke <com.totterp.EgY: java.lang.String oa9sbC(int,int,int)>(208, $u1, $u9#94)
+NODE 10: $u1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 11: $u5 = newarray (java.lang.Class)[2]
+NODE 12: $u-1#244 = virtualinvoke $u1#13.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u5)
+NODE 13: $u-1#30 = virtualinvoke $u-1#244.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
