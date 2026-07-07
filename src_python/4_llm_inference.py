@@ -140,7 +140,7 @@ class OpenAIBackend(LLMBackend):
 class GroqBackend(LLMBackend):
     """Groq backend (using OpenAI client compatibility)."""
 
-    def __init__(self, api_key: str, model: str = "llama-3.3-70b-versatile"):
+    def __init__(self, api_key: str, model: str = "llama-3.1-8b-instant"):
         # pyrefly: ignore [import, missing-import]
         from openai import OpenAI
         self.client = OpenAI(
@@ -154,11 +154,11 @@ class GroqBackend(LLMBackend):
         # pyrefly: ignore [missing-import]
         from openai import RateLimitError
         max_retries = 5
-        base_wait = 15
+        base_wait = 10
         
-        # Groq free tier: 30 RPM *and* 12,000 TPM.
-        # Each call uses ~700-1000 tokens, so we need ~12s gaps to stay under TPM.
-        time.sleep(12)
+        # Groq free tier for 8b-instant: 131K TPM, 30 RPM.
+        # 2s sleep = ~28 RPM, well within limits.
+        time.sleep(2)
         
         for attempt in range(max_retries):
             try:
@@ -199,12 +199,41 @@ class GeminiBackend(LLMBackend):
         self.model = genai.GenerativeModel(model)
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
+        import time
+        # pyrefly: ignore [missing-import]
+        from google.api_core.exceptions import ResourceExhausted
+
+        max_retries = 5
+        base_wait = 15
+
+        # Gemini Free tier is 15 RPM.
+        # Sleeping 4.5 seconds between calls ensures we stay under ~13 RPM.
+        time.sleep(4.5)
+
         prompt = f"System: {system}\n\nUser: {user}"
-        response = self.model.generate_content(
-            prompt,
-            generation_config={"temperature": temperature, "max_output_tokens": 2048},
-        )
-        return response.text.strip()
+        
+        for attempt in range(max_retries):
+            try:
+                response = self.model.generate_content(
+                    prompt,
+                    generation_config={"temperature": temperature, "max_output_tokens": 2048},
+                )
+                return response.text.strip()
+            except ResourceExhausted as e:
+                if attempt == max_retries - 1:
+                    raise
+                wait_time = base_wait * (2 ** attempt)
+                print(f"\n    [WARN] Gemini rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                time.sleep(wait_time)
+            except Exception as e:
+                if "429" in str(e):
+                    if attempt == max_retries - 1:
+                        raise
+                    wait_time = base_wait * (2 ** attempt)
+                    print(f"\n    [WARN] Gemini rate limit hit (429). Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    time.sleep(wait_time)
+                else:
+                    raise
 
 
 class OllamaBackend(LLMBackend):
@@ -337,11 +366,11 @@ def parse_cfg_file(cfg_path: Path) -> list[FunctionSlice]:
 
 def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
     """Analyse a single sliced CFG at function level."""
-    # Truncate CFG text to prevent blowing through token-per-minute limits
-    # on rate-limited backends like Groq free tier.
+    # Truncate very large CFGs but allow generous context now that
+    # framework filtering reduces overall volume.
     cfg_text = func_slice.raw_text
-    if len(cfg_text) > 1500:
-        cfg_text = cfg_text[:1500] + "\n... [truncated for brevity] ..."
+    if len(cfg_text) > 6000:
+        cfg_text = cfg_text[:6000] + "\n... [truncated for brevity] ..."
     prompt = TIER1_USER_TEMPLATE.format(cfg_content=cfg_text)
     response = llm.chat(TIER1_SYSTEM, prompt)
 
@@ -366,64 +395,39 @@ def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
 
 
 # =============================================================================
-#  Factual Consistency Verification (DRC)
+#  Sanity Check (replaces complex DRC — works with any model size)
 # =============================================================================
 
-def verify_factual_consistency(
-    llm: LLMBackend, func_slice: FunctionSlice, tier1_summary: str,
-    threshold: float = 0.50
-) -> tuple[bool, float]:
+def sanity_check_tier1(func_slice: FunctionSlice, tier1_summary: str) -> tuple[bool, str]:
     """
-    Computes Data Relationship Coverage (DRC) for a Tier 1 summary.
+    Lightweight sanity check for Tier 1 output. No LLM call needed.
 
-    Returns (is_consistent, drc_score).
+    Checks that the response:
+      1. Mentions the suspicious API (or a recognizable part of it)
+      2. Contains a RISK_ASSESSMENT or RISK line
+      3. Is at least 100 characters (not a garbage/empty response)
+
+    Returns (is_sane, reason_if_failed).
     """
-    prompt = DRC_USER_TEMPLATE.format(
-        function_name=func_slice.function_name,
-        cfg_content=func_slice.raw_text,
-    )
-    response = llm.chat(DRC_SYSTEM, prompt)
+    if len(tier1_summary.strip()) < 100:
+        return False, "Response too short (< 100 chars)"
 
-    # Parse dependency lines from response
-    dep_lines = []
-    for line in response.split("\n"):
-        line = line.strip()
-        if ":" in line and any(kw in line.lower() for kw in
-                              ["direct", "transitive", "conditional", "parallel", "derived"]):
-            dep_lines.append(line)
-
-    if not dep_lines:
-        # No dependencies extracted — consider consistent by default
-        return True, 1.0
-
-    # Check how many extracted dependencies are reflected in the summary.
-    # We match on dependency TYPE keywords and meaningful identifiers
-    # (class/method names), NOT raw Jimple variable names (r0, r1, etc.)
-    # which never appear in English summaries.
-    matched = 0
     summary_lower = tier1_summary.lower()
-    for dep in dep_lines:
-        parts = dep.split(":", 1)
-        if len(parts) == 2:
-            dep_type = parts[0].strip().lower()
-            dep_body = parts[1].strip()
 
-            # Extract meaningful identifiers (class/method names, not r0/r1)
-            meaningful = re.findall(r'[a-zA-Z_]\w*(?:\.[a-zA-Z_]\w*)+', dep_body)
-            # Also grab quoted or standalone method names
-            meaningful += re.findall(r'[a-zA-Z]\w{3,}', dep_body)
+    # Check API mention — use last part of qualified name
+    # e.g. "android.telephony.SmsManager.sendTextMessage" → "sendtextmessage"
+    api_parts = func_slice.suspicious_api.split(".")
+    api_short = api_parts[-1].lower() if api_parts else func_slice.suspicious_api.lower()
+    if api_short not in summary_lower and func_slice.suspicious_api.lower() not in summary_lower:
+        return False, f"API '{func_slice.suspicious_api}' not mentioned"
 
-            # Check if any meaningful name appears in the summary
-            if any(name.lower() in summary_lower for name in meaningful):
-                matched += 1
-            # Check if the dependency type concept is reflected
-            elif dep_type in summary_lower:
-                matched += 0.75
-            else:
-                matched += 0.25  # minimal credit
+    # Check for structured output (RISK or BEHAVIOR)
+    has_risk = "risk" in summary_lower
+    has_behavior = "behavior" in summary_lower or "behaviour" in summary_lower or "data_flow" in summary_lower
+    if not has_risk and not has_behavior:
+        return False, "Missing RISK/BEHAVIOR fields"
 
-    drc = matched / len(dep_lines) if dep_lines else 1.0
-    return drc >= threshold, drc
+    return True, "OK"
 
 
 # =============================================================================
@@ -579,18 +583,25 @@ def analyse_one_apk(
     if verbose and original_count > 0:
         print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered")
 
+    # Safety cap: even after filtering, some APKs have 200+ app functions.
+    # Cap at 25 to keep per-APK time reasonable (~1-2 min).
+    MAX_FUNCTIONS = 25
+    if len(slices) > MAX_FUNCTIONS:
+        if verbose:
+            print(f"    [INFO] Capping at {MAX_FUNCTIONS} functions (from {len(slices)})")
+        slices = slices[:MAX_FUNCTIONS]
+
     tier1_results: list[Tier1Result] = []
     for func_slice in slices:
         try:
             t1 = run_tier1(llm, func_slice)
 
-            # Factual consistency verification
+            # Sanity check (free — no LLM call)
             if verify_drc:
-                is_ok, drc = verify_factual_consistency(llm, func_slice, t1.summary)
-                if not is_ok:
+                is_sane, reason = sanity_check_tier1(func_slice, t1.summary)
+                if not is_sane:
                     if verbose:
-                        print(f"    [DRC] Re-analysing {func_slice.function_name} "
-                              f"(DRC={drc:.2f} < 0.50)")
+                        print(f"    [SANITY] Retrying {func_slice.function_name}: {reason}")
                     t1 = run_tier1(llm, func_slice)  # retry once
 
             tier1_results.append(t1)

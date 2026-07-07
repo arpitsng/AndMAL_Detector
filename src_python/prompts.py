@@ -125,13 +125,33 @@ TIER3_SYSTEM = (
     "You are a cybersecurity expert specializing in Android malware analysis. "
     "Determine whether the application is MALWARE or BENIGN, citing indicators "
     "of compromise, evidence, and malicious patterns if present. Give a final "
-    "prediction and key findings of your analysis."
+    "prediction and key findings of your analysis. "
+    "IMPORTANT: Be balanced in your assessment. Many legitimate apps use "
+    "reflection, network checks, and storage access. Only classify as MALWARE "
+    "if there are CLEAR malicious indicators."
 )
 
 TIER3_USER_TEMPLATE = """\
 You are analyzing an Android application for potential malware behavior.
 Below are the API-level intent summaries for all suspicious APIs found
 in this application.
+
+CALIBRATION — Common BENIGN patterns (do NOT flag these alone as malware):
+- Reflection (forName, newInstance, getDeclaredMethod): Used by nearly all
+  apps for plugin systems, dependency injection, and compatibility layers.
+- Network checks (getActiveNetworkInfo): Standard Android behavior for
+  any app that uses the internet.
+- Storage access (getExternalStorageDirectory): Normal for apps that
+  save files, photos, or cache data.
+- Class loading (DexClassLoader): Commonly used by app frameworks like
+  React Native, Flutter, and game engines to load bundled code.
+
+Only classify as MALWARE if you find CLEAR indicators such as:
+- Sending premium SMS without user consent
+- Covert data exfiltration to remote servers
+- Dynamic loading of remote/encrypted payloads from unknown URLs
+- Accessing sensitive data (contacts, SMS, calls) without clear user purpose
+- Hiding functionality through heavy obfuscation + suspicious network activity
 
 {api_summaries}
 
