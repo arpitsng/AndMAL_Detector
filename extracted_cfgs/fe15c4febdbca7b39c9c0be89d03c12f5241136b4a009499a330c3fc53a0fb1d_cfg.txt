@@ -1,0 +1,740 @@
+=== FUNCTION: com.adobe.air.AndroidActivityWrapper.LoadRuntimeLibraries ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.adobe.air.AndroidActivityWrapper
+NODE 2: if $u0 != 0 goto return
+NODE 3: $u0#2 = this.<com.adobe.air.AndroidActivityWrapper: android.app.Application m_application>
+NODE 4: $u-1 = staticinvoke <com.adobe.air.utils.Utils: java.lang.String GetLibSTLPath(android.content.Context)>($u0#2)
+NODE 5: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidActivityWrapper.LoadRuntimeLibraries ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.adobe.air.AndroidActivityWrapper
+NODE 2: $u-1 = virtualinvoke this.<com.adobe.air.AndroidActivityWrapper: java.lang.String GetLibCorePath()>()
+NODE 3: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.areMultipleCamerasSupportedOnDevice ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1#3 = class "Landroid/hardware/Camera;"
+NODE 2: $u-1 = virtualinvoke $u1#3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getNumberOfCameras", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.areMultipleCamerasSupportedOnDevice ===
+SUSPICIOUS_API: forName
+NODE 1: $u1#3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.hardware.Camera$CameraInfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.getNumberOfCameras ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1 == 0 goto return 1
+NODE 2: $u1 = <com.adobe.air.AndroidCamera: java.lang.reflect.Method sMIDGetNumberOfCameras>
+NODE 3: $u-1#5 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.getCameraPosition ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5#5 = <com.adobe.air.AndroidCamera: java.lang.Class sCameraInfoClass>
+NODE 2: if $u5#5 == null goto $u5#8 = <com.adobe.air.AndroidCamera: java.lang.reflect.Method sMIDGetCameraInfo>
+NODE 3: $u5#5 = <com.adobe.air.AndroidCamera: java.lang.Class sCameraInfoClass>
+NODE 4: cameraInfo = virtualinvoke $u5#5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.getCameraPosition ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adobe.air.AndroidCamera
+NODE 2: if $u5#5 == null goto $u5#8 = <com.adobe.air.AndroidCamera: java.lang.reflect.Method sMIDGetCameraInfo>
+NODE 3: $u5#8 = <com.adobe.air.AndroidCamera: java.lang.reflect.Method sMIDGetCameraInfo>
+NODE 4: $u6 = this.<com.adobe.air.AndroidCamera: android.hardware.Camera mCamera>
+NODE 5: $u7 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u5#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidCamera.open ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u4#11 == 0 goto $u4 = staticinvoke <android.hardware.Camera: android.hardware.Camera open()>()
+NODE 2: $u4#12 = <com.adobe.air.AndroidCamera: java.lang.reflect.Method sMIDOpenWithCameraID>
+NODE 3: $u6 = newarray (java.lang.Object)[1]
+NODE 4: $u-1#16 = virtualinvoke $u4#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.Utils.GetExternalStorageDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.Utils.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.JavaTrustStoreHelper$SystemKeyStoreManager_sysprop.getKeyStore ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#5 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 3: if newFile == null goto return null
+NODE 4: fis = new java.io.FileInputStream
+NODE 5: virtualinvoke $u-1#5.<java.security.KeyStore: void load(java.io.InputStream,char[])>(fis, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: air.eilimint.AppEntry.InvokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.reflect.Method
+NODE 2: $u5 := @parameter1: java.lang.Object[]
+NODE 3: if $u1 != 0 goto (branch)
+NODE 4: if $u5 == null goto $u1#4 = <air.eilimint.AppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 5: $u1#4 = <air.eilimint.AppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 6: $u1#4 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#4, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: air.eilimint.AppEntry.InvokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.reflect.Method
+NODE 2: $u5 := @parameter1: java.lang.Object[]
+NODE 3: if $u1 != 0 goto (branch)
+NODE 4: if $u5 == null goto $u1#4 = <air.eilimint.AppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 5: $u1#4 = <air.eilimint.AppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 6: $u5 = newarray (java.lang.Object)[0]
+NODE 7: $u1#4 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#4, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: air.eilimint.AppEntry.createActivityWrapper ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u7 == 0 goto $u1 = <air.eilimint.AppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 2: $u1 = <air.eilimint.AppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 3: $u3 = newarray (java.lang.Class)[2]
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("CreateAndroidActivityWrapper", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#18 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: air.eilimint.AppEntry.createActivityWrapper ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u7 == 0 goto $u1 = <air.eilimint.AppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 2: $u1 = <air.eilimint.AppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("CreateAndroidActivityWrapper", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#18 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: air.eilimint.AppEntry.loadCaptiveRuntimeClasses ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.adobe.air.AndroidActivityWrapper")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.microphone.AIRMicrophoneRecorder.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.adobe.air.microphone.AIRMicrophoneRecorder
+NODE 2: if $u-1 == 0 goto $u4#9 = this.<com.adobe.air.microphone.AIRMicrophoneRecorder: android.media.AudioRecord m_recorder>
+NODE 3: if $u4#19 < 16 goto $u4#9 = this.<com.adobe.air.microphone.AIRMicrophoneRecorder: android.media.AudioRecord m_recorder>
+NODE 4: if $u-1 == 0 goto $u4#9 = this.<com.adobe.air.microphone.AIRMicrophoneRecorder: android.media.AudioRecord m_recorder>
+NODE 5: if $u-1#45 == null goto $u4#9 = this.<com.adobe.air.microphone.AIRMicrophoneRecorder: android.media.AudioRecord m_recorder>
+NODE 6: $u4#9 = this.<com.adobe.air.microphone.AIRMicrophoneRecorder: android.media.AudioRecord m_recorder>
+NODE 7: virtualinvoke $u4#9.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.RscIdMap.gatherResourceInfo ===
+SUSPICIOUS_API: forName
+NODE 1: $u18 := @parameter0: java.lang.String
+NODE 2: cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u18)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.ResourceIdMap.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.Entrypoints.EntryDownloadConfig ===
+SUSPICIOUS_API: load
+NODE 1: $u2 = <com.adobe.air.Entrypoints: android.content.Context s_context>
+NODE 2: $u2#5 = staticinvoke <com.adobe.air.utils.Utils: java.lang.String GetLibSTLPath(android.content.Context)>($u2)
+NODE 3: staticinvoke <java.lang.System: void load(java.lang.String)>($u2#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.Entrypoints.EntryDownloadConfig ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.adobe.air.Entrypoints
+NODE 2: $u2#5 = virtualinvoke this.<com.adobe.air.Entrypoints: java.lang.String GetLibCorePath()>()
+NODE 3: staticinvoke <java.lang.System: void load(java.lang.String)>($u2#5)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.Entrypoints.EntryStopRuntime ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.adobe.air.Entrypoints
+NODE 2: $u-1 = virtualinvoke this.<com.adobe.air.Entrypoints: java.lang.String GetLibCorePath()>()
+NODE 3: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidInputManager.isSupported ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.hardware.input.InputManager")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidInputManager.onGenericMotionEvent ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.view.MotionEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.MotionEvent: int getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidInputManager.onKeyEvent ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V19.makeDexElements ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: $u2 = newarray (java.lang.Class)[3]
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Method access$500(java.lang.Object,java.lang.String,java.lang.Class[])>($u8, "makeDexElements", $u2)
+NODE 4: $u1 = newarray (java.lang.Object)[3]
+NODE 5: $u8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.doInstallation ===
+SUSPICIOUS_API: load
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: java.io.File
+NODE 3: $u11 := @parameter2: java.io.File
+NODE 4: $u12 := @parameter3: java.lang.String
+NODE 5: $u13 := @parameter4: java.lang.String
+NODE 6: $u11 = staticinvoke <android.support.multidex.MultiDex: java.io.File getDexDir(android.content.Context,java.io.File,java.lang.String)>($u9, $u11, $u12)
+NODE 7: $u-1#48 = staticinvoke <android.support.multidex.MultiDexExtractor: java.util.List load(android.content.Context,java.io.File,java.io.File,java.lang.String,boolean)>($u9, $u10, $u11, $u13, 0)
+NODE 8: goto [?= $u11 = staticinvoke <android.support.multidex.MultiDex: java.io.File getDexDir(android.content.Context,java.io.File,java.lang.String)>($u9, $u11, $u12)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.expandFieldArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Field findField(java.lang.Object,java.lang.String)>($u7, $u8)
+NODE 5: $u-1#2 = virtualinvoke $u-1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u7)
+NODE 6: $u3 = (java.lang.Object[]) $u-1#2
+NODE 7: $u-1#7 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 9: $u4 = lengthof $u3
+NODE 10: $u5 = lengthof $u9
+NODE 11: $u5 = $u4 + $u5
+NODE 12: $u-1#2 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#7, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: if $u-1 == null goto $u2#9 = new java.lang.NoSuchFieldException
+NODE 5: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: parameterTypes := @parameter2: java.lang.Class[]
+NODE 4: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if $u-1 == null goto $u2#9 = new java.lang.NoSuchMethodException
+NODE 6: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u6, parameterTypes)
+NODE 7: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 8: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14.makeDexElements ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Method access$500(java.lang.Object,java.lang.String,java.lang.Class[])>($u7, "makeDexElements", $u2)
+NODE 4: $u1 = newarray (java.lang.Object)[2]
+NODE 5: $u7 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.CameraUIProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#20 == 0 goto (branch)
+NODE 2: target = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.GamePreviewAppEntry.InvokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.reflect.Method
+NODE 2: $u5 := @parameter1: java.lang.Object[]
+NODE 3: if $u1 != 0 goto (branch)
+NODE 4: if $u5 == null goto $u1#4 = <com.adobe.air.GamePreviewAppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 5: $u1#4 = <com.adobe.air.GamePreviewAppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 6: $u1#4 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#4, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.GamePreviewAppEntry.InvokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.reflect.Method
+NODE 2: $u5 := @parameter1: java.lang.Object[]
+NODE 3: if $u1 != 0 goto (branch)
+NODE 4: if $u5 == null goto $u1#4 = <com.adobe.air.GamePreviewAppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 5: $u1#4 = <com.adobe.air.GamePreviewAppEntry: java.lang.Object sAndroidActivityWrapper>
+NODE 6: $u5 = newarray (java.lang.Object)[0]
+NODE 7: $u1#4 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#4, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.GamePreviewAppEntry.createActivityWrapper ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u7 == 0 goto $u1 = <com.adobe.air.GamePreviewAppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 2: $u1 = <com.adobe.air.GamePreviewAppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 3: $u3 = newarray (java.lang.Class)[2]
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("CreateAndroidActivityWrapper", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#18 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.GamePreviewAppEntry.createActivityWrapper ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u7 == 0 goto $u1 = <com.adobe.air.GamePreviewAppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 2: $u1 = <com.adobe.air.GamePreviewAppEntry: java.lang.Class sAndroidActivityWrapperClass>
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("CreateAndroidActivityWrapper", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#18 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.GamePreviewAppEntry.loadCaptiveRuntimeClasses ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.adobe.air.AndroidActivityWrapper")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.ConvertMBCStoUTF16 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-16LE")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.ConvertMBCStoUTF8 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.ConvertUTF16toMBCS ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1#3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.ConvertUTF8toMBCS ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u8)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.DecodeBuffer ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.mbcsToUtf16 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.utils.CharsetUtils.utf16ToUtf8 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidWebView.onActivityStateChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adobe.air.AndroidWebView
+NODE 2: $u4 = class "Landroid/webkit/WebView;"
+NODE 3: $u6 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isPaused", $u6)
+NODE 5: $u4#16 = this.<com.adobe.air.AndroidWebView: com.adobe.air.AndroidWebView$AndroidWebViewImpl mView>
+NODE 6: $u5 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#19 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#16, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidWebView.onActivityStateChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adobe.air.AndroidWebView
+NODE 2: $u4 = class "Landroid/webkit/WebView;"
+NODE 3: $u6 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#10 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onResume", $u6)
+NODE 5: if $u-1#22 == 0 goto $u4#23 = <com.adobe.air.AndroidWebView$4: int[] $SwitchMap$com$adobe$air$AndroidActivityWrapper$ActivityState>
+NODE 6: $u4#16 = this.<com.adobe.air.AndroidWebView: com.adobe.air.AndroidWebView$AndroidWebViewImpl mView>
+NODE 7: $u5 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#16, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidWebView.onActivityStateChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adobe.air.AndroidWebView
+NODE 2: $u4 = class "Landroid/webkit/WebView;"
+NODE 3: $u6 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#15 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPause", $u6)
+NODE 5: $u4#16 = this.<com.adobe.air.AndroidWebView: com.adobe.air.AndroidWebView$AndroidWebViewImpl mView>
+NODE 6: $u5 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#16, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.CameraUI.getCursorFromUri ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.net.Uri
+NODE 2: $u12 := @parameter1: android.app.Activity
+NODE 3: $u13 := @parameter2: java.lang.String[]
+NODE 4: $u-1 = virtualinvoke $u12.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u11, $u13, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.JavaTrustStoreHelper$SystemKeyStoreManager_files.getKeyStore ===
+SUSPICIOUS_API: load
+NODE 1: fileName = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>(fileName)
+NODE 3: virtualinvoke $u-1.<java.security.KeyStore: void load(java.security.KeyStore$LoadStoreParameter)>(null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.net.AndroidNetworkInfo.getAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.adobe.air.net.AndroidNetworkInfo
+NODE 2: if $u-1 != 0 goto $u5 = this.<com.adobe.air.net.AndroidNetworkInfo: android.content.Context mContext>
+NODE 3: $u5 = this.<com.adobe.air.net.AndroidNetworkInfo: android.content.Context mContext>
+NODE 4: $u-1#7 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 5: wifiManager = (android.net.wifi.WifiManager) $u-1#7
+NODE 6: if $u-1#11 == null goto $u-1#25 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: $u-1#25 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.net.AndroidNetworkInfo.getWifiData ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.adobe.air.net.AndroidNetworkInfo
+NODE 2: $u5 = this.<com.adobe.air.net.AndroidNetworkInfo: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 5: if wifiManager != null goto $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.net.AndroidNetworkInfo.getWifiData ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: com.adobe.air.net.AndroidNetworkInfo
+NODE 2: $u5 = this.<com.adobe.air.net.AndroidNetworkInfo: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 5: if wifiManager != null goto $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: if $u-1#5 == null goto $u-1#14 = virtualinvoke this.<com.adobe.air.net.AndroidNetworkInfo: com.adobe.air.net.InterfaceAddress getAddress(android.net.NetworkInfo)>($u8)
+NODE 8: $u-1#8 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.wand.connection.WandWebSocket.getWiFiHotspotIpAddress ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adobe.air.wand.connection.WandWebSocket
+NODE 2: if connMgr != null goto $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 3: $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 4: $u-1#12 = virtualinvoke $u0.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 5: $u-1 = virtualinvoke $u-1#12.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 6: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 7: if wifiManager != null goto $u-1#19 = virtualinvoke wifiManager.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#19 = virtualinvoke wifiManager.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u-1#21 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 10: $u20 = 0
+NODE 11: if $u20 >= $u0#24 goto (branch)
+NODE 12: method = $u-1#21[$u20]
+NODE 13: if $u-1#33 == 0 goto $u20 = $u20 + 1
+NODE 14: $u0#37 = newarray (java.lang.Object)[0]
+NODE 15: $u-1 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(wifiManager, $u0#37)
+NODE 16: if $u-1#33 == 0 goto $u20 = $u20 + 1
+NODE 17: $u20 = $u20 + 1
+NODE 18: goto [?= (branch)]
+NODE 19: goto [?= $u20 = $u20 + 1]
+NODE 20: goto [?= $u20 = $u20 + 1]
+NODE 21: goto [?= $u20 = $u20 + 1]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 13 -> 17
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 11
+EDGE: 19 -> 17
+EDGE: 20 -> 17
+EDGE: 21 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.wand.connection.WandWebSocket.getWiFiHotspotIpAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.adobe.air.wand.connection.WandWebSocket
+NODE 2: if connMgr != null goto $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 3: $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 4: $u-1#12 = virtualinvoke $u0.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 5: $u-1 = virtualinvoke $u-1#12.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 6: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 7: if $u20 >= $u0#24 goto (branch)
+NODE 8: goto [?= (branch)]
+NODE 9: if isWifiApEnabled != 0 goto $u-1#48 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 10: $u-1#48 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 9
+EDGE: 8 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.wand.connection.WandWebSocket.getWiFiHotspotIpAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: com.adobe.air.wand.connection.WandWebSocket
+NODE 2: if connMgr != null goto $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 3: $u0 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 4: $u-1#12 = virtualinvoke $u0.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 5: $u-1 = virtualinvoke $u-1#12.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 6: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 7: if $u20 >= $u0#24 goto (branch)
+NODE 8: goto [?= (branch)]
+NODE 9: if isWifiApEnabled != 0 goto $u-1#48 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 10: $u-1#48 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 11: if $u-1#48 != null goto $u-1#29 = virtualinvoke $u-1#48.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 12: $u-1#29 = virtualinvoke $u-1#48.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 9
+EDGE: 8 -> 7
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.wand.connection.WandWebSocket.getWiFiIpAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.adobe.air.wand.connection.WandWebSocket
+NODE 2: $u5 = this.<com.adobe.air.wand.connection.WandWebSocket: android.app.Activity mActivity>
+NODE 3: $u-1 = virtualinvoke $u5.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 5: wifiManager = (android.net.wifi.WifiManager) $u-1#6
+NODE 6: if wifiManager != null goto $u-1#9 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: $u-1#9 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.location.Geolocation.addGPSListener ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adobe.air.location.Geolocation
+NODE 2: if $u-1#5 == 0 goto return
+NODE 3: $u0#7 = this.<com.adobe.air.location.Geolocation: android.location.LocationManager mLocationManager>
+NODE 4: $u-1#9 = virtualinvoke $u0#7.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.location.Geolocation.addGPSListener ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.adobe.air.location.Geolocation
+NODE 2: $u0#7 = this.<com.adobe.air.location.Geolocation: android.location.LocationManager mLocationManager>
+NODE 3: $u2 = this.<com.adobe.air.location.Geolocation: long m_upateInterval>
+NODE 4: $u5 = this.<com.adobe.air.location.Geolocation: com.adobe.air.location.AIRLocationListener mGPSListener>
+NODE 5: virtualinvoke $u0#7.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", $u2, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.location.Geolocation.addNetworkListener ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.adobe.air.location.Geolocation
+NODE 2: if $u-1#5 == 0 goto return
+NODE 3: $u0#7 = this.<com.adobe.air.location.Geolocation: android.location.LocationManager mLocationManager>
+NODE 4: $u2 = this.<com.adobe.air.location.Geolocation: long m_upateInterval>
+NODE 5: $u5 = this.<com.adobe.air.location.Geolocation: com.adobe.air.location.AIRLocationListener mNetworkListener>
+NODE 6: virtualinvoke $u0#7.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", $u2, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidGcmRegistrationService.getCustomData ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adobe.air.AndroidGcmRegistrationService
+NODE 2: $u-1#64 = virtualinvoke this.<com.adobe.air.AndroidGcmRegistrationService: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: locationManager = (android.location.LocationManager) $u-1#64
+NODE 4: if $u-1#69 == 0 goto virtualinvoke obj.<org.json.JSONObject: org.json.JSONObject put(java.lang.String,java.lang.Object)>("geo", $u5)
+NODE 5: $u-1#72 = virtualinvoke locationManager.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adobe.air.AndroidMediaManager.AddImage ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.app.Application
+NODE 2: $u13 := @parameter1: android.graphics.Bitmap
+NODE 3: $u14 := @parameter2: boolean
+NODE 4: if $u12 == null goto return 0
+NODE 5: $u-1 = virtualinvoke $u12.<android.app.Application: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#6 = staticinvoke <android.provider.MediaStore$Images$Media: java.lang.String insertImage(android.content.ContentResolver,android.graphics.Bitmap,java.lang.String,java.lang.String)>($u-1, $u13, null, null)
+NODE 7: if $u-1#6 != null goto (branch)
+NODE 8: $u-1#6 = staticinvoke <com.adobe.air.AndroidMediaManager: java.lang.String SaveImage(java.lang.String,android.content.ContentResolver,android.graphics.Bitmap,boolean)>("phoneStorage", $u-1, $u13, $u14)
+NODE 9: if $u-1#6 == null goto return 0
+NODE 10: proj = newarray (java.lang.String)[1]
+NODE 11: $u-1#13 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u-1#6)
+NODE 12: $u-1#17 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#13, proj, null, null, null)
+NODE 13: $u-1#6 = null
+NODE 14: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 7
+=== END FUNCTION ===
+
