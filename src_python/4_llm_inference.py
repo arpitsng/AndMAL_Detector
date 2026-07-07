@@ -137,6 +137,56 @@ class OpenAIBackend(LLMBackend):
         return response.choices[0].message.content.strip()
 
 
+class OpenRouterBackend(LLMBackend):
+    """OpenRouter backend (using OpenAI client compatibility)."""
+
+    def __init__(self, api_key: str, model: str = "openrouter/free"):
+        # pyrefly: ignore [import, missing-import]
+        from openai import OpenAI
+        self.client = OpenAI(
+            api_key=api_key,
+            base_url="https://openrouter.ai/api/v1",
+        )
+        self.model = model
+
+    def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
+        import time
+        from openai import RateLimitError
+        max_retries = 5
+        base_wait = 10
+        
+        # OpenRouter free models have variable rate limits, a small sleep helps.
+        time.sleep(2.0)
+        
+        for attempt in range(max_retries):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
+                    ],
+                    temperature=temperature,
+                    max_tokens=2048,
+                )
+                return response.choices[0].message.content.strip()
+            except RateLimitError as e:
+                if attempt == max_retries - 1:
+                    raise
+                wait_time = base_wait * (2 ** attempt)
+                print(f"\n    [WARN] OpenRouter rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                time.sleep(wait_time)
+            except Exception as e:
+                if "429" in str(e) or "402" in str(e): # 402 Payment Required
+                    if attempt == max_retries - 1:
+                        raise
+                    wait_time = base_wait * (2 ** attempt)
+                    print(f"\n    [WARN] OpenRouter rate limit/payment error. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    time.sleep(wait_time)
+                else:
+                    raise
+
+
 class GroqBackend(LLMBackend):
     """Groq backend (using OpenAI client compatibility)."""
 
@@ -190,25 +240,37 @@ class GroqBackend(LLMBackend):
 
 
 class GeminiBackend(LLMBackend):
-    """Google Gemini backend."""
+    """Google Gemini backend with multi-key rotation to bypass strict rate limits."""
 
-    def __init__(self, api_key: str, model: str = "gemini-2.0-flash"):
+    def __init__(self, api_keys: list[str], model: str = "gemini-2.5-flash"):
         # pyrefly: ignore [missing-import]
         import google.generativeai as genai
-        genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel(model)
+        self.api_keys = [k for k in api_keys if k]
+        self.current_key_idx = 0
+        self.model_name = model
+        
+        # Configure with the first key initially
+        genai.configure(api_key=self.api_keys[self.current_key_idx])
+        self.model = genai.GenerativeModel(self.model_name)
+
+    def switch_key(self):
+        """Rotate to the next API key in the pool."""
+        import google.generativeai as genai
+        self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
+        genai.configure(api_key=self.api_keys[self.current_key_idx])
+        self.model = genai.GenerativeModel(self.model_name)
+        print(f"\n    [INFO] Switched to Gemini API Key #{self.current_key_idx + 1}", file=sys.stderr, flush=True)
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
         import time
-        # pyrefly: ignore [missing-import]
         from google.api_core.exceptions import ResourceExhausted
 
-        max_retries = 5
+        max_retries = 15  # Increased so we can cycle through keys multiple times if needed
         base_wait = 15
 
-        # Gemini Free tier is 15 RPM.
-        # Sleeping 4.5 seconds between calls ensures we stay under ~13 RPM.
-        time.sleep(4.5)
+        # With 3 keys, we have 45 RPM (3 * 15). 
+        # A tiny 1-second sleep is enough to prevent hammering the network.
+        time.sleep(1.0)
 
         prompt = f"System: {system}\n\nUser: {user}"
         
@@ -218,8 +280,23 @@ class GeminiBackend(LLMBackend):
                     prompt,
                     generation_config={"temperature": temperature, "max_output_tokens": 2048},
                 )
-                return response.text.strip()
+                try:
+                    return response.text.strip()
+                except ValueError:
+                    # Occurs if Google blocks the response for safety reasons
+                    return "RISK_ASSESSMENT: UNKNOWN\nSafety Blocked by Google."
+                    
             except ResourceExhausted as e:
+                # If we have multiple keys, just switch immediately and retry!
+                if len(self.api_keys) > 1:
+                    print(f"\n    [WARN] Rate limit hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
+                    self.switch_key()
+                    # If we completed a full cycle of keys, pause slightly to let them cool down
+                    if (attempt + 1) % len(self.api_keys) == 0:
+                        time.sleep(5.0)
+                    continue
+                
+                # Fallback to sleep if we only have 1 key
                 if attempt == max_retries - 1:
                     raise
                 wait_time = base_wait * (2 ** attempt)
@@ -227,6 +304,13 @@ class GeminiBackend(LLMBackend):
                 time.sleep(wait_time)
             except Exception as e:
                 if "429" in str(e):
+                    if len(self.api_keys) > 1:
+                        print(f"\n    [WARN] Rate limit (429) hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
+                        self.switch_key()
+                        if (attempt + 1) % len(self.api_keys) == 0:
+                            time.sleep(5.0)
+                        continue
+                    
                     if attempt == max_retries - 1:
                         raise
                     wait_time = base_wait * (2 ** attempt)
@@ -234,6 +318,9 @@ class GeminiBackend(LLMBackend):
                     time.sleep(wait_time)
                 else:
                     raise
+
+        # If we completely exhaust the retry loop without returning
+        raise RuntimeError("Exhausted all retries and API keys due to rate limits.")
 
 
 class OllamaBackend(LLMBackend):
@@ -274,6 +361,15 @@ def create_backend(backend_name: str) -> LLMBackend:
             sys.exit(1)
         return OpenAIBackend(api_key=key)
 
+    elif backend_name == "openrouter":
+        key = os.environ.get("OPENROUTER_API_KEY", "").strip()
+        if not key:
+            print("[ERROR] OPENROUTER_API_KEY not found in .env", file=sys.stderr)
+            sys.exit(1)
+        model = os.environ.get("OPENROUTER_MODEL", "openrouter/free").strip()
+        print(f"    [INFO] Initialized OpenRouter backend with model: {model}")
+        return OpenRouterBackend(api_key=key, model=model)
+
     elif backend_name == "groq":
         key = os.environ.get("GROQ_API_KEY", "").strip()
         if not key:
@@ -283,11 +379,19 @@ def create_backend(backend_name: str) -> LLMBackend:
         return GroqBackend(api_key=key, model=model)
 
     elif backend_name == "gemini":
-        key = os.environ.get("GEMINI_API_KEY", "").strip()
-        if not key:
-            print("[ERROR] GEMINI_API_KEY not found in .env", file=sys.stderr)
+        keys = [
+            os.environ.get("GEMINI_API_KEY1", "").strip(),
+            os.environ.get("GEMINI_API_KEY2", "").strip(),
+            os.environ.get("GEMINI_API_KEY3", "").strip(),
+        ]
+        valid_keys = [k for k in keys if k]
+        
+        if not valid_keys:
+            print("[ERROR] No GEMINI_API_KEY1/2/3 found in .env", file=sys.stderr)
             sys.exit(1)
-        return GeminiBackend(api_key=key)
+            
+        print(f"    [INFO] Initialized Gemini backend with {len(valid_keys)} rotating keys.")
+        return GeminiBackend(api_keys=valid_keys)
 
     elif backend_name == "ollama":
         model = os.environ.get("OLLAMA_MODEL", "llama3").strip()
@@ -680,7 +784,7 @@ def main() -> None:
              "malware logs), 'direct' (single-shot on CFG without tiers)."
     )
     parser.add_argument(
-        "--backend", choices=["openai", "gemini", "ollama", "groq"], default="openai",
+        "--backend", choices=["openai", "gemini", "ollama", "groq", "openrouter"], default="openai",
         help="LLM backend to use (default: openai)."
     )
     parser.add_argument(
