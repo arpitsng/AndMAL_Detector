@@ -9,7 +9,7 @@ Implements the full LAMD 3-tier malware detection pipeline:
 
 Supports multiple LLM backends:
   - OpenAI (GPT-4o-mini — default, as used in the LAMD paper)
-  - Google Gemini (Gemini 2.0 Flash)
+  - Google Gemini (Gemini 2.5 Flash)
   - Ollama  (local models like Llama 3, Mistral)
 
 Usage:
@@ -25,7 +25,7 @@ Usage:
 Environment:
   Set your API key in .env:
     OPENAI_API_KEY=sk-...
-    or GEMINI_API_KEY=...
+    or GEMINI_API_KEY1=... / GEMINI_API_KEY2=... / GEMINI_API_KEY3=...
 """
 
 import argparse
@@ -51,6 +51,7 @@ from prompts import (
     TIER3_SYSTEM, TIER3_USER_TEMPLATE,
     DRC_SYSTEM, DRC_USER_TEMPLATE,
     DIRECT_ANALYSIS_SYSTEM, DIRECT_ANALYSIS_TEMPLATE,
+    SINGLE_CALL_SYSTEM, SINGLE_CALL_TEMPLATE,
     format_api_summaries_for_tier3, classify_api_type,
 )
 
@@ -151,6 +152,7 @@ class OpenRouterBackend(LLMBackend):
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
         import time
+        # pyrefly: ignore [missing-import]
         from openai import RateLimitError
         max_retries = 5
         base_wait = 10
@@ -240,68 +242,90 @@ class GroqBackend(LLMBackend):
 
 
 class GeminiBackend(LLMBackend):
-    """Google Gemini backend with multi-key rotation to bypass strict rate limits."""
+    """
+    Google Gemini backend with multi-key rotation.
+
+    NOTE: Gemini rate limits are applied per Google Cloud PROJECT, not per
+    API key. Rotating between keys only increases your effective throughput
+    if each key belongs to a *different* project (or different Google
+    accounts). Keys generated inside the same project all share one quota
+    pool — rotation between those just adds latency with no benefit.
+
+    Uses the new unified `google-genai` SDK (the old `google-generativeai`
+    package is deprecated and gemini-2.0-flash has been retired).
+    """
 
     def __init__(self, api_keys: list[str], model: str = "gemini-2.5-flash"):
         # pyrefly: ignore [missing-import]
-        import google.generativeai as genai
+        from google import genai
+        # pyrefly: ignore [missing-import]
+        from google.genai import types
         self.api_keys = [k for k in api_keys if k]
         self.current_key_idx = 0
         self.model_name = model
-        
-        # Configure with the first key initially
-        genai.configure(api_key=self.api_keys[self.current_key_idx])
-        self.model = genai.GenerativeModel(self.model_name)
+        self._genai = genai
+        self._types = types
+
+        # Client for the first key initially
+        self.client = genai.Client(api_key=self.api_keys[self.current_key_idx])
 
     def switch_key(self):
         """Rotate to the next API key in the pool."""
-        import google.generativeai as genai
         self.current_key_idx = (self.current_key_idx + 1) % len(self.api_keys)
-        genai.configure(api_key=self.api_keys[self.current_key_idx])
-        self.model = genai.GenerativeModel(self.model_name)
+        self.client = self._genai.Client(api_key=self.api_keys[self.current_key_idx])
         print(f"\n    [INFO] Switched to Gemini API Key #{self.current_key_idx + 1}", file=sys.stderr, flush=True)
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
         import time
-        from google.api_core.exceptions import ResourceExhausted
+        # pyrefly: ignore [missing-import]
+        from google.genai.errors import ClientError
 
         max_retries = 15  # Increased so we can cycle through keys multiple times if needed
         base_wait = 15
 
-        # With 3 keys, we have 45 RPM (3 * 15). 
-        # A tiny 1-second sleep is enough to prevent hammering the network.
+        # With 3 keys (ideally 3 separate projects), we have more combined
+        # throughput. A tiny 1-second sleep is enough to prevent hammering.
         time.sleep(1.0)
 
-        prompt = f"System: {system}\n\nUser: {user}"
-        
         for attempt in range(max_retries):
             try:
-                response = self.model.generate_content(
-                    prompt,
-                    generation_config={"temperature": temperature, "max_output_tokens": 2048},
+                response = self.client.models.generate_content(
+                    model=self.model_name,
+                    contents=user,
+                    config=self._types.GenerateContentConfig(
+                        system_instruction=system,
+                        temperature=temperature,
+                        max_output_tokens=2048,
+                    ),
                 )
                 try:
                     return response.text.strip()
-                except ValueError:
+                except (ValueError, AttributeError):
                     # Occurs if Google blocks the response for safety reasons
+                    # or returns no candidates.
                     return "RISK_ASSESSMENT: UNKNOWN\nSafety Blocked by Google."
-                    
-            except ResourceExhausted as e:
-                # If we have multiple keys, just switch immediately and retry!
-                if len(self.api_keys) > 1:
-                    print(f"\n    [WARN] Rate limit hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
-                    self.switch_key()
-                    # If we completed a full cycle of keys, pause slightly to let them cool down
-                    if (attempt + 1) % len(self.api_keys) == 0:
-                        time.sleep(5.0)
-                    continue
-                
-                # Fallback to sleep if we only have 1 key
-                if attempt == max_retries - 1:
+
+            except ClientError as e:
+                is_rate_limited = getattr(e, "code", None) == 429 or "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e).upper()
+
+                if is_rate_limited:
+                    # If we have multiple keys, just switch immediately and retry!
+                    if len(self.api_keys) > 1:
+                        print(f"\n    [WARN] Rate limit hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
+                        self.switch_key()
+                        # If we completed a full cycle of keys, pause slightly to let them cool down
+                        if (attempt + 1) % len(self.api_keys) == 0:
+                            time.sleep(5.0)
+                        continue
+
+                    # Fallback to sleep if we only have 1 key
+                    if attempt == max_retries - 1:
+                        raise
+                    wait_time = base_wait * (2 ** attempt)
+                    print(f"\n    [WARN] Gemini rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    time.sleep(wait_time)
+                else:
                     raise
-                wait_time = base_wait * (2 ** attempt)
-                print(f"\n    [WARN] Gemini rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
-                time.sleep(wait_time)
             except Exception as e:
                 if "429" in str(e):
                     if len(self.api_keys) > 1:
@@ -310,7 +334,7 @@ class GeminiBackend(LLMBackend):
                         if (attempt + 1) % len(self.api_keys) == 0:
                             time.sleep(5.0)
                         continue
-                    
+
                     if attempt == max_retries - 1:
                         raise
                     wait_time = base_wait * (2 ** attempt)
@@ -389,9 +413,10 @@ def create_backend(backend_name: str) -> LLMBackend:
         if not valid_keys:
             print("[ERROR] No GEMINI_API_KEY1/2/3 found in .env", file=sys.stderr)
             sys.exit(1)
-            
-        print(f"    [INFO] Initialized Gemini backend with {len(valid_keys)} rotating keys.")
-        return GeminiBackend(api_keys=valid_keys)
+
+        model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash").strip()
+        print(f"    [INFO] Initialized Gemini backend with {len(valid_keys)} rotating keys (model: {model}).")
+        return GeminiBackend(api_keys=valid_keys, model=model)
 
     elif backend_name == "ollama":
         model = os.environ.get("OLLAMA_MODEL", "llama3").strip()
@@ -747,6 +772,152 @@ def analyse_one_apk(
 
 
 # =============================================================================
+#  Single-Call Pipeline — One APK, One LLM Call
+# =============================================================================
+
+def analyse_one_apk_single_call(
+    llm: LLMBackend, sha256: str, cfg_path: Path,
+    verbose: bool = True
+) -> Tier3Result | None:
+    """
+    Analyses an APK by sending ALL filtered CFGs in a single LLM call.
+
+    This leverages large-context models (Gemini 2.5 Flash: 1M tokens) to
+    avoid the 300+ individual calls of the 3-tier pipeline.
+
+    Returns:
+        Tier3Result with the final prediction, or None on failure.
+    """
+    # ── Parse CFG file ────────────────────────────────────────────────────────
+    try:
+        slices = parse_cfg_file(cfg_path)
+    except Exception as e:
+        if verbose:
+            print(f"  [ERROR] Cannot parse {cfg_path.name}: {e}")
+        return None
+
+    if not slices:
+        if verbose:
+            print(f"  [SKIP] No suspicious APIs in {sha256[:16]}...")
+        return Tier3Result(sha256=sha256, prediction="BENIGN",
+                           analysis="No suspicious APIs found.")
+
+    # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
+    original_count = len(slices)
+    
+    # Deduplication
+    import hashlib
+    seen_hashes = set()
+    unique_slices = []
+    for s in slices:
+        cfg_hash = hashlib.md5(s.raw_text.encode('utf-8')).hexdigest()
+        if cfg_hash not in seen_hashes:
+            seen_hashes.add(cfg_hash)
+            unique_slices.append(s)
+            
+    # Framework/SDK filter
+    FRAMEWORK_PREFIXES = (
+        'android.', 'androidx.', 'java.', 'javax.',
+        'com.google.ads.', 'com.google.android.gms.',
+        'com.google.firebase.', 'com.facebook.',
+        'org.apache.', 'dalvik.'
+    )
+    SENSITIVE_APIS = (
+        'dexclassloader', 'loadclass', 'forname', 'newinstance',
+        'load', 'loadlibrary', 'exec', 'getmethod'
+    )
+    
+    filtered_slices = []
+    for s in unique_slices:
+        api_lower = s.suspicious_api.lower()
+        is_sensitive = any(sec in api_lower for sec in SENSITIVE_APIS)
+        if s.function_name.startswith(FRAMEWORK_PREFIXES) and not is_sensitive:
+            continue
+        filtered_slices.append(s)
+
+    slices = filtered_slices
+
+    if verbose and original_count > 0:
+        print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered")
+
+    if not slices:
+        if verbose:
+            print(f"  [SKIP] All functions filtered out for {sha256[:16]}...")
+        return Tier3Result(sha256=sha256, prediction="BENIGN",
+                           analysis="All functions were framework/SDK code.")
+
+    # ── Build single prompt with ALL CFGs ─────────────────────────────────────
+    # Concatenate all CFG texts. Truncate individual huge functions to keep
+    # total prompt under ~800K tokens (leaving room for system prompt + response).
+    MAX_TOTAL_CHARS = 3_200_000  # ~800K tokens
+    all_cfg_parts = []
+    total_chars = 0
+    included_count = 0
+    
+    for s in slices:
+        text = s.raw_text
+        # Truncate individual functions longer than 8K chars
+        if len(text) > 8000:
+            text = text[:8000] + "\n... [truncated] ...\n=== END FUNCTION ===\n"
+        
+        if total_chars + len(text) > MAX_TOTAL_CHARS:
+            if verbose:
+                print(f"    [INFO] Token budget reached at {included_count}/{len(slices)} functions")
+            break
+        
+        all_cfg_parts.append(text)
+        total_chars += len(text)
+        included_count += 1
+
+    all_cfgs_text = "\n".join(all_cfg_parts)
+    
+    # Collect unique API names for context
+    api_set = sorted(set(s.suspicious_api for s in slices[:included_count]))
+    api_list = ", ".join(api_set) if api_set else "None"
+
+    if verbose:
+        print(f"    [INFO] Sending {included_count} functions (~{total_chars//4} tokens) in single call")
+
+    # ── Single LLM call ───────────────────────────────────────────────────────
+    prompt = SINGLE_CALL_TEMPLATE.format(
+        all_cfgs=all_cfgs_text,
+        func_count=included_count,
+        api_list=api_list,
+    )
+    
+    try:
+        response = llm.chat(SINGLE_CALL_SYSTEM, prompt)
+    except Exception as e:
+        if verbose:
+            print(f"    [ERROR] Single-call analysis failed: {e}")
+        return None
+
+    # ── Parse response ────────────────────────────────────────────────────────
+    prediction = "BENIGN"  # default
+    confidence = "UNKNOWN"
+    
+    for line in response.split("\n"):
+        line_stripped = line.strip()
+        upper = line_stripped.upper()
+        
+        if upper.startswith("PREDICTION:"):
+            value = line_stripped.split(":", 1)[1].strip().upper()
+            if "MALWARE" in value:
+                prediction = "MALWARE"
+            else:
+                prediction = "BENIGN"
+        elif upper.startswith("CONFIDENCE:"):
+            confidence = line_stripped.split(":", 1)[1].strip().upper()
+
+    return Tier3Result(
+        sha256=sha256,
+        prediction=prediction,
+        analysis=response,
+        confidence=confidence,
+    )
+
+
+# =============================================================================
 #  Mode: Analyse from existing malware logs
 # =============================================================================
 
@@ -800,6 +971,16 @@ def main() -> None:
         help="Skip factual consistency verification (faster but less reliable)."
     )
     parser.add_argument(
+        "--single", action="store_true",
+        help="Use single-call architecture (send ALL CFGs in one prompt). "
+             "Much faster and works within free-tier limits."
+    )
+    parser.add_argument(
+        "--resume", action="store_true",
+        help="Resume from existing predictions file. Skips already-processed "
+             "APKs and appends new results instead of overwriting."
+    )
+    parser.add_argument(
         "--output", type=Path, default=None,
         help="Output JSONL file for predictions."
     )
@@ -808,16 +989,25 @@ def main() -> None:
     print("=" * 65)
     print("  LAMD Phase 2 — Tier-Wise LLM Code Reasoning")
     print("=" * 65)
-    print(f"  Mode    : {args.mode}")
+    print(f"  Mode    : {args.mode}{'  [SINGLE-CALL]' if args.single else ''}")
     print(f"  Backend : {args.backend}")
     print(f"  CSV     : {args.csv}")
-    print(f"  DRC     : {'disabled' if args.no_drc else 'enabled'}")
+    if not args.single:
+        print(f"  DRC     : {'disabled' if args.no_drc else 'enabled'}")
+    if args.resume:
+        print(f"  Resume  : enabled")
     print("=" * 65)
     print()
 
     # ── Output path ───────────────────────────────────────────────────────────
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    output_path = args.output or (RESULTS_DIR / f"predictions_{args.mode}.jsonl")
+    if args.output:
+        output_path = args.output
+    else:
+        # Include the CSV name in the output filename to prevent cross-CSV
+        # resume collisions (e.g., laptop1 vs laptop2 results stay separate).
+        csv_stem = args.csv.stem  # e.g., "split_laptop1"
+        output_path = RESULTS_DIR / f"predictions_{csv_stem}.jsonl"
 
     # ── Mode: Pre-computed logs ───────────────────────────────────────────────
     if args.mode == "logs":
@@ -886,6 +1076,23 @@ def main() -> None:
             sys.exit(1)
 
         results = []
+        already_done = set()
+
+        # ── Resume: load existing predictions ─────────────────────────────
+        if args.resume and output_path.is_file():
+            with open(output_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                        already_done.add(record["sha256"])
+                        results.append(record)
+                    except (json.JSONDecodeError, KeyError):
+                        continue
+            print(f"[INFO] Resuming: {len(already_done)} APKs already processed, skipping them.")
+
         total = len(df)
         run_start = time.time()
 
@@ -895,6 +1102,10 @@ def main() -> None:
             i = len(results) + 1
 
             print(f"[{i:>5}/{total}] {sha256[:20]}...", end="  ", flush=True)
+
+            if sha256 in already_done:
+                print("SKIP (already done)")
+                continue
 
             if not cfg_path.is_file():
                 print("SKIP (no CFG)")
@@ -920,6 +1131,12 @@ def main() -> None:
                 except Exception as e:
                     print(f"ERROR: {e}")
                     continue
+            elif args.single:
+                # Single-call pipeline (1 LLM call per APK)
+                result = analyse_one_apk_single_call(
+                    llm, sha256, cfg_path,
+                    verbose=True,
+                )
             else:
                 # Full tier-wise pipeline
                 result = analyse_one_apk(
@@ -947,6 +1164,7 @@ def main() -> None:
             })
 
         # ── Write results ─────────────────────────────────────────────────────
+        # Always write ALL results (including resumed ones) so the file is complete
         with open(output_path, "w", encoding="utf-8") as f:
             for r in results:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")

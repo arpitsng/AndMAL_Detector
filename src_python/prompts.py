@@ -243,3 +243,54 @@ def classify_api_type(api_name: str) -> str:
     if api_name in TRANSFER_APIS:
         return "transfer"
     return "access"
+
+
+# =============================================================================
+#  Single-Call Analysis (Full APK in one LLM call)
+# =============================================================================
+
+SINGLE_CALL_SYSTEM = (
+    "You are a cybersecurity expert specializing in Android malware detection. "
+    "You analyze backward-sliced Control Flow Graphs (CFGs) extracted from "
+    "Android APKs. You will receive ALL the CFG slices from a single application "
+    "and must determine if the application is MALWARE or BENIGN. "
+    "Be balanced and precise. Many benign apps trigger suspicious API detections."
+)
+
+SINGLE_CALL_TEMPLATE = """\
+Analyze ALL of the following backward-sliced Control Flow Graphs (CFGs) extracted
+from a single Android application. Each CFG slice shows Jimple IR statements
+that are data-flow relevant to a suspicious API call site.
+
+CALIBRATION — These patterns are COMMON in benign apps (do NOT flag alone):
+- Reflection (forName, newInstance, getDeclaredMethod): plugin systems, DI frameworks
+- Network checks (getActiveNetworkInfo): standard for any internet-connected app
+- Storage access (getExternalStorageDirectory): normal file saving/caching
+- Class loading (DexClassLoader): React Native, Flutter, game engines loading bundled code
+- Device ID access (getDeviceId): analytics and crash reporting SDKs
+
+FLAG AS MALWARE only if you find CLEAR combinations such as:
+- Premium SMS sending without user UI/consent flow
+- Collecting sensitive data (contacts, SMS, call logs) AND sending to remote servers
+- Dynamic loading of code from REMOTE URLs (not bundled assets)
+- Hiding app icon + background services + data exfiltration
+- Heavy obfuscation + encrypted payloads + C2 server communication
+
+=== BEGIN CFG SLICES ===
+{all_cfgs}
+=== END CFG SLICES ===
+
+Total functions analyzed: {func_count}
+Suspicious APIs found: {api_list}
+
+Provide your analysis in EXACTLY this format:
+
+PREDICTION: <MALWARE or BENIGN>
+CONFIDENCE: <HIGH, MEDIUM, or LOW>
+APP_PURPOSE: <1-2 sentence description of what this app appears to do>
+KEY_FINDINGS:
+- <finding 1>
+- <finding 2>
+- <finding 3>
+EVIDENCE: <2-3 sentences explaining your reasoning, citing specific function names or APIs>
+"""
