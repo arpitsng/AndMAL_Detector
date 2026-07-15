@@ -223,11 +223,18 @@ def main() -> None:
     # ── Load predictions ──────────────────────────────────────────────────────
     print(f"[INFO] Loading predictions from: {pred_path.name}")
     records = []
+    skipped = 0
     with open(pred_path, encoding="utf-8") as f:
-        for line in f:
+        for line_num, line in enumerate(f, 1):
             line = line.strip()
             if line:
-                records.append(json.loads(line))
+                try:
+                    records.append(json.loads(line))
+                except json.JSONDecodeError:
+                    skipped += 1
+
+    if skipped:
+        print(f"[WARN] Skipped {skipped} malformed line(s) in JSONL.")
 
     print(f"[INFO] {len(records)} prediction(s) loaded.")
 

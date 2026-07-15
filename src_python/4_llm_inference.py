@@ -538,46 +538,8 @@ def analyse_one_apk(
         return Tier3Result(sha256=sha256, prediction="BENIGN",
                            analysis="No suspicious APIs found.")
 
-    # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
-    original_count = len(slices)
-    
-    # Proposal 2: Deduplication
-    seen_hashes = set()
-    unique_slices = []
-    for s in slices:
-        import hashlib
-        # Hash the CFG text to identify exact duplicates
-        cfg_hash = hashlib.md5(s.raw_text.encode('utf-8')).hexdigest()
-        if cfg_hash not in seen_hashes:
-            seen_hashes.add(cfg_hash)
-            unique_slices.append(s)
-            
-    # Proposal 1: Filter Framework/SDK code
-    FRAMEWORK_PREFIXES = (
-        'android.', 'androidx.', 'java.', 'javax.',
-        'com.google.ads.', 'com.google.android.gms.',
-        'com.google.firebase.', 'com.facebook.',
-        'org.apache.', 'dalvik.'
-    )
-    # APIs that should ALWAYS be analyzed, even if inside a framework
-    SENSITIVE_APIS = (
-        'dexclassloader', 'loadclass', 'forname', 'newinstance',
-        'load', 'loadlibrary', 'exec', 'getmethod'
-    )
-    
-    filtered_slices = []
-    for s in unique_slices:
-        api_lower = s.suspicious_api.lower()
-        is_sensitive = any(sec in api_lower for sec in SENSITIVE_APIS)
-        
-        if s.function_name.startswith(FRAMEWORK_PREFIXES) and not is_sensitive:
-            continue
-        filtered_slices.append(s)
-
-    slices = filtered_slices
-
-    if verbose and original_count > 0:
-        print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered")
+    if verbose:
+        print(f"    [INFO] CFGs: {len(slices)} raw (no filtering applied)")
 
     tier1_results: list[Tier1Result] = []
     for func_slice in slices:
