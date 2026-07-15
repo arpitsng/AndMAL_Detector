@@ -5,11 +5,11 @@ This document illustrates how the proposed Dynamic RAG pipeline works, allowing 
 ```mermaid
 graph TD
     %% Define Styles
-    classDef input fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px;
-    classDef offline fill:#e8f5e9,stroke:#4caf50,stroke-width:2px;
-    classDef online fill:#fff3e0,stroke:#ff9800,stroke-width:2px;
-    classDef final fill:#fce4ec,stroke:#e91e63,stroke-width:2px;
-    classDef db fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px;
+    classDef input fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000000;
+    classDef offline fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000000;
+    classDef online fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000000;
+    classDef final fill:#fce4ec,stroke:#e91e63,stroke-width:2px,color:#000000;
+    classDef db fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000000;
 
     %% Team Sync
     GitSync[("Team GitHub Repo<br>Syncs Code & Vector DB")]:::db
