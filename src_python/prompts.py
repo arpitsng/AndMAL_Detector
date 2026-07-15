@@ -263,18 +263,20 @@ from a single Android application. Each CFG slice shows Jimple IR statements
 that are data-flow relevant to a suspicious API call site.
 
 CALIBRATION — These patterns are COMMON in benign apps (do NOT flag alone):
-- Reflection (forName, newInstance, getDeclaredMethod): plugin systems, DI frameworks
-- Network checks (getActiveNetworkInfo): standard for any internet-connected app
-- Storage access (getExternalStorageDirectory): normal file saving/caching
-- Class loading (DexClassLoader): React Native, Flutter, game engines loading bundled code
-- Device ID access (getDeviceId): analytics and crash reporting SDKs
+- Reflection in standard libraries (android.support, com.google.android.gms).
+- Network checks (getActiveNetworkInfo) for standard connectivity monitoring.
+- Storage access (getExternalStorageDirectory) for standard app caching.
+- Device ID access (getDeviceId) by well-known analytics/crash SDKs (e.g., com.tencent.bugly, com.flurry).
 
-FLAG AS MALWARE only if you find CLEAR combinations such as:
-- Premium SMS sending without user UI/consent flow
-- Collecting sensitive data (contacts, SMS, call logs) AND sending to remote servers
-- Dynamic loading of code from REMOTE URLs (not bundled assets)
-- Hiding app icon + background services + data exfiltration
-- Heavy obfuscation + encrypted payloads + C2 server communication
+KNOWN MALWARE PATTERNS (Few-Shot Examples for Adware & Spyware):
+- Dowgin & Airpush: They masquerade as ad networks but harvest device identifiers (IMEI, MAC) using reflection to hide their tracks. Look for highly obfuscated/unknown packages (e.g., `a.b.c` or `com.bu.a`) using `Class.forName` and `getMethod` to dynamically load sensitive APIs in the background. If you see this, flag as MALWARE.
+- Dnotua & Anydown: Look for silent background services collecting location or network data, often coupled with dynamic code loading from untrusted sources, bypassing user consent.
+- TencentProtect/Commercial Packers: While sometimes used legitimately, if a packer (like `com.tencent.StubShell` or `com.secneo`) is combined with heavy data harvesting and lacks a clear benign purpose, it is highly suspicious.
+
+FLAG AS MALWARE if you find CLEAR combinations such as:
+- Reflection/Dynamic loading in OBFUSCATED or UNKNOWN packages to access sensitive data (Device IDs, SMS, location).
+- Collecting sensitive data (contacts, SMS, call logs) without clear user UI/purpose.
+- Hiding functionality through heavy obfuscation + encrypted payloads + background execution.
 
 === BEGIN CFG SLICES ===
 {all_cfgs}
