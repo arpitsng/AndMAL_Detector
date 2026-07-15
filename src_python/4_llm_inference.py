@@ -255,7 +255,7 @@ class GeminiBackend(LLMBackend):
     package is deprecated and gemini-2.0-flash has been retired).
     """
 
-    def __init__(self, api_keys: list[str], model: str = "gemini-2.5-flash"):
+    def __init__(self, api_keys: list[str], model: str = "gemini-3.5-flash"):
         # pyrefly: ignore [missing-import]
         from google import genai
         # pyrefly: ignore [missing-import]
@@ -414,7 +414,7 @@ def create_backend(backend_name: str) -> LLMBackend:
             print("[ERROR] No GEMINI_API_KEY1/2/3 found in .env", file=sys.stderr)
             sys.exit(1)
 
-        model = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash").strip()
+        model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash").strip()
         print(f"    [INFO] Initialized Gemini backend with {len(valid_keys)} rotating keys (model: {model}).")
         return GeminiBackend(api_keys=valid_keys, model=model)
 
@@ -1155,19 +1155,25 @@ def main() -> None:
 
             print(f"{result.prediction:8s} (gt={gt_label}) [{match}] ({elapsed:.1f}s)")
 
-            results.append({
+            record = {
                 "sha256": sha256,
                 "prediction": result.prediction,
                 "ground_truth": gt_label,
                 "family": str(row.get("family", "")),
                 "analysis": result.analysis,
-            })
+            }
+            results.append(record)
 
-        # ── Write results ─────────────────────────────────────────────────────
-        # Always write ALL results (including resumed ones) so the file is complete
-        with open(output_path, "w", encoding="utf-8") as f:
-            for r in results:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            # ── Incremental save: write immediately so crashes don't lose data ──
+            if len(results) == len(already_done) + 1:
+                # First new result: rewrite file (resumed + this one)
+                with open(output_path, "w", encoding="utf-8") as f:
+                    for r in results:
+                        f.write(json.dumps(r, ensure_ascii=False) + "\n")
+            else:
+                # Append subsequent results
+                with open(output_path, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
         elapsed_total = time.time() - run_start
 
