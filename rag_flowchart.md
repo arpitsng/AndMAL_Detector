@@ -12,35 +12,35 @@ graph TD
     classDef db fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px;
 
     %% Team Sync
-    GitSync[("Team GitHub Repo\nSyncs Code & Vector DB")]:::db
+    GitSync[("Team GitHub Repo<br>Syncs Code & Vector DB")]:::db
 
     %% Offline Phase
-    subgraph Offline_Phase [Phase 1: Build the Vector Database (Runs Once)]
+    subgraph Offline_Phase [Phase 1: Build the Vector Database]
         direction TB
-        L2[laptop2_predictions.jsonl\nPerfectly Classified 90% Acc]:::input --> Ext[Extract CFGs & Ground Truth]:::offline
-        Ext --> Emb1[Local Embedding Model\ne.g., all-MiniLM-L6-v2]:::offline
-        Emb1 --> DB[(ChromaDB Vector Database\nStored locally in /rag_db)]:::db
+        L2["laptop2_predictions.jsonl<br>Perfectly Classified 90% Acc"]:::input --> Ext["Extract CFGs & Ground Truth"]:::offline
+        Ext --> Emb1["Local Embedding Model<br>e.g., all-MiniLM-L6-v2"]:::offline
+        Emb1 --> DB[("ChromaDB Vector Database<br>Stored locally in /rag_db")]:::db
     end
 
     %% Sync DB via Git
-    DB -.-> |Commit to GitHub| GitSync
-    GitSync -.-> |Team Pulls Repo| DB
+    DB -.-> |"Commit to GitHub"| GitSync
+    GitSync -.-> |"Team Pulls Repo"| DB
 
     %% Online Phase
-    subgraph Online_Phase [Phase 2: Analyze New APK (13 Seconds)]
+    subgraph Online_Phase [Phase 2: Analyze New APK]
         direction TB
-        NewAPK[New APK to Analyze\ne.g., from laptop1]:::input --> Slicer[Extract CFG via Slicing]:::online
-        Slicer --> Emb2[Local Embedding Model]:::online
-        Emb2 --> Query[Query Vector DB for Top 3 Matches]:::online
-        Query --> |Retrieve CFG + Ground Truth| Prompt[Construct Single Prompt]:::online
-        Prompt --> LLM[Gemini 3.5 Flash API]:::online
+        NewAPK["New APK to Analyze<br>e.g., from laptop1"]:::input --> Slicer["Extract CFG via Slicing"]:::online
+        Slicer --> Emb2["Local Embedding Model"]:::online
+        Emb2 --> Query["Query Vector DB for Top 3 Matches"]:::online
+        Query --> |"Retrieve CFG + Ground Truth"| Prompt["Construct Single Prompt"]:::online
+        Prompt --> LLM["Gemini 3.5 Flash API"]:::online
     end
 
     %% Connections
-    DB --> |Fast Vector Search| Query
-    Slicer --> |New CFG| Prompt
+    DB --> |"Fast Vector Search"| Query
+    Slicer --> |"New CFG"| Prompt
     
-    LLM --> Verdict[Final Verdict:\nMALWARE / BENIGN]:::final
+    LLM --> Verdict["Final Verdict:<br>MALWARE / BENIGN"]:::final
 ```
 
 ## How the Team Collaborates (Multi-Implementation)
