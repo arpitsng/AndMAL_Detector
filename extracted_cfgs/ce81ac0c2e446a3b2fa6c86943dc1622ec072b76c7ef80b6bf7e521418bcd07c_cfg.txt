@@ -1,0 +1,150 @@
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap P>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: jp.basicinc.gamefeat.ranking.android.sdk.a.a.e ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: this := @this: jp.basicinc.gamefeat.ranking.android.sdk.a.a
+NODE 2: $u0 = this.<jp.basicinc.gamefeat.ranking.android.sdk.a.a: android.content.Context d>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(128)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1#9 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u1 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.w
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.w: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: jp.co.fivepeace.eduaddition.TopPageActivity.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: jp.co.fivepeace.eduaddition.TopPageActivity
+NODE 2: $u0#8 = this.<jp.co.fivepeace.eduaddition.TopPageActivity: android.media.SoundPool w>
+NODE 3: $u-1#6 = virtualinvoke $u0#8.<android.media.SoundPool: int load(android.content.Context,int,int)>(this, 2130968576, 1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 2: $u0#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u0#3 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u0 < 7 goto return
+NODE 3: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 4: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 5: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u0#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+NODE 8: goto [?= $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.a.a.aa.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.a.a.aa.c ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u0 != 0 goto $u-1#22 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("NENDUUID")
+NODE 3: $u-1#17 = virtualinvoke $u4.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("NENDUUID", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.a.a.aa.c ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u0 != 0 goto $u-1#22 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("NENDUUID")
+NODE 3: $u-1#22 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("NENDUUID")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: jp.co.fivepeace.eduaddition.f.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: jp.co.fivepeace.eduaddition.f
+NODE 2: $u0 = this.<jp.co.fivepeace.eduaddition.f: android.media.SoundPool c>
+NODE 3: $u5 = this.<jp.co.fivepeace.eduaddition.f: android.content.Context m>
+NODE 4: $u-1 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u5, 2130968577, 1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: jp.co.fivepeace.eduaddition.f.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: jp.co.fivepeace.eduaddition.f
+NODE 2: $u0 = this.<jp.co.fivepeace.eduaddition.f: android.media.SoundPool c>
+NODE 3: $u5 = this.<jp.co.fivepeace.eduaddition.f: android.content.Context m>
+NODE 4: $u-1 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u5, 2130968578, 1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: jp.co.fivepeace.eduaddition.f.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: jp.co.fivepeace.eduaddition.f
+NODE 2: $u0 = this.<jp.co.fivepeace.eduaddition.f: android.media.SoundPool c>
+NODE 3: $u5 = this.<jp.co.fivepeace.eduaddition.f: android.content.Context m>
+NODE 4: $u-1 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u5, 2130968576, 1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

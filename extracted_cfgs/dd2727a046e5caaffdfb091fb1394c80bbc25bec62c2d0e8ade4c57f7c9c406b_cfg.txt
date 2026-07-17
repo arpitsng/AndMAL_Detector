@@ -1,0 +1,32 @@
+=== FUNCTION: com.android.vending.licensing.AESObfuscator.obfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.android.vending.licensing.AESObfuscator
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: if $u5 != null goto $u1 = this.<com.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 4: $u1 = this.<com.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 5: $u2 = new java.lang.StringBuilder
+NODE 6: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 7: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 9: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.vending.licensing.AESObfuscator.unobfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.android.vending.licensing.AESObfuscator
+NODE 2: $u7 := @parameter0: java.lang.String
+NODE 3: $u3 = this.<com.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mDecryptor>
+NODE 4: $u-1 = staticinvoke <com.android.vending.licensing.util.Base64: byte[] decode(java.lang.String)>($u7)
+NODE 5: $u-1 = virtualinvoke $u3.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

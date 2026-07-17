@@ -1,0 +1,1877 @@
+=== FUNCTION: com.lidroid.xutils.util.core.compatible.ArrayDeque.copyOfRange ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Object[]
+NODE 2: $u7 := @parameter1: int
+NODE 3: $u8 := @parameter2: int
+NODE 4: if $u7 <= $u8 goto (branch)
+NODE 5: if $u7 < 0 goto $u4#2 = new java.lang.ArrayIndexOutOfBoundsException
+NODE 6: if $u7 <= originalLength goto $u8 = $u8 - $u7
+NODE 7: $u8 = $u8 - $u7
+NODE 8: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 10: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.util.core.compatible.ArrayDeque.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.lidroid.xutils.util.core.compatible.ArrayDeque
+NODE 2: $u3 := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<com.lidroid.xutils.util.core.compatible.ArrayDeque: int size()>()
+NODE 4: if $u1 >= $u-1 goto specialinvoke this.<com.lidroid.xutils.util.core.compatible.ArrayDeque: java.lang.Object[] copyElements(java.lang.Object[])>($u3)
+NODE 5: $u-1#4 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#4 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#4, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.bitmap.BitmapCommonUtils.getImageViewFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: if $u3 == 0 goto return 0
+NODE 3: $u3#3 = class "Landroid/widget/ImageView;"
+NODE 4: $u-1 = virtualinvoke $u3#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("libcore.icu.ICU")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.addLikelySubtags ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sAddLikelySubtagsMethod>
+NODE 2: if $u2 == null goto return $u4
+NODE 3: args = newarray (java.lang.Object)[1]
+NODE 4: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sAddLikelySubtagsMethod>
+NODE 5: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, args)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.getScript ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sGetScriptMethod>
+NODE 2: if $u2 == null goto return null
+NODE 3: args = newarray (java.lang.Object)[1]
+NODE 4: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sGetScriptMethod>
+NODE 5: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, args)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("sun.misc.Unsafe")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("sun.misc.Unsafe")
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectInputStream;"
+NODE 2: $u8 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("newInstance", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getConstructorId", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getConstructorId", $u8)
+NODE 4: $u8#39 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#7 = virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u8#39)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("newInstance", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.util.OtherUtils.getCharsetFromHttpRequest ===
+SUSPICIOUS_API: forName
+NODE 1: $u10 := @parameter0: org.apache.http.client.methods.HttpRequestBase
+NODE 2: if $u10 != null goto charsetName = null
+NODE 3: charsetName = null
+NODE 4: $u-1 = virtualinvoke $u10.<org.apache.http.client.methods.HttpRequestBase: org.apache.http.Header getFirstHeader(java.lang.String)>("Content-Type")
+NODE 5: if $u-1 == null goto isSupportedCharset = 0
+NODE 6: $u-1#5 = interfaceinvoke $u-1.<org.apache.http.Header: org.apache.http.HeaderElement[] getElements()>()
+NODE 7: $u6 = 0
+NODE 8: if $u6 < $u8 goto element = $u-1#5[$u6]
+NODE 9: if $u-1#8 != 0 goto (branch)
+NODE 10: if isSupportedCharset == 0 goto return null
+NODE 11: $u-1#11 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>(charsetName)
+NODE 12: element = $u-1#5[$u6]
+NODE 13: $u-1#13 = interfaceinvoke element.<org.apache.http.HeaderElement: org.apache.http.NameValuePair getParameterByName(java.lang.String)>("charset")
+NODE 14: if $u-1#13 == null goto $u6 = $u6 + 1
+NODE 15: charsetName = interfaceinvoke $u-1#13.<org.apache.http.NameValuePair: java.lang.String getValue()>()
+NODE 16: $u6 = $u6 + 1
+NODE 17: goto [?= (branch)]
+NODE 18: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 12
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 14 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 8
+EDGE: 18 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.converter.ColumnConverterFactory.getColumnConverter ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: if $u-1#4 == 0 goto return null
+NODE 3: $u-1#9 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.converter.ColumnConverterFactory.isSupportColumnConverter ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: if $u-1#5 == 0 goto return 0
+NODE 3: $u-1#10 = virtualinvoke $u5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.activity.SystemApplication.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.util.core.SimpleSSLSocketFactory.<clinit> ===
+SUSPICIOUS_API: load
+NODE 1: $u-1#3 = <com.lidroid.xutils.util.core.SimpleSSLSocketFactory: java.security.KeyStore trustStore>
+NODE 2: virtualinvoke $u-1#3.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.util.core.LruDiskCache$StrictLineReader.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.ReflectiveProperty.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: propertyHolder := @parameter0: java.lang.Class
+NODE 2: $u21 := @parameter2: java.lang.String
+NODE 3: $u-1#10 = virtualinvoke $u21.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 4: $u15 = new java.lang.StringBuilder
+NODE 5: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 6: $u-1#10 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u15 = new java.lang.StringBuilder
+NODE 8: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 9: $u-1#12 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#25 = virtualinvoke propertyHolder.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#12, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.ReflectiveProperty.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: propertyHolder := @parameter0: java.lang.Class
+NODE 2: $u21 := @parameter2: java.lang.String
+NODE 3: $u-1#10 = virtualinvoke $u21.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 4: $u15 = new java.lang.StringBuilder
+NODE 5: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 6: $u-1#10 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u15 = new java.lang.StringBuilder
+NODE 8: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 9: $u-1#12 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#25 = virtualinvoke propertyHolder.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#12, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.ReflectiveProperty.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: propertyHolder := @parameter0: java.lang.Class
+NODE 2: $u21 := @parameter2: java.lang.String
+NODE 3: $u-1#10 = virtualinvoke $u21.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 4: $u15 = new java.lang.StringBuilder
+NODE 5: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 6: $u-1#10 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: if $u-1#33 != 0 goto $u15 = new java.lang.StringBuilder
+NODE 8: $u15 = new java.lang.StringBuilder
+NODE 9: $u15 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 10: $u21 = virtualinvoke $u15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u15#131 = newarray (java.lang.Class)[1]
+NODE 12: $u-1#25 = virtualinvoke propertyHolder.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u21, $u15#131)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.ReflectiveProperty.get ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.waiguoyu.education.utils.ReflectiveProperty
+NODE 2: object := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Method mGetter>
+NODE 4: if $u1 == null goto $u1#12 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Field mField>
+NODE 5: $u1 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Method mGetter>
+NODE 6: object = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(object, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.ReflectiveProperty.set ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.waiguoyu.education.utils.ReflectiveProperty
+NODE 2: object := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Method mSetter>
+NODE 4: if $u1 == null goto $u1#12 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Field mField>
+NODE 5: $u1 = this.<com.waiguoyu.education.utils.ReflectiveProperty: java.lang.reflect.Method mSetter>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(object, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.auth.TSAuthGetter.getNetProxy ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u11.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: localConnectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.ReplyBBSActivity.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.ReplyBBSActivity.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.ReplyBBSActivity.startCamera ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.util.MapCollections.toArrayHelper ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.util.MapCollections
+NODE 2: array := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<android.support.v4.util.MapCollections: int colGetSize()>()
+NODE 4: if $u3 >= $u-1 goto $u3 = 0
+NODE 5: $u-1#4 = virtualinvoke array.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#4 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#4, $u-1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.decodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter1: java.lang.String
+NODE 2: if $u2 != null goto (branch)
+NODE 3: if $u3 == null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 4: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.decodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: if $u2 != null goto (branch)
+NODE 2: if $u3 == null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 3: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.decodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: if $u1 != null goto (branch)
+NODE 2: if $u2 == null goto $u2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 3: $u2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.encodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: if $u3 != null goto (branch)
+NODE 3: if $u4 == null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 4: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.encodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto (branch)
+NODE 2: if $u4 == null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 3: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.util.URLEncodedUtils.encodeFormFields ===
+SUSPICIOUS_API: forName
+NODE 1: if $u2 != null goto (branch)
+NODE 2: if $u3 == null goto $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+NODE 3: $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.bitmap.callback.SimpleBitmapLoadCallBack.animationDisplay ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/view/animation/Animation;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("clone", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.bitmap.callback.SimpleBitmapLoadCallBack.animationDisplay ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter1: android.view.animation.Animation
+NODE 2: $u2 = class "Landroid/view/animation/Animation;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("clone", $u4)
+NODE 5: $u2#7 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u2#7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.NewBBSActivity.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.NewBBSActivity.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.bbs.NewBBSActivity.startCamera ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.NetUtil.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.http.NetInfoParams.<init> ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.waiguoyu.education.http.NetInfoParams
+NODE 2: $u0 = this.<com.waiguoyu.education.http.NetInfoParams: android.net.ConnectivityManager cwjManager>
+NODE 3: $u-1#7 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.http.NetInfoParams.getType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.waiguoyu.education.http.NetInfoParams
+NODE 2: if $u0 != null goto $u0#3 = this.<com.waiguoyu.education.http.NetInfoParams: android.net.ConnectivityManager cwjManager>
+NODE 3: $u0#3 = this.<com.waiguoyu.education.http.NetInfoParams: android.net.ConnectivityManager cwjManager>
+NODE 4: $u0 = virtualinvoke $u0#3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.http.NetInfoParams.getTypeName ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.waiguoyu.education.http.NetInfoParams
+NODE 2: if $u0 != null goto $u0#3 = this.<com.waiguoyu.education.http.NetInfoParams: android.net.ConnectivityManager cwjManager>
+NODE 3: $u0#3 = this.<com.waiguoyu.education.http.NetInfoParams: android.net.ConnectivityManager cwjManager>
+NODE 4: $u0 = virtualinvoke $u0#3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.pullview.PullDownView.initHeaderViewAndFooterViewAndListView ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0#89 = class "Landroid/widget/AbsListView;"
+NODE 2: $u2 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#95 = virtualinvoke $u0#89.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.pullview.PullDownView.initHeaderViewAndFooterViewAndListView ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.waiguoyu.education.pullview.PullDownView
+NODE 2: $u0#89 = class "Landroid/widget/AbsListView;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#95 = virtualinvoke $u0#89.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u2)
+NODE 5: $u0#86 = this.<com.waiguoyu.education.pullview.PullDownView: com.waiguoyu.education.pullview.ScrollOverListView mListView>
+NODE 6: $u1#99 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#95.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0#86, $u1#99)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.SDCardHelper.getFreeSpaceOnSDCard ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto return -1.0F
+NODE 2: $u-1#3 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$3.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$3
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$3: java.lang.reflect.Method val$newInstance>
+NODE 3: $u2 = newarray (java.lang.Object)[2]
+NODE 4: $u-1#9 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$1.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$1
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$1: java.lang.reflect.Method val$allocateInstance>
+NODE 3: $u1 = this.<com.google.gson.internal.UnsafeAllocator$1: java.lang.Object val$unsafe>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$2.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$2
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$2: java.lang.reflect.Method val$newInstance>
+NODE 3: $u2 = newarray (java.lang.Object)[2]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#20 == 0 goto (branch)
+NODE 2: target = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.os.EnvironmentCompat.getStorageState ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.ColumnUtils.getBooleanColumnGetMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: entityType := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u2 = new java.lang.StringBuilder
+NODE 4: $u-1 = virtualinvoke $u7.<java.lang.String: java.lang.String substring(int,int)>(0, 1)
+NODE 5: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String toUpperCase()>()
+NODE 6: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u-1 = virtualinvoke $u7.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u-1 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: if $u-1#15 == 0 goto $u2#18 = newarray (java.lang.Class)[0]
+NODE 11: $u-1 = $u7
+NODE 12: $u2#18 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#19 = virtualinvoke entityType.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1, $u2#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 10 -> 12
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.ColumnUtils.getBooleanColumnSetMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: entityType := @parameter0: java.lang.Class
+NODE 2: $u9 := @parameter1: java.lang.reflect.Field
+NODE 3: $u-1 = virtualinvoke $u9.<java.lang.reflect.Field: java.lang.String getName()>()
+NODE 4: if $u-1#6 == 0 goto $u3 = new java.lang.StringBuilder
+NODE 5: $u3 = new java.lang.StringBuilder
+NODE 6: $u-1#4 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int,int)>(2, 3)
+NODE 7: $u-1#4 = virtualinvoke $u-1#4.<java.lang.String: java.lang.String toUpperCase()>()
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#4)
+NODE 9: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 10: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 11: $u-1 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: $u3#24 = newarray (java.lang.Class)[1]
+NODE 13: $u-1#28 = virtualinvoke entityType.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1, $u3#24)
+NODE 14: $u3 = new java.lang.StringBuilder
+NODE 15: $u-1#4 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int,int)>(0, 1)
+NODE 16: $u-1#4 = virtualinvoke $u-1#4.<java.lang.String: java.lang.String toUpperCase()>()
+NODE 17: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#4)
+NODE 18: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 19: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 20: $u-1 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 21: goto [?= $u3#24 = newarray (java.lang.Class)[1]]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 14
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.ColumnUtils.getColumnGetMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: entityType := @parameter0: java.lang.Class
+NODE 2: $u9 := @parameter1: java.lang.reflect.Field
+NODE 3: $u-1 = virtualinvoke $u9.<java.lang.reflect.Field: java.lang.String getName()>()
+NODE 4: if $u-1#3 != $u5 goto (branch)
+NODE 5: if getMethod != null goto (branch)
+NODE 6: $u4 = new java.lang.StringBuilder
+NODE 7: $u-1#9 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int,int)>(0, 1)
+NODE 8: $u-1#9 = virtualinvoke $u-1#9.<java.lang.String: java.lang.String toUpperCase()>()
+NODE 9: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#9)
+NODE 10: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 11: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 12: $u-1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u4#21 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#22 = virtualinvoke entityType.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1, $u4#21)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.ColumnUtils.getColumnSetMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: entityType := @parameter0: java.lang.Class
+NODE 2: $u9 := @parameter1: java.lang.reflect.Field
+NODE 3: $u-1 = virtualinvoke $u9.<java.lang.reflect.Field: java.lang.String getName()>()
+NODE 4: if $u-1#4 != $u5 goto (branch)
+NODE 5: if setMethod != null goto (branch)
+NODE 6: $u4 = new java.lang.StringBuilder
+NODE 7: $u-1#10 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int,int)>(0, 1)
+NODE 8: $u-1#10 = virtualinvoke $u-1#10.<java.lang.String: java.lang.String toUpperCase()>()
+NODE 9: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 10: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 11: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 12: $u-1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u4#22 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#26 = virtualinvoke entityType.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1, $u4#22)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: android.support.v4.util.SimpleArrayMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<android.support.v4.util.SimpleArrayMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalCacheDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalFilesDirs ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: if version < 19 goto (branch)
+NODE 4: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 5: $u-1#5 = staticinvoke <android.support.v4.content.ContextCompatFroyo: java.io.File getExternalFilesDir(android.content.Context,java.lang.String)>($u8, $u9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalFilesDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getObbDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 11 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.ConstructorConstructor$2.construct ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.ConstructorConstructor$2
+NODE 2: $u2 = this.<com.google.gson.internal.ConstructorConstructor$2: java.lang.reflect.Constructor val$constructor>
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.ConstructorConstructor$8.construct ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.ConstructorConstructor$8
+NODE 2: $u2 = this.<com.google.gson.internal.ConstructorConstructor$8: com.google.gson.internal.UnsafeAllocator unsafeAllocator>
+NODE 3: $u3 = this.<com.google.gson.internal.ConstructorConstructor$8: java.lang.Class val$rawType>
+NODE 4: $u-1 = virtualinvoke $u2.<com.google.gson.internal.UnsafeAllocator: java.lang.Object newInstance(java.lang.Class)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.view.PullDownView.initHeaderViewAndFooterViewAndListView ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0#91 = class "Landroid/widget/AbsListView;"
+NODE 2: $u2 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#97 = virtualinvoke $u0#91.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.view.PullDownView.initHeaderViewAndFooterViewAndListView ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.waiguoyu.education.view.PullDownView
+NODE 2: $u0#91 = class "Landroid/widget/AbsListView;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#97 = virtualinvoke $u0#91.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u2)
+NODE 5: $u0#88 = this.<com.waiguoyu.education.view.PullDownView: com.waiguoyu.education.view.ScrollOverListView mListView>
+NODE 6: $u1#101 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#97.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0#88, $u1#101)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarDescription ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto return $u7
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.sqlite.CursorUtils.getEntity ===
+SUSPICIOUS_API: newInstance
+NODE 1: entityType := @parameter2: java.lang.Class
+NODE 2: if $u-1#12 != null goto return $u-1#12
+NODE 3: $u-1#12 = virtualinvoke entityType.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.Id.setAutoIncrementId ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.db.table.Id
+NODE 2: $u6 := @parameter0: java.lang.Object
+NODE 3: if $u-1#5 == 0 goto $u2#9 = this.<com.lidroid.xutils.db.table.Id: java.lang.reflect.Method setMethod>
+NODE 4: $u2#9 = this.<com.lidroid.xutils.db.table.Id: java.lang.reflect.Method setMethod>
+NODE 5: if $u2#9 == null goto $u2#16 = this.<com.lidroid.xutils.db.table.Id: java.lang.reflect.Field columnField>
+NODE 6: $u2#9 = this.<com.lidroid.xutils.db.table.Id: java.lang.reflect.Method setMethod>
+NODE 7: $u3#12 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u2#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#12)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.Column.getFieldValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.db.table.Column
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: if $u5 == null goto return null
+NODE 4: $u2 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method getMethod>
+NODE 5: if $u2 == null goto $u2#11 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Field columnField>
+NODE 6: $u2 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method getMethod>
+NODE 7: $u3 = newarray (java.lang.Object)[0]
+NODE 8: $u5 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.Column.setValue2Entity ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.db.table.Column
+NODE 2: $u6 := @parameter0: java.lang.Object
+NODE 3: if $u-1 != null goto $u2#5 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method setMethod>
+NODE 4: if $u2#4 != null goto $u2#5 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method setMethod>
+NODE 5: $u2#5 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method setMethod>
+NODE 6: if $u2#5 == null goto $u2#12 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Field columnField>
+NODE 7: $u2#5 = this.<com.lidroid.xutils.db.table.Column: java.lang.reflect.Method setMethod>
+NODE 8: $u3 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u2#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.Finder.setValue2Entity ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.db.table.Finder
+NODE 2: $u8 := @parameter0: java.lang.Object
+NODE 3: $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>
+NODE 4: if $u4#13 == null goto $u4 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Field columnField>
+NODE 5: $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>
+NODE 6: $u5#16 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u4#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u5#16)
+NODE 8: goto [?= $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>]
+NODE 9: goto [?= $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>]
+NODE 10: goto [?= $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>]
+NODE 11: goto [?= $u4#13 = this.<com.lidroid.xutils.db.table.Finder: java.lang.reflect.Method setMethod>]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 3
+EDGE: 9 -> 3
+EDGE: 10 -> 3
+EDGE: 11 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.$Gson$Types.getRawType ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.reflect.Type
+NODE 2: if $u4 == 0 goto $u4 = $u7 instanceof java.lang.reflect.TypeVariable
+NODE 3: $u7#14 = (java.lang.reflect.GenericArrayType) $u7
+NODE 4: $u7 = interfaceinvoke $u7#14.<java.lang.reflect.GenericArrayType: java.lang.reflect.Type getGenericComponentType()>()
+NODE 5: $u7#4 = staticinvoke <com.google.gson.internal.$Gson$Types: java.lang.Class getRawType(java.lang.reflect.Type)>($u7)
+NODE 6: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u7#4, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.MoreActivity.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.MoreActivity.doDownloadTheFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#12 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.ui.MoreActivity.startCamera ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1#3 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u1 < 7 goto return
+NODE 3: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 8: goto [?= $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompatFroyo.getExternalFilesDir ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u2 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.File getExternalFilesDir(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.ViewUtils.injectObject ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u35 := @parameter0: java.lang.Object
+NODE 2: if $u-1#3 == null goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: if $u0 <= 0 goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u29 = 0
+NODE 5: if $u29 < $u0 goto field = $u-1#3[$u29]
+NODE 6: $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 8: $u29 = 0
+NODE 9: if $u29 < $u0 goto method = $u-1#13[$u29]
+NODE 10: if $u-1#47 == null goto $u29 = $u29 + 1
+NODE 11: $u29 = $u29 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u29 = $u29 + 1]
+NODE 14: if $u-1#67 == null goto $u29 = $u29 + 1
+NODE 15: goto [?= $u29 = $u29 + 1]
+NODE 16: goto [?= $u29 = $u29 + 1]
+NODE 17: if preferenceInject == null goto $u29 = $u29 + 1
+NODE 18: if $u-1#85 == null goto $u29 = $u29 + 1
+NODE 19: goto [?= $u29 = $u29 + 1]
+NODE 20: goto [?= $u29 = $u29 + 1]
+NODE 21: method = $u-1#13[$u29]
+NODE 22: $u-1#94 = virtualinvoke method.<java.lang.reflect.Method: java.lang.'annotation'.Annotation[] getDeclaredAnnotations()>()
+NODE 23: if $u-1#94 == null goto $u29 = $u29 + 1
+NODE 24: if $u-1#41 <= 0 goto $u29 = $u29 + 1
+NODE 25: $u-1#43 = 0
+NODE 26: if $u-1#43 < $u-1#41 goto annotation = $u-1#94[$u-1#43]
+NODE 27: $u29 = $u29 + 1
+NODE 28: goto [?= (branch)]
+NODE 29: annotation = $u-1#94[$u-1#43]
+NODE 30: $u-1 = interfaceinvoke annotation.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 31: if $u-1#107 == null goto $u-1#43 = $u-1#43 + 1
+NODE 32: if $u-1#113 == 0 goto $u29#168 = <com.lidroid.xutils.ViewUtils: java.util.concurrent.ConcurrentHashMap annotationType_viewCustomEventListener_map>
+NODE 33: $u0#118 = newarray (java.lang.Class)[0]
+NODE 34: $u-1#122 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("value", $u0#118)
+NODE 35: if i < $u-1#141 goto info = new com.lidroid.xutils.view.ViewInjectInfo
+NODE 36: $u-1#43 = $u-1#43 + 1
+NODE 37: goto [?= (branch)]
+NODE 38: goto [?= (branch)]
+NODE 39: goto [?= $u-1#43 = $u-1#43 + 1]
+NODE 40: if listener == null goto $u-1#43 = $u-1#43 + 1
+NODE 41: goto [?= $u-1#43 = $u-1#43 + 1]
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 21
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+EDGE: 13 -> 11
+EDGE: 14 -> 11
+EDGE: 15 -> 11
+EDGE: 16 -> 11
+EDGE: 17 -> 11
+EDGE: 18 -> 11
+EDGE: 19 -> 11
+EDGE: 20 -> 11
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 27
+EDGE: 24 -> 27
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 26 -> 29
+EDGE: 27 -> 28
+EDGE: 28 -> 9
+EDGE: 29 -> 30
+EDGE: 31 -> 36
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 37 -> 26
+EDGE: 38 -> 35
+EDGE: 39 -> 36
+EDGE: 40 -> 36
+EDGE: 41 -> 36
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.ViewUtils.injectObject ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u35 := @parameter0: java.lang.Object
+NODE 2: if $u-1#3 == null goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: if $u0 <= 0 goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u29 = 0
+NODE 5: if $u29 < $u0 goto field = $u-1#3[$u29]
+NODE 6: $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 8: $u29 = 0
+NODE 9: if $u29 < $u0 goto method = $u-1#13[$u29]
+NODE 10: if $u-1#47 == null goto $u29 = $u29 + 1
+NODE 11: $u29 = $u29 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u29 = $u29 + 1]
+NODE 14: if $u-1#67 == null goto $u29 = $u29 + 1
+NODE 15: goto [?= $u29 = $u29 + 1]
+NODE 16: goto [?= $u29 = $u29 + 1]
+NODE 17: if preferenceInject == null goto $u29 = $u29 + 1
+NODE 18: if $u-1#85 == null goto $u29 = $u29 + 1
+NODE 19: goto [?= $u29 = $u29 + 1]
+NODE 20: goto [?= $u29 = $u29 + 1]
+NODE 21: method = $u-1#13[$u29]
+NODE 22: $u-1#94 = virtualinvoke method.<java.lang.reflect.Method: java.lang.'annotation'.Annotation[] getDeclaredAnnotations()>()
+NODE 23: if $u-1#94 == null goto $u29 = $u29 + 1
+NODE 24: if $u-1#41 <= 0 goto $u29 = $u29 + 1
+NODE 25: $u-1#43 = 0
+NODE 26: if $u-1#43 < $u-1#41 goto annotation = $u-1#94[$u-1#43]
+NODE 27: $u29 = $u29 + 1
+NODE 28: goto [?= (branch)]
+NODE 29: annotation = $u-1#94[$u-1#43]
+NODE 30: $u-1 = interfaceinvoke annotation.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 31: if $u-1#107 == null goto $u-1#43 = $u-1#43 + 1
+NODE 32: $u0#118 = newarray (java.lang.Class)[0]
+NODE 33: $u-1#131 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("parentId", $u0#118)
+NODE 34: if i < $u-1#141 goto info = new com.lidroid.xutils.view.ViewInjectInfo
+NODE 35: $u-1#43 = $u-1#43 + 1
+NODE 36: goto [?= (branch)]
+NODE 37: goto [?= (branch)]
+NODE 38: goto [?= $u-1#43 = $u-1#43 + 1]
+NODE 39: if listener == null goto $u-1#43 = $u-1#43 + 1
+NODE 40: goto [?= $u-1#43 = $u-1#43 + 1]
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 21
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+EDGE: 13 -> 11
+EDGE: 14 -> 11
+EDGE: 15 -> 11
+EDGE: 16 -> 11
+EDGE: 17 -> 11
+EDGE: 18 -> 11
+EDGE: 19 -> 11
+EDGE: 20 -> 11
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 27
+EDGE: 24 -> 27
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 26 -> 29
+EDGE: 27 -> 28
+EDGE: 28 -> 9
+EDGE: 29 -> 30
+EDGE: 31 -> 35
+EDGE: 32 -> 33
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 26
+EDGE: 37 -> 34
+EDGE: 38 -> 35
+EDGE: 39 -> 35
+EDGE: 40 -> 35
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.ViewUtils.injectObject ===
+SUSPICIOUS_API: invoke
+NODE 1: $u35 := @parameter0: java.lang.Object
+NODE 2: if $u-1#3 == null goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: if $u0 <= 0 goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u29 = 0
+NODE 5: if $u29 < $u0 goto field = $u-1#3[$u29]
+NODE 6: $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 8: $u29 = 0
+NODE 9: if $u29 < $u0 goto method = $u-1#13[$u29]
+NODE 10: if $u-1#47 == null goto $u29 = $u29 + 1
+NODE 11: $u29 = $u29 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u29 = $u29 + 1]
+NODE 14: if $u-1#67 == null goto $u29 = $u29 + 1
+NODE 15: goto [?= $u29 = $u29 + 1]
+NODE 16: goto [?= $u29 = $u29 + 1]
+NODE 17: if preferenceInject == null goto $u29 = $u29 + 1
+NODE 18: if $u-1#85 == null goto $u29 = $u29 + 1
+NODE 19: goto [?= $u29 = $u29 + 1]
+NODE 20: goto [?= $u29 = $u29 + 1]
+NODE 21: method = $u-1#13[$u29]
+NODE 22: $u-1#94 = virtualinvoke method.<java.lang.reflect.Method: java.lang.'annotation'.Annotation[] getDeclaredAnnotations()>()
+NODE 23: if $u-1#94 == null goto $u29 = $u29 + 1
+NODE 24: if $u-1#41 <= 0 goto $u29 = $u29 + 1
+NODE 25: $u-1#43 = 0
+NODE 26: if $u-1#43 < $u-1#41 goto annotation = $u-1#94[$u-1#43]
+NODE 27: $u29 = $u29 + 1
+NODE 28: goto [?= (branch)]
+NODE 29: annotation = $u-1#94[$u-1#43]
+NODE 30: $u-1 = interfaceinvoke annotation.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 31: if $u-1#107 == null goto $u-1#43 = $u-1#43 + 1
+NODE 32: if $u-1#113 == 0 goto $u29#168 = <com.lidroid.xutils.ViewUtils: java.util.concurrent.ConcurrentHashMap annotationType_viewCustomEventListener_map>
+NODE 33: $u0#118 = newarray (java.lang.Class)[0]
+NODE 34: $u-1#122 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("value", $u0#118)
+NODE 35: $u0#134 = newarray (java.lang.Object)[0]
+NODE 36: $u-1#67 = virtualinvoke $u-1#122.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(annotation, $u0#134)
+NODE 37: if i < $u-1#141 goto info = new com.lidroid.xutils.view.ViewInjectInfo
+NODE 38: $u-1#43 = $u-1#43 + 1
+NODE 39: goto [?= (branch)]
+NODE 40: goto [?= (branch)]
+NODE 41: goto [?= $u-1#43 = $u-1#43 + 1]
+NODE 42: if listener == null goto $u-1#43 = $u-1#43 + 1
+NODE 43: goto [?= $u-1#43 = $u-1#43 + 1]
+NODE 44: goto [?= $u0#134 = newarray (java.lang.Object)[0]]
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 21
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+EDGE: 13 -> 11
+EDGE: 14 -> 11
+EDGE: 15 -> 11
+EDGE: 16 -> 11
+EDGE: 17 -> 11
+EDGE: 18 -> 11
+EDGE: 19 -> 11
+EDGE: 20 -> 11
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 27
+EDGE: 24 -> 27
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 26 -> 29
+EDGE: 27 -> 28
+EDGE: 28 -> 9
+EDGE: 29 -> 30
+EDGE: 31 -> 38
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 35 -> 36
+EDGE: 37 -> 38
+EDGE: 38 -> 39
+EDGE: 39 -> 26
+EDGE: 40 -> 37
+EDGE: 41 -> 38
+EDGE: 42 -> 38
+EDGE: 43 -> 38
+EDGE: 44 -> 35
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.ViewUtils.injectObject ===
+SUSPICIOUS_API: invoke
+NODE 1: $u35 := @parameter0: java.lang.Object
+NODE 2: if $u-1#3 == null goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: if $u0 <= 0 goto $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u29 = 0
+NODE 5: if $u29 < $u0 goto field = $u-1#3[$u29]
+NODE 6: $u-1 = virtualinvoke $u35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 8: $u29 = 0
+NODE 9: if $u29 < $u0 goto method = $u-1#13[$u29]
+NODE 10: if $u-1#47 == null goto $u29 = $u29 + 1
+NODE 11: $u29 = $u29 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u29 = $u29 + 1]
+NODE 14: if $u-1#67 == null goto $u29 = $u29 + 1
+NODE 15: goto [?= $u29 = $u29 + 1]
+NODE 16: goto [?= $u29 = $u29 + 1]
+NODE 17: if preferenceInject == null goto $u29 = $u29 + 1
+NODE 18: if $u-1#85 == null goto $u29 = $u29 + 1
+NODE 19: goto [?= $u29 = $u29 + 1]
+NODE 20: goto [?= $u29 = $u29 + 1]
+NODE 21: method = $u-1#13[$u29]
+NODE 22: $u-1#94 = virtualinvoke method.<java.lang.reflect.Method: java.lang.'annotation'.Annotation[] getDeclaredAnnotations()>()
+NODE 23: if $u-1#94 == null goto $u29 = $u29 + 1
+NODE 24: if $u-1#41 <= 0 goto $u29 = $u29 + 1
+NODE 25: $u-1#43 = 0
+NODE 26: if $u-1#43 < $u-1#41 goto annotation = $u-1#94[$u-1#43]
+NODE 27: $u29 = $u29 + 1
+NODE 28: goto [?= (branch)]
+NODE 29: annotation = $u-1#94[$u-1#43]
+NODE 30: $u-1 = interfaceinvoke annotation.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 31: if $u-1#107 == null goto $u-1#43 = $u-1#43 + 1
+NODE 32: parentIdMethod = null
+NODE 33: $u0#118 = newarray (java.lang.Class)[0]
+NODE 34: $u-1#131 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("parentId", $u0#118)
+NODE 35: parentIdMethod = $u-1#131
+NODE 36: if parentIdMethod != null goto $u0#134 = newarray (java.lang.Object)[0]
+NODE 37: if i < $u-1#141 goto info = new com.lidroid.xutils.view.ViewInjectInfo
+NODE 38: $u-1#43 = $u-1#43 + 1
+NODE 39: goto [?= (branch)]
+NODE 40: $u0#134 = newarray (java.lang.Object)[0]
+NODE 41: parentIds = virtualinvoke parentIdMethod.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(annotation, $u0#134)
+NODE 42: goto [?= (branch)]
+NODE 43: goto [?= $u-1#43 = $u-1#43 + 1]
+NODE 44: if listener == null goto $u-1#43 = $u-1#43 + 1
+NODE 45: goto [?= $u-1#43 = $u-1#43 + 1]
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 21
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+EDGE: 13 -> 11
+EDGE: 14 -> 11
+EDGE: 15 -> 11
+EDGE: 16 -> 11
+EDGE: 17 -> 11
+EDGE: 18 -> 11
+EDGE: 19 -> 11
+EDGE: 20 -> 11
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 27
+EDGE: 24 -> 27
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 26 -> 29
+EDGE: 27 -> 28
+EDGE: 28 -> 9
+EDGE: 29 -> 30
+EDGE: 31 -> 38
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 36 -> 40
+EDGE: 37 -> 38
+EDGE: 38 -> 39
+EDGE: 39 -> 26
+EDGE: 40 -> 41
+EDGE: 42 -> 37
+EDGE: 43 -> 38
+EDGE: 44 -> 38
+EDGE: 45 -> 38
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.RequestParams.getEntity ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.lidroid.xutils.http.RequestParams
+NODE 2: $u7 = this.<com.lidroid.xutils.http.RequestParams: java.lang.String charset>
+NODE 3: $u-1#11 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.bind.ArrayTypeAdapter.read ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.bind.ArrayTypeAdapter
+NODE 2: if $u-1 != $u5 goto list = new java.util.ArrayList
+NODE 3: list = new java.util.ArrayList
+NODE 4: $u4#9 = this.<com.google.gson.internal.bind.ArrayTypeAdapter: java.lang.Class componentType>
+NODE 5: $u-1#10 = interfaceinvoke list.<java.util.List: int size()>()
+NODE 6: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u4#9, $u-1#10)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.multipart.content.StringBody.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto (branch)
+NODE 2: if $u5 != null goto $u4 = virtualinvoke $u5.<java.nio.charset.Charset: java.lang.String name()>()
+NODE 3: $u5 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeAsUpIndicator", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeActionContentDescription", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.multipart.MIME.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.setEventListener ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u6, $u3)
+NODE 6: if $u-1#5 == null goto return
+NODE 7: $u2 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onCheckedChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onCheckedChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onChildClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[5]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onFocusChange ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onGroupClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[4]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onGroupCollapse ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onGroupExpand ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onItemClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[4]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onItemLongClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[4]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onItemSelected ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[4]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onKey ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[3]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onLongClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[1]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onNothingSelected ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: if $u1#3 < 2 goto staticinvoke <com.lidroid.xutils.util.LogUtils: void w(java.lang.String)>("onNothingSelected not implement")
+NODE 3: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 4: $u1#6 = $u1[1]
+NODE 5: if $u1#6 != null goto $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 6: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 7: $u1#6 = $u1[1]
+NODE 8: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 9: $u3 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onPreferenceChange ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[2]
+NODE 6: $u8 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onPreferenceClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[1]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onProgressChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[3]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onScroll ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: if $u1#4 < 2 goto staticinvoke <com.lidroid.xutils.util.LogUtils: void w(java.lang.String)>("onScroll not implement")
+NODE 3: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 4: $u1#6 = $u1[1]
+NODE 5: if $u1#6 != null goto $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 6: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 7: $u1#6 = $u1[1]
+NODE 8: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 9: $u3 = newarray (java.lang.Object)[4]
+NODE 10: virtualinvoke $u1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onScrollChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onScrollStateChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onStartTrackingTouch ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: if $u1#3 < 2 goto staticinvoke <com.lidroid.xutils.util.LogUtils: void w(java.lang.String)>("onStartTrackingTouch not implement")
+NODE 3: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 4: $u1#6 = $u1[1]
+NODE 5: if $u1#6 != null goto $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 6: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 7: $u1#6 = $u1[1]
+NODE 8: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 9: $u3 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onStopTrackingTouch ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: if $u1#3 < 3 goto staticinvoke <com.lidroid.xutils.util.LogUtils: void w(java.lang.String)>("onStopTrackingTouch not implement")
+NODE 3: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 4: $u1#6 = $u1[2]
+NODE 5: if $u1#6 != null goto $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 6: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 7: $u1#6 = $u1[2]
+NODE 8: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 9: $u3 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onTabChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u2 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.view.ViewCommonEventListener.onTouch ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.view.ViewCommonEventListener
+NODE 2: $u1 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.reflect.Method[] methods>
+NODE 3: $u1#3 = $u1[0]
+NODE 4: $u3 = this.<com.lidroid.xutils.view.ViewCommonEventListener: java.lang.Object handler>
+NODE 5: $u4 = newarray (java.lang.Object)[2]
+NODE 6: $u3 = virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.HttpRequest.getURI ===
+SUSPICIOUS_API: forName
+NODE 1: if $u2 != null goto $u1 = this.<com.lidroid.xutils.http.client.HttpRequest: com.lidroid.xutils.http.client.util.URIBuilder uriBuilder>
+NODE 2: $u2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.HttpRequest.setRequestParams ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: com.lidroid.xutils.http.RequestParams
+NODE 2: if $u2 != null goto $u-1#6 = virtualinvoke $u5.<com.lidroid.xutils.http.RequestParams: java.util.List getHeaders()>()
+NODE 3: $u-1 = virtualinvoke $u5.<com.lidroid.xutils.http.RequestParams: java.lang.String getCharset()>()
+NODE 4: $u2 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.http.client.HttpRequest.setRequestParams ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: com.lidroid.xutils.http.RequestParams
+NODE 2: if $u3 != null goto $u-1#6 = virtualinvoke $u6.<com.lidroid.xutils.http.RequestParams: java.util.List getHeaders()>()
+NODE 3: $u-1 = virtualinvoke $u6.<com.lidroid.xutils.http.RequestParams: java.lang.String getCharset()>()
+NODE 4: $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.lidroid.xutils.db.table.Foreign.setValue2Entity ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.lidroid.xutils.db.table.Foreign
+NODE 2: $u8 := @parameter0: java.lang.Object
+NODE 3: $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>
+NODE 4: if $u4#9 == null goto $u4#4 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Field columnField>
+NODE 5: $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u4#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u5)
+NODE 8: goto [?= $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>]
+NODE 9: goto [?= $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>]
+NODE 10: goto [?= $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>]
+NODE 11: goto [?= $u4#9 = this.<com.lidroid.xutils.db.table.Foreign: java.lang.reflect.Method setMethod>]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 3
+EDGE: 9 -> 3
+EDGE: 10 -> 3
+EDGE: 11 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.waiguoyu.education.utils.PictureUtils.getImagePathFromUri ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.net.Uri
+NODE 2: $u10 := @parameter1: android.content.Context
+NODE 3: if $u-1#8 != 0 goto $u-1 = virtualinvoke $u9.<android.net.Uri: java.lang.String getScheme()>()
+NODE 4: $u-1#10 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#13 = virtualinvoke $u-1#10.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u9, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u2 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.invalidateChildRegion ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u1 = this.<android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB: java.lang.reflect.Method mGetDisplayList>
+NODE 4: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

@@ -1,0 +1,157 @@
+=== FUNCTION: com.google.ads.ae$b.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.ae$b
+NODE 2: $u0 = <com.google.ads.ac: android.net.Uri a>
+NODE 3: $u1 = this.<com.google.ads.ae$b: java.lang.String c>
+NODE 4: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u1)
+NODE 5: $u0#5 = this.<com.google.ads.ae$b: java.lang.ref.WeakReference a>
+NODE 6: $u-1 = virtualinvoke $u0#5.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 7: $u0#8 = (android.app.Activity) $u-1
+NODE 8: if $u0#8 != null goto $u-1#10 = virtualinvoke $u0#8.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#10 = virtualinvoke $u0#8.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u2 = <com.google.ads.ac: java.lang.String[] c>
+NODE 11: $u-1#14 = virtualinvoke $u-1#10.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ae$a.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.ae$a
+NODE 2: $u1 = this.<com.google.ads.ae$a: java.lang.ref.WeakReference a>
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 4: $u0 = (android.app.Activity) $u-1
+NODE 5: if $u0 != null goto $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u2 = <com.google.ads.ac: android.net.Uri b>
+NODE 8: $u3 = <com.google.ads.ac: java.lang.String[] d>
+NODE 9: $u-1#11 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2, $u3, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 2: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 3: if $u-1#9 == null goto $u0#13 = null
+NODE 4: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.ads.i
+NODE 2: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 3: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 4: if $u-1#9 == null goto $u0#13 = null
+NODE 5: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0#13 = (com.google.ads.mediation.MediationServerParameters) $u-1
+NODE 7: $u3 = this.<com.google.ads.i: java.util.HashMap d>
+NODE 8: virtualinvoke $u0#13.<com.google.ads.mediation.MediationServerParameters: void load(java.util.Map)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.analytics.tracking.android.AdMobInfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#41 == null goto $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#53 == null goto return $u3
+NODE 4: $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u2 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#33 = virtualinvoke $u0#53.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#41 == null goto $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#53 == null goto return $u3
+NODE 4: $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u2 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#33 = virtualinvoke $u0#53.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+NODE 7: $u0#53 = <com.google.ads.AdRequest: java.lang.reflect.Method c>
+NODE 8: $u2 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#33 = virtualinvoke $u0#53.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#33, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.internal.j.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 = new android.gesture.GestureStore
+NODE 2: $u0 = new java.io.ByteArrayInputStream
+NODE 3: virtualinvoke $u1.<android.gesture.GestureStore: void load(java.io.InputStream)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u-1#11 = virtualinvoke $u6.<java.lang.String: byte[] getBytes()>()
+NODE 4: $u-1#11 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#11)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

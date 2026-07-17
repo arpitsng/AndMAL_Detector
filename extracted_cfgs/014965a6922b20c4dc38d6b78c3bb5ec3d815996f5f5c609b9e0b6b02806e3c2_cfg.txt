@@ -1,0 +1,596 @@
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_MOTION_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u3 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u3, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_MOTION_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_SCHEDTIME;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.hik.audiocodec.AudioCodec.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("audiocodec")
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.playback.PlayBackManager.requestPicShot ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: bmpFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.CodedInputStream.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: byte[]
+NODE 2: $u1 = lengthof $u2
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[],int,int)>($u2, 0, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_ALARMOUTCFG_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_SCHEDTIME;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.sysconfig.CheckUpdates.getAndroidId ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: params = newarray (java.lang.String)[1]
+NODE 3: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <com.SwannView.plus.sysconfig.CheckUpdates: android.net.Uri URI>
+NODE 5: $u-1#8 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, params, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.sysconfig.CheckUpdates.isUpdateQuerySupported ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: params = newarray (java.lang.String)[1]
+NODE 3: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <com.SwannView.plus.sysconfig.CheckUpdates: android.net.Uri URI>
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, params, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.sysconfig.CheckUpdates.startCheckUpdatesTask ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.SwannView.plus.sysconfig.CheckUpdates
+NODE 2: $u2 = this.<com.SwannView.plus.sysconfig.CheckUpdates: android.content.Context mContext>
+NODE 3: $u-1 = specialinvoke this.<com.SwannView.plus.sysconfig.CheckUpdates: java.lang.String getAndroidId(android.content.Context)>($u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_HIDEALARM_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_SCHEDTIME;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite.toByteArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.AbstractMessageLite
+NODE 2: $u-1 = virtualinvoke this.<com.google.protobuf.AbstractMessageLite: int getSerializedSize()>()
+NODE 3: result = newarray (byte)[$u-1]
+NODE 4: $u-1#3 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(byte[])>(result)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite.writeDelimitedTo ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.io.OutputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(java.io.OutputStream)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite.writeTo ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.io.OutputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(java.io.OutputStream)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.MediaPlayer.PlayM4.Player.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("CpuFeatures")
+=== END FUNCTION ===
+
+=== FUNCTION: org.MediaPlayer.PlayM4.Player.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lorg/MediaPlayer/PlayM4/Display;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: org.MediaPlayer.PlayM4.Player.<init> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if 3 != i goto (branch)
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("PlayCtrl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.MediaPlayer.PlayM4.Player.<init> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if 3 != i goto (branch)
+NODE 2: if 2 != i goto (branch)
+NODE 3: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("PlayCtrl_v7")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.MediaPlayer.PlayM4.Player.<init> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if 3 != i goto (branch)
+NODE 2: if 2 != i goto (branch)
+NODE 3: if 1 != i goto staticinvoke <android.util.Log: int i(java.lang.String,java.lang.String)>("PlayerSDK", "Not a arm CPU! FAIL to load PlayCtrl!")
+NODE 4: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("PlayCtrl_v5")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_ALARMINCFG_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#7 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_SCHEDTIME;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobile.streamconfig.StreamConfigJNI.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("streamconfig")
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.HCNetSDK.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("IOTCAPIs")
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.HCNetSDK.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("RDTAPIs")
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.HCNetSDK.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("hcnetsdk")
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.HCNetSDK.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("SystemTransform")
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_VILOST_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_SCHEDTIME;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.common.HybridBinarizer.calculateBlackPoints ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u2 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u2, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.devicemanager.ChannelInfo.createRequestXml ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.devicemanager.ChannelInfo.createRequestXml ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#10 = staticinvoke <javax.xml.transform.TransformerFactory: javax.xml.transform.TransformerFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.devicemanager.ChannelInfo.isWifiConnect ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u-1 = staticinvoke <com.SwannView.plus.global.GlobalApplication: com.SwannView.plus.global.GlobalApplication getInstance()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<com.SwannView.plus.global.GlobalApplication: android.net.ConnectivityManager getConnectivityManager()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1#4.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.Base64$1.resolveClass ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.gc.android.market.api.Base64$1
+NODE 2: $u5 := @parameter0: java.io.ObjectStreamClass
+NODE 3: $u-1 = virtualinvoke $u5.<java.io.ObjectStreamClass: java.lang.String getName()>()
+NODE 4: $u3 = this.<com.gc.android.market.api.Base64$1: java.lang.ClassLoader val$loader>
+NODE 5: $u-1#2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u-1, 0, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.ByteString$CodedBuilder.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.ByteString$CodedBuilder
+NODE 2: $u0 = this.<com.google.protobuf.ByteString$CodedBuilder: byte[] buffer>
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(byte[])>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.realplay.LiveManager.requestPicShot ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: bmpFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.hikvision.netsdk.NET_DVR_RECORD_V30.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/hikvision/netsdk/NET_DVR_RECORDSCHED;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.model.Market$RequestContext.getSerializedSize ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.gc.android.market.api.model.Market$RequestContext
+NODE 2: if $u-1 == 0 goto $u-1 = virtualinvoke this.<com.gc.android.market.api.model.Market$RequestContext: boolean hasDeviceAndSdkVersion()>()
+NODE 3: $u-1#8 = virtualinvoke this.<com.gc.android.market.api.model.Market$RequestContext: java.lang.String getAndroidId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.model.Market$RequestContext.writeTo ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.gc.android.market.api.model.Market$RequestContext
+NODE 2: if $u-1 == 0 goto $u-1 = virtualinvoke this.<com.gc.android.market.api.model.Market$RequestContext: boolean hasDeviceAndSdkVersion()>()
+NODE 3: $u-1#4 = virtualinvoke this.<com.gc.android.market.api.model.Market$RequestContext: java.lang.String getAndroidId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.model.Market$RequestContext$Builder.clearAndroidId ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u-1 = staticinvoke <com.gc.android.market.api.model.Market$RequestContext: com.gc.android.market.api.model.Market$RequestContext getDefaultInstance()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<com.gc.android.market.api.model.Market$RequestContext: java.lang.String getAndroidId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.model.Market$RequestContext$Builder.getAndroidId ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.gc.android.market.api.model.Market$RequestContext$Builder
+NODE 2: $u0 = this.<com.gc.android.market.api.model.Market$RequestContext$Builder: com.gc.android.market.api.model.Market$RequestContext result>
+NODE 3: $u-1 = virtualinvoke $u0.<com.gc.android.market.api.model.Market$RequestContext: java.lang.String getAndroidId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.gc.android.market.api.model.Market$RequestContext$Builder.mergeFrom ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u2 := @parameter0: com.gc.android.market.api.model.Market$RequestContext
+NODE 2: if $u-1#3 == 0 goto $u-1#3 = virtualinvoke $u2.<com.gc.android.market.api.model.Market$RequestContext: boolean hasDeviceAndSdkVersion()>()
+NODE 3: $u-1#5 = virtualinvoke $u2.<com.gc.android.market.api.model.Market$RequestContext: java.lang.String getAndroidId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.util.Utility.getPicturePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: picDir = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.util.Utility.getSDCardRemainSize ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.util.Utility.getStatusbarHeight ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.util.Utility.getStatusbarHeight ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+NODE 2: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.playback.TimeBarShowInfo.getDefualtSearchTime ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u3 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u3, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.voiceTalk.AudioRecoder.startRecord ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.SwannView.plus.voiceTalk.AudioRecoder
+NODE 2: $u0 = this.<com.SwannView.plus.voiceTalk.AudioRecoder: android.media.AudioRecord mAudioRecorder>
+NODE 3: virtualinvoke $u0.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.GeneratedMessage.invokeOrDie ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 := @parameter0: java.lang.reflect.Method
+NODE 2: $u5 := @parameter1: java.lang.Object
+NODE 3: $u6 := @parameter2: java.lang.Object[]
+NODE 4: $u5 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.io.InputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(java.io.InputStream)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[])>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u6 := @parameter1: int
+NODE 3: $u7 := @parameter2: int
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[],int,int)>($u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.global.GlobalAppManager.configNetSDK ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.qrcode.encoder.ByteMatrix.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#3 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.io.InputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(java.io.InputStream)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.io.InputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(java.io.InputStream)>($u3)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u6 := @parameter1: int
+NODE 3: $u7 := @parameter2: int
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[],int,int)>($u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessageLite$Builder.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u6 := @parameter1: int
+NODE 3: $u7 := @parameter2: int
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[],int,int)>($u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.receiver.NetStatusReceiver.isNetWork ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u-1 = staticinvoke <com.SwannView.plus.global.GlobalApplication: com.SwannView.plus.global.GlobalApplication getInstance()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<com.SwannView.plus.global.GlobalApplication: android.net.ConnectivityManager getConnectivityManager()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1#4.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.receiver.NetStatusReceiver.isNetWork ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u-1 = staticinvoke <com.SwannView.plus.global.GlobalApplication: com.SwannView.plus.global.GlobalApplication getInstance()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<com.SwannView.plus.global.GlobalApplication: android.net.ConnectivityManager getConnectivityManager()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1#4.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.AbstractMessage$Builder.mergeMessageSetExtensionFromCodedStream ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter0: com.google.protobuf.CodedInputStream
+NODE 2: rawBytes = null
+NODE 3: if $u-1#8 == null goto (branch)
+NODE 4: if rawBytes == null goto $u-1#6 = virtualinvoke $u10.<com.google.protobuf.CodedInputStream: int readTag()>()
+NODE 5: $u-1#22 = virtualinvoke rawBytes.<com.google.protobuf.ByteString: java.io.InputStream newInput()>()
+NODE 6: $u-1#24 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(java.io.InputStream)>($u-1#22)
+NODE 7: rawBytes = null
+NODE 8: rawBytes = null
+NODE 9: if $u-1#6 != $u8 goto $u8#12 = virtualinvoke $u10.<com.google.protobuf.CodedInputStream: boolean skipField(int)>($u-1#6)
+NODE 10: if typeId != 0 goto (branch)
+NODE 11: rawBytes = virtualinvoke $u10.<com.google.protobuf.CodedInputStream: com.google.protobuf.ByteString readBytes()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.ByteString.newCodedInput ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.ByteString
+NODE 2: $u0 = this.<com.google.protobuf.ByteString: byte[] bytes>
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.CodedInputStream: com.google.protobuf.CodedInputStream newInstance(byte[])>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.zijunlin.Zxing.Demo.camera.FlashlightManager.getHardwareService ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Class maybeForName(java.lang.String)>("android.os.ServiceManager")
+NODE 2: if $u-1 != null goto $u7 = newarray (java.lang.Class)[1]
+NODE 3: $u7 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#7 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.reflect.Method maybeGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, "getService", $u7)
+NODE 5: if $u-1#7 == null goto return null
+NODE 6: $u6 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#10 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u-1#7, null, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.zijunlin.Zxing.Demo.camera.FlashlightManager.getHardwareService ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#10 == null goto return null
+NODE 2: $u-1 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Class maybeForName(java.lang.String)>("android.os.IHardwareService$Stub")
+NODE 3: if $u-1 == null goto return null
+NODE 4: $u7 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#7 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.reflect.Method maybeGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, "asInterface", $u7)
+NODE 6: if $u-1#7 == null goto return null
+NODE 7: $u6 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#10 = staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u-1#7, null, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.zijunlin.Zxing.Demo.camera.FlashlightManager.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.reflect.Method
+NODE 2: $u7 := @parameter1: java.lang.Object
+NODE 3: $u8 := @parameter2: java.lang.Object[]
+NODE 4: $u7 = virtualinvoke $u6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.zijunlin.Zxing.Demo.camera.FlashlightManager.maybeForName ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.zijunlin.Zxing.Demo.camera.FlashlightManager.setFlashlight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u1 = <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Object iHardwareService>
+NODE 2: if $u1 == null goto return
+NODE 3: $u0 = <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.reflect.Method setFlashEnabledMethod>
+NODE 4: $u1 = <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Object iHardwareService>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: staticinvoke <com.zijunlin.Zxing.Demo.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u0, $u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet.toByteArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.UnknownFieldSet
+NODE 2: $u-1 = virtualinvoke this.<com.google.protobuf.UnknownFieldSet: int getSerializedSize()>()
+NODE 3: result = newarray (byte)[$u-1]
+NODE 4: $u-1#3 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(byte[])>(result)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet.writeDelimitedTo ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.io.OutputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(java.io.OutputStream)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.UnknownFieldSet.writeTo ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.io.OutputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(java.io.OutputStream)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.SwannView.plus.sysconfig.HelpActivity$2.onLongClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.CodedOutputStream.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.io.OutputStream
+NODE 2: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(java.io.OutputStream,int)>($u1, 4096)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.CodedOutputStream.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: byte[]
+NODE 2: $u1 = lengthof $u2
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.CodedOutputStream: com.google.protobuf.CodedOutputStream newInstance(byte[],int,int)>($u2, 0, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

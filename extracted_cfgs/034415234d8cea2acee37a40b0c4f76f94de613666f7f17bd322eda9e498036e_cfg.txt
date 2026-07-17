@@ -1,0 +1,608 @@
+=== FUNCTION: org.apache.cordova.CordovaWebViewClient.handleExecUrl ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.CordovaWebViewClient
+NODE 2: $u12 := @parameter0: java.lang.String
+NODE 3: $u8 = "http://cdv_exec/"
+NODE 4: $u-1 = virtualinvoke $u8.<java.lang.String: int length()>()
+NODE 5: $u8#5 = $u-1 + 1
+NODE 6: $u8#5 = virtualinvoke $u12.<java.lang.String: int indexOf(int,int)>(35, $u8#5)
+NODE 7: $u8#7 = $u8#5 + 1
+NODE 8: $u8#7 = virtualinvoke $u12.<java.lang.String: int indexOf(int,int)>(35, $u8#7)
+NODE 9: $u8#9 = $u8#7 + 1
+NODE 10: $u8#9 = virtualinvoke $u12.<java.lang.String: int indexOf(int,int)>(35, $u8#9)
+NODE 11: if $u-1 == -1 goto $u0 = new java.lang.StringBuilder
+NODE 12: if $u8#5 == -1 goto $u0 = new java.lang.StringBuilder
+NODE 13: if $u8#7 == -1 goto $u0 = new java.lang.StringBuilder
+NODE 14: if $u8#9 != -1 goto $u8 = virtualinvoke $u12.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u8#5)
+NODE 15: $u8 = virtualinvoke $u12.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u8#5)
+NODE 16: $u-1 = $u8#5 + 1
+NODE 17: $u-1#22 = virtualinvoke $u12.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u8#7)
+NODE 18: $u-1 = $u8#7 + 1
+NODE 19: $u-1#24 = virtualinvoke $u12.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u8#9)
+NODE 20: $u-1 = $u8#9 + 1
+NODE 21: $u12 = virtualinvoke $u12.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 22: $u8#27 = this.<org.apache.cordova.CordovaWebViewClient: org.apache.cordova.CordovaWebView appView>
+NODE 23: $u8#28 = $u8#27.<org.apache.cordova.CordovaWebView: org.apache.cordova.api.PluginManager pluginManager>
+NODE 24: virtualinvoke $u8#28.<org.apache.cordova.api.PluginManager: boolean exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u8, $u-1#22, $u-1#24, $u12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.AudioHandler.startRecordingAudio ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.apache.cordova.AudioHandler
+NODE 2: $u3 := @parameter0: java.lang.String
+NODE 3: $u4 := @parameter1: java.lang.String
+NODE 4: $u1 = this.<org.apache.cordova.AudioHandler: java.util.HashMap players>
+NODE 5: $u-1 = virtualinvoke $u1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u3)
+NODE 6: audio = (org.apache.cordova.AudioPlayer) $u-1
+NODE 7: if audio != null goto virtualinvoke audio.<org.apache.cordova.AudioPlayer: void startRecording(java.lang.String)>($u4)
+NODE 8: audio = new org.apache.cordova.AudioPlayer
+NODE 9: virtualinvoke audio.<org.apache.cordova.AudioPlayer: void startRecording(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.Capture.queryImgDB ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.Capture
+NODE 2: $u7 := @parameter0: android.net.Uri
+NODE 3: $u0 = this.<org.apache.cordova.Capture: org.apache.cordova.api.CordovaInterface cordova>
+NODE 4: $u-1 = interfaceinvoke $u0.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u2 = newarray (java.lang.String)[1]
+NODE 7: $u-1#8 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u7, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NetworkManager$1.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.apache.cordova.NetworkManager$1
+NODE 2: $u1 = this.<org.apache.cordova.NetworkManager$1: org.apache.cordova.NetworkManager this$0>
+NODE 3: $u1#5 = $u1.<org.apache.cordova.NetworkManager: android.net.ConnectivityManager sockMan>
+NODE 4: $u-1 = virtualinvoke $u1#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.FileUtils.atRootDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.FileUtils.atRootDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#26 != 0 goto return 1
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: fp = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#7 == 0 goto $u2#10 = new java.lang.StringBuilder
+NODE 2: fp = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.GPSListener.start ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: org.apache.cordova.GPSListener
+NODE 2: $u0#2 = this.<org.apache.cordova.GPSListener: android.location.LocationManager locationManager>
+NODE 3: virtualinvoke $u0#2.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 60000L, 0.0F, this)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.GAThread.getAndClearCampaign ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("gaInstallData")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.GAThread.storeClientId ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.google.analytics.tracking.android.GAThread
+NODE 2: $u3 = this.<com.google.analytics.tracking.android.GAThread: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("gaClientId", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.GAThread.initializeClientId ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.google.analytics.tracking.android.GAThread
+NODE 2: $u6 = this.<com.google.analytics.tracking.android.GAThread: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u6.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("gaClientId")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaWebView.setup ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.CordovaWebView
+NODE 2: $u-1 = virtualinvoke this.<org.apache.cordova.CordovaWebView: android.webkit.WebSettings getSettings()>()
+NODE 3: $u5#3 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u7 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#7 = virtualinvoke $u5#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setNavDump", $u7)
+NODE 6: if $u5#8 >= 11 goto $u5#8 = <android.os.Build$VERSION: int SDK_INT>
+NODE 7: $u5#11 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5#11)
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaChromeClient.onJsPrompt ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.CordovaChromeClient
+NODE 2: $u16 := @parameter2: java.lang.String
+NODE 3: if $u-1 == 0 goto (branch)
+NODE 4: array = new org.json.JSONArray
+NODE 5: $u15 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(0)
+NODE 6: $u17 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(1)
+NODE 7: $u11#6 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(2)
+NODE 8: $u11 = this.<org.apache.cordova.CordovaChromeClient: org.apache.cordova.CordovaWebView appView>
+NODE 9: $u11#34 = $u11.<org.apache.cordova.CordovaWebView: org.apache.cordova.ExposedJsApi exposedJsApi>
+NODE 10: $u15 = virtualinvoke $u11#34.<org.apache.cordova.ExposedJsApi: java.lang.String exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u15, $u17, $u11#6, $u16)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.api.PluginManager.exec ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.api.PluginManager
+NODE 2: $u2 := @parameter0: java.lang.String
+NODE 3: $u3 := @parameter1: java.lang.String
+NODE 4: $u4 := @parameter2: java.lang.String
+NODE 5: $u5 := @parameter3: java.lang.String
+NODE 6: $u6 = virtualinvoke this.<org.apache.cordova.api.PluginManager: boolean exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.SimpleNetworkDispatcher.dispatchHits ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.analytics.tracking.android.SimpleNetworkDispatcher
+NODE 2: if i >= $u-1 goto return hitsDispatched
+NODE 3: $u13 = this.<com.google.analytics.tracking.android.SimpleNetworkDispatcher: com.google.analytics.tracking.android.HttpClientFactory httpClientFactory>
+NODE 4: $u-1#9 = interfaceinvoke $u13.<com.google.analytics.tracking.android.HttpClientFactory: org.apache.http.client.HttpClient newInstance()>()
+NODE 5: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.SimpleNetworkDispatcher.okToDispatch ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.analytics.tracking.android.SimpleNetworkDispatcher
+NODE 2: $u2 = this.<com.google.analytics.tracking.android.SimpleNetworkDispatcher: android.content.Context ctx>
+NODE 3: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaLocationListener.start ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: org.apache.cordova.CordovaLocationListener
+NODE 2: $u0#2 = this.<org.apache.cordova.CordovaLocationListener: android.location.LocationManager locationManager>
+NODE 3: virtualinvoke $u0#2.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 60000L, 10.0F, this)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.api.PluginEntry.getClassByName ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: if $u2 == null goto return null
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.api.PluginEntry.createPlugin ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.cordova.api.PluginEntry
+NODE 2: if $u2 == null goto $u2#3 = this.<org.apache.cordova.api.PluginEntry: java.lang.String pluginClass>
+NODE 3: $u2#3 = this.<org.apache.cordova.api.PluginEntry: java.lang.String pluginClass>
+NODE 4: $u-1 = specialinvoke this.<org.apache.cordova.api.PluginEntry: java.lang.Class getClassByName(java.lang.String)>($u2#3)
+NODE 5: if $u-1#5 == 0 goto return null
+NODE 6: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.AudioPlayer.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.AudioPlayer.moveFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: webViewClass = class "Landroid/webkit/WebView;"
+NODE 2: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mProvider")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: webViewClass = class "Landroid/webkit/WebView;"
+NODE 3: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mProvider")
+NODE 4: $u4 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: org.apache.cordova.NativeToJsMessageQueue this$0>
+NODE 5: $u-1 = staticinvoke <org.apache.cordova.NativeToJsMessageQueue: org.apache.cordova.CordovaWebView access$300(org.apache.cordova.NativeToJsMessageQueue)>($u4)
+NODE 6: $u-1#12 = virtualinvoke $u-1#6.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 7: $u-1#13 = virtualinvoke $u-1#12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: webViewClass = $u-1#13
+NODE 9: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWebViewCore")
+NODE 10: goto [?= $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWebViewCore")]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: webViewObject = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 3: if webViewObject == null goto return
+NODE 4: webViewObject = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 5: webViewClass = virtualinvoke webViewObject.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u6 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#27 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("sendMessage", $u6)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.onNativeToJsMessageAvailable ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: $u3 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.reflect.Method sendMessageMethod>
+NODE 3: $u4 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 4: $u5 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.ExposedJsApi.exec ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.ExposedJsApi
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u7 := @parameter1: java.lang.String
+NODE 4: $u8 := @parameter2: java.lang.String
+NODE 5: $u9 := @parameter3: java.lang.String
+NODE 6: $u2#3 = this.<org.apache.cordova.ExposedJsApi: org.apache.cordova.api.PluginManager pluginManager>
+NODE 7: virtualinvoke $u2#3.<org.apache.cordova.api.PluginManager: boolean exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u6, $u7, $u8, $u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.getFreeDiskSpace ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto (branch)
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.getTempDirectoryPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.testFileExists ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 != 0 goto return 0
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CameraLauncher.queryImgDB ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.CameraLauncher
+NODE 2: $u7 := @parameter0: android.net.Uri
+NODE 3: $u0 = this.<org.apache.cordova.CameraLauncher: org.apache.cordova.api.CordovaInterface cordova>
+NODE 4: $u-1 = interfaceinvoke $u0.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u2 = newarray (java.lang.String)[1]
+NODE 7: $u-1#8 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u7, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CameraLauncher.execute ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: org.apache.cordova.CameraLauncher
+NODE 2: $u10 := @parameter1: org.json.JSONArray
+NODE 3: $u-1#9 = virtualinvoke $u10.<org.json.JSONArray: int getInt(int)>(1)
+NODE 4: $u-1#13 = virtualinvoke $u10.<org.json.JSONArray: int getInt(int)>(2)
+NODE 5: if $u-1#16 >= 1 goto (branch)
+NODE 6: if $u-1#13 != 1 goto (branch)
+NODE 7: $u-1#13 = this.<org.apache.cordova.CameraLauncher: int encodingType>
+NODE 8: virtualinvoke this.<org.apache.cordova.CameraLauncher: void takePicture(int,int)>($u-1#9, $u-1#13)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CameraLauncher.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.CameraLauncher
+NODE 2: $u29 := @parameter2: android.content.Intent
+NODE 3: if $u3#51 == 0 goto (branch)
+NODE 4: cols = newarray (java.lang.String)[1]
+NODE 5: $u4 = this.<org.apache.cordova.CameraLauncher: org.apache.cordova.api.CordovaInterface cordova>
+NODE 6: $u-1 = interfaceinvoke $u4.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 7: $u-1#125 = virtualinvoke $u-1.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u3#30 = virtualinvoke $u29.<android.content.Intent: android.net.Uri getData()>()
+NODE 9: $u-1#217 = virtualinvoke $u-1#125.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3#30, cols, null, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.PGLowLatencyAudio.execute ===
+SUSPICIOUS_API: load
+NODE 1: $u13 := @parameter1: org.json.JSONArray
+NODE 2: $u14 = virtualinvoke $u13.<org.json.JSONArray: java.lang.String getString(int)>(1)
+NODE 3: if $u-1#9 != 0 goto $u14 = "unload"
+NODE 4: $u0#17 = <com.phonegap.PGLowLatencyAudio: android.media.SoundPool soundPool>
+NODE 5: $u-1#19 = virtualinvoke $u0#17.<android.media.SoundPool: int load(java.lang.String,int)>($u14, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.PGLowLatencyAudio.execute ===
+SUSPICIOUS_API: load
+NODE 1: $u13 := @parameter1: org.json.JSONArray
+NODE 2: $u14 = virtualinvoke $u13.<org.json.JSONArray: java.lang.String getString(int)>(1)
+NODE 3: $u0#17 = <com.phonegap.PGLowLatencyAudio: android.media.SoundPool soundPool>
+NODE 4: $u-1#19 = virtualinvoke $u0#17.<android.media.SoundPool: int load(java.lang.String,int)>($u14, 1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.PGLowLatencyAudio.execute ===
+SUSPICIOUS_API: load
+NODE 1: $u13 := @parameter1: org.json.JSONArray
+NODE 2: $u14 = virtualinvoke $u13.<org.json.JSONArray: java.lang.String getString(int)>(1)
+NODE 3: if $u-1#9 != 0 goto $u14 = "unload"
+NODE 4: $u0#17 = <com.phonegap.PGLowLatencyAudio: android.media.SoundPool soundPool>
+NODE 5: $u-1#19 = virtualinvoke $u0#17.<android.media.SoundPool: int load(java.lang.String,int)>($u14, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.AdHitIdGenerator.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.ads.AdRequest")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.GeoBroker.execute ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: org.apache.cordova.GeoBroker
+NODE 2: $u7 = this.<org.apache.cordova.GeoBroker: android.location.LocationManager locationManager>
+NODE 3: if $u-1#16 == 0 goto $u13 = "network"
+NODE 4: $u13 = "gps"
+NODE 5: $u-1#30 = virtualinvoke $u7.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u13)
+NODE 6: $u13 = "network"
+NODE 7: goto [?= $u-1#30 = virtualinvoke $u7.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u13)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.ContactAccessorSdk5.getContactById ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.ContactAccessorSdk5
+NODE 2: $u0 = this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.api.CordovaInterface mApp>
+NODE 3: $u-1 = interfaceinvoke $u0.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#7 = virtualinvoke $u-1#5.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id = ? ", $u4, "contact_id ASC")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.ContactAccessorSdk5.remove ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.ContactAccessorSdk5
+NODE 2: $u0 = this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.api.CordovaInterface mApp>
+NODE 3: $u-1 = interfaceinvoke $u0.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#8 = virtualinvoke $u-1#5.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "_id = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.ContactAccessorSdk5.search ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.ContactAccessorSdk5
+NODE 2: $u22 := @parameter0: org.json.JSONArray
+NODE 3: $u23 := @parameter1: org.json.JSONObject
+NODE 4: if $u23 == null goto $u-1 = "%"
+NODE 5: $u-1 = virtualinvoke $u23.<org.json.JSONObject: java.lang.String optString(java.lang.String)>("filter")
+NODE 6: if $u-1#8 != 0 goto $u1 = new java.lang.StringBuilder
+NODE 7: $u-1 = "%"
+NODE 8: $u-1#19 = specialinvoke this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.ContactAccessor$WhereOptions buildWhereClause(org.json.JSONArray,java.lang.String)>($u22, $u-1)
+NODE 9: $u3 = this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.api.CordovaInterface mApp>
+NODE 10: $u-1#22 = interfaceinvoke $u3.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 11: $u-1#24 = virtualinvoke $u-1#22.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 12: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 13: $u5 = newarray (java.lang.String)[1]
+NODE 14: $u-1#31 = virtualinvoke $u-1#19.<org.apache.cordova.ContactAccessor$WhereOptions: java.lang.String getWhere()>()
+NODE 15: $u-1#33 = virtualinvoke $u-1#19.<org.apache.cordova.ContactAccessor$WhereOptions: java.lang.String[] getWhereArgs()>()
+NODE 16: $u-1#36 = virtualinvoke $u-1#24.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5, $u-1#31, $u-1#33, "contact_id ASC")
+NODE 17: $u1 = new java.lang.StringBuilder
+NODE 18: $u3#44 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 19: $u3#44 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 20: $u3#44 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 21: $u-1 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 22: $u-1 = "%"
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 22
+EDGE: 6 -> 7
+EDGE: 6 -> 17
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.ContactAccessorSdk5.search ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.ContactAccessorSdk5
+NODE 2: $u23 := @parameter1: org.json.JSONObject
+NODE 3: if $u23 == null goto $u-1 = "%"
+NODE 4: $u-1 = virtualinvoke $u23.<org.json.JSONObject: java.lang.String optString(java.lang.String)>("filter")
+NODE 5: if $u-1#8 != 0 goto $u1 = new java.lang.StringBuilder
+NODE 6: $u-1 = "%"
+NODE 7: $u0 = new java.util.HashSet
+NODE 8: columnsToFetch = $u0
+NODE 9: $u1 = new java.lang.StringBuilder
+NODE 10: $u3#44 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 11: $u3#44 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 12: $u3#44 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 13: $u-1 = virtualinvoke $u3#44.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1 = "%"
+NODE 15: $u-1#19 = specialinvoke this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.ContactAccessor$WhereOptions buildIdClause(java.util.Set,java.lang.String)>(columnsToFetch, $u-1)
+NODE 16: $u0 = new java.util.HashSet
+NODE 17: columnsToFetch = $u0
+NODE 18: if $u-1#13 == 0 goto $u3 = this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.api.CordovaInterface mApp>
+NODE 19: $u3 = this.<org.apache.cordova.ContactAccessorSdk5: org.apache.cordova.api.CordovaInterface mApp>
+NODE 20: $u-1#22 = interfaceinvoke $u3.<org.apache.cordova.api.CordovaInterface: android.app.Activity getActivity()>()
+NODE 21: $u-1#24 = virtualinvoke $u-1#22.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 22: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 23: $u5 = newarray (java.lang.String)[0]
+NODE 24: $u-1#166 = virtualinvoke columnsToFetch.<java.util.HashSet: java.lang.Object[] toArray(java.lang.Object[])>($u5)
+NODE 25: $u5 = (java.lang.String[]) $u-1#166
+NODE 26: $u-1 = virtualinvoke $u-1#19.<org.apache.cordova.ContactAccessor$WhereOptions: java.lang.String getWhere()>()
+NODE 27: $u-1#33 = virtualinvoke $u-1#19.<org.apache.cordova.ContactAccessor$WhereOptions: java.lang.String[] getWhereArgs()>()
+NODE 28: $u-1#36 = virtualinvoke $u-1#24.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5, $u-1, $u-1#33, "contact_id ASC")
+EDGE: 3 -> 4
+EDGE: 3 -> 14
+EDGE: 5 -> 6
+EDGE: 5 -> 9
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NetworkManager.execute ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.apache.cordova.NetworkManager
+NODE 2: $u3 = this.<org.apache.cordova.NetworkManager: android.net.ConnectivityManager sockMan>
+NODE 3: $u-1#6 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.analytics.tracking.android.CampaignTrackingService.onHandleIntent ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.google.analytics.tracking.android.CampaignTrackingService
+NODE 2: $u-1#4 = virtualinvoke this.<com.google.analytics.tracking.android.CampaignTrackingService: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("gaInstallData", 0)
+=== END FUNCTION ===
+
