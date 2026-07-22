@@ -32,7 +32,7 @@ COLLECTION_NAME = "lamd_cfg_kb"
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"  # via fastembed ONNX, 384-dim
 VECTOR_DIM      = 384
 TOP_K           = 5                     # retrieved neighbours per query
-BATCH_SIZE      = 64                    # embedding batch size
+BATCH_SIZE      = 128                   # embedding batch size
 
 
 # =============================================================================
@@ -217,7 +217,7 @@ def get_qdrant_client():
         )
         sys.exit(1)
 
-    client = QdrantClient(url=url, api_key=api_key, timeout=60)
+    client = QdrantClient(url=url, api_key=api_key, timeout=120)
     return client
 
 

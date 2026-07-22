@@ -170,28 +170,43 @@ def upsert_to_qdrant(
     client,
     records:     list[dict],
     embedder:    EmbeddingModel,
-    batch_size:  int = BATCH_SIZE,
+    max_retries: int = 5,
 ) -> None:
     """
-    Embeds records in batches and upserts them into Qdrant.
-    Uses deterministic UUIDs so re-runs are idempotent.
+    Embeds all records first (fast, local CPU), then upserts to Qdrant in
+    network-friendly batches.  Uses deterministic UUIDs so re-runs are
+    idempotent.  Retries each batch up to `max_retries` on transient errors.
     """
     from qdrant_client.http.models import PointStruct
 
     total = len(records)
-    print(f"\n  Upserting {total:,} vectors to Qdrant Cloud …")
+
+    # ── Phase 1: Embed locally in batches with progress ────────────────────
+    EMBED_BATCH = 512
+    print(f"\n  Phase 1/2 — Embedding {total:,} texts locally (batch={EMBED_BATCH}) …")
+    all_texts = [r["embed_text"] for r in records]
+    all_vectors: list[list[float]] = []
+    for i in tqdm(range(0, total, EMBED_BATCH), desc="  Embedding", unit="batch"):
+        batch_texts = all_texts[i : i + EMBED_BATCH]
+        all_vectors.extend(embedder.embed(batch_texts))
+    print(f"  [OK] Embedded {len(all_vectors):,} vectors")
+
+    # ── Phase 2: Upsert to Qdrant Cloud in batches ───────────────────────
+    # Use a smaller network batch (64) to avoid gateway timeouts / 502s
+    UPSERT_BATCH = 64
+    MAX_RAW_TEXT  = 2000  # truncate raw_text payload to save bandwidth
+
+    num_batches = (total + UPSERT_BATCH - 1) // UPSERT_BATCH
+    print(f"\n  Phase 2/2 — Upserting {total:,} vectors in {num_batches:,} batches …")
 
     start = time.time()
     upserted = 0
 
-    for batch_start in tqdm(range(0, total, batch_size), desc="  Upserting", unit="batch"):
-        batch = records[batch_start : batch_start + batch_size]
+    for batch_start in tqdm(range(0, total, UPSERT_BATCH), desc="  Upserting", unit="batch"):
+        batch_records = records[batch_start : batch_start + UPSERT_BATCH]
+        batch_vectors = all_vectors[batch_start : batch_start + UPSERT_BATCH]
 
-        # Embed
-        texts    = [r["embed_text"] for r in batch]
-        vectors  = embedder.embed(texts)
-
-        # Build Qdrant points
+        # Build Qdrant points — truncate raw_text to save bandwidth
         points = [
             PointStruct(
                 id=r["id"],
@@ -202,13 +217,43 @@ def upsert_to_qdrant(
                     "suspicious_api": r["suspicious_api"],
                     "label":          r["label"],
                     "family":         r["family"],
-                    "raw_text":       r["raw_text"],
+                    "raw_text":       r["raw_text"][:MAX_RAW_TEXT],
                 },
             )
-            for r, vec in zip(batch, vectors)
+            for r, vec in zip(batch_records, batch_vectors)
         ]
 
-        client.upsert(collection_name=COLLECTION_NAME, points=points)
+        # Retry with exponential backoff on transient errors
+        for attempt in range(1, max_retries + 1):
+            try:
+                client.upsert(collection_name=COLLECTION_NAME, points=points)
+                break
+            except Exception as e:
+                err_msg = str(e).lower()
+                is_retriable = (
+                    "time" in err_msg
+                    or "connect" in err_msg
+                    or "read" in err_msg
+                    or "write" in err_msg
+                    or "502" in err_msg
+                    or "503" in err_msg
+                    or "504" in err_msg
+                    or "bad gateway" in err_msg
+                    or "service unavailable" in err_msg
+                    or "gateway timeout" in err_msg
+                    or "unexpected response" in err_msg
+                )
+                if is_retriable and attempt < max_retries:
+                    wait = min(4 ** attempt, 120)  # 4s, 16s, 64s, 120s cap
+                    tqdm.write(
+                        f"  [RETRY {attempt}/{max_retries}] "
+                        f"Batch at offset {batch_start} failed: {e!s:.120s} — "
+                        f"retrying in {wait}s …"
+                    )
+                    time.sleep(wait)
+                else:
+                    raise
+
         upserted += len(points)
 
     elapsed = time.time() - start
