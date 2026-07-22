@@ -11,45 +11,41 @@ graph TD
     classDef final fill:#fce4ec,stroke:#e91e63,stroke-width:2px,color:#000000;
     classDef db fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000000;
 
-    %% Team Sync
-    GitSync[("Team GitHub Repo<br>Syncs Code & Vector DB")]:::db
+    %% Database
+    Qdrant[("Qdrant Cloud<br>Centralized Vector DB")]:::db
 
     %% Offline Phase
-    subgraph Offline_Phase [Phase 1: Build the Vector Database]
+    subgraph Offline_Phase [Phase 1: Build the Knowledge Base]
         direction TB
-        L2["laptop2_predictions.jsonl<br>Perfectly Classified 90% Acc"]:::input --> Ext["Extract CFGs & Ground Truth"]:::offline
-        Ext --> Emb1["Local Embedding Model<br>e.g., all-MiniLM-L6-v2"]:::offline
-        Emb1 --> DB[("ChromaDB Vector Database<br>Stored locally in /rag_db")]:::db
+        L2["Ground Truth Dataset<br>(e.g. laptop2 predictions)"]:::input --> Ext["Extract CFGs & Ground Truth"]:::offline
+        Ext --> Emb1["Local Embedding Model<br>FastEmbed (bge-small-en)"]:::offline
+        Emb1 --> |"Upsert Vectors via API"| Qdrant
     end
-
-    %% Sync DB via Git
-    DB -.-> |"Commit to GitHub"| GitSync
-    GitSync -.-> |"Team Pulls Repo"| DB
 
     %% Online Phase
     subgraph Online_Phase [Phase 2: Analyze New APK]
         direction TB
         NewAPK["New APK to Analyze<br>e.g., from laptop1"]:::input --> Slicer["Extract CFG via Slicing"]:::online
-        Slicer --> Emb2["Local Embedding Model"]:::online
-        Emb2 --> Query["Query Vector DB for Top 3 Matches"]:::online
+        Slicer --> Emb2["Local Embedding Model<br>FastEmbed (bge-small-en)"]:::online
+        Emb2 --> Query["Query Qdrant Cloud for Top 3 Matches"]:::online
         Query --> |"Retrieve CFG + Ground Truth"| Prompt["Construct Single Prompt"]:::online
-        Prompt --> LLM["Gemini 3.5 Flash API"]:::online
+        Prompt --> LLM["Gemini API"]:::online
     end
 
     %% Connections
-    DB --> |"Fast Vector Search"| Query
+    Qdrant --> |"Fast Vector Search"| Query
     Slicer --> |"New CFG"| Prompt
     
     LLM --> Verdict["Final Verdict:<br>MALWARE / BENIGN"]:::final
 ```
 
-## How the Team Collaborates (Multi-Implementation)
+## How the Team Collaborates (Cloud Architecture)
 
-1. **The Vector Database (`/rag_db`) is just a folder.** 
-   When we use a tool like ChromaDB, the entire database is saved locally as files in a folder (e.g., `AndMAL_Detector/rag_db/`).
-2. **Syncing via GitHub:** 
-   Because the database is lightweight (just text embeddings), you simply commit the `rag_db` folder to GitHub. 
-3. **Working on different laptops:**
-   When your friends run `git pull`, they will download the exact same Vector Database to their laptops. When they run the script, their local script queries their local copy of the database. 
-4. **No Cloud Bottlenecks:** 
-   Because the embedding and querying happen locally on each laptop's CPU in milliseconds, there is zero cloud latency. The only cloud component is the final API call to Gemini.
+1. **Centralized Vector Database (Qdrant Cloud):** 
+   Instead of storing the database locally and relying on Git pulls (which causes merge conflicts when multiple people process APKs simultaneously), all vectors are stored securely in a free Qdrant Cloud cluster.
+2. **Local FastEmbed:** 
+   The heavy lifting of converting code to vectors is done locally on each team member's laptop using `fastembed`. This prevents you from paying for OpenAI embeddings or overloading your Gemini API keys.
+3. **No Git Merge Conflicts:**
+   As you and your friends process new APKs, you can all write directly to Qdrant Cloud via the API. There is no need to commit database files to GitHub.
+4. **Future-Proof for Chatbot UI:** 
+   When you eventually build your AI UI Chatbot, it can instantly connect to the Qdrant Cloud cluster via API to fetch knowledge, meaning the backend is entirely ready for scale.

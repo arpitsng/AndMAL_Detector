@@ -278,6 +278,11 @@ FLAG AS MALWARE if you find CLEAR combinations such as:
 - Collecting sensitive data (contacts, SMS, call logs) without clear user UI/purpose.
 - Hiding functionality through heavy obfuscation + encrypted payloads + background execution.
 
+=== RAG KNOWLEDGE BASE MATCHES ===
+Here are the 3 most structurally similar CFGs from our known malware/benign database:
+{rag_context}
+================================
+
 === BEGIN CFG SLICES ===
 {all_cfgs}
 === END CFG SLICES ===

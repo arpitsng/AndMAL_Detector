@@ -307,29 +307,27 @@ class GeminiBackend(LLMBackend):
 
             except ClientError as e:
                 is_rate_limited = getattr(e, "code", None) == 429 or "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e).upper()
+                is_unavailable = getattr(e, "code", None) == 503 or "503" in str(e) or "UNAVAILABLE" in str(e).upper()
 
-                if is_rate_limited:
-                    # If we have multiple keys, just switch immediately and retry!
+                if is_rate_limited or is_unavailable:
                     if len(self.api_keys) > 1:
-                        print(f"\n    [WARN] Rate limit hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
+                        print(f"\n    [WARN] Rate limit / High Demand hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
                         self.switch_key()
-                        # If we completed a full cycle of keys, pause slightly to let them cool down
                         if (attempt + 1) % len(self.api_keys) == 0:
                             time.sleep(5.0)
                         continue
-
-                    # Fallback to sleep if we only have 1 key
                     if attempt == max_retries - 1:
                         raise
                     wait_time = base_wait * (2 ** attempt)
-                    print(f"\n    [WARN] Gemini rate limit hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    print(f"\n    [WARN] Gemini rate limit/503 hit. Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
                     time.sleep(wait_time)
                 else:
                     raise
             except Exception as e:
-                if "429" in str(e):
+                err_str = str(e).upper()
+                if "429" in err_str or "503" in err_str or "UNAVAILABLE" in err_str or "RESOURCE_EXHAUSTED" in err_str:
                     if len(self.api_keys) > 1:
-                        print(f"\n    [WARN] Rate limit (429) hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
+                        print(f"\n    [WARN] Rate limit (429/503) hit on Key #{self.current_key_idx + 1}. Rotating to next key...", file=sys.stderr, flush=True)
                         self.switch_key()
                         if (attempt + 1) % len(self.api_keys) == 0:
                             time.sleep(5.0)
@@ -338,7 +336,7 @@ class GeminiBackend(LLMBackend):
                     if attempt == max_retries - 1:
                         raise
                     wait_time = base_wait * (2 ** attempt)
-                    print(f"\n    [WARN] Gemini rate limit hit (429). Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
+                    print(f"\n    [WARN] Gemini API error (429/503). Waiting {wait_time}s before retry...", file=sys.stderr, flush=True)
                     time.sleep(wait_time)
                 else:
                     raise
@@ -771,6 +769,22 @@ def analyse_one_apk(
         return None
 
 
+# --- Global RAG Clients ---
+_q_client = None
+_embed_model = None
+
+def get_rag_clients():
+    global _q_client, _embed_model
+    if _q_client is None:
+        from qdrant_client import QdrantClient
+        from fastembed import TextEmbedding
+        qdrant_url = os.environ.get("QDRANT_URL")
+        qdrant_api_key = os.environ.get("QDRANT_API_KEY")
+        if qdrant_url and qdrant_api_key:
+            _q_client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key, timeout=10)
+            _embed_model = TextEmbedding("BAAI/bge-small-en-v1.5")
+    return _q_client, _embed_model
+
 # =============================================================================
 #  Single-Call Pipeline — One APK, One LLM Call
 # =============================================================================
@@ -798,7 +812,7 @@ def analyse_one_apk_single_call(
 
     if not slices:
         if verbose:
-            print(f"  [SKIP] No suspicious APIs in {sha256[:16]}...")
+            print(f"  [SKIP] No suspicious APIs in {sha256[:16]}...", flush=True)
         return Tier3Result(sha256=sha256, prediction="BENIGN",
                            analysis="No suspicious APIs found.")
 
@@ -838,13 +852,21 @@ def analyse_one_apk_single_call(
     slices = filtered_slices
 
     if verbose and original_count > 0:
-        print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered")
+        print(f"    [INFO] CFGs: {original_count} raw -> {len(unique_slices)} unique -> {len(slices)} filtered", flush=True)
 
     if not slices:
         if verbose:
-            print(f"  [SKIP] All functions filtered out for {sha256[:16]}...")
+            print(f"  [SKIP] All functions filtered out for {sha256[:16]}...", flush=True)
         return Tier3Result(sha256=sha256, prediction="BENIGN",
                            analysis="All functions were framework/SDK code.")
+
+    # Safety cap: even after filtering, some APKs have 200+ app functions.
+    # Cap at 25 to keep per-APK time reasonable (~5-10 sec) and context sizes manageable.
+    MAX_FUNCTIONS = 25
+    if len(slices) > MAX_FUNCTIONS:
+        if verbose:
+            print(f"    [INFO] Capping at {MAX_FUNCTIONS} functions (from {len(slices)})", flush=True)
+        slices = slices[:MAX_FUNCTIONS]
 
     # ── Build single prompt with ALL CFGs ─────────────────────────────────────
     # Concatenate all CFG texts. Truncate individual huge functions to keep
@@ -862,7 +884,7 @@ def analyse_one_apk_single_call(
         
         if total_chars + len(text) > MAX_TOTAL_CHARS:
             if verbose:
-                print(f"    [INFO] Token budget reached at {included_count}/{len(slices)} functions")
+                print(f"    [INFO] Token budget reached at {included_count}/{len(slices)} functions", flush=True)
             break
         
         all_cfg_parts.append(text)
@@ -876,10 +898,47 @@ def analyse_one_apk_single_call(
     api_list = ", ".join(api_set) if api_set else "None"
 
     if verbose:
-        print(f"    [INFO] Sending {included_count} functions (~{total_chars//4} tokens) in single call")
+        print(f"    [INFO] Sending {included_count} functions (~{total_chars//4} tokens) in single call", flush=True)
+
+    # ── RAG Retrieval (Qdrant + FastEmbed) ──────────────────────────────────
+    rag_context = "No similar CFGs found in knowledge base."
+    try:
+        qc, em = get_rag_clients()
+        if qc and em:
+            query_text = all_cfgs_text[:3000]
+            if verbose:
+                print(f"    [INFO] Embedding query vector...", flush=True)
+            query_vector = list(em.embed([query_text]))[0].tolist()
+            
+            if verbose:
+                print(f"    [INFO] Querying Qdrant...", flush=True)
+            search_results = qc.query_points(
+                collection_name="lamd_cfgs",
+                query=query_vector,
+                limit=3
+            ).points
+            
+            if search_results:
+                rag_parts = []
+                for idx, hit in enumerate(search_results, 1):
+                    payload = hit.payload
+                    score = hit.score
+                    truth = payload.get("ground_truth", "UNKNOWN")
+                    family = payload.get("family", "unknown")
+                    preview = payload.get("cfg_preview", "")
+                    rag_parts.append(
+                        f"Match {idx} (Similarity: {score:.2f})\n"
+                        f"Ground Truth: {truth} (Family: {family})\n"
+                        f"CFG Snippet:\n{preview}..."
+                    )
+                rag_context = "\n\n".join(rag_parts)
+    except Exception as e:
+        if verbose:
+            print(f"    [WARN] RAG Retrieval failed (skipping): {e}")
 
     # ── Single LLM call ───────────────────────────────────────────────────────
     prompt = SINGLE_CALL_TEMPLATE.format(
+        rag_context=rag_context,
         all_cfgs=all_cfgs_text,
         func_count=included_count,
         api_list=api_list,
