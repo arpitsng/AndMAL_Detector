@@ -1,0 +1,48 @@
+=== FUNCTION: com.albatros.android.saga.utils.AndrDateUtils.emptyDateInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <com.albatros.android.saga.utils.AndrDateUtils: java.util.Calendar newInstance(int,int,int)>(1899, 11, 30)
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.utils.ResourceManager.getExternalFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.net.service.SagaClientService.executeGet ===
+SUSPICIOUS_API: newInstance
+NODE 1: responseClass := @parameter2: java.lang.Class
+NODE 2: $u-1 = virtualinvoke responseClass.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.net.service.SagaClientService.executePost ===
+SUSPICIOUS_API: newInstance
+NODE 1: responseClass := @parameter3: java.lang.Class
+NODE 2: $u-1 = virtualinvoke responseClass.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.utils.PropertiesManager.doLoadFile ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.albatros.android.saga.utils.PropertiesManager
+NODE 2: if $u-1 != 0 goto fis = new java.io.FileInputStream
+NODE 3: fis = new java.io.FileInputStream
+NODE 4: $u-1#5 = virtualinvoke this.<com.albatros.android.saga.utils.PropertiesManager: java.util.Properties getProperties()>()
+NODE 5: virtualinvoke $u-1#5.<java.util.Properties: void load(java.io.InputStream)>(fis)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.net.service.SagaRpcCommandTask.doInBackground ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.albatros.android.saga.net.service.SagaRpcCommandTask
+NODE 2: $u8 = this.<com.albatros.android.saga.net.service.SagaRpcCommandTask: java.lang.Class responseClass>
+NODE 3: $u-1 = virtualinvoke $u8.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.albatros.android.saga.net.methods.base.SagaResponseParser.parseResponse ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+

@@ -1,0 +1,66 @@
+=== FUNCTION: com.bmsoft.appbook23313.r.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.a.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.a.a.a.a.a
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.String
+NODE 4: if $u4 != null goto $u0 = this.<com.a.a.a.a.a: javax.crypto.Cipher b>
+NODE 5: $u0 = this.<com.a.a.a.a.a: javax.crypto.Cipher b>
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 9: $u4 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 11: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.a.a.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.a.a.a.a.a
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u1 = this.<com.a.a.a.a.a: javax.crypto.Cipher c>
+NODE 4: $u-1 = staticinvoke <com.a.a.a.a.a.a: byte[] a(java.lang.String)>($u4)
+NODE 5: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.bmsoft.appbook23313.appbookMain.onCreate ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.bmsoft.appbook23313.appbookMain
+NODE 2: if $u-1#8 != null goto $u-1#8 = this.<com.bmsoft.appbook23313.appbookMain: java.lang.String f>
+NODE 3: $u-1#12 = virtualinvoke this.<com.bmsoft.appbook23313.appbookMain: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#12
+NODE 5: $u-1#16 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.bmsoft.appbook23313.appbookMain.onCreate ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.bmsoft.appbook23313.appbookMain
+NODE 2: if $u-1#8 != null goto $u-1#8 = this.<com.bmsoft.appbook23313.appbookMain: java.lang.String f>
+NODE 3: $u-1#12 = virtualinvoke this.<com.bmsoft.appbook23313.appbookMain: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#12
+NODE 5: if $u-1#18 != 0 goto $u-1#25 = virtualinvoke this.<com.bmsoft.appbook23313.appbookMain: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#16 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

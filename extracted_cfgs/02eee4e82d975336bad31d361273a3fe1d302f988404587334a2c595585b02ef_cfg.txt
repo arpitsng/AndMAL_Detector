@@ -1,0 +1,168 @@
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Games.MemoryGame.initGame ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#23 = newarray (int)[2]
+NODE 2: $u1#25 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#25, $u-1#23)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Activities.ContactActivity.addContact ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Activities.ContactActivity
+NODE 2: $u-1 = virtualinvoke this.<com.appsbar.a1CoffeeMaker591480.Activities.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.WebService.checkInternetConnection ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.WebService
+NODE 2: $u5 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.WebService: android.content.Context appContext>
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connec = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke connec.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.WebService.checkInternetConnection ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.WebService
+NODE 2: $u5 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.WebService: android.content.Context appContext>
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connec = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#7 = virtualinvoke connec.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.WebService.getCacheDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: appFiles = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.WebService.getLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.WebService
+NODE 2: $u6 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.WebService: android.content.Context appContext>
+NODE 3: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: lm = (android.location.LocationManager) $u-1
+NODE 5: $u-1#9 = virtualinvoke lm.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation.getLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation
+NODE 2: if $u-1#9 == 0 goto $u-1#9 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: boolean network_enabled>
+NODE 3: $u0 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationManager lm>
+NODE 4: $u5 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationListener locationListenerGps>
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 0L, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation.getLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation
+NODE 2: if $u-1#9 == 0 goto $u0#26 = new java.util.Timer
+NODE 3: $u0 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationManager lm>
+NODE 4: $u5 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationListener locationListenerNetwork>
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 0L, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.mcsoxford.rss.RSSParser.parse ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.mcsoxford.rss.RSSLoader.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.mcsoxford.rss.RSSLoader
+NODE 2: $u2 := @parameter0: java.lang.String
+NODE 3: $u-1 = virtualinvoke this.<org.mcsoxford.rss.RSSLoader: java.util.concurrent.Future load(java.lang.String,int)>($u2, 3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation
+NODE 2: if $u2#12 == 0 goto $u2 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation this$0>
+NODE 3: $u2 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation this$0>
+NODE 4: $u2#2 = $u2.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationManager lm>
+NODE 5: gps_loc = virtualinvoke $u2#2.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation
+NODE 2: if $u2#12 == 0 goto (branch)
+NODE 3: $u2 = this.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation$GetLastLocation: com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation this$0>
+NODE 4: $u2#2 = $u2.<com.appsbar.a1CoffeeMaker591480.Utilities.MyLocation: android.location.LocationManager lm>
+NODE 5: net_loc = virtualinvoke $u2#2.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Activities.WebViewActivity.onPause ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+=== END FUNCTION ===
+
+=== FUNCTION: com.appsbar.a1CoffeeMaker591480.Activities.WebViewActivity.onPause ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.appsbar.a1CoffeeMaker591480.Activities.WebViewActivity
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPause", null)
+NODE 4: $u3 = this.<com.appsbar.a1CoffeeMaker591480.Activities.WebViewActivity: android.webkit.WebView webView>
+NODE 5: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.mcsoxford.rss.RSSLoader$Loader.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.mcsoxford.rss.RSSLoader$Loader
+NODE 2: $u4 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSLoader this$0>
+NODE 3: $u-1 = staticinvoke <org.mcsoxford.rss.RSSLoader: java.util.concurrent.BlockingQueue access$000(org.mcsoxford.rss.RSSLoader)>($u4)
+NODE 4: $u-1#5 = interfaceinvoke $u-1.<java.util.concurrent.BlockingQueue: java.lang.Object take()>()
+NODE 5: $u0 = (org.mcsoxford.rss.RSSLoader$RSSFuture) $u-1#5
+NODE 6: if $u-1#15 == 0 goto $u4 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSLoader this$0>
+NODE 7: $u4#17 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSReader reader>
+NODE 8: $u5 = $u0.<org.mcsoxford.rss.RSSLoader$RSSFuture: java.lang.String uri>
+NODE 9: $u-1#19 = virtualinvoke $u4#17.<org.mcsoxford.rss.RSSReader: org.mcsoxford.rss.RSSFeed load(java.lang.String)>($u5)
+NODE 10: goto [?= $u4 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSLoader this$0>]
+NODE 11: goto [?= $u4 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSLoader this$0>]
+NODE 12: goto [?= $u4 = this.<org.mcsoxford.rss.RSSLoader$Loader: org.mcsoxford.rss.RSSLoader this$0>]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 2
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 2
+EDGE: 11 -> 2
+EDGE: 12 -> 2
+=== END FUNCTION ===
+

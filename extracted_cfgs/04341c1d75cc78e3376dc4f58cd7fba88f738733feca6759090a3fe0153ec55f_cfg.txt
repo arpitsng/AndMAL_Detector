@@ -1,0 +1,127 @@
+=== FUNCTION: com.google.ads.util.AdUtil.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u-1#11 = virtualinvoke $u6.<java.lang.String: byte[] getBytes()>()
+NODE 4: $u-1#11 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#11)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.InstallReceiver.forwardIntent ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: if $u-1 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 4: $u1 = new android.content.ComponentName
+NODE 5: $u-1#6 = virtualinvoke $u-1.<android.content.pm.PackageManager: android.content.pm.ActivityInfo getReceiverInfo(android.content.ComponentName,int)>($u1, 128)
+NODE 6: if $u-1#6 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 7: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 8: if $u0 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 9: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 10: $u-1#10 = virtualinvoke $u0.<android.os.Bundle: java.util.Set keySet()>()
+NODE 11: if $u-1#10 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 12: $u-1#12 = interfaceinvoke $u-1#10.<java.util.Set: java.util.Iterator iterator()>()
+NODE 13: if $u-1#13 == 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 14: $u-1#15 = interfaceinvoke $u-1#12.<java.util.Iterator: java.lang.Object next()>()
+NODE 15: $u0#17 = (java.lang.String) $u-1#15
+NODE 16: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 17: $u0#17 = virtualinvoke $u0.<android.os.Bundle: java.lang.String getString(java.lang.String)>($u0#17)
+NODE 18: if $u-1#13 != 0 goto $u-1#13 = interfaceinvoke $u-1#12.<java.util.Iterator: boolean hasNext()>()
+NODE 19: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.InstallReceiver.forwardIntent ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: if $u-1 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 4: $u1 = new android.content.ComponentName
+NODE 5: $u-1#6 = virtualinvoke $u-1.<android.content.pm.PackageManager: android.content.pm.ActivityInfo getReceiverInfo(android.content.ComponentName,int)>($u1, 128)
+NODE 6: if $u-1#6 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 7: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 8: if $u0 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 9: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 10: $u-1#10 = virtualinvoke $u0.<android.os.Bundle: java.util.Set keySet()>()
+NODE 11: if $u-1#10 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 12: $u-1#12 = interfaceinvoke $u-1#10.<java.util.Set: java.util.Iterator iterator()>()
+NODE 13: if $u-1#13 == 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 14: $u-1#15 = interfaceinvoke $u-1#12.<java.util.Iterator: java.lang.Object next()>()
+NODE 15: $u0#17 = (java.lang.String) $u-1#15
+NODE 16: $u0 = $u-1#6.<android.content.pm.PackageItemInfo: android.os.Bundle metaData>
+NODE 17: $u0#17 = virtualinvoke $u0.<android.os.Bundle: java.lang.String getString(java.lang.String)>($u0#17)
+NODE 18: if $u-1#13 != 0 goto $u-1#13 = interfaceinvoke $u-1#12.<java.util.Iterator: boolean hasNext()>()
+NODE 19: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#17)
+NODE 20: $u-1#15 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.InstallReceiver.forwardIntent ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 2: if $u-1#6 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 3: if $u0 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 4: if $u-1#10 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 5: if $u-1#13 == 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 6: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+EDGE: 1 -> 6
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.InstallReceiver.forwardIntent ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 2: if $u-1#6 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 3: if $u0 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 4: if $u-1#10 == null goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 5: if $u-1#13 == 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 6: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.apps.analytics.AnalyticsReceiver")
+NODE 7: $u-1#15 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 6
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
