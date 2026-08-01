@@ -46,7 +46,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT / "src_python"))
 
 from prompts import (
-    TIER1_SYSTEM, TIER1_USER_TEMPLATE,
+    TIER1_SYSTEM, TIER1_USER_TEMPLATE, TIER1_USER_TEMPLATE_RAG,
     TIER2_SYSTEM, TIER2_USER_TEMPLATE,
     TIER3_SYSTEM, TIER3_USER_TEMPLATE,
     DRC_SYSTEM, DRC_USER_TEMPLATE,
@@ -335,14 +335,28 @@ def parse_cfg_file(cfg_path: Path) -> list[FunctionSlice]:
 #  Tier 1 — Function-Level Analysis
 # =============================================================================
 
-def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
-    """Analyse a single sliced CFG at function level."""
+def run_tier1(
+    llm: LLMBackend, func_slice: FunctionSlice, similar_examples: str = ""
+) -> Tier1Result:
+    """Analyse a single sliced CFG at function level.
+
+    If similar_examples is non-empty (RAG mode), the prompt includes those
+    retrieved reference cases so the model has concrete labeled precedent
+    to calibrate against.
+    """
     # Truncate CFG text to prevent blowing through token-per-minute limits
     # on rate-limited backends like Groq free tier.
     cfg_text = func_slice.raw_text
     if len(cfg_text) > 1500:
         cfg_text = cfg_text[:1500] + "\n... [truncated for brevity] ..."
-    prompt = TIER1_USER_TEMPLATE.format(cfg_content=cfg_text)
+    
+    if similar_examples:
+        prompt = TIER1_USER_TEMPLATE_RAG.format(
+            cfg_content=cfg_text, similar_examples=similar_examples
+        )
+    else:
+        prompt = TIER1_USER_TEMPLATE.format(cfg_content=cfg_text)
+        
     response = llm.chat(TIER1_SYSTEM, prompt)
 
     # Extract risk level from response
@@ -509,7 +523,8 @@ def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> T
 
 def analyse_one_apk(
     llm: LLMBackend, sha256: str, cfg_path: Path,
-    verify_drc: bool = True, verbose: bool = True
+    verify_drc: bool = True, verbose: bool = True,
+    use_rag: bool = False, rag_k: int = 3,
 ) -> Tier3Result | None:
     """
     Runs the full 3-tier pipeline for a single APK.
@@ -520,6 +535,10 @@ def analyse_one_apk(
         cfg_path:   Path to the sliced CFG text file
         verify_drc: Whether to run factual consistency verification
         verbose:    Print progress
+        use_rag:    If True, retrieve similar labeled CFG slices from the
+                    RAG knowledge base (src_python/rag.py) and include them
+                    as reference cases in each Tier 1 prompt.
+        rag_k:      Number of similar examples to retrieve per function slice.
 
     Returns:
         Tier3Result with the final prediction, or None on failure.
@@ -582,7 +601,25 @@ def analyse_one_apk(
     tier1_results: list[Tier1Result] = []
     for func_slice in slices:
         try:
-            t1 = run_tier1(llm, func_slice)
+            similar_examples = ""
+            if use_rag:
+                try:
+                    from rag import retrieve_similar, format_examples_for_prompt
+                    examples = retrieve_similar(
+                        func_slice.raw_text, k=rag_k, exclude_sha256=sha256
+                    )
+                    similar_examples = format_examples_for_prompt(examples)
+                except FileNotFoundError:
+                    if verbose:
+                        print("    [WARN] RAG index not found — run "
+                              "`python src_python/rag.py --build` first. "
+                              "Continuing without RAG.")
+                    use_rag = False  # avoid repeating the warning per slice
+                except Exception as e:
+                    if verbose:
+                        print(f"    [WARN] RAG retrieval failed: {e}")
+
+            t1 = run_tier1(llm, func_slice, similar_examples=similar_examples)
 
             # Factual consistency verification
             if verify_drc:
@@ -591,7 +628,7 @@ def analyse_one_apk(
                     if verbose:
                         print(f"    [DRC] Re-analysing {func_slice.function_name} "
                               f"(DRC={drc:.2f} < 0.50)")
-                    t1 = run_tier1(llm, func_slice)  # retry once
+                    t1 = run_tier1(llm, func_slice, similar_examples=similar_examples)  # retry once
 
             tier1_results.append(t1)
         except Exception as e:
@@ -685,6 +722,16 @@ def main() -> None:
         help="Skip factual consistency verification (faster but less reliable)."
     )
     parser.add_argument(
+        "--rag", action="store_true",
+        help="Enable RAG: retrieve similar labeled CFG slices from "
+             "rag_store/ and include them as reference cases in Tier 1 "
+             "prompts. Build the index first with `python src_python/rag.py --build`."
+    )
+    parser.add_argument(
+        "--rag-k", type=int, default=3,
+        help="Number of similar examples to retrieve per function slice (default: 3)."
+    )
+    parser.add_argument(
         "--output", type=Path, default=None,
         help="Output JSONL file for predictions."
     )
@@ -697,6 +744,7 @@ def main() -> None:
     print(f"  Backend : {args.backend}")
     print(f"  CSV     : {args.csv}")
     print(f"  DRC     : {'disabled' if args.no_drc else 'enabled'}")
+    print(f"  RAG     : {'enabled (k=' + str(args.rag_k) + ')' if args.rag else 'disabled'}")
     print("=" * 65)
     print()
 
@@ -811,6 +859,8 @@ def main() -> None:
                     llm, sha256, cfg_path,
                     verify_drc=not args.no_drc,
                     verbose=True,
+                    use_rag=args.rag,
+                    rag_k=args.rag_k,
                 )
 
             if result is None:

@@ -46,6 +46,42 @@ RISK_ASSESSMENT: <LOW/MEDIUM/HIGH with brief justification>
 """
 
 # =============================================================================
+#  Tier 1 (RAG-augmented) — Function-Level CFG Analysis with Retrieved Cases
+# =============================================================================
+# Used when --rag is enabled. Retrieved examples come from src_python/rag.py,
+# which does case-based retrieval over previously-labeled CFG slices.
+
+TIER1_USER_TEMPLATE_RAG = """\
+Analyze the following sliced control flow graph from an Android application.
+The CFG shows Jimple IR statements that are data-flow or control-dependence
+relevant to a suspicious API call.
+
+Provide a concise behavioral summary that covers:
+1. What data is being accessed or manipulated
+2. How the suspicious API is being used
+3. Whether the usage pattern appears malicious or benign
+4. Any obfuscation or evasion techniques visible
+
+Control Flow Graph:
+{cfg_content}
+
+For reference, here are similar CFG patterns from PREVIOUSLY LABELED apps in our
+dataset (retrieved by code similarity), with their known ground-truth labels.
+Use these as precedent to calibrate your judgment, but reason independently —
+a similar API call is not automatically the same verdict, since context and
+intent still matter more than the API name alone.
+
+{similar_examples}
+
+Respond with a structured summary in this format:
+FUNCTION: <function name>
+SUSPICIOUS_API: <API name>
+BEHAVIOR: <1-2 sentence description of what this function does>
+DATA_FLOW: <what data flows into/out of the suspicious API>
+RISK_ASSESSMENT: <LOW/MEDIUM/HIGH with brief justification>
+"""
+
+# =============================================================================
 #  Factual Consistency Verification — Data Relationship Coverage (DRC)
 # =============================================================================
 
