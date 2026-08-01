@@ -75,6 +75,11 @@ public final class SootSetup {
         opts.set_process_dir(Collections.singletonList(apkPath));
         opts.set_android_jars(androidJarsPath);
 
+        String jarPath = androidJarsPath + java.io.File.separator + "android-30" + java.io.File.separator + "android.jar";
+        if (new java.io.File(jarPath).exists()) {
+            opts.set_force_android_jar(jarPath);
+        }
+
         // ── Analysis scope ─────────────────────────────────────────────────────
         opts.set_whole_program(true);           // build call graph
         opts.set_allow_phantom_refs(true);      // tolerate missing stubs
