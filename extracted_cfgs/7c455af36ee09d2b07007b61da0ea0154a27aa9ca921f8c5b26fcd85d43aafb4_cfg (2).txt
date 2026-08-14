@@ -1,0 +1,31 @@
+=== FUNCTION: utel.srtel.rush.v311.AudioRecorder.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: utel.srtel.rush.v311.AudioRecorder
+NODE 2: if $u5 == 3 goto $u0 = this.<utel.srtel.rush.v311.AudioRecorder: android.media.AudioRecord iAudioRecorder>
+NODE 3: $u0 = this.<utel.srtel.rush.v311.AudioRecorder: android.media.AudioRecord iAudioRecorder>
+NODE 4: virtualinvoke $u0.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: utel.srtel.rush.v311.SmoothDialer.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("g729")
+=== END FUNCTION ===
+
+=== FUNCTION: utel.srtel.rush.v311.SmoothDialer.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("DialerAgent")
+=== END FUNCTION ===
+
+=== FUNCTION: utel.srtel.rush.v311.SmoothDialer.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: utel.srtel.rush.v311.SmoothDialer
+NODE 2: $u-1#7 = virtualinvoke this.<utel.srtel.rush.v311.SmoothDialer: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 4: $u5 = newarray (java.lang.String)[1]
+NODE 5: $u-1#14 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, "_id=?", $u5, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

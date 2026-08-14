@@ -1,0 +1,275 @@
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.MainActivity.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("wot-armor-inspector")
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.util.Security.v ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.util.Security.v ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 2: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 3: $u8 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+NODE 5: $u6#18 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#23 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#18)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.util.Security.v ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.util.Security.v ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#26 == 0 goto $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 2: $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 3: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 4: $u8 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+NODE 6: $u6#18 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#23 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#18)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.DownloaderService.pollNetworkState ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.impl.DownloaderService
+NODE 2: if $u1#6 != null goto $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 3: $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 4: if $u1 != null goto $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 5: $u1 = this.<com.google.android.vending.expansion.downloader.impl.DownloaderService: android.net.ConnectivityManager mConnectivityManager>
+NODE 6: $u-1#14 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.SystemFacade.getActiveNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.SystemFacade
+NODE 2: $u3 = this.<com.google.android.vending.expansion.downloader.SystemFacade: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivity = (android.net.ConnectivityManager) $u-1
+NODE 5: if connectivity != null goto $u-1#9 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#9 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.SystemFacade.isNetworkRoaming ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.SystemFacade
+NODE 2: $u7 = this.<com.google.android.vending.expansion.downloader.SystemFacade: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivity = (android.net.ConnectivityManager) $u-1
+NODE 5: if connectivity != null goto $u-1#10 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#10 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.vending.expansion.zipfile.APKExpansionSupport.getAPKExpansionFiles ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto $u11 = virtualinvoke ret.<java.util.Vector: int size()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.licensing.AESObfuscator.obfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.vending.licensing.AESObfuscator
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: java.lang.String
+NODE 4: if $u5 != null goto $u1 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 5: $u1 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mEncryptor>
+NODE 6: $u2 = new java.lang.StringBuilder
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.android.vending.licensing.AESObfuscator-1|")
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 10: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 12: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.licensing.AESObfuscator.unobfuscate ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.vending.licensing.AESObfuscator
+NODE 2: $u7 := @parameter0: java.lang.String
+NODE 3: $u3 = this.<com.google.android.vending.licensing.AESObfuscator: javax.crypto.Cipher mDecryptor>
+NODE 4: $u-1 = staticinvoke <com.google.android.vending.licensing.util.Base64: byte[] decode(java.lang.String)>($u7)
+NODE 5: $u-1 = virtualinvoke $u3.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.SSLSessionCache")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient newInstance(java.lang.String,android.content.Context)>($u1, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u15 == null goto $r0 = (org.apache.http.params.HttpParams) params
+NODE 2: $u9 = <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: java.lang.Class sSslSessionCacheClass>
+NODE 3: if $u9 == null goto $r0 = (org.apache.http.params.HttpParams) params
+NODE 4: $u9 = <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: java.lang.Class sSslSessionCacheClass>
+NODE 5: $u10 = newarray (java.lang.Class)[1]
+NODE 6: $u-1 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u10)
+NODE 7: $u9#13 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#15 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u9#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if sessionCache == null goto (branch)
+NODE 2: $u9 = class "Landroid/net/SSLCertificateSocketFactory;"
+NODE 3: $u10 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#30 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHttpSocketFactory", $u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: if sessionCache == null goto (branch)
+NODE 2: $u9 = class "Landroid/net/SSLCertificateSocketFactory;"
+NODE 3: $u10 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#30 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHttpSocketFactory", $u10)
+NODE 5: $u9#13 = newarray (java.lang.Object)[2]
+NODE 6: sessionCache = virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u9#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.getFilesystemRoot ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.getSaveFilePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.Helpers.isFilenameValid ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#9 != 0 goto return 1
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.gameplay3d.GamePlayNativeActivity.getDataColumn ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u11 := @parameter1: android.net.Uri
+NODE 3: $u12 := @parameter2: java.lang.String
+NODE 4: $u13 := @parameter3: java.lang.String[]
+NODE 5: projection = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u11, projection, $u12, $u13, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.util.Security.v ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.util.Security.v ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 2: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 3: $u8 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+NODE 5: $u6#18 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#22 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#18)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.util.Security.v ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.util.Security.v ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#25 == 0 goto $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 2: $u-1 = staticinvoke <java.security.Signature: java.security.Signature getInstance(java.lang.String)>("SHA1withRSA")
+NODE 3: $u6 = class "Ljava/security/SignatureSpi;"
+NODE 4: $u8 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("engineVerify", $u8)
+NODE 6: $u6#18 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#22 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#18)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.vending.expansion.downloader.impl.DownloadThread.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.vending.expansion.downloader.impl.DownloadThread
+NODE 2: $u-1#15 = specialinvoke this.<com.google.android.vending.expansion.downloader.impl.DownloadThread: java.lang.String userAgent()>()
+NODE 3: $u1#10 = this.<com.google.android.vending.expansion.downloader.impl.DownloadThread: android.content.Context mContext>
+NODE 4: $u-1#19 = staticinvoke <com.google.android.vending.expansion.downloader.impl.AndroidHttpClient: com.google.android.vending.expansion.downloader.impl.AndroidHttpClient newInstance(java.lang.String,android.content.Context)>($u-1#15, $u1#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dreamfarmgames.wot.armorinspector.android2.SampleDownloaderActivity.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("wot-armor-inspector")
+=== END FUNCTION ===
+

@@ -1,0 +1,152 @@
+=== FUNCTION: com.squareup.picasso.MediaStoreRequestHandler.getExifOrientation ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.ContentResolver
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u2 = <com.squareup.picasso.MediaStoreRequestHandler: java.lang.String[] CONTENT_ORIENTATION>
+NODE 4: $u-1 = virtualinvoke $u9.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.roads.detailed.RoadImageAdapter.getView ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.roads.detailed.RoadImageAdapter
+NODE 2: $u2#28 = this.<com.roads.detailed.RoadImageAdapter: android.content.res.Resources mResources>
+NODE 3: $u-1 = new java.lang.String
+NODE 4: $u5#45 = this.<com.roads.detailed.RoadImageAdapter: com.roads.detailed.OnImageProcessedListener mListener>
+NODE 5: $u-1#46 = interfaceinvoke $u5#45.<com.roads.detailed.OnImageProcessedListener: android.content.Context getContext()>()
+NODE 6: $u5 = virtualinvoke $u-1#46.<android.content.Context: java.lang.String getPackageName()>()
+NODE 7: $u4 = virtualinvoke $u2#28.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($u-1, "drawable", $u5)
+NODE 8: $u5#45 = this.<com.roads.detailed.RoadImageAdapter: com.roads.detailed.OnImageProcessedListener mListener>
+NODE 9: $u-1#46 = interfaceinvoke $u5#45.<com.roads.detailed.OnImageProcessedListener: android.content.Context getContext()>()
+NODE 10: $u-1#54 = staticinvoke <com.squareup.picasso.Picasso: com.squareup.picasso.Picasso 'with'(android.content.Context)>($u-1#46)
+NODE 11: $u-1#56 = virtualinvoke $u-1#54.<com.squareup.picasso.Picasso: com.squareup.picasso.RequestCreator load(int)>($u4)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.NetworkRequestHandler.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.squareup.picasso.NetworkRequestHandler
+NODE 2: $u11 := @parameter0: com.squareup.picasso.Request
+NODE 3: $u5 = this.<com.squareup.picasso.NetworkRequestHandler: com.squareup.picasso.Downloader downloader>
+NODE 4: $u6 = $u11.<com.squareup.picasso.Request: android.net.Uri uri>
+NODE 5: $u7 = $u11.<com.squareup.picasso.Request: boolean loadFromLocalCacheOnly>
+NODE 6: $u-1 = interfaceinvoke $u5.<com.squareup.picasso.Downloader: com.squareup.picasso.Downloader$Response load(android.net.Uri,boolean)>($u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Dispatcher$NetworkBroadcastReceiver.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1#3 == 0 goto return
+NODE 3: $u-1#16 = staticinvoke <com.squareup.picasso.Utils: java.lang.Object getService(android.content.Context,java.lang.String)>($u6, "connectivity")
+NODE 4: connectivityManager = (android.net.ConnectivityManager) $u-1#16
+NODE 5: $u-1#20 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Utils.createDefaultDownloader ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.squareup.okhttp.OkUrlFactory")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Utils.createDefaultDownloader ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.squareup.okhttp.OkHttpClient")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Picasso.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.squareup.picasso.Picasso
+NODE 2: $u4 := @parameter0: java.io.File
+NODE 3: if $u4 != null goto $u-1 = staticinvoke <android.net.Uri: android.net.Uri fromFile(java.io.File)>($u4)
+NODE 4: $u-1 = staticinvoke <android.net.Uri: android.net.Uri fromFile(java.io.File)>($u4)
+NODE 5: $u0 = virtualinvoke this.<com.squareup.picasso.Picasso: com.squareup.picasso.RequestCreator load(android.net.Uri)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Picasso.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.squareup.picasso.Picasso
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: if $u-1#5 != 0 goto $u-1#9 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u4)
+NODE 4: $u-1#9 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u4)
+NODE 5: $u0 = virtualinvoke this.<com.squareup.picasso.Picasso: com.squareup.picasso.RequestCreator load(android.net.Uri)>($u-1#9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.BitmapHunter.hunt ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.squareup.picasso.BitmapHunter
+NODE 2: $u3#20 = this.<com.squareup.picasso.BitmapHunter: com.squareup.picasso.RequestHandler requestHandler>
+NODE 3: $u5 = this.<com.squareup.picasso.BitmapHunter: com.squareup.picasso.Request data>
+NODE 4: $u-1#22 = virtualinvoke $u3#20.<com.squareup.picasso.RequestHandler: com.squareup.picasso.RequestHandler$Result load(com.squareup.picasso.Request)>($u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.roads.extra.DescriptionActivity.onCreate ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.roads.extra.DescriptionActivity
+NODE 2: $u-1 = virtualinvoke this.<com.roads.extra.DescriptionActivity: android.content.Intent getIntent()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<android.content.Intent: int getIntExtra(java.lang.String,int)>("language", 0)
+NODE 4: $u-1#7 = staticinvoke <com.roads.extra.Language: com.roads.extra.Language fromInteger(int)>($u-1#5)
+NODE 5: $u-1 = virtualinvoke this.<com.roads.extra.DescriptionActivity: android.content.Intent getIntent()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("resource_name")
+NODE 7: $u-1#17 = staticinvoke <com.squareup.picasso.Picasso: com.squareup.picasso.Picasso 'with'(android.content.Context)>(this)
+NODE 8: $u-1#19 = virtualinvoke this.<com.roads.extra.DescriptionActivity: android.content.res.Resources getResources()>()
+NODE 9: $u7 = new java.lang.StringBuilder
+NODE 10: $u7 = virtualinvoke $u7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#11)
+NODE 11: $u7 = virtualinvoke $u7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_")
+NODE 12: $u-1#11 = staticinvoke <com.roads.extra.Language: java.lang.String getSuffix(com.roads.extra.Language)>($u-1#7)
+NODE 13: $u7 = virtualinvoke $u7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#11)
+NODE 14: $u-1#11 = virtualinvoke $u7.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#34 = virtualinvoke this.<com.roads.extra.DescriptionActivity: java.lang.String getPackageName()>()
+NODE 16: $u-1#5 = virtualinvoke $u-1#19.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($u-1#11, "drawable", $u-1#34)
+NODE 17: $u-1#37 = virtualinvoke $u-1#17.<com.squareup.picasso.Picasso: com.squareup.picasso.RequestCreator load(int)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.picasso.Dispatcher.performRetry ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.squareup.picasso.Dispatcher
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: $u8#10 = this.<com.squareup.picasso.Dispatcher: android.content.Context context>
+NODE 4: $u-1#11 = staticinvoke <com.squareup.picasso.Utils: java.lang.Object getService(android.content.Context,java.lang.String)>($u8#10, "connectivity")
+NODE 5: connectivityManager = (android.net.ConnectivityManager) $u-1#11
+NODE 6: networkInfo = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

@@ -1,0 +1,422 @@
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.Appnext$SpecialOffers.doInBackground ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.appnext.appnextsdk.Appnext$SpecialOffers
+NODE 2: $u2 = this.<com.appnext.appnextsdk.Appnext$SpecialOffers: com.appnext.appnextsdk.Appnext this$0>
+NODE 3: $u-1 = staticinvoke <com.appnext.appnextsdk.Appnext: android.content.Context access$17(com.appnext.appnextsdk.Appnext)>($u2)
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: telephonyManager = (android.telephony.TelephonyManager) $u-1#6
+NODE 6: $u-1#9 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.l.b ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.unity3d.player.l
+NODE 2: if $u0 != 0 goto $u0#9 = this.<com.unity3d.player.l: android.content.Context a>
+NODE 3: $u0#9 = this.<com.unity3d.player.l: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u0#13 = (android.location.LocationManager) $u-1
+NODE 6: $u-1#14 = virtualinvoke $u0#13.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 7: if $u1 != 2 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 8: $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()
+NODE 9: if $u0 == 0 goto return
+NODE 10: $u-1 = interfaceinvoke $u-1#19.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u1#25 = (java.lang.String) $u-1
+NODE 12: if $u-1#26 == null goto $u-1#41 = virtualinvoke $u0#13.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u1#25)
+NODE 13: if $u1 == 1 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 14: $u-1#41 = virtualinvoke $u0#13.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u1#25)
+NODE 15: goto [?= $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 14
+EDGE: 13 -> 14
+EDGE: 15 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.l.b ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.unity3d.player.l
+NODE 2: if $u0 != 0 goto $u0#9 = this.<com.unity3d.player.l: android.content.Context a>
+NODE 3: $u0#9 = this.<com.unity3d.player.l: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u0#13 = (android.location.LocationManager) $u-1
+NODE 6: $u-1#14 = virtualinvoke $u0#13.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 7: if $u1 != 2 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 8: $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()
+NODE 9: if $u0 == 0 goto return
+NODE 10: $u-1 = interfaceinvoke $u-1#19.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u1#25 = (java.lang.String) $u-1
+NODE 12: $u4 = this.<com.unity3d.player.l: float d>
+NODE 13: $u0#9 = this.<com.unity3d.player.l: android.content.Context a>
+NODE 14: $u-1#46 = virtualinvoke $u0#9.<android.content.Context: android.os.Looper getMainLooper()>()
+NODE 15: virtualinvoke $u0#13.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>($u1#25, 0L, $u4, this, $u-1#46)
+NODE 16: goto [?= $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.unity.AppnextUnityPlugin$Click1.doInBackground ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.appnext.appnextsdk.unity.AppnextUnityPlugin$Click1
+NODE 2: $u10 = this.<com.appnext.appnextsdk.unity.AppnextUnityPlugin$Click1: com.appnext.appnextsdk.unity.AppnextUnityPlugin this$0>
+NODE 3: $u-1 = staticinvoke <com.appnext.appnextsdk.unity.AppnextUnityPlugin: android.content.Context access$0(com.appnext.appnextsdk.unity.AppnextUnityPlugin)>($u10)
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: telephonyManager = (android.telephony.TelephonyManager) $u-1#5
+NODE 6: $u-1#8 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.Appnext$SendByEmail.doInBackground ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.appnext.appnextsdk.Appnext$SendByEmail
+NODE 2: $u11 = this.<com.appnext.appnextsdk.Appnext$SendByEmail: com.appnext.appnextsdk.Appnext this$0>
+NODE 3: $u-1 = staticinvoke <com.appnext.appnextsdk.Appnext: android.content.Context access$17(com.appnext.appnextsdk.Appnext)>($u11)
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: telephonyManager = (android.telephony.TelephonyManager) $u-1#5
+NODE 6: $u-1#8 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.AppnextPlugin.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.unity3d.player.UnityPlayer")
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.AppnextPlugin.showPopupInActivity ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.unity3d.player.UnityPlayer")
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.AppnextPlugin.showPopupInActivity ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#5 == null goto return
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.unity3d.player.UnityPlayer")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.AppnextPlugin.showPopupInActivity ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.unity3d.player.UnityPlayer")
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.AppnextPlugin.UnitySendMessage ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.appnext.AppnextPlugin
+NODE 2: if $u8 != null goto $u1 = this.<com.appnext.AppnextPlugin: java.lang.reflect.Method _unitySendMessageMethod>
+NODE 3: $u1 = this.<com.appnext.AppnextPlugin: java.lang.reflect.Method _unitySendMessageMethod>
+NODE 4: if $u1 == null goto return
+NODE 5: $u1 = this.<com.appnext.AppnextPlugin: java.lang.reflect.Method _unitySendMessageMethod>
+NODE 6: $u3 = newarray (java.lang.Object)[3]
+NODE 7: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.Appnext$Click1.doInBackground ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.appnext.appnextsdk.Appnext$Click1
+NODE 2: $u11 = this.<com.appnext.appnextsdk.Appnext$Click1: com.appnext.appnextsdk.Appnext this$0>
+NODE 3: $u-1 = staticinvoke <com.appnext.appnextsdk.Appnext: android.content.Context access$17(com.appnext.appnextsdk.Appnext)>($u11)
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: telephonyManager = (android.telephony.TelephonyManager) $u-1#5
+NODE 6: $u-1#8 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: $u0 = $u5[0]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.String: int length()>()
+NODE 5: if $u0 >= $u-1 goto return null
+NODE 6: $u0 = $u5[0]
+NODE 7: $u-1#7 = virtualinvoke $u4.<java.lang.String: char charAt(int)>($u0)
+NODE 8: $u0 = (int) $u-1#7
+NODE 9: if $u0 == 40 goto $u0 = $u5[0]
+NODE 10: $u0 = (int) $u-1#7
+NODE 11: if $u0 == 41 goto $u0 = $u5[0]
+NODE 12: $u0 = (int) $u-1#7
+NODE 13: if $u0 != 76 goto $u0 = (int) $u-1#7
+NODE 14: $u0 = $u5[0]
+NODE 15: $u0 = virtualinvoke $u4.<java.lang.String: int indexOf(int,int)>(59, $u0)
+NODE 16: if $u0 == -1 goto return null
+NODE 17: $u-1 = $u5[0]
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u0)
+NODE 19: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String replace(char,char)>(47, 46)
+NODE 20: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 3
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: if $u0 != 91 goto $u0 = new java.lang.StringBuilder
+NODE 4: $u-1#25 = staticinvoke <com.unity3d.player.ReflectionHelper: java.lang.Class a(java.lang.String,int[])>($u4, $u5)
+NODE 5: $u-1#46 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#25, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.fmod.a.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.fmod.a
+NODE 2: $u0#9 = this.<org.fmod.a: android.media.AudioRecord h>
+NODE 3: virtualinvoke $u0#9.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.Appnext$NewsletterRegister.doInBackground ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.appnext.appnextsdk.Appnext$NewsletterRegister
+NODE 2: $u7 = this.<com.appnext.appnextsdk.Appnext$NewsletterRegister: com.appnext.appnextsdk.Appnext this$0>
+NODE 3: $u-1 = staticinvoke <com.appnext.appnextsdk.Appnext: android.content.Context access$17(com.appnext.appnextsdk.Appnext)>($u7)
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: telephonyManager = (android.telephony.TelephonyManager) $u-1#5
+NODE 6: $u-1#8 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("main")
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+NODE 2: goto [?= $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: load
+NODE 1: $u2 := @parameter0: android.content.pm.ApplicationInfo
+NODE 2: $u0 = $u2.<android.content.pm.ApplicationInfo: java.lang.String nativeLibraryDir>
+NODE 3: $u-1 = staticinvoke <com.unity3d.player.NativeLoader: boolean load(java.lang.String)>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#13 == 0 goto $u2 = virtualinvoke $u1.<java.util.Vector: int size()>()
+NODE 2: $u-1#15 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.getInternetReachability ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.unity3d.player.UnityPlayer
+NODE 2: if $u0 != null goto $u0 = this.<com.unity3d.player.UnityPlayer: android.net.NetworkInfo B>
+NODE 3: $u0#2 = this.<com.unity3d.player.UnityPlayer: android.content.ContextWrapper m>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.ContextWrapper: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 6: $u0 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.unity.ImageDownloader.downloadBitmap ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u9 != $u10 goto client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+NODE 2: client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.ImageDownloader.downloadBitmap ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u9 != $u10 goto client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+NODE 2: client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.b.a ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://customization_settings/SettingTable/application_Browser")
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#4, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.ReferralReceiver.onReceive ===
+SUSPICIOUS_API: forName
+NODE 1: $u26 := @parameter0: android.content.Context
+NODE 2: $u27 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u26.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#7 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List queryBroadcastReceivers(android.content.Intent,int)>($u27, 0)
+NODE 5: $u-1#8 = interfaceinvoke $u-1#7.<java.util.List: java.util.Iterator iterator()>()
+NODE 6: if $u-1#10 != 0 goto $u-1#19 = interfaceinvoke $u-1#8.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: $u-1#19 = interfaceinvoke $u-1#8.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: ri = (android.content.pm.ResolveInfo) $u-1#19
+NODE 9: ai = ri.<android.content.pm.ResolveInfo: android.content.pm.ActivityInfo activityInfo>
+NODE 10: if $u-1#10 == 0 goto $u-1#10 = interfaceinvoke $u-1#8.<java.util.Iterator: boolean hasNext()>()
+NODE 11: name = ai.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: if $u-1#10 != 0 goto $u-1#10 = interfaceinvoke $u-1#8.<java.util.Iterator: boolean hasNext()>()
+NODE 13: $u-1#31 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(name)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.ReferralReceiver.onReceive ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u26 := @parameter0: android.content.Context
+NODE 2: $u27 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u26.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#7 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List queryBroadcastReceivers(android.content.Intent,int)>($u27, 0)
+NODE 5: $u-1#8 = interfaceinvoke $u-1#7.<java.util.List: java.util.Iterator iterator()>()
+NODE 6: if $u-1#10 != 0 goto $u-1#19 = interfaceinvoke $u-1#8.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: $u-1#19 = interfaceinvoke $u-1#8.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: ri = (android.content.pm.ResolveInfo) $u-1#19
+NODE 9: ai = ri.<android.content.pm.ResolveInfo: android.content.pm.ActivityInfo activityInfo>
+NODE 10: if $u-1#10 == 0 goto $u-1#10 = interfaceinvoke $u-1#8.<java.util.Iterator: boolean hasNext()>()
+NODE 11: name = ai.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: if $u-1#10 != 0 goto $u-1#10 = interfaceinvoke $u-1#8.<java.util.Iterator: boolean hasNext()>()
+NODE 13: $u-1#31 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(name)
+NODE 14: $u-1#19 = virtualinvoke $u-1#31.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.DownloadService.onHandleIntent ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.appnext.appnextsdk.DownloadService
+NODE 2: $u4 = new java.lang.StringBuilder
+NODE 3: $u1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".apk")
+NODE 4: $u-1#9 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: output = virtualinvoke this.<com.appnext.appnextsdk.DownloadService: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#9, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

@@ -1,0 +1,3132 @@
+=== FUNCTION: com.slpop.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slpop.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpop.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slpop.CLM
+NODE 2: $u-1 = this.<com.slpop.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slpop.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpop.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slpop.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slpop.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpop.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slpop.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slpop.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slpop.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.KR.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.e.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u11 := @parameter0: com.android.home7.kt.a.f
+NODE 2: $u-1 = virtualinvoke $u11.<com.android.home7.kt.a.f: java.io.File c()>()
+NODE 3: if $u-1#6 == 0 goto $u-1 = virtualinvoke $u11.<com.android.home7.kt.a.f: java.io.File c()>()
+NODE 4: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("chmod 777 ")
+NODE 7: $u-1#3 = virtualinvoke $u-1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 9: $u-1#3 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.q.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.q.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.k.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.k.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = null
+NODE 6: if $u0#11 == null goto $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#5 = virtualinvoke $u0#11.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 8: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.k.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.m.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.m.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.m.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u7 != null goto $u0 = new org.json.JSONObject
+NODE 4: $u0 = new org.json.JSONObject
+NODE 5: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0 = (com.android.home7.kt.j) $u-1
+NODE 7: if $u-1#8 != 0 goto return null
+NODE 8: $u7 = interfaceinvoke $u0.<com.android.home7.kt.j: java.lang.String b()>()
+NODE 9: $u-1#12 = virtualinvoke $u0.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>($u7)
+NODE 10: if $u-1#12 == null goto return null
+NODE 11: $u-1#13 = virtualinvoke $u-1#12.<org.json.JSONArray: int length()>()
+NODE 12: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, $u-1#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.m.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1#13 >= $u-1#21 goto return $u0#17
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.RevTool.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u0 == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.RevTool.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u-1#16 = virtualinvoke $u8.<android.content.Context: java.io.File getCacheDir()>()
+NODE 2: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.p.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u2 = virtualinvoke $u4.<android.content.Context: java.io.File getCacheDir()>()
+NODE 2: $u2 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.r.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter1: java.lang.Class
+NODE 2: if $u-1#10 != null goto $u2#21 = newarray (java.lang.Class)[1]
+NODE 3: goto [?= (branch)]
+NODE 4: $u2#21 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#24 = virtualinvoke $u7.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2#21)
+NODE 6: $u3 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#29 = virtualinvoke $u-1#24.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+NODE 8: goto [?= (branch)]
+EDGE: 2 -> 4
+EDGE: 3 -> 2
+EDGE: 5 -> 6
+EDGE: 8 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.c.e.k ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.net.c.e
+NODE 2: if $u0 != null goto $u0 = this.<com.android.net.c.e: com.android.net.c.g h>
+NODE 3: $u0#2 = this.<com.android.net.c.e: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 6: $u-1#7 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.c.e.l ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.net.c.e
+NODE 2: $u0 = this.<com.android.net.c.e: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.d.a.getView ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#21 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 != 0 goto $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.net.e.h: android.content.pm.PackageInfo b(android.content.Context,java.lang.String,int)>($u4, $u0, 4)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ServiceInfo[] services>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ServiceInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.net.e.h: android.content.pm.PackageInfo b(android.content.Context,java.lang.String,int)>($u4, $u0, 2)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.f ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.j ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.h.l ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.a.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.c.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u0 = null
+NODE 3: $u7 = <com.android.net.e.b: java.lang.String by>
+NODE 4: $u-1#9 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u7)
+NODE 5: $u0 = $u-1#9
+NODE 6: $u-1 = virtualinvoke $u8.<java.lang.String: byte[] getBytes()>()
+NODE 7: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.e.c.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u0 = null
+NODE 3: $u7 = <com.android.net.e.b: java.lang.String by>
+NODE 4: $u-1#9 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u7)
+NODE 5: $u0 = $u-1#9
+NODE 6: $u4 = virtualinvoke $u8.<java.lang.String: int length()>()
+NODE 7: $u4 = $u4 / 2
+NODE 8: $u-1 = newarray (byte)[$u4]
+NODE 9: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.c.e.k ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.tool.c.e
+NODE 2: if $u0 != null goto $u0 = this.<com.android.tool.c.e: com.android.tool.c.g h>
+NODE 3: $u0#2 = this.<com.android.tool.c.e: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 6: $u-1#7 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.c.e.l ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.tool.c.e
+NODE 2: $u0 = this.<com.android.tool.c.e: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.JReceiver.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.cdsak.ysiq.JReceiver
+NODE 2: $u0#3 = this.<com.cdsak.ysiq.JReceiver: android.content.Context b>
+NODE 3: $u-1 = virtualinvoke $u0#3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#7 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u0#7 == null goto return
+NODE 6: $u-1#8 = virtualinvoke $u0#7.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.DownloadingService$b.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#8 == 0 goto $u7 = this.<com.umeng.common.net.DownloadingService$b: android.content.Context b>
+NODE 2: $u-1#25 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.net.DownloadingService$b.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.umeng.common.net.DownloadingService$b
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u3 = this.<com.umeng.common.net.DownloadingService$b: com.umeng.common.net.a$a j>
+NODE 4: $u3#5 = $u3.<com.umeng.common.net.a$a: java.lang.String c>
+NODE 5: $u3#5 = staticinvoke <com.umeng.common.util.g: java.lang.String a(java.lang.String)>($u3#5)
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3#5)
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".apk.tmp")
+NODE 8: $u3#5 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: if $u-1 == 0 goto (branch)
+NODE 10: $u3#5 = virtualinvoke $u3#5.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("apk", "patch")
+NODE 11: $u2 = this.<com.umeng.common.net.DownloadingService$b: android.content.Context b>
+NODE 12: $u8 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u3#5, 32771)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.BrTool.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.BrTool.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.net.BrTool
+NODE 2: $u11 = this.<com.android.net.BrTool: android.content.Context a>
+NODE 3: $u-1#45 = virtualinvoke $u11.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#91 = (android.net.ConnectivityManager) $u-1#45
+NODE 5: $u-1#92 = virtualinvoke $u0#91.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.DeltaUpdate.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("bspatch")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.g.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: if $u-1#6 == 0 goto $u-1#10 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#10 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#10
+NODE 5: $u-1#13 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.i.a ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.umeng.analytics.i: java.lang.String g(android.content.Context)>($u4)
+NODE 3: if $u-1#7 == 0 goto $u-1#9 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1)
+NODE 4: $u-1#9 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.i.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u-1 = staticinvoke <com.umeng.analytics.i: java.lang.String g(android.content.Context)>($u2)
+NODE 3: $u-1 = staticinvoke <com.umeng.analytics.i: java.lang.String g(android.content.Context)>($u2)
+NODE 4: $u-1#5 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1, 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.al.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.al.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.ap.getView ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.an.<init> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0#32 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u0 = virtualinvoke $u0#32.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#4 = virtualinvoke $u5.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1#4.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 1)
+NODE 6: $u3 = $u-1#7.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] activities>
+NODE 7: if $u3 != null goto $u0#13 = 0
+NODE 8: $u0#13 = 0
+NODE 9: if $u0#13 >= $u2 goto return null
+NODE 10: $u2#15 = $u3[$u0#13]
+NODE 11: $u0 = $u2#15.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: $u-1#17 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#19 == 0 goto $u0#13 = $u0#13 + 1
+NODE 14: $u0#13 = $u0#13 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#21 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#5 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 2)
+NODE 6: $u2 = $u-1#8.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 7: if $u2 != null goto $u0#12 = 0
+NODE 8: $u0#12 = 0
+NODE 9: if $u0#12 >= $u1 goto return $u5
+NODE 10: $u1#14 = $u2[$u0#12]
+NODE 11: $u0 = $u1#14.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#18 == 0 goto $u0#12 = $u0#12 + 1
+NODE 14: $u0#12 = $u0#12 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#5 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 4)
+NODE 6: $u2 = $u-1#8.<android.content.pm.PackageInfo: android.content.pm.ServiceInfo[] services>
+NODE 7: if $u2 != null goto $u0#12 = 0
+NODE 8: $u0#12 = 0
+NODE 9: if $u0#12 >= $u1 goto return $u5
+NODE 10: $u1#14 = $u2[$u0#12]
+NODE 11: $u0 = $u1#14.<android.content.pm.ServiceInfo: java.lang.String name>
+NODE 12: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#18 == 0 goto $u0#12 = $u0#12 + 1
+NODE 14: $u0#12 = $u0#12 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.d ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 != 0 goto $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.n ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.at.n ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 = new dalvik.system.DexClassLoader
+NODE 2: $u-1#23 = virtualinvoke $u2.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>("com.slpush.demo.MainActivity")
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#27 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u2#30 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u-1#27.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#30)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = new dalvik.system.DexClassLoader
+NODE 2: $u-1#23 = virtualinvoke $u2.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>("com.slpush.demo.MainActivity")
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#27 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u2#30 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u-1#27.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#30)
+NODE 7: $u-1#35 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getMoney", null)
+NODE 8: $u-1#31 = virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.MainReceiver.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u0 == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.MainReceiver.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.cshome.game.utils.SoundPlayer.initSound ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = <com.cshome.game.utils.SoundPlayer: android.media.SoundPool soundPool>
+NODE 2: $u3 = <com.cshome.game.utils.SoundPlayer: android.content.Context context>
+NODE 3: $u-1#11 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u3, 2131034112, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cshome.game.utils.SoundPlayer.initSound ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = <com.cshome.game.utils.SoundPlayer: android.media.SoundPool soundPool>
+NODE 2: $u3 = <com.cshome.game.utils.SoundPlayer: android.content.Context context>
+NODE 3: $u-1#11 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u3, 2131034114, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.a.d.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.a.c.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.z.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#47 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.P ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 != 0 goto $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#5 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 1)
+NODE 6: $u2 = $u-1#8.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] activities>
+NODE 7: if $u2 != null goto $u0#12 = 0
+NODE 8: $u0#12 = 0
+NODE 9: if $u0#12 >= $u1 goto return $u5
+NODE 10: $u1#14 = $u2[$u0#12]
+NODE 11: $u0 = $u1#14.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#18 == 0 goto $u0#12 = $u0#12 + 1
+NODE 14: $u0#12 = $u0#12 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#22 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#28 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R")
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter2: java.lang.String
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R")
+NODE 7: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 9: $u-1#13 = virtualinvoke $u3.<java.lang.Class: java.lang.Class[] getDeclaredClasses()>()
+NODE 10: $u0#15 = 0
+NODE 11: if $u0#15 >= $u2 goto return -1
+NODE 12: $u3 = $u-1#13[$u0#15]
+NODE 13: if $u-1#18 == 0 goto $u0#15 = $u0#15 + 1
+NODE 14: $u-1#20 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u7)
+NODE 15: $u0#15 = $u0#15 + 1
+NODE 16: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 13 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R")
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 8: $u-1#13 = virtualinvoke $u3.<java.lang.Class: java.lang.Class[] getDeclaredClasses()>()
+NODE 9: $u0#15 = 0
+NODE 10: if $u0#15 >= $u2 goto return -1
+NODE 11: $u3 = $u-1#13[$u0#15]
+NODE 12: if $u-1#18 == 0 goto $u0#15 = $u0#15 + 1
+NODE 13: $u-1#22 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 14: $u0#15 = $u0#15 + 1
+NODE 15: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#5 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 2)
+NODE 6: $u2 = $u-1#8.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 7: if $u2 != null goto $u0#12 = 0
+NODE 8: $u0#12 = 0
+NODE 9: if $u0#12 >= $u1 goto return $u5
+NODE 10: $u1#14 = $u2[$u0#12]
+NODE 11: $u0 = $u1#14.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#18 == 0 goto $u0#12 = $u0#12 + 1
+NODE 14: $u0#12 = $u0#12 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.d ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.o ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.y ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.n.y ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.o.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.android.home77.kz.o
+NODE 2: $u0 = this.<com.android.home77.kz.o: android.content.Context c>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.o.getView ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#48 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.h.handleMessage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.j.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.b.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 4: $u2 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>($u5)
+NODE 5: $u2 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.util.b.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u2 = staticinvoke <com.umeng.common.util.c: byte[] b(java.lang.String)>($u4)
+NODE 4: $u2 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.c.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u0 = null
+NODE 3: $u7 = <com.android.plat.c.b: java.lang.String bg>
+NODE 4: $u-1#9 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u7)
+NODE 5: $u0 = $u-1#9
+NODE 6: $u-1 = virtualinvoke $u8.<java.lang.String: byte[] getBytes()>()
+NODE 7: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.c.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u0 = null
+NODE 3: $u7 = <com.android.plat.c.b: java.lang.String bg>
+NODE 4: $u-1#9 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u7)
+NODE 5: $u0 = $u-1#9
+NODE 6: $u4 = virtualinvoke $u8.<java.lang.String: int length()>()
+NODE 7: $u4 = $u4 / 2
+NODE 8: $u-1 = newarray (byte)[$u4]
+NODE 9: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.a.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.a.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.g.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.g.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.g.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#5 == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.plat.c.h: android.content.pm.PackageInfo a(android.content.Context,java.lang.String,int)>($u4, $u0, 1)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] activities>
+NODE 6: if $u2 != null goto $u0#8 = 0
+NODE 7: $u0#8 = 0
+NODE 8: if $u0#8 >= $u1 goto return $u5
+NODE 9: $u1#10 = $u2[$u0#8]
+NODE 10: $u0 = $u1#10.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 11: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#14 == 0 goto $u0#8 = $u0#8 + 1
+NODE 13: $u0#8 = $u0#8 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.a ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.plat.c.h: android.content.pm.PackageInfo a(android.content.Context,java.lang.String,int)>($u4, $u0, 2)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.plat.c.h: android.content.pm.PackageInfo a(android.content.Context,java.lang.String,int)>($u4, $u0, 4)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ServiceInfo[] services>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ServiceInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.l ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.p ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.c.h.p ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cp.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.co.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.ct.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.android.home77.kz.ct
+NODE 2: $u0 = this.<com.android.home77.kz.ct: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.e ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.e ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.g ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.g ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.g ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.g ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.g ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.h ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.h ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.h ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#12 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.h ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#12 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.i ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.i ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.j ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.j ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.k ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.k ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.l ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.l ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.m ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.m ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.n ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.n ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.o ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.p ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.p ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.q ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.q ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.r ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.r ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.s ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.s ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.t ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.t ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.u ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.u ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.v ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.v ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.w ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.w ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cm.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.b.e.k ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.home7.kt.b.e
+NODE 2: if $u0 != null goto $u0 = this.<com.android.home7.kt.b.e: com.android.home7.kt.b.g h>
+NODE 3: $u0#2 = this.<com.android.home7.kt.b.e: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 6: $u-1#7 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home7.kt.b.e.l ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.home7.kt.b.e
+NODE 2: $u0 = this.<com.android.home7.kt.b.e: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.cy.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.android.home77.kz.cy
+NODE 2: $u0 = this.<com.android.home77.kz.cy: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.c.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.android.tool.c
+NODE 2: $u0 = this.<com.android.tool.c: android.app.Activity e>
+NODE 3: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpresent.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slpresent.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpresent.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slpresent.CLM
+NODE 2: $u-1 = this.<com.slpresent.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slpresent.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpresent.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slpresent.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slpresent.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpresent.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slpresent.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slpresent.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slpresent.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.l.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.l.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = null
+NODE 6: if $u0#11 == null goto $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#5 = virtualinvoke $u0#11.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 8: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.l.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.f.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u12 := @parameter0: com.android.net.a.h
+NODE 2: $u-1 = virtualinvoke $u12.<com.android.net.a.h: java.io.File c()>()
+NODE 3: if $u-1#6 == 0 goto $u-1 = virtualinvoke $u12.<com.android.net.a.h: java.io.File c()>()
+NODE 4: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u-1#3 = <com.android.net.e.b: java.lang.String W>
+NODE 7: $u2#15 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 8: $u2#15 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 9: $u-1#3 = virtualinvoke $u-1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 10: $u2#15 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 11: $u-1#3 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.s.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.s.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.s.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u7 != null goto $u0 = new org.json.JSONObject
+NODE 4: $u0 = new org.json.JSONObject
+NODE 5: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0 = (com.android.net.b.g) $u-1
+NODE 7: if $u-1#8 != 0 goto return null
+NODE 8: $u7 = interfaceinvoke $u0.<com.android.net.b.g: java.lang.String a()>()
+NODE 9: $u-1#12 = virtualinvoke $u0.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>($u7)
+NODE 10: if $u-1#12 == null goto return null
+NODE 11: $u-1#13 = virtualinvoke $u-1#12.<org.json.JSONArray: int length()>()
+NODE 12: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, $u-1#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.s.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1#13 >= $u-1#21 goto return $u0#17
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u-1 = <com.android.tool.h: java.lang.String aY>
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter2: java.lang.String
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u-1 = <com.android.tool.h: java.lang.String aY>
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 8: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 10: $u-1#13 = virtualinvoke $u3.<java.lang.Class: java.lang.Class[] getDeclaredClasses()>()
+NODE 11: $u0#15 = 0
+NODE 12: if $u0#15 >= $u2 goto return -1
+NODE 13: $u3 = $u-1#13[$u0#15]
+NODE 14: if $u-1#18 == 0 goto $u0#15 = $u0#15 + 1
+NODE 15: $u-1#20 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u7)
+NODE 16: $u0#15 = $u0#15 + 1
+NODE 17: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 14 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u-1 = <com.android.tool.h: java.lang.String aY>
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 9: $u-1#13 = virtualinvoke $u3.<java.lang.Class: java.lang.Class[] getDeclaredClasses()>()
+NODE 10: $u0#15 = 0
+NODE 11: if $u0#15 >= $u2 goto return -1
+NODE 12: $u3 = $u-1#13[$u0#15]
+NODE 13: if $u-1#18 == 0 goto $u0#15 = $u0#15 + 1
+NODE 14: $u-1#22 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 15: $u0#15 = $u0#15 + 1
+NODE 16: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.tool.ay: android.content.pm.PackageInfo c(android.content.Context,java.lang.String,int)>($u4, $u0, 1)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] activities>
+NODE 6: if $u2 != null goto $u0#8 = 0
+NODE 7: $u0#8 = 0
+NODE 8: if $u0#8 >= $u1 goto return $u5
+NODE 9: $u1#10 = $u2[$u0#8]
+NODE 10: $u0 = $u1#10.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 11: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#14 == 0 goto $u0#8 = $u0#8 + 1
+NODE 13: $u0#8 = $u0#8 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#21 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.tool.ay: android.content.pm.PackageInfo c(android.content.Context,java.lang.String,int)>($u4, $u0, 2)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#6 = staticinvoke <com.android.tool.ay: android.content.pm.PackageInfo c(android.content.Context,java.lang.String,int)>($u4, $u0, 4)
+NODE 5: $u2 = $u-1#6.<android.content.pm.PackageInfo: android.content.pm.ServiceInfo[] services>
+NODE 6: if $u2 != null goto $u0#9 = 0
+NODE 7: $u0#9 = 0
+NODE 8: if $u0#9 >= $u1 goto return $u5
+NODE 9: $u1#11 = $u2[$u0#9]
+NODE 10: $u0 = $u1#11.<android.content.pm.ServiceInfo: java.lang.String name>
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 12: if $u-1#15 == 0 goto $u0#9 = $u0#9 + 1
+NODE 13: $u0#9 = $u0#9 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.d ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 != 0 goto $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.d ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.f ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.n ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ay.n ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.y.getView ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.o.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ac.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1#6 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ac.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ac.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u7 == null goto return null
+NODE 4: $u-1 = virtualinvoke $u7.<java.lang.String: int length()>()
+NODE 5: if $u-1 >= 2 goto $u0 = new org.json.JSONObject
+NODE 6: $u0 = new org.json.JSONObject
+NODE 7: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: $u0 = (com.android.tool.v) $u-1#6
+NODE 9: if $u-1#11 != 0 goto return null
+NODE 10: $u7 = interfaceinvoke $u0.<com.android.tool.v: java.lang.String b()>()
+NODE 11: $u-1#15 = virtualinvoke $u0.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>($u7)
+NODE 12: if $u-1#15 == null goto return null
+NODE 13: $u-1 = virtualinvoke $u-1#15.<org.json.JSONArray: int length()>()
+NODE 14: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ac.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1 >= $u-1#24 goto return $u0#20
+NODE 3: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.d.a.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ao.getView ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#19 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.ak.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.am.<init> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0#20 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u0 = virtualinvoke $u0#20.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.b.e.k ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.home77.kz.b.e
+NODE 2: if $u0 != null goto $u0 = this.<com.android.home77.kz.b.e: com.android.home77.kz.b.g h>
+NODE 3: $u0#2 = this.<com.android.home77.kz.b.e: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 6: $u-1#7 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.b.e.l ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.android.home77.kz.b.e
+NODE 2: $u0 = this.<com.android.home77.kz.b.e: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.b.h.<init> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slfloat.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slfloat.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slfloat.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slfloat.CLM
+NODE 2: $u-1 = this.<com.slfloat.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slfloat.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slfloat.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slfloat.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slfloat.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slfloat.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slfloat.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slfloat.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slfloat.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getUidRxBytes", $u3)
+NODE 4: $u0 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.analytics.a.p.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.TrafficStats")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getUidTxBytes", $u3)
+NODE 4: $u0 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u0)
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.slinsert.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slinsert.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slinsert.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slinsert.CLM
+NODE 2: $u-1 = this.<com.slinsert.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slinsert.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slinsert.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slinsert.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slinsert.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slinsert.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slinsert.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slinsert.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slinsert.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.net.NetService.onCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.android.net.NetService
+NODE 2: $u0 = this.<com.android.net.NetService: android.content.Context a>
+NODE 3: $u-1#8 = staticinvoke <com.android.net.e.h: java.lang.Class b(android.content.Context,java.lang.Class)>($u0, class "Lcom/android/net/BrTool;")
+NODE 4: $u-1#10 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.w.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.w.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = null
+NODE 6: if $u0#11 == null goto $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#5 = virtualinvoke $u0#11.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 8: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.w.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.n.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u10 := @parameter0: com.android.tool.b.h
+NODE 2: $u-1 = virtualinvoke $u10.<com.android.tool.b.h: java.io.File c()>()
+NODE 3: if $u-1#6 == 0 goto $u-1 = virtualinvoke $u10.<com.android.tool.b.h: java.io.File c()>()
+NODE 4: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u-1#3 = <com.android.tool.h: java.lang.String aK>
+NODE 7: $u2#15 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 8: $u2#15 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 9: $u-1#3 = virtualinvoke $u-1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 10: $u2#15 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 11: $u-1#3 = virtualinvoke $u2#15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bn.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bn.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bn.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u7 != null goto $u1 = new org.json.JSONObject
+NODE 4: $u1 = new org.json.JSONObject
+NODE 5: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0 = (com.android.home77.kz.bj) $u-1
+NODE 7: if $u-1#8 != 0 goto return null
+NODE 8: $u7 = interfaceinvoke $u0.<com.android.home77.kz.bj: java.lang.String a()>()
+NODE 9: $u-1#12 = virtualinvoke $u1.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>($u7)
+NODE 10: if $u-1#12 == null goto return null
+NODE 11: $u-1#13 = virtualinvoke $u-1#12.<org.json.JSONArray: int length()>()
+NODE 12: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, $u-1#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bn.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1#13 >= $u-1#21 goto return $u0#17
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$drawable")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$layout")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$id")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$anim")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$style")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$string")
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.c.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$array")
+NODE 5: $u3 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 7: goto [?= $u0 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter1: java.lang.String
+NODE 2: $u0 = class "Landroid/util/DisplayMetrics;"
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.b ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.g ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#9 == 0 goto $u1 = ""
+NODE 5: $u1 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.k ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1#9 == 0 goto $u-1#14 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#14 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#14
+NODE 5: if $u0 != null goto $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+NODE 6: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.k ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1#9 == 0 goto $u-1#14 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#14 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#14
+NODE 5: if $u-1#21 != $u3 goto $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 6: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.m ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#6 = staticinvoke <com.umeng.common.b: boolean a(android.content.Context,java.lang.String)>($u6, "android.permission.ACCESS_COARSE_LOCATION")
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.m ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u0#11 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.n ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.r ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#10 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.umeng.common.b.r ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#10 = <com.umeng.common.b: java.lang.String a>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#10 = virtualinvoke $u-1#8.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 3: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 7: goto [?= $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bk.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bk.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = null
+NODE 6: if $u0#11 == null goto $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#5 = virtualinvoke $u0#11.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 8: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.bk.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slpush.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u-1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slpush.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slpush.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.am.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u12 := @parameter0: com.android.home77.kz.a.f
+NODE 2: $u-1 = virtualinvoke $u12.<com.android.home77.kz.a.f: java.io.File c()>()
+NODE 3: if $u-1#5 == 0 goto $u-1#31 = virtualinvoke $u12.<com.android.home77.kz.a.f: java.io.File c()>()
+NODE 4: $u-1#19 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("chmod 777 ")
+NODE 7: $u-1#2 = virtualinvoke $u-1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#2)
+NODE 9: $u-1#2 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: virtualinvoke $u-1#19.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#2)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.af.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.ax.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#29 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.home77.kz.ax.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.d.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.d.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = null
+NODE 6: if $u0#11 == null goto $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#5 = virtualinvoke $u0#11.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+NODE 8: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.d.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#10 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u0#10 != null goto $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u0#11 = virtualinvoke $u0#10.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1#6 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.g.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.g.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u7 == null goto return null
+NODE 4: $u-1 = virtualinvoke $u7.<java.lang.String: int length()>()
+NODE 5: if $u-1 >= 2 goto $u0 = new org.json.JSONObject
+NODE 6: $u0 = new org.json.JSONObject
+NODE 7: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: $u0 = (com.android.plat.b.c) $u-1#6
+NODE 9: if $u-1#11 != 0 goto return null
+NODE 10: $u7 = interfaceinvoke $u0.<com.android.plat.b.c: java.lang.String a()>()
+NODE 11: $u-1#15 = virtualinvoke $u0.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>($u7)
+NODE 12: if $u-1#15 == null goto return null
+NODE 13: $u-1 = virtualinvoke $u-1#15.<org.json.JSONArray: int length()>()
+NODE 14: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.plat.b.g.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1 >= $u-1#24 goto return $u0#20
+NODE 3: $u-1#6 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#5 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 4)
+NODE 6: $u2 = $u-1#8.<android.content.pm.PackageInfo: android.content.pm.ServiceInfo[] services>
+NODE 7: if $u2 != null goto $u0#12 = 0
+NODE 8: $u0#12 = 0
+NODE 9: if $u0#12 >= $u1 goto return $u5
+NODE 10: $u1#14 = $u2[$u0#12]
+NODE 11: $u0 = $u1#14.<android.content.pm.ServiceInfo: java.lang.String name>
+NODE 12: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#18 == 0 goto $u0#12 = $u0#12 + 1
+NODE 14: $u0#12 = $u0#12 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto return 0
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.c ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u2 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.c ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u2 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.c ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#30 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cdsak.ysiq.h.b.e ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.android.tool.DownService.onStartCommand ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

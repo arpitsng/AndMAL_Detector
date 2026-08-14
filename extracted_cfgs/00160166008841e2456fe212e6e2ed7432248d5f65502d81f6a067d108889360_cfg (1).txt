@@ -1,0 +1,1117 @@
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.internal.k.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 = new android.gesture.GestureStore
+NODE 2: $u0 = new java.io.ByteArrayInputStream
+NODE 3: virtualinvoke $u1.<android.gesture.GestureStore: void load(java.io.InputStream)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.at$a.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.at$a
+NODE 2: $u1 = this.<com.google.ads.at$a: java.lang.ref.WeakReference a>
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 4: $u0 = (android.app.Activity) $u-1
+NODE 5: if $u0 != null goto $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u2 = <com.google.ads.as: android.net.Uri a>
+NODE 8: $u3 = <com.google.ads.as: java.lang.String[] b>
+NODE 9: $u-1#11 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2, $u3, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: com.inmobi.re.container.IMWebView
+NODE 2: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u2 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#10 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setLayerType", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getDisplayHeight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u2 = null
+NODE 3: $u0 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u0)
+NODE 6: $u2 = $u-1
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3)
+NODE 9: $u4 = class "Landroid/view/Display;"
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getHeight", null)
+NODE 11: $u2 = $u-1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getDisplayHeight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u2 = null
+NODE 3: $u0 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u0)
+NODE 6: $u2 = $u-1
+NODE 7: if $u0#8 == 0 goto $u-1#26 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+NODE 8: $u4 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getHeight", null)
+NODE 10: $u2 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+NODE 13: $u-1#26 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 13
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getDisplayWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u2 = null
+NODE 3: $u0 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u0)
+NODE 6: $u2 = $u-1
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3)
+NODE 9: $u4 = class "Landroid/view/Display;"
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getWidth", null)
+NODE 11: $u2 = $u-1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getDisplayWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u2 = null
+NODE 3: $u0 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u0)
+NODE 6: $u2 = $u-1
+NODE 7: if $u0#8 == 0 goto $u-1#26 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+NODE 8: $u4 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getWidth", null)
+NODE 10: $u2 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+NODE 13: $u-1#26 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 13
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getSSLErrorUrl ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.http.SslError")
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getSSLErrorUrl ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.http.SslError")
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getUrl", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getSSLErrorUrl ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: android.net.http.SslError
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.http.SslError")
+NODE 3: $u2 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getUrl", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getVideoBitmap ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.ThumbnailUtils")
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getVideoBitmap ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.ThumbnailUtils")
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#11 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createVideoThumbnail", $u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.WrapperFunctions.getVideoBitmap ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.ThumbnailUtils")
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#11 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createVideoThumbnail", $u2)
+NODE 4: $u2#15 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#21 = virtualinvoke $u-1#11.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.thinICE.location.LocationUtil.a ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: $u0 = (android.location.LocationManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.IMAdView.a ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u7 := @parameter0: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u7.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 3: $u9 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.IMAdView.loadNewAd ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.inmobi.androidsdk.IMAdView
+NODE 2: $u0#6 = this.<com.inmobi.androidsdk.IMAdView: android.app.Activity e>
+NODE 3: $u-1 = virtualinvoke $u0#6.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#9 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.analytics.tracking.android.AdMobInfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#38 == null goto $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#55 == null goto return $u2
+NODE 4: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#38 == null goto $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#55 == null goto return $u2
+NODE 4: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 7: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method c>
+NODE 8: $u3 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Article.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Article.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Article
+NODE 2: $u10 := @parameter0: java.io.InputStream
+NODE 3: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+NODE 4: $u-1#2 = virtualinvoke $u-1.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1#2.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream,java.lang.String)>($u10, "UTF-8")
+NODE 6: $u-1#6 = interfaceinvoke $u-1#4.<org.w3c.dom.Document: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("article")
+NODE 7: $u-1#8 = interfaceinvoke $u-1#6.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 8: virtualinvoke this.<com.codore.dressup.lib.Article: void load(org.w3c.dom.Node)>($u-1#8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Article.load ===
+SUSPICIOUS_API: load
+NODE 1: $u13 := @parameter0: org.w3c.dom.Node
+NODE 2: if $u10 == 0 goto return
+NODE 3: e = (org.w3c.dom.Element) $u13
+NODE 4: $u-1#22 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("images")
+NODE 5: $u13 = interfaceinvoke $u-1#22.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 6: $u-1#22 = interfaceinvoke $u13.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>()
+NODE 7: i = 0
+NODE 8: if i < $u-1#13 goto $u13 = interfaceinvoke $u-1#22.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 9: $u13 = interfaceinvoke $u-1#22.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 10: if $u10 == 0 goto i = i + 1
+NODE 11: item = new com.codore.dressup.lib.Item
+NODE 12: virtualinvoke item.<com.codore.dressup.lib.Item: void load(org.w3c.dom.Node)>($u13)
+NODE 13: i = i + 1
+NODE 14: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 10 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UIDHelper.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter0: byte[]
+NODE 2: $u9 := @parameter1: int
+NODE 3: $u10 := @parameter2: javax.crypto.Cipher
+NODE 4: if $u9 != 1 goto $u9 = lengthof $u8
+NODE 5: $u9 = lengthof $u8
+NODE 6: $u2#5 = newarray (byte)[64]
+NODE 7: $u3 = 0
+NODE 8: if $u3 >= $u9 goto $u8 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2#5)
+NODE 9: if $u3 <= 0 goto $u5 = $u3 % 64
+NODE 10: $u5 = $u3 % 64
+NODE 11: if $u5 != 0 goto $u5 = $u3 % 64
+NODE 12: $u2#5 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2#5)
+NODE 13: $u5 = $u3 + 64
+NODE 14: if $u5 <= $u9 goto $u5 = 64
+NODE 15: $u5 = $u9 - $u3
+NODE 16: $u2#5 = newarray (byte)[$u5]
+NODE 17: $u3 = $u3 + 1
+NODE 18: goto [?= (branch)]
+NODE 19: $u5 = 64
+NODE 20: goto [?= $u2#5 = newarray (byte)[$u5]]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 14 -> 19
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 8
+EDGE: 19 -> 20
+EDGE: 20 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UIDHelper.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter0: byte[]
+NODE 2: $u9 := @parameter1: int
+NODE 3: $u10 := @parameter2: javax.crypto.Cipher
+NODE 4: if $u9 != 1 goto $u9 = lengthof $u8
+NODE 5: $u9 = lengthof $u8
+NODE 6: $u2#5 = newarray (byte)[64]
+NODE 7: $u3 = 0
+NODE 8: if $u3 >= $u9 goto $u8 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2#5)
+NODE 9: $u5 = $u3 + 64
+NODE 10: if $u5 <= $u9 goto $u5 = 64
+NODE 11: $u5 = $u9 - $u3
+NODE 12: $u2#5 = newarray (byte)[$u5]
+NODE 13: $u3 = $u3 + 1
+NODE 14: goto [?= (branch)]
+NODE 15: $u8 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u2#5)
+NODE 16: $u5 = 64
+NODE 17: goto [?= $u2#5 = newarray (byte)[$u5]]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 15
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 16
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 8
+EDGE: 16 -> 17
+EDGE: 17 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UIDHelper.getFBId ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u2 = newarray (java.lang.String)[1]
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <com.inmobi.commons.uid.UIDHelper: android.net.Uri a>
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 2: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 3: if $u-1#9 == null goto $u0#13 = null
+NODE 4: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.ads.i
+NODE 2: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 3: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 4: if $u-1#9 == null goto $u0#13 = null
+NODE 5: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0#13 = (com.google.ads.mediation.MediationServerParameters) $u-1
+NODE 7: $u3 = this.<com.google.ads.i: java.util.HashMap d>
+NODE 8: virtualinvoke $u0#13.<com.google.ads.mediation.MediationServerParameters: void load(java.util.Map)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.thinICE.wifi.WifiUtil.getConnectedWifiInfo ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.controller.JSController.getFromJSON ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter1: java.lang.Class
+NODE 2: $u-1#2 = virtualinvoke $u9.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.inapp.purchasing.ImplementationFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: if $u3 != null goto exitmonitor class "Lcom/amazon/inapp/purchasing/ImplementationFactory;"
+NODE 3: $u-1 = staticinvoke <com.amazon.inapp.purchasing.ImplementationFactory: com.amazon.inapp.purchasing.ImplementationRegistry getImplementationRegistry()>()
+NODE 4: $u2 = interfaceinvoke $u-1.<com.amazon.inapp.purchasing.ImplementationRegistry: java.lang.Class getImplementation(java.lang.Class)>($u2)
+NODE 5: $u-1#6 = virtualinvoke $u2.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.checkNetworkAvailibility ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 != null goto $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.checkNetworkAvailibility ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 != null goto $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#6 != null goto $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.getConnectivityType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#6 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#6
+NODE 5: if $u0 == null goto return null
+NODE 6: $u-1#9 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.getDisplayRotation ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.view.Display
+NODE 2: $u2 = null
+NODE 3: $u3 = class "Landroid/view/Display;"
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRotation", null)
+NODE 5: $u2 = $u-1
+NODE 6: if $u2 == null goto return -999
+NODE 7: $u-1#10 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+NODE 8: $u3 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getOrientation", null)
+NODE 10: $u2 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 6
+EDGE: 12 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Item.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Item
+NODE 2: $u5 := @parameter0: org.w3c.dom.Node
+NODE 3: $u3 = this.<com.codore.dressup.lib.Item: com.codore.dressup.lib.Img img_>
+NODE 4: virtualinvoke $u3.<com.codore.dressup.lib.Img: void load(org.w3c.dom.Node)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.DressUpActivityBase.addBG_imagesToPrincesses ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.DressUpActivityBase
+NODE 2: $u4 := @parameter0: int
+NODE 3: bgs = new com.codore.dressup.lib.Article
+NODE 4: $u-1 = virtualinvoke this.<com.codore.dressup.lib.DressUpActivityBase: android.content.res.Resources getResources()>()
+NODE 5: $u-1#3 = virtualinvoke $u-1.<android.content.res.Resources: java.io.InputStream openRawResource(int)>($u4)
+NODE 6: virtualinvoke bgs.<com.codore.dressup.lib.Article: void load(java.io.InputStream)>($u-1#3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.DressUpActivityBase.loadPrincessResources ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.DressUpActivityBase
+NODE 2: $u4 := @parameter0: int
+NODE 3: $u-1 = virtualinvoke this.<com.codore.dressup.lib.DressUpActivityBase: android.content.res.Resources getResources()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<android.content.res.Resources: java.io.InputStream openRawResource(int)>($u4)
+NODE 5: $u1 = this.<com.codore.dressup.lib.DressUpActivityBase: com.codore.dressup.lib.SharedObjects sharedObjects_>
+NODE 6: $u2 = $u1.<com.codore.dressup.lib.SharedObjects: com.codore.dressup.lib.Princesses princesses_>
+NODE 7: virtualinvoke $u2.<com.codore.dressup.lib.Princesses: void load(java.io.InputStream)>($u-1#3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Rect.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Rect
+NODE 2: $u2 := @parameter0: org.w3c.dom.Node
+NODE 3: $u0 = this.<com.codore.dressup.lib.Rect: com.codore.dressup.lib.Point origin_>
+NODE 4: virtualinvoke $u0.<com.codore.dressup.lib.Point: void load(org.w3c.dom.Node)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Rect.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Rect
+NODE 2: $u2 := @parameter0: org.w3c.dom.Node
+NODE 3: $u0#2 = this.<com.codore.dressup.lib.Rect: com.codore.dressup.lib.Size size_>
+NODE 4: virtualinvoke $u0#2.<com.codore.dressup.lib.Size: void load(org.w3c.dom.Node)>($u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.controller.util.ImageProcessing.convertMediaUriToPath ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.net.Uri
+NODE 2: $u7 := @parameter1: android.content.Context
+NODE 3: $u2 = newarray (java.lang.String)[1]
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u6, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.IMWebView.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0#67 = <com.inmobi.re.container.IMWebView: java.lang.Class A>
+NODE 2: $u1#69 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#72 = virtualinvoke $u0#67.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u1#69)
+NODE 4: $u1#75 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#18 = virtualinvoke $u-1#72.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#75)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princesses.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princesses.load ===
+SUSPICIOUS_API: load
+NODE 1: $u13 := @parameter0: java.io.InputStream
+NODE 2: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+NODE 3: $u-1#2 = virtualinvoke $u-1.<javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilder newDocumentBuilder()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1#2.<javax.xml.parsers.DocumentBuilder: org.w3c.dom.Document parse(java.io.InputStream,java.lang.String)>($u13, "UTF-8")
+NODE 5: $u-1#6 = interfaceinvoke $u-1#4.<org.w3c.dom.Document: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("princesses")
+NODE 6: $u-1#9 = interfaceinvoke $u-1#6.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u-1#6 = interfaceinvoke $u-1#9.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>()
+NODE 8: i = 0
+NODE 9: if i < $u-1#12 goto $u-1#9 = interfaceinvoke $u-1#6.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 10: $u-1#9 = interfaceinvoke $u-1#6.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 11: if $u9 == 0 goto i = i + 1
+NODE 12: princess = new com.codore.dressup.lib.Princess
+NODE 13: virtualinvoke princess.<com.codore.dressup.lib.Princess: void load(org.w3c.dom.Node)>($u-1#9)
+NODE 14: i = i + 1
+NODE 15: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 11 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UID.getUidMapNoReinit ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: android.content.Context getContext()>()
+NODE 2: if $u5 == 0 goto $u5 = this.<com.inmobi.commons.uid.UID: boolean d>
+NODE 3: if $u0 != 1 goto $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+NODE 4: $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UID.getUidMapNoReinit ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: android.content.Context getContext()>()
+NODE 2: if $u5 == 0 goto virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("}")
+NODE 3: if $u0 != 1 goto $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+NODE 4: $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UID.getUidMapNoReinit ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: android.content.Context getContext()>()
+NODE 2: if $u5 == 0 goto $u5#59 = $u10 & 4
+NODE 3: if $u0 != 1 goto $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+NODE 4: $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.uid.UID.getUidMapNoReinit ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: android.content.Context getContext()>()
+NODE 2: if $u5 == 0 goto virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("}")
+NODE 3: if $u0 != 1 goto $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+NODE 4: $u8 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 3: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 7: goto [?= $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.re.container.mraidimpl.AudioTriggerer.d ===
+SUSPICIOUS_API: startRecording
+NODE 1: $u2 = <com.inmobi.re.container.mraidimpl.AudioTriggerer: android.media.AudioRecord audioRecorder>
+NODE 2: virtualinvoke $u2.<android.media.AudioRecord: void startRecording()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.an.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter0: byte[]
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u0 = lengthof $u6
+NODE 4: if $u0 == 16 goto $u-1 = staticinvoke <com.google.ads.aq: byte[] a(java.lang.String)>($u7)
+NODE 5: $u-1 = staticinvoke <com.google.ads.aq: byte[] a(java.lang.String)>($u7)
+NODE 6: $u0 = lengthof $u-1
+NODE 7: $u0 = $u0 + -16
+NODE 8: $u-1 = newarray (byte)[$u0]
+NODE 9: $u-1#21 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 10: $u6 = virtualinvoke $u-1#21.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 2: if $u0 == null goto $u0#2 = new com.google.ads.ak$a
+NODE 3: if $u4 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 4: $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.c ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.e ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.UserInfo.e ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.inmobi.androidsdk.impl.UserInfo
+NODE 2: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 3: if $u-1 != null goto $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 4: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 5: if $u-1 == null goto return
+NODE 6: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 7: $u1 = new android.location.Criteria
+NODE 8: $u-1#22 = virtualinvoke $u-1.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1, 1)
+NODE 9: if $u-1#24 != 0 goto return
+NODE 10: if $u-1#22 == null goto return
+NODE 11: $u-1#26 = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#22)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.UserInfo.f ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.inmobi.androidsdk.impl.UserInfo
+NODE 2: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 3: if $u-1 != null goto $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 4: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 5: if $u-1 == null goto return null
+NODE 6: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.location.LocationManager b()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 8: $u-1#14 = interfaceinvoke $u-1#13.<java.util.List: int size()>()
+NODE 9: $u-1#14 = $u-1#14 + -1
+NODE 10: if $u-1#14 < 0 goto return null
+NODE 11: $u-1#6 = interfaceinvoke $u-1#13.<java.util.List: java.lang.Object get(int)>($u-1#14)
+NODE 12: $u0 = (java.lang.String) $u-1#6
+NODE 13: if $u-1#21 == 0 goto $u-1#14 = $u-1#14 + -1
+NODE 14: $u-1#22 = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u0)
+NODE 15: if $u-1#22 == null goto $u-1#14 = $u-1#14 + -1
+NODE 16: $u-1#14 = $u-1#14 + -1
+NODE 17: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 13 -> 16
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.UserInfo.h ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.inmobi.androidsdk.impl.UserInfo
+NODE 2: if $u-1 != null goto $u-1#26 = virtualinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.content.Context getApplicationContext()>()
+NODE 3: if $u-1#47 == 0 goto (branch)
+NODE 4: if $u-1 == null goto $u-1#26 = virtualinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.content.Context getApplicationContext()>()
+NODE 5: if $u-1#47 != 0 goto $u-1#26 = virtualinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.content.Context getApplicationContext()>()
+NODE 6: $u-1#26 = virtualinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.content.Context getApplicationContext()>()
+NODE 7: $u-1 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1#26)
+NODE 8: goto [?= $u-1#26 = virtualinvoke this.<com.inmobi.androidsdk.impl.UserInfo: android.content.Context getApplicationContext()>()]
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 6
+EDGE: 3 -> 4
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 6
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.IMAdInterstitial.a ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.inmobi.androidsdk.IMAdInterstitial
+NODE 2: $u5 = this.<com.inmobi.androidsdk.IMAdInterstitial: android.app.Activity e>
+NODE 3: $u-1 = virtualinvoke $u5.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#11 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.IMAdInterstitial.loadNewAd ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.inmobi.androidsdk.IMAdInterstitial
+NODE 2: $u0 = this.<com.inmobi.androidsdk.IMAdInterstitial: android.app.Activity e>
+NODE 3: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#16 = staticinvoke <com.inmobi.commons.uid.UIDHelper: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Princess
+NODE 2: $u15 := @parameter0: org.w3c.dom.Node
+NODE 3: if $u11 == 0 goto return
+NODE 4: e = (org.w3c.dom.Element) $u15
+NODE 5: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("necked_img")
+NODE 6: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u11#23 = this.<com.codore.dressup.lib.Princess: com.codore.dressup.lib.Img necked_img_>
+NODE 8: virtualinvoke $u11#23.<com.codore.dressup.lib.Img: void load(org.w3c.dom.Node)>($u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Princess
+NODE 2: $u15 := @parameter0: org.w3c.dom.Node
+NODE 3: if $u11 == 0 goto return
+NODE 4: e = (org.w3c.dom.Element) $u15
+NODE 5: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("no_fice_image")
+NODE 6: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u11#23 = this.<com.codore.dressup.lib.Princess: com.codore.dressup.lib.Img no_fice_image_>
+NODE 8: virtualinvoke $u11#23.<com.codore.dressup.lib.Img: void load(org.w3c.dom.Node)>($u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Princess
+NODE 2: $u15 := @parameter0: org.w3c.dom.Node
+NODE 3: if $u11 == 0 goto return
+NODE 4: e = (org.w3c.dom.Element) $u15
+NODE 5: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("no_fice_mask")
+NODE 6: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u11#23 = this.<com.codore.dressup.lib.Princess: com.codore.dressup.lib.Img no_fice_mask_>
+NODE 8: virtualinvoke $u11#23.<com.codore.dressup.lib.Img: void load(org.w3c.dom.Node)>($u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Princess
+NODE 2: $u15 := @parameter0: org.w3c.dom.Node
+NODE 3: if $u11 == 0 goto return
+NODE 4: e = (org.w3c.dom.Element) $u15
+NODE 5: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("photo_frame")
+NODE 6: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u11#41 = this.<com.codore.dressup.lib.Princess: com.codore.dressup.lib.Rect photo_frame_>
+NODE 8: virtualinvoke $u11#41.<com.codore.dressup.lib.Rect: void load(org.w3c.dom.Node)>($u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.codore.dressup.lib.Princess
+NODE 2: $u15 := @parameter0: org.w3c.dom.Node
+NODE 3: if $u11 == 0 goto return
+NODE 4: e = (org.w3c.dom.Element) $u15
+NODE 5: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("necked_frame")
+NODE 6: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 7: $u11#41 = this.<com.codore.dressup.lib.Princess: com.codore.dressup.lib.Rect necked_frame_>
+NODE 8: virtualinvoke $u11#41.<com.codore.dressup.lib.Rect: void load(org.w3c.dom.Node)>($u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.codore.dressup.lib.Princess.load ===
+SUSPICIOUS_API: load
+NODE 1: $u15 := @parameter0: org.w3c.dom.Node
+NODE 2: if $u11 == 0 goto return
+NODE 3: e = (org.w3c.dom.Element) $u15
+NODE 4: $u-1#19 = interfaceinvoke e.<org.w3c.dom.Element: org.w3c.dom.NodeList getElementsByTagName(java.lang.String)>("articles")
+NODE 5: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(0)
+NODE 6: $u-1#19 = interfaceinvoke $u15.<org.w3c.dom.Node: org.w3c.dom.NodeList getChildNodes()>()
+NODE 7: i = 0
+NODE 8: if i < $u-1#54 goto $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 9: $u15 = interfaceinvoke $u-1#19.<org.w3c.dom.NodeList: org.w3c.dom.Node item(int)>(i)
+NODE 10: if $u11 == 0 goto i = i + 1
+NODE 11: article = new com.codore.dressup.lib.Article
+NODE 12: virtualinvoke article.<com.codore.dressup.lib.Article: void load(org.w3c.dom.Node)>($u15)
+NODE 13: i = i + 1
+NODE 14: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 10 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 8
+=== END FUNCTION ===
+

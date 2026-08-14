@@ -1,0 +1,69 @@
+=== FUNCTION: com.metasploit.stage.MainService.start ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+=== END FUNCTION ===
+
+=== FUNCTION: com.metasploit.stage.MainService.start ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("currentApplication", $u2)
+NODE 4: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.metasploit.stage.Payload.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = <com.metasploit.stage.Payload: java.lang.String e>
+NODE 2: if $u0 == null goto $u0#20 = $u13[0]
+NODE 3: $u0#3 = class "Lcom/metasploit/stage/Payload;"
+NODE 4: $u-1 = virtualinvoke $u0#3.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u0 = <com.metasploit.stage.Payload: java.lang.String e>
+NODE 6: $u0#3 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 7: $u1 = newarray (java.lang.Class)[4]
+NODE 8: $u-1#14 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 9: $u1#16 = newarray (java.lang.Object)[4]
+NODE 10: virtualinvoke $u-1#14.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#16)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.metasploit.stage.Payload.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = new java.lang.String
+NODE 2: $u4 = new dalvik.system.DexClassLoader
+NODE 3: $u0#3 = virtualinvoke $u4.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>($u3)
+NODE 4: $u0#20 = virtualinvoke $u0#3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.metasploit.stage.Payload.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 = new java.lang.String
+NODE 2: $u4 = new dalvik.system.DexClassLoader
+NODE 3: $u0#3 = virtualinvoke $u4.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>($u3)
+NODE 4: $u0#20 = virtualinvoke $u0#3.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 5: $u1 = newarray (java.lang.Class)[3]
+NODE 6: $u-1#77 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("start", $u1)
+NODE 7: $u1#16 = newarray (java.lang.Object)[3]
+NODE 8: virtualinvoke $u-1#77.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0#20, $u1#16)
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.metasploit.stage.c.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.metasploit.stage.c
+NODE 2: $u0 = this.<com.metasploit.stage.c: java.lang.reflect.Method a>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

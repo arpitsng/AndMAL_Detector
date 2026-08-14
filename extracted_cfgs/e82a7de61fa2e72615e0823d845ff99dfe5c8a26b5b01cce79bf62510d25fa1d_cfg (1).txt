@@ -1,0 +1,356 @@
+=== FUNCTION: com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder$UnsafeComparator$1.run ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Lsun/misc/Unsafe;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.FinalizableReferenceQueue.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 = <com.google.common.base.FinalizableReferenceQueue: java.lang.reflect.Method startFinalizer>
+NODE 2: $u6 = newarray (java.lang.Object)[2]
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u6)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.sscphase1.ObscuraApp.deleteTmpFile ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: this := @this: org.witness.sscphase1.ObscuraApp
+NODE 2: tmpFile = virtualinvoke this.<org.witness.sscphase1.ObscuraApp: java.io.File getExternalFilesDir(java.lang.String)>(null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.sscphase1.ObscuraApp.onClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: tmpFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.FinalizableReferenceQueue$DirectLoader.loadFinalizer ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.common.base.internal.Finalizer")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.collect.Serialization.getFieldSetter ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.filters.ConvolutionMatrix.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Double: java.lang.Class TYPE>
+NODE 3: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.filters.ConvolutionMatrix.computeConvolution3x3 ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#8 = newarray (int)[2]
+NODE 2: $u17#10 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u17#10, $u-1#8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.jpegredaction.JpegRedaction.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("JpegRedaction")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.internal.Finalizer.cleanUp ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.common.base.internal.Finalizer
+NODE 2: reference := @parameter0: java.lang.ref.Reference
+NODE 3: $u-1 = specialinvoke this.<com.google.common.base.internal.Finalizer: java.lang.reflect.Method getFinalizeReferentMethod()>()
+NODE 4: if reference != $u2 goto $u2#7 = newarray (java.lang.Object)[0]
+NODE 5: $u2#7 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(reference, $u2#7)
+NODE 7: $u2#8 = this.<com.google.common.base.internal.Finalizer: java.lang.ref.ReferenceQueue queue>
+NODE 8: $u-1#9 = virtualinvoke $u2#8.<java.lang.ref.ReferenceQueue: java.lang.ref.Reference poll()>()
+NODE 9: reference = $u-1#9
+NODE 10: goto [?= $u2#8 = this.<com.google.common.base.internal.Finalizer: java.lang.ref.ReferenceQueue queue>]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.internal.Finalizer.getInheritableThreadLocalsField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Ljava/lang/Thread;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("inheritableThreadLocals")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.collect.Platform.newArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: type := @parameter0: java.lang.Class
+NODE 2: $u2 := @parameter1: int
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(type, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.collect.Platform.newArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: reference := @parameter0: java.lang.Object[]
+NODE 2: $u4 := @parameter1: int
+NODE 3: $u-1 = virtualinvoke reference.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 5: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.VideoEditor.deleteOriginal ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.witness.ssc.video.VideoEditor
+NODE 2: columnsToSelect = newarray (java.lang.String)[2]
+NODE 3: uriBases = newarray (android.net.Uri)[2]
+NODE 4: $u12 = 0
+NODE 5: if $u12 < $u13 goto uriBase = uriBases[$u12]
+NODE 6: uriBase = uriBases[$u12]
+NODE 7: $u-1#21 = virtualinvoke this.<org.witness.ssc.video.VideoEditor: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u4 = newarray (java.lang.String)[1]
+NODE 9: $u-1#28 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriBase, columnsToSelect, "_data = ?", $u4, null)
+NODE 10: if $u-1#6 != 0 goto $u-1#33 = interfaceinvoke $u-1#28.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 11: $u12 = $u12 + 1
+NODE 12: goto [?= (branch)]
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.VideoEditor.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#37 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.VideoEditor.pullPathFromUri ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.witness.ssc.video.VideoEditor
+NODE 2: $u10 := @parameter0: android.net.Uri
+NODE 3: columnsToSelect = newarray (java.lang.String)[1]
+NODE 4: $u-1 = virtualinvoke this.<org.witness.ssc.video.VideoEditor: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, columnsToSelect, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.collect.CustomConcurrentHashMap.newSegmentArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: int
+NODE 2: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(class "Lcom/google/common/collect/CustomConcurrentHashMap$Segment;", $u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.ImageEditor.deleteOriginal ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.witness.securesmartcam.ImageEditor
+NODE 2: columnsToSelect = newarray (java.lang.String)[2]
+NODE 3: uriBases = newarray (android.net.Uri)[2]
+NODE 4: $u12 = 0
+NODE 5: if $u12 < $u13 goto uriBase = uriBases[$u12]
+NODE 6: uriBase = uriBases[$u12]
+NODE 7: $u-1#21 = virtualinvoke this.<org.witness.securesmartcam.ImageEditor: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u4 = newarray (java.lang.String)[1]
+NODE 9: $u-1#28 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriBase, columnsToSelect, "_data = ?", $u4, null)
+NODE 10: if $u-1#6 != 0 goto $u-1#33 = interfaceinvoke $u-1#28.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 11: $u12 = $u12 + 1
+NODE 12: goto [?= (branch)]
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.ImageEditor.saveTmpImage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: tmpFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.securesmartcam.ImageEditor.pullPathFromUri ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.witness.securesmartcam.ImageEditor
+NODE 2: $u10 := @parameter0: android.net.Uri
+NODE 3: if $u-1 == null goto columnsToSelect = newarray (java.lang.String)[1]
+NODE 4: if $u-1#7 == 0 goto columnsToSelect = newarray (java.lang.String)[1]
+NODE 5: columnsToSelect = newarray (java.lang.String)[1]
+NODE 6: $u-1#11 = virtualinvoke this.<org.witness.securesmartcam.ImageEditor: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#14 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, columnsToSelect, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.ShellUtils.doShellCommand ===
+SUSPICIOUS_API: exec
+NODE 1: if $u12 == 0 goto $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("su")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.ShellUtils.doShellCommand ===
+SUSPICIOUS_API: exec
+NODE 1: if $u12 == 0 goto $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("sh")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.ShellUtils.findProcessIdWithPS ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#5 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("ps")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.ShellUtils.findProcessIdWithPidOf ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u7#7 = newarray (java.lang.String)[2]
+NODE 3: $u-1#10 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u7#7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder.getBestComparator ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = <com.google.common.primitives.UnsignedBytes$LexicographicalComparatorHolder: java.lang.String UNSAFE_COMPARATOR_NAME>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.FFMPEGWrapper.processVideo ===
+SUSPICIOUS_API: exec
+NODE 1: if $u22 != null goto (branch)
+NODE 2: if $u23 != null goto $u1 = new java.io.File
+NODE 3: $u1 = new java.io.File
+NODE 4: $u-1 = virtualinvoke $u1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 5: $u-1#18 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 6: $u2#20 = new java.lang.StringBuilder
+NODE 7: $u2#20 = virtualinvoke $u2#20.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 8: $u-1#24 = virtualinvoke $u2#20.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: virtualinvoke $u-1#18.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#24)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-16BE")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-16LE")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.base.Charsets.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-16")
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.BinaryInstaller.copyRawFile ===
+SUSPICIOUS_API: exec
+NODE 1: $u12 := @parameter2: java.io.File
+NODE 2: $u13 := @parameter3: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u12.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 4: $u-1#9 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u2 = new java.lang.StringBuilder
+NODE 6: $u8 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u13)
+NODE 7: $u8 = virtualinvoke $u8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 8: $u8 = virtualinvoke $u8.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u13 = virtualinvoke $u8.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#22 = virtualinvoke $u-1#9.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u13)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.BinaryInstaller.streamToFile ===
+SUSPICIOUS_API: exec
+NODE 1: $u9 := @parameter1: java.io.File
+NODE 2: $u12 := @parameter4: java.lang.String
+NODE 3: $u-1#5 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u2 = new java.lang.StringBuilder
+NODE 5: $u6 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u12)
+NODE 6: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 7: $u12 = virtualinvoke $u9.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 8: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u12)
+NODE 9: $u12 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: virtualinvoke $u-1#5.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u12)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.common.util.concurrent.SimpleTimeLimiter$1$1.call ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.common.util.concurrent.SimpleTimeLimiter$1$1
+NODE 2: $u1 = this.<com.google.common.util.concurrent.SimpleTimeLimiter$1$1: java.lang.reflect.Method val$method>
+NODE 3: $u2 = this.<com.google.common.util.concurrent.SimpleTimeLimiter$1$1: com.google.common.util.concurrent.SimpleTimeLimiter$1 this$1>
+NODE 4: $u-1 = $u2.<com.google.common.util.concurrent.SimpleTimeLimiter$1: java.lang.Object val$target>
+NODE 5: $u3 = this.<com.google.common.util.concurrent.SimpleTimeLimiter$1$1: java.lang.Object[] val$args>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.VideoCam.createCleanSavePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.witness.ssc.video.VideoCam.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#34 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

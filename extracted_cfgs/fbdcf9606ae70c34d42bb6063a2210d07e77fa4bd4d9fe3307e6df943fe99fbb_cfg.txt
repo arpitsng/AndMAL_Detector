@@ -1,0 +1,1862 @@
+=== FUNCTION: org.xwalk.core.internal.extension.api.messaging.MessagingManager.operation ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.messaging.MessagingManager
+NODE 2: $u25 := @parameter1: org.json.JSONObject
+NODE 3: $u-1#15 = virtualinvoke $u25.<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>("data")
+NODE 4: if $u-1#19 == 0 goto $u-1#39 = virtualinvoke $u-1#15.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("type")
+NODE 5: $u-1#39 = virtualinvoke $u-1#15.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("type")
+NODE 6: if $u-1#19 == 0 goto $u0 = newarray (java.lang.Object)[1]
+NODE 7: $u0 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#53 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s = ?", $u0)
+NODE 9: $u0#57 = newarray (java.lang.String)[1]
+NODE 10: $u0#60 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.app.Activity mMainActivity>
+NODE 11: $u-1#62 = virtualinvoke $u0#60.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 12: $u-1#64 = specialinvoke this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.net.Uri getUri(java.lang.String)>($u-1#39)
+NODE 13: $u0 = newarray (java.lang.Object)[1]
+NODE 14: $u-1#53 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s = ?", $u0)
+NODE 15: goto [?= $u0#57 = newarray (java.lang.String)[1]]
+NODE 16: if $u-1#19 != 0 goto values = new android.content.ContentValues
+NODE 17: if $u-1#19 == 0 goto jsonMsgRet1 = new org.json.JSONObject
+NODE 18: values = new android.content.ContentValues
+NODE 19: virtualinvoke $u-1#62.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1#64, values, $u-1#53, $u0#57)
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 14 -> 15
+EDGE: 15 -> 9
+EDGE: 16 -> 18
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.messaging.MessagingManager.queryMessage ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.messaging.MessagingManager
+NODE 2: $u30 := @parameter1: org.json.JSONObject
+NODE 3: jsBody = null
+NODE 4: jsData = null
+NODE 5: $u30 = virtualinvoke $u30.<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>("data")
+NODE 6: if $u-1#19 == 0 goto $u-1#19 = virtualinvoke $u30.<org.json.JSONObject: boolean has(java.lang.String)>("options")
+NODE 7: jsBody = virtualinvoke $u30.<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>("filter")
+NODE 8: if $u-1#19 == 0 goto (branch)
+NODE 9: jsData = virtualinvoke $u30.<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>("options")
+NODE 10: if jsBody == null goto $u-1#34 = virtualinvoke $u30.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("type")
+NODE 11: $u-1#34 = virtualinvoke jsBody.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("type")
+NODE 12: if $u-1#19 != 0 goto $u4 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.app.Activity mMainActivity>
+NODE 13: if $u-1#19 != 0 goto $u4 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.app.Activity mMainActivity>
+NODE 14: $u-1#34 = virtualinvoke $u30.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("type")
+NODE 15: $u4 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.app.Activity mMainActivity>
+NODE 16: $u-1#61 = virtualinvoke $u4.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 17: $u-1#64 = specialinvoke this.<org.xwalk.core.internal.extension.api.messaging.MessagingManager: android.net.Uri getUri(java.lang.String)>($u-1#34)
+NODE 18: sqlOption = null
+NODE 19: if $u-1#19 == 0 goto $u-1#71 = newarray (java.lang.Object)[1]
+NODE 20: $u-1#71 = staticinvoke <org.xwalk.core.internal.extension.api.messaging.MessagingHelpers: java.lang.Object[] buildSqlFilterString(org.json.JSONObject)>(jsBody)
+NODE 21: sqlString = $u-1#71[0]
+NODE 22: sqlString#74 = (java.lang.String) sqlString
+NODE 23: sqlString = $u-1#71[1]
+NODE 24: $u4#77 = (java.lang.String[]) sqlString
+NODE 25: sqlOption = staticinvoke <org.xwalk.core.internal.extension.api.messaging.MessagingHelpers: java.lang.String buildSqlFilterOptionString(org.json.JSONObject)>(jsData)
+NODE 26: $u-1#82 = virtualinvoke $u-1#61.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#64, null, sqlString#74, $u4#77, sqlOption)
+NODE 27: $u-1#71 = newarray (java.lang.Object)[1]
+NODE 28: sqlString#74 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s = ?", $u-1#71)
+NODE 29: $u4#77 = newarray (java.lang.String)[1]
+NODE 30: goto [?= $u-1#82 = virtualinvoke $u-1#61.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#64, null, sqlString#74, $u4#77, sqlOption)]
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 14
+EDGE: 12 -> 15
+EDGE: 13 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+EDGE: 19 -> 27
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 28 -> 29
+EDGE: 30 -> 26
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkWebChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: org.xwalk.core.internal.XWalkGeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<org.xwalk.core.internal.XWalkGeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.Linker.ensureInitializedLocked ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u1 == 0 goto $u1 = <org.chromium.base.library_loader.Linker: boolean sRelroSharingSupported>
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("chromium_android_linker")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.Linker.ensureInitializedLocked ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("chromium_android_linker.cr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.Linker.finishLibraryLoad ===
+SUSPICIOUS_API: forName
+NODE 1: if $u2#2 == 0 goto exitmonitor class "Lorg/chromium/base/library_loader/Linker;"
+NODE 2: $u2#3 = <org.chromium.base.library_loader.Linker: java.lang.String sTestRunnerClassName>
+NODE 3: if $u2#3 == null goto exitmonitor class "Lorg/chromium/base/library_loader/Linker;"
+NODE 4: $u2#3 = <org.chromium.base.library_loader.Linker: java.lang.String sTestRunnerClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.Linker.finishLibraryLoad ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u2#2 == 0 goto exitmonitor class "Lorg/chromium/base/library_loader/Linker;"
+NODE 2: $u2#3 = <org.chromium.base.library_loader.Linker: java.lang.String sTestRunnerClassName>
+NODE 3: if $u2#3 == null goto exitmonitor class "Lorg/chromium/base/library_loader/Linker;"
+NODE 4: $u2#3 = <org.chromium.base.library_loader.Linker: java.lang.String sTestRunnerClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#3)
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkCoreProviderImpl.loadAppFromUrl ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkCoreProviderImpl
+NODE 2: $u3 := @parameter0: java.lang.String
+NODE 3: $u0 = this.<org.xwalk.app.runtime.XWalkCoreProviderImpl: org.xwalk.core.XWalkView mXWalkView>
+NODE 4: virtualinvoke $u0.<org.xwalk.core.XWalkView: void load(java.lang.String,java.lang.String)>($u3, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkCoreProviderImpl.loadDataForTest ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkCoreProviderImpl
+NODE 2: $u3 := @parameter0: java.lang.String
+NODE 3: $u0 = this.<org.xwalk.app.runtime.XWalkCoreProviderImpl: org.xwalk.core.XWalkView mXWalkView>
+NODE 4: virtualinvoke $u0.<org.xwalk.core.XWalkView: void load(java.lang.String,java.lang.String)>("", $u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLKeyForPrivateKey ===
+SUSPICIOUS_API: forName
+NODE 1: if $u6 != 0 goto $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLKeyForPrivateKey ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u6 != 0 goto $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+NODE 3: if $u6 != 0 goto $u7#42 = newarray (java.lang.Class)[0]
+NODE 4: $u7#42 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#43 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getOpenSSLKey", $u7#42)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLKeyForPrivateKey ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: org.chromium.net.AndroidPrivateKey
+NODE 2: $u10#2 = (org.chromium.net.DefaultAndroidKeyStore$DefaultAndroidPrivateKey) $u10
+NODE 3: $u-1 = virtualinvoke $u10#2.<org.chromium.net.DefaultAndroidKeyStore$DefaultAndroidPrivateKey: java.security.PrivateKey getJavaKey()>()
+NODE 4: if $u6 != 0 goto $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+NODE 5: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLRSAPrivateKey")
+NODE 6: if $u6 != 0 goto $u7#42 = newarray (java.lang.Class)[0]
+NODE 7: $u7#42 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#43 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getOpenSSLKey", $u7#42)
+NODE 9: $u6#47 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#48 = virtualinvoke $u-1#43.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#47)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLEngineForPrivateKey ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLEngine")
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLEngineForPrivateKey ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.chromium.net.DefaultAndroidKeyStore
+NODE 2: $u10 := @parameter0: org.chromium.net.AndroidPrivateKey
+NODE 3: $u-1#3 = specialinvoke this.<org.chromium.net.DefaultAndroidKeyStore: java.lang.Object getOpenSSLKeyForPrivateKey(org.chromium.net.AndroidPrivateKey)>($u10)
+NODE 4: if $u-1#3 != null goto $u-1#16 = virtualinvoke $u-1#3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#16 = virtualinvoke $u-1#3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u8 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#21 = virtualinvoke $u-1#16.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getEngine", $u8)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLEngineForPrivateKey ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.net.DefaultAndroidKeyStore
+NODE 2: $u10 := @parameter0: org.chromium.net.AndroidPrivateKey
+NODE 3: $u-1#3 = specialinvoke this.<org.chromium.net.DefaultAndroidKeyStore: java.lang.Object getOpenSSLKeyForPrivateKey(org.chromium.net.AndroidPrivateKey)>($u10)
+NODE 4: if $u-1#3 != null goto $u-1#16 = virtualinvoke $u-1#3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#16 = virtualinvoke $u-1#3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u8 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#21 = virtualinvoke $u-1#16.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getEngine", $u8)
+NODE 8: $u6 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#3 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#3, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLHandleForPrivateKey ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.chromium.net.DefaultAndroidKeyStore
+NODE 2: $u11 := @parameter0: org.chromium.net.AndroidPrivateKey
+NODE 3: $u-1 = specialinvoke this.<org.chromium.net.DefaultAndroidKeyStore: java.lang.Object getOpenSSLKeyForPrivateKey(org.chromium.net.AndroidPrivateKey)>($u11)
+NODE 4: if $u-1 != null goto $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u9 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPkeyContext", $u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.DefaultAndroidKeyStore.getOpenSSLHandleForPrivateKey ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.net.DefaultAndroidKeyStore
+NODE 2: $u11 := @parameter0: org.chromium.net.AndroidPrivateKey
+NODE 3: $u-1 = specialinvoke this.<org.chromium.net.DefaultAndroidKeyStore: java.lang.Object getOpenSSLKeyForPrivateKey(org.chromium.net.AndroidPrivateKey)>($u11)
+NODE 4: if $u-1 != null goto $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u9 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPkeyContext", $u9)
+NODE 8: $u5 = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2
+NODE 2: if $u-1 != null goto $u6 = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: org.xwalk.core.internal.extension.api.presentation.PresentationExtension this$0>
+NODE 3: $u6 = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: org.xwalk.core.internal.extension.api.presentation.PresentationExtension this$0>
+NODE 4: $u-1#8 = staticinvoke <org.xwalk.core.internal.extension.api.presentation.PresentationExtension: org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent access$500(org.xwalk.core.internal.extension.api.presentation.PresentationExtension)>($u6)
+NODE 5: if $u-1#8 == null goto targetUrl = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: java.lang.String val$url>
+NODE 6: targetUrl = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: java.lang.String val$url>
+NODE 7: targetUri1 = new java.net.URI
+NODE 8: if $u-1#17 != 0 goto $u6 = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: org.xwalk.core.internal.extension.api.presentation.PresentationExtension this$0>
+NODE 9: baseUri = new java.net.URI
+NODE 10: baseUri = virtualinvoke baseUri.<java.net.URI: java.net.URI resolve(java.net.URI)>(targetUri1)
+NODE 11: targetUrl = virtualinvoke baseUri.<java.net.URI: java.lang.String toString()>()
+NODE 12: $u6 = this.<org.xwalk.core.internal.extension.api.presentation.PresentationExtension$2: org.xwalk.core.internal.extension.api.presentation.PresentationExtension this$0>
+NODE 13: $u-1#8 = staticinvoke <org.xwalk.core.internal.extension.api.presentation.PresentationExtension: org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent access$500(org.xwalk.core.internal.extension.api.presentation.PresentationExtension)>($u6)
+NODE 14: virtualinvoke $u-1#8.<org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent: void load(java.lang.String)>(targetUrl)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.input.GamepadList.getGamepadForEvent ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2 := @parameter0: android.view.InputEvent
+NODE 2: $u-1 = virtualinvoke $u2.<android.view.InputEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactEventListener.compareAllRawContactInfo ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactEventListener
+NODE 2: $u2 = this.<org.xwalk.core.internal.extension.api.contacts.ContactEventListener: android.content.ContentResolver mResolver>
+NODE 3: $u3 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactEventListener.getAllContactIDs ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactEventListener
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactEventListener: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactEventListener.readAllRawContactInfo ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactEventListener
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactEventListener: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.NetStringUtil.convertToUnicode ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.NetStringUtil.convertToUnicodeWithSubstitutions ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkPathHelper.initialize ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.input.ImeAdapter.androidKeyEventForCharacter ===
+SUSPICIOUS_API: load
+NODE 1: if $u3 != null goto $u3#6 = <org.chromium.content.browser.input.ImeAdapter: char[] sSingleCharArray>
+NODE 2: i = -1
+NODE 3: $u3 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>(i)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient.onPageLoadStarted ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient
+NODE 2: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 3: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 4: if $u-1 == null goto return
+NODE 5: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 6: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u4 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#12 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPageStarted", $u4)
+NODE 10: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 11: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 12: $u4#17 = newarray (java.lang.Object)[1]
+NODE 13: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient.onPageLoadStopped ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient
+NODE 2: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 3: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 4: if $u-1 == null goto return
+NODE 5: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 6: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u4 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#12 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPageFinished", $u4)
+NODE 10: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 11: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 12: $u4#17 = newarray (java.lang.Object)[1]
+NODE 13: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient.onReceivedTitle ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient
+NODE 2: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 3: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 4: if $u-1 == null goto return
+NODE 5: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 6: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u4 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#12 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onReceivedTitle", $u4)
+NODE 10: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkUIClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 11: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 12: $u4#17 = newarray (java.lang.Object)[1]
+NODE 13: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.messaging.MessagingSmsManager.onSmsSend ===
+SUSPICIOUS_API: sendTextMessage
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.messaging.MessagingSmsManager
+NODE 2: $u18 := @parameter1: org.json.JSONObject
+NODE 3: if $u-1 != 0 goto $u3 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingSmsManager: java.lang.ref.WeakReference mActivity>
+NODE 4: $u3 = this.<org.xwalk.core.internal.extension.api.messaging.MessagingSmsManager: java.lang.ref.WeakReference mActivity>
+NODE 5: $u-1#9 = virtualinvoke $u3.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 6: activity = (android.app.Activity) $u-1#9
+NODE 7: if activity != null goto $u-1#18 = virtualinvoke $u18.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("asyncCallId")
+NODE 8: $u-1#18 = virtualinvoke $u18.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("asyncCallId")
+NODE 9: $u18 = virtualinvoke $u18.<org.json.JSONObject: org.json.JSONObject getJSONObject(java.lang.String)>("data")
+NODE 10: $u-1#25 = virtualinvoke $u18.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("phone")
+NODE 11: $u-1#28 = virtualinvoke $u18.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("message")
+NODE 12: $u-1#30 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()
+NODE 13: intentSmsDelivered = new android.content.Intent
+NODE 14: $u-1#40 = staticinvoke <java.lang.Integer: java.lang.Integer valueOf(java.lang.String)>($u-1#18)
+NODE 15: $u17 = virtualinvoke $u-1#40.<java.lang.Integer: int intValue()>()
+NODE 16: $u-1#44 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(activity, $u17, intentSmsDelivered, 1073741824)
+NODE 17: intentSmsDelivered = new android.content.Intent
+NODE 18: $u17 = neg $u17
+NODE 19: $u-1#54 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>(activity, $u17, intentSmsDelivered, 1073741824)
+NODE 20: virtualinvoke $u-1#30.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($u-1#25, null, $u-1#28, $u-1#44, $u-1#54)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: forName
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 6: $u0 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHost", $u0)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 6: $u0 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#29 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPort", $u0)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 6: $u0 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#37 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getExclusionList", $u0)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: $u0 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getHost", $u0)
+NODE 14: $u0#40 = newarray (java.lang.Object)[0]
+NODE 15: $u-1#44 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: $u0 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#29 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPort", $u0)
+NODE 14: $u0#40 = newarray (java.lang.Object)[0]
+NODE 15: $u-1#44 = virtualinvoke $u-1#29.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: $u0 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#37 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getExclusionList", $u0)
+NODE 14: if $u21#57 > 19 goto $u0#40 = newarray (java.lang.Object)[0]
+NODE 15: $u0#40 = newarray (java.lang.Object)[0]
+NODE 16: $u-1#44 = virtualinvoke $u-1#37.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 6: if $u21#57 != 19 goto $u21#57 = <android.os.Build$VERSION: int SDK_INT>
+NODE 7: $u0 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPacFileUrl", $u0)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: if $u21#57 != 19 goto $u21#57 = <android.os.Build$VERSION: int SDK_INT>
+NODE 13: $u0 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPacFileUrl", $u0)
+NODE 15: $u0#40 = newarray (java.lang.Object)[0]
+NODE 16: $u-1#11 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: $u0 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#37 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getExclusionList", $u0)
+NODE 14: if $u21#57 > 19 goto $u0#40 = newarray (java.lang.Object)[0]
+NODE 15: $u0#40 = newarray (java.lang.Object)[0]
+NODE 16: $u-1#44 = virtualinvoke $u-1#37.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 2: className = "android.net.ProxyProperties"
+NODE 3: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 4: className = "android.net.ProxyInfo"
+NODE 5: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 6: if $u21#57 <= 19 goto $u21#97 = new org.chromium.net.ProxyChangeListener$ProxyConfig
+NODE 7: $u0 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPacFileUrl", $u0)
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 3 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.ProxyChangeListener$ProxyReceiver.extractNewProxy ===
+SUSPICIOUS_API: invoke
+NODE 1: $u25 := @parameter0: android.content.Intent
+NODE 2: if $u21 > 19 goto className = "android.net.ProxyInfo"
+NODE 3: className = "android.net.ProxyProperties"
+NODE 4: proxyInfo = "proxy"
+NODE 5: $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.os.Bundle: java.lang.Object get(java.lang.String)>(proxyInfo)
+NODE 7: if $u-1#11 != null goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 8: className = "android.net.ProxyInfo"
+NODE 9: proxyInfo = "android.intent.extra.PROXY_INFO"
+NODE 10: goto [?= $u-1 = virtualinvoke $u25.<android.content.Intent: android.os.Bundle getExtras()>()]
+NODE 11: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 12: if $u21#57 <= 19 goto $u21#97 = new org.chromium.net.ProxyChangeListener$ProxyConfig
+NODE 13: $u0 = newarray (java.lang.Class)[0]
+NODE 14: $u-1#21 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPacFileUrl", $u0)
+NODE 15: $u0#40 = newarray (java.lang.Object)[0]
+NODE 16: $u-1#11 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, $u0#40)
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.NetworkChangeNotifierAutoDetect$ConnectivityManagerDelegate.getNetworkState ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.chromium.net.NetworkChangeNotifierAutoDetect$ConnectivityManagerDelegate
+NODE 2: $u1 = this.<org.chromium.net.NetworkChangeNotifierAutoDetect$ConnectivityManagerDelegate: android.net.ConnectivityManager mConnectivityManager>
+NODE 3: $u-1 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactFinder.getContactIds ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactFinder
+NODE 2: $u12 := @parameter0: org.xwalk.core.internal.extension.api.contacts.ContactFinder$FindOption
+NODE 3: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactFinder: org.xwalk.core.internal.extension.api.contacts.ContactUtils mUtils>
+NODE 4: $u0#4 = $u0.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 5: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 6: $u3 = $u12.<org.xwalk.core.internal.extension.api.contacts.ContactFinder$FindOption: java.lang.String mWhere>
+NODE 7: $u4 = $u12.<org.xwalk.core.internal.extension.api.contacts.ContactFinder$FindOption: java.lang.String[] mWhereArgs>
+NODE 8: $u5 = $u12.<org.xwalk.core.internal.extension.api.contacts.ContactFinder$FindOption: java.lang.String mSortOrder>
+NODE 9: $u-1 = virtualinvoke $u0#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactFinder.getContacts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactFinder
+NODE 2: contactIds := @parameter0: java.util.Set
+NODE 3: $u29 := @parameter1: java.lang.String
+NODE 4: where = null
+NODE 5: whereArgs = null
+NODE 6: $u-1 = interfaceinvoke contactIds.<java.util.Set: int size()>()
+NODE 7: if $u-1 == 0 goto c = null
+NODE 8: $u0 = new java.lang.StringBuilder
+NODE 9: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id in (")
+NODE 10: where = staticinvoke <org.xwalk.core.internal.extension.api.contacts.ContactUtils: java.lang.String makeQuestionMarkList(java.util.Set)>(contactIds)
+NODE 11: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(where)
+NODE 12: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")")
+NODE 13: where = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1 = interfaceinvoke contactIds.<java.util.Set: int size()>()
+NODE 15: whereArgs = newarray (java.lang.String)[$u-1]
+NODE 16: $u-1#21 = interfaceinvoke contactIds.<java.util.Set: java.lang.Object[] toArray(java.lang.Object[])>(whereArgs)
+NODE 17: whereArgs = (java.lang.String[]) $u-1#21
+NODE 18: $u2#26 = this.<org.xwalk.core.internal.extension.api.contacts.ContactFinder: org.xwalk.core.internal.extension.api.contacts.ContactUtils mUtils>
+NODE 19: $u2#27 = $u2#26.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 20: $u3 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 21: $u-1#31 = virtualinvoke $u2#27.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, null, where, whereArgs, $u29)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkViewInternal.initXWalkContent ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.core.internal.XWalkViewInternal
+NODE 2: $u7 := @parameter0: android.content.Context
+NODE 3: if $u-1#14 != 0 goto staticinvoke <org.xwalk.core.internal.XWalkPreferencesInternal: void setValue(java.lang.String,boolean)>("enable-extensions", 0)
+NODE 4: $u-1#16 = virtualinvoke this.<org.xwalk.core.internal.XWalkViewInternal: android.app.Activity getActivity()>()
+NODE 5: staticinvoke <org.xwalk.core.internal.extension.BuiltinXWalkExtensions: void load(android.content.Context,android.app.Activity)>($u7, $u-1#16)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.ContentViewCore.initialize ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.chromium.content.browser.ContentViewCore
+NODE 2: $u-1#26 = staticinvoke <org.chromium.content.browser.accessibility.AccessibilityInjector: org.chromium.content.browser.accessibility.AccessibilityInjector newInstance(org.chromium.content.browser.ContentViewCore)>(this)
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.NetworkChangeNotifierAutoDetect$WifiManagerDelegate.getWifiSSID ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: org.chromium.net.NetworkChangeNotifierAutoDetect$WifiManagerDelegate
+NODE 2: $u2 = this.<org.chromium.net.NetworkChangeNotifierAutoDetect$WifiManagerDelegate: android.net.wifi.WifiManager mWifiManager>
+NODE 3: $u-1 = virtualinvoke $u2.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: if activity != null goto $u2#4 = this.<org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent: org.xwalk.core.internal.XWalkViewInternal mContentView>
+NODE 4: $u2#4 = this.<org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent: org.xwalk.core.internal.XWalkViewInternal mContentView>
+NODE 5: if $u2#4 != null goto $u2#4 = this.<org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent: org.xwalk.core.internal.XWalkViewInternal mContentView>
+NODE 6: $u2#4 = this.<org.xwalk.core.internal.extension.api.presentation.XWalkPresentationContent: org.xwalk.core.internal.XWalkViewInternal mContentView>
+NODE 7: virtualinvoke $u2#4.<org.xwalk.core.internal.XWalkViewInternal: void load(java.lang.String,java.lang.String)>($u5, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.Contacts.handleClear ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.Contacts
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.Contacts: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.createInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u6 := @parameter1: java.lang.Object[]
+NODE 3: $u4 = <org.xwalk.core.ReflectionHelper: java.util.Map sConstructorMap>
+NODE 4: $u-1 = interfaceinvoke $u4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: creator = (java.lang.reflect.Constructor) $u-1
+NODE 6: if creator != null goto (branch)
+NODE 7: $u4 = <org.xwalk.core.ReflectionHelper: java.util.Map sConstructorHelperMap>
+NODE 8: $u-1 = interfaceinvoke $u4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 9: helper = (org.xwalk.core.ReflectionHelper$ConstructorHelper) $u-1
+NODE 10: if helper == null goto (branch)
+NODE 11: $u-1#10 = virtualinvoke helper.<org.xwalk.core.ReflectionHelper$ConstructorHelper: java.lang.reflect.Constructor loadConstructor()>()
+NODE 12: creator = $u-1#10
+NODE 13: if creator == null goto return null
+NODE 14: $u-1 = virtualinvoke creator.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 13
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.getBridgeOrWrapper ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u5 != null goto (branch)
+NODE 3: if $u7 == null goto return null
+NODE 4: $u-1 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if method != null goto $u5#9 = virtualinvoke method.<java.lang.reflect.Method: boolean isAccessible()>()
+NODE 6: methodName = "getBridge"
+NODE 7: if $u5#9 == 0 goto $u5#11 = newarray (java.lang.Class)[0]
+NODE 8: methodName = "getWrapper"
+NODE 9: $u5#11 = newarray (java.lang.Class)[0]
+NODE 10: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(methodName, $u5#11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#7 == 0 goto $u13 = <org.xwalk.core.ReflectionHelper: java.lang.ClassLoader sBridgeOrWrapperLoader>
+NODE 2: $u13 = <org.xwalk.core.ReflectionHelper: java.lang.ClassLoader sBridgeOrWrapperLoader>
+NODE 3: $u-1#22 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.ReflectionHelper")
+NODE 4: $u10 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#30 = virtualinvoke $u-1#22.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("initClassLoader", $u10)
+NODE 6: $u10#33 = newarray (java.lang.Object)[2]
+NODE 7: virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u10#33)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u9#43 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 2: $u13 = virtualinvoke $u9#43.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u9#43 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkContent")
+NODE 4: $u10 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#30 = virtualinvoke $u9#43.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setJavascriptInterfaceClass", $u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9#43 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 2: $u13 = virtualinvoke $u9#43.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u9#43 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkContent")
+NODE 4: $u10 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#30 = virtualinvoke $u9#43.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setJavascriptInterfaceClass", $u10)
+NODE 6: $u10#33 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u10#33)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.reflect.Method
+NODE 2: $u4 := @parameter1: java.lang.Object
+NODE 3: $u5 := @parameter2: java.lang.Object[]
+NODE 4: if $u2 != null goto (branch)
+NODE 5: if $u3 == null goto return null
+NODE 6: $u4 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.shouldUseLibrary ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u4 != 0 goto $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 2: if $u4 != 0 goto $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 3: $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 4: $u-1 = virtualinvoke $u4#8.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u4#8 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkViewDelegate")
+NODE 6: if $u4#8 != null goto $u7 = newarray (java.lang.Class)[1]
+NODE 7: $u7 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#21 = virtualinvoke $u4#8.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("loadXWalkLibrary", $u7)
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.ReflectionHelper.shouldUseLibrary ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u4 != 0 goto $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 2: if $u4 != 0 goto $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 3: $u4#8 = class "Lorg/xwalk/core/ReflectionHelper;"
+NODE 4: $u-1 = virtualinvoke $u4#8.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u4#8 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkViewDelegate")
+NODE 6: if $u4#8 != null goto $u7 = newarray (java.lang.Class)[1]
+NODE 7: $u7 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#21 = virtualinvoke $u4#8.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("loadXWalkLibrary", $u7)
+NODE 9: $u8 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u8)
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.SystemMessageHandler.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.Message")
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.SystemMessageHandler.obtainAsyncMessage ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.base.SystemMessageHandler
+NODE 2: $u-1 = staticinvoke <android.os.Message: android.os.Message obtain()>()
+NODE 3: $u2 = this.<org.chromium.base.SystemMessageHandler: java.lang.reflect.Method mMessageMethodSetAsynchronous>
+NODE 4: if $u2 == null goto return $u-1
+NODE 5: $u2 = this.<org.chromium.base.SystemMessageHandler: java.lang.reflect.Method mMessageMethodSetAsynchronous>
+NODE 6: $u3 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkViewBridge.loadSuper ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.core.internal.XWalkViewBridge
+NODE 2: $u1 := @parameter0: java.lang.String
+NODE 3: $u2 := @parameter1: java.lang.String
+NODE 4: specialinvoke this.<org.xwalk.core.internal.XWalkViewInternal: void load(java.lang.String,java.lang.String)>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.ContentUriUtils.getDisplayName ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.net.Uri
+NODE 2: $u10 := @parameter1: android.content.ContentResolver
+NODE 3: $u-1 = virtualinvoke $u10.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u9, null, null, null, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.extension.XWalkRuntimeExtensionManager.createExternalExtension ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter1: java.lang.String
+NODE 2: $u11 := @parameter3: org.xwalk.app.runtime.extension.XWalkExtensionContextClient
+NODE 3: $u-1 = interfaceinvoke $u11.<org.xwalk.app.runtime.extension.XWalkExtensionContextClient: android.app.Activity getActivity()>()
+NODE 4: $u-1#2 = virtualinvoke $u-1.<android.app.Activity: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1#2.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u9)
+NODE 6: $u4 = newarray (java.lang.Class)[3]
+NODE 7: $u-1#13 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u4)
+NODE 8: $u4#15 = newarray (java.lang.Object)[3]
+NODE 9: virtualinvoke $u-1#13.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4#15)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.mojo.bindings.Decoder.readString ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#7 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("utf8")
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.PathUtils.getExternalStorageDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.LibraryLoaderHelper.tryLoadLibraryUsingWorkaround ===
+SUSPICIOUS_API: load
+NODE 1: libFile = new java.io.File
+NODE 2: if $u4 != 0 goto $u6 = virtualinvoke libFile.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 3: if $u4 != 0 goto $u6 = virtualinvoke libFile.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 4: $u6 = virtualinvoke libFile.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 5: staticinvoke <java.lang.System: void load(java.lang.String)>($u6)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("has", $u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#39 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getBoolean", $u15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("has", $u15)
+NODE 12: $u13 = newarray (java.lang.Object)[1]
+NODE 13: $u-1#44 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#39 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getBoolean", $u15)
+NODE 12: if $u-1#74 == 0 goto canPause = 1
+NODE 13: $u13 = newarray (java.lang.Object)[1]
+NODE 14: $u-1#44 = virtualinvoke $u-1#39.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("has", $u15)
+NODE 12: $u13 = newarray (java.lang.Object)[1]
+NODE 13: $u-1#44 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+NODE 14: goto [?= $u13 = newarray (java.lang.Object)[1]]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 14 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#39 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getBoolean", $u15)
+NODE 12: if $u-1#74 == 0 goto canSeekForward = 1
+NODE 13: $u13 = newarray (java.lang.Object)[1]
+NODE 14: $u-1#44 = virtualinvoke $u-1#39.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("has", $u15)
+NODE 12: $u13 = newarray (java.lang.Object)[1]
+NODE 13: $u-1#44 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+NODE 14: goto [?= $u13 = newarray (java.lang.Object)[1]]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 14 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.MediaPlayerBridge.getAllowedOperations ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.media.MediaPlayerBridge
+NODE 2: $u-1 = virtualinvoke this.<org.chromium.media.MediaPlayerBridge: android.media.MediaPlayer getLocalPlayer()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u15 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getMetadata", $u15)
+NODE 6: $u13 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#26 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+NODE 8: if $u-1#26 == null goto $u13#126 = new org.chromium.media.MediaPlayerBridge$AllowedOperations
+NODE 9: $u-1#5 = virtualinvoke $u-1#26.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u15 = newarray (java.lang.Class)[1]
+NODE 11: $u-1#39 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getBoolean", $u15)
+NODE 12: if $u-1#74 == 0 goto canSeekBackward = 1
+NODE 13: $u13 = newarray (java.lang.Object)[1]
+NODE 14: $u-1#26 = virtualinvoke $u-1#39.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.media.AudioRecordInput$AudioRecordThread.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.chromium.media.AudioRecordInput$AudioRecordThread
+NODE 2: $u2 = this.<org.chromium.media.AudioRecordInput$AudioRecordThread: org.chromium.media.AudioRecordInput this$0>
+NODE 3: $u-1 = staticinvoke <org.chromium.media.AudioRecordInput: android.media.AudioRecord access$000(org.chromium.media.AudioRecordInput)>($u2)
+NODE 4: virtualinvoke $u-1.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.device_capabilities.DeviceCapabilitiesStorage.initStorageList ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#30 == 0 goto $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.ui.DropdownPopupWindow.show ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.chromium.ui.DropdownPopupWindow
+NODE 2: $u0#29 = class "Landroid/widget/ListPopupWindow;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#35 = virtualinvoke $u0#29.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setForceIgnoreOutsideTouch", $u2)
+NODE 5: $u0#37 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u0#37)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkResourceClient.onReceivedLoadError ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkResourceClient
+NODE 2: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkResourceClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 3: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 4: if $u-1 == null goto return
+NODE 5: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkResourceClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 6: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u4 = newarray (java.lang.Class)[3]
+NODE 9: $u-1#17 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onReceivedLoadError", $u4)
+NODE 10: $u3 = this.<org.xwalk.app.runtime.XWalkRuntimeTestHelper$TestXWalkResourceClient: org.xwalk.app.runtime.XWalkRuntimeTestHelper this$0>
+NODE 11: $u-1 = staticinvoke <org.xwalk.app.runtime.XWalkRuntimeTestHelper: java.lang.Object access$000(org.xwalk.app.runtime.XWalkRuntimeTestHelper)>($u3)
+NODE 12: $u4#22 = newarray (java.lang.Object)[3]
+NODE 13: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkContentsClientBridge$1UriCallback.resolveFileName ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.net.Uri
+NODE 2: $u11 := @parameter1: android.content.ContentResolver
+NODE 3: $u-1 = virtualinvoke $u11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, null, null, null, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkViewDelegate.<clinit> ===
+SUSPICIOUS_API: exec
+NODE 1: if $u5 != 0 goto return
+NODE 2: $u-1#19 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#22 = virtualinvoke $u-1#19.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("getprop ro.product.cpu.abi")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkViewDelegate.loadXWalkLibrary ===
+SUSPICIOUS_API: load
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u4 != 0 goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 3: arr$ = <org.xwalk.core.internal.XWalkViewDelegate: java.lang.String[] MANDATORY_LIBRARIES>
+NODE 4: i$ = 0
+NODE 5: if i$ >= len$ goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 6: library = arr$[i$]
+NODE 7: $u4#13 = new java.lang.StringBuilder
+NODE 8: $u4#13 = virtualinvoke $u4#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/data/data/")
+NODE 9: $u-1#8 = virtualinvoke $u6.<android.content.Context: java.lang.String getPackageName()>()
+NODE 10: $u4#13 = virtualinvoke $u4#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 11: $u4#13 = virtualinvoke $u4#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/lib/")
+NODE 12: $u4#13 = virtualinvoke $u4#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(library)
+NODE 13: library = virtualinvoke $u4#13.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: staticinvoke <java.lang.System: void load(java.lang.String)>(library)
+NODE 15: i$ = i$ + 1
+NODE 16: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkViewDelegate.loadXWalkLibrary ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if len$ >= 17 goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 3: if $u6 == null goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 4: if $u4 != 0 goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 5: if i$ >= len$ goto staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+NODE 6: goto [?= (branch)]
+NODE 7: staticinvoke <org.xwalk.core.internal.XWalkViewDelegate: void loadLibrary(android.content.Context)>($u6)
+EDGE: 2 -> 3
+EDGE: 2 -> 7
+EDGE: 3 -> 7
+EDGE: 4 -> 7
+EDGE: 5 -> 7
+EDGE: 6 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.X509Util.clearTestRootCertificates ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = <org.chromium.net.X509Util: java.security.KeyStore sTestKeyStore>
+NODE 2: virtualinvoke $u0.<java.security.KeyStore: void load(java.security.KeyStore$LoadStoreParameter)>(null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.X509Util.ensureInitialized ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = <org.chromium.net.X509Util: java.security.KeyStore sSystemKeyStore>
+NODE 2: virtualinvoke $u-1.<java.security.KeyStore: void load(java.security.KeyStore$LoadStoreParameter)>(null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.net.X509Util.ensureInitialized ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = <org.chromium.net.X509Util: java.security.KeyStore sTestKeyStore>
+NODE 2: virtualinvoke $u-1.<java.security.KeyStore: void load(java.security.KeyStore$LoadStoreParameter)>(null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkContent.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.xwalk.core.internal.XWalkContent
+NODE 2: staticinvoke <org.xwalk.core.internal.XWalkPreferencesInternal: void load(org.xwalk.core.internal.XWalkPreferencesInternal$KeyValueChangeListener)>(this)
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.XWalkContent.setNativeContent ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.xwalk.core.internal.XWalkContent
+NODE 2: $u-1 = virtualinvoke this.<org.xwalk.core.internal.XWalkContent: android.content.Context getContext()>()
+NODE 3: $u1#11 = this.<org.xwalk.core.internal.XWalkContent: org.chromium.content.browser.ContentViewCore mContentViewCore>
+NODE 4: $u-1#41 = staticinvoke <org.chromium.content.browser.ContentView: org.chromium.content.browser.ContentView newInstance(android.content.Context,org.chromium.content.browser.ContentViewCore)>($u-1, $u1#11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.LibraryLoader.loadAlreadyLocked ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u24 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 == 0 goto arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 3: apkFilePath = null
+NODE 4: if $u24 == null goto staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("LibraryLoader", "could not check load from APK support due to null context")
+NODE 5: $u-1#15 = virtualinvoke $u24.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 6: apkFilePath = $u-1#15.<android.content.pm.ApplicationInfo: java.lang.String sourceDir>
+NODE 7: arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 8: i$ = 0
+NODE 9: if i$ >= len$ goto staticinvoke <org.chromium.base.library_loader.Linker: void finishLibraryLoad()>()
+NODE 10: library = arr$[i$]
+NODE 11: if $u-1#18 == 0 goto zipFilePath = null
+NODE 12: i$ = i$ + 1
+NODE 13: goto [?= (branch)]
+NODE 14: zipFilePath = null
+NODE 15: $u-1#34 = staticinvoke <java.lang.System: java.lang.String mapLibraryName(java.lang.String)>(library)
+NODE 16: libFilePath = $u-1#34
+NODE 17: if $u-1#18 != 0 goto zipFilePath = apkFilePath
+NODE 18: if $u-1#11 == 0 goto $u18#43 = new java.lang.StringBuilder
+NODE 19: zipFilePath = apkFilePath
+NODE 20: if $u-1#75 == 0 goto (branch)
+NODE 21: staticinvoke <org.chromium.base.library_loader.LibraryLoader: void loadLibrary(java.lang.String,java.lang.String)>(zipFilePath, libFilePath)
+NODE 22: if $u-1#18 != 0 goto i$ = i$ + 1
+NODE 23: goto [?= i$ = i$ + 1]
+NODE 24: library = staticinvoke <org.chromium.base.library_loader.LibraryLoaderHelper: java.lang.String buildFallbackLibrary(android.content.Context,java.lang.String)>($u24, library)
+NODE 25: libFilePath = library
+NODE 26: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 11 -> 14
+EDGE: 12 -> 13
+EDGE: 13 -> 9
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 17 -> 19
+EDGE: 18 -> 19
+EDGE: 20 -> 22
+EDGE: 22 -> 12
+EDGE: 23 -> 12
+EDGE: 24 -> 25
+EDGE: 26 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.LibraryLoader.loadAlreadyLocked ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u24 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 == 0 goto arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 3: apkFilePath = null
+NODE 4: if $u24 == null goto staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("LibraryLoader", "could not check load from APK support due to null context")
+NODE 5: $u-1#15 = virtualinvoke $u24.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 6: apkFilePath = $u-1#15.<android.content.pm.ApplicationInfo: java.lang.String sourceDir>
+NODE 7: arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 8: i$ = 0
+NODE 9: if i$ >= len$ goto staticinvoke <org.chromium.base.library_loader.Linker: void finishLibraryLoad()>()
+NODE 10: library = arr$[i$]
+NODE 11: if $u-1#18 == 0 goto zipFilePath = null
+NODE 12: i$ = i$ + 1
+NODE 13: goto [?= (branch)]
+NODE 14: zipFilePath = null
+NODE 15: $u-1#34 = staticinvoke <java.lang.System: java.lang.String mapLibraryName(java.lang.String)>(library)
+NODE 16: libFilePath = $u-1#34
+NODE 17: if $u-1#18 != 0 goto zipFilePath = apkFilePath
+NODE 18: if $u-1#11 == 0 goto $u18#43 = new java.lang.StringBuilder
+NODE 19: zipFilePath = apkFilePath
+NODE 20: if $u-1#75 == 0 goto (branch)
+NODE 21: if $u-1#18 != 0 goto i$ = i$ + 1
+NODE 22: staticinvoke <org.chromium.base.library_loader.LibraryLoader: void loadLibrary(java.lang.String,java.lang.String)>(zipFilePath, libFilePath)
+NODE 23: goto [?= i$ = i$ + 1]
+NODE 24: library = staticinvoke <org.chromium.base.library_loader.LibraryLoaderHelper: java.lang.String buildFallbackLibrary(android.content.Context,java.lang.String)>($u24, library)
+NODE 25: libFilePath = library
+NODE 26: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 11 -> 14
+EDGE: 12 -> 13
+EDGE: 13 -> 9
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 17 -> 19
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 21 -> 12
+EDGE: 22 -> 23
+EDGE: 23 -> 12
+EDGE: 24 -> 25
+EDGE: 26 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.LibraryLoader.loadAlreadyLocked ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u-1#11 == 0 goto arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 2: arr$ = <org.chromium.base.library_loader.NativeLibraries: java.lang.String[] LIBRARIES>
+NODE 3: i$ = 0
+NODE 4: if i$ >= len$ goto (branch)
+NODE 5: apkFilePath = arr$[i$]
+NODE 6: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>(apkFilePath)
+NODE 7: i$ = i$ + 1
+NODE 8: goto [?= (branch)]
+NODE 9: goto [?= i$ = i$ + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 4
+EDGE: 9 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.base.library_loader.LibraryLoader.loadLibrary ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u2 := @parameter1: java.lang.String
+NODE 3: staticinvoke <org.chromium.base.library_loader.Linker: void loadLibrary(java.lang.String,java.lang.String)>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getCurrentRawIds ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getDefaultAccountNameAndType ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u2#16 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u0 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[2]
+NODE 5: $u6 = newarray (java.lang.String)[1]
+NODE 6: $u-1#61 = virtualinvoke $u2#16.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u4, "_id=?", $u6, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getGroupId ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$Groups: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "deleted=? and group_visible=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getGroupTitle ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$Groups: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "deleted=? and group_visible=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getId ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "_id=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getLastUpdated ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u8 := @parameter0: long
+NODE 3: projection = newarray (java.lang.String)[1]
+NODE 4: $u0 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u0 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u0, $u8)
+NODE 6: $u0#7 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 7: $u-1 = virtualinvoke $u0#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, projection, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.getRawId ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "contact_id=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.extension.api.contacts.ContactUtils.hasID ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.xwalk.core.internal.extension.api.contacts.ContactUtils
+NODE 2: $u0 = this.<org.xwalk.core.internal.extension.api.contacts.ContactUtils: android.content.ContentResolver mResolver>
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "_id = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.MediaResourceGetter.getNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: mConnectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: if mConnectivityManager != null goto $u-1#8 = virtualinvoke mConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 5: $u-1#8 = virtualinvoke mConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl.registerForLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl
+NODE 2: criteria = new android.location.Criteria
+NODE 3: if $u9 == 0 goto $u1#8 = this.<org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl: android.location.LocationManager mLocationManager>
+NODE 4: $u1#8 = this.<org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl: android.location.LocationManager mLocationManager>
+NODE 5: $u-1#10 = staticinvoke <org.chromium.base.ThreadUtils: android.os.Looper getUiThreadLooper()>()
+NODE 6: virtualinvoke $u1#8.<android.location.LocationManager: void requestLocationUpdates(long,float,android.location.Criteria,android.location.LocationListener,android.os.Looper)>(0L, 0.0F, criteria, this, $u-1#10)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl.usePassiveOneShotLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl
+NODE 2: if $u-1 != 0 goto $u1 = this.<org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl: android.location.LocationManager mLocationManager>
+NODE 3: $u1 = this.<org.chromium.content.browser.LocationProviderFactory$LocationProviderImpl: android.location.LocationManager mLocationManager>
+NODE 4: $u-1#5 = virtualinvoke $u1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("passive")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.createInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u6 := @parameter1: java.lang.Object[]
+NODE 3: $u4 = <org.xwalk.core.internal.ReflectionHelper: java.util.Map sConstructorMap>
+NODE 4: $u-1 = interfaceinvoke $u4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: creator = (java.lang.reflect.Constructor) $u-1
+NODE 6: if creator != null goto (branch)
+NODE 7: $u4 = <org.xwalk.core.internal.ReflectionHelper: java.util.Map sConstructorHelperMap>
+NODE 8: $u-1 = interfaceinvoke $u4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 9: helper = (org.xwalk.core.internal.ReflectionHelper$ConstructorHelper) $u-1
+NODE 10: if helper == null goto (branch)
+NODE 11: $u-1#10 = virtualinvoke helper.<org.xwalk.core.internal.ReflectionHelper$ConstructorHelper: java.lang.reflect.Constructor loadConstructor()>()
+NODE 12: creator = $u-1#10
+NODE 13: if creator == null goto return null
+NODE 14: $u-1 = virtualinvoke creator.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 13
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.getBridgeOrWrapper ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u5 != null goto (branch)
+NODE 3: if $u7 == null goto return null
+NODE 4: $u-1 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if method != null goto $u5#9 = virtualinvoke method.<java.lang.reflect.Method: boolean isAccessible()>()
+NODE 6: methodName = "getBridge"
+NODE 7: if $u5#9 == 0 goto $u5#11 = newarray (java.lang.Class)[0]
+NODE 8: methodName = "getWrapper"
+NODE 9: $u5#11 = newarray (java.lang.Class)[0]
+NODE 10: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>(methodName, $u5#11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#7 == 0 goto $u13 = <org.xwalk.core.internal.ReflectionHelper: java.lang.ClassLoader sBridgeOrWrapperLoader>
+NODE 2: $u13 = <org.xwalk.core.internal.ReflectionHelper: java.lang.ClassLoader sBridgeOrWrapperLoader>
+NODE 3: $u-1#22 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.ReflectionHelper")
+NODE 4: $u10 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#30 = virtualinvoke $u-1#22.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("initClassLoader", $u10)
+NODE 6: $u10#33 = newarray (java.lang.Object)[2]
+NODE 7: virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u10#33)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u9#43 = class "Lorg/xwalk/core/internal/ReflectionHelper;"
+NODE 2: $u13 = virtualinvoke $u9#43.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u9#43 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkContent")
+NODE 4: $u10 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#30 = virtualinvoke $u9#43.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setJavascriptInterfaceClass", $u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.initClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9#43 = class "Lorg/xwalk/core/internal/ReflectionHelper;"
+NODE 2: $u13 = virtualinvoke $u9#43.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u9#43 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.xwalk.core.internal.XWalkContent")
+NODE 4: $u10 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#30 = virtualinvoke $u9#43.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setJavascriptInterfaceClass", $u10)
+NODE 6: $u10#33 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#30.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u10#33)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.xwalk.core.internal.ReflectionHelper.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.reflect.Method
+NODE 2: $u4 := @parameter1: java.lang.Object
+NODE 3: $u5 := @parameter2: java.lang.Object[]
+NODE 4: if $u2 != null goto (branch)
+NODE 5: if $u3 == null goto return null
+NODE 6: $u4 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.chromium.mojo.bindings.Encoder.encode ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("utf8")
+NODE 2: goto [?= $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("utf8")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+

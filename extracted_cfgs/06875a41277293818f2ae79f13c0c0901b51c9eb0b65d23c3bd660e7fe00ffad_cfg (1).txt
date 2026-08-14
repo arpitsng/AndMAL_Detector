@@ -1,0 +1,970 @@
+=== FUNCTION: com.google.ads.internal.j.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 = new android.gesture.GestureStore
+NODE 2: $u0 = new java.io.ByteArrayInputStream
+NODE 3: virtualinvoke $u1.<android.gesture.GestureStore: void load(java.io.InputStream)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.b.vb.d ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1#12 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#12, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u-1#11 = virtualinvoke $u6.<java.lang.String: byte[] getBytes()>()
+NODE 4: $u-1#11 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#11)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.CCITTDecoder.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qutils")
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.b.nb.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1#12 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#12, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.SigningInformation.<init> ===
+SUSPICIOUS_API: load
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u0#2 = new java.io.FileInputStream
+NODE 3: $u-1 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("PKCS12")
+NODE 4: $u-1#6 = virtualinvoke $u5.<java.lang.String: char[] toCharArray()>()
+NODE 5: virtualinvoke $u-1.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u0#2, $u-1#6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.l.xc.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.l.xc
+NODE 2: $u7 := @parameter0: javax.crypto.SecretKey
+NODE 3: $u9 := @parameter2: java.security.Provider
+NODE 4: $u0 = this.<b.b.l.xc: b.b.f.k.yb j>
+NODE 5: $u-1 = virtualinvoke $u0.<b.b.f.k.yb: b.b.f.k.kb xq()>()
+NODE 6: $u1 = <b.b.l.cd: b.b.l.cd e>
+NODE 7: $u-1#6 = virtualinvoke $u-1.<b.b.f.k.kb: b.b.f.k ak()>()
+NODE 8: $u-1#8 = virtualinvoke $u-1#6.<b.b.f.k: java.lang.String kd()>()
+NODE 9: $u-1#10 = virtualinvoke $u1.<b.b.l.cd: javax.crypto.Cipher g(java.lang.String,java.security.Provider)>($u-1#8, $u9)
+NODE 10: $u0#4 = interfaceinvoke $u7.<javax.crypto.SecretKey: byte[] getEncoded()>()
+NODE 11: $u0#4 = virtualinvoke $u-1#10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u0#4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.g.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u11 := @parameter1: java.security.Provider
+NODE 2: $u12 := @parameter2: byte[]
+NODE 3: $u1 = "CBC"
+NODE 4: $u0 = "PKCS5Padding"
+NODE 5: if $u-1 == 0 goto $u-1 = virtualinvoke $u14.<java.lang.String: boolean endsWith(java.lang.String)>("-ECB")
+NODE 6: $u1 = "CFB"
+NODE 7: $u0 = "NoPadding"
+NODE 8: if $u-1 != 0 goto $u1 = "ECB"
+NODE 9: if $u-1 != 0 goto $u1 = "ECB"
+NODE 10: if $u-1 == 0 goto $u-1 = virtualinvoke $u14.<java.lang.String: boolean endsWith(java.lang.String)>("-OFB")
+NODE 11: $u1 = "ECB"
+NODE 12: if $u-1 == 0 goto $u-1 = virtualinvoke $u14.<java.lang.String: boolean startsWith(java.lang.String)>("DES-EDE")
+NODE 13: $u1 = "OFB"
+NODE 14: $u0 = "NoPadding"
+NODE 15: $u1 = new java.lang.StringBuilder
+NODE 16: $u6#37 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/")
+NODE 17: $u6#37 = virtualinvoke $u6#37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u1)
+NODE 18: $u6#37 = virtualinvoke $u6#37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/")
+NODE 19: $u6#37 = virtualinvoke $u6#37.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u0)
+NODE 20: $u14 = virtualinvoke $u6#37.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 21: $u-1#52 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>($u14, $u11)
+NODE 22: $u12 = virtualinvoke $u-1#52.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u12)
+NODE 23: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 24: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 25: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 26: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 27: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 28: goto [?= $u12 = virtualinvoke $u-1#52.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u12)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 11
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 23 -> 15
+EDGE: 24 -> 15
+EDGE: 25 -> 15
+EDGE: 26 -> 15
+EDGE: 27 -> 15
+EDGE: 28 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.b.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.h.b
+NODE 2: $u0 = this.<b.b.h.b: java.security.PrivateKey bb>
+NODE 3: $u-1 = interfaceinvoke $u0.<java.security.PrivateKey: byte[] getEncoded()>()
+NODE 4: $u4#24 = this.<b.b.h.b: javax.crypto.Cipher m>
+NODE 5: $u-1 = virtualinvoke $u4#24.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.b.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.h.b
+NODE 2: $u0 = this.<b.b.h.b: java.security.PrivateKey bb>
+NODE 3: $u-1 = interfaceinvoke $u0.<java.security.PrivateKey: byte[] getEncoded()>()
+NODE 4: $u4#24 = this.<b.b.h.b: javax.crypto.Cipher m>
+NODE 5: $u-1 = virtualinvoke $u4#24.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.l.hd.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter2: byte[]
+NODE 2: $u8 := @parameter3: java.security.Provider
+NODE 3: if $u-1#8 == 0 goto $u-1#8 = virtualinvoke $u-1.<java.lang.String: boolean equals(java.lang.Object)>("DSA")
+NODE 4: $u1#10 = <b.b.l.cd: b.b.l.cd e>
+NODE 5: $u-1#12 = virtualinvoke $u1#10.<b.b.l.cd: javax.crypto.Cipher g(java.lang.String,java.security.Provider)>("RSA/ECB/PKCS1Padding", $u8)
+NODE 6: $u7 = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.l.dd.e ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.l.dd
+NODE 2: $u7 := @parameter1: java.security.Provider
+NODE 3: $u1 = <b.b.l.cd: b.b.l.cd e>
+NODE 4: $u0 = this.<b.b.l.dd: b.b.f.k.kb c>
+NODE 5: $u-1 = virtualinvoke $u0.<b.b.f.k.kb: b.b.f.k ak()>()
+NODE 6: $u-1#5 = specialinvoke this.<b.b.l.dd: java.lang.String b(b.b.f.k)>($u-1)
+NODE 7: $u-1#8 = virtualinvoke $u1.<b.b.l.cd: javax.crypto.Cipher g(java.lang.String,java.security.Provider)>($u-1#5, $u7)
+NODE 8: $u2 = this.<b.b.l.dd: b.b.f.m.hb l>
+NODE 9: $u-1#11 = virtualinvoke $u2.<b.b.f.m.hb: b.b.f.o qu()>()
+NODE 10: $u-1#13 = virtualinvoke $u-1#11.<b.b.f.o: byte[] od()>()
+NODE 11: $u-1#13 = virtualinvoke $u-1#8.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.JPEG2000Decoder.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qutils")
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.i.c.b.g.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.i.c.b.g
+NODE 2: $u5 := @parameter0: b.b.f.k.kb
+NODE 3: $u7 := @parameter2: byte[]
+NODE 4: $u1 = this.<b.b.i.c.b.g: b.b.i.c.b.e b>
+NODE 5: $u-1 = virtualinvoke $u5.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 6: $u-1#5 = virtualinvoke $u1.<b.b.i.c.b.e: javax.crypto.Cipher c(b.b.f.ab)>($u-1)
+NODE 7: $u7 = virtualinvoke $u-1#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.d.b.h.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "[I", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.d.b.f.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "[I", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.m.j.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#11 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.m.j.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#10 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.m.j.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#11 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.JPEGDecoder.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qutils")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.analytics.tracking.android.AdMobInfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#45 == null goto $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#57 == null goto return $u3
+NODE 4: $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u2 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#33 = virtualinvoke $u0#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#45 == null goto $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#57 == null goto return $u3
+NODE 4: $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u2 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#33 = virtualinvoke $u0#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+NODE 7: $u0#57 = <com.google.ads.AdRequest: java.lang.reflect.Method c>
+NODE 8: $u2 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#33 = virtualinvoke $u0#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#33, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.af$b.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.af$b
+NODE 2: $u0 = <com.google.ads.ae: android.net.Uri a>
+NODE 3: $u1 = this.<com.google.ads.af$b: java.lang.String c>
+NODE 4: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u1)
+NODE 5: $u0#5 = this.<com.google.ads.af$b: java.lang.ref.WeakReference a>
+NODE 6: $u-1 = virtualinvoke $u0#5.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 7: $u0#8 = (android.app.Activity) $u-1
+NODE 8: if $u0#8 != null goto $u-1#10 = virtualinvoke $u0#8.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#10 = virtualinvoke $u0#8.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u2 = <com.google.ads.ae: java.lang.String[] c>
+NODE 11: $u-1#14 = virtualinvoke $u-1#10.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.af$a.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.af$a
+NODE 2: $u1 = this.<com.google.ads.af$a: java.lang.ref.WeakReference a>
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 4: $u0 = (android.app.Activity) $u-1
+NODE 5: if $u0 != null goto $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u2 = <com.google.ads.ae: android.net.Uri b>
+NODE 8: $u3 = <com.google.ads.ae: java.lang.String[] d>
+NODE 9: $u-1#11 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2, $u3, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 2: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 3: if $u-1#9 == null goto $u0#13 = null
+NODE 4: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.i.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.ads.i
+NODE 2: $u14 := @parameter0: com.google.ads.mediation.MediationAdapter
+NODE 3: $u-1#9 = interfaceinvoke $u14.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 4: if $u-1#9 == null goto $u0#13 = null
+NODE 5: $u-1 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0#13 = (com.google.ads.mediation.MediationServerParameters) $u-1
+NODE 7: $u3 = this.<com.google.ads.i: java.util.HashMap d>
+NODE 8: virtualinvoke $u0#13.<com.google.ads.mediation.MediationServerParameters: void load(java.util.Map)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.b.t.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u7 := @parameter2: java.security.Provider
+NODE 4: $u6 = staticinvoke <b.b.j.e: java.lang.String e(java.lang.String)>($u6)
+NODE 5: $u1 = new java.lang.StringBuilder
+NODE 6: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = virtualinvoke $u7.<java.security.Provider: java.lang.String getProperty(java.lang.String)>($u-1)
+NODE 11: if $u-1 != null goto $u6 = $u-1
+NODE 12: $u1 = new java.lang.StringBuilder
+NODE 13: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 14: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 15: $u5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 16: $u-1#26 = virtualinvoke $u7.<java.security.Provider: java.lang.String getProperty(java.lang.String)>($u5)
+NODE 17: if $u-1#26 == null goto $u1#84 = new java.security.NoSuchAlgorithmException
+NODE 18: $u-1#28 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 19: $u-1#30 = virtualinvoke $u-1#28.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 20: if $u-1#30 == null goto $u-1#28 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#26)
+NODE 21: $u-1#28 = virtualinvoke $u-1#30.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#26)
+NODE 22: $u-1#35 = virtualinvoke $u-1#28.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 23: $u6 = $u-1
+NODE 24: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 25: $u-1#28 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#26)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 23
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 20 -> 25
+EDGE: 23 -> 24
+EDGE: 24 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.b.t.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u7 := @parameter2: java.security.Provider
+NODE 4: $u6 = staticinvoke <b.b.j.e: java.lang.String e(java.lang.String)>($u6)
+NODE 5: $u1 = new java.lang.StringBuilder
+NODE 6: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = virtualinvoke $u7.<java.security.Provider: java.lang.String getProperty(java.lang.String)>($u-1)
+NODE 11: if $u-1 != null goto $u6 = $u-1
+NODE 12: $u1 = new java.lang.StringBuilder
+NODE 13: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 14: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 15: $u5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 16: $u-1#26 = virtualinvoke $u7.<java.security.Provider: java.lang.String getProperty(java.lang.String)>($u5)
+NODE 17: if $u-1#30 == null goto $u-1#28 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#26)
+NODE 18: $u6 = $u-1
+NODE 19: goto [?= $u1 = new java.lang.StringBuilder]
+NODE 20: $u-1#28 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#26)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 18
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 20
+EDGE: 18 -> 19
+EDGE: 19 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.b.c.f.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.h.b ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 != null goto return
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.bouncycastle.jce.provider.BouncyCastleProvider")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.h.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 != null goto return
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.bouncycastle.jce.provider.BouncyCastleProvider")
+NODE 3: $u-1#7 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.c.i.b ===
+SUSPICIOUS_API: load
+NODE 1: if $u3 == null goto $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: if $u-1#5 != 0 goto $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("PKCS12")
+NODE 3: if $u-1#5 == 0 goto $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 4: $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("PKCS12")
+NODE 5: if $u3 == null goto virtualinvoke $u-1#13.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+NODE 6: if $u4 != null goto $u1 = new java.io.FileInputStream
+NODE 7: virtualinvoke $u-1#13.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+NODE 8: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 9: $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 10: goto [?= (branch)]
+EDGE: 1 -> 8
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 3 -> 8
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 7
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.c.i.b ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: if $u3 == null goto $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 3: if $u-1#5 != 0 goto $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("PKCS12")
+NODE 4: if $u-1#5 == 0 goto $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 5: $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("PKCS12")
+NODE 6: if $u3 == null goto virtualinvoke $u-1#13.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+NODE 7: if $u4 != null goto $u1 = new java.io.FileInputStream
+NODE 8: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 9: $u-1#13 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 10: goto [?= (branch)]
+NODE 11: $u1 = new java.io.FileInputStream
+NODE 12: $u-1#19 = virtualinvoke $u4.<java.lang.String: char[] toCharArray()>()
+NODE 13: virtualinvoke $u-1#13.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u1, $u-1#19)
+EDGE: 1 -> 2
+EDGE: 2 -> 8
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.c.g.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.n.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 2: if $u7 > 0 goto $u-1#29 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($u2, 0, $u7)
+NODE 3: $u2 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal()>()
+NODE 4: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.n.b ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter2: java.io.InputStream
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u2 = newarray (byte)[10240]
+NODE 4: $u7 = virtualinvoke $u9.<java.io.InputStream: int read(byte[])>($u2)
+NODE 5: if $u7 > 0 goto $u-1#29 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($u2, 0, $u7)
+NODE 6: $u-1#29 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] update(byte[],int,int)>($u2, 0, $u7)
+NODE 7: if $u-1#29 == null goto $u7 = virtualinvoke $u9.<java.io.InputStream: int read(byte[])>($u2)
+NODE 8: $u7 = lengthof $u-1#29
+NODE 9: if $u7 <= 0 goto $u7 = virtualinvoke $u9.<java.io.InputStream: int read(byte[])>($u2)
+NODE 10: $u7 = virtualinvoke $u9.<java.io.InputStream: int read(byte[])>($u2)
+NODE 11: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.n.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u9 := @parameter2: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u9 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u9)
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.f.n.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter2: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u6 = lengthof $u8
+NODE 4: $u6 = $u6 + -16
+NODE 5: $u8 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u8, 16, $u6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.c.j.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#23 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.c.j.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#23 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.PerfUtils.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qbuffer")
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.d.b.i.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.d.b.i
+NODE 2: $u6 := @parameter0: b.b.d.j
+NODE 3: $u0 = this.<b.b.d.b.i: b.b.d.b.f d>
+NODE 4: $u-1 = virtualinvoke this.<b.b.d.b.i: b.b.f.k.kb b()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 6: $u-1#6 = virtualinvoke $u0.<b.b.d.b.f: javax.crypto.Cipher b(b.b.f.ab)>($u-1#4)
+NODE 7: $u-1#12 = staticinvoke <b.b.d.b.c: java.security.Key b(b.b.d.j)>($u6)
+NODE 8: $u0#9 = interfaceinvoke $u-1#12.<java.security.Key: byte[] getEncoded()>()
+NODE 9: $u0#9 = virtualinvoke $u-1#6.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u0#9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.d.b.j.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.d.b.j
+NODE 2: $u6 := @parameter1: byte[]
+NODE 3: $u1 = this.<b.b.d.b.j: b.b.d.b.f c>
+NODE 4: $u-1 = virtualinvoke this.<b.b.d.b.j: b.b.f.k.kb b()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 6: $u-1#7 = virtualinvoke $u1.<b.b.d.b.f: javax.crypto.Cipher b(b.b.f.ab)>($u-1#5)
+NODE 7: $u6 = virtualinvoke $u-1#7.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdfViewer.d.b.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#9 = newarray (int)[2]
+NODE 2: $u3 = <java.lang.Float: java.lang.Class TYPE>
+NODE 3: $u-1#12 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u3, $u-1#9)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdfViewer.d.b.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#5 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Float: java.lang.Class TYPE>
+NODE 3: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1#5)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdfViewer.d.c.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = newarray (int)[2]
+NODE 2: $u1#45 = <java.lang.Float: java.lang.Class TYPE>
+NODE 3: $u-1#46 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#45, $u1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.NativeBitmapCache21.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qutils")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.android.pdf.nativ.NativeBitmapCache22.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("qcache")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qoppa.viewer.b.f.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.e.e.rb.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: b.b.e.e.rb
+NODE 2: $u7 := @parameter1: java.lang.String[]
+NODE 3: $u1 = 0
+NODE 4: if $u1 != $u0 goto $u0#4 = null
+NODE 5: $u0#4 = null
+NODE 6: $u-1 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 8: if $u-1#7 == null goto $u3 = new java.lang.StringBuilder
+NODE 9: $u3 = new java.lang.StringBuilder
+NODE 10: $u-1#10 = $u7[$u1]
+NODE 11: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 12: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$Mappings")
+NODE 13: $u-1#10 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1 = virtualinvoke $u-1#7.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#10)
+NODE 15: $u0#4 = $u-1
+NODE 16: if $u0#4 == null goto $u1 = $u1 + 1
+NODE 17: $u-1#21 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 18: $u1 = $u1 + 1
+NODE 19: $u3 = new java.lang.StringBuilder
+NODE 20: $u-1#10 = $u7[$u1]
+NODE 21: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 22: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$Mappings")
+NODE 23: $u-1#10 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 24: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#10)
+NODE 25: $u0#4 = $u-1
+NODE 26: goto [?= (branch)]
+NODE 27: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 19
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 16 -> 18
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 16
+EDGE: 27 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.e.e.rb.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter1: java.lang.String[]
+NODE 2: $u1 = 0
+NODE 3: if $u-1#7 == null goto $u3 = new java.lang.StringBuilder
+NODE 4: if $u0#4 == null goto $u1 = $u1 + 1
+NODE 5: $u1 = $u1 + 1
+NODE 6: $u3 = new java.lang.StringBuilder
+NODE 7: $u-1#10 = $u7[$u1]
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#10)
+NODE 9: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$Mappings")
+NODE 10: $u-1#10 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#10)
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 4
+EDGE: 13 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.e.e.q.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter1: b.b.f.k.kb
+NODE 2: $u11 := @parameter4: byte[]
+NODE 3: $u-1 = virtualinvoke $u8.<b.b.f.k.kb: b.b.f.k ak()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<b.b.f.k: java.lang.String kd()>()
+NODE 5: $u3 = <b.b.e.e.q: java.security.Provider dz>
+NODE 6: $u-1#22 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.security.Provider)>($u-1#3, $u3)
+NODE 7: $u11 = virtualinvoke $u-1#22.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.e.e.wb.engineGetKeySpec ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter1: java.lang.Class
+NODE 2: if $u-1 == 0 goto $u0#13 = newarray (java.lang.Class)[1]
+NODE 3: $u0#13 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#16 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0#13)
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#22 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.b.u.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1#12 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#12, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.b.x.k ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.c.b.x.k ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Long: java.lang.Class TYPE>
+NODE 3: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.f$_m.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.h.f$_m
+NODE 2: $u8 := @parameter0: b.b.j.d.b.h
+NODE 3: $u-1 = virtualinvoke $u8.<b.b.j.d.b.h: byte[] e()>()
+NODE 4: $u-1#3 = staticinvoke <b.b.f.qc: b.b.f.qc d(byte[])>($u-1)
+NODE 5: $u-1#5 = staticinvoke <b.b.f.g.w: b.b.f.g.w qd(java.lang.Object)>($u-1#3)
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<b.b.f.g.w: b.b.f.k.kb tl()>()
+NODE 7: if $u-1#17 == 0 goto $u-1#15 = virtualinvoke $u-1#7.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 8: $u-1#19 = virtualinvoke $u-1#7.<b.b.f.k.kb: b.b.f.nc yj()>()
+NODE 9: $u-1#21 = staticinvoke <b.b.f.g.y: b.b.f.g.y fd(java.lang.Object)>($u-1#19)
+NODE 10: $u-1#25 = virtualinvoke $u-1#21.<b.b.f.g.y: b.b.f.g.i mk()>()
+NODE 11: $u-1#15 = virtualinvoke $u-1#25.<b.b.f.g.i: b.b.f.ab zj()>()
+NODE 12: $u-1#38 = virtualinvoke $u-1#15.<b.b.f.ab: java.lang.String kd()>()
+NODE 13: $u2#47 = this.<b.b.h.f$_m: java.lang.String o>
+NODE 14: $u-1#48 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>($u-1#38, $u2#47)
+NODE 15: $u-1 = virtualinvoke $u-1#5.<b.b.f.g.w: byte[] ul()>()
+NODE 16: $u-1 = virtualinvoke $u-1#48.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.f$_m.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.h.f$_m
+NODE 2: $u8 := @parameter0: b.b.j.d.b.h
+NODE 3: $u-1 = virtualinvoke $u8.<b.b.j.d.b.h: byte[] e()>()
+NODE 4: $u-1#3 = staticinvoke <b.b.f.qc: b.b.f.qc d(byte[])>($u-1)
+NODE 5: $u-1#5 = staticinvoke <b.b.f.g.w: b.b.f.g.w qd(java.lang.Object)>($u-1#3)
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<b.b.f.g.w: b.b.f.k.kb tl()>()
+NODE 7: $u-1#15 = virtualinvoke $u-1#7.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 8: $u-1#38 = virtualinvoke $u-1#15.<b.b.f.ab: java.lang.String kd()>()
+NODE 9: $u2#47 = this.<b.b.h.f$_m: java.lang.String o>
+NODE 10: $u-1#48 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>($u-1#38, $u2#47)
+NODE 11: $u-1 = virtualinvoke $u-1#5.<b.b.f.g.w: byte[] ul()>()
+NODE 12: $u-1 = virtualinvoke $u-1#48.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: b.b.h.f$_m.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: b.b.h.f$_m
+NODE 2: $u8 := @parameter0: b.b.j.d.b.h
+NODE 3: $u-1 = virtualinvoke $u8.<b.b.j.d.b.h: byte[] e()>()
+NODE 4: $u-1#3 = staticinvoke <b.b.f.qc: b.b.f.qc d(byte[])>($u-1)
+NODE 5: $u-1#5 = staticinvoke <b.b.f.g.w: b.b.f.g.w qd(java.lang.Object)>($u-1#3)
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<b.b.f.g.w: b.b.f.k.kb tl()>()
+NODE 7: $u-1#15 = virtualinvoke $u-1#7.<b.b.f.k.kb: b.b.f.ab zj()>()
+NODE 8: $u-1#38 = virtualinvoke $u-1#15.<b.b.f.ab: java.lang.String kd()>()
+NODE 9: $u2#47 = this.<b.b.h.f$_m: java.lang.String o>
+NODE 10: $u-1#48 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>($u-1#38, $u2#47)
+NODE 11: $u-1 = virtualinvoke $u-1#5.<b.b.f.g.w: byte[] ul()>()
+NODE 12: $u-1 = virtualinvoke $u-1#48.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+

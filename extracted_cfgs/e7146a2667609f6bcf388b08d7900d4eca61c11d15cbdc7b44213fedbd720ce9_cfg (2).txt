@@ -1,0 +1,1227 @@
+=== FUNCTION: bsh.Capabilities.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Capabilities.classExists ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u-1 != null goto (branch)
+NODE 3: $u-1#4 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.CollectionManager.getCollectionManager ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u0 = <bsh.CollectionManager: bsh.CollectionManager manager>
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.collection.CollectionManagerImpl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.CollectionManager.getCollectionManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 == 0 goto $u0 = <bsh.CollectionManager: bsh.CollectionManager manager>
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.collection.CollectionManagerImpl")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.moveFileBackups ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: smpxg.crystallighter.DataHolder
+NODE 2: $u20 := @parameter1: int
+NODE 3: $u14#32 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 4: $u0 = this.<smpxg.crystallighter.DataHolder: java.lang.String[] _fnames>
+NODE 5: $u19 = $u0[$u20]
+NODE 6: $u-1#37 = virtualinvoke $u14#32.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u19)
+NODE 7: if ok == 0 goto (branch)
+NODE 8: if ok == 0 goto (branch)
+NODE 9: if wok == 0 goto $u20 = $u20 + 1
+NODE 10: $u20 = $u20 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 7
+EDGE: 12 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.prepareFileBackups ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: smpxg.crystallighter.DataHolder
+NODE 2: i = 1
+NODE 3: if i <= 2 goto $u10 = this.<smpxg.crystallighter.DataHolder: java.lang.String[] _fnames>
+NODE 4: i = 1
+NODE 5: $u10#24 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 6: $u10 = this.<smpxg.crystallighter.DataHolder: java.lang.String[] _fnames>
+NODE 7: $u15 = $u10[i]
+NODE 8: $u-1#27 = virtualinvoke $u10#24.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u15)
+NODE 9: if ok == 0 goto (branch)
+NODE 10: if ok == 0 goto (branch)
+NODE 11: if wok == 0 goto i = i + -1
+NODE 12: i = i + -1
+NODE 13: i = i + 1
+NODE 14: goto [?= (branch)]
+NODE 15: goto [?= (branch)]
+NODE 16: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 3
+EDGE: 15 -> 9
+EDGE: 16 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.writeMainObject ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u4 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u4.<smpxg.crystallighter.main: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u7, 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.writeObjectSimply ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u4 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u4.<smpxg.crystallighter.main: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u7, 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.loadMainObject ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u9 := @parameter0: java.lang.String
+NODE 2: $u6 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u6.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.loadObjectSimply ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u4 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u4.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.readDataSimplyInPlace ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u5.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.writeDataFromIntArraySimply ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u5.<smpxg.crystallighter.main: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u8, 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.DataHolder.writeDataSimply ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: if $u9 == null goto $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 4: $u-1 = virtualinvoke $u5.<smpxg.crystallighter.main: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u8, 0)
+NODE 5: goto [?= $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.weibo.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.weibo.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.weibo.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.weibo.CLM
+NODE 2: $u-1 = this.<com.weibo.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.weibo.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.weibo.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.weibo.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.weibo.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.weibo.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.weibo.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.weibo.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.weibo.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.MainGame$1.run ===
+SUSPICIOUS_API: load
+NODE 1: $u0#34 = <smpxg.crystallighter.Hub: smpxg.crlengine.LevelManager Levels>
+NODE 2: virtualinvoke $u0#34.<smpxg.crlengine.LevelManager: void load(java.lang.String)>("menu")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.LevelManager$1.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: smpxg.crlengine.LevelManager$1
+NODE 2: $u0#4 = this.<smpxg.crlengine.LevelManager$1: smpxg.crlengine.LevelManager this$0>
+NODE 3: $u2 = this.<smpxg.crlengine.LevelManager$1: java.lang.String val$level_name>
+NODE 4: virtualinvoke $u0#4.<smpxg.crlengine.LevelManager: void load(java.lang.String)>($u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BSHAllocationExpression.arrayNewInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: $u6 := @parameter1: bsh.BSHArrayDimensions
+NODE 3: $u0 = $u6.<bsh.BSHArrayDimensions: int numUndefinedDims>
+NODE 4: if $u0 <= 0 goto (branch)
+NODE 5: $u0 = $u6.<bsh.BSHArrayDimensions: int numUndefinedDims>
+NODE 6: $u0#3 = newarray (int)[$u0]
+NODE 7: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u5, $u0#3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BSHAllocationExpression.arrayNewInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: $u6 := @parameter1: bsh.BSHArrayDimensions
+NODE 3: $u0 = $u6.<bsh.BSHArrayDimensions: int numUndefinedDims>
+NODE 4: if $u0 <= 0 goto (branch)
+NODE 5: $u0 = $u6.<bsh.BSHArrayDimensions: int numUndefinedDims>
+NODE 6: $u0#3 = newarray (int)[$u0]
+NODE 7: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u5, $u0#3)
+NODE 8: $u5 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u0#3 = $u6.<bsh.BSHArrayDimensions: int[] definedDimensions>
+NODE 10: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u5, $u0#3)
+NODE 11: goto [?= $u0#3 = $u6.<bsh.BSHArrayDimensions: int[] definedDimensions>]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 11
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 = new dalvik.system.DexClassLoader
+NODE 2: $u-1#23 = virtualinvoke $u2.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>("com.slpush.demo.MainActivity")
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#27 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u2#30 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u-1#27.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#30)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.MainActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = new dalvik.system.DexClassLoader
+NODE 2: $u-1#23 = virtualinvoke $u2.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>("com.slpush.demo.MainActivity")
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#27 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u2#30 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u-1#27.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#30)
+NODE 7: $u-1#35 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getMoney", null)
+NODE 8: $u-1#31 = virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Interpreter.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Interpreter.invokeMain ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: $u1 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = staticinvoke <bsh.Reflect: java.lang.reflect.Method resolveJavaMethod(bsh.BshClassManager,java.lang.Class,java.lang.String,java.lang.Class[],boolean)>(null, $u6, "main", $u1, 1)
+NODE 4: if $u-1 == null goto return
+NODE 5: $u1#9 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u1#9)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BSHBinaryExpression.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.cctin.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.cctin.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.cctin.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.cctin.CLM
+NODE 2: $u-1 = this.<com.cctin.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.cctin.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.cctin.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.cctin.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.cctin.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.cctin.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.cctin.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.cctin.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.cctin.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BSHType.getType ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: bsh.BSHType
+NODE 2: $u0#9 = this.<bsh.BSHType: int arrayDims>
+NODE 3: if $u0#9 <= 0 goto $u0 = this.<bsh.BSHType: java.lang.Class baseType>
+NODE 4: $u0#9 = this.<bsh.BSHType: int arrayDims>
+NODE 5: $u0#11 = newarray (int)[$u0#9]
+NODE 6: $u0 = this.<bsh.BSHType: java.lang.Class baseType>
+NODE 7: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u0, $u0#11)
+NODE 8: goto [?= $u0#9 = this.<bsh.BSHType: int arrayDims>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.SoundManager.initManager ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: smpxg.crlengine.SoundManager
+NODE 2: $u5#5 = class "Lsmpxg/crystallighter/R$raw;"
+NODE 3: $u-1 = virtualinvoke $u5#5.<java.lang.Class: java.lang.reflect.Field[] getDeclaredFields()>()
+NODE 4: $u5#8 = 0
+NODE 5: $u5#13 = lengthof $u-1
+NODE 6: if $u5#8 < $u5#13 goto $u5#13 = -1
+NODE 7: $u5#13 = -1
+NODE 8: $u5#15 = $u-1[$u5#8]
+NODE 9: n1 = virtualinvoke $u5#15.<java.lang.reflect.Field: int getInt(java.lang.Object)>(null)
+NODE 10: $u5#13 = n1
+NODE 11: n1 = -1
+NODE 12: if $u5#13 == n1 goto $u5#8 = $u5#8 + 1
+NODE 13: $u5 = this.<smpxg.crlengine.SoundManager: android.media.SoundPool soundPool>
+NODE 14: $u7 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 15: $u5#13 = virtualinvoke $u5.<android.media.SoundPool: int load(android.content.Context,int,int)>($u7, $u5#13, 1)
+NODE 16: $u5#8 = $u5#8 + 1
+NODE 17: goto [?= $u5#13 = lengthof $u-1]
+NODE 18: goto [?= n1 = -1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 16
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 5
+EDGE: 18 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Types.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.slpush.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u-1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.slpush.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.slpush.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.slpush.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.slpush.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.slpush.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.Utils.readDataInPlace ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u-1 = virtualinvoke $u5.<smpxg.crystallighter.main: java.io.FileInputStream openFileInput(java.lang.String)>($u6)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.Utils.writeData ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u8 == null goto $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 3: $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>
+NODE 4: $u-1 = virtualinvoke $u5.<smpxg.crystallighter.main: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u7, 0)
+NODE 5: goto [?= $u5 = <smpxg.crystallighter.Hub: smpxg.crystallighter.main MainContext>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Primitive.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshClassManager.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshClassManager.createClassManager ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u0 = new bsh.BshClassManager
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.classpath.ClassManagerImpl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshClassManager.createClassManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 == 0 goto $u0 = new bsh.BshClassManager
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.classpath.ClassManagerImpl")
+NODE 3: $u-1#14 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshClassManager.plainClassForName ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: if $u0 == null goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.DelayedCaller$Task.call ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: smpxg.crlengine.DelayedCaller$Task
+NODE 2: $u1 = this.<smpxg.crlengine.DelayedCaller$Task: java.lang.reflect.Method method>
+NODE 3: $u2 = this.<smpxg.crlengine.DelayedCaller$Task: java.lang.Object obj>
+NODE 4: $u3 = this.<smpxg.crlengine.DelayedCaller$Task: java.lang.Object[] args>
+NODE 5: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.DelayedCaller.addTask ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u12 := @parameter0: java.lang.Object
+NODE 2: $u13 := @parameter1: java.lang.String
+NODE 3: $u15 := @parameter3: java.lang.Object[]
+NODE 4: param_types = null
+NODE 5: if $u15 == null goto $u-1 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u0 = lengthof $u15
+NODE 7: if $u0 <= 0 goto $u0 = 0
+NODE 8: $u0 = lengthof $u15
+NODE 9: param_types = newarray (java.lang.Class)[$u0]
+NODE 10: $u0 = 0
+NODE 11: if $u0 < $u0#10 goto $u0#29 = $u15[$u0]
+NODE 12: $u-1 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 13: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u13, param_types)
+NODE 14: $u0 = $u0 + 1
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 12
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.LevelManager.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: smpxg.crlengine.LevelManager
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u2 = this.<smpxg.crlengine.LevelManager: java.util.Map mLevels>
+NODE 4: $u-1 = interfaceinvoke $u2.<java.util.Map: java.lang.Object get(java.lang.Object)>($u6)
+NODE 5: gl = (smpxg.crlengine.BaseGameLevel) $u-1
+NODE 6: if $u-1#5 != 0 goto return
+NODE 7: $u2#7 = new java.lang.StringBuilder
+NODE 8: $u2#7 = virtualinvoke $u2#7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 9: $u2#7 = virtualinvoke $u2#7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".xml")
+NODE 10: $u-1#14 = virtualinvoke $u2#7.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: virtualinvoke gl.<smpxg.crlengine.BaseGameLevel: void load(java.lang.String)>($u-1#14)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.LevelManager.setActiveForced ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: smpxg.crlengine.LevelManager
+NODE 2: $u3 := @parameter0: java.lang.String
+NODE 3: if $u1#2 != null goto virtualinvoke this.<smpxg.crlengine.LevelManager: void load(java.lang.String)>($u3)
+NODE 4: virtualinvoke this.<smpxg.crlengine.LevelManager: void load(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.ClassGenerator.getClassGenerator ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != null goto $u0 = <bsh.ClassGenerator: bsh.ClassGenerator cg>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.ClassGeneratorImpl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.ClassGenerator.getClassGenerator ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 != null goto $u0 = <bsh.ClassGenerator: bsh.ClassGenerator cg>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.ClassGeneratorImpl")
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tom.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.tom.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tom.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.tom.CLM
+NODE 2: $u-1 = this.<com.tom.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.tom.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.tom.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.tom.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.tom.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.tom.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.tom.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.tom.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.tom.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Reflect.constructObject ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u5 := @parameter1: java.lang.Object[]
+NODE 3: if $u-1 == 0 goto $u-1#12 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u5)
+NODE 4: $u-1#12 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u5)
+NODE 5: if $u-1 == 0 goto $u-1#16 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 6: $u-1#16 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Constructor[] getDeclaredConstructors()>()
+NODE 7: if $u-1 == 0 goto $u-1#26 = staticinvoke <bsh.Reflect: java.lang.reflect.Constructor findMostSpecificConstructor(java.lang.Class[],java.lang.reflect.Constructor[])>($u-1#12, $u-1#16)
+NODE 8: $u-1#26 = staticinvoke <bsh.Reflect: java.lang.reflect.Constructor findMostSpecificConstructor(java.lang.Class[],java.lang.reflect.Constructor[])>($u-1#12, $u-1#16)
+NODE 9: $u-1#16 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 10: if $u-1 != 0 goto $u5 = staticinvoke <bsh.Primitive: java.lang.Object[] unwrap(java.lang.Object[])>($u5)
+NODE 11: $u5 = staticinvoke <bsh.Primitive: java.lang.Object[] unwrap(java.lang.Object[])>($u5)
+NODE 12: $u-1#35 = virtualinvoke $u-1#26.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5)
+NODE 13: goto [?= $u5 = staticinvoke <bsh.Primitive: java.lang.Object[] unwrap(java.lang.Object[])>($u5)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 9
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Reflect.findAccessibleField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: if $u2 != null goto $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+NODE 5: $u2 = virtualinvoke $u2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 6: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Reflect.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.reflect.Method
+NODE 2: $u8 := @parameter1: java.lang.Object
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: if $u9 != null goto (branch)
+NODE 5: $u9 = newarray (java.lang.Object)[0]
+NODE 6: $u1 = lengthof $u9
+NODE 7: $u1#5 = newarray (java.lang.Object)[$u1]
+NODE 8: $u1 = lengthof $u9
+NODE 9: if $u3 < $u1 goto $u0 = $u9[$u3]
+NODE 10: $u9 = staticinvoke <bsh.Primitive: java.lang.Object[] unwrap(java.lang.Object[])>($u1#5)
+NODE 11: $u8 = virtualinvoke $u7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u9)
+NODE 12: goto [?= $u1 = lengthof $u9]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 12 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshMethod.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.BshMethod
+NODE 2: $u7 := @parameter0: java.lang.Object[]
+NODE 3: $u8 := @parameter1: bsh.Interpreter
+NODE 4: $u-1 = virtualinvoke this.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode,boolean)>($u7, $u8, null, null, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BshMethod.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.BshMethod
+NODE 2: $u7 := @parameter0: java.lang.Object[]
+NODE 3: $u8 := @parameter1: bsh.Interpreter
+NODE 4: $u9 := @parameter2: bsh.CallStack
+NODE 5: $u10 := @parameter3: bsh.SimpleNode
+NODE 6: $u-1 = virtualinvoke this.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode,boolean)>($u7, $u8, $u9, $u10, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.DelayedCaller$SafeTask.call ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: smpxg.crlengine.DelayedCaller$SafeTask
+NODE 2: $u6 = <smpxg.crystallighter.Hub: smpxg.crlengine.LevelManager Levels>
+NODE 3: $u7 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.String obj>
+NODE 4: $u-1 = virtualinvoke $u6.<smpxg.crlengine.LevelManager: smpxg.crlengine.BaseGameLevel get(java.lang.String)>($u7)
+NODE 5: if $u-1 != null goto param_types = null
+NODE 6: param_types = null
+NODE 7: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 8: if $u6#24 == null goto $u-1#33 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 10: $u6#26 = lengthof $u6#24
+NODE 11: if $u6#26 <= 0 goto $u6#26 = 0
+NODE 12: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 13: $u6#26 = lengthof $u6#24
+NODE 14: param_types = newarray (java.lang.Class)[$u6#26]
+NODE 15: $u6#26 = 0
+NODE 16: if $u6#26 < $u6#31 goto $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 17: $u-1#33 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 18: $u7 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.String method>
+NODE 19: $u-1#36 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u7, param_types)
+NODE 20: $u6#26 = $u6#26 + 1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 17
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 15
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.DelayedCaller$SafeTask.call ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: smpxg.crlengine.DelayedCaller$SafeTask
+NODE 2: $u6 = <smpxg.crystallighter.Hub: smpxg.crlengine.LevelManager Levels>
+NODE 3: $u7 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.String obj>
+NODE 4: $u-1 = virtualinvoke $u6.<smpxg.crlengine.LevelManager: smpxg.crlengine.BaseGameLevel get(java.lang.String)>($u7)
+NODE 5: if $u-1 != null goto param_types = null
+NODE 6: param_types = null
+NODE 7: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 8: if $u6#24 == null goto $u-1#33 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 10: $u6#26 = lengthof $u6#24
+NODE 11: if $u6#26 <= 0 goto $u6#26 = 0
+NODE 12: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 13: $u6#26 = lengthof $u6#24
+NODE 14: param_types = newarray (java.lang.Class)[$u6#26]
+NODE 15: $u6#26 = 0
+NODE 16: if $u6#26 < $u6#31 goto $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 17: $u-1#33 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 18: $u7 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.String method>
+NODE 19: $u-1#36 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u7, param_types)
+NODE 20: $u6#24 = this.<smpxg.crlengine.DelayedCaller$SafeTask: java.lang.Object[] args>
+NODE 21: virtualinvoke $u-1#36.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6#24)
+NODE 22: $u6#26 = $u6#26 + 1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 17
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 15
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.BSHArrayInitializer.eval ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter0: java.lang.Class
+NODE 2: $u10 := @parameter1: int
+NODE 3: $u0 = newarray (int)[$u10]
+NODE 4: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u9, $u0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.sohu.CLM.localClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: if $u0 != null goto $u0 = this.<com.sohu.CLM: dalvik.system.DexClassLoader localDexClassLoader>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.sohu.CLM.localClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.sohu.CLM
+NODE 2: $u-1 = this.<com.sohu.CLM: java.lang.Class localClass>
+NODE 3: $u1 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#10 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+NODE 7: goto [?= $u-1 = this.<com.sohu.CLM: java.lang.Class localClass>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.sohu.CLM.localMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.sohu.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Class[]
+NODE 4: $u1 = this.<com.sohu.CLM: java.lang.Class localClass>
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.sohu.CLM.localMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.sohu.CLM
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u6 := @parameter2: java.lang.Class[]
+NODE 5: $u1 = this.<com.sohu.CLM: java.lang.Class localClass>
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u6)
+NODE 7: $u2 = this.<com.sohu.CLM: java.lang.Object instance>
+NODE 8: $u2 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crlengine.ResourceManager.getXml ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#8 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.ReflectManager.getReflectManager ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != null goto $u0 = <bsh.ReflectManager: bsh.ReflectManager rfm>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.reflect.ReflectManagerImpl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.ReflectManager.getReflectManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 != null goto $u0 = <bsh.ReflectManager: bsh.ReflectManager rfm>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.reflect.ReflectManagerImpl")
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Name.invokeLocalMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.Name
+NODE 2: $u17 := @parameter0: bsh.Interpreter
+NODE 3: $u18 := @parameter1: java.lang.Object[]
+NODE 4: $u19 := @parameter2: bsh.CallStack
+NODE 5: $u20 := @parameter3: bsh.SimpleNode
+NODE 6: if $u5 == 0 goto (branch)
+NODE 7: if $u17 != null goto $u0 = this.<bsh.Name: java.lang.String value>
+NODE 8: $u0 = this.<bsh.Name: java.lang.String value>
+NODE 9: $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u18)
+NODE 10: $u0#22 = this.<bsh.Name: bsh.NameSpace namespace>
+NODE 11: $u-1#24 = virtualinvoke $u0#22.<bsh.NameSpace: bsh.BshMethod getMethod(java.lang.String,java.lang.Class[])>($u0, $u-1)
+NODE 12: if $u-1#24 == null goto virtualinvoke $u17.<bsh.Interpreter: bsh.BshClassManager getClassManager()>()
+NODE 13: $u-1#31 = virtualinvoke $u-1#24.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode)>($u18, $u17, $u19, $u20)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Name.invokeLocalMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.Name
+NODE 2: $u17 := @parameter0: bsh.Interpreter
+NODE 3: $u19 := @parameter2: bsh.CallStack
+NODE 4: $u20 := @parameter3: bsh.SimpleNode
+NODE 5: if $u-1#31 != null goto $u5 = $u-1#31 instanceof bsh.BshMethod
+NODE 6: $u0#22 = this.<bsh.Name: bsh.NameSpace namespace>
+NODE 7: $u9 = newarray (java.lang.Class)[2]
+NODE 8: $u-1#24 = virtualinvoke $u0#22.<bsh.NameSpace: bsh.BshMethod getMethod(java.lang.String,java.lang.Class[])>("invoke", $u9)
+NODE 9: if $u-1#24 == null goto $u-1#39 = new bsh.EvalError
+NODE 10: $u7 = newarray (java.lang.Object)[2]
+NODE 11: $u-1#31 = virtualinvoke $u-1#24.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode)>($u7, $u17, $u19, $u20)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.Name.invokeLocalMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.Name
+NODE 2: $u17 := @parameter0: bsh.Interpreter
+NODE 3: $u18 := @parameter1: java.lang.Object[]
+NODE 4: $u19 := @parameter2: bsh.CallStack
+NODE 5: $u20 := @parameter3: bsh.SimpleNode
+NODE 6: if $u5 == 0 goto (branch)
+NODE 7: if $u17 != null goto $u0 = this.<bsh.Name: java.lang.String value>
+NODE 8: $u0 = this.<bsh.Name: java.lang.String value>
+NODE 9: $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u18)
+NODE 10: $u0#22 = this.<bsh.Name: bsh.NameSpace namespace>
+NODE 11: $u-1#31 = virtualinvoke $u0#22.<bsh.NameSpace: java.lang.Object getCommand(java.lang.String,java.lang.Class[],bsh.Interpreter)>($u0, $u-1, $u17)
+NODE 12: if $u5 == 0 goto $u5 = $u-1#31 instanceof java.lang.Class
+NODE 13: $u-1#24 = (bsh.BshMethod) $u-1#31
+NODE 14: $u-1#31 = virtualinvoke $u-1#24.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode)>($u18, $u17, $u19, $u20)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.This.getThis ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u-1 = staticinvoke <bsh.Capabilities: boolean haveSwing()>()
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.XThis")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.This.getThis ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u4#13 = new bsh.This
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bsh.JThis")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.This.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.This
+NODE 2: $u16 := @parameter0: java.lang.String
+NODE 3: $u17 := @parameter1: java.lang.Object[]
+NODE 4: $u18 := @parameter2: bsh.Interpreter
+NODE 5: $u19 := @parameter3: bsh.CallStack
+NODE 6: $u20 := @parameter4: bsh.SimpleNode
+NODE 7: $u21 := @parameter5: boolean
+NODE 8: if $u17 == null goto $u4 = $u17
+NODE 9: $u0 = lengthof $u17
+NODE 10: $u4 = newarray (java.lang.Object)[$u0]
+NODE 11: $u0 = 0
+NODE 12: if $u0 < $u0#7 goto $u-1#20 = $u17[$u0]
+NODE 13: if $u18 != null goto (branch)
+NODE 14: $u18 = this.<bsh.This: bsh.Interpreter declaringInterpreter>
+NODE 15: if $u19 != null goto (branch)
+NODE 16: $u19 = new bsh.CallStack
+NODE 17: if $u20 != null goto (branch)
+NODE 18: $u20 = <bsh.SimpleNode: bsh.SimpleNode JAVACODE>
+NODE 19: $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u4)
+NODE 20: $u9 = null
+NODE 21: $u7 = this.<bsh.This: bsh.NameSpace namespace>
+NODE 22: $u-1#19 = virtualinvoke $u7.<bsh.NameSpace: bsh.BshMethod getMethod(java.lang.String,java.lang.Class[],boolean)>($u16, $u-1, $u21)
+NODE 23: $u9 = $u-1#19
+NODE 24: if $u9 == null goto $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("toString")
+NODE 25: $u-1#20 = virtualinvoke $u9.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode)>($u4, $u18, $u19, $u20)
+NODE 26: $u0 = $u0 + 1
+NODE 27: goto [?= (branch)]
+NODE 28: goto [?= $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u4)]
+NODE 29: goto [?= (branch)]
+NODE 30: goto [?= (branch)]
+NODE 31: $u4 = $u17
+NODE 32: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 31
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 13 -> 30
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 15 -> 29
+EDGE: 17 -> 18
+EDGE: 17 -> 28
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 27 -> 24
+EDGE: 28 -> 19
+EDGE: 29 -> 17
+EDGE: 30 -> 15
+EDGE: 31 -> 32
+EDGE: 32 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.This.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bsh.This
+NODE 2: $u16 := @parameter0: java.lang.String
+NODE 3: $u17 := @parameter1: java.lang.Object[]
+NODE 4: $u18 := @parameter2: bsh.Interpreter
+NODE 5: $u19 := @parameter3: bsh.CallStack
+NODE 6: $u20 := @parameter4: bsh.SimpleNode
+NODE 7: $u21 := @parameter5: boolean
+NODE 8: if $u17 == null goto $u4 = $u17
+NODE 9: $u0 = lengthof $u17
+NODE 10: $u4 = newarray (java.lang.Object)[$u0]
+NODE 11: $u0 = 0
+NODE 12: if $u0 < $u0#7 goto $u-1#20 = $u17[$u0]
+NODE 13: if $u18 != null goto (branch)
+NODE 14: $u18 = this.<bsh.This: bsh.Interpreter declaringInterpreter>
+NODE 15: if $u19 != null goto (branch)
+NODE 16: $u19 = new bsh.CallStack
+NODE 17: if $u20 != null goto (branch)
+NODE 18: $u20 = <bsh.SimpleNode: bsh.SimpleNode JAVACODE>
+NODE 19: $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u4)
+NODE 20: $u9 = null
+NODE 21: $u7 = this.<bsh.This: bsh.NameSpace namespace>
+NODE 22: $u-1#19 = virtualinvoke $u7.<bsh.NameSpace: bsh.BshMethod getMethod(java.lang.String,java.lang.Class[],boolean)>($u16, $u-1, $u21)
+NODE 23: $u9 = $u-1#19
+NODE 24: if $u9 == null goto $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("toString")
+NODE 25: $u0 = $u0 + 1
+NODE 26: $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("toString")
+NODE 27: if $u21 == 0 goto $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("hashCode")
+NODE 28: $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("hashCode")
+NODE 29: if $u21 == 0 goto $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("equals")
+NODE 30: $u21 = virtualinvoke $u16.<java.lang.String: boolean equals(java.lang.Object)>("equals")
+NODE 31: if $u21 == 0 goto $u7 = this.<bsh.This: bsh.NameSpace namespace>
+NODE 32: $u7 = this.<bsh.This: bsh.NameSpace namespace>
+NODE 33: $u12 = newarray (java.lang.Class)[2]
+NODE 34: $u-1#19 = virtualinvoke $u7.<bsh.NameSpace: bsh.BshMethod getMethod(java.lang.String,java.lang.Class[])>("invoke", $u12)
+NODE 35: $u9 = $u-1#19
+NODE 36: if $u9 == null goto $u4#63 = new bsh.EvalError
+NODE 37: $u17 = newarray (java.lang.Object)[2]
+NODE 38: $u-1#20 = virtualinvoke $u9.<bsh.BshMethod: java.lang.Object invoke(java.lang.Object[],bsh.Interpreter,bsh.CallStack,bsh.SimpleNode)>($u17, $u18, $u19, $u20)
+NODE 39: goto [?= (branch)]
+NODE 40: goto [?= (branch)]
+NODE 41: goto [?= $u-1 = staticinvoke <bsh.Types: java.lang.Class[] getTypes(java.lang.Object[])>($u4)]
+NODE 42: goto [?= (branch)]
+NODE 43: goto [?= (branch)]
+NODE 44: $u4 = $u17
+NODE 45: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 44
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 13 -> 43
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 15 -> 42
+EDGE: 17 -> 18
+EDGE: 17 -> 41
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 39 -> 36
+EDGE: 40 -> 24
+EDGE: 41 -> 19
+EDGE: 42 -> 17
+EDGE: 43 -> 15
+EDGE: 44 -> 45
+EDGE: 45 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: smpxg.crystallighter.main.onCreate ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: smpxg.crystallighter.main
+NODE 2: $u-1#6 = virtualinvoke this.<smpxg.crystallighter.main: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: mTelephonyMgr = (android.telephony.TelephonyManager) $u-1#6
+NODE 4: $u-1#9 = virtualinvoke mTelephonyMgr.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: bsh.XThis.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

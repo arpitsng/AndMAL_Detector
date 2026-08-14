@@ -1,0 +1,105 @@
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap P>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.c.j.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: com.a.a.c.j
+NODE 2: $u0 = this.<com.a.a.c.j: java.lang.Process b>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("pid")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.c.j.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: com.a.a.c.j
+NODE 2: $u0 = this.<com.a.a.c.j: java.lang.Process b>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("id")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1#9 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u1 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.w
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.w: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobile_infographics_tools.mydrive.widget.b.b.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 2: $u0#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u0#3 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u0 < 7 goto return
+NODE 3: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 4: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 5: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u0#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+NODE 8: goto [?= $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method ac>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobile_infographics_tools.mydrive.d.a.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

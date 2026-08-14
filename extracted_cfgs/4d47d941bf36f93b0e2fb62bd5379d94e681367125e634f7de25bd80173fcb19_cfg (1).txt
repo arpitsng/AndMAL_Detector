@@ -1,0 +1,1495 @@
+=== FUNCTION: com.adsmogo.adapters.api.bh.run ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.adsmogo.adapters.api.bh
+NODE 2: $u0 = this.<com.adsmogo.adapters.api.bh: com.adsmogo.adapters.api.SXmXaXaXtXoAdapter c>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.SXmXaXaXtXoAdapter: android.app.Activity a(com.adsmogo.adapters.api.SXmXaXaXtXoAdapter)>($u0)
+NODE 4: $u-1#38 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.bk.run ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.adsmogo.adapters.api.bk
+NODE 2: $u2 = this.<com.adsmogo.adapters.api.bk: com.adsmogo.adapters.api.APIAdapter a>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.APIAdapter: android.app.Activity a(com.adsmogo.adapters.api.APIAdapter)>($u2)
+NODE 4: $u-1#23 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.bk.run ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.adsmogo.adapters.api.bk
+NODE 2: $u2 = this.<com.adsmogo.adapters.api.bk: com.adsmogo.adapters.api.APIAdapter a>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.APIAdapter: android.app.Activity a(com.adsmogo.adapters.api.APIAdapter)>($u2)
+NODE 4: $u-1#95 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getAndroidId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.bk.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adsmogo.adapters.api.bk
+NODE 2: $u2 = this.<com.adsmogo.adapters.api.bk: com.adsmogo.adapters.api.APIAdapter a>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.APIAdapter: android.app.Activity a(com.adsmogo.adapters.api.APIAdapter)>($u2)
+NODE 4: $u-1#119 = virtualinvoke $u-1.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u2#121 = (android.location.LocationManager) $u-1#119
+NODE 6: $u-1#123 = virtualinvoke $u2#121.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.bk.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adsmogo.adapters.api.bk
+NODE 2: $u2 = this.<com.adsmogo.adapters.api.bk: com.adsmogo.adapters.api.APIAdapter a>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.APIAdapter: android.app.Activity a(com.adsmogo.adapters.api.APIAdapter)>($u2)
+NODE 4: $u-1#119 = virtualinvoke $u-1.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u2#121 = (android.location.LocationManager) $u-1#119
+NODE 6: if $u-1#123 != null goto (branch)
+NODE 7: $u-1#123 = virtualinvoke $u2#121.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.ag.run ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.adsmogo.adapters.api.ag
+NODE 2: $u1 = this.<com.adsmogo.adapters.api.ag: com.adsmogo.adapters.api.WXeXiXQXiXaXnAPIAdapter c>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.adapters.api.WXeXiXQXiXaXnAPIAdapter: android.app.Activity a(com.adsmogo.adapters.api.WXeXiXQXiXaXnAPIAdapter)>($u1)
+NODE 4: $u-1#118 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.internal.k.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 = new android.gesture.GestureStore
+NODE 2: $u0 = new java.io.ByteArrayInputStream
+NODE 3: virtualinvoke $u1.<android.gesture.GestureStore: void load(java.io.InputStream)>($u0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.util.AdUtil.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getAduuNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getDeviceID ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#7 == 0 goto $u-1#11 = virtualinvoke $u1.<java.lang.StringBuffer: int length()>()
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getIDByMAC ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getIDByMAC ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getImei ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#7 == 0 goto $u-1#11 = virtualinvoke $u1.<java.lang.StringBuffer: int length()>()
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getImsi ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#11 = virtualinvoke $u1.<java.lang.StringBuffer: int length()>()
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getImsi ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#8 != null goto $u-1#8 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getLineNumber ===
+SUSPICIOUS_API: getLine1Number
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getLmMobUID ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u-1#8 == 0 goto $u-1#15 = virtualinvoke $u2.<java.lang.StringBuffer: int length()>()
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getLocationFromGPSOrNET ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u5 := @parameter0: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u5.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getLocationFromGPSOrNET ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u5 := @parameter0: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u5.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 != null goto (branch)
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.GetUserInfo.getNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.SXuXiXzXoXnXgAPIAdapter.a ===
+SUSPICIOUS_API: getImei
+NODE 1: $u9 := @parameter0: com.adsmogo.adapters.api.SXuXiXzXoXnXgAPIAdapter
+NODE 2: $u0 = $u9.<com.adsmogo.adapters.api.SXuXiXzXoXnXgAPIAdapter: android.app.Activity j>
+NODE 3: $u10 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AXdXuXuAdapter.a ===
+SUSPICIOUS_API: getImei
+NODE 1: $u15 := @parameter0: com.adsmogo.adapters.api.AXdXuXuAdapter
+NODE 2: $u0#54 = $u15.<com.adsmogo.adapters.api.AXdXuXuAdapter: android.app.Activity d>
+NODE 3: $u-1#38 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u0#54)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AXdXuXuAdapter.a ===
+SUSPICIOUS_API: getImei
+NODE 1: $u15 := @parameter0: com.adsmogo.adapters.api.AXdXuXuAdapter
+NODE 2: $u0#54 = $u15.<com.adsmogo.adapters.api.AXdXuXuAdapter: android.app.Activity d>
+NODE 3: $u-1#91 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u0#54)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.a.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: if $u1 == null goto return 0
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AXdXwXoApiAdapter.a ===
+SUSPICIOUS_API: getImei
+NODE 1: $u23 := @parameter0: com.adsmogo.adapters.api.AXdXwXoApiAdapter
+NODE 2: $u3#15 = $u23.<com.adsmogo.adapters.api.AXdXwXoApiAdapter: android.app.Activity a>
+NODE 3: $u-1#64 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u3#15)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AXdXwXoApiAdapter.a ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u23 := @parameter0: com.adsmogo.adapters.api.AXdXwXoApiAdapter
+NODE 2: $u3#15 = $u23.<com.adsmogo.adapters.api.AXdXwXoApiAdapter: android.app.Activity a>
+NODE 3: $u-1#68 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getAndroidId(android.content.Context)>($u3#15)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.amy.AmyBookRead.Base.DefaultActivity.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("hello-jni")
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.IMMemoryStatus.getTotalExternalMemorySize ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto exitmonitor class "Lcom/inmobi/commons/internal/IMMemoryStatus;"
+NODE 2: $u-1#4 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.analytics.tracking.android.AdMobInfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#38 == null goto $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#55 == null goto return $u2
+NODE 4: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.AdRequest.getRequestMap ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#38 == null goto $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 2: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 3: if $u0#55 == null goto return $u2
+NODE 4: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method b>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 7: $u0#55 = <com.google.ads.AdRequest: java.lang.reflect.Method c>
+NODE 8: $u3 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#31 = virtualinvoke $u0#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.a.a.a ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adsmogo.controller.a.a
+NODE 2: if $u-1#125 != null goto $u1 = this.<com.adsmogo.controller.a.a: com.adsmogo.interstitial.AdsMogoConfigInterface a>
+NODE 3: $u1 = this.<com.adsmogo.controller.a.a: com.adsmogo.interstitial.AdsMogoConfigInterface a>
+NODE 4: $u-1#15 = interfaceinvoke $u1.<com.adsmogo.interstitial.AdsMogoConfigInterface: java.lang.ref.WeakReference getActivityReference()>()
+NODE 5: if $u-1#15 == null goto $u-1#32 = staticinvoke <com.adsmogo.util.AdsMogoRequestDomain: java.util.ArrayList getThirdDomains()>()
+NODE 6: $u-1#17 = virtualinvoke $u-1#15.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 7: $u2#135 = (android.app.Activity) $u-1#17
+NODE 8: if $u2#135 == null goto $u-1#32 = staticinvoke <com.adsmogo.util.AdsMogoRequestDomain: java.util.ArrayList getThirdDomains()>()
+NODE 9: $u-1#17 = virtualinvoke $u2#135.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 10: $u2#139 = (android.location.LocationManager) $u-1#17
+NODE 11: $u-1#141 = virtualinvoke $u2#139.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.a.a.a ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.adsmogo.controller.a.a
+NODE 2: if $u-1#125 != null goto $u1 = this.<com.adsmogo.controller.a.a: com.adsmogo.interstitial.AdsMogoConfigInterface a>
+NODE 3: $u1 = this.<com.adsmogo.controller.a.a: com.adsmogo.interstitial.AdsMogoConfigInterface a>
+NODE 4: $u-1#15 = interfaceinvoke $u1.<com.adsmogo.interstitial.AdsMogoConfigInterface: java.lang.ref.WeakReference getActivityReference()>()
+NODE 5: if $u-1#15 == null goto $u-1#32 = staticinvoke <com.adsmogo.util.AdsMogoRequestDomain: java.util.ArrayList getThirdDomains()>()
+NODE 6: $u-1#17 = virtualinvoke $u-1#15.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 7: $u2#135 = (android.app.Activity) $u-1#17
+NODE 8: if $u2#135 == null goto $u-1#32 = staticinvoke <com.adsmogo.util.AdsMogoRequestDomain: java.util.ArrayList getThirdDomains()>()
+NODE 9: $u-1#17 = virtualinvoke $u2#135.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 10: $u2#139 = (android.location.LocationManager) $u-1#17
+NODE 11: if $u-1#141 != null goto (branch)
+NODE 12: $u-1#141 = virtualinvoke $u2#139.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.e.c ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: if $u-1#7 != 0 goto $u0#9 = <com.mobisage.android.MobiSageAppInfo: android.content.Context appContext>
+NODE 2: $u0#9 = <com.mobisage.android.MobiSageAppInfo: android.content.Context appContext>
+NODE 3: $u-1#4 = virtualinvoke $u0#9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: $u0#13 = (android.location.LocationManager) $u-1#4
+NODE 5: $u1 = new android.location.Criteria
+NODE 6: $u-1#16 = virtualinvoke $u0#13.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1, 1)
+NODE 7: if $u-1#16 == null goto return
+NODE 8: $u-1#18 = virtualinvoke $u0#13.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#16)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.l.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: com.mobisage.android.l
+NODE 2: if $u-1 == 0 goto return -1
+NODE 3: $u3 = this.<com.mobisage.android.l: android.content.Context context>
+NODE 4: $u-1#7 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if $u-1#12 != 0 goto $u-1#17 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mResumed")
+NODE 6: $u-1#14 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: $u-1#7 = $u-1#14
+NODE 8: if $u-1#14 != null goto $u-1#9 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.String getName()>()
+NODE 9: $u-1#17 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mResumed")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 9
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.l.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: com.mobisage.android.l
+NODE 2: if $u-1 == 0 goto return -1
+NODE 3: $u3 = this.<com.mobisage.android.l: android.content.Context context>
+NODE 4: $u-1#7 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if $u-1#12 != 0 goto $u-1#17 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mResumed")
+NODE 6: $u-1#14 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: $u-1#7 = $u-1#14
+NODE 8: $u-1#17 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mDestroyed")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageHtmlUtility.a ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u14.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#9 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageHtmlUtility.a ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#9 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.IMXMLParser.buildAdUnitFromResponseData ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AXdXCXhXiXnXaApiAdapter.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+NODE 2: $u-1#6 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.AdwoAdView.filterApps ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1#13 = virtualinvoke $u11.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#14 = virtualinvoke $u-1#13.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.util.AdsMogoUtilTool.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter1: com.adsmogo.model.obj.Ration
+NODE 2: $u2 = $u7.<com.adsmogo.model.obj.Ration: int type>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.util.AdsMogoUtilTool: com.adsmogo.model.a a(int)>($u2)
+NODE 4: if $u-1 != null goto $u2 = $u-1.<com.adsmogo.model.a: int a>
+NODE 5: $u2 = $u-1.<com.adsmogo.model.a: int a>
+NODE 6: if $u2 != 0 goto $u2 = $u-1.<com.adsmogo.model.a: int a>
+NODE 7: $u0#10 = $u-1.<com.adsmogo.model.a: java.lang.String b>
+NODE 8: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter1: com.adsmogo.model.obj.Ration
+NODE 2: $u2 = $u7.<com.adsmogo.model.obj.Ration: int type>
+NODE 3: $u-1 = staticinvoke <com.adsmogo.util.AdsMogoUtilTool: com.adsmogo.model.a a(int)>($u2)
+NODE 4: $u0#10 = $u-1.<com.adsmogo.model.a: java.lang.String b>
+NODE 5: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#10)
+NODE 6: if $u-1#41 == 0 goto $u0#10 = $u-1.<com.adsmogo.model.a: java.lang.String b>
+NODE 7: goto [?= $u0#10 = $u-1.<com.adsmogo.model.a: java.lang.String b>]
+NODE 8: goto [?= $u0#10 = $u-1.<com.adsmogo.model.a: java.lang.String b>]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 4
+EDGE: 7 -> 4
+EDGE: 8 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.b.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+NODE 3: $u2 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u2)
+NODE 5: $u2#12 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#15 = virtualinvoke $u-1#9.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#12)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.cdma.CdmaCellLocation")
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter0: byte[]
+NODE 2: $u10 := @parameter2: javax.crypto.Cipher
+NODE 3: $u9 = lengthof $u8
+NODE 4: $u3 = newarray (byte)[64]
+NODE 5: $u3#8 = 0
+NODE 6: if $u3#8 < $u9 goto (branch)
+NODE 7: $u8 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+NODE 8: $u5 = $u3#8 + 64
+NODE 9: if $u5 <= $u9 goto $u5 = 64
+NODE 10: $u5 = $u9 - $u3#8
+NODE 11: $u3 = newarray (byte)[$u5]
+NODE 12: $u3#8 = $u3#8 + 1
+NODE 13: goto [?= (branch)]
+NODE 14: $u5 = 64
+NODE 15: goto [?= $u3 = newarray (byte)[$u5]]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 14
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 6
+EDGE: 14 -> 15
+EDGE: 15 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter0: byte[]
+NODE 2: $u10 := @parameter2: javax.crypto.Cipher
+NODE 3: $u9 = lengthof $u8
+NODE 4: $u3 = newarray (byte)[64]
+NODE 5: $u3#8 = 0
+NODE 6: if $u3#8 < $u9 goto (branch)
+NODE 7: if $u3#8 <= 0 goto $u5 = $u3#8 % 64
+NODE 8: $u5 = $u3#8 % 64
+NODE 9: if $u5 != 0 goto $u5 = $u3#8 % 64
+NODE 10: $u3 = virtualinvoke $u10.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+NODE 11: $u5 = $u3#8 + 64
+NODE 12: if $u5 <= $u9 goto $u5 = 64
+NODE 13: $u5 = $u9 - $u3#8
+NODE 14: $u3 = newarray (byte)[$u5]
+NODE 15: $u3#8 = $u3#8 + 1
+NODE 16: goto [?= (branch)]
+NODE 17: $u5 = 64
+NODE 18: goto [?= $u3 = newarray (byte)[$u5]]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 12 -> 17
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 6
+EDGE: 17 -> 18
+EDGE: 18 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.checkNetworkAvailibility ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.checkNetworkAvailibility ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#6 != null goto $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.getAndroidIdMD5 ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: java.lang.String getAndroidId(android.content.Context)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.getConnectivityType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#6 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#6
+NODE 5: if $u0 == null goto return null
+NODE 6: $u-1#9 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.InternalSDKUtil.getDisplayRotation ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.view.Display
+NODE 2: $u0 = null
+NODE 3: $u2 = class "Landroid/view/Display;"
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRotation", null)
+NODE 5: $u0 = $u-1
+NODE 6: if $u0 == null goto return -999
+NODE 7: $u-1#7 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+NODE 8: $u2 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getOrientation", null)
+NODE 10: $u0 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 6
+EDGE: 12 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.service.UpdateService.onStart ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#18 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.i.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1#5
+NODE 4: $u-1#8 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.CXaXsXeXeSourceAdapter.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.adsmogo.adapters.api.CXaXsXeXeSourceAdapter
+NODE 2: $u0 = this.<com.adsmogo.adapters.api.CXaXsXeXeSourceAdapter: android.app.Activity c>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#7 = (android.telephony.TelephonyManager) $u-1
+NODE 5: $u-1#8 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.IMUserInfo.f ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.inmobi.androidsdk.impl.IMUserInfo
+NODE 2: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 3: if $u-1 != null goto $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 4: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 5: if $u-1 == null goto return
+NODE 6: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 7: $u1 = new android.location.Criteria
+NODE 8: $u-1#22 = virtualinvoke $u-1.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1, 1)
+NODE 9: if $u-1#24 != 0 goto return
+NODE 10: if $u-1#22 == null goto return
+NODE 11: $u-1#26 = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#22)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.IMUserInfo.g ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.inmobi.androidsdk.impl.IMUserInfo
+NODE 2: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 3: if $u-1 != null goto $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 4: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 5: if $u-1 == null goto return null
+NODE 6: $u-1 = specialinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.location.LocationManager c()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 8: $u-1#14 = interfaceinvoke $u-1#13.<java.util.List: int size()>()
+NODE 9: $u-1#14 = $u-1#14 + -1
+NODE 10: if $u-1#14 >= 0 goto $u-1#6 = interfaceinvoke $u-1#13.<java.util.List: java.lang.Object get(int)>($u-1#14)
+NODE 11: $u-1#6 = interfaceinvoke $u-1#13.<java.util.List: java.lang.Object get(int)>($u-1#14)
+NODE 12: $u0 = (java.lang.String) $u-1#6
+NODE 13: if $u-1#22 == 0 goto $u-1#14 = $u-1#14 + -1
+NODE 14: $u-1#23 = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u0)
+NODE 15: if $u-1#23 != null goto return $u-1#23
+NODE 16: $u-1#14 = $u-1#14 + -1
+NODE 17: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 13 -> 16
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.impl.IMUserInfo.i ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.inmobi.androidsdk.impl.IMUserInfo
+NODE 2: if $u-1 != null goto $u-1#23 = virtualinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.content.Context getApplicationContext()>()
+NODE 3: if $u-1#44 == 0 goto (branch)
+NODE 4: if $u-1 == null goto $u-1#23 = virtualinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.content.Context getApplicationContext()>()
+NODE 5: if $u-1#44 != 0 goto $u-1#23 = virtualinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.content.Context getApplicationContext()>()
+NODE 6: $u-1#23 = virtualinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.content.Context getApplicationContext()>()
+NODE 7: $u-1 = staticinvoke <com.inmobi.commons.internal.InternalSDKUtil: java.lang.String getAndroidId(android.content.Context)>($u-1#23)
+NODE 8: goto [?= $u-1#23 = virtualinvoke this.<com.inmobi.androidsdk.impl.IMUserInfo: android.content.Context getApplicationContext()>()]
+NODE 9: goto [?= (branch)]
+EDGE: 2 -> 6
+EDGE: 3 -> 4
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 6
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageApkService.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.ac.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u0#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.bn.shouldOverrideUrlLoading ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#7 == 0 goto $u-1#7 = virtualinvoke $u-1#4.<java.lang.String: boolean equals(java.lang.Object)>("3gp")
+NODE 2: $u-1#21 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.bc.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#31 == 0 goto $u0#62 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u0#62 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.bc.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.bc.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#31 == 0 goto $u1#73 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u1#73 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.cv.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("MobiSageSDK")
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.cr.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("MobiSageSDK")
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.co.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u3#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.co.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u3#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.encryption.CryptUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES")
+NODE 3: $u-1 = staticinvoke <com.adsmogo.encryption.Base64: byte[] decode(java.lang.String)>($u4)
+NODE 4: $u-1 = virtualinvoke $u-1#6.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.encryption.CryptUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES")
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>("utf-8")
+NODE 4: $u-1 = virtualinvoke $u-1#6.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.cj.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.cb.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.b.a.c ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.adsmogo.controller.b.a
+NODE 2: $u0#2 = this.<com.adsmogo.controller.b.a: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: if $u1 == 0 goto return
+NODE 5: $u0#7 = (android.telephony.TelephonyManager) $u-1
+NODE 6: $u-1#9 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.b.a.c ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: this := @this: com.adsmogo.controller.b.a
+NODE 2: $u0#2 = this.<com.adsmogo.controller.b.a: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: if $u1 == 0 goto return
+NODE 5: $u0#7 = (android.telephony.TelephonyManager) $u-1
+NODE 6: $u-1#9 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.controller.b.a.c ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: this := @this: com.adsmogo.controller.b.a
+NODE 2: $u0#2 = this.<com.adsmogo.controller.b.a: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: if $u1 == 0 goto return
+NODE 5: $u0#7 = (android.telephony.TelephonyManager) $u-1
+NODE 6: $u-1#9 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: if $u1 == null goto $u-1#7 = <com.mobisage.android.MobiSageDeviceInfo: java.lang.String mac>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: if $u1 == null goto $u-1#7 = <com.mobisage.android.MobiSageDeviceInfo: java.lang.String mac>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 != null goto $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#7 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.initMobiSageDeviceInfo ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u2 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.initMobiSageDeviceInfo ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u2 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.initMobiSageDeviceInfo ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#61 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#62 = virtualinvoke $u0#61.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobisage.android.MobiSageDeviceInfo.initMobiSageDeviceInfo ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#61 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#62 = virtualinvoke $u0#61.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u2 = virtualinvoke $u-1#62.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.a.a.d.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: $u9 := @parameter2: java.lang.String
+NODE 4: $u10 := @parameter3: java.lang.String
+NODE 5: $u-1 = virtualinvoke $u10.<java.lang.String: java.lang.String[] split(java.lang.String)>(",")
+NODE 6: $u-1#3 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u8)
+NODE 8: $u-1#7 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, null, $u9, $u-1, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.r.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.r.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.p.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.o.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#37 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.o.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#37 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.o.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#23 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.o.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#58 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.d ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: if $u1 != null goto $u1 = null
+NODE 2: $u0 = <com.adwo.adsdk.c: android.telephony.TelephonyManager A>
+NODE 3: if $u0 == null goto $u1 = null
+NODE 4: $u0 = <com.adwo.adsdk.c: android.telephony.TelephonyManager A>
+NODE 5: $u0#16 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.d ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 != 0 goto (branch)
+NODE 3: $u-1 = virtualinvoke $u10.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#151 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#152 = virtualinvoke $u0#151.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.d ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 != 0 goto (branch)
+NODE 3: $u-1 = virtualinvoke $u10.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#151 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#152 = virtualinvoke $u0#151.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: if $u-1#152 == null goto $u1 = <com.adwo.adsdk.c: java.lang.String C>
+NODE 7: if $u1 != null goto $u0 = new java.lang.StringBuilder
+NODE 8: $u1 = virtualinvoke $u-1#152.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.d ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 != 0 goto (branch)
+NODE 3: $u-1 = virtualinvoke $u10.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#151 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#152 = virtualinvoke $u0#151.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u0#16 = virtualinvoke $u-1#152.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.f ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u0 == 0 goto return
+NODE 3: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#5 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.c.g ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = class "Landroid/webkit/WebSettings;"
+NODE 2: $u1 = newarray (java.lang.Class)[2]
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u1)
+NODE 4: $u1#12 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#16 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#12)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.bs.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.ads.bs
+NODE 2: $u2 = this.<com.google.ads.bs: java.lang.String b>
+NODE 3: $u-1 = staticinvoke <com.google.ads.g: java.lang.Object a(java.lang.String,java.lang.Class)>($u2, class "Lcom/google/ads/mediation/MediationAdapter;")
+NODE 4: $u1#13 = (com.google.ads.mediation.MediationAdapter) $u-1
+NODE 5: $u-1#33 = interfaceinvoke $u1#13.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 6: if $u-1#33 == null goto $u2#37 = null
+NODE 7: $u-1 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.bs.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.ads.bs
+NODE 2: $u2 = this.<com.google.ads.bs: java.lang.String b>
+NODE 3: $u-1 = staticinvoke <com.google.ads.g: java.lang.Object a(java.lang.String,java.lang.Class)>($u2, class "Lcom/google/ads/mediation/MediationAdapter;")
+NODE 4: $u1#13 = (com.google.ads.mediation.MediationAdapter) $u-1
+NODE 5: $u-1#33 = interfaceinvoke $u1#13.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 6: if $u-1#33 == null goto $u2#37 = null
+NODE 7: $u-1 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: $u2#37 = (com.google.ads.mediation.MediationServerParameters) $u-1
+NODE 9: $u4 = this.<com.google.ads.bs: java.util.HashMap d>
+NODE 10: virtualinvoke $u2#37.<com.google.ads.mediation.MediationServerParameters: void load(java.util.Map)>($u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.bg.run ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.ads.bg
+NODE 2: $u1 = this.<com.google.ads.bg: java.lang.ref.WeakReference a>
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 4: $u0 = (android.app.Activity) $u-1
+NODE 5: if $u0 != null goto $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#7 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u2 = <com.google.ads.ar: android.net.Uri a>
+NODE 8: $u3 = <com.google.ads.ar: java.lang.String[] b>
+NODE 9: $u-1#11 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2, $u3, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.disableHardwareAccl ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: com.inmobi.androidsdk.ai.container.IMWebView
+NODE 2: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u2 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#10 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setLayerType", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getDisplayHeight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u0 = null
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u3)
+NODE 6: $u0 = $u-1
+NODE 7: $u3#9 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#9)
+NODE 9: $u4 = class "Landroid/view/Display;"
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getHeight", null)
+NODE 11: $u0 = $u-1
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getDisplayHeight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u0 = null
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u3)
+NODE 6: $u0 = $u-1
+NODE 7: if $u2 == 0 goto $u-1#19 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+NODE 8: $u4 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getHeight", null)
+NODE 10: $u0 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 13
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getDisplayWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u0 = null
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u3)
+NODE 6: $u0 = $u-1
+NODE 7: $u3#9 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#9)
+NODE 9: $u4 = class "Landroid/view/Display;"
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getWidth", null)
+NODE 11: $u0 = $u-1
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getDisplayWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.Display
+NODE 2: $u0 = null
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u4 = class "Landroid/view/Display;"
+NODE 5: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", $u3)
+NODE 6: $u0 = $u-1
+NODE 7: if $u2 == 0 goto $u-1#19 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+NODE 8: $u4 = class "Landroid/view/Display;"
+NODE 9: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getWidth", null)
+NODE 10: $u0 = $u-1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+NODE 13: $u-1#19 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 13
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getTapLocationX ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.MotionEvent
+NODE 2: $u1 = newarray (java.lang.Class)[1]
+NODE 3: $u3 = class "Landroid/view/MotionEvent;"
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getAxisValue", $u1)
+NODE 5: $u3#15 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#20 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getTapLocationY ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.MotionEvent
+NODE 2: $u1 = newarray (java.lang.Class)[1]
+NODE 3: $u3 = class "Landroid/view/MotionEvent;"
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getAxisValue", $u1)
+NODE 5: $u3#15 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#20 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.container.IMWrapperFunctions.getTapSize ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.MotionEvent
+NODE 2: $u1 = newarray (java.lang.Class)[1]
+NODE 3: $u3 = class "Landroid/view/MotionEvent;"
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getAxisValue", $u1)
+NODE 5: $u3#15 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#20 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3#15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.am.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter0: byte[]
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u0 = lengthof $u6
+NODE 4: if $u0 == 16 goto $u-1 = staticinvoke <com.google.ads.ap: byte[] a(java.lang.String)>($u7)
+NODE 5: $u-1 = staticinvoke <com.google.ads.ap: byte[] a(java.lang.String)>($u7)
+NODE 6: $u0 = lengthof $u-1
+NODE 7: $u0 = $u0 + -16
+NODE 8: $u-1 = newarray (byte)[$u0]
+NODE 9: $u-1#21 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 10: $u6 = virtualinvoke $u-1#21.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 2: if $u0 == null goto $u0#2 = new com.google.ads.ak$a
+NODE 3: if $u4 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 4: $u0 = <com.google.ads.ak: java.lang.reflect.Method g>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method d>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.c ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method e>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method h>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.ak.e ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 2: if $u0 != null goto $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 3: $u0 = <com.google.ads.ak: java.lang.reflect.Method f>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.controller.JSUtilityController.createEvent ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.inmobi.androidsdk.ai.controller.JSUtilityController
+NODE 2: $u0 = this.<com.inmobi.androidsdk.ai.controller.JSUtilityController: android.content.Context mContext>
+NODE 3: $u-1#23 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[3]
+NODE 5: if $u1#30 != 8 goto $u-1#33 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://calendar/calendars")
+NODE 6: $u-1#33 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.android.calendar/calendars")
+NODE 7: $u-1#37 = virtualinvoke $u-1#23.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#33, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.controller.JSUtilityController.createEvent ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.inmobi.androidsdk.ai.controller.JSUtilityController
+NODE 2: $u0 = this.<com.inmobi.androidsdk.ai.controller.JSUtilityController: android.content.Context mContext>
+NODE 3: $u-1#23 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[3]
+NODE 5: if $u1#30 != 8 goto $u-1#33 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://calendar/calendars")
+NODE 6: $u-1#33 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://calendar/calendars")
+NODE 7: $u-1#37 = virtualinvoke $u-1#23.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#33, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adwo.adsdk.AdwoKey.<init> ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = new java.lang.StringBuilder
+NODE 2: $u1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/libadwo.png")
+NODE 3: $u-1#5 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 4: if $u-1#15 != 0 goto staticinvoke <java.lang.System: void load(java.lang.String)>($u-1#5)
+NODE 5: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AdsMogoS2sAdapter.b ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.adsmogo.adapters.api.AdsMogoS2sAdapter
+NODE 2: $u2#39 = this.<com.adsmogo.adapters.api.AdsMogoS2sAdapter: android.app.Activity f>
+NODE 3: $u-1#44 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getImei(android.content.Context)>($u2#39)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AdsMogoS2sAdapter.b ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.adsmogo.adapters.api.AdsMogoS2sAdapter
+NODE 2: $u2#39 = this.<com.adsmogo.adapters.api.AdsMogoS2sAdapter: android.app.Activity f>
+NODE 3: $u-1#111 = staticinvoke <com.adsmogo.util.GetUserInfo: java.lang.String getAndroidId(android.content.Context)>($u2#39)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsmogo.adapters.api.AdsMogoS2sAdapter.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#9 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.androidsdk.ai.controller.JSController.getFromJSON ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter1: java.lang.Class
+NODE 2: $u-1#2 = virtualinvoke $u8.<java.lang.Class: java.lang.Object newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.inmobi.commons.internal.IMLocationMonitor.startListening ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.inmobi.commons.internal.IMLocationMonitor
+NODE 2: $u0#5 = <com.inmobi.commons.internal.IMLocationMonitor: android.location.LocationManager b>
+NODE 3: $u-1#9 = <com.inmobi.commons.internal.IMLocationMonitor: java.lang.String e>
+NODE 4: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1#9, 0L, 0.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

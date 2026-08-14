@@ -1,0 +1,1377 @@
+=== FUNCTION: com.ordersnapp.views.user.RegisterActivity.actionPrivacyPolicy ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.user.RegisterActivity
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u2 = <com.ordersnapp.R$string: int url_v1_base>
+NODE 4: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.RegisterActivity: java.lang.String getString(int)>($u2)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u2 = <com.ordersnapp.R$string: int url_v1_privacy_policy>
+NODE 7: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.RegisterActivity: java.lang.String getString(int)>($u2)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#15 = staticinvoke <com.ordersnapp.views.dialog.WebViewDialogFragment: com.ordersnapp.views.dialog.WebViewDialogFragment newInstance(java.lang.String,java.lang.String)>($u-1, "Privacy Policy")
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.RegisterActivity.actionTermsOfUse ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.user.RegisterActivity
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u2 = <com.ordersnapp.R$string: int url_v1_base>
+NODE 4: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.RegisterActivity: java.lang.String getString(int)>($u2)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u2 = <com.ordersnapp.R$string: int url_v1_user_tos>
+NODE 7: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.RegisterActivity: java.lang.String getString(int)>($u2)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#15 = staticinvoke <com.ordersnapp.views.dialog.WebViewDialogFragment: com.ordersnapp.views.dialog.WebViewDialogFragment newInstance(java.lang.String,java.lang.String)>($u-1, "Terms of Use")
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.product.ProductFragment.attemptAddToCart ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.product.ProductFragment
+NODE 2: if $u5 == null goto $u-1 = specialinvoke this.<com.ordersnapp.views.product.ProductFragment: java.util.ArrayList getErrors()>()
+NODE 3: if $u5#3 == null goto $u-1 = specialinvoke this.<com.ordersnapp.views.product.ProductFragment: java.util.ArrayList getErrors()>()
+NODE 4: $u-1 = specialinvoke this.<com.ordersnapp.views.product.ProductFragment: java.util.ArrayList getErrors()>()
+NODE 5: if $u-1#5 <= 0 goto $u5#37 = this.<com.ordersnapp.views.product.ProductFragment: com.ordersnapp.models.cart.CartModel$CartItem mSelectedItem>
+NODE 6: message = "Invalid quantity selected in options: "
+NODE 7: $u-1#8 = virtualinvoke $u-1.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 8: if $u-1#9 == 0 goto $u-1#31 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Invalid Selection", message, "Ok")
+NODE 9: $u-1#11 = interfaceinvoke $u-1#8.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: m = (com.ordersnapp.views.product.SectionedProductAdapter$ProductSection) $u-1#11
+NODE 11: $u5#14 = new java.lang.StringBuilder
+NODE 12: $u5#14 = virtualinvoke $u5#14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(message)
+NODE 13: $u5#14 = virtualinvoke $u5#14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n")
+NODE 14: $u5#20 = m.<com.ordersnapp.views.product.SectionedProductAdapter$ProductSection: android.widget.Adapter adapter>
+NODE 15: $u5#21 = (com.ordersnapp.views.product.OptionsAdapter) $u5#20
+NODE 16: $u-1#22 = virtualinvoke $u5#21.<com.ordersnapp.views.product.OptionsAdapter: com.ordersnapp.models.menu.ProductModel$OptionGroupModel getOptionGroup()>()
+NODE 17: message = virtualinvoke $u-1#22.<com.ordersnapp.models.menu.ProductModel$OptionGroupModel: java.lang.String getName()>()
+NODE 18: $u5#14 = virtualinvoke $u5#14.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(message)
+NODE 19: message = virtualinvoke $u5#14.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 20: $u-1#31 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Invalid Selection", message, "Ok")
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 20
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.web.GetImageRest.loadPicture ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.ordersnapp.controllers.web.GetImageRest
+NODE 2: $u9 := @parameter0: java.lang.String
+NODE 3: $u6 = this.<com.ordersnapp.controllers.web.GetImageRest: android.content.Context mContext>
+NODE 4: $u6 = virtualinvoke $u6.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 5: $u-1 = virtualinvoke $u6.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.web.GetImageRest.savePicture ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.ordersnapp.controllers.web.GetImageRest
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u3 = this.<com.ordersnapp.controllers.web.GetImageRest: android.content.Context mContext>
+NODE 4: $u3 = virtualinvoke $u3.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 5: $u-1 = virtualinvoke $u3.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u6, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.LoginActivity.displayResetPasswordDialog ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.user.LoginActivity
+NODE 2: $u1 = this.<com.ordersnapp.views.user.LoginActivity: android.widget.EditText mEmailView>
+NODE 3: $u-1 = virtualinvoke $u1.<android.widget.EditText: android.text.Editable getText()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Object: java.lang.String toString()>()
+NODE 5: $u2 = this.<com.ordersnapp.views.user.LoginActivity: com.ordersnapp.controllers.web.RestListener mResetPasswordListener>
+NODE 6: $u-1#6 = staticinvoke <com.ordersnapp.views.dialog.ResetPasswordDialogFragment: com.ordersnapp.views.dialog.ResetPasswordDialogFragment newInstance(java.lang.String,com.ordersnapp.controllers.web.RestListener)>($u-1#4, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("sun.misc.Unsafe")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("sun.misc.Unsafe")
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("theUnsafe")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectInputStream;"
+NODE 2: $u8 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("newInstance", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getConstructorId", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getConstructorId", $u8)
+NODE 4: $u8#39 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#7 = virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u8#39)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator.create ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1 = class "Ljava/io/ObjectStreamClass;"
+NODE 2: $u8 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("newInstance", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.web.BaseRest.onFailure ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: com.cumuluscomputing.rest.HttpHelper$HttpObject
+NODE 2: if $u1 == 401 goto $u1 = $u6.<com.cumuluscomputing.rest.HttpHelper$HttpObject: int responseCode>
+NODE 3: $u2 = $u6.<com.cumuluscomputing.rest.HttpHelper$HttpObject: java.lang.String responseMessage>
+NODE 4: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Error", $u2, "Ok")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.CheckoutMenuHelper.launchMenu ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.checkout.CheckoutMenuHelper
+NODE 2: list = new android.widget.ListView
+NODE 3: $u6 = <com.ordersnapp.R$string: int title_section_user_info>
+NODE 4: $u4 = this.<com.ordersnapp.views.checkout.CheckoutMenuHelper: android.content.Context mContext>
+NODE 5: $u-1#18 = virtualinvoke $u4.<android.content.Context: java.lang.String getString(int)>($u6)
+NODE 6: $u-1#21 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>($u-1#18, null, null, list, 1)
+NODE 7: $u6 = <com.ordersnapp.R$string: int title_section_delivery_info>
+NODE 8: $u6 = <com.ordersnapp.R$string: int title_section_payment_info>
+NODE 9: $u6 = <com.ordersnapp.R$string: int title_section_item_info>
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Menu.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Menu
+NODE 2: if $u0#6 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.Menu: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Menu.setCurrentStore ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Menu
+NODE 2: virtualinvoke this.<com.ordersnapp.controllers.local.Menu: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Product.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Product
+NODE 2: virtualinvoke this.<com.ordersnapp.controllers.local.Product: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.LoginActivity$3.onSuccess ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter1: com.cumuluscomputing.rest.Rest
+NODE 2: $u1#3 = new java.lang.StringBuilder
+NODE 3: $u1#3 = virtualinvoke $u1#3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("A new password has been sent to ")
+NODE 4: $u-1 = virtualinvoke $u6.<com.cumuluscomputing.rest.Rest: java.lang.Object getTag()>()
+NODE 5: $u1#9 = (java.lang.String) $u-1
+NODE 6: $u1#3 = virtualinvoke $u1#3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u1#9)
+NODE 7: $u1#9 = virtualinvoke $u1#3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#15 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Reset Password", $u1#9, "Ok")
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.dialog.SimpleCustomDialogFragment.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.String
+NODE 4: $u7 := @parameter4: android.view.View
+NODE 5: $u8 := @parameter5: boolean
+NODE 6: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>($u3, $u4, $u5, $u7, $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.OnPaymentMenuItemClick.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#7 == 0 goto $u-1#14 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Not Accepting Cash", "This store doesn\'t currently accept cash payments.", "Ok")
+NODE 2: $u-1#14 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Not Accepting Cash", "This store doesn\'t currently accept cash payments.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.OnPaymentMenuItemClick.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#7 == 0 goto $u-1#14 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Not Accepting Cards", "This store doesn\'t currently accept credit card payments.", "Ok")
+NODE 2: $u-1#14 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Not Accepting Cards", "This store doesn\'t currently accept credit card payments.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.helpers.printer.StarBitmap.ConvertToMonochromeSteinbertDithering ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u6#5 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u6#5, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.product.OptionItemClickListener.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: parent := @parameter0: android.widget.AdapterView
+NODE 2: $u14 := @parameter2: int
+NODE 3: $u-1 = virtualinvoke parent.<android.widget.AdapterView: android.widget.Adapter getAdapter()>()
+NODE 4: $u0 = (android.widget.HeaderViewListAdapter) $u-1
+NODE 5: $u-1#4 = virtualinvoke $u0.<android.widget.HeaderViewListAdapter: android.widget.ListAdapter getWrappedAdapter()>()
+NODE 6: sectionedAdapter = (com.ordersnapp.views.product.SectionedProductAdapter) $u-1#4
+NODE 7: $u-1 = virtualinvoke sectionedAdapter.<com.ordersnapp.views.product.SectionedProductAdapter: android.widget.Adapter getAdapterOfItem(int)>($u14)
+NODE 8: $u-1#9 = virtualinvoke sectionedAdapter.<com.ordersnapp.views.product.SectionedProductAdapter: java.lang.Object getItem(int)>($u14)
+NODE 9: if $u0#11 == 0 goto return
+NODE 10: $u0#14 = (com.ordersnapp.views.product.OptionsAdapter) $u-1
+NODE 11: $u-1#15 = virtualinvoke $u0#14.<com.ordersnapp.views.product.OptionsAdapter: com.ordersnapp.models.menu.ProductModel$OptionGroupModel getOptionGroup()>()
+NODE 12: $u-1#17 = virtualinvoke $u-1#15.<com.ordersnapp.models.menu.ProductModel$OptionGroupModel: java.util.ArrayList getModifiers()>()
+NODE 13: $u14 = virtualinvoke $u-1#17.<java.util.ArrayList: int size()>()
+NODE 14: if $u14 != 0 goto list = new android.widget.ListView
+NODE 15: list = new android.widget.ListView
+NODE 16: $u0#35 = (com.ordersnapp.models.menu.ProductModel$OptionModel) $u-1#9
+NODE 17: $u-1#42 = virtualinvoke $u0#35.<com.ordersnapp.models.menu.ProductModel$OptionModel: java.lang.String getName()>()
+NODE 18: $u-1#45 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Edit", $u-1#42, "Save", "Remove Item", list, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: android.app.PendingIntent
+NODE 4: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.ce em>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.ce: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,android.app.PendingIntent)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.ce em>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.ce: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u4 := @parameter2: android.os.Looper
+NODE 5: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.ce em>
+NODE 6: virtualinvoke $u0.<com.google.android.gms.internal.ce: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u2, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.HomeActivity.displayStoreIsSetDialog ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.HomeActivity
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n")
+NODE 4: $u3 = this.<com.ordersnapp.views.HomeActivity: com.ordersnapp.controllers.local.Menu mMenu>
+NODE 5: $u-1 = virtualinvoke $u3.<com.ordersnapp.controllers.local.Menu: com.ordersnapp.models.StoreModel getCurrentStore()>()
+NODE 6: $u-1#8 = virtualinvoke $u-1.<com.ordersnapp.models.StoreModel: java.lang.String getName()>()
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n")
+NODE 9: $u3 = this.<com.ordersnapp.views.HomeActivity: com.ordersnapp.controllers.local.Menu mMenu>
+NODE 10: $u-1 = virtualinvoke $u3.<com.ordersnapp.controllers.local.Menu: com.ordersnapp.models.StoreModel getCurrentStore()>()
+NODE 11: $u-1#18 = virtualinvoke $u-1.<com.ordersnapp.models.StoreModel: com.ordersnapp.models.AddressModel getAddress()>()
+NODE 12: $u-1#8 = virtualinvoke $u-1#18.<com.ordersnapp.models.AddressModel: java.lang.String getFullAddress()>()
+NODE 13: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 14: $u-1#8 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#8 = virtualinvoke $u-1#8.<java.lang.String: java.lang.String replaceAll(java.lang.String,java.lang.String)>("\n", "\n    ")
+NODE 16: $u2 = new java.lang.StringBuilder
+NODE 17: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("We have selected the store closest to your current location.\nIs this correct?\n")
+NODE 18: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 19: $u-1#8 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 20: $u-1#40 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>("Store Selected", $u-1#8, "Yes", "Change Store")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.HomeActivity.getMyLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.ordersnapp.views.HomeActivity
+NODE 2: $u0 = this.<com.ordersnapp.views.HomeActivity: android.location.LocationManager mLocationManager>
+NODE 3: $u5 = this.<com.ordersnapp.views.HomeActivity: android.location.LocationListener mLocationListener>
+NODE 4: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 0L, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.merchant.CurrentStoreOrdersFragment.displayEstimatedTimeDialog ===
+SUSPICIOUS_API: newInstance
+NODE 1: list = new android.widget.ListView
+NODE 2: $u-1#12 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Select Estimated Time", null, null, list, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onCreatePreferenceManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[2]
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u4)
+NODE 4: $u3#11 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#19 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#11)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.addPreferencesFromResource ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[3]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("inflateFromResource", $u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.addPreferencesFromResource ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u4 = newarray (java.lang.Class)[3]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("inflateFromResource", $u4)
+NODE 5: $u2#13 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u3 = newarray (java.lang.Object)[3]
+NODE 7: $u-1#25 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#13, $u3)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.getPreferenceScreen ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPreferenceScreen", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.getPreferenceScreen ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getPreferenceScreen", $u4)
+NODE 5: $u2#7 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u3 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#10 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#7, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onActivityResult ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[3]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityResult", $u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onActivityResult ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u4 = newarray (java.lang.Class)[3]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityResult", $u4)
+NODE 5: $u2#13 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u3 = newarray (java.lang.Object)[3]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#13, $u3)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onDestroy ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityDestroy", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onDestroy ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityDestroy", $u4)
+NODE 5: $u2#7 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u3 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#7, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onStop ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityStop", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.onStop ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u2 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchActivityStop", $u4)
+NODE 5: $u2#6 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u3 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#6, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.setPreferenceScreen ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 = class "Landroid/preference/PreferenceManager;"
+NODE 2: $u5 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPreferences", $u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.settings.PreferenceListFragment.setPreferenceScreen ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.ordersnapp.views.settings.PreferenceListFragment
+NODE 2: $u3 = class "Landroid/preference/PreferenceManager;"
+NODE 3: $u5 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPreferences", $u5)
+NODE 5: $u3#7 = this.<com.ordersnapp.views.settings.PreferenceListFragment: android.preference.PreferenceManager mPreferenceManager>
+NODE 6: $u4 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#11 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3#7, $u4)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.starmicronics.stario.BluetoothPort.openPort ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.starmicronics.stario.BluetoothPort
+NODE 2: $u2 = 0
+NODE 3: if $u-1 != 1 goto $u-1#24 = staticinvoke <android.bluetooth.BluetoothAdapter: android.bluetooth.BluetoothAdapter getDefaultAdapter()>()
+NODE 4: if $u-1 != 1 goto $u-1#24 = staticinvoke <android.bluetooth.BluetoothAdapter: android.bluetooth.BluetoothAdapter getDefaultAdapter()>()
+NODE 5: $u-1#24 = staticinvoke <android.bluetooth.BluetoothAdapter: android.bluetooth.BluetoothAdapter getDefaultAdapter()>()
+NODE 6: if $u-1#24 != null goto $u-1#10 = virtualinvoke $u-1#24.<android.bluetooth.BluetoothAdapter: int getState()>()
+NODE 7: $u-1#10 = virtualinvoke $u-1#24.<android.bluetooth.BluetoothAdapter: int getState()>()
+NODE 8: if $u-1#10 == 12 goto $u0#4 = this.<com.starmicronics.stario.BluetoothPort: java.lang.String portName>
+NODE 9: $u0#4 = this.<com.starmicronics.stario.BluetoothPort: java.lang.String portName>
+NODE 10: $u-1#10 = virtualinvoke $u0#4.<java.lang.String: int length()>()
+NODE 11: if $u-1#10 != 3 goto $u-1#43 = virtualinvoke $u-1#24.<android.bluetooth.BluetoothAdapter: java.util.Set getBondedDevices()>()
+NODE 12: $u-1#43 = virtualinvoke $u-1#24.<android.bluetooth.BluetoothAdapter: java.util.Set getBondedDevices()>()
+NODE 13: $u-1#45 = interfaceinvoke $u-1#43.<java.util.Set: java.lang.Object[] toArray()>()
+NODE 14: $u-1#10 = lengthof $u-1#45
+NODE 15: $u1 = newarray (android.bluetooth.BluetoothDevice)[$u-1#10]
+NODE 16: $u-1#45 = interfaceinvoke $u-1#43.<java.util.Set: java.lang.Object[] toArray(java.lang.Object[])>($u1)
+NODE 17: $u1 = (android.bluetooth.BluetoothDevice[]) $u-1#45
+NODE 18: $u-1#10 = 0
+NODE 19: if $u-1#10 >= $u5 goto $u5#54 = null
+NODE 20: if $u-1 == 0 goto $u-1#10 = $u-1#10 + 1
+NODE 21: if $u-1 != 1 goto $u-1#10 = $u-1#10 + 1
+NODE 22: $u5#54 = $u1[$u-1#10]
+NODE 23: if $u-1 == 0 goto $u2 = $u2 + 1
+NODE 24: if $u-1 != 1 goto $u2 = $u2 + 1
+NODE 25: $u5#54 = $u1[$u2]
+NODE 26: $u-1#10 = $u-1#10 + 1
+NODE 27: $u2 = $u2 + 1
+NODE 28: if $u-1 == 0 goto $u-1#115 = virtualinvoke $u5#54.<java.lang.Object: java.lang.Class getClass()>()
+NODE 29: $u-1#115 = virtualinvoke $u5#54.<java.lang.Object: java.lang.Class getClass()>()
+NODE 30: $u5#119 = newarray (java.lang.Class)[1]
+NODE 31: $u-1#122 = virtualinvoke $u-1#115.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("createInsecureRfcommSocketToServiceRecord", $u5#119)
+NODE 32: $u-1#45 = newarray (java.lang.Object)[1]
+NODE 33: $u-1#130 = virtualinvoke $u-1#122.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5#54, $u-1#45)
+NODE 34: $u5#54 = null
+EDGE: 1 -> 2
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 34
+EDGE: 20 -> 26
+EDGE: 21 -> 22
+EDGE: 21 -> 26
+EDGE: 23 -> 27
+EDGE: 24 -> 25
+EDGE: 24 -> 27
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 31 -> 32
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ModifyCreditCardActivity.actionExpirationMonth ===
+SUSPICIOUS_API: newInstance
+NODE 1: list = new android.widget.ListView
+NODE 2: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Expiration Month", null, null, list, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ModifyCreditCardActivity.actionExpirationYear ===
+SUSPICIOUS_API: newInstance
+NODE 1: list = new android.widget.ListView
+NODE 2: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Expiration Year", null, null, list, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.User.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.User
+NODE 2: if $u0 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.User: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$3.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$3
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$3: java.lang.reflect.Method val$newInstance>
+NODE 3: $u2 = newarray (java.lang.Object)[2]
+NODE 4: $u-1#9 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$1.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$1
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$1: java.lang.reflect.Method val$allocateInstance>
+NODE 3: $u1 = this.<com.google.gson.internal.UnsafeAllocator$1: java.lang.Object val$unsafe>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.UnsafeAllocator$2.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.gson.internal.UnsafeAllocator$2
+NODE 2: $u0 = this.<com.google.gson.internal.UnsafeAllocator$2: java.lang.reflect.Method val$newInstance>
+NODE 3: $u2 = newarray (java.lang.Object)[2]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ce.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.ce
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: android.app.PendingIntent
+NODE 4: $u0 = this.<com.google.android.gms.internal.ce: com.google.android.gms.internal.cd eJ>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.cd: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,android.app.PendingIntent)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ce.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.ce
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: virtualinvoke this.<com.google.android.gms.internal.ce: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u2, $u3, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ce.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.ce
+NODE 2: $u3 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u4 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u5 := @parameter2: android.os.Looper
+NODE 5: $u0 = this.<com.google.android.gms.internal.ce: com.google.android.gms.internal.cd eJ>
+NODE 6: virtualinvoke $u0.<com.google.android.gms.internal.cd: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#20 == 0 goto (branch)
+NODE 2: target = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.cw.aU ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.maps.internal.CreatorImpl")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.cw.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.starmicronics.stario.WBlueToothPort.openPort ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.starmicronics.stario.WBlueToothPort
+NODE 2: if $u-1 == 0 goto $u4#54 = this.<com.starmicronics.stario.WBlueToothPort: android.bluetooth.BluetoothDevice starDevice>
+NODE 3: $u4#54 = this.<com.starmicronics.stario.WBlueToothPort: android.bluetooth.BluetoothDevice starDevice>
+NODE 4: $u-1#118 = virtualinvoke $u4#54.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u2#122 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#125 = virtualinvoke $u-1#118.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("createInsecureRfcommSocketToServiceRecord", $u2#122)
+NODE 7: $u4#54 = this.<com.starmicronics.stario.WBlueToothPort: android.bluetooth.BluetoothDevice starDevice>
+NODE 8: $u-1#45 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#134 = virtualinvoke $u-1#125.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#54, $u-1#45)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.an.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.android.gms.internal.an
+NODE 2: $u5 := @parameter0: com.google.android.gms.internal.an$a
+NODE 3: $u-1 = virtualinvoke $u5.<com.google.android.gms.internal.an$a: java.lang.String M()>()
+NODE 4: if $u-1#23 == null goto $u1 = new java.lang.StringBuilder
+NODE 5: goto [?= (branch)]
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("get")
+NODE 8: $u-1#33 = virtualinvoke $u-1.<java.lang.String: char charAt(int)>(0)
+NODE 9: $u-1#33 = staticinvoke <java.lang.Character: char toUpperCase(char)>($u-1#33)
+NODE 10: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($u-1#33)
+NODE 11: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 12: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 13: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#5 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u2 = newarray (java.lang.Class)[0]
+NODE 16: $u-1#50 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 17: $u1#53 = newarray (java.lang.Object)[0]
+NODE 18: $u-1#9 = virtualinvoke $u-1#50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#53)
+EDGE: 1 -> 2
+EDGE: 4 -> 6
+EDGE: 5 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.at.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter1: com.google.android.gms.internal.an
+NODE 2: if $u-1#3 != 0 goto return
+NODE 3: $u-1#5 = virtualinvoke $u6.<com.google.android.gms.internal.an: java.util.HashMap G()>()
+NODE 4: $u-1#9 = virtualinvoke $u-1#5.<java.util.HashMap: java.util.Set keySet()>()
+NODE 5: $u-1#11 = interfaceinvoke $u-1#9.<java.util.Set: java.util.Iterator iterator()>()
+NODE 6: if $u-1#3 == 0 goto return
+NODE 7: $u-1#15 = interfaceinvoke $u-1#11.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: $u0 = (java.lang.String) $u-1#15
+NODE 9: $u-1#15 = virtualinvoke $u-1#5.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u0)
+NODE 10: $u0#20 = (com.google.android.gms.internal.an$a) $u-1#15
+NODE 11: $u-1 = virtualinvoke $u0#20.<com.google.android.gms.internal.an$a: java.lang.Class O()>()
+NODE 12: if $u-1 == null goto $u-1#3 = interfaceinvoke $u-1#11.<java.util.Iterator: boolean hasNext()>()
+NODE 13: $u-1#15 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Cart.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Cart
+NODE 2: if $u0 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.Cart: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Order.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Order
+NODE 2: if $u0 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.Order: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Stores.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Stores
+NODE 2: if $u0 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.Stores: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.ConstructorConstructor$2.construct ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.ConstructorConstructor$2
+NODE 2: $u2 = this.<com.google.gson.internal.ConstructorConstructor$2: java.lang.reflect.Constructor val$constructor>
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.ConstructorConstructor$8.construct ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.ConstructorConstructor$8
+NODE 2: $u2 = this.<com.google.gson.internal.ConstructorConstructor$8: com.google.gson.internal.UnsafeAllocator unsafeAllocator>
+NODE 3: $u3 = this.<com.google.gson.internal.ConstructorConstructor$8: java.lang.Class val$rawType>
+NODE 4: $u-1 = virtualinvoke $u2.<com.google.gson.internal.UnsafeAllocator: java.lang.Object newInstance(java.lang.Class)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: forName
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.local.Credentials.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.controllers.local.Credentials
+NODE 2: if $u0 != null goto return
+NODE 3: virtualinvoke this.<com.ordersnapp.controllers.local.Credentials: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarDescription ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto return $u7
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.cart.ViewCartFragment.displayChangeQuantityDialog ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.cart.ViewCartFragment
+NODE 2: $u3 := @parameter0: int
+NODE 3: $u4 := @parameter1: int
+NODE 4: $u1 = this.<com.ordersnapp.views.cart.ViewCartFragment: com.ordersnapp.views.cart.QuantityDialogFragment$QuantityListener mQuantityDialogListener>
+NODE 5: $u-1 = staticinvoke <com.ordersnapp.views.cart.QuantityDialogFragment: com.ordersnapp.views.cart.QuantityDialogFragment newInstance(com.ordersnapp.views.cart.QuantityDialogFragment$QuantityListener,int,int)>($u1, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.cart.ViewCartFragment.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.cart.ViewCartFragment
+NODE 2: $u10 := @parameter2: int
+NODE 3: list = new android.widget.ListView
+NODE 4: $u3#10 = this.<com.ordersnapp.views.cart.ViewCartFragment: com.ordersnapp.views.cart.CartAdapter mAdapter>
+NODE 5: $u-1#11 = virtualinvoke $u3#10.<com.ordersnapp.views.cart.CartAdapter: com.ordersnapp.models.cart.CartModel$CartItem getItem(int)>($u10)
+NODE 6: $u-1#13 = virtualinvoke $u-1#11.<com.ordersnapp.models.cart.CartModel$CartItem: com.ordersnapp.models.cart.CartModel$CartProductModel getProduct()>()
+NODE 7: $u-1#15 = virtualinvoke $u-1#13.<com.ordersnapp.models.cart.CartModel$CartProductModel: java.lang.String getName()>()
+NODE 8: $u-1#18 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>($u-1#15, null, null, list, 1)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.cart.ViewCartFragment.updateCart ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.ordersnapp.views.cart.ViewCartFragment
+NODE 2: $u0 = this.<com.ordersnapp.views.cart.ViewCartFragment: com.ordersnapp.controllers.local.Cart mCart>
+NODE 3: virtualinvoke $u0.<com.ordersnapp.controllers.local.Cart: void load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.CheckoutActivity.handleActionAddNotes ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.checkout.CheckoutActivity
+NODE 2: $u0 = this.<com.ordersnapp.views.checkout.CheckoutActivity: com.ordersnapp.controllers.web.RestListener mUpdateOrderRestListener>
+NODE 3: $u1 = this.<com.ordersnapp.views.checkout.CheckoutActivity: com.ordersnapp.controllers.local.Order mOrder>
+NODE 4: $u-1 = virtualinvoke $u1.<com.ordersnapp.controllers.local.Order: com.ordersnapp.models.order.OrderModel getOrder()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1.<com.ordersnapp.models.order.OrderModel: java.lang.String getNotes()>()
+NODE 6: $u-1#7 = staticinvoke <com.ordersnapp.views.dialog.NotesDialogFragment: com.ordersnapp.views.dialog.NotesDialogFragment newInstance(com.ordersnapp.controllers.web.RestListener,java.lang.String)>($u0, $u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.CheckoutActivity.handleActionAddTip ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.checkout.CheckoutActivity
+NODE 2: $u0 = this.<com.ordersnapp.views.checkout.CheckoutActivity: com.ordersnapp.controllers.local.Order mOrder>
+NODE 3: $u-1 = virtualinvoke $u0.<com.ordersnapp.controllers.local.Order: com.ordersnapp.models.order.OrderModel getOrder()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<com.ordersnapp.models.order.OrderModel: double getSubTotal()>()
+NODE 5: $u0 = this.<com.ordersnapp.views.checkout.CheckoutActivity: com.ordersnapp.controllers.local.Order mOrder>
+NODE 6: $u-1 = virtualinvoke $u0.<com.ordersnapp.controllers.local.Order: com.ordersnapp.models.order.OrderModel getOrder()>()
+NODE 7: $u-1#9 = virtualinvoke $u-1.<com.ordersnapp.models.order.OrderModel: double getTip()>()
+NODE 8: $u4 = this.<com.ordersnapp.views.checkout.CheckoutActivity: com.ordersnapp.controllers.web.RestListener mUpdateOrderRestListener>
+NODE 9: $u-1#11 = staticinvoke <com.ordersnapp.views.dialog.TipDialogFragment: com.ordersnapp.views.dialog.TipDialogFragment newInstance(double,double,com.ordersnapp.controllers.web.RestListener)>($u-1#4, $u-1#9, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.CheckoutActivity.handleActionSelectAddress ===
+SUSPICIOUS_API: newInstance
+NODE 1: list = new android.widget.ListView
+NODE 2: $u-1#9 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Select Address", null, null, list, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ModifyCreditCardActivity$3.onFailure ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u6#5 != 422 goto return
+NODE 2: message = ""
+NODE 3: obj = new org.json.JSONObject
+NODE 4: $u-1 = virtualinvoke obj.<org.json.JSONObject: org.json.JSONArray getJSONArray(java.lang.String)>("errors")
+NODE 5: $u6#5 = 0
+NODE 6: if $u6#5 >= $u-1#13 goto $u-1#30 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Error", message, "Ok")
+NODE 7: $u6#15 = new java.lang.StringBuilder
+NODE 8: $u6#15 = virtualinvoke $u6#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(message)
+NODE 9: obj = virtualinvoke $u-1.<org.json.JSONArray: org.json.JSONObject getJSONObject(int)>($u6#5)
+NODE 10: message = virtualinvoke obj.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("message")
+NODE 11: $u6#15 = virtualinvoke $u6#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(message)
+NODE 12: $u6#15 = virtualinvoke $u6#15.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\n")
+NODE 13: message = virtualinvoke $u6#15.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u6#5 = $u6#5 + 1
+NODE 15: message = "Invalid information was entered."
+NODE 16: $u-1#30 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Error", message, "Ok")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 16
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.$Gson$Types.getRawType ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.reflect.Type
+NODE 2: if $u4 == 0 goto $u4 = $u7 instanceof java.lang.reflect.TypeVariable
+NODE 3: $u7#14 = (java.lang.reflect.GenericArrayType) $u7
+NODE 4: $u7 = interfaceinvoke $u7#14.<java.lang.reflect.GenericArrayType: java.lang.reflect.Type getGenericComponentType()>()
+NODE 5: $u7#4 = staticinvoke <com.google.gson.internal.$Gson$Types: java.lang.Class getRawType(java.lang.reflect.Type)>($u7)
+NODE 6: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u7#4, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ModifyAddressActivity.onActionSelectState ===
+SUSPICIOUS_API: newInstance
+NODE 1: list = new android.widget.ListView
+NODE 2: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Select State", null, null, list, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.controllers.web.user.LoginRest.handle401Error ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Error", "Invalid Email or Password", "Ok")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1#3 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u1 < 7 goto return
+NODE 3: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 8: goto [?= $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.OnDeliveryMenuItemClick.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#9 == 0 goto $u-1#16 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Pickup Unavailable", "This store doesn\'t currently allow for pickup.", "Ok")
+NODE 2: $u-1#16 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Pickup Unavailable", "This store doesn\'t currently allow for pickup.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.checkout.OnDeliveryMenuItemClick.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#9 == 0 goto $u-1#16 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Delivery Unavailable", "This store doesn\'t currently allow for delivery.", "Ok")
+NODE 2: $u-1#16 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Delivery Unavailable", "This store doesn\'t currently allow for delivery.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.product.AddOptionClickListener.onAddButtonClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter0: com.ordersnapp.views.product.SectionedProductAdapter$ProductSection
+NODE 2: if $u3#2 != 0 goto list = new android.widget.ListView
+NODE 3: list = new android.widget.ListView
+NODE 4: $u3#17 = $u8.<com.ordersnapp.views.product.SectionedProductAdapter$ProductSection: java.lang.String caption>
+NODE 5: $u4 = $u8.<com.ordersnapp.views.product.SectionedProductAdapter$ProductSection: java.lang.String subCaption>
+NODE 6: $u-1#20 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>($u3#17, $u4, "Save options", list, 1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.gson.internal.bind.ArrayTypeAdapter.read ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.gson.internal.bind.ArrayTypeAdapter
+NODE 2: if $u-1 != $u5 goto list = new java.util.ArrayList
+NODE 3: list = new java.util.ArrayList
+NODE 4: $u4#9 = this.<com.google.gson.internal.bind.ArrayTypeAdapter: java.lang.Class componentType>
+NODE 5: $u-1#10 = interfaceinvoke list.<java.util.List: int size()>()
+NODE 6: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u4#9, $u-1#10)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.z.f ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0#2 != null goto $u2 = <com.google.android.gms.internal.z: android.content.Context aZ>
+NODE 2: $u2 = <com.google.android.gms.internal.z: android.content.Context aZ>
+NODE 3: if $u2 != null goto $u2 = <com.google.android.gms.internal.z: android.content.Context aZ>
+NODE 4: $u2 = <com.google.android.gms.internal.z: android.content.Context aZ>
+NODE 5: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 6: $u-1#12 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.google.android.gms.common.ui.SignInButtonCreatorImpl")
+NODE 7: $u-1#14 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 4
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.helpers.SimpleCrypto.process ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u6 := @parameter1: byte[]
+NODE 2: $u-1#4 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u6 = virtualinvoke $u-1#4.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u6)
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeAsUpIndicator", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeActionContentDescription", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ProfileActivity.actionPrivacyPolicy ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.user.ProfileActivity
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u2 = <com.ordersnapp.R$string: int url_v1_base>
+NODE 4: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.ProfileActivity: java.lang.String getString(int)>($u2)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u2 = <com.ordersnapp.R$string: int url_v1_privacy_policy>
+NODE 7: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.ProfileActivity: java.lang.String getString(int)>($u2)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#15 = staticinvoke <com.ordersnapp.views.dialog.WebViewDialogFragment: com.ordersnapp.views.dialog.WebViewDialogFragment newInstance(java.lang.String,java.lang.String)>($u-1, "Privacy Policy")
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ProfileActivity.actionTermsOfUse ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.user.ProfileActivity
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u2 = <com.ordersnapp.R$string: int url_v1_base>
+NODE 4: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.ProfileActivity: java.lang.String getString(int)>($u2)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 6: $u2 = <com.ordersnapp.R$string: int url_v1_user_tos>
+NODE 7: $u-1 = virtualinvoke this.<com.ordersnapp.views.user.ProfileActivity: java.lang.String getString(int)>($u2)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 9: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#15 = staticinvoke <com.ordersnapp.views.dialog.WebViewDialogFragment: com.ordersnapp.views.dialog.WebViewDialogFragment newInstance(java.lang.String,java.lang.String)>($u-1, "Terms of Use")
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ProfileActivity.handleModifyAddressClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: com.ordersnapp.models.AddressModel
+NODE 2: list = new android.widget.ListView
+NODE 3: $u-1#7 = virtualinvoke $u7.<com.ordersnapp.models.AddressModel: java.lang.String getStreet_1()>()
+NODE 4: $u-1#10 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>($u-1#7, null, null, list, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.user.ModifyAddressActivity$4.onSuccess ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u3#4 <= 0 goto $u3#5 = this.<com.ordersnapp.views.user.ModifyAddressActivity$4: com.ordersnapp.views.user.ModifyAddressActivity this$0>
+NODE 2: list = new android.widget.ListView
+NODE 3: $u-1 = staticinvoke <com.ordersnapp.views.dialog.SimpleCustomDialogFragment: com.ordersnapp.views.dialog.SimpleCustomDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String,android.view.View,boolean)>("Select One", null, null, list, 1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.location.LocatorActivity.displayStorePopup ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.ordersnapp.views.location.LocatorActivity
+NODE 2: $u1 = this.<com.ordersnapp.views.location.LocatorActivity: com.ordersnapp.models.StoreModel mCurrentStore>
+NODE 3: $u-1 = staticinvoke <com.ordersnapp.views.location.StoreDetailsDialogFragment: com.ordersnapp.views.location.StoreDetailsDialogFragment newInstance(android.content.Context,com.ordersnapp.models.StoreModel)>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.location.LocatorActivity.onStart ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u1#5 != 0 goto return
+NODE 2: $u-1#13 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Select a Location", "Please select a location before continuing to the menu.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.ordersnapp.views.cart.ViewCartFragment$2.onSuccess ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#11 == 0 goto $u-1#36 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Store Closed", "This store is not currently taking orders.", "Ok")
+NODE 2: $u-1#36 = staticinvoke <com.ordersnapp.views.dialog.SimpleMessageDialogFragment: com.ordersnapp.views.dialog.SimpleMessageDialogFragment newInstance(java.lang.String,java.lang.String,java.lang.String)>("Store Closed", "This store is not currently taking orders.", "Ok")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u2 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.invalidateChildRegion ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u1 = this.<android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB: java.lang.reflect.Method mGetDisplayList>
+NODE 4: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

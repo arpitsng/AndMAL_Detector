@@ -1,0 +1,1992 @@
+=== FUNCTION: m.framework.utils.Data.AES128Decode ===
+SUSPICIOUS_API: update
+NODE 1: $u10 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/NoPadding", "BC")
+NODE 3: $u1 = lengthof $u10
+NODE 4: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 5: $u9 = newarray (byte)[$u1]
+NODE 6: $u1 = lengthof $u10
+NODE 7: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u10, 0, $u1, $u9, 0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.Data.AES128Decode ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u10 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/NoPadding", "BC")
+NODE 3: $u1 = lengthof $u10
+NODE 4: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 5: $u9 = newarray (byte)[$u1]
+NODE 6: $u1 = lengthof $u10
+NODE 7: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u10, 0, $u1, $u9, 0)
+NODE 8: virtualinvoke $u-1.<javax.crypto.Cipher: int doFinal(byte[],int)>($u9, $u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.Data.AES128Encode ===
+SUSPICIOUS_API: update
+NODE 1: $u11 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u11.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3 = lengthof $u-1
+NODE 5: $u3 = virtualinvoke $u-1#12.<javax.crypto.Cipher: int getOutputSize(int)>($u3)
+NODE 6: cipherText = newarray (byte)[$u3]
+NODE 7: $u3 = lengthof $u-1
+NODE 8: $u3 = virtualinvoke $u-1#12.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3, cipherText, 0)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.Data.AES128Encode ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u11 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u11.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3 = lengthof $u-1
+NODE 5: $u3 = virtualinvoke $u-1#12.<javax.crypto.Cipher: int getOutputSize(int)>($u3)
+NODE 6: cipherText = newarray (byte)[$u3]
+NODE 7: $u3 = lengthof $u-1
+NODE 8: $u3 = virtualinvoke $u-1#12.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3, cipherText, 0)
+NODE 9: virtualinvoke $u-1#12.<javax.crypto.Cipher: int doFinal(byte[],int)>(cipherText, $u3)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.Data.AES128Encode ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u9.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3 = lengthof $u-1
+NODE 5: $u3 = virtualinvoke $u-1#6.<javax.crypto.Cipher: int getOutputSize(int)>($u3)
+NODE 6: $u8 = newarray (byte)[$u3]
+NODE 7: $u3 = lengthof $u-1
+NODE 8: $u3 = virtualinvoke $u-1#6.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3, $u8, 0)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.Data.AES128Encode ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u9 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u9.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3 = lengthof $u-1
+NODE 5: $u3 = virtualinvoke $u-1#6.<javax.crypto.Cipher: int getOutputSize(int)>($u3)
+NODE 6: $u8 = newarray (byte)[$u3]
+NODE 7: $u3 = lengthof $u-1
+NODE 8: $u3 = virtualinvoke $u-1#6.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3, $u8, 0)
+NODE 9: virtualinvoke $u-1#6.<javax.crypto.Cipher: int doFinal(byte[],int)>($u8, $u3)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.JSONScanner.scanFieldStringArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: type := @parameter1: java.lang.Class
+NODE 2: if $u-1 == 0 goto list = virtualinvoke type.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: list = virtualinvoke type.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.SerializeWriter.toBytes ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: if $u6 != null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u6)
+NODE 3: $u6 = "UTF-8"
+NODE 4: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.CharsetDeserializer.deserialze ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: com.alibaba.fastjson.parser.DefaultJSONParser
+NODE 2: $u7 = virtualinvoke $u5.<com.alibaba.fastjson.parser.DefaultJSONParser: java.lang.Object parse()>()
+NODE 3: if $u7 != null goto $u0 = (java.lang.String) $u7
+NODE 4: $u0 = (java.lang.String) $u7
+NODE 5: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.FieldInfo.get ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alibaba.fastjson.util.FieldInfo
+NODE 2: $u4 := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method method>
+NODE 4: if $u1 == null goto $u1#7 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Field field>
+NODE 5: $u1 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method method>
+NODE 6: $u2 = newarray (java.lang.Object)[0]
+NODE 7: $u4 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.FieldInfo.set ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alibaba.fastjson.util.FieldInfo
+NODE 2: $u4 := @parameter0: java.lang.Object
+NODE 3: $u0 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method method>
+NODE 4: if $u0 == null goto $u0#5 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Field field>
+NODE 5: $u0 = this.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method method>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.ImageSizeUtils.getImageViewFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter1: java.lang.String
+NODE 2: $u4 = class "Landroid/widget/ImageView;"
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.activity.SplashActivity.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.DeserializeBeanInfo.getField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.UTF8Decoder.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.ParserConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Point")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.ParserConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Font")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.ParserConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Rectangle")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.ParserConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Color")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.ParserConfig.getDeserializer ===
+SUSPICIOUS_API: load
+NODE 1: if $u8#12 == 0 goto (branch)
+NODE 2: if derializer == null goto $u-1#19 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 3: $u-1#19 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 4: $u-1#21 = virtualinvoke $u-1#19.<java.lang.Thread: java.lang.ClassLoader getContextClassLoader()>()
+NODE 5: $u-1#23 = staticinvoke <com.alibaba.fastjson.util.ServiceLoader: java.util.Set load(java.lang.Class,java.lang.ClassLoader)>(class "Lcom/alibaba/fastjson/parser/deserializer/AutowiredObjectDeserializer;", $u-1#21)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.wechat.utils.WXMediaMessage$a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.os.Bundle
+NODE 2: $u-1#14 = virtualinvoke $u5.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_wxobject_identifier_")
+NODE 3: if $u-1 > 0 goto $u-1#5 = virtualinvoke $u-1#14.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("com.tencent.mm.sdk.openapi", "cn.sharesdk.wechat.utils")
+NODE 4: $u-1#5 = virtualinvoke $u-1#14.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("com.tencent.mm.sdk.openapi", "cn.sharesdk.wechat.utils")
+NODE 5: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.wechat.utils.WXMediaMessage$a.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: android.os.Bundle
+NODE 2: $u-1#14 = virtualinvoke $u5.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_wxobject_identifier_")
+NODE 3: if $u-1 > 0 goto $u-1#5 = virtualinvoke $u-1#14.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("com.tencent.mm.sdk.openapi", "cn.sharesdk.wechat.utils")
+NODE 4: $u-1#5 = virtualinvoke $u-1#14.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("com.tencent.mm.sdk.openapi", "cn.sharesdk.wechat.utils")
+NODE 5: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 6: $u-1#25 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.IApplication.isWifiConnected ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 == null goto return 0
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: mConnectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke mConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.onekeyshare.PlatformGridView.disableOverScrollMode ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.view.View
+NODE 2: if $u2 >= 9 goto $u2#3 = class "Landroid/view/View;"
+NODE 3: $u2#3 = class "Landroid/view/View;"
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u2#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u4)
+NODE 6: $u2#10 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u2#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.MapDeserializer.createMap ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter0: java.lang.reflect.Type
+NODE 2: if $u4#20 == 0 goto $u4#32 = new com.alibaba.fastjson.JSONException
+NODE 3: $u0#29 = (java.lang.Class) $u8
+NODE 4: if $u4#20 == 0 goto $u-1#41 = virtualinvoke $u0#29.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 5: $u-1#41 = virtualinvoke $u0#29.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.cast ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u16 := @parameter0: java.lang.Object
+NODE 2: clazz := @parameter1: java.lang.Class
+NODE 3: if $u0 == 0 goto $u-1 = virtualinvoke $u16.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u0#27 = (java.util.Collection) $u16
+NODE 5: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 6: $u-1#31 = interfaceinvoke $u0#27.<java.util.Collection: int size()>()
+NODE 7: $u16 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u-1#31)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.cast ===
+SUSPICIOUS_API: newInstance
+NODE 1: clazz := @parameter1: java.lang.Class
+NODE 2: if clazz != class "Ljava/util/Calendar;" goto $u16 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u16 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.castToEnum ===
+SUSPICIOUS_API: invoke
+NODE 1: clazz := @parameter1: java.lang.Class
+NODE 2: $u12 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#17 = virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("values", $u12)
+NODE 4: $u12#20 = newarray (java.lang.Object)[0]
+NODE 5: value = virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u12#20)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.castToJavaBean ===
+SUSPICIOUS_API: newInstance
+NODE 1: map := @parameter0: java.util.Map
+NODE 2: clazz := @parameter1: java.lang.Class
+NODE 3: if clazz != class "Ljava/lang/StackTraceElement;" goto $u8#8 = <com.alibaba.fastjson.JSON: java.lang.String DEFAULT_TYPE_KEY>
+NODE 4: $u8#8 = <com.alibaba.fastjson.JSON: java.lang.String DEFAULT_TYPE_KEY>
+NODE 5: $u-1 = interfaceinvoke map.<java.util.Map: java.lang.Object get(java.lang.Object)>($u8#8)
+NODE 6: if methodName#28 == 0 goto methodName#28 = virtualinvoke clazz.<java.lang.Class: boolean isInterface()>()
+NODE 7: $u8#8 = (java.lang.String) $u-1
+NODE 8: $u-1#30 = staticinvoke <com.alibaba.fastjson.util.TypeUtils: java.lang.Class loadClass(java.lang.String)>($u8#8)
+NODE 9: clazz = $u-1#30
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.castToJavaBean ===
+SUSPICIOUS_API: invoke
+NODE 1: map := @parameter0: java.util.Map
+NODE 2: clazz := @parameter1: java.lang.Class
+NODE 3: $u8 := @parameter2: com.alibaba.fastjson.parser.ParserConfig
+NODE 4: if clazz != class "Ljava/lang/StackTraceElement;" goto $u8#8 = <com.alibaba.fastjson.JSON: java.lang.String DEFAULT_TYPE_KEY>
+NODE 5: $u8#8 = <com.alibaba.fastjson.JSON: java.lang.String DEFAULT_TYPE_KEY>
+NODE 6: $u-1 = interfaceinvoke map.<java.util.Map: java.lang.Object get(java.lang.Object)>($u8#8)
+NODE 7: if methodName#28 == 0 goto methodName#28 = virtualinvoke clazz.<java.lang.Class: boolean isInterface()>()
+NODE 8: $u8#8 = (java.lang.String) $u-1
+NODE 9: $u-1#30 = staticinvoke <com.alibaba.fastjson.util.TypeUtils: java.lang.Class loadClass(java.lang.String)>($u8#8)
+NODE 10: clazz = $u-1#30
+NODE 11: if methodName#28 == 0 goto $u-1#58 = virtualinvoke $u8.<com.alibaba.fastjson.parser.ParserConfig: java.util.Map getFieldDeserializers(java.lang.Class)>(clazz)
+NODE 12: $u-1#58 = virtualinvoke $u8.<com.alibaba.fastjson.parser.ParserConfig: java.util.Map getFieldDeserializers(java.lang.Class)>(clazz)
+NODE 13: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 14: $u-1#61 = interfaceinvoke $u-1#58.<java.util.Map: java.util.Set entrySet()>()
+NODE 15: $u-1#63 = interfaceinvoke $u-1#61.<java.util.Set: java.util.Iterator iterator()>()
+NODE 16: if methodName#28 == 0 goto return $u-1
+NODE 17: $u-1#67 = interfaceinvoke $u-1#63.<java.util.Iterator: java.lang.Object next()>()
+NODE 18: fileName#69 = (java.util.Map$Entry) $u-1#67
+NODE 19: $u-1#67 = interfaceinvoke fileName#69.<java.util.Map$Entry: java.lang.Object getValue()>()
+NODE 20: fileName#75 = (com.alibaba.fastjson.parser.deserializer.FieldDeserializer) $u-1#67
+NODE 21: $u-1#76 = virtualinvoke fileName#75.<com.alibaba.fastjson.parser.deserializer.FieldDeserializer: java.lang.reflect.Method getMethod()>()
+NODE 22: $u4#89 = newarray (java.lang.Object)[1]
+NODE 23: virtualinvoke $u-1#76.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4#89)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.loadClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u-1 != 91 goto $u-1#19 = virtualinvoke $u7.<java.lang.String: boolean startsWith(java.lang.String)>("L")
+NODE 3: $u7 = virtualinvoke $u7.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 4: clazz = staticinvoke <com.alibaba.fastjson.util.TypeUtils: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 5: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(clazz, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.TypeUtils.loadClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1#34 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory.createJavaBeanDeserializer ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory
+NODE 2: clazz := @parameter1: java.lang.Class
+NODE 3: if $u-1 == 0 goto $u-1#8 = virtualinvoke this.<com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory: java.lang.String getGenClassName(java.lang.Class)>(clazz)
+NODE 4: $u-1#8 = virtualinvoke this.<com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory: java.lang.String getGenClassName(java.lang.Class)>(clazz)
+NODE 5: cw = new com.alibaba.fastjson.asm.ClassWriter
+NODE 6: $u-1#28 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()
+NODE 7: $u1#29 = this.<com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory: com.alibaba.fastjson.util.ASMClassLoader classLoader>
+NODE 8: $u4 = lengthof $u-1#28
+NODE 9: $u-1#32 = virtualinvoke $u1#29.<com.alibaba.fastjson.util.ASMClassLoader: java.lang.Class defineClassPublic(java.lang.String,byte[],int,int)>($u-1#8, $u-1#28, 0, $u4)
+NODE 10: $u1#34 = newarray (java.lang.Class)[2]
+NODE 11: $u-1#35 = virtualinvoke $u-1#32.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1#34)
+NODE 12: $u1#37 = newarray (java.lang.Object)[2]
+NODE 13: $u-1#40 = virtualinvoke $u-1#35.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#37)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory.createStringFieldDeserializer ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory
+NODE 2: clazz := @parameter1: java.lang.Class
+NODE 3: $u27 := @parameter2: com.alibaba.fastjson.util.FieldInfo
+NODE 4: $u-1#6 = virtualinvoke this.<com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory: java.lang.String getGenFieldDeserializer(java.lang.Class,com.alibaba.fastjson.util.FieldInfo)>(clazz, $u27)
+NODE 5: cw = new com.alibaba.fastjson.asm.ClassWriter
+NODE 6: if $u-1#2 == null goto $u-1#175 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()
+NODE 7: $u-1#175 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()
+NODE 8: $u0 = this.<com.alibaba.fastjson.parser.deserializer.ASMDeserializerFactory: com.alibaba.fastjson.util.ASMClassLoader classLoader>
+NODE 9: $u0#181 = lengthof $u-1#175
+NODE 10: $u-1 = virtualinvoke $u0.<com.alibaba.fastjson.util.ASMClassLoader: java.lang.Class defineClassPublic(java.lang.String,byte[],int,int)>($u-1#6, $u-1#175, 0, $u0#181)
+NODE 11: $u6#190 = newarray (java.lang.Class)[3]
+NODE 12: $u-1#195 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u6#190)
+NODE 13: $u6#197 = newarray (java.lang.Object)[3]
+NODE 14: $u-1#203 = virtualinvoke $u-1#195.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u6#197)
+NODE 15: goto [?= $u-1#175 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()]
+NODE 16: goto [?= $u-1#175 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 15 -> 7
+EDGE: 16 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.common.HybridBinarizer.calculateBlackPoints ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: blackPoints = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(blackPoints, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.authorize.g.c ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: cn.sharesdk.framework.authorize.g
+NODE 2: $u0 = this.<cn.sharesdk.framework.authorize.g: android.app.Activity activity>
+NODE 3: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u0 = this.<cn.sharesdk.framework.authorize.g: android.app.Activity activity>
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.app.Activity: android.content.ComponentName getComponentName()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1.<android.content.pm.PackageManager: android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName,int)>($u-1#6, 128)
+NODE 7: $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 8: $u-1#13 = virtualinvoke $u1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("AuthorizeAdapter")
+NODE 9: if $u-1#13 == null goto $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 10: if $u-1#15 > 0 goto $u0#20 = $u-1#13
+NODE 11: $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 12: $u-1#13 = virtualinvoke $u1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("Adapter")
+NODE 13: $u0#20 = $u-1#13
+NODE 14: if $u-1#15 > 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#20)
+NODE 15: $u0#20 = $u-1#13
+NODE 16: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#20)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 10 -> 15
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 16
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.authorize.g.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: cn.sharesdk.framework.authorize.g
+NODE 2: $u0 = this.<cn.sharesdk.framework.authorize.g: android.app.Activity activity>
+NODE 3: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u0 = this.<cn.sharesdk.framework.authorize.g: android.app.Activity activity>
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.app.Activity: android.content.ComponentName getComponentName()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1.<android.content.pm.PackageManager: android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName,int)>($u-1#6, 128)
+NODE 7: $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 8: $u-1#13 = virtualinvoke $u1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("AuthorizeAdapter")
+NODE 9: if $u-1#13 == null goto $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 10: if $u-1#15 > 0 goto $u0#20 = $u-1#13
+NODE 11: $u1 = $u-1#9.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 12: $u-1#13 = virtualinvoke $u1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("Adapter")
+NODE 13: $u0#20 = $u-1#13
+NODE 14: if $u-1#15 > 0 goto $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#20)
+NODE 15: $u0#20 = $u-1#13
+NODE 16: $u-1#24 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#20)
+NODE 17: $u-1#26 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 10 -> 15
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 16
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer.createException ===
+SUSPICIOUS_API: newInstance
+NODE 1: exClass := @parameter2: java.lang.Class
+NODE 2: causeConstructor = null
+NODE 3: $u-1 = virtualinvoke exClass.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 4: i$ = 0
+NODE 5: if i$ >= len$ goto (branch)
+NODE 6: constructor = $u-1[i$]
+NODE 7: i$ = i$ + 1
+NODE 8: goto [?= (branch)]
+NODE 9: goto [?= i$ = i$ + 1]
+NODE 10: if $u7 != 2 goto i$ = i$ + 1
+NODE 11: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 12: exClass = $u-1#7[0]
+NODE 13: if exClass != class "Ljava/lang/String;" goto i$ = i$ + 1
+NODE 14: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 15: exClass = $u-1#7[1]
+NODE 16: if exClass != class "Ljava/lang/Throwable;" goto i$ = i$ + 1
+NODE 17: causeConstructor = constructor
+NODE 18: goto [?= i$ = i$ + 1]
+NODE 19: if causeConstructor == null goto (branch)
+NODE 20: $u7#28 = newarray (java.lang.Object)[2]
+NODE 21: $u-1#29 = virtualinvoke causeConstructor.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u7#28)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 19
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 7
+EDGE: 10 -> 11
+EDGE: 10 -> 7
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 13 -> 7
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 16 -> 7
+EDGE: 17 -> 18
+EDGE: 18 -> 7
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer.createException ===
+SUSPICIOUS_API: newInstance
+NODE 1: exClass := @parameter2: java.lang.Class
+NODE 2: messageConstructor = null
+NODE 3: $u-1 = virtualinvoke exClass.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 4: i$ = 0
+NODE 5: if i$ >= len$ goto (branch)
+NODE 6: constructor = $u-1[i$]
+NODE 7: i$ = i$ + 1
+NODE 8: goto [?= (branch)]
+NODE 9: if $u7 != 1 goto $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 10: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 11: exClass = $u-1#7[0]
+NODE 12: if exClass != class "Ljava/lang/String;" goto $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 13: messageConstructor = constructor
+NODE 14: goto [?= i$ = i$ + 1]
+NODE 15: if $u7 != 2 goto i$ = i$ + 1
+NODE 16: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 17: exClass = $u-1#7[0]
+NODE 18: if exClass != class "Ljava/lang/String;" goto i$ = i$ + 1
+NODE 19: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 20: exClass = $u-1#7[1]
+NODE 21: if exClass != class "Ljava/lang/Throwable;" goto i$ = i$ + 1
+NODE 22: goto [?= i$ = i$ + 1]
+NODE 23: if causeConstructor == null goto (branch)
+NODE 24: if messageConstructor == null goto (branch)
+NODE 25: $u7#28 = newarray (java.lang.Object)[1]
+NODE 26: $u-1#29 = virtualinvoke messageConstructor.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u7#28)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 23
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 7
+EDGE: 15 -> 16
+EDGE: 15 -> 7
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 18 -> 7
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 7
+EDGE: 22 -> 7
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ThrowableDeserializer.createException ===
+SUSPICIOUS_API: newInstance
+NODE 1: exClass := @parameter2: java.lang.Class
+NODE 2: defaultConstructor = null
+NODE 3: $u-1 = virtualinvoke exClass.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 4: i$ = 0
+NODE 5: if i$ >= len$ goto (branch)
+NODE 6: constructor = $u-1[i$]
+NODE 7: if $u7 != 0 goto $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 8: defaultConstructor = constructor
+NODE 9: i$ = i$ + 1
+NODE 10: goto [?= (branch)]
+NODE 11: goto [?= i$ = i$ + 1]
+NODE 12: if $u7 != 2 goto i$ = i$ + 1
+NODE 13: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 14: exClass = $u-1#7[0]
+NODE 15: if exClass != class "Ljava/lang/String;" goto i$ = i$ + 1
+NODE 16: $u-1#7 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Class[] getParameterTypes()>()
+NODE 17: exClass = $u-1#7[1]
+NODE 18: if exClass != class "Ljava/lang/Throwable;" goto i$ = i$ + 1
+NODE 19: goto [?= i$ = i$ + 1]
+NODE 20: if causeConstructor == null goto (branch)
+NODE 21: if messageConstructor == null goto (branch)
+NODE 22: if defaultConstructor == null goto return null
+NODE 23: $u7#28 = newarray (java.lang.Object)[0]
+NODE 24: $u-1#29 = virtualinvoke defaultConstructor.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u7#28)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 20
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 11 -> 9
+EDGE: 12 -> 13
+EDGE: 12 -> 9
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 15 -> 9
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 9
+EDGE: 19 -> 9
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.FlashlightManager.getHardwareService ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Class maybeForName(java.lang.String)>("android.os.ServiceManager")
+NODE 2: if $u-1 != null goto $u6 = newarray (java.lang.Class)[1]
+NODE 3: $u6 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#7 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.reflect.Method maybeGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, "getService", $u6)
+NODE 5: if $u-1#7 != null goto $u5 = newarray (java.lang.Object)[1]
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#11 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u-1#7, null, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.FlashlightManager.getHardwareService ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#11 != null goto $u-1 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Class maybeForName(java.lang.String)>("android.os.IHardwareService$Stub")
+NODE 2: $u-1 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Class maybeForName(java.lang.String)>("android.os.IHardwareService$Stub")
+NODE 3: if $u-1 != null goto $u6 = newarray (java.lang.Class)[1]
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#7 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.reflect.Method maybeGetMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, "asInterface", $u6)
+NODE 6: if $u-1#7 != null goto $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u5 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#11 = staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u-1#7, null, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.FlashlightManager.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.reflect.Method
+NODE 2: $u7 := @parameter1: java.lang.Object
+NODE 3: $u8 := @parameter2: java.lang.Object[]
+NODE 4: $u7 = virtualinvoke $u6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.FlashlightManager.maybeForName ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u6)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.FlashlightManager.setFlashlight ===
+SUSPICIOUS_API: invoke
+NODE 1: $u1 = <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Object iHardwareService>
+NODE 2: if $u1 == null goto return
+NODE 3: $u0 = <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.reflect.Method setFlashEnabledMethod>
+NODE 4: $u1 = <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Object iHardwareService>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: staticinvoke <com.zxing.zxingdemoforlm.camera.FlashlightManager: java.lang.Object invoke(java.lang.reflect.Method,java.lang.Object,java.lang.Object[])>($u0, $u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.EnumDeserializer.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: enumClass := @parameter0: java.lang.Class
+NODE 2: $u10 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke enumClass.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("values", $u10)
+NODE 4: $u10#9 = newarray (java.lang.Object)[0]
+NODE 5: value = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u10#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.util.FileUtil.getRealPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.util.FileUtil.getRealPath ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u12 := @parameter1: android.net.Uri
+NODE 3: if $u-1#18 != 0 goto $u-1#11 = virtualinvoke $u12.<android.net.Uri: java.lang.String getScheme()>()
+NODE 4: $u-1#20 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#23 = virtualinvoke $u-1#20.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u12, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.util.FileUtil.getRootPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto (branch)
+NODE 2: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.util.FileUtil.isEnoughForDownload ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.util.FileUtil.isEnoughForDownload ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.FieldDeserializer.setValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.FieldDeserializer
+NODE 2: $u7 := @parameter0: java.lang.Object
+NODE 3: $u3 = this.<com.alibaba.fastjson.parser.deserializer.FieldDeserializer: com.alibaba.fastjson.util.FieldInfo fieldInfo>
+NODE 4: $u-1 = virtualinvoke $u3.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method getMethod()>()
+NODE 5: if $u-1#5 == 0 goto $u3#8 = newarray (java.lang.Object)[1]
+NODE 6: $u3#8 = newarray (java.lang.Object)[0]
+NODE 7: $u7 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3#8)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.FieldDeserializer.setValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.FieldDeserializer
+NODE 2: $u7 := @parameter0: java.lang.Object
+NODE 3: $u3 = this.<com.alibaba.fastjson.parser.deserializer.FieldDeserializer: com.alibaba.fastjson.util.FieldInfo fieldInfo>
+NODE 4: $u-1 = virtualinvoke $u3.<com.alibaba.fastjson.util.FieldInfo: java.lang.reflect.Method getMethod()>()
+NODE 5: if $u-1#5 == 0 goto $u3#8 = newarray (java.lang.Object)[1]
+NODE 6: $u3#8 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3#8)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.a.g.a ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#4 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 3: virtualinvoke $u-1#4.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.chinat2t.tcp001.view.SlidingMenu.setBehindWidth ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.chinat2t.tcp001.view.SlidingMenu
+NODE 2: $u-1 = virtualinvoke this.<com.chinat2t.tcp001.view.SlidingMenu: android.content.Context getContext()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 4: $u7 = (android.view.WindowManager) $u-1#4
+NODE 5: $u-1#7 = interfaceinvoke $u7.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 6: cls = class "Landroid/view/Display;"
+NODE 7: parameterTypes = newarray (java.lang.Class)[1]
+NODE 8: $u-1#12 = virtualinvoke cls.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSize", parameterTypes)
+NODE 9: $u7#14 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#7, $u7#14)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.support.spring.FastJsonJsonView.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.yixin.utils.YixinImpl.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u0 = new cn.sharesdk.framework.utils.b
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u-1#7 = virtualinvoke $u0.<cn.sharesdk.framework.utils.b: java.lang.String p()>()
+NODE 4: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".yxapi.YXEntryActivity")
+NODE 6: $u-1#7 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.wechat.utils.g.a ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: cn.sharesdk.wechat.utils.g
+NODE 2: $u-1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.tencent.mm.sdk.plugin.provider/sharedpref")
+NODE 3: $u2 = newarray (java.lang.String)[4]
+NODE 4: $u0 = this.<cn.sharesdk.wechat.utils.g: android.content.Context a>
+NODE 5: $u-1#14 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#21 = virtualinvoke $u-1#14.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, $u2, "key = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.wechat.utils.WechatHelper.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u0 = new cn.sharesdk.framework.utils.b
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u-1#7 = virtualinvoke $u0.<cn.sharesdk.framework.utils.b: java.lang.String p()>()
+NODE 4: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".wxapi.WXEntryActivity")
+NODE 6: $u-1#7 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.DefaultObjectDeserializer.deserialze ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: com.alibaba.fastjson.parser.DefaultJSONParser
+NODE 2: if clazz != class "Ljava/lang/Class;" goto (branch)
+NODE 3: $u-1#16 = virtualinvoke $u7.<com.alibaba.fastjson.parser.DefaultJSONParser: java.lang.Object parse()>()
+NODE 4: goto [?= (branch)]
+NODE 5: goto [?= (branch)]
+NODE 6: goto [?= (branch)]
+NODE 7: if $u-1#13 == 0 goto (branch)
+NODE 8: goto [?= (branch)]
+NODE 9: if $u-1#13 == 0 goto (branch)
+NODE 10: classValue = (java.lang.String) $u-1#16
+NODE 11: clazz = staticinvoke <com.alibaba.fastjson.util.ASMClassLoader: java.lang.Class forName(java.lang.String)>(classValue)
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+EDGE: 5 -> 2
+EDGE: 6 -> 2
+EDGE: 7 -> 2
+EDGE: 8 -> 2
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.DefaultObjectDeserializer.deserialze ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u13 := @parameter1: java.lang.reflect.ParameterizedType
+NODE 2: if $u-1#2 != 8 goto keyType = interfaceinvoke $u13.<java.lang.reflect.ParameterizedType: java.lang.reflect.Type getRawType()>()
+NODE 3: keyType = interfaceinvoke $u13.<java.lang.reflect.ParameterizedType: java.lang.reflect.Type getRawType()>()
+NODE 4: if $u1 == 0 goto $u4 = new com.alibaba.fastjson.JSONException
+NODE 5: $u0 = (java.lang.Class) keyType
+NODE 6: if $u1 == 0 goto (branch)
+NODE 7: if $u0 != class "Ljava/util/HashMap;" goto map = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: map = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.DefaultObjectDeserializer.deserialze ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter1: java.lang.reflect.Type
+NODE 2: if $u5 == 0 goto $u5#33 = new com.alibaba.fastjson.JSONException
+NODE 3: $u0 = (java.lang.reflect.GenericArrayType) $u10
+NODE 4: $u-1 = interfaceinvoke $u0.<java.lang.reflect.GenericArrayType: java.lang.reflect.Type getGenericComponentType()>()
+NODE 5: list = new java.util.ArrayList
+NODE 6: if $u5 == 0 goto $u5#33 = new com.alibaba.fastjson.JSONException
+NODE 7: $u10#4 = (java.lang.Class) $u-1
+NODE 8: $u-1#25 = interfaceinvoke list.<java.util.List: int size()>()
+NODE 9: $u11 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u10#4, $u-1#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.DefaultObjectDeserializer.parseObject ===
+SUSPICIOUS_API: invoke
+NODE 1: $u19 := @parameter0: com.alibaba.fastjson.parser.DefaultJSONParser
+NODE 2: $u20 := @parameter1: java.lang.Object
+NODE 3: $u-1 = virtualinvoke $u20.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#2 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.ParserConfig getConfig()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1#2.<com.alibaba.fastjson.parser.ParserConfig: java.util.Map getFieldDeserializers(java.lang.Class)>($u-1)
+NODE 6: $u-1#5 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.JSONLexer getLexer()>()
+NODE 7: lexer = (com.alibaba.fastjson.parser.JSONScanner) $u-1#5
+NODE 8: if $u-1#8 == 12 goto args = newarray (java.lang.Object)[1]
+NODE 9: if $u-1#8 == 16 goto args = newarray (java.lang.Object)[1]
+NODE 10: args = newarray (java.lang.Object)[1]
+NODE 11: $u-1#36 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable getSymbolTable()>()
+NODE 12: $u-1#29 = virtualinvoke lexer.<com.alibaba.fastjson.parser.JSONScanner: java.lang.String scanSymbol(com.alibaba.fastjson.parser.SymbolTable)>($u-1#36)
+NODE 13: if $u-1#29 != null goto $u-1#55 = interfaceinvoke $u-1#4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u-1#29)
+NODE 14: if $u-1#8 != 16 goto $u-1#55 = interfaceinvoke $u-1#4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u-1#29)
+NODE 15: if $u-1#53 != 0 goto $u-1#36 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable getSymbolTable()>()
+NODE 16: $u-1#55 = interfaceinvoke $u-1#4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u-1#29)
+NODE 17: fieldDeser = (com.alibaba.fastjson.parser.deserializer.FieldDeserializer) $u-1#55
+NODE 18: if fieldDeser != null goto $u-1#86 = virtualinvoke fieldDeser.<com.alibaba.fastjson.parser.deserializer.FieldDeserializer: java.lang.reflect.Method getMethod()>()
+NODE 19: if $u-1#8 != 13 goto $u-1#36 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable getSymbolTable()>()
+NODE 20: $u-1#86 = virtualinvoke fieldDeser.<com.alibaba.fastjson.parser.deserializer.FieldDeserializer: java.lang.reflect.Method getMethod()>()
+NODE 21: virtualinvoke $u-1#86.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u20, args)
+NODE 22: if $u-1#8 == 16 goto $u-1#36 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable getSymbolTable()>()
+NODE 23: if $u-1#8 != 13 goto $u-1#36 = virtualinvoke $u19.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable getSymbolTable()>()
+NODE 24: goto [?= virtualinvoke $u-1#86.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u20, args)]
+NODE 25: goto [?= virtualinvoke $u-1#86.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u20, args)]
+NODE 26: goto [?= virtualinvoke $u-1#86.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u20, args)]
+NODE 27: goto [?= virtualinvoke $u-1#86.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u20, args)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 16
+EDGE: 14 -> 16
+EDGE: 15 -> 16
+EDGE: 15 -> 11
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 20
+EDGE: 19 -> 11
+EDGE: 22 -> 11
+EDGE: 23 -> 11
+EDGE: 24 -> 21
+EDGE: 25 -> 21
+EDGE: 26 -> 21
+EDGE: 27 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.ASMSerializerFactory.createJavaBeanSerializer ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.serializer.ASMSerializerFactory
+NODE 2: clazz := @parameter0: java.lang.Class
+NODE 3: $u-1#8 = virtualinvoke this.<com.alibaba.fastjson.serializer.ASMSerializerFactory: java.lang.String getGenClassName(java.lang.Class)>(clazz)
+NODE 4: cw = new com.alibaba.fastjson.asm.ClassWriter
+NODE 5: $u-1#457 = virtualinvoke cw.<com.alibaba.fastjson.asm.ClassWriter: byte[] toByteArray()>()
+NODE 6: $u0 = this.<com.alibaba.fastjson.serializer.ASMSerializerFactory: com.alibaba.fastjson.util.ASMClassLoader classLoader>
+NODE 7: $u-1#186 = lengthof $u-1#457
+NODE 8: clazz = virtualinvoke $u0.<com.alibaba.fastjson.util.ASMClassLoader: java.lang.Class defineClassPublic(java.lang.String,byte[],int,int)>($u-1#8, $u-1#457, 0, $u-1#186)
+NODE 9: $u-1#39 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.yixin.utils.YXMessage$a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.os.Bundle
+NODE 2: $u-1#6 = virtualinvoke $u4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_yixinmessage_dataClass")
+NODE 3: if $u-1 > 0 goto $u-1#6 = virtualinvoke $u-1#6.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("im.yixin.sdk.api", "cn.sharesdk.yixin.utils")
+NODE 4: $u-1#6 = virtualinvoke $u-1#6.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("im.yixin.sdk.api", "cn.sharesdk.yixin.utils")
+NODE 5: $u-1#30 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.yixin.utils.YXMessage$a.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.os.Bundle
+NODE 2: $u-1#6 = virtualinvoke $u4.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_yixinmessage_dataClass")
+NODE 3: if $u-1 > 0 goto $u-1#6 = virtualinvoke $u-1#6.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("im.yixin.sdk.api", "cn.sharesdk.yixin.utils")
+NODE 4: $u-1#6 = virtualinvoke $u-1#6.<java.lang.String: java.lang.String replace(java.lang.CharSequence,java.lang.CharSequence)>("im.yixin.sdk.api", "cn.sharesdk.yixin.utils")
+NODE 5: $u-1#30 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#6)
+NODE 6: $u-1#32 = virtualinvoke $u-1#30.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.network.NetworkHelper.getSSLHttpClient ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#4 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 3: virtualinvoke $u-1#4.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.CollectionDeserializer.deserialze ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.CollectionDeserializer
+NODE 2: $u9 := @parameter1: java.lang.reflect.Type
+NODE 3: if $u-1#4 != 8 goto $u-1#11 = virtualinvoke this.<com.alibaba.fastjson.parser.deserializer.CollectionDeserializer: java.lang.Class getRawClass(java.lang.reflect.Type)>($u9)
+NODE 4: $u-1#11 = virtualinvoke this.<com.alibaba.fastjson.parser.deserializer.CollectionDeserializer: java.lang.Class getRawClass(java.lang.reflect.Type)>($u9)
+NODE 5: if $u4 == 0 goto list = virtualinvoke $u-1#11.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: list = virtualinvoke $u-1#11.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.zxing.zxingdemoforlm.camera.CameraConfigurationManager.setDisplayOrientation ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.hardware.Camera
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDisplayOrientation", $u3)
+NODE 5: if $u-1#6 == null goto return
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.qrcode.encoder.ByteMatrix.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#3 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.ui.widget.slidingmenu.SlidingMenu.disableOverScrollMode ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.view.View
+NODE 2: if $u2 >= 9 goto $u2#3 = class "Landroid/view/View;"
+NODE 3: $u2#3 = class "Landroid/view/View;"
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u2#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u4)
+NODE 6: $u2#10 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u2#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.createInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer
+NODE 2: if $u10 == 0 goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 3: if $u10 == 0 goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 4: $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 5: $u-1#16 = virtualinvoke $u10#15.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getDefaultConstructor()>()
+NODE 6: if $u-1#16 != null goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 7: $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 8: $u-1#16 = virtualinvoke $u10#15.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getDefaultConstructor()>()
+NODE 9: if $u10#23 != 0 goto $u10#25 = newarray (java.lang.Object)[1]
+NODE 10: $u10#25 = newarray (java.lang.Object)[0]
+NODE 11: $u-1#13 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u10#25)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.createInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer
+NODE 2: if $u10 == 0 goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 3: if $u10 == 0 goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 4: $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 5: $u-1#16 = virtualinvoke $u10#15.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getDefaultConstructor()>()
+NODE 6: if $u-1#16 != null goto $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 7: $u10#15 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 8: $u-1#16 = virtualinvoke $u10#15.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getDefaultConstructor()>()
+NODE 9: if $u10#23 != 0 goto $u10#25 = newarray (java.lang.Object)[1]
+NODE 10: $u10#25 = newarray (java.lang.Object)[1]
+NODE 11: $u-1#13 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u10#25)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.deserialze ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer
+NODE 2: if $u33 != null goto (branch)
+NODE 3: if fieldValues1 != null goto $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 4: goto [?= (branch)]
+NODE 5: goto [?= (branch)]
+NODE 6: goto [?= (branch)]
+NODE 7: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 8: $u0#245 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.util.List getFieldList()>()
+NODE 9: $u-1#4 = interfaceinvoke $u0#245.<java.util.List: int size()>()
+NODE 10: $u0#295 = newarray (java.lang.Object)[$u-1#4]
+NODE 11: if i >= $u-1#4 goto $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 12: goto [?= (branch)]
+NODE 13: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 14: $u-1#311 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getCreatorConstructor()>()
+NODE 15: if $u-1#311 == null goto $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 16: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 17: $u-1#311 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Constructor getCreatorConstructor()>()
+NODE 18: $u5 = virtualinvoke $u-1#311.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u0#295)
+EDGE: 2 -> 3
+EDGE: 3 -> 7
+EDGE: 4 -> 2
+EDGE: 5 -> 2
+EDGE: 6 -> 2
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 13
+EDGE: 12 -> 11
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer.deserialze ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer
+NODE 2: if $u33 != null goto (branch)
+NODE 3: if fieldValues1 != null goto $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 4: goto [?= (branch)]
+NODE 5: goto [?= (branch)]
+NODE 6: goto [?= (branch)]
+NODE 7: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 8: $u0#245 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.util.List getFieldList()>()
+NODE 9: $u-1#4 = interfaceinvoke $u0#245.<java.util.List: int size()>()
+NODE 10: $u0#295 = newarray (java.lang.Object)[$u-1#4]
+NODE 11: if $u-1#311 == null goto $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 12: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 13: $u-1#347 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Method getFactoryMethod()>()
+NODE 14: if $u-1#347 == null goto (branch)
+NODE 15: $u0#290 = this.<com.alibaba.fastjson.parser.deserializer.JavaBeanDeserializer: com.alibaba.fastjson.util.DeserializeBeanInfo beanInfo>
+NODE 16: $u-1#347 = virtualinvoke $u0#290.<com.alibaba.fastjson.util.DeserializeBeanInfo: java.lang.reflect.Method getFactoryMethod()>()
+NODE 17: $u5 = virtualinvoke $u-1#347.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u0#295)
+EDGE: 2 -> 3
+EDGE: 3 -> 7
+EDGE: 4 -> 2
+EDGE: 5 -> 2
+EDGE: 6 -> 2
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.deserializer.ArrayDeserializer.toObjectArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: clazz := @parameter1: java.lang.Class
+NODE 2: $u10 := @parameter2: com.alibaba.fastjson.JSONArray
+NODE 3: if $u10 != null goto $u-1 = virtualinvoke $u10.<com.alibaba.fastjson.JSONArray: int size()>()
+NODE 4: $u-1 = virtualinvoke $u10.<com.alibaba.fastjson.JSONArray: int size()>()
+NODE 5: clazz = virtualinvoke clazz.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 6: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(clazz, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 3: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 7: goto [?= $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.SerializeConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#93 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Color")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.SerializeConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#93 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Font")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.SerializeConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#93 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Point")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.SerializeConfig.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#93 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.awt.Rectangle")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.k.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = new dalvik.system.DexFile
+NODE 2: $u-1#9 = virtualinvoke $u1.<dalvik.system.DexFile: java.util.Enumeration entries()>()
+NODE 3: if $u0 == 0 goto return $u-1
+NODE 4: $u-1#13 = interfaceinvoke $u-1#9.<java.util.Enumeration: java.lang.Object nextElement()>()
+NODE 5: $u2#8 = (java.lang.String) $u-1#13
+NODE 6: if $u0 != 0 goto (branch)
+NODE 7: $u-1#22 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#8)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.k.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = new dalvik.system.DexFile
+NODE 2: $u-1#9 = virtualinvoke $u1.<dalvik.system.DexFile: java.util.Enumeration entries()>()
+NODE 3: if $u0 == 0 goto return $u-1
+NODE 4: $u-1#13 = interfaceinvoke $u-1#9.<java.util.Enumeration: java.lang.Object nextElement()>()
+NODE 5: $u2#8 = (java.lang.String) $u-1#13
+NODE 6: if $u0 != 0 goto (branch)
+NODE 7: $u-1#22 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#8)
+NODE 8: if $u0 != 0 goto (branch)
+NODE 9: $u3#31 = newarray (java.lang.Class)[1]
+NODE 10: $u-1#33 = virtualinvoke $u-1#22.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3#31)
+NODE 11: $u3#37 = newarray (java.lang.Object)[1]
+NODE 12: $u-1#13 = virtualinvoke $u-1#33.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#37)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.k.c ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#6 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(8192)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.k.d ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 = 0
+NODE 2: $u0 = newarray (java.lang.String)[31]
+NODE 3: if $u3 >= $u2 goto return $u1
+NODE 4: $u4 = $u0[$u3]
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+NODE 6: $u3 = $u3 + 1
+NODE 7: goto [?= (branch)]
+NODE 8: goto [?= $u3 = $u3 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 3
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.k.d ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 = 0
+NODE 2: $u0 = newarray (java.lang.String)[31]
+NODE 3: if $u3 >= $u2 goto return $u1
+NODE 4: $u4 = $u0[$u3]
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+NODE 6: $u5 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#74 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u5)
+NODE 8: $u5#78 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#80 = virtualinvoke $u-1#74.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5#78)
+NODE 10: $u3 = $u3 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= $u3 = $u3 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 10 -> 11
+EDGE: 11 -> 3
+EDGE: 12 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.m.h ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.m.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u-1#6 == 0 goto $u0#9 = newarray (java.lang.Class)[1]
+NODE 3: $u0#9 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#12 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0#9)
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#17 = virtualinvoke $u-1#12.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.m.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: if $u-1#6 == 0 goto $u-1#8 = virtualinvoke $u5.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u-1#8 = virtualinvoke $u5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.sina.weibo.d.onServiceConnected ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.sina.sso.RemoteSSO$Stub")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.sina.weibo.d.onServiceConnected ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.sina.sso.RemoteSSO$Stub")
+NODE 2: $u2 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("asInterface", $u2)
+NODE 4: $u3 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.sina.weibo.d.onServiceConnected ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.sina.sso.RemoteSSO$Stub")
+NODE 2: $u2 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("asInterface", $u2)
+NODE 4: $u3 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 6: $u2 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getPackageName", $u2)
+NODE 8: $u3 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#26 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#16, $u3)
+EDGE: 1 -> 2
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.sina.weibo.d.onServiceConnected ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.sina.sso.RemoteSSO$Stub")
+NODE 2: $u2 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("asInterface", $u2)
+NODE 4: $u3 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+NODE 6: $u2 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getActivityName", $u2)
+NODE 8: $u3 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#16, $u3)
+EDGE: 1 -> 2
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: cn.sharesdk.framework.utils.b
+NODE 2: $u-1 = specialinvoke this.<cn.sharesdk.framework.utils.b: java.lang.Object b(java.lang.String)>("wifi")
+NODE 3: this#5 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if this#5 != null goto $u-1#7 = virtualinvoke this#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#7 = virtualinvoke this#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: cn.sharesdk.framework.utils.b
+NODE 2: $u-1 = specialinvoke this.<cn.sharesdk.framework.utils.b: java.lang.Object b(java.lang.String)>("wifi")
+NODE 3: this#5 = (android.net.wifi.WifiManager) $u-1
+NODE 4: if this#5 != null goto $u-1#7 = virtualinvoke this#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#7 = virtualinvoke this#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: if $u-1#7 == null goto return null
+NODE 7: $u-1#9 = virtualinvoke $u-1#7.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: cn.sharesdk.framework.utils.b
+NODE 2: $u0 = this.<cn.sharesdk.framework.utils.b: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.d ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: cn.sharesdk.framework.utils.b
+NODE 2: $u-1 = specialinvoke this.<cn.sharesdk.framework.utils.b: java.lang.Object b(java.lang.String)>("phone")
+NODE 3: this#5 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if this#5 != null goto $u-1#7 = virtualinvoke this#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 5: $u-1#7 = virtualinvoke this#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.d ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#14 < 9 goto return $u-1#7
+NODE 2: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.d ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#14 < 9 goto return $u-1#7
+NODE 2: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 3: $u2 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#28 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u2)
+NODE 5: $u2#31 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u-1#28.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#19, $u2#31)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.k ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: cn.sharesdk.framework.utils.b
+NODE 2: $u-1 = specialinvoke this.<cn.sharesdk.framework.utils.b: java.lang.Object b(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u0 != null goto $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.b.w ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: update
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#16 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u1 = lengthof $u-1
+NODE 5: $u1 = virtualinvoke $u-1#16.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 6: $u3 = newarray (byte)[$u1]
+NODE 7: $u1 = lengthof $u-1
+NODE 8: $u1 = virtualinvoke $u-1#16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u1, $u3, 0)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#16 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u1 = lengthof $u-1
+NODE 5: $u1 = virtualinvoke $u-1#16.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 6: $u3 = newarray (byte)[$u1]
+NODE 7: $u1 = lengthof $u-1
+NODE 8: $u1 = virtualinvoke $u-1#16.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u1, $u3, 0)
+NODE 9: virtualinvoke $u-1#16.<javax.crypto.Cipher: int doFinal(byte[],int)>($u3, $u1)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: update
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#8 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3#11 = lengthof $u-1
+NODE 5: $u3#11 = virtualinvoke $u-1#8.<javax.crypto.Cipher: int getOutputSize(int)>($u3#11)
+NODE 6: $u6 = newarray (byte)[$u3#11]
+NODE 7: $u3#11 = lengthof $u-1
+NODE 8: $u3#11 = virtualinvoke $u-1#8.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3#11, $u6, 0)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 3: $u-1#8 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/PKCS7Padding", "BC")
+NODE 4: $u3#11 = lengthof $u-1
+NODE 5: $u3#11 = virtualinvoke $u-1#8.<javax.crypto.Cipher: int getOutputSize(int)>($u3#11)
+NODE 6: $u6 = newarray (byte)[$u3#11]
+NODE 7: $u3#11 = lengthof $u-1
+NODE 8: $u3#11 = virtualinvoke $u-1#8.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u-1, 0, $u3#11, $u6, 0)
+NODE 9: virtualinvoke $u-1#8.<javax.crypto.Cipher: int doFinal(byte[],int)>($u6, $u3#11)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: update
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/NoPadding", "BC")
+NODE 3: $u1 = lengthof $u7
+NODE 4: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 5: $u6 = newarray (byte)[$u1]
+NODE 6: $u1 = lengthof $u7
+NODE 7: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u7, 0, $u1, $u6, 0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String,java.lang.String)>("AES/ECB/NoPadding", "BC")
+NODE 3: $u1 = lengthof $u7
+NODE 4: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int getOutputSize(int)>($u1)
+NODE 5: $u6 = newarray (byte)[$u1]
+NODE 6: $u1 = lengthof $u7
+NODE 7: $u1 = virtualinvoke $u-1.<javax.crypto.Cipher: int update(byte[],int,int,byte[],int)>($u7, 0, $u1, $u6, 0)
+NODE 8: virtualinvoke $u-1.<javax.crypto.Cipher: int doFinal(byte[],int)>($u6, $u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.ServiceLoader.load ===
+SUSPICIOUS_API: load
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: $u13 := @parameter1: java.lang.ClassLoader
+NODE 3: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.String getName()>()
+NODE 4: $u10 = new java.lang.StringBuilder
+NODE 5: $u10 = virtualinvoke $u10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("META-INF/services/")
+NODE 6: $u10 = virtualinvoke $u10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 7: $u-1 = virtualinvoke $u10.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: serviceNames = new java.util.HashSet
+NODE 9: $u-1#9 = virtualinvoke $u13.<java.lang.ClassLoader: java.util.Enumeration getResources(java.lang.String)>($u-1)
+NODE 10: if $u-1#10 == 0 goto $u-1#24 = interfaceinvoke serviceNames.<java.util.Set: java.util.Iterator iterator()>()
+NODE 11: $u-1#12 = interfaceinvoke $u-1#9.<java.util.Enumeration: java.lang.Object nextElement()>()
+NODE 12: url = (java.net.URL) $u-1#12
+NODE 13: if $u-1#10 != 0 goto $u-1#10 = interfaceinvoke $u-1#9.<java.util.Enumeration: boolean hasMoreElements()>()
+NODE 14: staticinvoke <com.alibaba.fastjson.util.ServiceLoader: void load(java.net.URL,java.util.Set)>(url, serviceNames)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.util.ServiceLoader.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u13 := @parameter1: java.lang.ClassLoader
+NODE 2: serviceNames = new java.util.HashSet
+NODE 3: if $u-1#10 == 0 goto $u-1#24 = interfaceinvoke serviceNames.<java.util.Set: java.util.Iterator iterator()>()
+NODE 4: $u-1#24 = interfaceinvoke serviceNames.<java.util.Set: java.util.Iterator iterator()>()
+NODE 5: if $u-1#10 == 0 goto return services
+NODE 6: $u-1#12 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: $u-1 = (java.lang.String) $u-1#12
+NODE 8: clazz = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1)
+NODE 9: $u-1#12 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.parser.DefaultJSONParser.parseObject ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.alibaba.fastjson.parser.DefaultJSONParser
+NODE 2: $u0 = this.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.JSONLexer lexer>
+NODE 3: lexer = (com.alibaba.fastjson.parser.JSONScanner) $u0
+NODE 4: $u-1#20 = <com.alibaba.fastjson.JSON: java.lang.String DEFAULT_TYPE_KEY>
+NODE 5: if key != $u-1#20 goto (branch)
+NODE 6: $u0#44 = this.<com.alibaba.fastjson.parser.DefaultJSONParser: com.alibaba.fastjson.parser.SymbolTable symbolTable>
+NODE 7: $u-1#20 = virtualinvoke lexer.<com.alibaba.fastjson.parser.JSONScanner: java.lang.String scanSymbol(com.alibaba.fastjson.parser.SymbolTable,char)>($u0#44, 34)
+NODE 8: $u-1#190 = staticinvoke <com.alibaba.fastjson.util.TypeUtils: java.lang.Class loadClass(java.lang.String)>($u-1#20)
+NODE 9: $u28 = virtualinvoke $u-1#190.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.R.getBitmapRes ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.String getPackageName()>()
+NODE 3: $u1 = new java.lang.StringBuilder
+NODE 4: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$drawable")
+NODE 6: $u-1#9 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#9)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.R.getStringRes ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.String getPackageName()>()
+NODE 3: $u1 = new java.lang.StringBuilder
+NODE 4: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$string")
+NODE 6: $u-1#9 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#9)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.sharesdk.framework.utils.R.pathToContentUri ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "_data=? ", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque
+NODE 2: a := @parameter0: java.lang.Object[]
+NODE 3: $u5 = lengthof a
+NODE 4: if $u5 >= $u6 goto p = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque$Node first>
+NODE 5: $u-1 = virtualinvoke a.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u5 = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: int count>
+NODE 8: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u5)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.JSONSerializer.getObjectWriter ===
+SUSPICIOUS_API: load
+NODE 1: if writer != null goto (branch)
+NODE 2: $u-1#9 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 3: $u-1#11 = virtualinvoke $u-1#9.<java.lang.Thread: java.lang.ClassLoader getContextClassLoader()>()
+NODE 4: $u-1#16 = staticinvoke <com.alibaba.fastjson.util.ServiceLoader: java.util.Set load(java.lang.Class,java.lang.ClassLoader)>(class "Lcom/alibaba/fastjson/serializer/AutowiredObjectSerializer;", $u-1#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alibaba.fastjson.serializer.JSONSerializer.getObjectWriter ===
+SUSPICIOUS_API: load
+NODE 1: if writer != null goto (branch)
+NODE 2: if writer != null goto (branch)
+NODE 3: item = class "Lcom/alibaba/fastjson/JSON;"
+NODE 4: $u-1#11 = virtualinvoke item.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 5: if $u-1#11 == $u-1#59 goto (branch)
+NODE 6: $u-1#16 = staticinvoke <com.alibaba.fastjson.util.ServiceLoader: java.util.Set load(java.lang.Class,java.lang.ClassLoader)>(class "Lcom/alibaba/fastjson/serializer/AutowiredObjectSerializer;", $u-1#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getDeviceId ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u6 = this.<m.framework.utils.DeviceHelper: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: phone = (android.telephony.TelephonyManager) $u-1
+NODE 5: if phone != null goto $u-1#7 = virtualinvoke phone.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 6: $u-1#7 = virtualinvoke phone.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getDeviceId ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#14 < 9 goto return deviceId
+NODE 2: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getDeviceId ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#14 < 9 goto return deviceId
+NODE 2: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 3: $u7 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#27 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u7)
+NODE 5: $u6#29 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#19, $u6#29)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getDeviceKey ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u-1#2 = virtualinvoke this.<m.framework.utils.DeviceHelper: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getInstalledApp ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u6 = this.<m.framework.utils.DeviceHelper: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u6.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getMacAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u3 = this.<m.framework.utils.DeviceHelper: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifi = (android.net.wifi.WifiManager) $u-1
+NODE 5: if wifi != null goto $u-1#6 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#6 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getMacAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u3 = this.<m.framework.utils.DeviceHelper: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifi = (android.net.wifi.WifiManager) $u-1
+NODE 5: if wifi != null goto $u-1#6 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#6 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: if $u-1#6 == null goto return null
+NODE 8: $u-1#7 = virtualinvoke $u-1#6.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getNetworkType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: m.framework.utils.DeviceHelper
+NODE 2: $u5 = this.<m.framework.utils.DeviceHelper: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: conn = (android.net.ConnectivityManager) $u-1
+NODE 5: if conn != null goto $u-1#7 = virtualinvoke conn.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#7 = virtualinvoke conn.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: m.framework.utils.DeviceHelper.getSdcardPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

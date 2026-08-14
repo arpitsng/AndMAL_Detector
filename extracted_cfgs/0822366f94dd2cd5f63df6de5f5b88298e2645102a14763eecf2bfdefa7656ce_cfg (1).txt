@@ -1,0 +1,699 @@
+=== FUNCTION: com.qmoney.tools.QMoneyHelper.getIMEI ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u1 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u1.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.QMoneyHelper.getIMSI ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u1 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u1.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.QMoneyHelper.getMac ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 != null goto return $u-1#4
+NODE 3: $u-1#7 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifi = (android.net.wifi.WifiManager) $u-1#7
+NODE 5: if wifi == null goto staticinvoke <com.qmoney.tools.log.LogUtil: void i(java.lang.String,java.lang.String)>("mess", "\u6ca1\u6709Wi-Fi\u8bbe\u5907")
+NODE 6: $u-1#10 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.QMoneyHelper.getMac ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 != null goto return $u-1#4
+NODE 3: $u-1#7 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifi = (android.net.wifi.WifiManager) $u-1#7
+NODE 5: if wifi == null goto staticinvoke <com.qmoney.tools.log.LogUtil: void i(java.lang.String,java.lang.String)>("mess", "\u6ca1\u6709Wi-Fi\u8bbe\u5907")
+NODE 6: $u-1#10 = virtualinvoke wifi.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: $u-1#4 = virtualinvoke $u-1#10.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.LongSparseArray$ArrayUtils.emptyArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: kind := @parameter0: java.lang.Class
+NODE 2: if cache == null goto $u-1#14 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(kind, 0)
+NODE 3: if $u-1 == kind goto $u2 = (java.lang.Object[]) cache
+NODE 4: $u-1#14 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(kind, 0)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.qpayfirst.QpayFirstPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.computeDirtySets ===
+SUSPICIOUS_API: query
+NODE 1: $u31 := @parameter0: android.content.Context
+NODE 2: uriImages = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: $u-1 = virtualinvoke $u31.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u4 = <com.imagemanager.util.CacheService: java.lang.String[] SENSE_PROJECTION>
+NODE 5: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriImages, $u4, "bucket_id!=0) GROUP BY (bucket_id ", null, null)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.computeDirtySets ===
+SUSPICIOUS_API: query
+NODE 1: $u31 := @parameter0: android.content.Context
+NODE 2: uriVideos = <android.provider.MediaStore$Video$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: $u-1 = virtualinvoke $u31.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u4 = <com.imagemanager.util.CacheService: java.lang.String[] SENSE_PROJECTION>
+NODE 5: $u-1#12 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriVideos, $u4, "bucket_id!=0) GROUP BY (bucket_id ", null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.getCachePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.getCachePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.getDcimFolders ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.getDcimFolders ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.getImageList ===
+SUSPICIOUS_API: query
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: uriImages = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: $u-1 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2#5 = <com.imagemanager.util.CacheService: java.lang.String[] THUMBNAIL_PROJECTION>
+NODE 5: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriImages, $u2#5, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.populateMediaItemFromCursor ===
+SUSPICIOUS_API: update
+NODE 1: $u10 := @parameter0: com.imagemanager.util.MediaItem
+NODE 2: $u11 := @parameter1: android.content.ContentResolver
+NODE 3: values = new android.content.ContentValues
+NODE 4: $u13 = $u10.<com.imagemanager.util.MediaItem: java.lang.String mContentUri>
+NODE 5: $u-1#51 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u13)
+NODE 6: virtualinvoke $u11.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1#51, values, null, null)
+NODE 7: goto [?= $u13 = $u10.<com.imagemanager.util.MediaItem: java.lang.String mContentUri>]
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.populateMediaItemsForSets ===
+SUSPICIOUS_API: query
+NODE 1: $u22 := @parameter0: android.content.Context
+NODE 2: uriImages = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: $u-1#7 = virtualinvoke $u22.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: whereClause = null
+NODE 5: if $u25 == 0 goto $u5 = <com.imagemanager.util.CacheService: java.lang.String[] PROJECTION_IMAGES>
+NODE 6: $u0 = new java.lang.StringBuffer
+NODE 7: whereString = $u0
+NODE 8: $u-1#17 = virtualinvoke whereString.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 9: whereClause = $u-1#17
+NODE 10: $u5 = <com.imagemanager.util.CacheService: java.lang.String[] PROJECTION_IMAGES>
+NODE 11: $u-1#17 = <com.imagemanager.util.CacheService: java.lang.String DEFAULT_IMAGE_SORT_ORDER>
+NODE 12: $u-1#28 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriImages, $u5, whereClause, null, $u-1#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 10
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.refresh ===
+SUSPICIOUS_API: query
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: $u4#9 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: $u-1#10 = virtualinvoke $u4#9.<android.net.Uri: android.net.Uri$Builder buildUpon()>()
+NODE 4: $u-1#10 = virtualinvoke $u-1#10.<android.net.Uri$Builder: android.net.Uri$Builder appendQueryParameter(java.lang.String,java.lang.String)>("distinct", "true")
+NODE 5: $u4#9 = virtualinvoke $u-1#10.<android.net.Uri$Builder: android.net.Uri build()>()
+NODE 6: $u-1#17 = virtualinvoke $u21.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u4#18 = <com.imagemanager.util.CacheService: java.lang.String[] BUCKET_PROJECTION_IMAGES>
+NODE 8: $u-1#22 = virtualinvoke $u-1#17.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4#9, $u4#18, null, null, "upper(bucket_display_name) ASC")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.setHasItems ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.ContentResolver
+NODE 2: uriImages = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: whereString = new java.lang.StringBuffer
+NODE 4: $u2 = <com.imagemanager.util.CacheService: java.lang.String[] BUCKET_PROJECTION_IMAGES>
+NODE 5: $u-1 = virtualinvoke whereString.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 6: $u-1#13 = virtualinvoke $u13.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriImages, $u2, $u-1, null, null)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.CacheService.setHasItems ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.ContentResolver
+NODE 2: uriVideos = <android.provider.MediaStore$Video$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 3: whereString = new java.lang.StringBuffer
+NODE 4: if $u-1#13 == null goto $u2 = <com.imagemanager.util.CacheService: java.lang.String[] BUCKET_PROJECTION_VIDEOS>
+NODE 5: if $u-1#14 <= 0 goto $u2 = <com.imagemanager.util.CacheService: java.lang.String[] BUCKET_PROJECTION_VIDEOS>
+NODE 6: $u2 = <com.imagemanager.util.CacheService: java.lang.String[] BUCKET_PROJECTION_VIDEOS>
+NODE 7: $u-1 = virtualinvoke whereString.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 8: $u-1#13 = virtualinvoke $u13.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uriVideos, $u2, $u-1, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.custom.asyncImage.FileCache.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.screen.AlbumScreen$LoadImagesTask.doInBackground ===
+SUSPICIOUS_API: load
+NODE 1: mt = new com.imagemanager.util.MediaItemTexture
+NODE 2: $u-1#44 = virtualinvoke mt.<com.imagemanager.util.MediaItemTexture: android.graphics.Bitmap load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.querycardbin.CardBinPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.util.UpdateUtil.update ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.base.BaseXmlOaBrokerService.httpPost ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#5 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 3: virtualinvoke $u-1#5.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.querypayresult.QueryPayResultPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.screen.CustomCamera$3.onPreviewFrame ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: com.mohe7788.screen.CustomCamera$3
+NODE 2: $u0 = this.<com.mohe7788.screen.CustomCamera$3: com.mohe7788.screen.CustomCamera this$0>
+NODE 3: $u6 = $u0.<com.mohe7788.screen.CustomCamera: android.hardware.Camera gCamera>
+NODE 4: $u0 = this.<com.mohe7788.screen.CustomCamera$3: com.mohe7788.screen.CustomCamera this$0>
+NODE 5: $u-1 = staticinvoke <com.mohe7788.screen.CustomCamera: android.hardware.Camera$ShutterCallback access$200(com.mohe7788.screen.CustomCamera)>($u0)
+NODE 6: $u0 = this.<com.mohe7788.screen.CustomCamera$3: com.mohe7788.screen.CustomCamera this$0>
+NODE 7: $u-1#7 = staticinvoke <com.mohe7788.screen.CustomCamera: android.hardware.Camera$PictureCallback access$300(com.mohe7788.screen.CustomCamera)>($u0)
+NODE 8: virtualinvoke $u6.<android.hardware.Camera: void takePicture(android.hardware.Camera$ShutterCallback,android.hardware.Camera$PictureCallback,android.hardware.Camera$PictureCallback)>($u-1, null, $u-1#7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.base.MySSLSocketFactory.<init> ===
+SUSPICIOUS_API: load
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 3: $u-1#7 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 4: $u-1#8 = virtualinvoke $u11.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 5: $u-1#11 = virtualinvoke $u11.<android.content.Context: android.content.SharedPreferences getSharedPreferences(java.lang.String,int)>("qmoney_shared", 0)
+NODE 6: $u-1 = interfaceinvoke $u-1#11.<android.content.SharedPreferences: java.lang.String getString(java.lang.String,java.lang.String)>("bks", "cacerts.bks")
+NODE 7: $u-1#16 = virtualinvoke $u-1#8.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u-1)
+NODE 8: $u-1 = "99bill"
+NODE 9: $u-1#19 = virtualinvoke $u-1.<java.lang.String: char[] toCharArray()>()
+NODE 10: virtualinvoke $u-1#7.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#16, $u-1#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.querybankname.BankNamePuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.bankbind.BankBindPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.MIME.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.imagemanager.util.SortCursor.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u13 >= 0 goto $u8 = this.<com.imagemanager.util.SortCursor: int[] mRowNumCache>
+NODE 2: $u8 = newarray (int)[2]
+NODE 3: $u9 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 4: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u9, $u8)
+NODE 5: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.content.StringBody.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto (branch)
+NODE 2: if $u5 != null goto $u4 = virtualinvoke $u5.<java.nio.charset.Charset: java.lang.String name()>()
+NODE 3: $u5 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.BaseRequest.getPublicMsg ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.qmoney.BaseRequest
+NODE 2: $u-1#63 = virtualinvoke this.<com.qmoney.BaseRequest: com.qmoney.interfaceVo.comm.MessageDevice getDevice()>()
+NODE 3: $u-1 = virtualinvoke $u-1#63.<com.qmoney.interfaceVo.comm.MessageDevice: java.lang.String getImei()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.media.AudioProvider.getList ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.tool.media.AudioProvider
+NODE 2: $u14 = this.<com.tool.media.AudioProvider: android.content.Context context>
+NODE 3: if $u14 == null goto return null
+NODE 4: $u14 = this.<com.tool.media.AudioProvider: android.content.Context context>
+NODE 5: $u-1 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: id = <android.provider.MediaStore$Audio$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 7: $u-1#11 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(id, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.media.VideoProvider.getList ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.tool.media.VideoProvider
+NODE 2: $u14 = this.<com.tool.media.VideoProvider: android.content.Context context>
+NODE 3: if $u14 == null goto return null
+NODE 4: $u14 = this.<com.tool.media.VideoProvider: android.content.Context context>
+NODE 5: $u-1 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: id = <android.provider.MediaStore$Video$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 7: $u-1#11 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(id, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.util.UpdateUtil$5.run ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.qpaysecond.QpaySecondPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.downloadLogo.LogoDiskCache.calculateFreeSpaceOnSd ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.downloadLogo.LogoDiskCache.getSDPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto (branch)
+NODE 2: sdDir = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.querybankbind.BankBindPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.util.ImageUpload.getRealPathFromURI ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.net.Uri
+NODE 2: proj = newarray (java.lang.String)[1]
+NODE 3: $u1 = <com.mohe7788.util.ImageUpload: android.content.Context mContext>
+NODE 4: $u-1 = virtualinvoke $u1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u9, proj, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.util.ImageUpload.setFileDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.encrptInput.InputEncryptUtil.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u12 := @parameter0: java.lang.String
+NODE 2: if $u-1 >= 1 goto $u-1#5 = staticinvoke <com.qmoney.tools.encrptInput.InputEncryptUtil: byte[] parseHexStr2Byte(java.lang.String)>($u12)
+NODE 3: $u-1#5 = staticinvoke <com.qmoney.tools.encrptInput.InputEncryptUtil: byte[] parseHexStr2Byte(java.lang.String)>($u12)
+NODE 4: $u-1#15 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 5: $u-1#5 = virtualinvoke $u-1#15.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#5)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.encrptInput.InputEncryptUtil.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u12 := @parameter0: java.lang.String
+NODE 2: $u-1#14 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u-1#9 = virtualinvoke $u12.<java.lang.String: byte[] getBytes(java.lang.String)>("utf-8")
+NODE 4: $u-1#9 = virtualinvoke $u-1#14.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#9)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.paymms.PayMmsPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.media.ImageProvider.getList ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.tool.media.ImageProvider
+NODE 2: $u11 = this.<com.tool.media.ImageProvider: android.content.Context context>
+NODE 3: if $u11 == null goto return null
+NODE 4: $u11 = this.<com.tool.media.ImageProvider: android.content.Context context>
+NODE 5: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: id = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 7: $u-1#11 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(id, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.ui.QmoneyPayResultActivity.backToCallPage ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.qmoney.ui.MyMainActivity: java.lang.String mCallbackClassName>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.querybankbind.BankBindNewPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.screen.IndexScreen.initSoundPool ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.mohe7788.screen.IndexScreen
+NODE 2: $u0 = this.<com.mohe7788.screen.IndexScreen: android.media.SoundPool soundPool>
+NODE 3: $u-1#11 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>(this, 2131034112, 1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.ordercheck.OrderCheckPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 3: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 7: goto [?= $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mohe7788.screen.IndexScreen$3.setUploadFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#63 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.createSDFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.deleSDFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: temp = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.getDeviceId ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: tm = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.getMobileImsi ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: tm = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.isConnectNet ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.isConnectNet ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.isConnectNet ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#6 == null goto return 0
+NODE 5: $u-1#6 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.utils.DataUtil.isWiFiActive ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: mWifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke mWifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.CommonUtils.isNetAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.tools.CommonUtils.xml2DataMap ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.bankunbind.BankUnBindPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qmoney.interfaceVo.uploadpubkey.UploadPubKeyPuller.xml2Object ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tool.ahibernate.dao.BaseDaoImpl.getListFromCursor ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.tool.ahibernate.dao.BaseDaoImpl
+NODE 2: if $u-1 != 0 goto $u6 = this.<com.tool.ahibernate.dao.BaseDaoImpl: java.lang.Class clazz>
+NODE 3: $u6 = this.<com.tool.ahibernate.dao.BaseDaoImpl: java.lang.Class clazz>
+NODE 4: $u-1#4 = virtualinvoke $u6.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

@@ -1,0 +1,29 @@
+=== FUNCTION: com.pjw.batterywidget.BatteryReceiver.CheckNetworkStatus ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.pjw.batterywidget.BatteryReceiver
+NODE 2: $u-1 = virtualinvoke this.<com.pjw.batterywidget.BatteryReceiver: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: if manager == null goto $u-1#20 = specialinvoke this.<com.pjw.batterywidget.BatteryReceiver: int GetSystemVariable(java.lang.String)>("airplane_mode_on")
+NODE 5: $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.pjw.batterywidget.BatteryReceiver.CheckNetworkStatus ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.pjw.batterywidget.BatteryReceiver
+NODE 2: $u-1 = virtualinvoke this.<com.pjw.batterywidget.BatteryReceiver: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#10 == null goto $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 5: $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 6: goto [?= $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)]
+NODE 7: goto [?= $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)]
+NODE 8: goto [?= $u-1#10 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 5
+EDGE: 7 -> 5
+EDGE: 8 -> 5
+=== END FUNCTION ===
+

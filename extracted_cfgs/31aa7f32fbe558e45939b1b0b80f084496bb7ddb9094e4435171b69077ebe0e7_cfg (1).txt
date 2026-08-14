@@ -1,0 +1,76 @@
+=== FUNCTION: com.qiangfeng.dao.pop.a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 3: $u0 = $u-1.<android.content.pm.ApplicationInfo: java.lang.String packageName>
+NODE 4: $u-1#4 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1#4.<android.content.pm.PackageManager: android.content.pm.PackageInfo getPackageInfo(java.lang.String,int)>($u0, 2)
+NODE 6: $u2 = $u-1#7.<android.content.pm.PackageInfo: android.content.pm.ActivityInfo[] receivers>
+NODE 7: if $u2 == null goto return null
+NODE 8: $u1 = 0
+NODE 9: if $u1 >= $u0#12 goto return null
+NODE 10: $u0#13 = $u2[$u1]
+NODE 11: $u0 = $u0#13.<android.content.pm.ActivityInfo: java.lang.String name>
+NODE 12: $u-1#15 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: if $u-1#17 == 0 goto $u1 = $u1 + 1
+NODE 14: $u1 = $u1 + 1
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.qiangfeng.dao.pop.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u1 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qiangfeng.dao.pop.g.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter2: java.lang.Class[]
+NODE 3: $u6 := @parameter3: java.lang.Class
+NODE 4: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u3, $u5)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qiangfeng.dao.pop.g.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: java.lang.Object[]
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: $u6 := @parameter3: java.lang.Class
+NODE 5: $u7 := @parameter4: java.lang.Object
+NODE 6: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u3, $u5)
+NODE 7: $u7 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.apps.analytics.GoogleAnalyticsTracker.dispatch ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.apps.analytics.GoogleAnalyticsTracker
+NODE 2: if $u0 == 0 goto $u0#4 = this.<com.google.android.apps.analytics.GoogleAnalyticsTracker: android.net.ConnectivityManager connetivityManager>
+NODE 3: $u0#4 = this.<com.google.android.apps.analytics.GoogleAnalyticsTracker: android.net.ConnectivityManager connetivityManager>
+NODE 4: $u-1 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

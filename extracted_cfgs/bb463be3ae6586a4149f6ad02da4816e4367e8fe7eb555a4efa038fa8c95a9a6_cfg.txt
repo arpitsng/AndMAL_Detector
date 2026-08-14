@@ -1,0 +1,65 @@
+=== FUNCTION: de.pnpq.osmlocator.g.a.o ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: de.pnpq.osmlocator.g.a
+NODE 2: $u0 = this.<de.pnpq.osmlocator.g.a: android.location.LocationManager c>
+NODE 3: $u-1 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: de.pnpq.osmlocator.g.a.o ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: de.pnpq.osmlocator.g.a
+NODE 2: if $u-1 == null goto $u0 = this.<de.pnpq.osmlocator.g.a: android.location.LocationManager c>
+NODE 3: $u0 = this.<de.pnpq.osmlocator.g.a: android.location.LocationManager c>
+NODE 4: $u-1 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: de.pnpq.osmlocator.g.a.e ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: de.pnpq.osmlocator.g.a
+NODE 2: if $u-1 != $u1 goto return
+NODE 3: $u0#5 = this.<de.pnpq.osmlocator.g.a: android.location.LocationManager c>
+NODE 4: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 1000L, 10.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: de.pnpq.osmlocator.g.a.e ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: de.pnpq.osmlocator.g.a
+NODE 2: $u0#5 = this.<de.pnpq.osmlocator.g.a: android.location.LocationManager c>
+NODE 3: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 10.0F, this)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: de.pnpq.osmlocator.f.a.b ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: de.pnpq.osmlocator.f.a
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u2 = new java.lang.StringBuilder
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("logcat -d ")
+NODE 5: $u3 = this.<de.pnpq.osmlocator.f.a: android.content.Context b>
+NODE 6: $u-1#8 = staticinvoke <de.pnpq.osmlocator.d.k: java.lang.String a(android.content.Context)>($u3)
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 8: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(":I *:S")
+NODE 9: $u-1#8 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#17 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#8)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: de.pnpq.osmlocator.f.a.c ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("logcat -c")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

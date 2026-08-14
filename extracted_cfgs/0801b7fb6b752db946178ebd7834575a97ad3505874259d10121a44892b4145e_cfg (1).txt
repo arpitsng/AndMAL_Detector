@@ -1,0 +1,62 @@
+=== FUNCTION: com.am.adlib.ads.banner.ITAdBase.replaceSpecials ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.am.adlib.ads.banner.ITAdBase
+NODE 2: $u5#15 = this.<com.am.adlib.ads.banner.ITAdBase: android.content.Context context>
+NODE 3: $u6#16 = this.<com.am.adlib.ads.banner.ITAdBase: int layerId>
+NODE 4: userAgent = staticinvoke <com.am.adlib.info.DeviceInfo: java.lang.String getAndroidId(android.content.Context,int)>($u5#15, $u6#16)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.am.analytics.FocusService.onBind ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.am.analytics.FocusService
+NODE 2: $u-1 = virtualinvoke this.<com.am.analytics.FocusService: java.lang.String getAndroidId(android.content.Context)>(this)
+=== END FUNCTION ===
+
+=== FUNCTION: com.am.adlib.BannersStatSender.getStatJSONObject ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: this := @this: com.am.adlib.BannersStatSender
+NODE 2: $u6 := @parameter2: int
+NODE 3: $u2#4 = this.<com.am.adlib.BannersStatSender: android.content.Context mContext>
+NODE 4: $u-1 = staticinvoke <com.am.adlib.info.DeviceInfo: java.lang.String getAndroidId(android.content.Context,int)>($u2#4, $u6)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.am.adlib.helper.Connectivity.getNetworkInfo ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.am.adlib.info.GeoInfo$1.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.am.adlib.info.GeoInfo$1
+NODE 2: $u4 = this.<com.am.adlib.info.GeoInfo$1: com.am.adlib.info.GeoInfo this$0>
+NODE 3: $u-1 = staticinvoke <com.am.adlib.info.GeoInfo: android.content.Context access$000(com.am.adlib.info.GeoInfo)>($u4)
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: locationManager = (android.location.LocationManager) $u-1#5
+NODE 6: $u-1#9 = virtualinvoke locationManager.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.am.analytics.Connectivity.getNetworkInfo ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

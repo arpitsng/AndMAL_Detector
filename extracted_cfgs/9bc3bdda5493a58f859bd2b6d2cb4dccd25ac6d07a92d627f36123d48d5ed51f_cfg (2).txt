@@ -1,0 +1,873 @@
+=== FUNCTION: com.nostra13.universalimageloader.utils.ImageSizeUtils.getImageViewFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: $u0 = class "Landroid/widget/ImageView;"
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas
+NODE 2: $u0 = this.<org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas: org.andengine.opengl.texture.atlas.ITextureAtlas mTextureAtlas>
+NODE 3: interfaceinvoke $u0.<org.andengine.opengl.texture.atlas.ITextureAtlas: void load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas
+NODE 2: $u2 := @parameter0: org.andengine.opengl.util.GLState
+NODE 3: $u0 = this.<org.andengine.opengl.texture.atlas.buildable.BuildableTextureAtlas: org.andengine.opengl.texture.atlas.ITextureAtlas mTextureAtlas>
+NODE 4: interfaceinvoke $u0.<org.andengine.opengl.texture.atlas.ITextureAtlas: void load(org.andengine.opengl.util.GLState)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.texturepack.TexturePack.loadTexture ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.util.texturepack.TexturePack
+NODE 2: $u0 = this.<org.andengine.util.texturepack.TexturePack: org.andengine.opengl.texture.ITexture mTexture>
+NODE 3: interfaceinvoke $u0.<org.andengine.opengl.texture.ITexture: void load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.level.LevelLoader.loadLevelFromStream ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.adt.array.ArrayUtils.join ===
+SUSPICIOUS_API: newInstance
+NODE 1: pClass := @parameter0: java.lang.Class
+NODE 2: $u9 := @parameter1: java.lang.Object[][]
+NODE 3: if arrayCount == 0 goto return null
+NODE 4: if arrayCount != 1 goto resultLength = 0
+NODE 5: resultLength = 0
+NODE 6: $u6 = lengthof $u9
+NODE 7: $u6 = $u6 + -1
+NODE 8: if $u6 >= 0 goto result = $u9[$u6]
+NODE 9: if resultLength == 0 goto return null
+NODE 10: pClass = virtualinvoke pClass.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 11: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(pClass, resultLength)
+NODE 12: result = $u9[$u6]
+NODE 13: if result == null goto $u6 = $u6 + -1
+NODE 14: $u6#15 = lengthof result
+NODE 15: if $u6#15 <= 0 goto $u6 = $u6 + -1
+NODE 16: $u6#15 = lengthof result
+NODE 17: resultLength = resultLength + $u6#15
+NODE 18: $u6 = $u6 + -1
+NODE 19: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 12
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 13 -> 18
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 15 -> 18
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#5 == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#9 == 0 goto return 0
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.getDecryptedJson ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <android.util.Base64: byte[] decode(java.lang.String,int)>($u7, 0)
+NODE 3: $u-1#18 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/ECB/PKCS5Padding")
+NODE 4: $u2 = virtualinvoke $u-1#18.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.getEncryptedText ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: $u-1 = virtualinvoke $u8.<java.lang.String: byte[] getBytes()>()
+NODE 3: $u-1#17 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/ECB/PKCS5Padding")
+NODE 4: $u2 = virtualinvoke $u-1#17.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.getJson ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.orange.apple.util.CommonUtils
+NODE 2: $u0 = this.<com.orange.apple.util.CommonUtils: android.content.Context mContext>
+NODE 3: $u-1 = staticinvoke <com.orange.apple.util.CommonUtils: java.lang.String getDeviceId(android.content.Context)>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.util.CommonUtils.getValues ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.orange.apple.util.CommonUtils
+NODE 2: $u0 = this.<com.orange.apple.util.CommonUtils: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.animationpack.AnimationPackLoader.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.animationpack.AnimationPackLoader.loadFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.util.animationpack.AnimationPackLoader
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: java.lang.String
+NODE 4: $u1 = this.<org.andengine.util.animationpack.AnimationPackLoader: android.content.res.AssetManager mAssetManager>
+NODE 5: $u-1 = virtualinvoke $u1.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u5)
+NODE 6: $u-1#4 = virtualinvoke this.<org.andengine.util.animationpack.AnimationPackLoader: org.andengine.util.animationpack.AnimationPack load(java.io.InputStream,java.lang.String)>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.AndEngine.checkCodePathSupport ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u-1 == 0 goto return
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andengine")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cmn.h.b ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#7 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cmn.g.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: cmn.g
+NODE 2: $u0 = this.<cmn.g: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u1 = this.<cmn.g: int b>
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>($u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.system.SystemUtils.hasSystemFeature ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u2 = class "Landroid/content/pm/PackageManager;"
+NODE 3: $u5 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("hasSystemFeature", $u5)
+NODE 5: if $u-1 != null goto $u-1#7 = virtualinvoke $u8.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 6: $u-1#7 = virtualinvoke $u8.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 7: $u4 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#12 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#7, $u4)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePackLoader.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePackLoader.loadFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePackLoader
+NODE 2: $u5 := @parameter0: android.content.res.AssetManager
+NODE 3: $u6 := @parameter1: java.lang.String
+NODE 4: $u0 = new java.lang.StringBuilder
+NODE 5: $u1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 6: $u2 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1 = virtualinvoke $u5.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u2)
+NODE 8: $u-1#11 = virtualinvoke this.<org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePackLoader: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePack load(android.content.res.AssetManager,java.io.InputStream)>($u5, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.GalleryList$AdapterDetailAchiver.getFileDetail ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.a.bj.p ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.appbrain.a.bj
+NODE 2: $u0 = this.<com.appbrain.a.bj: android.content.Context j>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.a.bo.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.appbrain.a.bo
+NODE 2: $u0 = this.<com.appbrain.a.bo: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: if $u-1#12 == 0 goto $u-1#8 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+NODE 5: $u-1#8 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.a.ai.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.appbrain.a.ai
+NODE 2: $u0 = this.<com.appbrain.a.ai: android.content.Context b>
+NODE 3: $u-1#73 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#75 = (android.net.ConnectivityManager) $u-1#73
+NODE 5: $u-1#76 = virtualinvoke $u0#75.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.SongsManager.getFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.ShriGaneshaAartiApp.getRegionFromSdCard ===
+SUSPICIOUS_API: load
+NODE 1: mBitmap = new org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas
+NODE 2: virtualinvoke mBitmap.<org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.ShriGaneshaAartiApp.resourceLoader ===
+SUSPICIOUS_API: load
+NODE 1: $u4 = new org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas
+NODE 2: virtualinvoke $u4.<org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas: void load()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.DownloadApk.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.DownloadApk.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.OrangeInterstitial.getAds ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = new com.orange.apple.OrangeInterstitial
+NODE 2: if $u-1 != 0 goto specialinvoke $u0.<com.orange.apple.OrangeInterstitial: void load(boolean)>(0)
+NODE 3: specialinvoke $u0.<com.orange.apple.OrangeInterstitial: void load(boolean)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.OrangeInterstitial.showInterstitialAds ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = new com.orange.apple.OrangeInterstitial
+NODE 2: if $u-1 != 0 goto specialinvoke $u0.<com.orange.apple.OrangeInterstitial: void load(boolean)>(1)
+NODE 3: specialinvoke $u0.<com.orange.apple.OrangeInterstitial: void load(boolean)>(1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.adview.AdViewControllerImpl.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 = class "Landroid/webkit/WebViewDatabase;"
+NODE 2: $u5 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#11 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getCacheTotalSize", $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.adview.AdViewControllerImpl.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u2 >= 11 goto return 1
+NODE 3: $u-1 = staticinvoke <android.webkit.WebViewDatabase: android.webkit.WebViewDatabase getInstance(android.content.Context)>($u6)
+NODE 4: $u3 = class "Landroid/webkit/WebViewDatabase;"
+NODE 5: $u5 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#11 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getCacheTotalSize", $u5)
+NODE 7: $u4 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u-1#11.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.GLES20Fix.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andengine")
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.ClickAsync.getJson ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.orange.apple.ClickAsync
+NODE 2: $u2 = this.<com.orange.apple.ClickAsync: android.content.Context context>
+NODE 3: $u-1 = staticinvoke <com.orange.apple.util.CommonUtils: java.lang.String getDeviceId(android.content.Context)>($u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.orange.apple.lazyloader.FileCache.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.font.Font.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.opengl.font.Font
+NODE 2: $u0 = this.<org.andengine.opengl.font.Font: org.andengine.opengl.texture.ITexture mTexture>
+NODE 3: interfaceinvoke $u0.<org.andengine.opengl.texture.ITexture: void load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.MusicActivity$AdapterDetailAchiver$StartDownLoad.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: outputFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.GalleryList.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.texturepack.TexturePackLoader.load ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.texturepack.TexturePackLoader.loadFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.util.texturepack.TexturePackLoader
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: java.lang.String
+NODE 4: $u1 = this.<org.andengine.util.texturepack.TexturePackLoader: android.content.res.AssetManager mAssetManager>
+NODE 5: $u-1 = virtualinvoke $u1.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u5)
+NODE 6: $u-1#4 = virtualinvoke this.<org.andengine.util.texturepack.TexturePackLoader: org.andengine.util.texturepack.TexturePack load(java.io.InputStream,java.lang.String)>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.engine.Engine.enableLocationSensor ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: org.andengine.engine.Engine
+NODE 2: $u7 := @parameter0: android.content.Context
+NODE 3: $u9 := @parameter2: org.andengine.input.sensor.location.LocationSensorOptions
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: locationManager = (android.location.LocationManager) $u-1
+NODE 6: $u-1#5 = virtualinvoke $u9.<org.andengine.input.sensor.location.LocationSensorOptions: boolean isEnabledOnly()>()
+NODE 7: $u-1#7 = virtualinvoke locationManager.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u9, $u-1#5)
+NODE 8: $u-1#8 = virtualinvoke $u9.<org.andengine.input.sensor.location.LocationSensorOptions: long getMinimumTriggerTime()>()
+NODE 9: $u-1#10 = virtualinvoke $u9.<org.andengine.input.sensor.location.LocationSensorOptions: long getMinimumTriggerDistance()>()
+NODE 10: $u4 = (float) $u-1#10
+NODE 11: virtualinvoke locationManager.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1#7, $u-1#8, $u4, this)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.engine.Engine.enableLocationSensor ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter2: org.andengine.input.sensor.location.LocationSensorOptions
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: locationManager = (android.location.LocationManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u9.<org.andengine.input.sensor.location.LocationSensorOptions: boolean isEnabledOnly()>()
+NODE 6: $u-1#7 = virtualinvoke locationManager.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u9, $u-1#5)
+NODE 7: $u-1#13 = virtualinvoke locationManager.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#7)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.font.BitmapFont.loadTextures ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.opengl.font.BitmapFont
+NODE 2: bitmapFontPages = this.<org.andengine.opengl.font.BitmapFont: org.andengine.opengl.font.BitmapFont$BitmapFontPage[] mBitmapFontPages>
+NODE 3: i = 0
+NODE 4: if i < bitmapFontPageCount goto $u3 = bitmapFontPages[i]
+NODE 5: $u3 = bitmapFontPages[i]
+NODE 6: $u-1 = virtualinvoke $u3.<org.andengine.opengl.font.BitmapFont$BitmapFontPage: org.andengine.opengl.texture.ITexture getTexture()>()
+NODE 7: interfaceinvoke $u-1.<org.andengine.opengl.texture.ITexture: void load()>()
+NODE 8: i = i + 1
+NODE 9: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.adview.AdViewControllerJsInterface.handleCommandInvocation ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.applovin.impl.adview.AdViewControllerJsInterface
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u-1#18 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u1#21 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#18.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u6, $u1#21)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.adview.AdViewControllerJsInterface.handleCommandInvocation ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.applovin.impl.adview.AdViewControllerJsInterface
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u-1#18 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u1#21 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#24 = virtualinvoke $u-1#18.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u6, $u1#21)
+NODE 6: $u1#27 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#24.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#27)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.entity.scene.background.RepeatingSpriteBackground.loadSprite ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.entity.scene.background.RepeatingSpriteBackground
+NODE 2: sprite = this.<org.andengine.entity.scene.background.RepeatingSpriteBackground: org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas mBitmapTextureAtlas>
+NODE 3: virtualinvoke sprite.<org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.audio.sound.SoundFactory.createSoundFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: $u6 := @parameter0: org.andengine.audio.sound.SoundManager
+NODE 2: $u7 := @parameter1: android.content.Context
+NODE 3: $u8 := @parameter2: java.lang.String
+NODE 4: $u-1 = virtualinvoke $u6.<org.andengine.audio.sound.SoundManager: android.media.SoundPool getSoundPool()>()
+NODE 5: $u-1#3 = virtualinvoke $u7.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 6: $u4 = new java.lang.StringBuilder
+NODE 7: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u8)
+NODE 8: $u8 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#13 = virtualinvoke $u-1#3.<android.content.res.AssetManager: android.content.res.AssetFileDescriptor openFd(java.lang.String)>($u8)
+NODE 10: $u-1#16 = virtualinvoke $u-1.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#13, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.audio.sound.SoundFactory.createSoundFromAssetFileDescriptor ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter0: org.andengine.audio.sound.SoundManager
+NODE 2: $u5 := @parameter1: android.content.res.AssetFileDescriptor
+NODE 3: $u-1 = virtualinvoke $u4.<org.andengine.audio.sound.SoundManager: android.media.SoundPool getSoundPool()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u5, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.audio.sound.SoundFactory.createSoundFromFileDescriptor ===
+SUSPICIOUS_API: load
+NODE 1: $u9 := @parameter0: org.andengine.audio.sound.SoundManager
+NODE 2: $u10 := @parameter1: java.io.FileDescriptor
+NODE 3: $u11 := @parameter2: long
+NODE 4: $u13 := @parameter3: long
+NODE 5: $u-1 = virtualinvoke $u9.<org.andengine.audio.sound.SoundManager: android.media.SoundPool getSoundPool()>()
+NODE 6: $u-1#3 = virtualinvoke $u-1.<android.media.SoundPool: int load(java.io.FileDescriptor,long,long,int)>($u10, $u11, $u13, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.audio.sound.SoundFactory.createSoundFromPath ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter0: org.andengine.audio.sound.SoundManager
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u4.<org.andengine.audio.sound.SoundManager: android.media.SoundPool getSoundPool()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<android.media.SoundPool: int load(java.lang.String,int)>($u5, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.audio.sound.SoundFactory.createSoundFromResource ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter0: org.andengine.audio.sound.SoundManager
+NODE 2: $u5 := @parameter1: android.content.Context
+NODE 3: $u6 := @parameter2: int
+NODE 4: $u-1 = virtualinvoke $u4.<org.andengine.audio.sound.SoundManager: android.media.SoundPool getSoundPool()>()
+NODE 5: $u6 = virtualinvoke $u-1.<android.media.SoundPool: int load(android.content.Context,int,int)>($u5, $u6, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.FileUtils.getAbsolutePathOnExternalStorage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.util.FileUtils.getAbsolutePathOnExternalStorage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.util.BufferUtils.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andengine")
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.GalleryList$AdapterDetailAchiver$StartDownLoad.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: outputFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.sdk.n.f ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.applovin.impl.sdk.n
+NODE 2: if $u-1 == 0 goto return ""
+NODE 3: $u0 = this.<com.applovin.impl.sdk.n: android.content.Context c>
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0#7 = (android.telephony.TelephonyManager) $u-1#5
+NODE 6: if $u0#7 == null goto return ""
+NODE 7: $u-1#8 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.applovin.impl.sdk.m.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: if $u-1 == 0 goto return null
+NODE 3: $u-1#5 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#5
+NODE 5: if $u0 == null goto return null
+NODE 6: $u-1#8 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 3: if $u1 != null goto $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 7: goto [?= $u1 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.god.krishna.aarti.temple.hd.MusicActivity$AdapterDetailAchiver.getFileDetail ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter1: android.content.Intent
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("referrer")
+NODE 3: if $u-1 != null goto staticinvoke <com.appbrain.a.ba: void b(android.content.Context,java.lang.String)>($u7, $u-1)
+NODE 4: $u1 = new java.util.ArrayList
+NODE 5: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 6: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 7: if $u-1#26 == 0 goto return
+NODE 8: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 9: $u-1 = (java.lang.String) $u-1#28
+NODE 10: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter1: android.content.Intent
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("referrer")
+NODE 3: if $u-1 != null goto staticinvoke <com.appbrain.a.ba: void b(android.content.Context,java.lang.String)>($u7, $u-1)
+NODE 4: $u1 = new java.util.ArrayList
+NODE 5: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 6: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 7: if $u-1#26 == 0 goto return
+NODE 8: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 9: $u-1 = (java.lang.String) $u-1#28
+NODE 10: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 11: $u-1#28 = virtualinvoke $u-1#45.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = new java.util.ArrayList
+NODE 2: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 4: if $u-1#26 == 0 goto return
+NODE 5: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 6: $u-1 = (java.lang.String) $u-1#28
+NODE 7: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = new java.util.ArrayList
+NODE 2: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 4: if $u-1#26 == 0 goto return
+NODE 5: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 6: $u-1 = (java.lang.String) $u-1#28
+NODE 7: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 8: $u-1#28 = virtualinvoke $u-1#45.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = new java.util.ArrayList
+NODE 2: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 4: if $u-1#26 == 0 goto throw $u0#100
+NODE 5: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 6: $u-1 = (java.lang.String) $u-1#28
+NODE 7: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.appbrain.ReferrerReceiver.onReceive ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = new java.util.ArrayList
+NODE 2: if $u-1#26 == 0 goto $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: $u-1#24 = interfaceinvoke $u1.<java.util.List: java.util.Iterator iterator()>()
+NODE 4: if $u-1#26 == 0 goto throw $u0#100
+NODE 5: $u-1#28 = interfaceinvoke $u-1#24.<java.util.Iterator: java.lang.Object next()>()
+NODE 6: $u-1 = (java.lang.String) $u-1#28
+NODE 7: $u-1#45 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 8: $u-1#28 = virtualinvoke $u-1#45.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque
+NODE 2: $u6 := @parameter0: java.lang.Object[]
+NODE 3: $u0 = lengthof $u6
+NODE 4: if $u0 >= $u1 goto $u1#13 = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque$Node first>
+NODE 5: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u0 = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: int count>
+NODE 8: $u4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u0)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePack.loadTexture ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePack
+NODE 2: $u0 = this.<org.andengine.extension.texturepacker.opengl.texture.util.texturepacker.TexturePack: org.andengine.opengl.texture.ITexture mTexture>
+NODE 3: interfaceinvoke $u0.<org.andengine.opengl.texture.ITexture: void load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

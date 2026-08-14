@@ -1,0 +1,83 @@
+=== FUNCTION: eu.chainfire.liveboot.a.q.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: eu.chainfire.liveboot.a.q.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#11 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u2)
+NODE 4: $u2#15 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#18 = virtualinvoke $u-1#11.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#15)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: eu.chainfire.libcfsurface.SurfaceHost.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: eu.chainfire.libcfsurface.SurfaceHost
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u0#4 = this.<eu.chainfire.libcfsurface.SurfaceHost: java.lang.String i>
+NODE 4: virtualinvoke $u-1.<java.lang.Runtime: void load(java.lang.String)>($u0#4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: eu.chainfire.a.c.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u13 := @parameter0: java.lang.String
+NODE 2: $u15 := @parameter2: java.lang.String[]
+NODE 3: if $u15 == null goto $u-1#68 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u2 = new java.util.HashMap
+NODE 5: $u4 = lengthof $u15
+NODE 6: if $u1#25 >= $u4 goto $u4 = interfaceinvoke $u2.<java.util.Map: int size()>()
+NODE 7: goto [?= (branch)]
+NODE 8: $u4 = interfaceinvoke $u2.<java.util.Map: int size()>()
+NODE 9: $u15 = newarray (java.lang.String)[$u4]
+NODE 10: if $u-1#5 == 0 goto $u-1#68 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 11: $u-1#68 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 12: $u-1#70 = virtualinvoke $u-1#68.<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[])>($u13, $u15)
+EDGE: 3 -> 4
+EDGE: 3 -> 11
+EDGE: 6 -> 8
+EDGE: 7 -> 6
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: eu.chainfire.a.g.m ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: eu.chainfire.a.g
+NODE 2: if $u-1 != 0 goto $u0#62 = new java.util.HashMap
+NODE 3: $u-1#14 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u5 = this.<eu.chainfire.a.g: java.lang.String c>
+NODE 5: $u-1#17 = virtualinvoke $u-1#14.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: eu.chainfire.a.g.m ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: eu.chainfire.a.g
+NODE 2: $u0 = this.<eu.chainfire.a.g: java.util.Map f>
+NODE 3: $u-1 = interfaceinvoke $u0.<java.util.Map: int size()>()
+NODE 4: if $u-1 != 0 goto $u0#62 = new java.util.HashMap
+NODE 5: $u0#62 = new java.util.HashMap
+NODE 6: $u-1 = interfaceinvoke $u0#62.<java.util.Map: int size()>()
+NODE 7: $u5#68 = newarray (java.lang.String)[$u-1]
+NODE 8: if $u0#61 == 0 goto $u-1#14 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 9: $u-1#14 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 10: $u5 = this.<eu.chainfire.a.g: java.lang.String c>
+NODE 11: $u-1#17 = virtualinvoke $u-1#14.<java.lang.Runtime: java.lang.Process exec(java.lang.String,java.lang.String[])>($u5, $u5#68)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+

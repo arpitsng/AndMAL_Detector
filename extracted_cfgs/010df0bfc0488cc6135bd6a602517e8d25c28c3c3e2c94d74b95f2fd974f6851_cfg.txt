@@ -1,0 +1,3044 @@
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.InCallActivity.showDialpad ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: int
+NODE 2: $u-1 = staticinvoke <com.mobilesail.voipsip.ui.incall.DtmfDialogFragment: com.mobilesail.voipsip.ui.incall.DtmfDialogFragment newInstance(int)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.InCallActivity.onTrigger ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.InCallActivity
+NODE 2: $u24 := @parameter1: com.mobilesail.voipsip.api.SipCallSession
+NODE 3: $u0#53 = this.<com.mobilesail.voipsip.ui.incall.InCallActivity: com.mobilesail.voipsip.api.ISipService service>
+NODE 4: if $u0#53 == null goto return
+NODE 5: $u0#53 = this.<com.mobilesail.voipsip.ui.incall.InCallActivity: com.mobilesail.voipsip.api.ISipService service>
+NODE 6: $u23 = virtualinvoke $u24.<com.mobilesail.voipsip.api.SipCallSession: int getCallId()>()
+NODE 7: interfaceinvoke $u0#53.<com.mobilesail.voipsip.api.ISipService: void startRecording(int,int)>($u23, 3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.networkinformation.NetworkManager$1.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.apache.cordova.networkinformation.NetworkManager$1
+NODE 2: $u1 = this.<org.apache.cordova.networkinformation.NetworkManager$1: org.apache.cordova.networkinformation.NetworkManager this$0>
+NODE 3: $u1#5 = $u1.<org.apache.cordova.networkinformation.NetworkManager: android.net.ConnectivityManager sockMan>
+NODE 4: $u-1 = virtualinvoke $u1#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.Downloader.onHandleIntent ===
+SUSPICIOUS_API: exec
+NODE 1: $u30 := @parameter0: android.content.Intent
+NODE 2: $u-1#3 = virtualinvoke $u30.<android.content.Intent: java.lang.String getStringExtra(java.lang.String)>("outpath")
+NODE 3: $u-1#153 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u12 = new java.lang.StringBuilder
+NODE 5: $u25#155 = virtualinvoke $u12.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("chmod 644 ")
+NODE 6: $u25#155 = virtualinvoke $u25#155.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#3)
+NODE 7: $u-1#26 = virtualinvoke $u25#155.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: virtualinvoke $u-1#153.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#26)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.messages.MessageFragment.loadMessageContent ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.messages.MessageFragment
+NODE 2: if $u-1#10 != 0 goto return
+NODE 3: args = new android.content.ContentValues
+NODE 4: $u-1#15 = virtualinvoke this.<com.mobilesail.voipsip.ui.messages.MessageFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 5: $u-1#17 = virtualinvoke $u-1#15.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = <com.mobilesail.voipsip.api.SipMessage: android.net.Uri MESSAGE_URI>
+NODE 7: $u5 = newarray (java.lang.String)[1]
+NODE 8: virtualinvoke $u-1#17.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u3, args, "sender=?", $u5)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.outgoingcall.OutgoingAccountsAdapter.setRowViewAlpha ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u2 != null goto $u2 = <com.mobilesail.voipsip.ui.outgoingcall.OutgoingAccountsAdapter: java.lang.reflect.Method setAlphaMethod>
+NODE 2: $u2#6 = class "Landroid/view/View;"
+NODE 3: $u4 = newarray (java.lang.Class)[1]
+NODE 4: $u2 = virtualinvoke $u2#6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setAlpha", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.routing.MediaRouterJellybean$SelectRouteWorkaround.selectRoute ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.media.routing.MediaRouterJellybean$SelectRouteWorkaround
+NODE 2: $u9 := @parameter0: java.lang.Object
+NODE 3: router = (android.media.MediaRouter) $u9
+NODE 4: if $u-1 != 0 goto virtualinvoke router.<android.media.MediaRouter: void selectRoute(int,android.media.MediaRouter$RouteInfo)>($u10, route)
+NODE 5: $u4 = this.<android.support.v4.media.routing.MediaRouterJellybean$SelectRouteWorkaround: java.lang.reflect.Method mSelectRouteIntMethod>
+NODE 6: if $u4 == null goto staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("MediaRouterJellybean", "Cannot programmatically select non-user route because the platform is missing the selectRouteInt() method.  Media routing may not work.")
+NODE 7: $u4 = this.<android.support.v4.media.routing.MediaRouterJellybean$SelectRouteWorkaround: java.lang.reflect.Method mSelectRouteIntMethod>
+NODE 8: $u5 = newarray (java.lang.Object)[2]
+NODE 9: virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(router, $u5)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.DeviceStateReceiver.onReceive ===
+SUSPICIOUS_API: update
+NODE 1: $u17 := @parameter0: android.content.Context
+NODE 2: $u18 := @parameter1: android.content.Intent
+NODE 3: $u-1#28 = virtualinvoke $u18.<android.content.Intent: long getLongExtra(java.lang.String,long)>("id", -1L)
+NODE 4: accId = $u-1#28
+NODE 5: if $u12 != 0 goto $u12 = accId cmp -1L
+NODE 6: $u-1#35 = virtualinvoke $u18.<android.content.Intent: int getIntExtra(java.lang.String,int)>("id", -1)
+NODE 7: accId = (long) $u-1#35
+NODE 8: $u2 = new android.content.ContentValues
+NODE 9: cv = $u2
+NODE 10: $u-1#46 = virtualinvoke $u17.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u13 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 12: $u13 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u13, accId)
+NODE 13: $u-1#35 = virtualinvoke $u-1#46.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u13, cv, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaWebViewImpl.createEngine ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter1: org.apache.cordova.CordovaPreferences
+NODE 2: $u5 = class "Lorg/apache/cordova/engine/SystemWebViewEngine;"
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.String getCanonicalName()>()
+NODE 4: $u-1 = virtualinvoke $u8.<org.apache.cordova.CordovaPreferences: java.lang.String getString(java.lang.String,java.lang.String)>("webview", $u-1)
+NODE 5: $u5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaWebViewImpl.createEngine ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter1: org.apache.cordova.CordovaPreferences
+NODE 2: $u5 = class "Lorg/apache/cordova/engine/SystemWebViewEngine;"
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.String getCanonicalName()>()
+NODE 4: $u-1 = virtualinvoke $u8.<org.apache.cordova.CordovaPreferences: java.lang.String getString(java.lang.String,java.lang.String)>("webview", $u-1)
+NODE 5: $u5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 6: $u4 = newarray (java.lang.Class)[2]
+NODE 7: $u-1#13 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u4)
+NODE 8: $u4#15 = newarray (java.lang.Object)[2]
+NODE 9: $u-1#18 = virtualinvoke $u-1#13.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4#15)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener.onMenuItemClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener
+NODE 2: if $u-1 != $u3 goto $u2 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: java.lang.reflect.Method mMethod>
+NODE 3: $u2 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: java.lang.reflect.Method mMethod>
+NODE 4: $u2#7 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: android.content.Context mContext>
+NODE 5: $u3#9 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#11 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#7, $u3#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener.onMenuItemClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener
+NODE 2: if $u-1 != $u3 goto $u2 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: java.lang.reflect.Method mMethod>
+NODE 3: $u2 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: java.lang.reflect.Method mMethod>
+NODE 4: $u2#7 = this.<com.actionbarsherlock.view.MenuInflater$InflatedOnMenuItemClickListener: android.content.Context mContext>
+NODE 5: $u3#9 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#7, $u3#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.routing.MediaRouterJellybeanMr1$ActiveScanWorkaround.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.media.routing.MediaRouterJellybeanMr1$ActiveScanWorkaround
+NODE 2: if $u1 == 0 goto return
+NODE 3: $u1#2 = this.<android.support.v4.media.routing.MediaRouterJellybeanMr1$ActiveScanWorkaround: java.lang.reflect.Method mScanWifiDisplaysMethod>
+NODE 4: $u2 = this.<android.support.v4.media.routing.MediaRouterJellybeanMr1$ActiveScanWorkaround: android.hardware.display.DisplayManager mDisplayManager>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u1#2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaResourceApi.mapUriToFile ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.CordovaResourceApi
+NODE 2: $u10 := @parameter0: android.net.Uri
+NODE 3: $u0 = this.<org.apache.cordova.CordovaResourceApi: android.content.ContentResolver contentResolver>
+NODE 4: $u2 = <org.apache.cordova.CordovaResourceApi: java.lang.String[] LOCAL_FILE_PROJECTION>
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.account.AccountsEditListFragment$4.drop ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.account.AccountsEditListFragment$4
+NODE 2: orderedList = new java.util.ArrayList
+NODE 3: $u8#26 = this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment$4: com.mobilesail.voipsip.ui.account.AccountsEditListFragment this$0>
+NODE 4: $u-1#41 = virtualinvoke $u8#26.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 5: if $u-1#41 == null goto return
+NODE 6: $u8#26 = this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment$4: com.mobilesail.voipsip.ui.account.AccountsEditListFragment this$0>
+NODE 7: $u-1#41 = virtualinvoke $u8#26.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 8: $u-1#46 = virtualinvoke $u-1#41.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u14 = 0
+NODE 10: if $u14 >= $u15 goto return
+NODE 11: $u9#50 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 12: $u-1#37 = virtualinvoke orderedList.<java.util.ArrayList: java.lang.Object get(int)>($u14)
+NODE 13: $u-1#35 = (java.lang.Long) $u-1#37
+NODE 14: $u-1#33 = virtualinvoke $u-1#35.<java.lang.Long: long longValue()>()
+NODE 15: $u9#50 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u9#50, $u-1#33)
+NODE 16: cv = new android.content.ContentValues
+NODE 17: virtualinvoke $u-1#46.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u9#50, cv, null, null)
+NODE 18: $u14 = $u14 + 1
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#20 == 0 goto (branch)
+NODE 2: target = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: if $u9#18 == null goto $u-1#77 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager$WakeLock proximityWakeLock>
+NODE 3: $u-1 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wman = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#25 = virtualinvoke wman.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u-1#25 == null goto $u9#32 = class "Landroid/os/PowerManager;"
+NODE 2: if $u-1#29 != 0 goto $u-1#77 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager$WakeLock proximityWakeLock>
+NODE 3: $u9#32 = class "Landroid/os/PowerManager;"
+NODE 4: $u-1#34 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("PROXIMITY_SCREEN_OFF_WAKE_LOCK")
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: if $u-1#29 == 0 goto $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 3: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 4: $u9#32 = virtualinvoke $u9#18.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u11 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#51 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("isWakeLockLevelSupported", $u11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: if $u-1#29 == 0 goto $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 3: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 4: $u9#32 = virtualinvoke $u9#18.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u11 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#51 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("isWakeLockLevelSupported", $u11)
+NODE 7: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 8: $u10 = newarray (java.lang.Object)[1]
+NODE 9: $u-1 = virtualinvoke $u-1#51.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u9#18, $u10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: if $u-1#51 != null goto $u-1#77 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager$WakeLock proximityWakeLock>
+NODE 3: $u-1#77 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager$WakeLock proximityWakeLock>
+NODE 4: $u9#32 = virtualinvoke $u-1#77.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u11 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#51 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("release", $u11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: if $u-1#29 == 0 goto $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 3: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 4: $u9#32 = virtualinvoke $u9#18.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u11 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#51 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getSupportedWakeLockFlags", $u11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: if $u-1#29 == 0 goto $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 3: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 4: $u9#32 = virtualinvoke $u9#18.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u11 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#51 = virtualinvoke $u9#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getSupportedWakeLockFlags", $u11)
+NODE 7: $u9#18 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager powerManager>
+NODE 8: $u10 = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#51.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u9#18, $u10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.incall.CallProximityManager.release ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.mobilesail.voipsip.ui.incall.CallProximityManager
+NODE 2: $u2#4 = <com.mobilesail.voipsip.ui.incall.CallProximityManager: java.lang.reflect.Method powerLockReleaseIntMethod>
+NODE 3: if $u2#4 == null goto (branch)
+NODE 4: $u2#4 = <com.mobilesail.voipsip.ui.incall.CallProximityManager: java.lang.reflect.Method powerLockReleaseIntMethod>
+NODE 5: $u2 = this.<com.mobilesail.voipsip.ui.incall.CallProximityManager: android.os.PowerManager$WakeLock proximityWakeLock>
+NODE 6: $u4 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u2#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesWrapper.getStorageFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.webrtc.videoengine.VideoCaptureDeviceInfoAndroid.AllocateEVOFrontFacingCamera ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: classPath = "com.htc.hardware.twinCamDevice.FrontFacingCamera"
+NODE 2: classPath = "com.sprint.hardware.twinCamDevice.FrontFacingCamera"
+NODE 3: loader = new dalvik.system.DexClassLoader
+NODE 4: $u-1#33 = virtualinvoke loader.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(classPath)
+NODE 5: $u-1#37 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getFrontFacingCamera", null)
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.webrtc.videoengine.VideoCaptureDeviceInfoAndroid.AllocateEVOFrontFacingCamera ===
+SUSPICIOUS_API: invoke
+NODE 1: classPath = "com.htc.hardware.twinCamDevice.FrontFacingCamera"
+NODE 2: classPath = "com.sprint.hardware.twinCamDevice.FrontFacingCamera"
+NODE 3: loader = new dalvik.system.DexClassLoader
+NODE 4: $u-1#33 = virtualinvoke loader.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>(classPath)
+NODE 5: $u-1#37 = virtualinvoke $u-1#33.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getFrontFacingCamera", null)
+NODE 6: $u-1#41 = virtualinvoke $u-1#37.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.Compatibility.isInstalledOnSdCard ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.Compatibility.isTabletScreen ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 = class "Landroid/content/res/Configuration;"
+NODE 2: $u-1#10 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("screenLayout")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalCacheDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalFilesDirs ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: if version < 19 goto (branch)
+NODE 4: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 5: $u-1#5 = staticinvoke <android.support.v4.content.ContextCompatFroyo: java.io.File getExternalFilesDir(android.content.Context,java.lang.String)>($u8, $u9)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getExternalFilesDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 8 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompat.getObbDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if version < 19 goto (branch)
+NODE 2: if version < 11 goto $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils14.findSelfInfo ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: projection = newarray (java.lang.String)[4]
+NODE 3: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Profile: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, projection, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.models.Filter.getFilterFromDbId ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u12 := @parameter1: long
+NODE 3: $u14 := @parameter2: java.lang.String[]
+NODE 4: if $u-1#10 < 0 goto return filter
+NODE 5: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1 = <com.mobilesail.voipsip.api.SipManager: android.net.Uri FILTER_ID_URI_BASE>
+NODE 7: $u1 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u1, $u12)
+NODE 8: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u14, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.models.Filter.getFiltersCursorForAccount ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipManager: android.net.Uri FILTER_URI>
+NODE 4: $u2 = <com.mobilesail.voipsip.models.Filter: java.lang.String[] FULL_PROJ>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#8 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "account=?", $u4, "priority asc")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.provider.DocumentsContractApi19.exists ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u11 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u11, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.provider.DocumentsContractApi19.queryForLong ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.provider.DocumentsContractApi19.queryForString ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u9, $u2, null, null, null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.provider.DocumentsContractApi21.listFiles ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u12 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#2 = staticinvoke <android.provider.DocumentsContract: java.lang.String getDocumentId(android.net.Uri)>($u12)
+NODE 5: $u-1#4 = staticinvoke <android.provider.DocumentsContract: android.net.Uri buildChildDocumentsUriUsingTree(android.net.Uri,java.lang.String)>($u12, $u-1#2)
+NODE 6: $u2 = newarray (java.lang.String)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#4, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.ActionBarSherlockCompat.preparePanel ===
+SUSPICIOUS_API: load
+NODE 1: if $u3 != 0 goto $u-1 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>(-1)
+NODE 2: $u-1 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>(-1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.ActionBarSherlockCompat.onMenuItemClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.ActionBarSherlockCompat
+NODE 2: $u5 := @parameter0: android.view.MenuItem
+NODE 3: $u1 = this.<com.actionbarsherlock.internal.ActionBarSherlockCompat: java.util.HashMap mNativeItemMap>
+NODE 4: $u-1 = virtualinvoke $u1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: sherlockItem = (com.actionbarsherlock.internal.view.menu.MenuItemImpl) $u-1
+NODE 6: if sherlockItem == null goto $u2 = new java.lang.StringBuilder
+NODE 7: virtualinvoke sherlockItem.<com.actionbarsherlock.internal.view.menu.MenuItemImpl: boolean invoke()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarDescription ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto return $u7
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.engine.SystemWebViewEngine.initWebViewSettings ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.engine.SystemWebViewEngine
+NODE 2: $u10 = this.<org.apache.cordova.engine.SystemWebViewEngine: org.apache.cordova.engine.SystemWebView webView>
+NODE 3: $u-1 = virtualinvoke $u10.<org.apache.cordova.engine.SystemWebView: android.webkit.WebSettings getSettings()>()
+NODE 4: $u10#10 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u12 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#14 = virtualinvoke $u10#10.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setNavDump", $u12)
+NODE 7: if $u-1#28 == 0 goto virtualinvoke $u-1.<android.webkit.WebSettings: void setSaveFormData(boolean)>(0)
+NODE 8: $u10#31 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u10#31)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.widget.ActivityChooserModel$HistoryPersister.run ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.actionbarsherlock.widget.ActivityChooserModel$HistoryPersister
+NODE 2: $u13 = this.<com.actionbarsherlock.widget.ActivityChooserModel$HistoryPersister: com.actionbarsherlock.widget.ActivityChooserModel this$0>
+NODE 3: $u-1#13 = staticinvoke <com.actionbarsherlock.widget.ActivityChooserModel: android.content.Context access$500(com.actionbarsherlock.widget.ActivityChooserModel)>($u13)
+NODE 4: $u13 = this.<com.actionbarsherlock.widget.ActivityChooserModel$HistoryPersister: com.actionbarsherlock.widget.ActivityChooserModel this$0>
+NODE 5: $u-1#17 = staticinvoke <com.actionbarsherlock.widget.ActivityChooserModel: java.lang.String access$400(com.actionbarsherlock.widget.ActivityChooserModel)>($u13)
+NODE 6: $u-1#20 = virtualinvoke $u-1#13.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#17, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.favorites.FavAdapter$MenuCallback.onMenuItemSelected ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.favorites.FavAdapter$MenuCallback
+NODE 2: if $u-1 != $u4 goto $u4 = <com.mobilesail.voipsip.R$id: int set_sip_data>
+NODE 3: cv = new android.content.ContentValues
+NODE 4: $u4#6 = this.<com.mobilesail.voipsip.ui.favorites.FavAdapter$MenuCallback: android.content.Context context>
+NODE 5: $u-1#15 = virtualinvoke $u4#6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u4#17 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 7: $u5 = this.<com.mobilesail.voipsip.ui.favorites.FavAdapter$MenuCallback: java.lang.Long profileId>
+NODE 8: $u-1#19 = virtualinvoke $u5.<java.lang.Long: long longValue()>()
+NODE 9: $u4#17 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u4#17, $u-1#19)
+NODE 10: virtualinvoke $u-1#15.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u4#17, cv, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: if info == null goto return null
+NODE 6: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 7: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompatBase.getMinimumHeight ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <android.support.v4.view.ViewCompatBase: java.lang.reflect.Field sMinHeightField>
+NODE 2: $u0#2 = class "Landroid/view/View;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mMinHeight")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompatBase.getMinimumWidth ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <android.support.v4.view.ViewCompatBase: java.lang.reflect.Field sMinWidthField>
+NODE 2: $u0#2 = class "Landroid/view/View;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mMinWidth")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaBridge.jsExec ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.CordovaBridge
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u8 := @parameter2: java.lang.String
+NODE 4: $u9 := @parameter3: java.lang.String
+NODE 5: $u10 := @parameter4: java.lang.String
+NODE 6: $u2#10 = this.<org.apache.cordova.CordovaBridge: org.apache.cordova.PluginManager pluginManager>
+NODE 7: virtualinvoke $u2#10.<org.apache.cordova.PluginManager: void exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u7, $u8, $u9, $u10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.calllog.CallLogDetailsFragment.getPhoneCallDetailsForUri ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.ui.calllog.CallLogDetailsFragment
+NODE 2: $u27 := @parameter0: android.net.Uri
+NODE 3: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.ui.calllog.CallLogDetailsFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u4 = <com.mobilesail.voipsip.ui.calllog.CallLogDetailsFragment: java.lang.String[] CALL_LOG_PROJECTION>
+NODE 6: $u-1#9 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u27, $u4, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.dialpad.DialerFragment$7.onClick ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.dialpad.DialerFragment$7
+NODE 2: if $u-1#14 != 0 goto $u4 = this.<com.mobilesail.voipsip.ui.dialpad.DialerFragment$7: com.mobilesail.voipsip.ui.dialpad.DialerFragment this$0>
+NODE 3: cv = new android.content.ContentValues
+NODE 4: $u4 = this.<com.mobilesail.voipsip.ui.dialpad.DialerFragment$7: com.mobilesail.voipsip.ui.dialpad.DialerFragment this$0>
+NODE 5: $u-1#18 = virtualinvoke $u4.<com.mobilesail.voipsip.ui.dialpad.DialerFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 6: $u-1#20 = virtualinvoke $u-1#18.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u5 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 8: $u6 = this.<com.mobilesail.voipsip.ui.dialpad.DialerFragment$7: long val$editedAccId>
+NODE 9: $u5 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u5, $u6)
+NODE 10: $u11 = virtualinvoke $u-1#20.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u5, cv, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.view.menu.ActionMenu.performIdentifierAction ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.view.menu.ActionMenu
+NODE 2: $u3 := @parameter0: int
+NODE 3: $u3 = specialinvoke this.<com.actionbarsherlock.internal.view.menu.ActionMenu: int findItemIndex(int)>($u3)
+NODE 4: if $u3 >= 0 goto $u1 = this.<com.actionbarsherlock.internal.view.menu.ActionMenu: java.util.ArrayList mItems>
+NODE 5: $u1 = this.<com.actionbarsherlock.internal.view.menu.ActionMenu: java.util.ArrayList mItems>
+NODE 6: $u-1 = virtualinvoke $u1.<java.util.ArrayList: java.lang.Object get(int)>($u3)
+NODE 7: $u1#6 = (com.actionbarsherlock.internal.view.menu.ActionMenuItem) $u-1
+NODE 8: $u-1#7 = virtualinvoke $u1#6.<com.actionbarsherlock.internal.view.menu.ActionMenuItem: boolean invoke()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.view.menu.ActionMenu.performShortcut ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.view.menu.ActionMenu
+NODE 2: $u3 := @parameter0: int
+NODE 3: $u4 := @parameter1: android.view.KeyEvent
+NODE 4: $u-1 = specialinvoke this.<com.actionbarsherlock.internal.view.menu.ActionMenu: com.actionbarsherlock.internal.view.menu.ActionMenuItem findItemWithShortcut(int,android.view.KeyEvent)>($u3, $u4)
+NODE 5: if $u-1 != null goto $u-1#3 = virtualinvoke $u-1.<com.actionbarsherlock.internal.view.menu.ActionMenuItem: boolean invoke()>()
+NODE 6: $u-1#3 = virtualinvoke $u-1.<com.actionbarsherlock.internal.view.menu.ActionMenuItem: boolean invoke()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.widgets.AccountWidgetProvider.buildUpdate ===
+SUSPICIOUS_API: query
+NODE 1: $u18 := @parameter0: android.content.Context
+NODE 2: $u19 := @parameter1: int
+NODE 3: $u-1#5 = staticinvoke <com.mobilesail.voipsip.widgets.AccountWidgetConfigure: long getAccountForWidget(android.content.Context,int)>($u18, $u19)
+NODE 4: if $u3 == 0 goto return views
+NODE 5: $u-1#23 = virtualinvoke $u18.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3#24 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 7: $u3#24 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u3#24, $u-1#5)
+NODE 8: $u4#28 = newarray (java.lang.String)[4]
+NODE 9: $u-1#39 = virtualinvoke $u-1#23.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3#24, $u4#28, null, null, null)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.LayoutInflaterCompatHC.forceSetFactory2 ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u1 != 0 goto $u-1 = <android.support.v4.view.LayoutInflaterCompatHC: java.lang.reflect.Field sLayoutInflaterFactory2Field>
+NODE 2: $u1#2 = class "Landroid/view/LayoutInflater;"
+NODE 3: $u-1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mFactory2")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.MediaManager.actualSetAudioInCall ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.mobilesail.voipsip.service.MediaManager
+NODE 2: $u11#2 = this.<com.mobilesail.voipsip.service.MediaManager: com.mobilesail.voipsip.service.SipService service>
+NODE 3: $u-1#8 = virtualinvoke $u11#2.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wman = (android.net.wifi.WifiManager) $u-1#8
+NODE 5: if $u11#11 != null goto $u-1#21 = virtualinvoke wman.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#21 = virtualinvoke wman.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.networkinformation.NetworkManager.execute ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.apache.cordova.networkinformation.NetworkManager
+NODE 2: $u4 = this.<org.apache.cordova.networkinformation.NetworkManager: android.net.ConnectivityManager sockMan>
+NODE 3: $u-1#6 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.backup.SipProfileJson.serializeSipProfiles ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 4: $u2 = <com.mobilesail.voipsip.db.DBProvider: java.lang.String[] ACCOUNT_FULL_PROJECTION>
+NODE 5: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.salsitasoft.MobileSailPlugin.validateSipProfile ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.salsitasoft.MobileSailPlugin
+NODE 2: $u0 = this.<com.salsitasoft.MobileSailPlugin: org.apache.cordova.CordovaInterface cordova>
+NODE 3: $u-1 = interfaceinvoke $u0.<org.apache.cordova.CordovaInterface: android.app.Activity getActivity()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.app.Activity: android.content.Context getApplicationContext()>()
+NODE 5: if $u-1#11 != 0 goto builtProfile = new com.mobilesail.voipsip.api.SipProfile
+NODE 6: builtProfile = new com.mobilesail.voipsip.api.SipProfile
+NODE 7: $u-1#271 = virtualinvoke builtProfile.<com.mobilesail.voipsip.api.SipProfile: android.content.ContentValues getDbContentValues()>()
+NODE 8: if $u21#276 == 0 goto $u-1#277 = virtualinvoke $u-1#6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#277 = virtualinvoke $u-1#6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u22 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 11: $u-1#21 = this.<com.salsitasoft.MobileSailPlugin: long sipProfileId>
+NODE 12: $u22 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u22, $u-1#21)
+NODE 13: virtualinvoke $u-1#277.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u22, $u-1#271, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder.setAnimatedValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder: java.lang.reflect.Method mSetter>
+NODE 4: $u1#2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$IntPropertyValuesHolder: java.lang.Object[] mTmpValueArray>
+NODE 5: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1#2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipService$1$20.doRun ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipService$1$20
+NODE 2: $u-1 = staticinvoke <com.mobilesail.voipsip.service.SipService: com.mobilesail.voipsip.pjsip.PjSipService access$300()>()
+NODE 3: $u1 = this.<com.mobilesail.voipsip.service.SipService$1$20: int val$callId>
+NODE 4: $u2 = this.<com.mobilesail.voipsip.service.SipService$1$20: int val$way>
+NODE 5: virtualinvoke $u-1.<com.mobilesail.voipsip.pjsip.PjSipService: void startRecording(int,int)>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils3.findCallerInfo ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u13 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_FILTER_URL>
+NODE 4: $u-1 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u13)
+NODE 5: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u-1)
+NODE 6: $u-1#6 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#9 = virtualinvoke $u-1#6.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils3.getContactsPhones ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: uri = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = <com.mobilesail.voipsip.utils.contacts.ContactsUtils3: java.lang.String[] PROJECTION_PHONE>
+NODE 5: $u-1#2 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uri, $u2, null, null, "display_name ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils3.getGroups ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: searchUri = <android.provider.Contacts$Groups: android.net.Uri CONTENT_URI>
+NODE 3: projection = newarray (java.lang.String)[2]
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(searchUri, projection, null, null, "name ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils3.getPhoneNumbers ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: if $u14 <= 0 goto return phones
+NODE 3: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#12 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "person = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils3.searchContact ===
+SUSPICIOUS_API: query
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: if $u15 == null goto uri = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 3: if $u-1#4 == 0 goto uri = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 4: uri = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = staticinvoke <java.lang.String: java.lang.String format(java.lang.String,java.lang.Object[])>("%s LIKE ? OR %s LIKE ?", $u2)
+NODE 7: $u-1#14 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u2#16 = <com.mobilesail.voipsip.utils.contacts.ContactsUtils3: java.lang.String[] PROJECTION_PHONE>
+NODE 9: $u4 = newarray (java.lang.String)[2]
+NODE 10: $u-1#41 = virtualinvoke $u-1#14.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uri, $u2#16, $u-1, $u4, "display_name ASC,type")
+NODE 11: goto [?= uri = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>]
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.findCallerInfo ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: $u14 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 4: $u-1 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u14)
+NODE 5: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u-1)
+NODE 6: if $u-1#6 == 0 goto projection = newarray (java.lang.String)[7]
+NODE 7: projection = newarray (java.lang.String)[9]
+NODE 8: $u-1#28 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#32 = virtualinvoke $u-1#28.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, projection, null, null, null)
+NODE 10: projection = newarray (java.lang.String)[7]
+NODE 11: goto [?= $u-1#28 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 8 -> 9
+EDGE: 11 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.findCallerInfoForUri ===
+SUSPICIOUS_API: query
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: if $u-1 == 0 goto projection = newarray (java.lang.String)[7]
+NODE 3: projection = newarray (java.lang.String)[8]
+NODE 4: uri = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("(mimetype=\'vnd.android.cursor.item/im\'  AND data5=-1 AND data6=\'sip\')")
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" OR (mimetype=\'vnd.android.cursor.item/im\'  AND data5=-1 AND data6=\'csip\')")
+NODE 8: $u-1#29 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: whereSipUriClause = $u-1#29
+NODE 10: if $u-1 == 0 goto $u0 = new java.lang.StringBuilder
+NODE 11: $u0 = new java.lang.StringBuilder
+NODE 12: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#29)
+NODE 13: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" OR mimetype=\'vnd.android.cursor.item/sip_address\'")
+NODE 14: whereSipUriClause = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u0 = new java.lang.StringBuilder
+NODE 16: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("display_name IS NOT NULL  AND (")
+NODE 17: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(whereSipUriClause)
+NODE 18: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(") AND ")
+NODE 19: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("data1")
+NODE 20: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("=?")
+NODE 21: $u-1#29 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 22: $u-1#57 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 23: $u4 = newarray (java.lang.String)[1]
+NODE 24: $u-1#63 = virtualinvoke $u-1#57.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uri, projection, $u-1#29, $u4, "display_name ASC")
+NODE 25: projection = newarray (java.lang.String)[7]
+NODE 26: goto [?= uri = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>]
+EDGE: 2 -> 3
+EDGE: 2 -> 25
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 10 -> 15
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 26 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getCSipPhonesContact ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: dataUri = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 3: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u3 = new java.lang.StringBuilder
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("mimetype=\'vnd.android.cursor.item/im\'  AND data5=-1 AND  LOWER(data6)=\'csip\'")
+NODE 7: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" AND ")
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id")
+NODE 9: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("=?")
+NODE 10: $u-1#21 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u4 = newarray (java.lang.String)[1]
+NODE 12: $u-1#29 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(dataUri, $u2, $u-1#21, $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getContactsByGroup ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u11 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto projection = newarray (java.lang.String)[5]
+NODE 4: projection = newarray (java.lang.String)[7]
+NODE 5: $u0 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_GROUP_URI>
+NODE 6: $u11 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u11)
+NODE 7: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u11)
+NODE 8: $u-1#27 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#32 = virtualinvoke $u-1#27.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, projection, null, null, "display_name ASC")
+NODE 10: projection = newarray (java.lang.String)[5]
+NODE 11: goto [?= $u0 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_GROUP_URI>]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 10
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getContactsPhones ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: uri = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 3: isPhoneType = "(mimetype=\'vnd.android.cursor.item/phone_v2\' AND data1 IS NOT NULL ) "
+NODE 4: if $u-1 == 0 goto $u0 = new java.lang.StringBuilder
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("(mimetype=\'vnd.android.cursor.item/phone_v2\' AND data1 IS NOT NULL ) ")
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" OR mimetype=\'vnd.android.cursor.item/sip_address\'")
+NODE 8: isPhoneType = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u0 = new java.lang.StringBuilder
+NODE 10: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(isPhoneType)
+NODE 11: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" OR (mimetype=\'vnd.android.cursor.item/im\'  AND data5=-1 AND data6=\'sip\')")
+NODE 12: isPhoneType = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u0 = new java.lang.StringBuilder
+NODE 14: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(isPhoneType)
+NODE 15: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" OR (mimetype=\'vnd.android.cursor.item/im\'  AND data5=-1 AND data6=\'csip\')")
+NODE 16: isPhoneType = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 17: $u0 = new java.lang.StringBuilder
+NODE 18: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("display_name IS NOT NULL  AND (")
+NODE 19: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(isPhoneType)
+NODE 20: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(")")
+NODE 21: isPhoneType = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 22: if $u-1 == 0 goto projection = newarray (java.lang.String)[6]
+NODE 23: projection = newarray (java.lang.String)[7]
+NODE 24: $u-1#49 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 25: $u-1#53 = virtualinvoke $u-1#49.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(uri, projection, isPhoneType, null, "display_name ASC")
+NODE 26: projection = newarray (java.lang.String)[6]
+NODE 27: goto [?= $u-1#49 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 9
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 22 -> 23
+EDGE: 22 -> 26
+EDGE: 24 -> 25
+EDGE: 27 -> 24
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getGroups ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: searchUri = <android.provider.ContactsContract$Groups: android.net.Uri CONTENT_URI>
+NODE 3: projection = newarray (java.lang.String)[2]
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(searchUri, projection, null, null, "title ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getPhoneNumbers ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: if $u0 <= 0 goto $u0 = <com.mobilesail.voipsip.utils.contacts.ContactsWrapper: int URI_IM>
+NODE 3: $u-1#4 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#13 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getPhoneNumbers ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: if $u0 <= 0 goto $u-1#15 = staticinvoke <com.mobilesail.voipsip.utils.Compatibility: boolean isCompatible(int)>(9)
+NODE 3: $u-1#4 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1#13 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id = ? AND mimetype = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.getPhoneNumbers ===
+SUSPICIOUS_API: query
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: if $u16 <= 0 goto return phones
+NODE 3: $u-1#4 = virtualinvoke $u13.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[2]
+NODE 6: $u-1#13 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id = ? AND mimetype = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.insertOrUpdateCSipUri ===
+SUSPICIOUS_API: query
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u21.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u3 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[1]
+NODE 5: $u6 = newarray (java.lang.String)[1]
+NODE 6: $u-1#15 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, $u4, "contact_id=?", $u6, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.insertOrUpdateCSipUri ===
+SUSPICIOUS_API: query
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u21.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u3 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u4 = newarray (java.lang.String)[1]
+NODE 5: $u6 = newarray (java.lang.String)[4]
+NODE 6: $u-1#15 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, $u4, "mimetype=? AND data5=? AND data6=? AND raw_contact_id=?", $u6, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.insertOrUpdateCSipUri ===
+SUSPICIOUS_API: update
+NODE 1: $u21 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u21.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u0 = new android.content.ContentValues
+NODE 4: cv = $u0
+NODE 5: if $u-1#19 <= 0 goto virtualinvoke cv.<android.content.ContentValues: void put(java.lang.String,java.lang.String)>("mimetype", "vnd.android.cursor.item/im")
+NODE 6: $u3 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 7: $u4 = newarray (java.lang.String)[4]
+NODE 8: $u-1#19 = virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u3, cv, "mimetype=? AND data5=? AND data6=? AND raw_contact_id=?", $u4)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.searchContact ===
+SUSPICIOUS_API: query
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: $u15 := @parameter1: java.lang.CharSequence
+NODE 3: cons = null
+NODE 4: if $u15 == null goto $u-1#4 = staticinvoke <android.text.TextUtils: boolean isEmpty(java.lang.CharSequence)>(cons)
+NODE 5: $u-1 = interfaceinvoke $u15.<java.lang.CharSequence: java.lang.String toString()>()
+NODE 6: cons = $u-1
+NODE 7: if $u-1#4 != 0 goto $u-1#16 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u0 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_FILTER_URI>
+NODE 9: cons = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>(cons)
+NODE 10: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, cons)
+NODE 11: $u-1#16 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 12: $u6 = <com.mobilesail.voipsip.utils.contacts.ContactsUtils5: java.lang.String[] PROJECTION_PHONE>
+NODE 13: $u-1#21 = virtualinvoke $u-1#16.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u6, null, null, "times_contacted DESC,display_name COLLATE LOCALIZED,data2")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.contacts.ContactsUtils5.searchContact ===
+SUSPICIOUS_API: query
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 != 0 goto $u-1#16 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#16 = virtualinvoke $u14.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u0 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 5: $u6 = <com.mobilesail.voipsip.utils.contacts.ContactsUtils5: java.lang.String[] PROJECTION_PHONE>
+NODE 6: $u-1#21 = virtualinvoke $u-1#16.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u6, null, null, "display_name COLLATE LOCALIZED")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("libcore.icu.ICU")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.addLikelySubtags ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sAddLikelySubtagsMethod>
+NODE 2: if $u2 == null goto return $u4
+NODE 3: args = newarray (java.lang.Object)[1]
+NODE 4: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sAddLikelySubtagsMethod>
+NODE 5: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, args)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.text.ICUCompatIcs.getScript ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sGetScriptMethod>
+NODE 2: if $u2 == null goto return null
+NODE 3: args = newarray (java.lang.Object)[1]
+NODE 4: $u2 = <android.support.v4.text.ICUCompatIcs: java.lang.reflect.Method sGetScriptMethod>
+NODE 5: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, args)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompat$ICSViewCompatImpl.hasAccessibilityDelegate ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u3#4 != null goto $u3#4 = <android.support.v4.view.ViewCompat$ICSViewCompatImpl: java.lang.reflect.Field mAccessibilityDelegateField>
+NODE 2: $u3#5 = class "Landroid/view/View;"
+NODE 3: $u3#4 = virtualinvoke $u3#5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mAccessibilityDelegate")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.ensureActionReflectionReadyLocked ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3#4 != null goto $u3 = <android.support.v4.app.NotificationCompatJellybean: boolean sActionsAccessFailed>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.Notification$Action")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.ensureActionReflectionReadyLocked ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = <android.support.v4.app.NotificationCompatJellybean: java.lang.Class sActionClass>
+NODE 2: $u3#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("icon")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.ensureActionReflectionReadyLocked ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = <android.support.v4.app.NotificationCompatJellybean: java.lang.Class sActionClass>
+NODE 2: $u3#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("title")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.ensureActionReflectionReadyLocked ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = <android.support.v4.app.NotificationCompatJellybean: java.lang.Class sActionClass>
+NODE 2: $u3#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("actionIntent")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.ensureActionReflectionReadyLocked ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = class "Landroid/app/Notification;"
+NODE 2: $u3#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("actions")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.NotificationCompatJellybean.getExtras ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u5#4 != null goto $u5#4 = <android.support.v4.app.NotificationCompatJellybean: java.lang.reflect.Field sExtrasField>
+NODE 2: $u5#5 = class "Landroid/app/Notification;"
+NODE 3: $u5#4 = virtualinvoke $u5#5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("extras")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.getAccountIdForPjsipId ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_URI>
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.sanitizeSipUri ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.PjSipService
+NODE 2: if $u-1#15 == null goto (branch)
+NODE 3: if $u-1#10 != 0 goto pjsipAccountId = virtualinvoke ps.<com.mobilesail.voipsip.api.SipProfileState: int getAccountId()>()
+NODE 4: $u2#20 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 5: $u-1#21 = virtualinvoke $u2#20.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_URI>
+NODE 7: $u-1#25 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.setCodecsPriorities ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.PjSipService
+NODE 2: $u4 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 3: $u-1 = virtualinvoke $u4.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u4#7 == 0 goto exitmonitor $u34
+NODE 6: $u-1#8 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.addAccount ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.PjSipService
+NODE 2: $u15 := @parameter0: com.mobilesail.voipsip.api.SipProfile
+NODE 3: cv = new android.content.ContentValues
+NODE 4: $u9#9 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 5: $u-1#28 = virtualinvoke $u9#9.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u10#30 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_ID_URI_BASE>
+NODE 7: $u12 = $u15.<com.mobilesail.voipsip.api.SipProfile: long id>
+NODE 8: $u10#30 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u10#30, $u12)
+NODE 9: virtualinvoke $u-1#28.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u10#30, cv, null, null)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.getProfileState ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.PjSipService
+NODE 2: $u10 := @parameter0: com.mobilesail.voipsip.api.SipProfile
+NODE 3: $u0#6 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 4: $u-1 = virtualinvoke $u0#6.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_ID_URI_BASE>
+NODE 6: $u0#3 = $u10.<com.mobilesail.voipsip.api.SipProfile: long id>
+NODE 7: $u1 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u1, $u0#3)
+NODE 8: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.sendDtmf ===
+SUSPICIOUS_API: load
+NODE 1: if $u2 != 0 goto (branch)
+NODE 2: if $u5 < 7 goto (branch)
+NODE 3: if $u5 > 16 goto (branch)
+NODE 4: if $u5 != 18 goto (branch)
+NODE 5: if $u5 != 17 goto $u-1#14 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>(1)
+NODE 6: $u-1#14 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.startRecording ===
+SUSPICIOUS_API: startRecording
+NODE 1: recoder = new com.mobilesail.voipsip.pjsip.recorder.impl.SimpleWavRecorderHandler
+NODE 2: interfaceinvoke recoder.<com.mobilesail.voipsip.pjsip.recorder.IRecorderHandler: void startRecording()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.tryToLoadStack ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u3 != 0 goto return 0
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("stlport_shared")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.tryToLoadStack ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("pjsipjni")
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.PjSipService.updateProfileStateFromService ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.PjSipService
+NODE 2: $u11 := @parameter0: int
+NODE 3: if $u6 != 0 goto $u6#2 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 4: $u6#2 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 5: $u-1 = staticinvoke <com.mobilesail.voipsip.pjsip.PjSipService: long getAccountIdForPjsipId(android.content.Context,int)>($u6#2, $u11)
+NODE 6: pjAccountInfo = new org.pjsip.pjsua.pjsua_acc_info
+NODE 7: $u11 = staticinvoke <org.pjsip.pjsua.pjsua: int acc_get_info(int,org.pjsip.pjsua.pjsua_acc_info)>($u11, pjAccountInfo)
+NODE 8: if $u11 != success goto return
+NODE 9: if pjAccountInfo == null goto return
+NODE 10: cv = new android.content.ContentValues
+NODE 11: $u6#2 = this.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 12: $u-1#42 = virtualinvoke $u6#2.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 13: $u7#44 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_ID_URI_BASE>
+NODE 14: $u7#44 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u7#44, $u-1)
+NODE 15: virtualinvoke $u-1#42.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u7#44, cv, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.widgets.AccountChooserButton.updateRegistration ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.widgets.AccountChooserButton
+NODE 2: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.widgets.AccountChooserButton: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 5: $u2 = <com.mobilesail.voipsip.widgets.AccountChooserButton: java.lang.String[] ACC_PROJECTION>
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#11 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "active=?", $u4, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.widgets.AccountChooserButton.onClick ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.widgets.AccountChooserButton
+NODE 2: $u-1#24 = virtualinvoke this.<com.mobilesail.voipsip.widgets.AccountChooserButton: android.content.Context getContext()>()
+NODE 3: $u-1#35 = virtualinvoke $u-1#24.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u3#37 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 5: $u4#38 = <com.mobilesail.voipsip.widgets.AccountChooserButton: java.lang.String[] ACC_PROJECTION>
+NODE 6: $u6 = newarray (java.lang.String)[1]
+NODE 7: $u-1#44 = virtualinvoke $u-1#35.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3#37, $u4#38, "active=?", $u6, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.ActionBarSherlock.wrap ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = new java.util.HashMap
+NODE 2: impls = $u0
+NODE 3: if hasQualfier == 0 goto $u-1#78 = virtualinvoke impls.<java.util.HashMap: java.util.Collection values()>()
+NODE 4: $u-1#78 = virtualinvoke impls.<java.util.HashMap: java.util.Collection values()>()
+NODE 5: $u-1#5 = interfaceinvoke $u-1#78.<java.util.Collection: java.util.Iterator iterator()>()
+NODE 6: $u-1#9 = interfaceinvoke $u-1#5.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: impl = (java.lang.Class) $u-1#9
+NODE 8: $u12#85 = <com.actionbarsherlock.ActionBarSherlock: java.lang.Class[] CONSTRUCTOR_ARGS>
+NODE 9: $u-1#86 = virtualinvoke impl.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u12#85)
+NODE 10: $u12#88 = newarray (java.lang.Object)[2]
+NODE 11: $u-1#9 = virtualinvoke $u-1#86.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u12#88)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.Threading.stopHandlerThread ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 := @parameter0: android.os.HandlerThread
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: $u-1#5 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u5 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#10 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("quit", $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.Threading.stopHandlerThread ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.os.HandlerThread
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: $u-1#5 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u5 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#10 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("quit", $u5)
+NODE 6: $u3 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.wizards.BasePrefsWizard.saveAccount ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.wizards.BasePrefsWizard
+NODE 2: $u-1#14 = virtualinvoke this.<com.mobilesail.voipsip.wizards.BasePrefsWizard: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u7#16 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 4: $u7 = this.<com.mobilesail.voipsip.wizards.BasePrefsWizard: com.mobilesail.voipsip.api.SipProfile account>
+NODE 5: $u6#10 = $u7.<com.mobilesail.voipsip.api.SipProfile: long id>
+NODE 6: $u7#16 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u7#16, $u6#10)
+NODE 7: $u7 = this.<com.mobilesail.voipsip.wizards.BasePrefsWizard: com.mobilesail.voipsip.api.SipProfile account>
+NODE 8: $u-1#18 = virtualinvoke $u7.<com.mobilesail.voipsip.api.SipProfile: android.content.ContentValues getDbContentValues()>()
+NODE 9: virtualinvoke $u-1#14.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u7#16, $u-1#18, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.wizards.BasePrefsWizard.setWizardId ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: if $u2 != null goto $u-1#6 = staticinvoke <com.mobilesail.voipsip.wizards.WizardUtils: com.mobilesail.voipsip.wizards.WizardUtils$WizardInfo getWizardClass(java.lang.String)>($u6)
+NODE 3: $u-1#6 = staticinvoke <com.mobilesail.voipsip.wizards.WizardUtils: com.mobilesail.voipsip.wizards.WizardUtils$WizardInfo getWizardClass(java.lang.String)>($u6)
+NODE 4: if $u-1#6 != null goto $u2#15 = $u-1#6.<com.mobilesail.voipsip.wizards.WizardUtils$WizardInfo: java.lang.Class classObject>
+NODE 5: $u2#15 = $u-1#6.<com.mobilesail.voipsip.wizards.WizardUtils$WizardInfo: java.lang.Class classObject>
+NODE 6: $u-1#16 = virtualinvoke $u2#15.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.splashscreen.SplashScreen.getView ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.splashscreen.SplashScreen
+NODE 2: $u1 = this.<org.apache.cordova.splashscreen.SplashScreen: org.apache.cordova.CordovaWebView webView>
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getView", $u3)
+NODE 6: $u1 = this.<org.apache.cordova.splashscreen.SplashScreen: org.apache.cordova.CordovaWebView webView>
+NODE 7: $u3#11 = newarray (java.lang.Object)[0]
+NODE 8: $u-1#12 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u3#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.widgets.contactbadge.QuickContactBadge.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u0 = new java.lang.StringBuilder
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u6#6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.mobilesail.voipsip.widgets.contactbadge.ContactBadge")
+NODE 4: $u6#6 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("5")
+NODE 5: $u-1#12 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#12)
+NODE 7: $u0 = new java.lang.StringBuilder
+NODE 8: $u6#6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.mobilesail.voipsip.widgets.contactbadge.ContactBadge")
+NODE 9: $u6#6 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("3")
+NODE 10: $u-1#12 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: goto [?= $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#12)]
+EDGE: 1 -> 2
+EDGE: 1 -> 7
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.widgets.contactbadge.QuickContactBadge.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 == 0 goto $u0 = new java.lang.StringBuilder
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u6#6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.mobilesail.voipsip.widgets.contactbadge.ContactBadge")
+NODE 4: $u6#6 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("5")
+NODE 5: $u-1#12 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#12)
+NODE 7: $u-1#14 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/mobilesail/voipsip/widgets/contactbadge/ContactBadgeContract;")
+NODE 8: $u6#19 = newarray (java.lang.Class)[4]
+NODE 9: $u-1#28 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u6#19)
+NODE 10: $u6#30 = newarray (java.lang.Object)[4]
+NODE 11: $u-1#37 = virtualinvoke $u-1#28.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u6#30)
+NODE 12: $u0 = new java.lang.StringBuilder
+NODE 13: $u6#6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.mobilesail.voipsip.widgets.contactbadge.ContactBadge")
+NODE 14: $u6#6 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("3")
+NODE 15: $u-1#12 = virtualinvoke $u6#6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 16: goto [?= $u-1#14 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#12)]
+EDGE: 1 -> 2
+EDGE: 1 -> 12
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.session.PlaybackStateCompat$CustomAction.getCustomAction ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.media.session.PlaybackStateCompat$CustomAction
+NODE 2: if $u-1 != null goto $u-1 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: java.lang.Object mCustomActionObj>
+NODE 3: $u2 = <android.os.Build$VERSION: int SDK_INT>
+NODE 4: if $u2 >= 21 goto $u0 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: java.lang.String mAction>
+NODE 5: $u0 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: java.lang.String mAction>
+NODE 6: $u1 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: java.lang.CharSequence mName>
+NODE 7: $u2 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: int mIcon>
+NODE 8: $u3 = this.<android.support.v4.media.session.PlaybackStateCompat$CustomAction: android.os.Bundle mExtras>
+NODE 9: $u-1 = staticinvoke <android.support.v4.media.session.PlaybackStateCompatApi21$CustomAction: java.lang.Object newInstance(java.lang.String,java.lang.CharSequence,int,android.os.Bundle)>($u0, $u1, $u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.PreferenceProvider.query ===
+SUSPICIOUS_API: forName
+NODE 1: $u12 := @parameter2: java.lang.String
+NODE 2: if $u-1#14 == 0 goto $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u12)
+NODE 3: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u12)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.PreferenceProvider.update ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter2: java.lang.String
+NODE 2: if $u-1#7 == 0 goto $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u9)
+NODE 3: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u9)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader.run ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader
+NODE 2: $u0 = this.<com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader: com.actionbarsherlock.widget.ActivityChooserModel this$0>
+NODE 3: $u-1 = staticinvoke <com.actionbarsherlock.widget.ActivityChooserModel: android.content.Context access$500(com.actionbarsherlock.widget.ActivityChooserModel)>($u0)
+NODE 4: $u0 = this.<com.actionbarsherlock.widget.ActivityChooserModel$HistoryLoader: com.actionbarsherlock.widget.ActivityChooserModel this$0>
+NODE 5: $u-1#10 = staticinvoke <com.actionbarsherlock.widget.ActivityChooserModel: java.lang.String access$400(com.actionbarsherlock.widget.ActivityChooserModel)>($u0)
+NODE 6: $u-1#12 = virtualinvoke $u-1.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1#10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.MediaMetadataCompat.getMediaMetadata ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u4#2 >= 21 goto $u4 = staticinvoke <android.support.v4.media.MediaMetadataCompatApi21$Builder: java.lang.Object newInstance()>()
+NODE 2: $u4 = staticinvoke <android.support.v4.media.MediaMetadataCompatApi21$Builder: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.view.menu.MenuBuilder.performItemAction ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: com.actionbarsherlock.view.MenuItem
+NODE 2: itemImpl = (com.actionbarsherlock.internal.view.menu.MenuItemImpl) $u8
+NODE 3: if $u-1 != 0 goto $u-1 = virtualinvoke itemImpl.<com.actionbarsherlock.internal.view.menu.MenuItemImpl: boolean invoke()>()
+NODE 4: $u-1 = virtualinvoke itemImpl.<com.actionbarsherlock.internal.view.menu.MenuItemImpl: boolean invoke()>()
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.util.MapCollections.toArrayHelper ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.util.MapCollections
+NODE 2: array := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<android.support.v4.util.MapCollections: int colGetSize()>()
+NODE 4: if $u3 >= $u-1 goto $u3 = 0
+NODE 5: $u-1#4 = virtualinvoke array.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#4 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#4, $u-1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.filters.AccountFiltersListFragment$2.drop ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.filters.AccountFiltersListFragment$2
+NODE 2: orderedList = new java.util.ArrayList
+NODE 3: $u8#25 = this.<com.mobilesail.voipsip.ui.filters.AccountFiltersListFragment$2: com.mobilesail.voipsip.ui.filters.AccountFiltersListFragment this$0>
+NODE 4: $u-1#40 = virtualinvoke $u8#25.<com.mobilesail.voipsip.ui.filters.AccountFiltersListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 5: $u-1#42 = virtualinvoke $u-1#40.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u14 = 0
+NODE 7: if $u14 >= $u15 goto return
+NODE 8: $u9#46 = <com.mobilesail.voipsip.api.SipManager: android.net.Uri FILTER_ID_URI_BASE>
+NODE 9: $u-1#36 = virtualinvoke orderedList.<java.util.ArrayList: java.lang.Object get(int)>($u14)
+NODE 10: $u-1#34 = (java.lang.Long) $u-1#36
+NODE 11: $u-1#32 = virtualinvoke $u-1#34.<java.lang.Long: long longValue()>()
+NODE 12: $u9#46 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u9#46, $u-1#32)
+NODE 13: cv = new android.content.ContentValues
+NODE 14: virtualinvoke $u-1#42.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u9#46, cv, null, null)
+NODE 15: $u14 = $u14 + 1
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.PluginManager.instantiatePlugin ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: if $u-1 != 0 goto (branch)
+NODE 3: c = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.PluginManager.instantiatePlugin ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: c = null
+NODE 3: if $u-1 != 0 goto (branch)
+NODE 4: c = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u8)
+NODE 5: if $u-1 == 0 goto return null
+NODE 6: $u-1#12 = virtualinvoke c.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.utils.UtilityWrapper.safelyGetSuperclassMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: cls := @parameter0: java.lang.Class
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: parametersType := @parameter2: java.lang.Class[]
+NODE 4: cls = virtualinvoke cls.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 5: if cls == class "Ljava/lang/Object;" goto $u1#8 = new java.lang.RuntimeException
+NODE 6: $u-1 = virtualinvoke cls.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u5, parametersType)
+NODE 7: cls = virtualinvoke cls.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 8: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.utils.UtilityWrapper.safelyInvokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.reflect.Method
+NODE 2: $u4 := @parameter1: java.lang.Object
+NODE 3: $u5 := @parameter2: java.lang.Object[]
+NODE 4: $u4 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.help.Help.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#25 = staticinvoke <com.mobilesail.voipsip.ui.help.Faq: com.mobilesail.voipsip.ui.help.Faq newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.help.Help.onItemClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#30 = staticinvoke <com.mobilesail.voipsip.ui.help.Legal: com.mobilesail.voipsip.ui.help.Legal newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompatEclairMr1.setChildrenDrawingOrderEnabled ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1 != null goto $u1 = <android.support.v4.view.ViewCompatEclairMr1: java.lang.reflect.Method sChildrenDrawingOrderMethod>
+NODE 2: $u1#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompatEclairMr1.setChildrenDrawingOrderEnabled ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.view.ViewGroup
+NODE 2: $u1 = <android.support.v4.view.ViewCompatEclairMr1: java.lang.reflect.Method sChildrenDrawingOrderMethod>
+NODE 3: if $u1 != null goto $u1 = <android.support.v4.view.ViewCompatEclairMr1: java.lang.reflect.Method sChildrenDrawingOrderMethod>
+NODE 4: $u1 = <android.support.v4.view.ViewCompatEclairMr1: java.lang.reflect.Method sChildrenDrawingOrderMethod>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.engine.SystemWebChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder.setAnimatedValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder: java.lang.reflect.Method mSetter>
+NODE 4: $u1#2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder$FloatPropertyValuesHolder: java.lang.Object[] mTmpValueArray>
+NODE 5: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1#2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompat$BaseViewCompatImpl.bindTempDetach ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u3 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchStartTemporaryDetach", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompat$BaseViewCompatImpl.bindTempDetach ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u3 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchFinishTemporaryDetach", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompat$BaseViewCompatImpl.dispatchFinishTemporaryDetach ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewCompat$BaseViewCompatImpl
+NODE 2: $u4 := @parameter0: android.view.View
+NODE 3: if $u1 != 0 goto $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchFinishTemporaryDetach>
+NODE 4: $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchFinishTemporaryDetach>
+NODE 5: if $u1#2 == null goto virtualinvoke $u4.<android.view.View: void onFinishTemporaryDetach()>()
+NODE 6: $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchFinishTemporaryDetach>
+NODE 7: $u2 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u1#2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewCompat$BaseViewCompatImpl.dispatchStartTemporaryDetach ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewCompat$BaseViewCompatImpl
+NODE 2: $u4 := @parameter0: android.view.View
+NODE 3: if $u1 != 0 goto $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchStartTemporaryDetach>
+NODE 4: $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchStartTemporaryDetach>
+NODE 5: if $u1#2 == null goto virtualinvoke $u4.<android.view.View: void onStartTemporaryDetach()>()
+NODE 6: $u1#2 = this.<android.support.v4.view.ViewCompat$BaseViewCompatImpl: java.lang.reflect.Method mDispatchStartTemporaryDetach>
+NODE 7: $u2 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u1#2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipService.acquireResources ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipService
+NODE 2: if $u5 == 0 goto $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: if $u5 != 0 goto $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 5: wman = (android.net.wifi.WifiManager) $u-1
+NODE 6: if $u5 != 0 goto this.<com.mobilesail.voipsip.service.SipService: boolean holdResources> = 1
+NODE 7: $u-1#46 = virtualinvoke wman.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipService.addAllAccounts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipService
+NODE 2: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 4: $u2 = <com.mobilesail.voipsip.db.DBProvider: java.lang.String[] ACCOUNT_FULL_PROJECTION>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "active=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipService.unregisterAllAccounts ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipService
+NODE 2: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 4: $u2 = <com.mobilesail.voipsip.db.DBProvider: java.lang.String[] ACCOUNT_FULL_PROJECTION>
+NODE 5: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipService.updateRegistrationsState ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipService
+NODE 2: $u-1 = virtualinvoke this.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_URI>
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.SipNotifications.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.mobilesail.voipsip.service.SipNotifications
+NODE 2: $u4 := @parameter0: java.lang.reflect.Method
+NODE 3: $u5 := @parameter1: java.lang.Object[]
+NODE 4: $u1 = this.<com.mobilesail.voipsip.service.SipNotifications: android.content.Context context>
+NODE 5: virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.os.EnvironmentCompat.getStorageState ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.filters.EditFilter.saveFilter ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.ui.filters.EditFilter
+NODE 2: if $u1 >= 0 goto $u-1#57 = virtualinvoke this.<com.mobilesail.voipsip.ui.filters.EditFilter: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#57 = virtualinvoke this.<com.mobilesail.voipsip.ui.filters.EditFilter: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1#59 = <com.mobilesail.voipsip.api.SipManager: android.net.Uri FILTER_URI>
+NODE 5: $u2#60 = newarray (java.lang.String)[1]
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#68 = virtualinvoke $u-1#57.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#59, $u2#60, "account=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.filters.EditFilter.saveFilter ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.filters.EditFilter
+NODE 2: if $u1 >= 0 goto $u-1#57 = virtualinvoke this.<com.mobilesail.voipsip.ui.filters.EditFilter: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#57 = virtualinvoke this.<com.mobilesail.voipsip.ui.filters.EditFilter: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1#59 = <com.mobilesail.voipsip.api.SipManager: android.net.Uri FILTER_ID_URI_BASE>
+NODE 5: $u0#52 = this.<com.mobilesail.voipsip.ui.filters.EditFilter: java.lang.Long filterId>
+NODE 6: $u2 = virtualinvoke $u0#52.<java.lang.Long: long longValue()>()
+NODE 7: $u1#59 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u1#59, $u2)
+NODE 8: $u0 = this.<com.mobilesail.voipsip.ui.filters.EditFilter: com.mobilesail.voipsip.models.Filter filter>
+NODE 9: $u-1#81 = virtualinvoke $u0.<com.mobilesail.voipsip.models.Filter: android.content.ContentValues getDbContentValues()>()
+NODE 10: virtualinvoke $u-1#57.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#59, $u-1#81, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.AccountListUtils.getAccountDisplay ===
+SUSPICIOUS_API: query
+NODE 1: $u17 := @parameter0: android.content.Context
+NODE 2: $u18 := @parameter1: long
+NODE 3: $u-1#12 = virtualinvoke $u17.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u3 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_STATUS_ID_URI_BASE>
+NODE 5: $u3 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u3, $u18)
+NODE 6: $u-1#18 = virtualinvoke $u-1#12.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter.getView ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter
+NODE 2: $u12 := @parameter1: android.view.View
+NODE 3: $u13 := @parameter2: android.view.ViewGroup
+NODE 4: if $u12 == null goto $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 5: $u-1 = virtualinvoke $u12.<android.view.View: int getId()>()
+NODE 6: if $u-1 == $u7 goto $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 7: $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 8: $u-1#7 = virtualinvoke $u6#6.<com.actionbarsherlock.widget.ActivityChooserView: android.content.Context getContext()>()
+NODE 9: $u-1#9 = staticinvoke <android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)>($u-1#7)
+NODE 10: $u-1 = <com.actionbarsherlock.R$layout: int abs__activity_chooser_view_list_item>
+NODE 11: $u12 = virtualinvoke $u-1#9.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup,boolean)>($u-1, $u13, 0)
+NODE 12: if $u-1#53 == 0 goto staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 0)
+NODE 13: staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 7
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter.getView ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter
+NODE 2: $u12 := @parameter1: android.view.View
+NODE 3: $u13 := @parameter2: android.view.ViewGroup
+NODE 4: if $u12 == null goto $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 5: $u-1 = virtualinvoke $u12.<android.view.View: int getId()>()
+NODE 6: if $u-1 == $u7 goto $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 7: $u6#6 = this.<com.actionbarsherlock.widget.ActivityChooserView$ActivityChooserViewAdapter: com.actionbarsherlock.widget.ActivityChooserView this$0>
+NODE 8: $u-1#7 = virtualinvoke $u6#6.<com.actionbarsherlock.widget.ActivityChooserView: android.content.Context getContext()>()
+NODE 9: $u-1#9 = staticinvoke <android.view.LayoutInflater: android.view.LayoutInflater 'from'(android.content.Context)>($u-1#7)
+NODE 10: $u-1 = <com.actionbarsherlock.R$layout: int abs__activity_chooser_view_list_item>
+NODE 11: $u12 = virtualinvoke $u-1#9.<android.view.LayoutInflater: android.view.View inflate(int,android.view.ViewGroup,boolean)>($u-1, $u13, 0)
+NODE 12: if $u-1#53 == 0 goto staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 0)
+NODE 13: if $u11 != 0 goto staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 0)
+NODE 14: if $u-1#53 == 0 goto staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 0)
+NODE 15: staticinvoke <com.actionbarsherlock.widget.ActivityChooserView$SetActivated: void invoke(android.view.View,boolean)>($u12, 0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 7
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 12 -> 15
+EDGE: 13 -> 15
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.account.AccountsEditListFragment.onActivityResult ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.account.AccountsEditListFragment
+NODE 2: $u12 := @parameter2: android.content.Intent
+NODE 3: $u-1#12 = virtualinvoke $u12.<android.content.Intent: long getLongExtra(java.lang.String,long)>("android.intent.extra.UID", -1L)
+NODE 4: if $u4 == 0 goto return
+NODE 5: $u0 = new android.content.ContentValues
+NODE 6: cv = $u0
+NODE 7: $u-1#15 = virtualinvoke this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 8: $u-1#17 = virtualinvoke $u-1#15.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u5 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 10: $u5 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u5, $u-1#12)
+NODE 11: virtualinvoke $u-1#17.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u5, cv, null, null)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.account.AccountsEditListFragment.onContextItemSelected ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.account.AccountsEditListFragment
+NODE 2: $u10 := @parameter0: android.view.MenuItem
+NODE 3: $u-1 = interfaceinvoke $u10.<android.view.MenuItem: android.view.ContextMenu$ContextMenuInfo getMenuInfo()>()
+NODE 4: $u-1#4 = specialinvoke this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: com.mobilesail.voipsip.api.SipProfile profileFromContextMenuInfo(android.view.ContextMenu$ContextMenuInfo)>($u-1)
+NODE 5: cv = new android.content.ContentValues
+NODE 6: $u-1#11 = virtualinvoke this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 7: $u-1#13 = virtualinvoke $u-1#11.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u5 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 9: $u6 = $u-1#4.<com.mobilesail.voipsip.api.SipProfile: long id>
+NODE 10: $u5 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u5, $u6)
+NODE 11: virtualinvoke $u-1#13.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u5, cv, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.account.AccountsEditListFragment.onToggleRow ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.account.AccountsEditListFragment
+NODE 2: $u7 := @parameter0: com.mobilesail.voipsip.ui.account.AccountsEditListAdapter$AccountRowTag
+NODE 3: cv = new android.content.ContentValues
+NODE 4: $u-1#6 = virtualinvoke this.<com.mobilesail.voipsip.ui.account.AccountsEditListFragment: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u2 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 7: $u4 = $u7.<com.mobilesail.voipsip.ui.account.AccountsEditListAdapter$AccountRowTag: long accountId>
+NODE 8: $u2 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u2, $u4)
+NODE 9: virtualinvoke $u-1#8.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2, cv, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: android.support.v4.util.SimpleArrayMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<android.support.v4.util.SimpleArrayMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.ArrayUtils.emptyArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: kind := @parameter0: java.lang.Class
+NODE 2: if cache == null goto $u-1#15 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(kind, 0)
+NODE 3: if $u-1 == kind goto $u2 = (java.lang.Object[]) cache
+NODE 4: $u-1#15 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(kind, 0)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.MediaDescriptionCompat.getMediaDescription ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u1#2 >= 21 goto $u1 = staticinvoke <android.support.v4.media.MediaDescriptionCompatApi21$Builder: java.lang.Object newInstance()>()
+NODE 2: $u1 = staticinvoke <android.support.v4.media.MediaDescriptionCompatApi21$Builder: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.CollectLogs.getLogs ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new java.util.ArrayList
+NODE 2: commandLine = $u1
+NODE 3: $u-1#10 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u7 = newarray (java.lang.String)[0]
+NODE 5: $u-1#14 = virtualinvoke commandLine.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($u7)
+NODE 6: $u7 = (java.lang.String[]) $u-1#14
+NODE 7: $u-1#17 = virtualinvoke $u-1#10.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u7)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipProfile.getAllProfiles ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u11 := @parameter2: java.lang.String[]
+NODE 3: selection = null
+NODE 4: selectionArgs = null
+NODE 5: if $u10 == 0 goto $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: selection = "active=?"
+NODE 7: selectionArgs = newarray (java.lang.String)[1]
+NODE 8: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 10: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u11, selection, selectionArgs, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 5 -> 8
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipProfile.getProfileFromDbId ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u12 := @parameter1: long
+NODE 3: $u14 := @parameter2: java.lang.String[]
+NODE 4: if $u0 == 0 goto return account
+NODE 5: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 7: $u1 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u1, $u12)
+NODE 8: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u14, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: forName
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesProviderWrapper.getKeepAliveInterval ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.utils.PreferencesProviderWrapper
+NODE 2: $u1 = this.<com.mobilesail.voipsip.utils.PreferencesProviderWrapper: android.net.ConnectivityManager connectivityManager>
+NODE 3: $u-1 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesProviderWrapper.getSystemProp ===
+SUSPICIOUS_API: exec
+NODE 1: $u9 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u6 = new java.lang.StringBuilder
+NODE 4: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("getprop ")
+NODE 5: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u9)
+NODE 6: $u9 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#10 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesProviderWrapper.isValidConnectionForIncoming ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.utils.PreferencesProviderWrapper
+NODE 2: $u1 = this.<com.mobilesail.voipsip.utils.PreferencesProviderWrapper: android.net.ConnectivityManager connectivityManager>
+NODE 3: $u-1 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesProviderWrapper.isValidConnectionForOutgoing ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.utils.PreferencesProviderWrapper
+NODE 2: if $u-1 == 0 goto $u1 = this.<com.mobilesail.voipsip.utils.PreferencesProviderWrapper: android.net.ConnectivityManager connectivityManager>
+NODE 3: $u1 = this.<com.mobilesail.voipsip.utils.PreferencesProviderWrapper: android.net.ConnectivityManager connectivityManager>
+NODE 4: $u-1#6 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.PreferencesProviderWrapper.resetAllDefaultValues ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.utils.PreferencesProviderWrapper
+NODE 2: uri = <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri RAZ_URI>
+NODE 3: $u1 = this.<com.mobilesail.voipsip.utils.PreferencesProviderWrapper: android.content.ContentResolver resolver>
+NODE 4: $u2 = new android.content.ContentValues
+NODE 5: virtualinvoke $u1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>(uri, $u2, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.UAStateReceiver.on_call_media_state ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.UAStateReceiver
+NODE 2: $u6 := @parameter0: int
+NODE 3: if $u2#22 != 0 goto $u2#31 = this.<com.mobilesail.voipsip.pjsip.UAStateReceiver: com.mobilesail.voipsip.pjsip.UAStateReceiver$WorkerHandler msgHandler>
+NODE 4: $u2 = this.<com.mobilesail.voipsip.pjsip.UAStateReceiver: com.mobilesail.voipsip.pjsip.PjSipService pjService>
+NODE 5: virtualinvoke $u2.<com.mobilesail.voipsip.pjsip.PjSipService: void startRecording(int,int)>($u6, 3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.pjsip.UAStateReceiver.on_pager_status ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.pjsip.UAStateReceiver
+NODE 2: $u9#32 = this.<com.mobilesail.voipsip.pjsip.UAStateReceiver: com.mobilesail.voipsip.pjsip.PjSipService pjService>
+NODE 3: $u9#33 = $u9#32.<com.mobilesail.voipsip.pjsip.PjSipService: com.mobilesail.voipsip.service.SipService service>
+NODE 4: $u-1#34 = virtualinvoke $u9#33.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 5: args = new android.content.ContentValues
+NODE 6: if $u14 == 200 goto $u9#54 = <com.mobilesail.voipsip.api.SipMessage: android.net.Uri MESSAGE_URI>
+NODE 7: if $u14 == 202 goto $u9#54 = <com.mobilesail.voipsip.api.SipMessage: android.net.Uri MESSAGE_URI>
+NODE 8: $u9#54 = <com.mobilesail.voipsip.api.SipMessage: android.net.Uri MESSAGE_URI>
+NODE 9: $u11 = newarray (java.lang.String)[2]
+NODE 10: virtualinvoke $u-1#34.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u9#54, args, "receiver=? AND body=? AND type=6", $u11)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 8
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.session.PlaybackStateCompat.getPlaybackState ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.media.session.PlaybackStateCompat
+NODE 2: if $u3 != null goto $u3 = this.<android.support.v4.media.session.PlaybackStateCompat: java.lang.Object mStateObj>
+NODE 3: $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 4: if $u3#3 >= 21 goto customActions = null
+NODE 5: customActions = null
+NODE 6: if $u3#9 == null goto $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 7: customActions = new java.util.ArrayList
+NODE 8: if $u-1#17 == 0 goto $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 9: $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 10: if $u3#3 < 22 goto $u3#3 = this.<android.support.v4.media.session.PlaybackStateCompat: int mState>
+NODE 11: $u3#3 = this.<android.support.v4.media.session.PlaybackStateCompat: int mState>
+NODE 12: $u4 = this.<android.support.v4.media.session.PlaybackStateCompat: long mPosition>
+NODE 13: $u6 = this.<android.support.v4.media.session.PlaybackStateCompat: long mBufferedPosition>
+NODE 14: $u8 = this.<android.support.v4.media.session.PlaybackStateCompat: float mSpeed>
+NODE 15: $u9 = this.<android.support.v4.media.session.PlaybackStateCompat: long mActions>
+NODE 16: $u11 = this.<android.support.v4.media.session.PlaybackStateCompat: java.lang.CharSequence mErrorMessage>
+NODE 17: $u12 = this.<android.support.v4.media.session.PlaybackStateCompat: long mUpdateTime>
+NODE 18: $u15 = this.<android.support.v4.media.session.PlaybackStateCompat: long mActiveItemId>
+NODE 19: $u0 = this.<android.support.v4.media.session.PlaybackStateCompat: android.os.Bundle mExtras>
+NODE 20: $u3 = staticinvoke <android.support.v4.media.session.PlaybackStateCompatApi22: java.lang.Object newInstance(int,long,long,float,long,java.lang.CharSequence,long,java.util.List,long,android.os.Bundle)>($u3#3, $u4, $u6, $u8, $u9, $u11, $u12, customActions, $u15, $u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.session.PlaybackStateCompat.getPlaybackState ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.media.session.PlaybackStateCompat
+NODE 2: if $u3 != null goto $u3 = this.<android.support.v4.media.session.PlaybackStateCompat: java.lang.Object mStateObj>
+NODE 3: $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 4: if $u3#3 >= 21 goto customActions = null
+NODE 5: customActions = null
+NODE 6: if $u3#9 == null goto $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 7: customActions = new java.util.ArrayList
+NODE 8: if $u-1#17 == 0 goto $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 9: $u3#3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 10: if $u3#3 < 22 goto $u3#3 = this.<android.support.v4.media.session.PlaybackStateCompat: int mState>
+NODE 11: $u3#3 = this.<android.support.v4.media.session.PlaybackStateCompat: int mState>
+NODE 12: $u4 = this.<android.support.v4.media.session.PlaybackStateCompat: long mPosition>
+NODE 13: $u6 = this.<android.support.v4.media.session.PlaybackStateCompat: long mBufferedPosition>
+NODE 14: $u8 = this.<android.support.v4.media.session.PlaybackStateCompat: float mSpeed>
+NODE 15: $u9 = this.<android.support.v4.media.session.PlaybackStateCompat: long mActions>
+NODE 16: $u11 = this.<android.support.v4.media.session.PlaybackStateCompat: java.lang.CharSequence mErrorMessage>
+NODE 17: $u12 = this.<android.support.v4.media.session.PlaybackStateCompat: long mUpdateTime>
+NODE 18: $u15 = this.<android.support.v4.media.session.PlaybackStateCompat: long mActiveItemId>
+NODE 19: $u3 = staticinvoke <android.support.v4.media.session.PlaybackStateCompatApi21: java.lang.Object newInstance(int,long,long,float,long,java.lang.CharSequence,long,java.util.List,long)>($u3#3, $u4, $u6, $u8, $u9, $u11, $u12, customActions, $u15)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 6 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.utils.Base64$1.resolveClass ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.mobilesail.voipsip.utils.Base64$1
+NODE 2: $u5 := @parameter0: java.io.ObjectStreamClass
+NODE 3: $u-1 = virtualinvoke $u5.<java.io.ObjectStreamClass: java.lang.String getName()>()
+NODE 4: $u3 = this.<com.mobilesail.voipsip.utils.Base64$1: java.lang.ClassLoader val$loader>
+NODE 5: $u-1#2 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u-1, 0, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.PresenceManager.updateRegistrations ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.service.PresenceManager
+NODE 2: $u0 = this.<com.mobilesail.voipsip.service.PresenceManager: com.mobilesail.voipsip.service.SipService service>
+NODE 3: if $u0 != null goto $u0 = this.<com.mobilesail.voipsip.service.PresenceManager: com.mobilesail.voipsip.service.SipService service>
+NODE 4: $u0 = this.<com.mobilesail.voipsip.service.PresenceManager: com.mobilesail.voipsip.service.SipService service>
+NODE 5: $u-1 = virtualinvoke $u0.<com.mobilesail.voipsip.service.SipService: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 7: $u2 = <com.mobilesail.voipsip.service.PresenceManager: java.lang.String[] ACC_PROJECTION>
+NODE 8: $u4 = newarray (java.lang.String)[1]
+NODE 9: $u-1#11 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "active=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.getPreferenceBooleanValue ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u11 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u11)
+NODE 4: $u-1#3 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u3 = class "Ljava/lang/Boolean;"
+NODE 6: $u11 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, $u11, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.getPreferenceFloatValue ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u10)
+NODE 4: $u-1#3 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u3 = class "Ljava/lang/Float;"
+NODE 6: $u10 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, $u10, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.getPreferenceIntegerValue ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u10)
+NODE 4: $u-1#3 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u3 = class "Ljava/lang/Integer;"
+NODE 6: $u10 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, $u10, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.getPreferenceStringValue ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u10)
+NODE 4: $u-1#3 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u3 = class "Ljava/lang/String;"
+NODE 6: $u10 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, $u10, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.setPreferenceBooleanValue ===
+SUSPICIOUS_API: update
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u6)
+NODE 4: values = new android.content.ContentValues
+NODE 5: $u-1#5 = virtualinvoke $u5.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = class "Ljava/lang/Boolean;"
+NODE 7: $u6 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 8: virtualinvoke $u-1#5.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1, values, $u6, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.setPreferenceFloatValue ===
+SUSPICIOUS_API: update
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u6)
+NODE 4: values = new android.content.ContentValues
+NODE 5: $u-1#3 = virtualinvoke $u5.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = class "Ljava/lang/Float;"
+NODE 7: $u6 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 8: virtualinvoke $u-1#3.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1, values, $u6, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.SipConfigManager.setPreferenceStringValue ===
+SUSPICIOUS_API: update
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.mobilesail.voipsip.api.SipConfigManager: android.net.Uri getPrefUriForKey(java.lang.String)>($u6)
+NODE 4: values = new android.content.ContentValues
+NODE 5: $u-1#3 = virtualinvoke $u5.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = class "Ljava/lang/String;"
+NODE 7: $u6 = virtualinvoke $u3.<java.lang.Class: java.lang.String getName()>()
+NODE 8: virtualinvoke $u-1#3.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1, values, $u6, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.routing.MediaRouterJellybeanMr1$IsConnectingWorkaround.isConnecting ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.media.routing.MediaRouterJellybeanMr1$IsConnectingWorkaround
+NODE 2: $u6 := @parameter0: java.lang.Object
+NODE 3: route = (android.media.MediaRouter$RouteInfo) $u6
+NODE 4: $u2 = this.<android.support.v4.media.routing.MediaRouterJellybeanMr1$IsConnectingWorkaround: java.lang.reflect.Method mGetStatusCodeMethod>
+NODE 5: if $u2 == null goto return 0
+NODE 6: $u2 = this.<android.support.v4.media.routing.MediaRouterJellybeanMr1$IsConnectingWorkaround: java.lang.reflect.Method mGetStatusCodeMethod>
+NODE 7: $u4 = newarray (java.lang.Object)[0]
+NODE 8: $u6 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(route, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.SipHome.asyncSanityCheck ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.ui.SipHome
+NODE 2: $u-1#6 = virtualinvoke this.<com.mobilesail.voipsip.ui.SipHome: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivityService = (android.net.ConnectivityManager) $u-1#6
+NODE 4: $u-1#9 = virtualinvoke connectivityService.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.SipHome.postStartSipService ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.ui.SipHome
+NODE 2: if $u-1 != 0 goto return
+NODE 3: $u-1#18 = virtualinvoke this.<com.mobilesail.voipsip.ui.SipHome: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 5: $u2 = newarray (java.lang.String)[1]
+NODE 6: $u-1#24 = virtualinvoke $u-1#18.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.SipHome.onOptionsItemSelected ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#41 = staticinvoke <com.mobilesail.voipsip.ui.help.Help: com.mobilesail.voipsip.ui.help.Help newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.SipHome.onOptionsItemSelected ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.mobilesail.voipsip.ui.SipHome
+NODE 2: $u-1#47 = virtualinvoke this.<com.mobilesail.voipsip.ui.SipHome: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_URI>
+NODE 4: $u2#51 = newarray (java.lang.String)[1]
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#59 = virtualinvoke $u-1#47.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2#51, "wizard=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.wizards.WizardUtils.getWizardClassInfos ===
+SUSPICIOUS_API: invoke
+NODE 1: wizard := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke wizard.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getWizardInfo", null)
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder.setupValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 4: if $u2 != null goto $u2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 5: $u2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 6: $u3 = newarray (java.lang.Object)[0]
+NODE 7: $u5 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder.setAnimatedValue ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u1 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mSetter>
+NODE 4: $u1#2 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.Object[] mTmpValueArray>
+NODE 5: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1#2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder.setupSetterAndGetter ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder
+NODE 2: $u7 := @parameter0: java.lang.Object
+NODE 3: if $u-1#7 != 0 goto $u-1#7 = interfaceinvoke $u-1#5.<java.util.Iterator: boolean hasNext()>()
+NODE 4: $u3 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 5: if $u3 != null goto $u3 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 6: $u3 = this.<com.actionbarsherlock.internal.nineoldandroids.animation.PropertyValuesHolder: java.lang.reflect.Method mGetter>
+NODE 7: $u5 = newarray (java.lang.Object)[0]
+NODE 8: $u-1#9 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.receiver.DynamicReceiver4.onConnectivityChanged ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.mobilesail.voipsip.service.receiver.DynamicReceiver4
+NODE 2: if $u9 == null goto $u5 = this.<com.mobilesail.voipsip.service.receiver.DynamicReceiver4: com.mobilesail.voipsip.service.SipService service>
+NODE 3: if $u-1 != 0 goto $u5 = this.<com.mobilesail.voipsip.service.receiver.DynamicReceiver4: com.mobilesail.voipsip.service.SipService service>
+NODE 4: if $u-1 != 0 goto (branch)
+NODE 5: $u5 = this.<com.mobilesail.voipsip.service.receiver.DynamicReceiver4: com.mobilesail.voipsip.service.SipService service>
+NODE 6: $u-1#11 = virtualinvoke $u5.<com.mobilesail.voipsip.service.SipService: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 7: cm = (android.net.ConnectivityManager) $u-1#11
+NODE 8: $u9 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 5
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.service.receiver.DynamicReceiver4.onReceiveInternal ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u13 := @parameter0: android.content.Context
+NODE 2: if $u-1#11 == 0 goto $u-1#11 = virtualinvoke $u-1.<java.lang.String: boolean equals(java.lang.Object)>("com.mobilesail.voipsip.service.ACCOUNT_CHANGED")
+NODE 3: $u-1#14 = virtualinvoke $u13.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1#14
+NODE 5: $u-1#17 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1#3 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u1 < 7 goto return
+NODE 3: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 8: goto [?= $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.ContextCompatFroyo.getExternalFilesDir ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u2 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.File getExternalFilesDir(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.view.MenuInflater$MenuState.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.actionbarsherlock.view.MenuInflater$MenuState
+NODE 2: $u7 := @parameter0: java.lang.String
+NODE 3: constructorSignature := @parameter1: java.lang.Class[]
+NODE 4: $u9 := @parameter2: java.lang.Object[]
+NODE 5: $u3 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: com.actionbarsherlock.view.MenuInflater this$0>
+NODE 6: $u-1 = staticinvoke <com.actionbarsherlock.view.MenuInflater: android.content.Context access$100(com.actionbarsherlock.view.MenuInflater)>($u3)
+NODE 7: $u-1#4 = virtualinvoke $u-1.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#6 = virtualinvoke $u-1#4.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: $u-1#7 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>(constructorSignature)
+NODE 10: $u-1#8 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.view.MenuInflater$MenuState.setItem ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.actionbarsherlock.view.MenuInflater$MenuState
+NODE 2: $u6 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.String itemActionViewClassName>
+NODE 3: if $u6 == null goto $u3#11 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: int itemActionViewLayout>
+NODE 4: $u6 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.String itemActionViewClassName>
+NODE 5: $u-1#47 = staticinvoke <com.actionbarsherlock.view.MenuInflater: java.lang.Class[] access$400()>()
+NODE 6: $u3#28 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: com.actionbarsherlock.view.MenuInflater this$0>
+NODE 7: $u-1#50 = staticinvoke <com.actionbarsherlock.view.MenuInflater: java.lang.Object[] access$500(com.actionbarsherlock.view.MenuInflater)>($u3#28)
+NODE 8: $u-1#52 = specialinvoke this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.Object newInstance(java.lang.String,java.lang.Class[],java.lang.Object[])>($u6, $u-1#47, $u-1#50)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.actionbarsherlock.view.MenuInflater$MenuState.readItem ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.actionbarsherlock.view.MenuInflater$MenuState
+NODE 2: if $u5#7 != 0 goto (branch)
+NODE 3: $u-1#31 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.String itemActionViewClassName>
+NODE 4: if $u-1#31 != null goto (branch)
+NODE 5: $u-1#31 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.String itemActionProviderClassName>
+NODE 6: $u-1#79 = staticinvoke <com.actionbarsherlock.view.MenuInflater: java.lang.Class[] access$200()>()
+NODE 7: $u5 = this.<com.actionbarsherlock.view.MenuInflater$MenuState: com.actionbarsherlock.view.MenuInflater this$0>
+NODE 8: $u-1#82 = staticinvoke <com.actionbarsherlock.view.MenuInflater: java.lang.Object[] access$300(com.actionbarsherlock.view.MenuInflater)>($u5)
+NODE 9: $u-1#84 = specialinvoke this.<com.actionbarsherlock.view.MenuInflater$MenuState: java.lang.Object newInstance(java.lang.String,java.lang.Class[],java.lang.Object[])>($u-1#31, $u-1#79, $u-1#82)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.ui.favorites.FavAdapter$3.onClick ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.mobilesail.voipsip.ui.favorites.FavAdapter$3
+NODE 2: cv = new android.content.ContentValues
+NODE 3: $u2#9 = this.<com.mobilesail.voipsip.ui.favorites.FavAdapter$3: android.content.Context val$context>
+NODE 4: $u-1#10 = virtualinvoke $u2#9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u3#12 = <com.mobilesail.voipsip.api.SipProfile: android.net.Uri ACCOUNT_ID_URI_BASE>
+NODE 6: $u4 = this.<com.mobilesail.voipsip.ui.favorites.FavAdapter$3: java.lang.Long val$profileId>
+NODE 7: $u-1#14 = virtualinvoke $u4.<java.lang.Long: long longValue()>()
+NODE 8: $u3#12 = staticinvoke <android.content.ContentUris: android.net.Uri withAppendedId(android.net.Uri,long)>($u3#12, $u-1#14)
+NODE 9: virtualinvoke $u-1#10.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u3#12, cv, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.media.routing.MediaRouterJellybean$GetDefaultRouteWorkaround.getDefaultRoute ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.media.routing.MediaRouterJellybean$GetDefaultRouteWorkaround
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: router = (android.media.MediaRouter) $u5
+NODE 4: $u1 = this.<android.support.v4.media.routing.MediaRouterJellybean$GetDefaultRouteWorkaround: java.lang.reflect.Method mGetSystemAudioRouteMethod>
+NODE 5: if $u1 == null goto $u-1 = virtualinvoke router.<android.media.MediaRouter: android.media.MediaRouter$RouteInfo getRouteAt(int)>(0)
+NODE 6: $u1 = this.<android.support.v4.media.routing.MediaRouterJellybean$GetDefaultRouteWorkaround: java.lang.reflect.Method mGetSystemAudioRouteMethod>
+NODE 7: $u2 = newarray (java.lang.Object)[0]
+NODE 8: $u5 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(router, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.mobilesail.voipsip.api.ISipService$Stub.onTransact ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.mobilesail.voipsip.api.ISipService$Stub
+NODE 2: $u11 := @parameter1: android.os.Parcel
+NODE 3: $u10 = virtualinvoke $u11.<android.os.Parcel: int readInt()>()
+NODE 4: $u13 = virtualinvoke $u11.<android.os.Parcel: int readInt()>()
+NODE 5: virtualinvoke this.<com.mobilesail.voipsip.api.ISipService$Stub: void startRecording(int,int)>($u10, $u13)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeAsUpIndicator", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeActionContentDescription", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.statusbar.StatusBar.setStatusBarBackgroundColor ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.apache.cordova.statusbar.StatusBar
+NODE 2: if $u-1 != 0 goto return
+NODE 3: $u2#5 = this.<org.apache.cordova.statusbar.StatusBar: org.apache.cordova.CordovaInterface cordova>
+NODE 4: $u-1#6 = interfaceinvoke $u2#5.<org.apache.cordova.CordovaInterface: android.app.Activity getActivity()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<android.app.Activity: android.view.Window getWindow()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1#8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u4 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#17 = virtualinvoke $u-1#11.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setStatusBarColor", $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.statusbar.StatusBar.setStatusBarBackgroundColor ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.statusbar.StatusBar
+NODE 2: if $u-1 != 0 goto return
+NODE 3: $u2#5 = this.<org.apache.cordova.statusbar.StatusBar: org.apache.cordova.CordovaInterface cordova>
+NODE 4: $u-1#6 = interfaceinvoke $u2#5.<org.apache.cordova.CordovaInterface: android.app.Activity getActivity()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<android.app.Activity: android.view.Window getWindow()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1#8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u4 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#17 = virtualinvoke $u-1#11.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setStatusBarColor", $u4)
+NODE 9: $u3 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#8, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u2 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.invalidateChildRegion ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u1 = this.<android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB: java.lang.reflect.Method mGetDisplayList>
+NODE 4: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

@@ -167,7 +167,11 @@ class EmbeddingModel:
             sys.exit(1)
 
         print(f"  Loading embedding model '{model_name}' (fastembed/ONNX) …", flush=True)
-        self._model = TextEmbedding(model_name=model_name)
+        # Automatically use GPU if available, fallback to CPU
+        self._model = TextEmbedding(
+            model_name=model_name,
+            providers=["CUDAExecutionProvider", "CPUExecutionProvider"]
+        )
         self._model_name = model_name
 
     def embed(self, texts: list[str]) -> list[list[float]]:

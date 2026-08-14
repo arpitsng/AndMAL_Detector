@@ -1,0 +1,2888 @@
+=== FUNCTION: app25463.vinebre.t_chat.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: app25463.vinebre.t_chat
+NODE 2: $u-1#16 = virtualinvoke this.<app25463.vinebre.t_chat: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#18 = virtualinvoke $u-1#16.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u5#20 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 5: orientationColumn = newarray (java.lang.String)[2]
+NODE 6: $u8 = newarray (java.lang.String)[1]
+NODE 7: $u-1#40 = virtualinvoke $u-1#18.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u5#20, orientationColumn, "date_added>=?", $u8, "date_added desc")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_chat.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: app25463.vinebre.t_chat
+NODE 2: $u48 := @parameter2: android.content.Intent
+NODE 3: if $u47 != -1 goto return
+NODE 4: if $u46 != 1 goto (branch)
+NODE 5: if $u46 != 2 goto (branch)
+NODE 6: $u5#20 = virtualinvoke $u48.<android.content.Intent: android.net.Uri getData()>()
+NODE 7: orientationColumn = newarray (java.lang.String)[1]
+NODE 8: $u-1#18 = virtualinvoke this.<app25463.vinebre.t_chat: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#40 = virtualinvoke $u-1#18.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u5#20, orientationColumn, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_chat.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#373 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogSource.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.log4j.Logger")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogSource.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.util.logging.Logger")
+NODE 2: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.util.logging.Logger")]
+NODE 3: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.util.logging.Logger")]
+EDGE: 2 -> 1
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogSource.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == null goto <org.apache.commons.logging.LogSource: boolean jdk14IsAvailable> = 0
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.logging.impl.Jdk14Logger")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogSource.makeNewLogInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: args = newarray (java.lang.Object)[1]
+NODE 2: $u3 = <org.apache.commons.logging.LogSource: java.lang.reflect.Constructor logImplctor>
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(args)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogSource.setLogImplementation ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.stream.PullProvider.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.preinicio$cargarconfig.onPostExecute ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: f1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.ResourceManager.getInstalledVersion ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("version.txt")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.ResourceManager.saveInstalledVersion ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("version.txt", 0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.WebViewClient.shouldOverrideUrlLoading ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.video.WebViewClient
+NODE 2: if $u-1#9 == 0 goto $u-1#9 = virtualinvoke $u9.<java.lang.String: boolean startsWith(java.lang.String)>("mfox:playvideo")
+NODE 3: $u4#36 = this.<com.adsdk.sdk.video.WebViewClient: android.app.Activity mActivity>
+NODE 4: $u-1#59 = virtualinvoke $u4#36.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u5 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#64 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("replayVideo", $u5)
+NODE 7: $u4#36 = this.<com.adsdk.sdk.video.WebViewClient: android.app.Activity mActivity>
+NODE 8: $u5#68 = newarray (java.lang.Object)[0]
+NODE 9: virtualinvoke $u-1#64.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#36, $u5#68)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.WebViewClient.shouldOverrideUrlLoading ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.video.WebViewClient
+NODE 2: if $u-1#9 == 0 goto $u-1#9 = virtualinvoke $u9.<java.lang.String: boolean startsWith(java.lang.String)>("mfox:skip")
+NODE 3: $u4#36 = this.<com.adsdk.sdk.video.WebViewClient: android.app.Activity mActivity>
+NODE 4: $u-1#59 = virtualinvoke $u4#36.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u5 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#64 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("playVideo", $u5)
+NODE 7: $u4#36 = this.<com.adsdk.sdk.video.WebViewClient: android.app.Activity mActivity>
+NODE 8: $u5#68 = newarray (java.lang.Object)[0]
+NODE 9: virtualinvoke $u-1#64.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4#36, $u5#68)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_detalle_fr$cargardetalle.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_detalle_fr$cargardetalle
+NODE 2: itemData = new android.content.ContentValues
+NODE 3: $u2 = this.<app25463.vinebre.t_detalle_fr$cargardetalle: app25463.vinebre.t_detalle_fr this$0>
+NODE 4: $u-1 = virtualinvoke $u2.<app25463.vinebre.t_detalle_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 5: $u-1#93 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u3 = <app25463.vinebre.bd_provider: android.net.Uri PRODUCTOS_URI>
+NODE 7: $u4 = new java.lang.StringBuilder
+NODE 8: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id=")
+NODE 9: $u5 = this.<app25463.vinebre.t_detalle_fr$cargardetalle: long idprod>
+NODE 10: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($u5)
+NODE 11: $u2#8 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: virtualinvoke $u-1#93.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u3, itemData, $u2#8, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.JdkIdn.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.net.IDN")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.JdkIdn.toUnicode ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.http.client.utils.JdkIdn
+NODE 2: $u2 = this.<org.apache.http.client.utils.JdkIdn: java.lang.reflect.Method toUnicode>
+NODE 3: $u4 = newarray (java.lang.Object)[1]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory$5.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.apache.commons.logging.LogFactory$5
+NODE 2: $u3 = this.<org.apache.commons.logging.LogFactory$5: java.net.URL val$url>
+NODE 3: $u-1 = virtualinvoke $u3.<java.net.URL: java.io.InputStream openStream()>()
+NODE 4: if $u-1 == null goto return null
+NODE 5: props = new java.util.Properties
+NODE 6: virtualinvoke props.<java.util.Properties: void load(java.io.InputStream)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.LabelExtractor.getAnnotations ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.annotation.Annotation
+NODE 2: $u-1 = interfaceinvoke $u7.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 3: $u-1#2 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 4: if $u4 <= 0 goto value = newarray (java.lang.annotation.Annotation)[0]
+NODE 5: method = $u-1#2[0]
+NODE 6: $u4#4 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#5 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u4#4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.LabelExtractor.getLabel ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.LabelExtractor
+NODE 2: $u8 := @parameter1: java.lang.annotation.Annotation
+NODE 3: $u-1 = specialinvoke this.<org.simpleframework.xml.core.LabelExtractor: java.lang.reflect.Constructor getConstructor(java.lang.'annotation'.Annotation)>($u8)
+NODE 4: if $u9 == null goto $u1 = newarray (java.lang.Object)[3]
+NODE 5: $u1 = newarray (java.lang.Object)[4]
+NODE 6: $u-1#6 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.LabelExtractor.getLabel ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.LabelExtractor
+NODE 2: $u8 := @parameter1: java.lang.annotation.Annotation
+NODE 3: $u-1 = specialinvoke this.<org.simpleframework.xml.core.LabelExtractor: java.lang.reflect.Constructor getConstructor(java.lang.'annotation'.Annotation)>($u8)
+NODE 4: if $u9 == null goto $u1 = newarray (java.lang.Object)[3]
+NODE 5: $u1 = newarray (java.lang.Object)[3]
+NODE 6: $u-1#6 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.Log4JLogger.<clinit> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u-1#15 != 0 goto $u1 = <org.apache.commons.logging.impl.Log4JLogger: java.lang.Class class$org$apache$log4j$Level>
+NODE 2: $u1 = <org.apache.commons.logging.impl.Log4JLogger: java.lang.Class class$org$apache$log4j$Level>
+NODE 3: if $u1 != null goto $u1#4 = <org.apache.commons.logging.impl.Log4JLogger: java.lang.Class class$org$apache$log4j$Level>
+NODE 4: $u1 = staticinvoke <org.apache.commons.logging.impl.Log4JLogger: java.lang.Class class$(java.lang.String)>("org.apache.log4j.Level")
+NODE 5: $u1#4 = $u1
+NODE 6: $u-1#24 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TRACE")
+NODE 7: $u1#4 = <org.apache.commons.logging.impl.Log4JLogger: java.lang.Class class$org$apache$log4j$Level>
+NODE 8: goto [?= $u-1#24 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TRACE")]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 3 -> 7
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.Log4JLogger.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.transform.DateFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.transform.DateFactory
+NODE 2: $u2 := @parameter0: java.lang.Object[]
+NODE 3: $u0 = this.<org.simpleframework.xml.transform.DateFactory: java.lang.reflect.Constructor factory>
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.preinicio$cargaricohome.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.preinicio$cargaricohome
+NODE 2: $u6 = this.<app25463.vinebre.preinicio$cargaricohome: app25463.vinebre.preinicio this$0>
+NODE 3: $u-1#16 = virtualinvoke $u6.<app25463.vinebre.preinicio: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("icohome", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.strategy.ReadGraph.read ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.simpleframework.xml.strategy.ReadGraph
+NODE 2: $u6 := @parameter1: org.simpleframework.xml.stream.NodeMap
+NODE 3: $u3 = this.<org.simpleframework.xml.strategy.ReadGraph: java.lang.String label>
+NODE 4: $u-1 = interfaceinvoke $u6.<org.simpleframework.xml.stream.NodeMap: org.simpleframework.xml.stream.Node remove(java.lang.String)>($u3)
+NODE 5: if $u-1#5 == 0 goto (branch)
+NODE 6: if $u-1 == null goto $u-1#11 = specialinvoke this.<org.simpleframework.xml.strategy.ReadGraph: org.simpleframework.xml.strategy.Value readInstance(org.simpleframework.xml.strategy.Type,java.lang.Class,org.simpleframework.xml.stream.NodeMap)>($u5, expect, $u6)
+NODE 7: $u3 = interfaceinvoke $u-1.<org.simpleframework.xml.stream.Node: java.lang.String getValue()>()
+NODE 8: $u3#9 = this.<org.simpleframework.xml.strategy.ReadGraph: org.simpleframework.xml.strategy.Loader loader>
+NODE 9: expect = virtualinvoke $u3#9.<org.simpleframework.xml.strategy.Loader: java.lang.Class load(java.lang.String)>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.MethodContact.get ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.simpleframework.xml.core.MethodContact
+NODE 2: $u3 := @parameter0: java.lang.Object
+NODE 3: $u0 = this.<org.simpleframework.xml.core.MethodContact: org.simpleframework.xml.core.MethodPart get>
+NODE 4: $u-1 = interfaceinvoke $u0.<org.simpleframework.xml.core.MethodPart: java.lang.reflect.Method getMethod()>()
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u3 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.MethodContact.set ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.simpleframework.xml.core.MethodContact
+NODE 2: $u9 := @parameter0: java.lang.Object
+NODE 3: $u2 = this.<org.simpleframework.xml.core.MethodContact: org.simpleframework.xml.core.MethodPart set>
+NODE 4: if $u2 != null goto $u2 = this.<org.simpleframework.xml.core.MethodContact: org.simpleframework.xml.core.MethodPart set>
+NODE 5: $u2 = this.<org.simpleframework.xml.core.MethodContact: org.simpleframework.xml.core.MethodPart set>
+NODE 6: $u-1 = interfaceinvoke $u2.<org.simpleframework.xml.core.MethodPart: java.lang.reflect.Method getMethod()>()
+NODE 7: $u4 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u9, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarDescription ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto return $u7
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb.setActionBarUpIndicator ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: android.app.Activity
+NODE 3: if $u7 != null goto sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 4: sii = new android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo
+NODE 5: $u7 = sii
+NODE 6: sii = (android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo) $u7
+NODE 7: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeAsUpIndicator>
+NODE 8: if $u3 == null goto $u3#17 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: android.widget.ImageView upIndicatorView>
+NODE 9: $u-1 = virtualinvoke $u8.<android.app.Activity: android.app.ActionBar getActionBar()>()
+NODE 10: $u3 = sii.<android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo: java.lang.reflect.Method setHomeActionContentDescription>
+NODE 11: $u4 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.util.VersionInfo.loadVersionInfo ===
+SUSPICIOUS_API: load
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u8 := @parameter1: java.lang.ClassLoader
+NODE 3: if $u7 != null goto (branch)
+NODE 4: if $u8 != null goto vip = null
+NODE 5: $u-1 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 6: $u8 = virtualinvoke $u-1.<java.lang.Thread: java.lang.ClassLoader getContextClassLoader()>()
+NODE 7: $u4#8 = new java.lang.StringBuffer
+NODE 8: $u-1#10 = virtualinvoke $u7.<java.lang.String: java.lang.String replace(char,char)>(46, 47)
+NODE 9: $u4#8 = virtualinvoke $u4#8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>($u-1#10)
+NODE 10: $u4#8 = virtualinvoke $u4#8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("/")
+NODE 11: $u4#8 = virtualinvoke $u4#8.<java.lang.StringBuffer: java.lang.StringBuffer append(java.lang.String)>("version.properties")
+NODE 12: $u-1#10 = virtualinvoke $u4#8.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 13: $u-1#22 = virtualinvoke $u8.<java.lang.ClassLoader: java.io.InputStream getResourceAsStream(java.lang.String)>($u-1#10)
+NODE 14: if $u-1#22 == null goto (branch)
+NODE 15: props = new java.util.Properties
+NODE 16: virtualinvoke props.<java.util.Properties: void load(java.io.InputStream)>($u-1#22)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat.getNetworkInfoFromBroadcast ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u3 := @parameter1: android.content.Intent
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Intent: android.os.Parcelable getParcelableExtra(java.lang.String)>("networkInfo")
+NODE 4: info = (android.net.NetworkInfo) $u-1
+NODE 5: $u-1#5 = virtualinvoke info.<android.net.NetworkInfo: int getType()>()
+NODE 6: info = virtualinvoke $u2.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>($u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.transform.CharacterArrayTransform.read ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.transform.CharacterArrayTransform
+NODE 2: $u5 := @parameter1: int
+NODE 3: $u2 = this.<org.simpleframework.xml.transform.CharacterArrayTransform: java.lang.Class entry>
+NODE 4: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u2, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.ArrayInstance.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.ArrayInstance
+NODE 2: if $u-1 == 0 goto $u1#7 = this.<org.simpleframework.xml.core.ArrayInstance: java.lang.Class type>
+NODE 3: $u1#7 = this.<org.simpleframework.xml.core.ArrayInstance: java.lang.Class type>
+NODE 4: $u2 = this.<org.simpleframework.xml.core.ArrayInstance: int length>
+NODE 5: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u1#7, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.createFactory ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u8 := @parameter1: java.lang.ClassLoader
+NODE 3: if $u8 == null goto $u-1#7 = staticinvoke <org.apache.commons.logging.LogFactory: boolean isDiagnosticsEnabled()>()
+NODE 4: $u-1 = virtualinvoke $u8.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 5: if $u-1#7 == 0 goto $u-1#28 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1#28 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: if $u-1#7 == 0 goto $u-1#28 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: goto [?= $u-1#28 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 6
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.createFactory ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u-1#7 == 0 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.createFactory ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u-1#7 == 0 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 4: $u-1#28 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.createFactoryStore ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <org.apache.commons.logging.LogFactory: java.lang.String getSystemProperty(java.lang.String,java.lang.String)>("org.apache.commons.logging.LogFactory.HashtableImpl", null)
+NODE 2: if $u-1 != null goto $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 3: $u-1 = "org.apache.commons.logging.impl.WeakHashtable"
+NODE 4: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 5: $u-1 = null
+NODE 6: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.createFactoryStore ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.apache.commons.logging.LogFactory: java.lang.String getSystemProperty(java.lang.String,java.lang.String)>("org.apache.commons.logging.LogFactory.HashtableImpl", null)
+NODE 2: if $u-1 != null goto $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 3: $u-1 = "org.apache.commons.logging.impl.WeakHashtable"
+NODE 4: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 5: $u-1#7 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1 = null
+NODE 7: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.directGetContextClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 = <org.apache.commons.logging.LogFactory: java.lang.Class class$java$lang$Thread>
+NODE 2: if $u4 != null goto $u4 = <org.apache.commons.logging.LogFactory: java.lang.Class class$java$lang$Thread>
+NODE 3: $u4 = staticinvoke <org.apache.commons.logging.LogFactory: java.lang.Class class$(java.lang.String)>("java.lang.Thread")
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getContextClassLoader", null)
+NODE 5: $u-1#11 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 6: $u-1#15 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, null)
+NODE 7: $u4 = <org.apache.commons.logging.LogFactory: java.lang.Class class$java$lang$Thread>
+NODE 8: goto [?= $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getContextClassLoader", null)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 7
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.LogFactory.implementsLogFactory ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.Class
+NODE 2: if $u6 == null goto return 0
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>("org.apache.commons.logging.LogFactory", 0, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Function.call ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.simpleframework.xml.core.Function
+NODE 2: $u7 := @parameter1: java.lang.Object
+NODE 3: if $u2 == 0 goto $u2#4 = this.<org.simpleframework.xml.core.Function: java.lang.reflect.Method method>
+NODE 4: $u2#4 = this.<org.simpleframework.xml.core.Function: java.lang.reflect.Method method>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: $u7 = virtualinvoke $u2#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Function.call ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.simpleframework.xml.core.Function
+NODE 2: $u7 := @parameter1: java.lang.Object
+NODE 3: if $u2 == 0 goto $u2#4 = this.<org.simpleframework.xml.core.Function: java.lang.reflect.Method method>
+NODE 4: $u2#4 = this.<org.simpleframework.xml.core.Function: java.lang.reflect.Method method>
+NODE 5: $u3 = newarray (java.lang.Object)[0]
+NODE 6: $u7 = virtualinvoke $u2#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.createLogFromClass ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: org.apache.commons.logging.impl.LogFactoryImpl
+NODE 2: $u21 := @parameter0: java.lang.String
+NODE 3: $u-1#24 = specialinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.ClassLoader getBaseClassLoader()>()
+NODE 4: if $u-1 == 0 goto $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)
+NODE 5: $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)
+NODE 6: goto [?= $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)]
+NODE 7: if $u-1#24 == null goto (branch)
+NODE 8: $u-1#24 = specialinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.ClassLoader getParentClassLoader(java.lang.ClassLoader)>($u-1#24)
+NODE 9: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 6 -> 5
+EDGE: 7 -> 8
+EDGE: 9 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.createLogFromClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.commons.logging.impl.LogFactoryImpl
+NODE 2: $u21 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto params = newarray (java.lang.Object)[1]
+NODE 4: params = newarray (java.lang.Object)[1]
+NODE 5: $u-1#24 = specialinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.ClassLoader getBaseClassLoader()>()
+NODE 6: if $u-1 == 0 goto $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)
+NODE 7: $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)
+NODE 8: $u0 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.Class[] logConstructorSignature>
+NODE 9: $u-1#92 = virtualinvoke $u-1#86.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0)
+NODE 10: $u-1#93 = virtualinvoke $u-1#92.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(params)
+NODE 11: goto [?= $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u21, 1, $u-1#24)]
+NODE 12: $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u21)
+NODE 13: goto [?= $u0 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.Class[] logConstructorSignature>]
+NODE 14: if $u-1#24 == null goto (branch)
+NODE 15: $u-1#24 = specialinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.ClassLoader getParentClassLoader(java.lang.ClassLoader)>($u-1#24)
+NODE 16: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 7
+EDGE: 12 -> 13
+EDGE: 13 -> 8
+EDGE: 14 -> 15
+EDGE: 16 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.createLogFromClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u21 := @parameter0: java.lang.String
+NODE 2: $u-1#86 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u21)
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.commons.logging.impl.LogFactoryImpl
+NODE 2: $u3 := @parameter0: java.lang.String
+NODE 3: if instance != null goto return instance
+NODE 4: instance = virtualinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: org.apache.commons.logging.Log newInstance(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.newInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.commons.logging.impl.LogFactoryImpl
+NODE 2: $u9 := @parameter0: java.lang.String
+NODE 3: $u7 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Constructor logConstructor>
+NODE 4: if $u7 != null goto params = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = specialinvoke this.<org.apache.commons.logging.impl.LogFactoryImpl: org.apache.commons.logging.Log discoverLogImplementation(java.lang.String)>($u9)
+NODE 6: $u7#5 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Method logMethod>
+NODE 7: if $u7#5 == null goto return $u-1
+NODE 8: params = newarray (java.lang.Object)[1]
+NODE 9: $u7#5 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Method logMethod>
+NODE 10: virtualinvoke $u7#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, params)
+NODE 11: params = newarray (java.lang.Object)[1]
+NODE 12: $u7 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Constructor logConstructor>
+NODE 13: $u-1#14 = virtualinvoke $u7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(params)
+NODE 14: $u-1 = (org.apache.commons.logging.Log) $u-1#14
+NODE 15: goto [?= $u7#5 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Method logMethod>]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 11
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.LogFactoryImpl.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.commons.logging.impl.LogFactoryImpl
+NODE 2: $u7 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Constructor logConstructor>
+NODE 3: if $u7 != null goto params = newarray (java.lang.Object)[1]
+NODE 4: params = newarray (java.lang.Object)[1]
+NODE 5: $u7 = this.<org.apache.commons.logging.impl.LogFactoryImpl: java.lang.reflect.Constructor logConstructor>
+NODE 6: $u-1#14 = virtualinvoke $u7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>(params)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.auth.NTLMEngineImpl.lmHash ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u14 = "KGS!@#$%"
+NODE 2: lmHash = virtualinvoke $u14.<java.lang.String: byte[] getBytes(java.lang.String)>("US-ASCII")
+NODE 3: $u-1#19 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/ECB/NoPadding")
+NODE 4: keyBytes = virtualinvoke $u-1#19.<javax.crypto.Cipher: byte[] doFinal(byte[])>(lmHash)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.auth.NTLMEngineImpl.lmHash ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u14 = "KGS!@#$%"
+NODE 2: lmHash = virtualinvoke $u14.<java.lang.String: byte[] getBytes(java.lang.String)>("US-ASCII")
+NODE 3: $u-1#19 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/ECB/NoPadding")
+NODE 4: $u-1#23 = virtualinvoke $u-1#19.<javax.crypto.Cipher: byte[] doFinal(byte[])>(lmHash)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.auth.NTLMEngineImpl.lmResponse ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u14 := @parameter1: byte[]
+NODE 2: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/ECB/NoPadding")
+NODE 3: $u13 = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u14)
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.auth.NTLMEngineImpl.lmResponse ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u14 := @parameter1: byte[]
+NODE 2: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/ECB/NoPadding")
+NODE 3: keyBytes = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u14)
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.auth.NTLMEngineImpl.lmResponse ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u14 := @parameter1: byte[]
+NODE 2: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES/ECB/NoPadding")
+NODE 3: $u-1#18 = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u14)
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_oficinas.onClick ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.maps.MapActivity")
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_oficinas.onCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0#182 = newarray (int)[2]
+NODE 2: $u26#229 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#232 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u26#229, $u0#182)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_radio$cargarfoto.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.t_radio$cargarfoto
+NODE 2: $u9#4 = new java.lang.StringBuilder
+NODE 3: $u9#4 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("fondo_")
+NODE 4: $u10 = this.<app25463.vinebre.t_radio$cargarfoto: java.lang.String idfoto>
+NODE 5: $u9#4 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 6: $u10 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u9#32 = this.<app25463.vinebre.t_radio$cargarfoto: app25463.vinebre.t_radio this$0>
+NODE 8: $u-1#34 = virtualinvoke $u9#32.<app25463.vinebre.t_radio: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u10, 0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.CollectionFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.CollectionFactory
+NODE 2: $u-1 = virtualinvoke this.<org.simpleframework.xml.core.CollectionFactory: java.lang.Class getType()>()
+NODE 3: real = $u-1
+NODE 4: if $u-1#3 != 0 goto $u-1#3 = specialinvoke this.<org.simpleframework.xml.core.CollectionFactory: boolean isCollection(java.lang.Class)>(real)
+NODE 5: real = virtualinvoke this.<org.simpleframework.xml.core.CollectionFactory: java.lang.Class getConversion(java.lang.Class)>($u-1)
+NODE 6: if $u-1#3 != 0 goto $u-1#13 = virtualinvoke real.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#13 = virtualinvoke real.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.mediation.customevent.CustomEventAdapter.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.mediation.customevent.CustomEventAdapter.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.gn.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.gn
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: android.app.PendingIntent
+NODE 4: $u0 = this.<com.google.android.gms.internal.gn: com.google.android.gms.internal.gm xV>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.gm: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,android.app.PendingIntent)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.gn.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.gn
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: virtualinvoke this.<com.google.android.gms.internal.gn: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u2, $u3, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.gn.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.internal.gn
+NODE 2: $u3 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u4 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u5 := @parameter2: android.os.Looper
+NODE 5: $u0 = this.<com.google.android.gms.internal.gn: com.google.android.gms.internal.gm xV>
+NODE 6: virtualinvoke $u0.<com.google.android.gms.internal.gm: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.stream.StreamProvider.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.stream.XMLInputFactory: javax.xml.stream.XMLInputFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.es.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.android.gms.internal.es
+NODE 2: $u5 := @parameter0: com.google.android.gms.internal.es$a
+NODE 3: $u-1 = virtualinvoke $u5.<com.google.android.gms.internal.es$a: java.lang.String cp()>()
+NODE 4: if $u-1#23 == null goto $u1 = new java.lang.StringBuilder
+NODE 5: goto [?= (branch)]
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("get")
+NODE 8: $u-1#33 = virtualinvoke $u-1.<java.lang.String: char charAt(int)>(0)
+NODE 9: $u-1#33 = staticinvoke <java.lang.Character: char toUpperCase(char)>($u-1#33)
+NODE 10: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($u-1#33)
+NODE 11: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 12: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 13: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#5 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u2 = newarray (java.lang.Class)[0]
+NODE 16: $u-1#50 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 17: $u1#53 = newarray (java.lang.Object)[0]
+NODE 18: $u-1#9 = virtualinvoke $u-1#50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#53)
+EDGE: 1 -> 2
+EDGE: 4 -> 6
+EDGE: 5 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ey.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter1: com.google.android.gms.internal.es
+NODE 2: if $u-1#3 != 0 goto return
+NODE 3: $u-1#5 = virtualinvoke $u6.<com.google.android.gms.internal.es: java.util.HashMap cj()>()
+NODE 4: $u-1#9 = virtualinvoke $u-1#5.<java.util.HashMap: java.util.Set keySet()>()
+NODE 5: $u-1#11 = interfaceinvoke $u-1#9.<java.util.Set: java.util.Iterator iterator()>()
+NODE 6: if $u-1#3 == 0 goto return
+NODE 7: $u-1#15 = interfaceinvoke $u-1#11.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: $u0 = (java.lang.String) $u-1#15
+NODE 9: $u-1#15 = virtualinvoke $u-1#5.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u0)
+NODE 10: $u0#20 = (com.google.android.gms.internal.es$a) $u-1#15
+NODE 11: $u-1 = virtualinvoke $u0#20.<com.google.android.gms.internal.es$a: java.lang.Class cr()>()
+NODE 12: if $u-1 == null goto $u-1#3 = interfaceinvoke $u-1#11.<java.util.Iterator: boolean hasNext()>()
+NODE 13: $u-1#15 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ja.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u9 != 1 goto $u3 = $u3 + 1
+NODE 7: if $u-1#19 == 8 goto $u3 = $u3 + 1
+NODE 8: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: $u3 = $u3 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: if $u9 >= $u-1#19 goto $u3 = $u3 + 1
+NODE 13: goto [?= (branch)]
+NODE 14: goto [?= $u3 = $u3 + 1]
+NODE 15: $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#52 = $u-1#48[$u3]
+NODE 19: $u-1#7 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#7 = virtualinvoke $u-1#7.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: $u0#61 = new java.lang.StringBuilder
+NODE 23: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("has")
+NODE 24: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 25: $u-1#67 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 26: $u8 = newarray (java.lang.Class)[0]
+NODE 27: $u0#52 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#67, $u8)
+NODE 28: $u8#73 = newarray (java.lang.Object)[0]
+NODE 29: $u-1#35 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#73)
+NODE 30: if $u0 != 0 goto $u0#61 = new java.lang.StringBuilder
+NODE 31: $u3 = $u3 + 1
+NODE 32: goto [?= (branch)]
+NODE 33: goto [?= $u3 = $u3 + 1]
+NODE 34: goto [?= $u3 = $u3 + 1]
+NODE 35: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 10
+EDGE: 7 -> 10
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+EDGE: 12 -> 10
+EDGE: 13 -> 12
+EDGE: 14 -> 10
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 31
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 17
+EDGE: 33 -> 31
+EDGE: 34 -> 31
+EDGE: 35 -> 31
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ja.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u9 != 1 goto $u3 = $u3 + 1
+NODE 7: if $u-1#19 == 8 goto $u3 = $u3 + 1
+NODE 8: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: $u3 = $u3 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: if $u9 >= $u-1#19 goto $u3 = $u3 + 1
+NODE 13: goto [?= (branch)]
+NODE 14: goto [?= $u3 = $u3 + 1]
+NODE 15: $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#52 = $u-1#48[$u3]
+NODE 19: $u-1#7 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#7 = virtualinvoke $u-1#7.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: if $u0 != 0 goto $u0#61 = new java.lang.StringBuilder
+NODE 23: $u3 = $u3 + 1
+NODE 24: goto [?= (branch)]
+NODE 25: $u0#61 = new java.lang.StringBuilder
+NODE 26: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("get")
+NODE 27: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 28: $u-1#67 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 29: $u8 = newarray (java.lang.Class)[0]
+NODE 30: $u0#52 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#67, $u8)
+NODE 31: $u8#73 = newarray (java.lang.Object)[0]
+NODE 32: $u-1#35 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#73)
+NODE 33: goto [?= $u3 = $u3 + 1]
+NODE 34: goto [?= $u3 = $u3 + 1]
+NODE 35: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 10
+EDGE: 7 -> 10
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+EDGE: 12 -> 10
+EDGE: 13 -> 12
+EDGE: 14 -> 10
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 23
+EDGE: 22 -> 23
+EDGE: 22 -> 25
+EDGE: 23 -> 24
+EDGE: 24 -> 17
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 33 -> 23
+EDGE: 34 -> 23
+EDGE: 35 -> 23
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ht.x ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0#2 != null goto $u2 = <com.google.android.gms.internal.ht: android.content.Context Ci>
+NODE 2: $u2 = <com.google.android.gms.internal.ht: android.content.Context Ci>
+NODE 3: if $u2 != null goto $u2 = <com.google.android.gms.internal.ht: android.content.Context Ci>
+NODE 4: $u2 = <com.google.android.gms.internal.ht: android.content.Context Ci>
+NODE 5: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 6: $u-1#12 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.google.android.gms.plus.plusone.PlusOneButtonCreatorImpl")
+NODE 7: $u-1#14 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 4
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ci.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter1: android.net.ConnectivityManager
+NODE 2: if $u-1#4 == 0 goto return -2
+NODE 3: $u-1#6 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.co.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.ClassLoader
+NODE 2: $u4 := @parameter2: java.lang.String
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.preinicio.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: f1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.preinicio.onCreate ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: app25463.vinebre.preinicio
+NODE 2: is = virtualinvoke this.<app25463.vinebre.preinicio: java.io.FileInputStream openFileInput(java.lang.String)>("splash")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.cl.c ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter2: java.lang.String
+NODE 3: $u8 = virtualinvoke $u8.<android.content.Context: android.content.Context createPackageContext(java.lang.String,int)>($u10, 3)
+NODE 4: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u-1#8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>("com.google.ads.mediation.MediationAdapter", 0, $u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.be.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.gms.internal.be
+NODE 2: if $u-1#6 == 0 goto $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>
+NODE 3: $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>
+NODE 4: $u-1#17 = interfaceinvoke $u1#16.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 5: if $u-1#17 == null goto $u-1#6 = $u2#19 instanceof com.google.ads.mediation.admob.AdMobServerParameters
+NODE 6: $u-1#8 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: goto [?= $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.be.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.android.gms.internal.be
+NODE 2: if $u7 == null goto $u2 = new java.util.HashMap
+NODE 3: $u2 = new java.util.HashMap
+NODE 4: if $u-1#6 == 0 goto $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>
+NODE 5: $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>
+NODE 6: $u-1#17 = interfaceinvoke $u1#16.<com.google.ads.mediation.MediationAdapter: java.lang.Class getServerParametersType()>()
+NODE 7: if $u-1#17 == null goto $u-1#6 = $u2#19 instanceof com.google.ads.mediation.admob.AdMobServerParameters
+NODE 8: $u-1#8 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 9: $u2#19 = (com.google.ads.mediation.MediationServerParameters) $u-1#8
+NODE 10: virtualinvoke $u2#19.<com.google.ads.mediation.MediationServerParameters: void load(java.util.Map)>($u2)
+NODE 11: $u2 = new java.util.HashMap
+NODE 12: goto [?= $u1#16 = this.<com.google.android.gms.internal.be: com.google.ads.mediation.MediationAdapter gg>]
+EDGE: 2 -> 11
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 12 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ba.m ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u1 = class "Lcom/google/android/gms/internal/ba;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ba.m ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u1 = class "Lcom/google/android/gms/internal/ba;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u-1)
+NODE 5: if $u-1#8 != 0 goto $u-1#39 = virtualinvoke $u1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1#39 = virtualinvoke $u1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_detalle_fr$cargarfotogrande.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_detalle_fr$cargarfotogrande
+NODE 2: if $u3#6 == 0 goto $u3 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: app25463.vinebre.t_detalle_fr this$0>
+NODE 3: itemData = new android.content.ContentValues
+NODE 4: $u3 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: app25463.vinebre.t_detalle_fr this$0>
+NODE 5: $u-1 = virtualinvoke $u3.<app25463.vinebre.t_detalle_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 6: $u-1#14 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u4#16 = <app25463.vinebre.bd_provider: android.net.Uri PRODUCTOS_URI>
+NODE 8: $u5 = new java.lang.StringBuilder
+NODE 9: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("img1_id=\'")
+NODE 10: $u6 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: java.lang.String id_fotoacargar>
+NODE 11: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 12: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 13: $u6 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: virtualinvoke $u-1#14.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u4#16, itemData, $u6, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_detalle_fr$cargarfotogrande.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_detalle_fr$cargarfotogrande
+NODE 2: if $u3#6 == 0 goto $u3 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: app25463.vinebre.t_detalle_fr this$0>
+NODE 3: itemData = new android.content.ContentValues
+NODE 4: $u3 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: app25463.vinebre.t_detalle_fr this$0>
+NODE 5: $u-1 = virtualinvoke $u3.<app25463.vinebre.t_detalle_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 6: $u-1#14 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u4#16 = <app25463.vinebre.bd_provider: android.net.Uri FOTOS_URI>
+NODE 8: $u5 = new java.lang.StringBuilder
+NODE 9: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id=\'")
+NODE 10: $u6 = this.<app25463.vinebre.t_detalle_fr$cargarfotogrande: java.lang.String id_fotoacargar>
+NODE 11: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 12: $u5 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 13: $u6 = virtualinvoke $u5.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: virtualinvoke $u-1#14.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u4#16, itemData, $u6, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.WebFrame.setLayer ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.webkit.WebView
+NODE 2: $u2 = <com.adsdk.sdk.video.WebFrame: java.lang.reflect.Method mWebView_SetLayerType>
+NODE 3: $u3 = newarray (java.lang.Object)[2]
+NODE 4: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_and$cargarfoto.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.t_and$cargarfoto
+NODE 2: $u7 = this.<app25463.vinebre.t_and$cargarfoto: app25463.vinebre.t_and this$0>
+NODE 3: $u-1 = this.<app25463.vinebre.t_and$cargarfoto: java.lang.String archivo_aux>
+NODE 4: $u-1#51 = virtualinvoke $u7.<app25463.vinebre.t_and: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.AbstractHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: org.apache.http.impl.client.AbstractHttpClient
+NODE 2: $u-1#3 = virtualinvoke this.<org.apache.http.impl.client.AbstractHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 3: $u-1#6 = interfaceinvoke $u-1#3.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 4: className = (java.lang.String) $u-1#6
+NODE 5: if className == null goto (branch)
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.AbstractHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.impl.client.AbstractHttpClient
+NODE 2: $u-1#3 = virtualinvoke this.<org.apache.http.impl.client.AbstractHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 3: $u-1#6 = interfaceinvoke $u-1#3.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 4: className = (java.lang.String) $u-1#6
+NODE 5: if className == null goto (branch)
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 7: $u-1#6 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.AbstractHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.impl.client.AbstractHttpClient
+NODE 2: $u-1 = staticinvoke <org.apache.http.impl.conn.SchemeRegistryFactory: org.apache.http.conn.scheme.SchemeRegistry createDefault()>()
+NODE 3: $u-1#3 = virtualinvoke this.<org.apache.http.impl.client.AbstractHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 4: factory = null
+NODE 5: $u-1#6 = interfaceinvoke $u-1#3.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 6: className = (java.lang.String) $u-1#6
+NODE 7: if className == null goto (branch)
+NODE 8: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 9: $u-1#6 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 10: factory = (org.apache.http.conn.ClientConnectionManagerFactory) $u-1#6
+NODE 11: if factory == null goto $u4 = new org.apache.http.impl.conn.SingleClientConnManager
+NODE 12: $u-1#12 = interfaceinvoke factory.<org.apache.http.conn.ClientConnectionManagerFactory: org.apache.http.conn.ClientConnectionManager newInstance(org.apache.http.params.HttpParams,org.apache.http.conn.scheme.SchemeRegistry)>($u-1#3, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.transform.RegistryMatcher.create ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter1: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_detalle_fr$cargarthumbs.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_detalle_fr$cargarthumbs
+NODE 2: if $u-1#4 != 0 goto $u-1#4 = virtualinvoke $u9.<java.lang.Byte: byte byteValue()>()
+NODE 3: $u0 = new android.content.ContentValues
+NODE 4: itemData = $u0
+NODE 5: $u1 = this.<app25463.vinebre.t_detalle_fr$cargarthumbs: app25463.vinebre.t_detalle_fr this$0>
+NODE 6: $u-1 = virtualinvoke $u1.<app25463.vinebre.t_detalle_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 7: $u-1#12 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u2#14 = <app25463.vinebre.bd_provider: android.net.Uri PRODUCTOS_URI>
+NODE 9: $u1 = new java.lang.StringBuilder
+NODE 10: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("img1_id=\'")
+NODE 11: $u4 = this.<app25463.vinebre.t_detalle_fr$cargarthumbs: java.lang.String id_fotoacargar>
+NODE 12: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 13: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 14: $u4 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: virtualinvoke $u-1#12.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2#14, itemData, $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_detalle_fr$cargarthumbs.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_detalle_fr$cargarthumbs
+NODE 2: if $u-1#4 != 0 goto $u-1#4 = virtualinvoke $u9.<java.lang.Byte: byte byteValue()>()
+NODE 3: $u0 = new android.content.ContentValues
+NODE 4: itemData = $u0
+NODE 5: $u1 = this.<app25463.vinebre.t_detalle_fr$cargarthumbs: app25463.vinebre.t_detalle_fr this$0>
+NODE 6: $u-1 = virtualinvoke $u1.<app25463.vinebre.t_detalle_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 7: $u-1#12 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u2#14 = <app25463.vinebre.bd_provider: android.net.Uri FOTOS_URI>
+NODE 9: $u1 = new java.lang.StringBuilder
+NODE 10: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_id=\'")
+NODE 11: $u4 = this.<app25463.vinebre.t_detalle_fr$cargarthumbs: java.lang.String id_fotoacargar>
+NODE 12: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 13: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 14: $u4 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: virtualinvoke $u-1#12.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2#14, itemData, $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobFullscreen.loadFullscreen ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdListener")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobFullscreen.loadFullscreen ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdRequest")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobFullscreen.loadFullscreen ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.InterstitialAd")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.ServletContextCleaner.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.ServletContextCleaner.contextDestroyed ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.commons.logging.impl.ServletContextCleaner
+NODE 2: $u-1 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Thread: java.lang.ClassLoader getContextClassLoader()>()
+NODE 4: params = newarray (java.lang.Object)[1]
+NODE 5: loader = $u-1#3
+NODE 6: if loader == null goto staticinvoke <org.apache.commons.logging.LogFactory: void release(java.lang.ClassLoader)>($u-1#3)
+NODE 7: $u-1#8 = virtualinvoke loader.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("org.apache.commons.logging.LogFactory")
+NODE 8: $u7 = this.<org.apache.commons.logging.impl.ServletContextCleaner: java.lang.Class[] RELEASE_SIGNATURE>
+NODE 9: $u-1#11 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("release", $u7)
+NODE 10: virtualinvoke $u-1#11.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, params)
+NODE 11: loader = virtualinvoke $u-1#8.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 12: loader = virtualinvoke loader.<java.lang.ClassLoader: java.lang.ClassLoader getParent()>()
+NODE 13: goto [?= (branch)]
+NODE 14: loader = null
+NODE 15: goto [?= (branch)]
+NODE 16: loader = null
+NODE 17: goto [?= (branch)]
+NODE 18: loader = null
+NODE 19: goto [?= (branch)]
+NODE 20: loader = null
+NODE 21: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 6
+EDGE: 14 -> 15
+EDGE: 15 -> 6
+EDGE: 16 -> 17
+EDGE: 17 -> 6
+EDGE: 18 -> 19
+EDGE: 19 -> 6
+EDGE: 20 -> 21
+EDGE: 21 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeAsUpIndicator", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.ActionBarDrawerToggleHoneycomb$SetIndicatorInfo.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u6 = class "Landroid/app/ActionBar;"
+NODE 2: $u8 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHomeActionContentDescription", $u8)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.nativeads.NativeAdView$2.doInBackground ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("http.agent")
+NODE 2: $u-1#4 = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u2 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB.invalidateChildRegion ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u1 = this.<android.support.v4.widget.SlidingPaneLayout$SlidingPanelLayoutImplJB: java.lang.reflect.Method mGetDisplayList>
+NODE 4: virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.s_cargar_icos.onHandleIntent ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.s_cargar_icos
+NODE 2: i = 0
+NODE 3: if $u9#14 == 0 goto i = i + 1
+NODE 4: i = i + 1
+NODE 5: $u9#29 = new java.lang.StringBuilder
+NODE 6: $u9#29 = virtualinvoke $u9#29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("img_s")
+NODE 7: $u9 = this.<app25463.vinebre.s_cargar_icos: app25463.vinebre.config globales>
+NODE 8: $u9#9 = $u9.<app25463.vinebre.config: app25463.vinebre.Seccion[] secciones_a>
+NODE 9: $u9#13 = $u9#9[i]
+NODE 10: $u9#10 = $u9#13.<app25463.vinebre.Seccion: int id>
+NODE 11: $u9#29 = virtualinvoke $u9#29.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($u9#10)
+NODE 12: $u9#29 = virtualinvoke $u9#29.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_ico")
+NODE 13: $u-1#42 = virtualinvoke $u9#29.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#71 = virtualinvoke this.<app25463.vinebre.s_cargar_icos: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#42, 0)
+NODE 15: goto [?= i = 0]
+NODE 16: goto [?= i = 0]
+NODE 17: goto [?= i = 0]
+NODE 18: goto [?= i = 0]
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 2
+EDGE: 16 -> 2
+EDGE: 17 -> 2
+EDGE: 18 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.WebViews.onPause ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/webkit/WebView;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.WebViews.onPause ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.webkit.WebView
+NODE 2: $u2 = class "Landroid/webkit/WebView;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u4)
+NODE 5: $u2#5 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.WebViews.onResume ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 = class "Landroid/webkit/WebView;"
+NODE 2: $u4 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onResume", $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.WebViews.onResume ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.webkit.WebView
+NODE 2: $u2 = class "Landroid/webkit/WebView;"
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onResume", $u4)
+NODE 5: $u2#5 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.auth.AuthSchemeRegistry.getAuthScheme ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.auth.AuthSchemeRegistry
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: org.apache.http.params.HttpParams
+NODE 4: if $u5 != null goto $u1#3 = this.<org.apache.http.auth.AuthSchemeRegistry: java.util.concurrent.ConcurrentHashMap registeredSchemes>
+NODE 5: $u1#3 = this.<org.apache.http.auth.AuthSchemeRegistry: java.util.concurrent.ConcurrentHashMap registeredSchemes>
+NODE 6: $u2 = <java.util.Locale: java.util.Locale ENGLISH>
+NODE 7: $u-1 = virtualinvoke $u5.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u2)
+NODE 8: $u-1#7 = virtualinvoke $u1#3.<java.util.concurrent.ConcurrentHashMap: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 9: factory = (org.apache.http.auth.AuthSchemeFactory) $u-1#7
+NODE 10: if factory == null goto $u1#12 = new java.lang.IllegalStateException
+NODE 11: $u-1#10 = interfaceinvoke factory.<org.apache.http.auth.AuthSchemeFactory: org.apache.http.auth.AuthScheme newInstance(org.apache.http.params.HttpParams)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.RequestGeneralAd.parse ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.CloneUtils.clone ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.Object
+NODE 2: if $u4 == 0 goto $u3 = new java.lang.CloneNotSupportedException
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("clone", null)
+NODE 5: $u6 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.ArrayFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.ArrayFactory
+NODE 2: $u-1 = specialinvoke this.<org.simpleframework.xml.core.ArrayFactory: java.lang.Class getComponentType()>()
+NODE 3: if $u-1 == null goto return null
+NODE 4: $u-1#3 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.MIME.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: android.app.PendingIntent
+NODE 4: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.gn xl>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.gn: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,android.app.PendingIntent)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.gn xl>
+NODE 5: virtualinvoke $u0.<com.google.android.gms.internal.gn: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener)>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.location.LocationClient.requestLocationUpdates ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.google.android.gms.location.LocationClient
+NODE 2: $u2 := @parameter0: com.google.android.gms.location.LocationRequest
+NODE 3: $u3 := @parameter1: com.google.android.gms.location.LocationListener
+NODE 4: $u4 := @parameter2: android.os.Looper
+NODE 5: $u0 = this.<com.google.android.gms.location.LocationClient: com.google.android.gms.internal.gn xl>
+NODE 6: virtualinvoke $u0.<com.google.android.gms.internal.gn: void requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)>($u2, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.content.StringBody.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto (branch)
+NODE 2: if $u5 != null goto $u4 = virtualinvoke $u5.<java.nio.charset.Charset: java.lang.String name()>()
+NODE 3: $u5 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_buscador_fr.onListItemClick ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: app25463.vinebre.t_buscador_fr
+NODE 2: $u13 := @parameter3: long
+NODE 3: if $u-1 != 0 goto projection = newarray (java.lang.String)[1]
+NODE 4: projection = newarray (java.lang.String)[1]
+NODE 5: $u-1#11 = virtualinvoke this.<app25463.vinebre.t_buscador_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 6: $u-1#13 = virtualinvoke $u-1#11.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u1 = <app25463.vinebre.bd_provider: android.net.Uri PRODUCTOS_URI>
+NODE 8: $u0#2 = staticinvoke <java.lang.String: java.lang.String valueOf(long)>($u13)
+NODE 9: $u1 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u1, $u0#2)
+NODE 10: $u-1#21 = virtualinvoke $u-1#13.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, projection, null, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#20 == 0 goto (branch)
+NODE 2: target = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.SimpleLog.<clinit> ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <org.apache.commons.logging.impl.SimpleLog: java.io.InputStream getResourceAsStream(java.lang.String)>("simplelog.properties")
+NODE 2: if $u-1 == null goto $u3 = <org.apache.commons.logging.impl.SimpleLog: boolean showLogName>
+NODE 3: $u2 = <org.apache.commons.logging.impl.SimpleLog: java.util.Properties simpleLogProps>
+NODE 4: virtualinvoke $u2.<java.util.Properties: void load(java.io.InputStream)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.SimpleLog.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.commons.logging.impl.SimpleLog.getContextClassLoader ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4 = <org.apache.commons.logging.impl.SimpleLog: java.lang.Class class$java$lang$Thread>
+NODE 2: if $u4 != null goto $u4 = <org.apache.commons.logging.impl.SimpleLog: java.lang.Class class$java$lang$Thread>
+NODE 3: $u4 = staticinvoke <org.apache.commons.logging.impl.SimpleLog: java.lang.Class class$(java.lang.String)>("java.lang.Thread")
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getContextClassLoader", null)
+NODE 5: $u-1#11 = staticinvoke <java.lang.Thread: java.lang.Thread currentThread()>()
+NODE 6: $u-1#15 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#11, null)
+NODE 7: $u4 = <org.apache.commons.logging.impl.SimpleLog: java.lang.Class class$java$lang$Thread>
+NODE 8: goto [?= $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getContextClassLoader", null)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 7
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.privados.mostrar_privados ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobBanner.loadBanner ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdView")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobBanner.loadBanner ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdListener")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobBanner.loadBanner ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdRequest")
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.AdMobBanner.loadBanner ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.ads.AdSize")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.dynamic.e.t ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.gms.dynamic.e
+NODE 2: $u3 := @parameter0: android.content.Context
+NODE 3: $u3 = staticinvoke <com.google.android.gms.common.GooglePlayServicesUtil: android.content.Context getRemoteContext(android.content.Context)>($u3)
+NODE 4: if $u3 != null goto $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 6: $u1 = this.<com.google.android.gms.dynamic.e: java.lang.String sF>
+NODE 7: $u-1#9 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u1)
+NODE 8: $u0 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.MraidDisplayController.getPictureStoragePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Reflector.getArrayClass ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.reflect.Type
+NODE 2: generic = (java.lang.reflect.GenericArrayType) $u4
+NODE 3: $u4 = interfaceinvoke generic.<java.lang.reflect.GenericArrayType: java.lang.reflect.Type getGenericComponentType()>()
+NODE 4: $u-1 = staticinvoke <org.simpleframework.xml.core.Reflector: java.lang.Class getClass(java.lang.reflect.Type)>($u4)
+NODE 5: if $u-1 == null goto return null
+NODE 6: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.preinicio$cargarsplash.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.preinicio$cargarsplash
+NODE 2: $u6 = this.<app25463.vinebre.preinicio$cargarsplash: app25463.vinebre.preinicio this$0>
+NODE 3: $u-1#16 = virtualinvoke $u6.<app25463.vinebre.preinicio: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("splash", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.ExtractorFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.ExtractorFactory
+NODE 2: $u7 := @parameter0: java.lang.annotation.Annotation
+NODE 3: $u-1 = specialinvoke this.<org.simpleframework.xml.core.ExtractorFactory: org.simpleframework.xml.core.ExtractorFactory$ExtractorBuilder getBuilder(java.lang.'annotation'.Annotation)>($u7)
+NODE 4: $u-1#2 = staticinvoke <org.simpleframework.xml.core.ExtractorFactory$ExtractorBuilder: java.lang.reflect.Constructor access$000(org.simpleframework.xml.core.ExtractorFactory$ExtractorBuilder)>($u-1)
+NODE 5: if $u-1#3 != 0 goto $u2 = newarray (java.lang.Object)[3]
+NODE 6: $u2 = newarray (java.lang.Object)[3]
+NODE 7: $u-1#11 = virtualinvoke $u-1#2.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.CustomEventBannerFactory.internalCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Banner")
+NODE 5: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.CustomEventBannerFactory.internalCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Banner")
+NODE 5: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+NODE 7: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/adsdk/sdk/customevents/CustomEventBanner;")
+NODE 8: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>(null)
+NODE 9: $u2#19 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#20 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#19)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.chat_perfil.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: app25463.vinebre.chat_perfil
+NODE 2: $u-1#16 = virtualinvoke this.<app25463.vinebre.chat_perfil: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#18 = virtualinvoke $u-1#16.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u5#20 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 5: orientationColumn = newarray (java.lang.String)[2]
+NODE 6: $u8 = newarray (java.lang.String)[1]
+NODE 7: $u-1#42 = virtualinvoke $u-1#18.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u5#20, orientationColumn, "date_added>=?", $u8, "date_added desc")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.chat_perfil.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: app25463.vinebre.chat_perfil
+NODE 2: $u46 := @parameter2: android.content.Intent
+NODE 3: if $u45 != -1 goto return
+NODE 4: if $u44 != 1 goto (branch)
+NODE 5: if $u44 != 2 goto (branch)
+NODE 6: $u5#20 = virtualinvoke $u46.<android.content.Intent: android.net.Uri getData()>()
+NODE 7: orientationColumn = newarray (java.lang.String)[1]
+NODE 8: $u-1#18 = virtualinvoke this.<app25463.vinebre.chat_perfil: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#42 = virtualinvoke $u-1#18.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u5#20, orientationColumn, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.notificar ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u35 := @parameter0: android.content.Context
+NODE 2: $u-1#116 = virtualinvoke $u35.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("icohome")
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.notificar ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u35 := @parameter0: android.content.Context
+NODE 2: $u-1#116 = virtualinvoke $u35.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("icohome")
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.crear_globales ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: app25463.vinebre.config
+NODE 2: $u45 := @parameter0: java.lang.String[]
+NODE 3: i = 0
+NODE 4: if i >= ind goto $u0#914 = this.<app25463.vinebre.config: int[] menu_a_secciones>
+NODE 5: iditem = $u45[i]
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u40#952 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("img_s")
+NODE 8: $u40#952 = virtualinvoke $u40#952.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(iditem)
+NODE 9: $u40#952 = virtualinvoke $u40#952.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_ico")
+NODE 10: idtema = virtualinvoke $u40#952.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1#1752 = virtualinvoke this.<app25463.vinebre.config: java.io.FileInputStream openFileInput(java.lang.String)>(idtema)
+NODE 12: if $u40#577 != 0 goto i = i + 1
+NODE 13: i = i + 1
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.crear_globales ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0#914 = newarray (int)[2]
+NODE 2: $u41 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#2480 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u41, $u0#914)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.crear_globales ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u40#577 != 0 goto $u0#914 = newarray (int)[2]
+NODE 2: $u0#914 = newarray (int)[2]
+NODE 3: $u41 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 4: $u-1#2480 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u41, $u0#914)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.file_to_iv ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: app25463.vinebre.config
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u-1 = virtualinvoke this.<app25463.vinebre.config: java.io.FileInputStream openFileInput(java.lang.String)>($u6)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.getTempFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.config.getTempFile_notemp ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_oficinas$cargarfoto.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.t_oficinas$cargarfoto
+NODE 2: $u7 = this.<app25463.vinebre.t_oficinas$cargarfoto: app25463.vinebre.t_oficinas this$0>
+NODE 3: $u6 = new java.lang.StringBuilder
+NODE 4: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("o_f")
+NODE 5: $u8#33 = this.<app25463.vinebre.t_oficinas$cargarfoto: app25463.vinebre.t_oficinas this$0>
+NODE 6: $u7#7 = $u8#33.<app25463.vinebre.t_oficinas: int[] id_fotoacargar>
+NODE 7: $u8#33 = this.<app25463.vinebre.t_oficinas$cargarfoto: app25463.vinebre.t_oficinas this$0>
+NODE 8: $u8 = $u8#33.<app25463.vinebre.t_oficinas: int ind_fotoacargar>
+NODE 9: $u8 = $u7#7[$u8]
+NODE 10: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($u8)
+NODE 11: $u-1 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: $u-1#43 = virtualinvoke $u7.<app25463.vinebre.t_oficinas: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1, 0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.MapFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.MapFactory
+NODE 2: $u-1 = virtualinvoke this.<org.simpleframework.xml.core.MapFactory: java.lang.Class getType()>()
+NODE 3: real = $u-1
+NODE 4: if $u-1#3 != 0 goto $u-1#3 = specialinvoke this.<org.simpleframework.xml.core.MapFactory: boolean isMap(java.lang.Class)>(real)
+NODE 5: real = virtualinvoke this.<org.simpleframework.xml.core.MapFactory: java.lang.Class getConversion(java.lang.Class)>($u-1)
+NODE 6: if $u-1#3 != 0 goto $u-1#13 = virtualinvoke real.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#13 = virtualinvoke real.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.strategy.TreeStrategy.readValue ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.simpleframework.xml.strategy.TreeStrategy
+NODE 2: $u6 := @parameter1: org.simpleframework.xml.stream.NodeMap
+NODE 3: $u3 = this.<org.simpleframework.xml.strategy.TreeStrategy: java.lang.String label>
+NODE 4: $u-1 = interfaceinvoke $u6.<org.simpleframework.xml.stream.NodeMap: org.simpleframework.xml.stream.Node remove(java.lang.String)>($u3)
+NODE 5: if $u-1#5 == 0 goto (branch)
+NODE 6: if $u-1 == null goto return expect
+NODE 7: $u3 = interfaceinvoke $u-1.<org.simpleframework.xml.stream.Node: java.lang.String getValue()>()
+NODE 8: $u3#9 = this.<org.simpleframework.xml.strategy.TreeStrategy: org.simpleframework.xml.strategy.Loader loader>
+NODE 9: $u-1#3 = virtualinvoke $u3#9.<org.simpleframework.xml.strategy.Loader: java.lang.Class load(java.lang.String)>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.AdViewController.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.adsdk.sdk.mraid.AdViewController
+NODE 2: if $u-1 != -1 goto $u4 = this.<com.adsdk.sdk.mraid.AdViewController: android.content.Context mContext>
+NODE 3: $u4 = this.<com.adsdk.sdk.mraid.AdViewController: android.content.Context mContext>
+NODE 4: $u-1#8 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: cm = (android.net.ConnectivityManager) $u-1#8
+NODE 6: $u-1#11 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Factory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.Factory
+NODE 2: $u-1 = virtualinvoke this.<org.simpleframework.xml.core.Factory: java.lang.Class getType()>()
+NODE 3: if $u-1#2 != 0 goto $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_rss_fr$RssDataController.doInBackground ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#16 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.maps.internal.q.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.maps.internal.q.eC ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 >= 15 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.maps.internal.CreatorImpl")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.maps.internal.CreatorImplGmm6")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.maps.internal.q.eC ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 >= 15 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.maps.internal.CreatorImpl")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.maps.internal.CreatorImpl")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.banner.BannerAdView.setLayer ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.webkit.WebView
+NODE 2: $u2 = <com.adsdk.sdk.banner.BannerAdView: java.lang.reflect.Method mWebView_SetLayerType>
+NODE 3: $u3 = newarray (java.lang.Object)[2]
+NODE 4: virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u3)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.b.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: com.google.android.gms.cast.CastDevice
+NODE 2: $u-1#6 = virtualinvoke $u4.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#4 == 0 goto $u9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings$PluginState")
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u-1#4 == 0 goto $u9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings$PluginState")
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings")
+NODE 3: parameters = newarray (java.lang.Class)[1]
+NODE 4: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPluginsEnabled", parameters)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.mraid.BaseWebView
+NODE 2: if $u-1#4 == 0 goto $u9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings$PluginState")
+NODE 3: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings")
+NODE 4: parameters = newarray (java.lang.Class)[1]
+NODE 5: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPluginsEnabled", parameters)
+NODE 6: $u-1#20 = virtualinvoke this.<com.adsdk.sdk.mraid.BaseWebView: android.webkit.WebSettings getSettings()>()
+NODE 7: $u6#23 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#20, $u6#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#4 == 0 goto $u9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings$PluginState")
+NODE 2: $u9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebSettings$PluginState")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.adsdk.sdk.mraid.BaseWebView
+NODE 2: parameters = newarray (java.lang.Class)[1]
+NODE 3: $u-1#20 = virtualinvoke this.<com.adsdk.sdk.mraid.BaseWebView: android.webkit.WebSettings getSettings()>()
+NODE 4: $u-1#12 = virtualinvoke $u-1#20.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPluginState", parameters)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.mraid.BaseWebView.enablePlugins ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.mraid.BaseWebView
+NODE 2: parameters = newarray (java.lang.Class)[1]
+NODE 3: $u-1#20 = virtualinvoke this.<com.adsdk.sdk.mraid.BaseWebView: android.webkit.WebSettings getSettings()>()
+NODE 4: $u-1#12 = virtualinvoke $u-1#20.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setPluginState", parameters)
+NODE 6: $u-1#20 = virtualinvoke this.<com.adsdk.sdk.mraid.BaseWebView: android.webkit.WebSettings getSettings()>()
+NODE 7: $u6#23 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#20, $u6#23)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.equals ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.google.android.gms.cast.CastDevice
+NODE 2: $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.equals ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: if $u2 != 0 goto $u5#5 = (com.google.android.gms.cast.CastDevice) $u5
+NODE 3: $u5#5 = (com.google.android.gms.cast.CastDevice) $u5
+NODE 4: if $u-1 != null goto $u-1 = this.<com.google.android.gms.cast.CastDevice: java.lang.String kz>
+NODE 5: $u-1 = virtualinvoke $u5#5.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.isSameDevice ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.google.android.gms.cast.CastDevice
+NODE 2: if $u3 != null goto $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+NODE 3: $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.isSameDevice ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: com.google.android.gms.cast.CastDevice
+NODE 2: if $u-1 != null goto $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+NODE 3: $u-1 = virtualinvoke $u3.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.isSameDevice ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.google.android.gms.cast.CastDevice
+NODE 2: if $u-1 != null goto $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+NODE 3: $u-1 = virtualinvoke this.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.CastDevice.isSameDevice ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: com.google.android.gms.cast.CastDevice
+NODE 2: $u-1#9 = virtualinvoke $u3.<com.google.android.gms.cast.CastDevice: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.getConnectionType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return "UNKNOWN"
+NODE 3: $u-1#4 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1#4
+NODE 5: $u-1#7 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.getLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: locationManager = (android.location.LocationManager) $u-1#7
+NODE 4: if HasFineLocationPermission == 0 goto (branch)
+NODE 5: $u-1#14 = virtualinvoke locationManager.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+NODE 6: if $u-1 != 0 goto $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 7: goto [?= $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 2
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.getLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u14 := @parameter0: android.content.Context
+NODE 2: $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: locationManager = (android.location.LocationManager) $u-1#7
+NODE 4: if $u-1 != 0 goto $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: goto [?= $u-1#7 = virtualinvoke $u14.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")]
+NODE 6: if HasCoarseLocationPermission == 0 goto return null
+NODE 7: $u-1#14 = virtualinvoke locationManager.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+EDGE: 5 -> 2
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.getMemoryClass ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u3 = class "Landroid/app/ActivityManager;"
+NODE 3: $u5 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getMemoryClass", $u5)
+NODE 5: $u-1#6 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("activity")
+NODE 6: ac = (android.app.ActivityManager) $u-1#6
+NODE 7: $u3#10 = newarray (java.lang.Object)[0]
+NODE 8: $u-1#6 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(ac, $u3#10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return 1
+NODE 3: $u-1#5 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: mConnectivity = (android.net.ConnectivityManager) $u-1#5
+NODE 5: $u-1#8 = virtualinvoke mConnectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.Util.prepareAndroidAdId ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.android.gms.common.GooglePlayServicesUtil")
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.transform.ArrayTransform.read ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.transform.ArrayTransform
+NODE 2: $u7 := @parameter1: int
+NODE 3: $u3 = this.<org.simpleframework.xml.transform.ArrayTransform: java.lang.Class entry>
+NODE 4: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u3, $u7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Comparer.equals ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter0: java.lang.annotation.Annotation
+NODE 2: $u-1 = interfaceinvoke $u12.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 4: i$ = 0
+NODE 5: if i$ >= len$ goto return 1
+NODE 6: method = $u-1#4[i$]
+NODE 7: if $u-1#5 != 0 goto i$ = i$ + 1
+NODE 8: $u10 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#11 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u10)
+NODE 10: if $u-1#5 != 0 goto i$ = i$ + 1
+NODE 11: i$ = i$ + 1
+NODE 12: goto [?= (branch)]
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Comparer.equals ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter0: java.lang.annotation.Annotation
+NODE 2: $u13 := @parameter1: java.lang.annotation.Annotation
+NODE 3: $u-1 = interfaceinvoke $u12.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 5: i$ = 0
+NODE 6: if i$ >= len$ goto return 1
+NODE 7: method = $u-1#4[i$]
+NODE 8: if $u-1#5 != 0 goto i$ = i$ + 1
+NODE 9: $u10 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#13 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u13, $u10)
+NODE 11: if $u-1#5 != 0 goto i$ = i$ + 1
+NODE 12: i$ = i$ + 1
+NODE 13: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 12
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.InstanceFactory.getObject ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.InstanceFactory
+NODE 2: $u4 := @parameter0: java.lang.Class
+NODE 3: $u1 = this.<org.simpleframework.xml.core.InstanceFactory: org.simpleframework.xml.util.Cache cache>
+NODE 4: $u-1 = interfaceinvoke $u1.<org.simpleframework.xml.util.Cache: java.lang.Object fetch(java.lang.Object)>($u4)
+NODE 5: method = (java.lang.reflect.Constructor) $u-1
+NODE 6: if method != null goto $u1#11 = newarray (java.lang.Object)[0]
+NODE 7: $u1#5 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#6 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u1#5)
+NODE 9: method = $u-1#6
+NODE 10: $u1#11 = newarray (java.lang.Object)[0]
+NODE 11: $u-1 = virtualinvoke method.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.CustomEventFullscreenFactory.internalCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Fullscreen")
+NODE 5: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.customevents.CustomEventFullscreenFactory.internalCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("Fullscreen")
+NODE 5: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+NODE 7: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/adsdk/sdk/customevents/CustomEventFullscreen;")
+NODE 8: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>(null)
+NODE 9: $u2#19 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#20 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#19)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.SignatureScanner.extract ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: java.lang.annotation.Annotation
+NODE 2: $u-1 = interfaceinvoke $u10.<java.lang.'annotation'.Annotation: java.lang.Class annotationType()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 4: if $u4 == 1 goto method = $u-1#3[0]
+NODE 5: method = $u-1#3[0]
+NODE 6: $u6 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#10 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u10, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_and.onCreate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5#119 = newarray (int)[2]
+NODE 2: $u5#198 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#199 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u5#198, $u5#119)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.util.ExceptionUtils.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.util.ExceptionUtils.initCause ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.Throwable
+NODE 2: $u0 = <org.apache.http.util.ExceptionUtils: java.lang.reflect.Method INIT_CAUSE_METHOD>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = <org.apache.http.util.ExceptionUtils: java.lang.reflect.Method INIT_CAUSE_METHOD>
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.convert.ConverterFactory.getConverter ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter1: java.lang.reflect.Constructor
+NODE 2: $u1 = newarray (java.lang.Object)[0]
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.io.SocketInputBuffer.SocketTimeoutExceptionClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.net.SocketTimeoutException")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.NavIcon.onClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.video.NavIcon
+NODE 2: if $u6#2 == 0 goto return
+NODE 3: $u6 = this.<com.adsdk.sdk.video.NavIcon: android.content.Context mContext>
+NODE 4: activity = (com.adsdk.sdk.video.RichMediaActivity) $u6
+NODE 5: if $u6#2 == 0 goto $u6#2 = virtualinvoke $u7.<java.lang.String: boolean startsWith(java.lang.String)>("mfox:playvideo")
+NODE 6: $u-1#66 = virtualinvoke activity.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u7#70 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#71 = virtualinvoke $u-1#66.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("replayVideo", $u7#70)
+NODE 9: $u6#74 = newarray (java.lang.Object)[0]
+NODE 10: virtualinvoke $u-1#71.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(activity, $u6#74)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.adsdk.sdk.video.NavIcon.onClick ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.adsdk.sdk.video.NavIcon
+NODE 2: if $u6#2 == 0 goto return
+NODE 3: $u6 = this.<com.adsdk.sdk.video.NavIcon: android.content.Context mContext>
+NODE 4: activity = (com.adsdk.sdk.video.RichMediaActivity) $u6
+NODE 5: if $u6#2 == 0 goto $u6#2 = virtualinvoke $u7.<java.lang.String: boolean startsWith(java.lang.String)>("mfox:skip")
+NODE 6: $u-1#66 = virtualinvoke activity.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u7#70 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#71 = virtualinvoke $u-1#66.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("playVideo", $u7#70)
+NODE 9: $u6#74 = newarray (java.lang.Object)[0]
+NODE 10: virtualinvoke $u-1#71.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(activity, $u6#74)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: forName
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_chat$cargarfoto.doInBackground ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: app25463.vinebre.t_chat$cargarfoto
+NODE 2: $u9#4 = new java.lang.StringBuilder
+NODE 3: $u9#4 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("fondo_")
+NODE 4: $u10 = this.<app25463.vinebre.t_chat$cargarfoto: java.lang.String idfoto>
+NODE 5: $u9#4 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 6: $u10 = virtualinvoke $u9#4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u9#32 = this.<app25463.vinebre.t_chat$cargarfoto: app25463.vinebre.t_chat this$0>
+NODE 8: $u-1#34 = virtualinvoke $u9#32.<app25463.vinebre.t_chat: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u10, 0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.RemoteMediaPlayer.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.android.gms.cast.RemoteMediaPlayer
+NODE 2: $u8 := @parameter0: com.google.android.gms.common.api.GoogleApiClient
+NODE 3: $u9 := @parameter1: com.google.android.gms.cast.MediaInfo
+NODE 4: $u-1 = virtualinvoke this.<com.google.android.gms.cast.RemoteMediaPlayer: com.google.android.gms.common.api.PendingResult load(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.cast.MediaInfo,boolean,long,org.json.JSONObject)>($u8, $u9, 1, 0L, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.RemoteMediaPlayer.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.android.gms.cast.RemoteMediaPlayer
+NODE 2: $u8 := @parameter0: com.google.android.gms.common.api.GoogleApiClient
+NODE 3: $u9 := @parameter1: com.google.android.gms.cast.MediaInfo
+NODE 4: $u10 := @parameter2: boolean
+NODE 5: $u-1 = virtualinvoke this.<com.google.android.gms.cast.RemoteMediaPlayer: com.google.android.gms.common.api.PendingResult load(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.cast.MediaInfo,boolean,long,org.json.JSONObject)>($u8, $u9, $u10, 0L, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.cast.RemoteMediaPlayer.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.google.android.gms.cast.RemoteMediaPlayer
+NODE 2: $u8 := @parameter0: com.google.android.gms.common.api.GoogleApiClient
+NODE 3: $u9 := @parameter1: com.google.android.gms.cast.MediaInfo
+NODE 4: $u10 := @parameter2: boolean
+NODE 5: $u11 := @parameter3: long
+NODE 6: $u-1 = virtualinvoke this.<com.google.android.gms.cast.RemoteMediaPlayer: com.google.android.gms.common.api.PendingResult load(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.cast.MediaInfo,boolean,long,org.json.JSONObject)>($u8, $u9, $u10, $u11, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.cookie.CookieSpecRegistry.getCookieSpec ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.cookie.CookieSpecRegistry
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: org.apache.http.params.HttpParams
+NODE 4: if $u5 != null goto $u1#3 = this.<org.apache.http.cookie.CookieSpecRegistry: java.util.concurrent.ConcurrentHashMap registeredSpecs>
+NODE 5: $u1#3 = this.<org.apache.http.cookie.CookieSpecRegistry: java.util.concurrent.ConcurrentHashMap registeredSpecs>
+NODE 6: $u2 = <java.util.Locale: java.util.Locale ENGLISH>
+NODE 7: $u-1 = virtualinvoke $u5.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u2)
+NODE 8: $u-1#7 = virtualinvoke $u1#3.<java.util.concurrent.ConcurrentHashMap: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 9: factory = (org.apache.http.cookie.CookieSpecFactory) $u-1#7
+NODE 10: if factory == null goto $u1#12 = new java.lang.IllegalStateException
+NODE 11: $u-1#10 = interfaceinvoke factory.<org.apache.http.cookie.CookieSpecFactory: org.apache.http.cookie.CookieSpec newInstance(org.apache.http.params.HttpParams)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Signature.create ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.Signature
+NODE 2: if $u-1 != 0 goto $u0 = this.<org.simpleframework.xml.core.Signature: java.lang.reflect.Constructor factory>
+NODE 3: $u0 = this.<org.simpleframework.xml.core.Signature: java.lang.reflect.Constructor factory>
+NODE 4: $u1 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#9 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.Signature.create ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.Signature
+NODE 2: $u3 := @parameter0: java.lang.Object[]
+NODE 3: if $u-1 != 0 goto $u0 = this.<org.simpleframework.xml.core.Signature: java.lang.reflect.Constructor factory>
+NODE 4: $u0 = this.<org.simpleframework.xml.core.Signature: java.lang.reflect.Constructor factory>
+NODE 5: $u-1#6 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.ParameterFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.ParameterFactory
+NODE 2: $u9 := @parameter1: java.lang.annotation.Annotation
+NODE 3: $u-1 = specialinvoke this.<org.simpleframework.xml.core.ParameterFactory: java.lang.reflect.Constructor getConstructor(java.lang.'annotation'.Annotation)>($u9)
+NODE 4: if $u10 == null goto $u1 = newarray (java.lang.Object)[4]
+NODE 5: $u1 = newarray (java.lang.Object)[5]
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.core.ParameterFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.simpleframework.xml.core.ParameterFactory
+NODE 2: $u9 := @parameter1: java.lang.annotation.Annotation
+NODE 3: $u-1 = specialinvoke this.<org.simpleframework.xml.core.ParameterFactory: java.lang.reflect.Constructor getConstructor(java.lang.'annotation'.Annotation)>($u9)
+NODE 4: if $u10 == null goto $u1 = newarray (java.lang.Object)[4]
+NODE 5: $u1 = newarray (java.lang.Object)[4]
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.t_buscador_fr$cargarthumbs.onPostExecute ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: app25463.vinebre.t_buscador_fr$cargarthumbs
+NODE 2: if $u-1#4 != 0 goto $u-1#4 = virtualinvoke $u6.<java.lang.Byte: byte byteValue()>()
+NODE 3: itemData = new android.content.ContentValues
+NODE 4: $u1 = this.<app25463.vinebre.t_buscador_fr$cargarthumbs: app25463.vinebre.t_buscador_fr this$0>
+NODE 5: $u-1 = virtualinvoke $u1.<app25463.vinebre.t_buscador_fr: android.support.v4.app.FragmentActivity getActivity()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1.<android.support.v4.app.FragmentActivity: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u2#13 = <app25463.vinebre.bd_provider: android.net.Uri PRODUCTOS_URI>
+NODE 8: $u3 = new java.lang.StringBuilder
+NODE 9: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("img1_id=\'")
+NODE 10: $u4 = this.<app25463.vinebre.t_buscador_fr$cargarthumbs: java.lang.String id_fotoacargar>
+NODE 11: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 12: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 13: $u4 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: virtualinvoke $u-1#11.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2#13, itemData, $u4, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 2: $u1#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u1#3 = virtualinvoke $u1#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u1 < 7 goto return
+NODE 3: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 4: if $u1#3 != null goto $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 5: $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u2)
+NODE 8: goto [?= $u1#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method mSetChildrenDrawingOrderEnabled>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: app25463.vinebre.GCMIntentService.onMessage ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: app25463.vinebre.GCMIntentService
+NODE 2: $u-1#88 = virtualinvoke this.<app25463.vinebre.GCMIntentService: java.io.FileInputStream openFileInput(java.lang.String)>("icohome")
+=== END FUNCTION ===
+
+=== FUNCTION: org.simpleframework.xml.stream.DocumentProvider.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dA>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dA>
+NODE 3: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dA>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dB>
+NODE 2: if $u0 == null goto $u0#2 = new com.google.android.gms.internal.f$a
+NODE 3: if $u4 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dB>
+NODE 4: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dB>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dD>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dD>
+NODE 3: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dD>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dC>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dC>
+NODE 3: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dC>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.e ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dy>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dy>
+NODE 3: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dy>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.f.f ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dz>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dz>
+NODE 3: $u0 = <com.google.android.gms.internal.f: java.lang.reflect.Method dz>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.l.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.gms.internal.l
+NODE 2: $u7 := @parameter0: byte[]
+NODE 3: $u8 := @parameter1: java.lang.String
+NODE 4: $u0 = lengthof $u7
+NODE 5: if $u0 == 16 goto $u0#4 = this.<com.google.android.gms.internal.l: com.google.android.gms.internal.j dw>
+NODE 6: $u0#4 = this.<com.google.android.gms.internal.l: com.google.android.gms.internal.j dw>
+NODE 7: $u-1 = interfaceinvoke $u0#4.<com.google.android.gms.internal.j: byte[] a(java.lang.String,boolean)>($u8, 0)
+NODE 8: $u0 = lengthof $u-1
+NODE 9: $u0 = $u0 + -16
+NODE 10: $u-1 = newarray (byte)[$u0]
+NODE 11: $u-1#23 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 12: $u7 = virtualinvoke $u-1#23.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+

@@ -1,0 +1,24 @@
+=== FUNCTION: com.bluegolf.android.BlueGolfWebChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: java.lang.String
+NODE 2: $u11 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: allow = 0
+NODE 4: if $u5#12 < $u7 goto host = $u-1[$u5#12]
+NODE 5: interfaceinvoke $u11.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u10, allow, 1)
+NODE 6: if $u-1#16 == 0 goto $u5#12 = $u5#12 + 1
+NODE 7: allow = 1
+NODE 8: goto [?= interfaceinvoke $u11.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u10, allow, 1)]
+NODE 9: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.bluegolf.android.Toolbar.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#4 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

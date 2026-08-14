@@ -1,0 +1,435 @@
+=== FUNCTION: com.awindinc.sphone2tv.RegisterActivity.isGooglePlayStoreInstalled ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: com.awindinc.sphone2tv.RegisterActivity
+NODE 2: $u-1 = virtualinvoke this.<com.awindinc.sphone2tv.RegisterActivity: android.app.Application getApplication()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.app.Application: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(8192)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.RegisterActivity.RegisterThread ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.awindinc.sphone2tv.RegisterActivity
+NODE 2: if $u6 < $u7 goto account = $u-1#5[$u6]
+NODE 3: $u-1#8 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>(this)
+NODE 4: goto [?= $u-1#8 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>(this)]
+NODE 5: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 4 -> 3
+EDGE: 5 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.RegisterActivity.onCreate ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.awindinc.sphone2tv.RegisterActivity
+NODE 2: if $u16 == null goto $u-1#78 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>(this)
+NODE 3: if $u-1#78 == null goto $u-1#78 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>(this)
+NODE 4: $u-1#78 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>(this)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.wps.AudioSender.StartAudioSender ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.awindinc.wps.AudioSender
+NODE 2: $u0#61 = this.<com.awindinc.wps.AudioSender: android.media.AudioRecord audioRecord>
+NODE 3: virtualinvoke $u0#61.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.JpegRDJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("jpegrd")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.wps.ControlInput.ControlKeyboard ===
+SUSPICIOUS_API: exec
+NODE 1: $u8 := @parameter0: com.awindinc.wps.KeyboardCommand
+NODE 2: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short type>
+NODE 3: $u2 = (int) $u3
+NODE 4: if 3 != $u2 goto $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short type>
+NODE 5: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short type>
+NODE 6: if 1 != $u3 goto return
+NODE 7: $u2 = $u8.<com.awindinc.wps.KeyboardCommand: int value>
+NODE 8: if $u2 == 0 goto $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 9: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 10: $u2 = (int) $u3
+NODE 11: if $u2 >= 1000 goto $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 12: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 13: $u2 = (int) $u3
+NODE 14: if $u2 >= 2000 goto $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 15: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 16: $u2 = (int) $u3
+NODE 17: if $u2 >= 3000 goto return
+NODE 18: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 19: $u0 = new java.lang.StringBuilder
+NODE 20: $u3 = $u8.<com.awindinc.wps.KeyboardCommand: short code>
+NODE 21: $u2 = (int) $u3
+NODE 22: $u2 = $u2 + -2000
+NODE 23: $u3#28 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($u2)
+NODE 24: $u-1#34 = virtualinvoke $u3#28.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 25: virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#34)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.DLNAJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("pws")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.DLNAJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("dlna")
+NODE 2: goto [?= staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("dlna")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.CheckNeonJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("checkneon")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.WPSUtilJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("wpsutil")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.VirtualFBUtil.isMmsCapable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: telephonyManager = (android.telephony.TelephonyManager) $u-1
+NODE 4: if telephonyManager != null goto partypes = newarray (java.lang.Class)[0]
+NODE 5: partypes = newarray (java.lang.Class)[0]
+NODE 6: $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 7: $u-1#9 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isVoiceCapable", partypes)
+NODE 8: arglist = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(telephonyManager, arglist)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.MiniLzoJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("minilzo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.wps.ProtocolBase.injectHostName ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 = class "Ljava/net/InetAddress;"
+NODE 2: $u-1#5 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("hostName")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Am264CapJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("TsDisplay")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Am264CapJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("am264cap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.CommonUtilityJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("commonutility_2_1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.LicenseTypeTool.decLicenseType ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u16 := @parameter0: android.content.Context
+NODE 2: if $u18 != 0 goto (branch)
+NODE 3: $u-1 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>($u16)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.LicenseTypeTool.encLicenseType ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u16 := @parameter0: android.content.Context
+NODE 2: if $u18 != 0 goto (branch)
+NODE 3: $u-1 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>($u16)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.LicenseTypeTool.getDeviceId ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifiMan = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#7 = virtualinvoke wifiMan.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.LicenseTypeTool.getDeviceId ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifiMan = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#7 = virtualinvoke wifiMan.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: if $u-1#8 == -1 goto staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("LicenseTypeTool", "LicenseTypeTool:: Can not get network id. Try to use the other way.")
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.DeviceScan$3$1.run ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.awindinc.sphone2tv.DeviceScan$3$1
+NODE 2: $u0 = this.<com.awindinc.sphone2tv.DeviceScan$3$1: com.awindinc.sphone2tv.DeviceScan$3 this$1>
+NODE 3: $u-1 = staticinvoke <com.awindinc.sphone2tv.DeviceScan$3: com.awindinc.sphone2tv.DeviceScan access$0(com.awindinc.sphone2tv.DeviceScan$3)>($u0)
+NODE 4: $u-1#9 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.MediaSender.startPlayMediaByIntentData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.awindinc.sphone2tv.MediaSender
+NODE 2: $u12 := @parameter0: android.net.Uri
+NODE 3: if $u-1#12 == 0 goto $u-1 = virtualinvoke $u12.<android.net.Uri: java.lang.String getPath()>()
+NODE 4: $u-1#14 = virtualinvoke this.<com.awindinc.sphone2tv.MediaSender: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u2 = newarray (java.lang.String)[1]
+NODE 6: $u-1#19 = virtualinvoke $u-1#14.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u12, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.TurboJpegJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("jpeg-turbo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.TurboJpegJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("jpeg-turbo-neon")
+NODE 2: goto [?= staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("jpeg-turbo-neon")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.TurboJpegJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("tjencode")
+NODE 2: goto [?= staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("tjencode")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.DeviceScan.genLog ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#5 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("sh")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.PtGPlayerJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ptgplayer")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.IsMutiTouchDevice ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u10 = <com.awindinc.util.Tools: java.lang.String SHELL_COMMAND>
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.IsMutiTouchDevice ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u10 = <com.awindinc.util.Tools: java.lang.String SHELL_COMMAND>
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.TryToEnableInput ===
+SUSPICIOUS_API: exec
+NODE 1: $u13 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u13)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.TryToEnableScreen ===
+SUSPICIOUS_API: exec
+NODE 1: $u13 := @parameter1: java.lang.String
+NODE 2: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#15 = virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u13)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.TryToEnableScreen ===
+SUSPICIOUS_API: exec
+NODE 1: $u13 := @parameter1: java.lang.String
+NODE 2: if $u-1#19 != 0 goto return 0
+NODE 3: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u-1#15 = virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.getProcInfoByName ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("ps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.getProcInfoByName ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u10 = new java.lang.StringBuilder
+NODE 4: $u10 = virtualinvoke $u10.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/busybox ps w")
+NODE 5: $u-1#12 = virtualinvoke $u10.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.installCapMethodForGingerbreadAbove ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1#37 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#40 = virtualinvoke $u-1#37.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("sh")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.isFBServerRunning ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("ps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.isFBServerRunning ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u9 = new java.lang.StringBuilder
+NODE 4: $u9 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/busybox ps w")
+NODE 5: $u-1#12 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.isTegraPlatform ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /proc/cpuinfo")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.isTegraPlatform ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1 == 0 goto $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u9 = new java.lang.StringBuilder
+NODE 4: $u9 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/cat /proc/cpuinfo")
+NODE 5: $u-1#12 = virtualinvoke $u9.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.startFBServer ===
+SUSPICIOUS_API: exec
+NODE 1: $u14 := @parameter5: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u14)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.startFBServer ===
+SUSPICIOUS_API: exec
+NODE 1: $u14 := @parameter5: java.lang.String
+NODE 2: if $u13 != 0 goto return 0
+NODE 3: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u14)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.Tools.stopFBServer ===
+SUSPICIOUS_API: exec
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.PWSJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("pws")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.RegisterActivity$15.onClick ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.awindinc.sphone2tv.RegisterActivity$15
+NODE 2: $u0 = this.<com.awindinc.sphone2tv.RegisterActivity$15: com.awindinc.sphone2tv.RegisterActivity this$0>
+NODE 3: $u-1 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.sphone2tv.RegisterActivity$10.onClick ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.awindinc.sphone2tv.RegisterActivity$10
+NODE 2: $u0 = this.<com.awindinc.sphone2tv.RegisterActivity$10: com.awindinc.sphone2tv.RegisterActivity this$0>
+NODE 3: $u-1 = staticinvoke <com.awindinc.util.LicenseTypeTool: java.lang.String getDeviceId(android.content.Context)>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.InputUtilJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("inpututil")
+=== END FUNCTION ===
+
+=== FUNCTION: com.awindinc.util.DLNAUtilJniWrapper.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("dlnautil")
+=== END FUNCTION ===
+

@@ -1,0 +1,296 @@
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+NODE 2: goto [?= $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 := @parameter0: android.content.pm.ApplicationInfo
+NODE 2: if $u-1 == 0 goto return
+NODE 3: $u0 = $u1.<android.content.pm.ApplicationInfo: java.lang.String nativeLibraryDir>
+NODE 4: $u-1 = staticinvoke <com.unity3d.player.NativeLoader: boolean load(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#13 == 0 goto $u2 = virtualinvoke $u1.<java.util.Vector: int size()>()
+NODE 2: $u-1#15 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.loadLibraryStatic ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.EpsonBT200Controller.setStereo ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u9 = class "Landroid/view/Display;"
+NODE 2: $u11 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#13 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setDisplayMode", $u11)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.EpsonBT200Controller.setStereo ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u15 == 0 goto $u-1 = staticinvoke <com.qualcomm.ar.pl.SystemTools: android.app.Activity getActivityFromNative()>()
+NODE 2: $u-1 = staticinvoke <com.qualcomm.ar.pl.SystemTools: android.app.Activity getActivityFromNative()>()
+NODE 3: if $u-1 != null goto $u-1#5 = virtualinvoke $u-1.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 5: wm = (android.view.WindowManager) $u-1#5
+NODE 6: $u-1#8 = interfaceinvoke wm.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 7: $u9 = class "Landroid/view/Display;"
+NODE 8: $u11 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#13 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setDisplayMode", $u11)
+NODE 10: $u9#15 = newarray (java.lang.Object)[1]
+NODE 11: $u-1#5 = virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#8, $u9#15)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.p.b ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.unity3d.player.p
+NODE 2: if $u0 != 0 goto $u0#9 = this.<com.unity3d.player.p: android.content.Context a>
+NODE 3: $u0#9 = this.<com.unity3d.player.p: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u0#13 = (android.location.LocationManager) $u-1
+NODE 6: $u-1#14 = virtualinvoke $u0#13.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 7: if $u1 != 2 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 8: $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()
+NODE 9: if $u0 == 0 goto return
+NODE 10: $u-1 = interfaceinvoke $u-1#19.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u1#25 = (java.lang.String) $u-1
+NODE 12: if $u-1#26 == null goto $u-1#41 = virtualinvoke $u0#13.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u1#25)
+NODE 13: if $u1 == 1 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 14: $u-1#41 = virtualinvoke $u0#13.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u1#25)
+NODE 15: goto [?= $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 14
+EDGE: 13 -> 14
+EDGE: 15 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.p.b ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.unity3d.player.p
+NODE 2: if $u0 != 0 goto $u0#9 = this.<com.unity3d.player.p: android.content.Context a>
+NODE 3: $u0#9 = this.<com.unity3d.player.p: android.content.Context a>
+NODE 4: $u-1 = virtualinvoke $u0#9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u0#13 = (android.location.LocationManager) $u-1
+NODE 6: $u-1#14 = virtualinvoke $u0#13.<android.location.LocationManager: java.util.List getProviders(boolean)>(1)
+NODE 7: if $u1 != 2 goto $u0 = interfaceinvoke $u-1#19.<java.util.Iterator: boolean hasNext()>()
+NODE 8: $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()
+NODE 9: if $u0 == 0 goto return
+NODE 10: $u-1 = interfaceinvoke $u-1#19.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u1#25 = (java.lang.String) $u-1
+NODE 12: $u4 = this.<com.unity3d.player.p: float d>
+NODE 13: $u0#9 = this.<com.unity3d.player.p: android.content.Context a>
+NODE 14: $u-1#46 = virtualinvoke $u0#9.<android.content.Context: android.os.Looper getMainLooper()>()
+NODE 15: virtualinvoke $u0#13.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>($u1#25, 0L, $u4, this, $u-1#46)
+NODE 16: goto [?= $u-1#19 = interfaceinvoke $u-1#14.<java.util.List: java.util.Iterator iterator()>()]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.FileTools.getAbsolutePath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.vuforia.VuforiaJNI.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u-1 = staticinvoke <com.qualcomm.vuforia.VuforiaJNI: boolean loadLibrary(java.lang.String)>("Vuforia")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.vuforia.VuforiaJNI.loadLibrary ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.SystemTools$1.run ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.qualcomm.ar.pl.SystemTools$1
+NODE 2: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u8 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.SystemTools$1.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.qualcomm.ar.pl.SystemTools$1
+NODE 2: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u8 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u8)
+NODE 6: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 7: $u7 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.SystemTools$1.run ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.qualcomm.ar.pl.SystemTools$1
+NODE 2: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u8 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onDestroy", $u8)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.ar.pl.SystemTools$1.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.qualcomm.ar.pl.SystemTools$1
+NODE 2: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u8 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onDestroy", $u8)
+NODE 6: $u6 = this.<com.qualcomm.ar.pl.SystemTools$1: android.app.Activity val$activity>
+NODE 7: $u7 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: $u0 = $u5[0]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.String: int length()>()
+NODE 5: if $u0 >= $u-1 goto return null
+NODE 6: $u0 = $u5[0]
+NODE 7: $u-1#7 = virtualinvoke $u4.<java.lang.String: char charAt(int)>($u0)
+NODE 8: $u0 = (int) $u-1#7
+NODE 9: if $u0 == 40 goto $u0 = $u5[0]
+NODE 10: $u0 = (int) $u-1#7
+NODE 11: if $u0 == 41 goto $u0 = $u5[0]
+NODE 12: $u0 = (int) $u-1#7
+NODE 13: if $u0 != 76 goto $u0 = (int) $u-1#7
+NODE 14: $u0 = $u5[0]
+NODE 15: $u0 = virtualinvoke $u4.<java.lang.String: int indexOf(int,int)>(59, $u0)
+NODE 16: if $u0 == -1 goto return null
+NODE 17: $u-1 = $u5[0]
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u0)
+NODE 19: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String replace(char,char)>(47, 46)
+NODE 20: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 3
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: if $u0 != 91 goto $u0 = new java.lang.StringBuilder
+NODE 4: $u-1#25 = staticinvoke <com.unity3d.player.ReflectionHelper: java.lang.Class a(java.lang.String,int[])>($u4, $u5)
+NODE 5: $u-1#46 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#25, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.fmod.a.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.fmod.a
+NODE 2: $u0#9 = this.<org.fmod.a: android.media.AudioRecord h>
+NODE 3: virtualinvoke $u0#9.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.QCARUnityPlayer.QCARInitializer.loadLibrary ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.QCARUnityPlayer.QCARInitializer.loadNativeLibraries ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <com.qualcomm.QCARUnityPlayer.QCARInitializer: boolean loadLibrary(java.lang.String)>("Vuforia")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.QCARUnityPlayer.QCARInitializer.loadNativeLibraries ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <com.qualcomm.QCARUnityPlayer.QCARInitializer: boolean loadLibrary(java.lang.String)>("QCARWrapper")
+=== END FUNCTION ===
+
+=== FUNCTION: com.qualcomm.QCARUnityPlayer.QCARInitializer.loadNativeLibraries ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <com.qualcomm.QCARUnityPlayer.QCARInitializer: boolean loadLibrary(java.lang.String)>("QCARUnityPlayer")
+=== END FUNCTION ===
+
+=== FUNCTION: bitter.jnibridge.JNIBridge$a.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bitter.jnibridge.JNIBridge$a
+NODE 2: $u8 := @parameter1: java.lang.reflect.Method
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: if $u0 != 0 goto $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 5: $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 6: $u-1 = staticinvoke <bitter.jnibridge.JNIBridge: java.lang.Object invoke(long,java.lang.reflect.Method,java.lang.Object[])>($u2, $u8, $u9)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

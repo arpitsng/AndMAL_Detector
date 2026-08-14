@@ -1,0 +1,2589 @@
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmms.EUExMMS.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tencent.mm.sdk.a.p.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.os.Bundle
+NODE 2: $u-1#5 = virtualinvoke $u5.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_wxobject_identifier_")
+NODE 3: if $u-1 > 0 goto $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 4: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.tencent.mm.sdk.a.p.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: android.os.Bundle
+NODE 2: $u-1#5 = virtualinvoke $u5.<android.os.Bundle: java.lang.String getString(java.lang.String)>("_wxobject_identifier_")
+NODE 3: if $u-1 > 0 goto $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 4: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 5: $u-1#21 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.base.cache.DiskCache.initDiskCache ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#20 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u0 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.v
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.v: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.certificates.Http.getHttpsClient ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = <org.zywx.wbpalmstar.platform.certificates.Http: java.lang.String keyType>
+NODE 2: $u-1 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u0)
+NODE 3: virtualinvoke $u-1.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.certificates.Http.getHttpsClientWithCert ===
+SUSPICIOUS_API: load
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: $u11 := @parameter3: android.content.Context
+NODE 4: if $u0#10 != null goto $u-1#8 = null
+NODE 5: $u0#11 = "file:///android_asset/"
+NODE 6: if $u-1#13 == 0 goto $u-1#13 = virtualinvoke $u9.<java.lang.String: boolean startsWith(java.lang.String)>("file:///sdcard")
+NODE 7: $u-1 = virtualinvoke $u0#11.<java.lang.String: int length()>()
+NODE 8: $u9 = virtualinvoke $u9.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 9: $u-1#19 = virtualinvoke $u11.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 10: $u-1#21 = virtualinvoke $u-1#19.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u9)
+NODE 11: $u-1#8 = $u-1#21
+NODE 12: $u9 = <org.zywx.wbpalmstar.platform.certificates.Http: java.lang.String keyType>
+NODE 13: $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u9)
+NODE 14: $u-1#25 = virtualinvoke $u8.<java.lang.String: char[] toCharArray()>()
+NODE 15: $u-1#21 = (java.io.InputStream) $u-1#8
+NODE 16: virtualinvoke $u-1#24.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#21, $u-1#25)
+NODE 17: if $u-1#13 == 0 goto $u12 = new java.io.FileInputStream
+NODE 18: $u12 = new java.io.FileInputStream
+NODE 19: $u-1#8 = $u12
+NODE 20: goto [?= $u9 = <org.zywx.wbpalmstar.platform.certificates.Http: java.lang.String keyType>]
+NODE 21: $u12 = new java.io.FileInputStream
+NODE 22: $u-1#8 = $u12
+NODE 23: goto [?= $u9 = <org.zywx.wbpalmstar.platform.certificates.Http: java.lang.String keyType>]
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 21
+EDGE: 18 -> 19
+EDGE: 20 -> 12
+EDGE: 21 -> 22
+EDGE: 23 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.certificates.Http.getSSLSocketFactoryWithCert ===
+SUSPICIOUS_API: load
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: $u9 := @parameter2: android.content.Context
+NODE 4: if $u0#9 != null goto $u0 = new org.zywx.wbpalmstar.platform.certificates.HNetSSLSocketFactory
+NODE 5: $u0#10 = "file:///android_asset/"
+NODE 6: if $u-1#13 == 0 goto $u-1#13 = virtualinvoke $u8.<java.lang.String: boolean contains(java.lang.CharSequence)>("/sdcard/")
+NODE 7: $u-1 = virtualinvoke $u0#10.<java.lang.String: int length()>()
+NODE 8: $u8 = virtualinvoke $u8.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 9: $u-1#18 = virtualinvoke $u9.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 10: $u-1#20 = virtualinvoke $u-1#18.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u8)
+NODE 11: $u-1#7 = $u-1#20
+NODE 12: $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")
+NODE 13: $u-1#25 = virtualinvoke $u7.<java.lang.String: char[] toCharArray()>()
+NODE 14: $u-1#20 = (java.io.InputStream) $u-1#7
+NODE 15: virtualinvoke $u-1#24.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#20, $u-1#25)
+NODE 16: if $u-1#13 == 0 goto $u1 = new java.io.FileInputStream
+NODE 17: $u1 = new java.io.FileInputStream
+NODE 18: $u-1#7 = $u1
+NODE 19: goto [?= $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")]
+NODE 20: if $u-1#13 == 0 goto $u1 = new java.io.FileInputStream
+NODE 21: if $u-1#13 == 0 goto $u-1#18 = virtualinvoke $u9.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 22: $u-1 = virtualinvoke $u0#10.<java.lang.String: int length()>()
+NODE 23: $u8 = virtualinvoke $u8.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 24: $u-1#18 = virtualinvoke $u9.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 25: $u-1#20 = virtualinvoke $u-1#18.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u8)
+NODE 26: $u-1#7 = $u-1#20
+NODE 27: goto [?= $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")]
+NODE 28: $u1 = new java.io.FileInputStream
+NODE 29: $u-1#7 = $u1
+NODE 30: goto [?= $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 12
+EDGE: 20 -> 28
+EDGE: 21 -> 22
+EDGE: 21 -> 24
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 12
+EDGE: 29 -> 30
+EDGE: 30 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexalipay.MobileSecurePayHelper.isPluginExist ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexalipay.MobileSecurePayHelper
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexalipay.MobileSecurePayHelper: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexalipay.Rsa.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1#5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/ECB/PKCS1Padding")
+NODE 3: $u-1#8 = virtualinvoke $u3.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 4: $u-1#8 = virtualinvoke $u-1#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#8)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexzxing.common.HybridBinarizer.calculateBlackPoints ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u2 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u2, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.sina.weibo.sdk.net.NetStateManager.a ===
+SUSPICIOUS_API: query
+NODE 1: $u-1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn")
+NODE 2: $u0 = <com.sina.weibo.sdk.net.NetStateManager: android.content.Context b>
+NODE 3: if $u0 == null goto $u-1#10 = null
+NODE 4: $u0 = <com.sina.weibo.sdk.net.NetStateManager: android.content.Context b>
+NODE 5: $u-1#7 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#10 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.Jni.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("locSDK3")
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("appcan")
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.checkAndroidProxy ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn")
+NODE 4: $u-1#7 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#11 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.checkJavaProxy ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn")
+NODE 4: $u-1#7 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#12 = virtualinvoke $u-1#7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.copyFileToStorage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.execRootCmd ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("su ")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.execRootCmdSilent ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("su ")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EUtil.getConnectedType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.Http.getHttpsClient ===
+SUSPICIOUS_API: load
+NODE 1: $u0 = <org.zywx.wbpalmstar.plugin.uexmultiHttp.Http: java.lang.String keyType>
+NODE 2: $u-1 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u0)
+NODE 3: virtualinvoke $u-1.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.Http.getHttpsClientWithCert ===
+SUSPICIOUS_API: load
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: $u11 := @parameter3: android.content.Context
+NODE 4: if $u0#10 != null goto $u-1#8 = null
+NODE 5: $u0#11 = "file:///android_asset/"
+NODE 6: if $u-1#13 == 0 goto $u-1#13 = virtualinvoke $u9.<java.lang.String: boolean startsWith(java.lang.String)>("file:///sdcard")
+NODE 7: $u-1 = virtualinvoke $u0#11.<java.lang.String: int length()>()
+NODE 8: $u9 = virtualinvoke $u9.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 9: $u-1#19 = virtualinvoke $u11.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 10: $u-1#21 = virtualinvoke $u-1#19.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u9)
+NODE 11: $u-1#8 = $u-1#21
+NODE 12: $u9 = <org.zywx.wbpalmstar.plugin.uexmultiHttp.Http: java.lang.String keyType>
+NODE 13: $u-1#24 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u9)
+NODE 14: $u-1#25 = virtualinvoke $u8.<java.lang.String: char[] toCharArray()>()
+NODE 15: $u-1#21 = (java.io.InputStream) $u-1#8
+NODE 16: virtualinvoke $u-1#24.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#21, $u-1#25)
+NODE 17: if $u-1#13 == 0 goto $u-1#8 = null
+NODE 18: $u12 = new java.io.FileInputStream
+NODE 19: $u-1#8 = $u12
+NODE 20: goto [?= $u9 = <org.zywx.wbpalmstar.plugin.uexmultiHttp.Http: java.lang.String keyType>]
+NODE 21: $u-1#8 = null
+NODE 22: goto [?= $u9 = <org.zywx.wbpalmstar.plugin.uexmultiHttp.Http: java.lang.String keyType>]
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 21
+EDGE: 18 -> 19
+EDGE: 20 -> 12
+EDGE: 21 -> 22
+EDGE: 22 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.Http.getSSLSocketFactoryWithCert ===
+SUSPICIOUS_API: load
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u7 := @parameter2: android.content.Context
+NODE 4: if $u0#8 != null goto $u0 = new org.zywx.wbpalmstar.plugin.uexmultiHttp.HNetSSLSocketFactory
+NODE 5: $u0#9 = "file:///android_asset/"
+NODE 6: if $u-1#11 == 0 goto $u-1#11 = virtualinvoke $u6.<java.lang.String: boolean startsWith(java.lang.String)>("file:///sdcard")
+NODE 7: $u-1 = virtualinvoke $u0#9.<java.lang.String: int length()>()
+NODE 8: $u6 = virtualinvoke $u6.<java.lang.String: java.lang.String substring(int)>($u-1)
+NODE 9: $u-1#17 = virtualinvoke $u7.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 10: $u-1#19 = virtualinvoke $u-1#17.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String)>($u6)
+NODE 11: $u-1#6 = $u-1#19
+NODE 12: $u-1#23 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")
+NODE 13: $u-1#24 = virtualinvoke $u5.<java.lang.String: char[] toCharArray()>()
+NODE 14: $u-1#19 = (java.io.InputStream) $u-1#6
+NODE 15: virtualinvoke $u-1#23.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#19, $u-1#24)
+NODE 16: if $u-1#11 == 0 goto $u-1#6 = null
+NODE 17: $u1 = new java.io.FileInputStream
+NODE 18: $u-1#6 = $u1
+NODE 19: goto [?= $u-1#23 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")]
+NODE 20: $u-1#6 = null
+NODE 21: goto [?= $u-1#23 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>("pkcs12")]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 20
+EDGE: 18 -> 19
+EDGE: 19 -> 12
+EDGE: 20 -> 21
+EDGE: 21 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.l.onReceivedError ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#21 == 0 goto return
+NODE 2: $u-1#23 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getBlueToothSupport ===
+SUSPICIOUS_API: forName
+NODE 1: if $u1 < 5 goto return "0"
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.bluetooth.BluetoothAdapter")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getBlueToothSupport ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u1 < 5 goto return "0"
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.bluetooth.BluetoothAdapter")
+NODE 3: $u3 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#10 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefaultAdapter", $u3)
+NODE 5: $u3#13 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#14 = virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getCPUFrequency ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getDeviceIMEI ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: if $u0#5 == null goto return "unknown"
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getDeviceIMEI ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: if $u-1#6 == null goto return "unknown"
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getMacAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#4 = (android.net.wifi.WifiManager) $u-1
+NODE 5: if $u0#4 == null goto return "unKnown"
+NODE 6: $u-1#5 = virtualinvoke $u0#4.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getMacAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#4 = (android.net.wifi.WifiManager) $u-1
+NODE 5: if $u0#4 == null goto return "unKnown"
+NODE 6: $u-1#5 = virtualinvoke $u0#4.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 7: if $u-1#5 == null goto return "unKnown"
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getMobileDataNetworkSupport ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u0 = virtualinvoke $u0.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#7 = (android.net.ConnectivityManager) $u-1
+NODE 6: if $u0#7 == null goto return "0"
+NODE 7: $u-1#8 = virtualinvoke $u0#7.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getNetworkStatus ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u0 = virtualinvoke $u0.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0#8 = (android.net.ConnectivityManager) $u-1
+NODE 6: if $u0#8 == null goto return -1
+NODE 7: $u-1#9 = virtualinvoke $u0#8.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getRestDiskSize ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 != 0 goto $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getSimSerialNumber ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: if $u0#5 == null goto return "unknown"
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getSimSerialNumber ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: if $u-1#6 == null goto return "unknown"
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice.getInfo ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice
+NODE 2: $u0 = specialinvoke this.<org.zywx.wbpalmstar.plugin.uexdevice.EUExDevice: java.lang.String getSimSerialNumber()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$SlidingPanelLayoutImplJB.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u0 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$SlidingPanelLayoutImplJB.invalidateChildRegion ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$SlidingPanelLayoutImplJB
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$SlidingPanelLayoutImplJB: java.lang.reflect.Method mGetDisplayList>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.sina.weibo.sdk.a.b.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.sina.weibo.sdk.a.b
+NODE 2: if $u0#40 != 0 goto $u0#36 = this.<com.sina.weibo.sdk.a.b: android.content.Context a>
+NODE 3: goto [?= (branch)]
+NODE 4: $u0#36 = this.<com.sina.weibo.sdk.a.b: android.content.Context a>
+NODE 5: if $u0#36 == null goto $u0#40 = 0
+NODE 6: $u-1#53 = virtualinvoke $u0#36.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 7: $u0#55 = (android.net.ConnectivityManager) $u-1#53
+NODE 8: $u-1#56 = virtualinvoke $u0#55.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 4
+EDGE: 3 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexsms.EUExSMS.performSendSmsAction ===
+SUSPICIOUS_API: sendTextMessage
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexsms.EUExSMS
+NODE 2: $u9 := @parameter0: java.lang.String
+NODE 3: $u10 := @parameter1: java.lang.String
+NODE 4: $u-1 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()
+NODE 5: $u1 = new android.content.Intent
+NODE 6: $u2 = this.<org.zywx.wbpalmstar.plugin.uexsms.EUExSMS: android.content.Context mContext>
+NODE 7: $u-1#8 = staticinvoke <android.app.PendingIntent: android.app.PendingIntent getBroadcast(android.content.Context,int,android.content.Intent,int)>($u2, 0, $u1, 134217728)
+NODE 8: $u-1#10 = virtualinvoke $u-1.<android.telephony.SmsManager: java.util.ArrayList divideMessage(java.lang.String)>($u10)
+NODE 9: $u-1#12 = virtualinvoke $u-1#10.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 10: if $u-1#13 != 0 goto $u-1#15 = interfaceinvoke $u-1#12.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u-1#15 = interfaceinvoke $u-1#12.<java.util.Iterator: java.lang.Object next()>()
+NODE 12: $u10 = (java.lang.String) $u-1#15
+NODE 13: virtualinvoke $u-1.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($u9, null, $u10, $u-1#8, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.aa.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#18 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.myspace.GSenseView.c ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.myspace.GSenseView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.myspace.GSenseView: android.media.SoundPool A>
+NODE 3: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.platform.myspace.GSenseView: android.content.Context getContext()>()
+NODE 4: $u-1#3 = this.<org.zywx.wbpalmstar.platform.myspace.GSenseView: org.zywx.wbpalmstar.base.ResoureFinder C>
+NODE 5: $u-1#13 = virtualinvoke $u-1#3.<org.zywx.wbpalmstar.base.ResoureFinder: int getRawId(java.lang.String)>("collision")
+NODE 6: $u-1#13 = virtualinvoke $u0.<android.media.SoundPool: int load(android.content.Context,int,int)>($u-1, $u-1#13, 1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexlocation.EUExLocation.checkSetting ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexlocation.EUExLocation
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexlocation.EUExLocation: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#14 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#15 = virtualinvoke $u0#14.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#36 == 0 goto $u1 = null
+NODE 2: $u1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.universalex.f.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.universalex.f
+NODE 2: $u7 = this.<org.zywx.wbpalmstar.engine.universalex.f: android.content.Context a>
+NODE 3: $u7 = virtualinvoke $u7.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 4: $u0#29 = (org.zywx.wbpalmstar.widgetone.WidgetOneApplication) $u7
+NODE 5: $u-1 = virtualinvoke $u0#29.<org.zywx.wbpalmstar.widgetone.WidgetOneApplication: org.zywx.wbpalmstar.engine.universalex.aa b()>()
+NODE 6: $u-1#32 = virtualinvoke $u-1.<org.zywx.wbpalmstar.engine.universalex.aa: java.util.Map a()>()
+NODE 7: $u-1#35 = interfaceinvoke $u-1#32.<java.util.Map: java.util.Set entrySet()>()
+NODE 8: $u-1#37 = interfaceinvoke $u-1#35.<java.util.Set: java.util.Iterator iterator()>()
+NODE 9: if $u-1#39 != 0 goto $u-1#41 = interfaceinvoke $u-1#37.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u-1#41 = interfaceinvoke $u-1#37.<java.util.Iterator: java.lang.Object next()>()
+NODE 11: $u0#43 = (java.util.Map$Entry) $u-1#41
+NODE 12: $u-1#41 = interfaceinvoke $u0#43.<java.util.Map$Entry: java.lang.Object getValue()>()
+NODE 13: $u0#49 = (org.zywx.wbpalmstar.engine.universalex.ab) $u-1#41
+NODE 14: $u0#51 = $u0#49.<org.zywx.wbpalmstar.engine.universalex.ab: java.lang.reflect.Constructor d>
+NODE 15: $u5#53 = newarray (java.lang.Object)[2]
+NODE 16: $u-1#41 = virtualinvoke $u0#51.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5#53)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.a.a.a.a.a.e.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto (branch)
+NODE 2: if $u5 != null goto $u4 = virtualinvoke $u5.<java.nio.charset.Charset: java.lang.String name()>()
+NODE 3: $u5 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.XmlHttpUtil.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.PushGetData2.getMacAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.PushGetData2
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.PushGetData2: android.content.Context mCtx>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#5 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.PushGetData2.getMacAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.PushGetData2
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.PushGetData2: android.content.Context mCtx>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#5 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#8 = virtualinvoke $u-1#6.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexalipay.NetworkManager.detectProxy ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexzxing.client.android.camera.CameraConfigurationManager.setDisplayOrientation ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.hardware.Camera
+NODE 2: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDisplayOrientation", $u2)
+NODE 5: if $u-1#7 == null goto return
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.base.BUtility.getSdCardRootPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap P>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.widgetone.a.uncaughtException ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#22 == 0 goto $u0#51 = this.<org.zywx.wbpalmstar.widgetone.a: java.lang.Thread$UncaughtExceptionHandler a>
+NODE 2: $u-1#24 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.widgetone.c.run ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: org.zywx.wbpalmstar.widgetone.c
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.widgetone.c: android.content.Context b>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0#5 = (android.telephony.TelephonyManager) $u-1
+NODE 5: $u3#30 = virtualinvoke $u0#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.sina.weibo.sdk.net.NetStateManager$NetStateReceive.onReceive ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 == 0 goto return
+NODE 3: $u-1#7 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#9 = (android.net.wifi.WifiManager) $u-1#7
+NODE 5: $u-1#10 = virtualinvoke $u0#9.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexzxing.qrcode.encoder.ByteMatrix.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#3 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.PushGetData$1.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 == 0 goto return
+NODE 3: $u-1#17 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#19 = (android.net.ConnectivityManager) $u-1#17
+NODE 5: if $u0#19 == null goto $u0#6 = this.<org.zywx.wbpalmstar.platform.push.PushGetData$1: org.zywx.wbpalmstar.platform.push.PushGetData this$0>
+NODE 6: $u-1#20 = virtualinvoke $u0#19.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexalipay.BaseHelper.chmod ===
+SUSPICIOUS_API: exec
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u2)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 7: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 9: virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.a.a.a.a.f.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.sina.weibo.sdk.net.d.a ===
+SUSPICIOUS_API: load
+NODE 1: $u-1 = staticinvoke <java.security.KeyStore: java.lang.String getDefaultType()>()
+NODE 2: $u-1#3 = staticinvoke <java.security.KeyStore: java.security.KeyStore getInstance(java.lang.String)>($u-1)
+NODE 3: virtualinvoke $u-1#3.<java.security.KeyStore: void load(java.io.InputStream,char[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera$8.onClick ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera$8
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera$8: org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera this$0>
+NODE 3: $u0#6 = $u0.<org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera: android.hardware.Camera mCamera>
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera$8: org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera this$0>
+NODE 5: $u1 = $u0.<org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera: android.hardware.Camera$PictureCallback jpeg>
+NODE 6: virtualinvoke $u0#6.<android.hardware.Camera: void takePicture(android.hardware.Camera$ShutterCallback,android.hardware.Camera$PictureCallback,android.hardware.Camera$PictureCallback)>(null, null, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.getMac ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /sys/class/net/wlan0/address ")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.getMacAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.MQTTService
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.MQTTService: android.content.Context _context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#6 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#7 = virtualinvoke $u0#6.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.getMacAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.MQTTService
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.MQTTService: android.content.Context _context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#6 = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#7 = virtualinvoke $u0#6.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1#7.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.MQTTService
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.MQTTService: android.content.Context _context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#5 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.MQTTService
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.MQTTService: android.content.Context _context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#5 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#6 == null goto return 0
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.MQTTService.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.platform.push.MQTTService
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.platform.push.MQTTService: android.content.Context _context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#5 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#10 == 0 goto return 0
+NODE 6: $u-1#6 = virtualinvoke $u0#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.tencent.mm.sdk.platformtools.LBSManager.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.tencent.mm.sdk.platformtools.LBSManager
+NODE 2: $u0 = this.<com.tencent.mm.sdk.platformtools.LBSManager: android.content.Context g>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0#5 = (android.net.wifi.WifiManager) $u-1
+NODE 5: if $u0#5 != null goto $u-1#9 = virtualinvoke $u0#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#9 = virtualinvoke $u0#5.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$RelativeLayoutParamsWrapper.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/widget/RelativeLayout$LayoutParams;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mLeft")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$RelativeLayoutParamsWrapper.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/widget/RelativeLayout$LayoutParams;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRight")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$RelativeLayoutParamsWrapper.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/widget/RelativeLayout$LayoutParams;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mTop")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.mam.SlidePaneLayout$RelativeLayoutParamsWrapper.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/widget/RelativeLayout$LayoutParams;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mBottom")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.ueximagebrowser.EUExImageBrowser.save ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#49 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.f.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.baidu.location.t
+NODE 2: if $u0#5 != 0 goto staticinvoke <com.baidu.location.ak: void a(java.lang.String,java.lang.String)>("baidu_location_service", "set cell info..")
+NODE 3: $u0 = this.<com.baidu.location.t: android.telephony.TelephonyManager c>
+NODE 4: $u-1 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0#101 != null goto $u0#101 = <com.baidu.location.t: java.lang.Class n>
+NODE 2: $u0#101 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.cdma.CdmaCellLocation")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.telephony.CellLocation
+NODE 2: if $u0#5 == 0 goto $u0#5 = virtualinvoke $u3.<com.baidu.location.u: boolean b()>()
+NODE 3: $u-1#108 = <com.baidu.location.t: java.lang.reflect.Method m>
+NODE 4: $u4 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#129 = virtualinvoke $u-1#108.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.telephony.CellLocation
+NODE 2: $u-1#108 = <com.baidu.location.t: java.lang.reflect.Method k>
+NODE 3: $u4 = newarray (java.lang.Object)[0]
+NODE 4: $u-1#129 = virtualinvoke $u-1#108.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.telephony.CellLocation
+NODE 2: $u-1#108 = <com.baidu.location.t: java.lang.reflect.Method l>
+NODE 3: $u4 = newarray (java.lang.Object)[0]
+NODE 4: $u-1#129 = virtualinvoke $u-1#108.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.t.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.baidu.location.t
+NODE 2: $u0#6 = this.<com.baidu.location.t: android.telephony.TelephonyManager c>
+NODE 3: $u-1#15 = virtualinvoke $u0#6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.k ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: this := @this: com.baidu.location.w
+NODE 2: $u0 = this.<com.baidu.location.w: android.content.Context e>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#6 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#8 = virtualinvoke $u0#6.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.wifi.WifiManager")
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.net.wifi.WifiManager")
+NODE 2: $u-1#28 = virtualinvoke $u-1#25.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mService")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.baidu.location.w
+NODE 2: $u-1 = this.<com.baidu.location.w: java.lang.Object n>
+NODE 3: $u-1#25 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u2#51 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#54 = virtualinvoke $u-1#25.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("startScan", $u2#51)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.e ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.baidu.location.w
+NODE 2: if $u-1#11 == 0 goto this.<com.baidu.location.w: long k> = 0L
+NODE 3: $u2#13 = this.<com.baidu.location.w: java.lang.reflect.Method o>
+NODE 4: if $u2#13 == null goto $u2 = this.<com.baidu.location.w: android.net.wifi.WifiManager g>
+NODE 5: $u2#14 = this.<com.baidu.location.w: java.lang.Object n>
+NODE 6: if $u2#14 == null goto $u2 = this.<com.baidu.location.w: android.net.wifi.WifiManager g>
+NODE 7: $u2#13 = this.<com.baidu.location.w: java.lang.reflect.Method o>
+NODE 8: $u2#14 = this.<com.baidu.location.w: java.lang.Object n>
+NODE 9: $u6 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u2#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#14, $u6)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.w.f ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.baidu.location.w
+NODE 2: $u1 = this.<com.baidu.location.w: android.net.wifi.WifiManager g>
+NODE 3: $u-1 = virtualinvoke $u1.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.n.a ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: $u11 := @parameter0: com.baidu.location.n
+NODE 2: $u0#79 = $u11.<com.baidu.location.n: android.location.LocationManager c>
+NODE 3: $u1#80 = $u11.<com.baidu.location.n: com.baidu.location.p e>
+NODE 4: virtualinvoke $u0#79.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 1.0F, $u1#80)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.n.a ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: $u11 := @parameter0: com.baidu.location.n
+NODE 2: $u0#79 = $u11.<com.baidu.location.n: android.location.LocationManager c>
+NODE 3: $u1#80 = $u11.<com.baidu.location.n: com.baidu.location.p e>
+NODE 4: virtualinvoke $u0#79.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 5.0F, $u1#80)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.n.a ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.baidu.location.n
+NODE 2: $u0#6 = this.<com.baidu.location.n: android.location.LocationManager c>
+NODE 3: $u5 = this.<com.baidu.location.n: com.baidu.location.p e>
+NODE 4: virtualinvoke $u0#6.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 5.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#25 <= 10 goto return
+NODE 2: $u0#31 = newarray (java.lang.Class)[1]
+NODE 3: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setEnableSmoothTransition", $u0#31)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.ag
+NODE 2: if $u0#25 <= 10 goto return
+NODE 3: $u0#31 = newarray (java.lang.Class)[1]
+NODE 4: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setEnableSmoothTransition", $u0#31)
+NODE 6: $u0 = this.<org.zywx.wbpalmstar.engine.ag: android.webkit.WebSettings c>
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#25 <= 10 goto return
+NODE 2: $u0#31 = newarray (java.lang.Class)[1]
+NODE 3: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setAutoFillEnabled", $u0#31)
+NODE 5: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.ag
+NODE 2: if $u0#25 <= 10 goto return
+NODE 3: $u0#31 = newarray (java.lang.Class)[1]
+NODE 4: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setAutoFillEnabled", $u0#31)
+NODE 6: $u0 = this.<org.zywx.wbpalmstar.engine.ag: android.webkit.WebSettings c>
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3)
+NODE 9: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#25 <= 10 goto return
+NODE 2: $u0#31 = newarray (java.lang.Class)[1]
+NODE 3: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHardwareAccelSkiaEnabled", $u0#31)
+NODE 5: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.ag
+NODE 2: if $u0#25 <= 10 goto return
+NODE 3: $u0#31 = newarray (java.lang.Class)[1]
+NODE 4: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHardwareAccelSkiaEnabled", $u0#31)
+NODE 6: $u0 = this.<org.zywx.wbpalmstar.engine.ag: android.webkit.WebSettings c>
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3)
+NODE 9: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#25 <= 10 goto return
+NODE 2: $u0#31 = newarray (java.lang.Class)[1]
+NODE 3: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setForceUserScalable", $u0#31)
+NODE 5: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ag.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.ag
+NODE 2: if $u0#25 <= 10 goto return
+NODE 3: $u0#31 = newarray (java.lang.Class)[1]
+NODE 4: $u1#32 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u-1#35 = virtualinvoke $u1#32.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setForceUserScalable", $u0#31)
+NODE 6: $u0 = this.<org.zywx.wbpalmstar.engine.ag: android.webkit.WebSettings c>
+NODE 7: $u3 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3)
+NODE 9: goto [?= $u1#32 = class "Landroid/webkit/WebSettings;"]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.af.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.af
+NODE 2: if $u0#20 > 7 goto (branch)
+NODE 3: $u0 = this.<org.zywx.wbpalmstar.engine.af: android.webkit.WebSettings c>
+NODE 4: $u2 = newarray (java.lang.Class)[1]
+NODE 5: $u4 = class "Landroid/webkit/WebSettings;"
+NODE 6: $u-1#42 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDatabaseEnabled", $u2)
+NODE 7: $u5 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#42.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.af.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.af
+NODE 2: if $u0#20 > 7 goto (branch)
+NODE 3: $u0 = this.<org.zywx.wbpalmstar.engine.af: android.webkit.WebSettings c>
+NODE 4: $u2 = newarray (java.lang.Class)[1]
+NODE 5: $u4 = class "Landroid/webkit/WebSettings;"
+NODE 6: $u-1#42 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2)
+NODE 7: $u5 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#42.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.af.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.af
+NODE 2: if $u0#20 > 7 goto (branch)
+NODE 3: $u0 = this.<org.zywx.wbpalmstar.engine.af: android.webkit.WebSettings c>
+NODE 4: $u3 = newarray (java.lang.Class)[1]
+NODE 5: $u4 = class "Landroid/webkit/WebSettings;"
+NODE 6: $u-1#42 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDatabasePath", $u3)
+NODE 7: $u5 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#42.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: a.a.b.a.c.a ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: a.a.b.a.c
+NODE 2: if $u-1 == 0 goto $u0 = this.<a.a.b.a.c: java.lang.String h>
+NODE 3: $u0 = this.<a.a.b.a.c: java.lang.String h>
+NODE 4: $u-1#6 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.bp.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.bp
+NODE 2: $u6 := @parameter0: java.lang.Object[]
+NODE 3: $u0 = this.<org.zywx.wbpalmstar.engine.bp: int a>
+NODE 4: if $u0 <= $u1 goto (branch)
+NODE 5: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u0 = this.<org.zywx.wbpalmstar.engine.bp: int a>
+NODE 8: $u4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u0)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.bm.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#18 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexvideo.EUExVideo.record ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.ueximagebrowser.ImageUtility.isNetworkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u4 = virtualinvoke $u4.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u0 == null goto $u-1#10 = 0
+NODE 6: $u-1#8 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.tencent.mm.sdk.platformtools.d.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u0 = new java.lang.StringBuffer
+NODE 2: $u6 = virtualinvoke $u0.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 3: $u-1#30 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES")
+NODE 4: $u5 = virtualinvoke $u6.<java.lang.String: byte[] getBytes()>()
+NODE 5: $u5 = virtualinvoke $u-1#30.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u5)
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u-1 = virtualinvoke $u3.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: $u0 = (android.net.ConnectivityManager) $u-1#5
+NODE 6: if $u0 == null goto return null
+NODE 7: $u-1#8 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1#6 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1#6
+NODE 4: $u-1 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#10 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u3)
+NODE 4: $u3#13 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#16 = virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3#13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.b ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1#14 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1#14
+NODE 4: $u6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.c ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /sys/class/net/wlan0/address ")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.c ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.c ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.z.d ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /proc/cpuinfo")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#49 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.a.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u2 = virtualinvoke $u2.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 3: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.a.d ===
+SUSPICIOUS_API: exec
+NODE 1: $u0#18 = new java.util.ArrayList
+NODE 2: $u-1#26 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#28 = virtualinvoke $u0#18.<java.util.ArrayList: int size()>()
+NODE 4: $u8 = newarray (java.lang.String)[$u-1#28]
+NODE 5: $u-1#31 = virtualinvoke $u0#18.<java.util.ArrayList: java.lang.Object[] toArray(java.lang.Object[])>($u8)
+NODE 6: $u8 = (java.lang.String[]) $u-1#31
+NODE 7: $u-1#34 = virtualinvoke $u-1#26.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u8)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.a.d ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1#26 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: virtualinvoke $u-1#26.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("logcat -c")
+NODE 3: goto [?= $u-1#26 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.analytics.a.e ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u0 = <org.zywx.wbpalmstar.platform.analytics.a: android.content.Context d>
+NODE 2: if $u0 != null goto $u0 = <org.zywx.wbpalmstar.platform.analytics.a: android.content.Context d>
+NODE 3: $u0 = <org.zywx.wbpalmstar.platform.analytics.a: android.content.Context d>
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0#7 = (android.telephony.TelephonyManager) $u-1
+NODE 6: $u4 = virtualinvoke $u0#7.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.platform.push.PushGetData2$1.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 == 0 goto return
+NODE 3: $u-1#7 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#7
+NODE 5: if $u0 == null goto $u1 = this.<org.zywx.wbpalmstar.platform.push.PushGetData2$1: org.zywx.wbpalmstar.platform.push.PushGetData2 this$0>
+NODE 6: $u-1#10 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.widgetone.dataservice.d.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: org.zywx.wbpalmstar.widgetone.dataservice.d
+NODE 2: if $u0#36 == null goto $u1 = this.<org.zywx.wbpalmstar.widgetone.dataservice.d: android.content.Context i>
+NODE 3: if $u-1 != 0 goto $u1 = this.<org.zywx.wbpalmstar.widgetone.dataservice.d: android.content.Context i>
+NODE 4: $u1 = this.<org.zywx.wbpalmstar.widgetone.dataservice.d: android.content.Context i>
+NODE 5: $u-1#66 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 6: $u0#68 = (android.telephony.TelephonyManager) $u-1#66
+NODE 7: $u0#36 = virtualinvoke $u0#68.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcamera.CustomCamera.setDisplayOrientation ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.hardware.Camera
+NODE 2: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDisplayOrientation", $u2)
+NODE 5: if $u-1#7 == null goto return
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter.bindView ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter
+NODE 2: $u13 := @parameter2: android.database.Cursor
+NODE 3: $u-1 = interfaceinvoke $u13.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 4: $u-1#27 = interfaceinvoke $u13.<android.database.Cursor: java.lang.String getString(int)>($u-1)
+NODE 5: $u0#33 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter: android.content.ContentResolver mContent>
+NODE 6: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 7: $u3 = new java.lang.StringBuilder
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#27)
+NODE 9: $u-1#39 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u13 = virtualinvoke $u0#33.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#39, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter.bindView ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter
+NODE 2: $u13 := @parameter2: android.database.Cursor
+NODE 3: $u-1 = interfaceinvoke $u13.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 4: $u-1#27 = interfaceinvoke $u13.<android.database.Cursor: java.lang.String getString(int)>($u-1)
+NODE 5: $u0#33 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter: android.content.ContentResolver mContent>
+NODE 6: $u1 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 7: $u3 = new java.lang.StringBuilder
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#27)
+NODE 9: $u-1#27 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u13 = virtualinvoke $u0#33.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#27, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter.runQueryOnBackgroundThread ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter
+NODE 2: if $u-1 == null goto (branch)
+NODE 3: if $u7 == null goto $u4 = null
+NODE 4: $u0 = new java.lang.StringBuilder
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u0#27 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter: android.content.ContentResolver mContent>
+NODE 7: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 8: if $u0 != null goto $u-1#15 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#15 = null
+NODE 10: $u-1#5 = virtualinvoke $u0#27.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#15, $u4, null)
+NODE 11: $u-1#15 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: goto [?= $u-1#5 = virtualinvoke $u0#27.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#15, $u4, null)]
+NODE 13: $u4 = null
+NODE 14: $u0 = null
+NODE 15: goto [?= $u0#27 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.AutoAdapter: android.content.ContentResolver mContent>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 3 -> 13
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 10
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexfilemgr.FileUtility.getMusicAlbum ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter1: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u11.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.MediaStore$Audio$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, "title_key")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexfilemgr.FileUtility.getMusicAlbum ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter1: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u11.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.MediaStore$Audio$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, "title_key")
+NODE 6: if $u-1#16 != 0 goto $u-1#19 = interfaceinvoke $u-1#14.<android.database.Cursor: java.lang.String getString(int)>(0)
+NODE 7: $u1#18 = -1
+NODE 8: if $u1#18 != -1 goto $u-1 = virtualinvoke $u11.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 9: if $u-1#16 == 0 goto $u-1#16 = interfaceinvoke $u-1#14.<android.database.Cursor: boolean moveToNext()>()
+NODE 10: $u1#18 = interfaceinvoke $u-1#14.<android.database.Cursor: int getInt(int)>(1)
+NODE 11: $u-1 = virtualinvoke $u11.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 12: $u0 = new java.lang.StringBuilder
+NODE 13: $u10 = staticinvoke <java.lang.Integer: java.lang.String toString(int)>($u1#18)
+NODE 14: $u2#31 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 15: $u10 = virtualinvoke $u2#31.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 16: $u1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u10)
+NODE 17: $u2 = newarray (java.lang.String)[1]
+NODE 18: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexfilemgr.FileUtility.getSystemPictureThumbnail ===
+SUSPICIOUS_API: query
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: if $u-1 == 0 goto $u-1#31 = -1L
+NODE 3: $u-1#23 = virtualinvoke $u11.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1#25 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 5: $u2 = <org.zywx.wbpalmstar.plugin.uexfilemgr.FileUtility: java.lang.String[] projection>
+NODE 6: $u4 = newarray (java.lang.String)[2]
+NODE 7: $u-1#35 = virtualinvoke $u-1#23.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#25, $u2, "_data=? and date_modified=?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexfilemgr.FileUtility.getVideoThumbnail ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.app.Activity
+NODE 2: $u-1#15 = virtualinvoke $u12.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.MediaStore$Video$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1#24 = virtualinvoke $u-1#15.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ESystemInfo.getCPUFrequency ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ESystemInfo.getStateBarHeight ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.ESystemInfo.getStateBarHeight ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+NODE 2: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.am.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: if $u0 == null goto return ""
+NODE 5: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.universalex.aa.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: if $u5 == null goto return null
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity.getData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity
+NODE 2: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, "sort_key COLLATE LOCALIZED asc")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity.getData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity
+NODE 2: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity.getData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity
+NODE 2: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, "sort_key COLLATE LOCALIZED asc")
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+NODE 7: $u-1#26 = interfaceinvoke $u-1#9.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u-1#28 = interfaceinvoke $u-1#9.<android.database.Cursor: java.lang.String getString(int)>($u-1#26)
+NODE 9: if $u-1#14 == 0 goto $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 12: $u2 = new java.lang.StringBuilder
+NODE 13: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#28)
+NODE 14: $u0 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#70 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u0, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity.getData ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity
+NODE 2: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, "sort_key COLLATE LOCALIZED asc")
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+NODE 7: $u-1#26 = interfaceinvoke $u-1#9.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u-1#28 = interfaceinvoke $u-1#9.<android.database.Cursor: java.lang.String getString(int)>($u-1#26)
+NODE 9: if $u-1#14 == 0 goto $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u-1 = virtualinvoke this.<org.zywx.wbpalmstar.plugin.uexcontacts.ContactActivity: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u1 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 12: $u2 = new java.lang.StringBuilder
+NODE 13: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#28)
+NODE 14: $u-1#28 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#70 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#28, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.a.a.e
+NODE 2: $u0 = this.<com.a.a.e: java.lang.Class d>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = newarray (java.lang.Class)[0]
+NODE 2: $u1 = class "Landroid/webkit/WebView;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dismissZoomControl", $u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = newarray (java.lang.Class)[0]
+NODE 2: $u1 = class "Landroid/webkit/WebView;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dumpDisplayTree", $u0)
+NODE 4: goto [?= $u1 = class "Landroid/webkit/WebView;"]
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = newarray (java.lang.Class)[1]
+NODE 2: $u1 = class "Landroid/webkit/WebView;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dumpDomTree", $u0)
+NODE 4: goto [?= $u0 = newarray (java.lang.Class)[1]]
+EDGE: 2 -> 3
+EDGE: 4 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = newarray (java.lang.Class)[1]
+NODE 2: $u1 = class "Landroid/webkit/WebView;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dumpRenderTree", $u0)
+NODE 4: goto [?= $u1 = class "Landroid/webkit/WebView;"]
+NODE 5: goto [?= $u0 = newarray (java.lang.Class)[1]]
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+EDGE: 5 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = newarray (java.lang.Class)[1]
+NODE 2: $u1 = class "Landroid/webkit/WebView;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("drawPage", $u0)
+NODE 4: goto [?= $u0 = newarray (java.lang.Class)[1]]
+EDGE: 2 -> 3
+EDGE: 4 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#39 < 9 goto $u0 = newarray (java.lang.Class)[1]
+NODE 2: $u0 = newarray (java.lang.Class)[1]
+NODE 3: $u1 = class "Landroid/webkit/WebView;"
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.initPrivateVoid ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: if $u0#39 < 9 goto $u0 = newarray (java.lang.Class)[1]
+NODE 3: $u0 = newarray (java.lang.Class)[1]
+NODE 4: $u1 = class "Landroid/webkit/WebView;"
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setOverScrollMode", $u0)
+NODE 6: $u1#50 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#50)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.pauseCore ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 < 11 goto $u0#4 = newarray (java.lang.Class)[0]
+NODE 2: $u0#4 = newarray (java.lang.Class)[0]
+NODE 3: $u1 = class "Landroid/webkit/WebView;"
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u0#4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.pauseCore ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: if $u0 < 11 goto $u0#4 = newarray (java.lang.Class)[0]
+NODE 3: $u0#4 = newarray (java.lang.Class)[0]
+NODE 4: $u1 = class "Landroid/webkit/WebView;"
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onPause", $u0#4)
+NODE 6: $u1#9 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.resumeCore ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 < 11 goto $u0#4 = newarray (java.lang.Class)[0]
+NODE 2: $u0#4 = newarray (java.lang.Class)[0]
+NODE 3: $u1 = class "Landroid/webkit/WebView;"
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onResume", $u0#4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.resumeCore ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: if $u0 < 11 goto $u0#4 = newarray (java.lang.Class)[0]
+NODE 3: $u0#4 = newarray (java.lang.Class)[0]
+NODE 4: $u1 = class "Landroid/webkit/WebView;"
+NODE 5: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("onResume", $u0#4)
+NODE 6: $u1#9 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.destroyControl ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDismissZoomControl>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDismissZoomControl>
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.myDrawPage ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDrawPage>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDrawPage>
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.myDumpDisplayTree ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpDisplayTree>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpDisplayTree>
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.myDumpDomTree ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpDomTree>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpDomTree>
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.engine.EBrowserView.myDumpRenderTree ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.zywx.wbpalmstar.engine.EBrowserView
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpRenderTree>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.engine.EBrowserView: java.lang.reflect.Method mDumpRenderTree>
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.k.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.a.a.b.b")
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.k.q ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.a.a.a.b")
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.k.q ===
+SUSPICIOUS_API: forName
+NODE 1: if $u1 != 0 goto return $u0
+NODE 2: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.ibm.mqtt.midp.MqttMidpSocket")
+NODE 3: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.k.r ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.ibm.mqtt.local.MqttLocalBindingV2")
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.k.r ===
+SUSPICIOUS_API: forName
+NODE 1: if $u1 != 0 goto return $u0
+NODE 2: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.ibm.mqtt.local.MqttLocalBindingV1")
+NODE 3: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.deletes ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u-1#5 >= 8 goto (branch)
+NODE 4: $u1 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.deletes ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u-1#5 >= 8 goto (branch)
+NODE 4: if $u-1#5 >= 14 goto $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.deletes ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u-1#5 >= 8 goto (branch)
+NODE 4: if $u-1#5 >= 14 goto $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.deletes ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u-1#16 == 0 goto $u-1#16 = interfaceinvoke $u-1#14.<android.database.Cursor: boolean moveToNext()>()
+NODE 4: $u1 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 5: $u5 = newarray (java.lang.String)[1]
+NODE 6: $u-1#120 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id=?", $u5, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.getValueWithName ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u13 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$CommonDataKinds$StructuredPostal: android.net.Uri CONTENT_URI>
+NODE 5: $u3 = new java.lang.StringBuilder
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u13)
+NODE 7: $u-1#9 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#13 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#9, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.getValueWithName ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u5#50 = newarray (java.lang.String)[3]
+NODE 5: $u7 = newarray (java.lang.String)[1]
+NODE 6: $u-1#13 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u5#50, "contact_id=? AND mimetype=\'vnd.android.cursor.item/organization\'", $u7, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.getValueWithName ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u5#50 = newarray (java.lang.String)[2]
+NODE 5: $u7 = newarray (java.lang.String)[1]
+NODE 6: $u-1#13 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u5#50, "contact_id=? AND mimetype=\'vnd.android.cursor.item/note\'", $u7, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.getValueWithName ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 4: $u5#50 = newarray (java.lang.String)[2]
+NODE 5: $u7 = newarray (java.lang.String)[1]
+NODE 6: $u-1#13 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u5#50, "contact_id=? AND mimetype=\'vnd.android.cursor.item/website\'", $u7, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u1 >= 8 goto (branch)
+NODE 4: $u2 = newarray (java.lang.String)[3]
+NODE 5: $u1#13 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#17 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#13, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u1#13 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 6: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "person=? ", $u2)
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u1#13 = <android.provider.Contacts$ContactMethods: android.net.Uri CONTENT_URI>
+NODE 6: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "person=? ", $u2)
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u1 >= 8 goto (branch)
+NODE 4: if $u1 >= 14 goto $u1#13 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u1#13 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#17 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#13, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u-1#19 == 0 goto $u-1#19 = interfaceinvoke $u-1#17.<android.database.Cursor: boolean moveToNext()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1#13 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 7: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "raw_contact_id = ? AND mimetype = ?", $u2)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u-1#19 == 0 goto $u-1#19 = interfaceinvoke $u-1#17.<android.database.Cursor: boolean moveToNext()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1#13 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 7: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "raw_contact_id = ? AND mimetype = ?", $u2)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u1 >= 8 goto (branch)
+NODE 4: if $u1 >= 14 goto $u1#13 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u1#13 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#17 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#13, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u-1#19 == 0 goto $u-1#19 = interfaceinvoke $u-1#17.<android.database.Cursor: boolean moveToNext()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1#13 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 7: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "raw_contact_id = ? AND mimetype = ?", $u2)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.modify ===
+SUSPICIOUS_API: update
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: if $u-1#19 == 0 goto $u-1#19 = interfaceinvoke $u-1#17.<android.database.Cursor: boolean moveToNext()>()
+NODE 3: $u3 = new android.content.ContentValues
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1#13 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 7: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u1#13, $u3, "contact_id = ? AND mimetype = ?", $u2)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u2 >= 8 goto $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2#6 = <android.provider.Contacts$People: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u2#6 = <android.provider.Contacts$Phones: android.net.Uri CONTENT_URI>
+NODE 4: $u8 = newarray (java.lang.String)[1]
+NODE 5: $u-1#57 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, "person = ?", $u8, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u2#6 = <android.provider.Contacts$ContactMethods: android.net.Uri CONTENT_EMAIL_URI>
+NODE 4: $u8 = newarray (java.lang.String)[1]
+NODE 5: $u-1#57 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, "person = ?", $u8, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: if $u2 >= 8 goto $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 4: $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, null, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u2 = <android.os.Build$VERSION: int SDK_INT>
+NODE 4: if $u2 >= 8 goto $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, null, null, null)
+NODE 7: $u2 = interfaceinvoke $u-1#10.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u-1#22 = interfaceinvoke $u-1#10.<android.database.Cursor: java.lang.String getString(int)>($u2)
+NODE 9: $u0 = (android.app.Activity) $u15
+NODE 10: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u2#6 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 12: $u1#152 = new java.lang.StringBuilder
+NODE 13: $u1#152 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#22)
+NODE 14: $u-1#28 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#57 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, $u-1#28, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.PFConcactMan.search ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u15.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u2 = <android.os.Build$VERSION: int SDK_INT>
+NODE 4: if $u2 >= 8 goto $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u2#6 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, null, null, null)
+NODE 7: $u2 = interfaceinvoke $u-1#10.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u-1#22 = interfaceinvoke $u-1#10.<android.database.Cursor: java.lang.String getString(int)>($u2)
+NODE 9: $u0 = (android.app.Activity) $u15
+NODE 10: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u2#6 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 12: $u1#152 = new java.lang.StringBuilder
+NODE 13: $u1#152 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#22)
+NODE 14: $u-1#28 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#57 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, $u-1#28, null, null)
+NODE 16: if $u-1#57 == null goto (branch)
+NODE 17: $u2 = interfaceinvoke $u-1#57.<android.database.Cursor: int getCount()>()
+NODE 18: if $u2 <= 0 goto (branch)
+NODE 19: if $u-1#57 == null goto $u0 = (android.app.Activity) $u15
+NODE 20: $u0 = (android.app.Activity) $u15
+NODE 21: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 22: $u2#6 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 23: $u1#152 = new java.lang.StringBuilder
+NODE 24: $u1#152 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#22)
+NODE 25: $u-1#28 = virtualinvoke $u1#152.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 26: $u-1#57 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#6, null, $u-1#28, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 16 -> 19
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact
+NODE 2: $u13 := @parameter2: android.content.Intent
+NODE 3: if $u12 != -1 goto return
+NODE 4: $u11 = <android.os.Build$VERSION: int SDK_INT>
+NODE 5: if $u1 == 0 goto $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 6: if $u11 >= 8 goto $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 7: $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 8: $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 9: $u0#34 = (android.app.Activity) $u0#24
+NODE 10: $u-1#39 = virtualinvoke $u0#34.<android.app.Activity: android.database.Cursor managedQuery(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#31, null, null, null, null)
+NODE 11: $u11 = interfaceinvoke $u-1#39.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 12: $u-1 = interfaceinvoke $u-1#39.<android.database.Cursor: java.lang.String getString(int)>($u11)
+NODE 13: $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 14: $u0#34 = (android.app.Activity) $u0#24
+NODE 15: $u-1#52 = virtualinvoke $u0#34.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 16: $u-1#31 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 17: $u1 = new java.lang.StringBuilder
+NODE 18: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 19: $u-1#60 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 20: $u-1#64 = virtualinvoke $u-1#52.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#31, null, $u-1#60, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 7
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact.onActivityResult ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact
+NODE 2: $u13 := @parameter2: android.content.Intent
+NODE 3: if $u12 != -1 goto return
+NODE 4: $u11 = <android.os.Build$VERSION: int SDK_INT>
+NODE 5: if $u1 == 0 goto $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 6: if $u11 >= 8 goto $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 7: $u-1#31 = virtualinvoke $u13.<android.content.Intent: android.net.Uri getData()>()
+NODE 8: $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 9: $u0#34 = (android.app.Activity) $u0#24
+NODE 10: $u-1#39 = virtualinvoke $u0#34.<android.app.Activity: android.database.Cursor managedQuery(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#31, null, null, null, null)
+NODE 11: $u11 = interfaceinvoke $u-1#39.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 12: $u-1 = interfaceinvoke $u-1#39.<android.database.Cursor: java.lang.String getString(int)>($u11)
+NODE 13: $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 14: $u0#34 = (android.app.Activity) $u0#24
+NODE 15: $u-1#52 = virtualinvoke $u0#34.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 16: $u-1#31 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 17: $u1 = new java.lang.StringBuilder
+NODE 18: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 19: $u-1#60 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 20: $u-1#64 = virtualinvoke $u-1#52.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#31, null, $u-1#60, null, null)
+NODE 21: if $u-1#64 == null goto $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 22: $u11 = interfaceinvoke $u-1#64.<android.database.Cursor: int getCount()>()
+NODE 23: if $u11 <= 0 goto $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 24: if $u1 == 0 goto $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 25: $u0#24 = this.<org.zywx.wbpalmstar.plugin.uexcontacts.EUExContact: android.content.Context mContext>
+NODE 26: $u0#34 = (android.app.Activity) $u0#24
+NODE 27: $u-1#52 = virtualinvoke $u0#34.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 28: $u-1#31 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 29: $u1 = new java.lang.StringBuilder
+NODE 30: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 31: $u-1 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 32: $u-1#64 = virtualinvoke $u-1#52.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#31, null, $u-1, null, null)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 7
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 21 -> 25
+EDGE: 22 -> 23
+EDGE: 23 -> 25
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.ueximagebrowser.ImagePreviewActivity$3.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.ab.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.ab.uncaughtException ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#29 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr.checkAndroidProxy ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn")
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr: android.content.Context mContext>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#12 = virtualinvoke $u-1#8.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr.checkJavaProxy ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr
+NODE 2: if $u-1 != 0 goto return null
+NODE 3: $u-1#5 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/carriers/preferapn")
+NODE 4: $u0 = this.<org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr: android.content.Context mContext>
+NODE 5: $u-1#8 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u-1#13 = virtualinvoke $u-1#8.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr.getConnectedType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr
+NODE 2: $u0 = this.<org.zywx.wbpalmstar.plugin.uexmultiHttp.EUExXmlHttpMgr: android.content.Context mContext>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#5 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke $u0#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.ae.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u0 != null goto $u-1#7 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 5: $u-1#7 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.baidu.location.ae.c ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1#17 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#15 = <com.baidu.location.ae: android.net.Uri p>
+NODE 4: $u-1#22 = virtualinvoke $u-1#17.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#15, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

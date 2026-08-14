@@ -1,0 +1,478 @@
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap N>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.a.e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.gms.a.e
+NODE 2: $u3 := @parameter0: android.content.Context
+NODE 3: $u3 = staticinvoke <com.google.android.gms.common.g: android.content.Context c(android.content.Context)>($u3)
+NODE 4: if $u3 != null goto $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 6: $u1 = this.<com.google.android.gms.a.e: java.lang.String a>
+NODE 7: $u-1#9 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u1)
+NODE 8: $u0 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ea.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter1: android.net.ConnectivityManager
+NODE 2: if $u-1#4 == 0 goto return -2
+NODE 3: $u-1#6 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ej.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.ClassLoader
+NODE 2: $u4 := @parameter2: java.lang.String
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.ed.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter2: java.lang.String
+NODE 3: $u8 = virtualinvoke $u8.<android.content.Context: android.content.Context createPackageContext(java.lang.String,int)>($u10, 3)
+NODE 4: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 5: $u-1#8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>("com.google.ads.mediation.MediationAdapter", 0, $u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.es.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.android.gms.internal.es
+NODE 2: $u5 := @parameter0: com.google.android.gms.internal.es$a
+NODE 3: $u-1 = virtualinvoke $u5.<com.google.android.gms.internal.es$a: java.lang.String f()>()
+NODE 4: if $u-1#23 == null goto $u1 = new java.lang.StringBuilder
+NODE 5: goto [?= (branch)]
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("get")
+NODE 8: $u-1#33 = virtualinvoke $u-1.<java.lang.String: char charAt(int)>(0)
+NODE 9: $u-1#33 = staticinvoke <java.lang.Character: char toUpperCase(char)>($u-1#33)
+NODE 10: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($u-1#33)
+NODE 11: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 12: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 13: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#5 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u2 = newarray (java.lang.Class)[0]
+NODE 16: $u-1#50 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 17: $u1#53 = newarray (java.lang.Object)[0]
+NODE 18: $u-1#9 = virtualinvoke $u-1#50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#53)
+EDGE: 1 -> 2
+EDGE: 4 -> 6
+EDGE: 5 -> 4
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.jw.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: com.google.android.gms.internal.jw
+NODE 2: $u7 := @parameter0: byte[]
+NODE 3: $u8 := @parameter1: java.lang.String
+NODE 4: $u0 = lengthof $u7
+NODE 5: if $u0 == 16 goto $u0#4 = this.<com.google.android.gms.internal.jw: com.google.android.gms.internal.js a>
+NODE 6: $u0#4 = this.<com.google.android.gms.internal.jw: com.google.android.gms.internal.js a>
+NODE 7: $u-1 = interfaceinvoke $u0#4.<com.google.android.gms.internal.js: byte[] a(java.lang.String,boolean)>($u8, 0)
+NODE 8: $u0 = lengthof $u-1
+NODE 9: $u0 = $u0 + -16
+NODE 10: $u-1 = newarray (byte)[$u0]
+NODE 11: $u-1#23 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 12: $u7 = virtualinvoke $u-1#23.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.jt.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u9 != 1 goto $u3 = $u3 + 1
+NODE 7: if $u-1#19 == 8 goto $u3 = $u3 + 1
+NODE 8: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: $u3 = $u3 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: if $u9 >= $u-1#19 goto $u3 = $u3 + 1
+NODE 13: goto [?= (branch)]
+NODE 14: goto [?= $u3 = $u3 + 1]
+NODE 15: $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#52 = $u-1#48[$u3]
+NODE 19: $u-1#7 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#7 = virtualinvoke $u-1#7.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: $u0#61 = new java.lang.StringBuilder
+NODE 23: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("has")
+NODE 24: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 25: $u-1#67 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 26: $u8 = newarray (java.lang.Class)[0]
+NODE 27: $u0#52 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#67, $u8)
+NODE 28: $u8#73 = newarray (java.lang.Object)[0]
+NODE 29: $u-1#35 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#73)
+NODE 30: if $u0 != 0 goto $u0#61 = new java.lang.StringBuilder
+NODE 31: $u3 = $u3 + 1
+NODE 32: goto [?= (branch)]
+NODE 33: goto [?= $u3 = $u3 + 1]
+NODE 34: goto [?= $u3 = $u3 + 1]
+NODE 35: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 10
+EDGE: 7 -> 10
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+EDGE: 12 -> 10
+EDGE: 13 -> 12
+EDGE: 14 -> 10
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 31
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 17
+EDGE: 33 -> 31
+EDGE: 34 -> 31
+EDGE: 35 -> 31
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.jt.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#13 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u9 != 1 goto $u3 = $u3 + 1
+NODE 7: if $u-1#19 == 8 goto $u3 = $u3 + 1
+NODE 8: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: $u3 = $u3 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: if $u9 >= $u-1#19 goto $u3 = $u3 + 1
+NODE 13: goto [?= (branch)]
+NODE 14: goto [?= $u3 = $u3 + 1]
+NODE 15: $u-1#48 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#52 = $u-1#48[$u3]
+NODE 19: $u-1#7 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#7 = virtualinvoke $u-1#7.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: if $u0 != 0 goto $u0#61 = new java.lang.StringBuilder
+NODE 23: $u3 = $u3 + 1
+NODE 24: goto [?= (branch)]
+NODE 25: $u0#61 = new java.lang.StringBuilder
+NODE 26: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("get")
+NODE 27: $u0#61 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#7)
+NODE 28: $u-1#67 = virtualinvoke $u0#61.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 29: $u8 = newarray (java.lang.Class)[0]
+NODE 30: $u0#52 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#67, $u8)
+NODE 31: $u8#73 = newarray (java.lang.Object)[0]
+NODE 32: $u-1#35 = virtualinvoke $u0#52.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#73)
+NODE 33: goto [?= $u3 = $u3 + 1]
+NODE 34: goto [?= $u3 = $u3 + 1]
+NODE 35: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 10
+EDGE: 7 -> 10
+EDGE: 8 -> 10
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+EDGE: 12 -> 10
+EDGE: 13 -> 12
+EDGE: 14 -> 10
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 23
+EDGE: 22 -> 23
+EDGE: 22 -> 25
+EDGE: 23 -> 24
+EDGE: 24 -> 17
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 33 -> 23
+EDGE: 34 -> 23
+EDGE: 35 -> 23
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.b.a.a.bf.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.b.a.a.bf
+NODE 2: $u0 = this.<com.google.b.a.a.bf: android.content.Context c>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method g>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method g>
+NODE 3: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method g>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method h>
+NODE 2: if $u0 == null goto $u0#2 = new com.google.android.gms.internal.ht
+NODE 3: if $u4 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method h>
+NODE 4: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method h>
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method e>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method e>
+NODE 3: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method e>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method j>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method j>
+NODE 3: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method j>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.c ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method f>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method f>
+NODE 3: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method f>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.hs.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method i>
+NODE 2: if $u0 != null goto $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method i>
+NODE 3: $u0 = <com.google.android.gms.internal.hs: java.lang.reflect.Method i>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.b.a.a.ai.b ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("gaInstallData")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: estar.edu.vn.essaytoefl.MainActivity.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 = class "Landroid/view/ViewConfiguration;"
+NODE 2: $u-1#5 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("sHasPermanentMenuKey")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: estar.edu.vn.essaytoefl.c.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: estar.edu.vn.essaytoefl.c
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u0#5 = this.<estar.edu.vn.essaytoefl.c: javax.crypto.Cipher c>
+NODE 4: $u-1#10 = staticinvoke <estar.edu.vn.essaytoefl.c: byte[] c(java.lang.String)>($u5)
+NODE 5: $u-1#10 = virtualinvoke $u0#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#10)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: estar.edu.vn.essaytoefl.m.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.bl.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u1 = class "Lcom/google/android/gms/internal/bl;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.bl.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u1 = class "Lcom/google/android/gms/internal/bl;"
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String,boolean,java.lang.ClassLoader)>($u4, 0, $u-1)
+NODE 5: if $u-1#8 != 0 goto $u-1#39 = virtualinvoke $u1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1#39 = virtualinvoke $u1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: estar.edu.vn.essaytoefl.g.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: estar.edu.vn.essaytoefl.g
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u7 := @parameter1: java.lang.String
+NODE 4: if $u6 == null goto return null
+NODE 5: if $u7 != null goto $u0 = this.<estar.edu.vn.essaytoefl.g: int c>
+NODE 6: $u0 = this.<estar.edu.vn.essaytoefl.g: int c>
+NODE 7: $u-1 = staticinvoke <android.util.Base64: byte[] decode(java.lang.String,int)>($u7, $u0)
+NODE 8: $u6 = this.<estar.edu.vn.essaytoefl.g: java.lang.String b>
+NODE 9: $u-1#15 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u6)
+NODE 10: $u-1 = virtualinvoke $u-1#15.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.bw.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.android.gms.internal.bw
+NODE 2: if $u-1#6 == 0 goto $u1#16 = this.<com.google.android.gms.internal.bw: com.google.a.a.b a>
+NODE 3: $u1#16 = this.<com.google.android.gms.internal.bw: com.google.a.a.b a>
+NODE 4: $u-1#17 = interfaceinvoke $u1#16.<com.google.a.a.b: java.lang.Class c()>()
+NODE 5: if $u-1#17 == null goto $u-1#6 = $u2#19 instanceof com.google.a.a.a.a
+NODE 6: $u-1#8 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: goto [?= $u1#16 = this.<com.google.android.gms.internal.bw: com.google.a.a.b a>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: estar.edu.vn.essaytoefl.f.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: estar.edu.vn.essaytoefl.f
+NODE 2: $u13 := @parameter1: java.lang.String
+NODE 3: $u0 = this.<estar.edu.vn.essaytoefl.f: android.content.Context a>
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u13, 0)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.b.a.a.j.b ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.google.b.a.a.j
+NODE 2: $u1 = this.<com.google.b.a.a.j: android.content.Context c>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("gaClientId", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.b.a.a.j.c ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.google.b.a.a.j
+NODE 2: $u1 = this.<com.google.b.a.a.j: android.content.Context c>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("gaClientId")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

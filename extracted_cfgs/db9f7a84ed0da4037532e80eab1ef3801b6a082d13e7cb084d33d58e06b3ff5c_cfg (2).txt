@@ -1,0 +1,126 @@
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.downloadAndSaveBinaryFile ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u17 := @parameter1: java.lang.String
+NODE 3: if offset == $u-1#4 goto $u-1#21 = specialinvoke this.<android.app.Application: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u17, 1)
+NODE 4: $u-1#21 = specialinvoke this.<android.app.Application: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u17, 1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.fileExists ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.io.FileInputStream openFileInput(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.getLocalImage ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u7 := @parameter0: java.lang.String
+NODE 3: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.io.FileInputStream openFileInput(java.lang.String)>($u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.getLocalText ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u13 := @parameter0: java.lang.String
+NODE 3: if $u-1 <= 1 goto return ""
+NODE 4: $u-1#5 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.io.FileInputStream openFileInput(java.lang.String)>($u13)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.initDevice ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: TelephonyManager = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#7 = virtualinvoke TelephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.initDevice ===
+SUSPICIOUS_API: getLine1Number
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: TelephonyManager = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#8 = virtualinvoke TelephonyManager.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.initDevice ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: TelephonyManager = (android.telephony.TelephonyManager) $u-1
+NODE 4: virtualinvoke TelephonyManager.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.initDevice ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u-1 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: mConnectivity = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#17 = virtualinvoke mConnectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.saveBitmap ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 <= 5 goto return
+NODE 4: if $u7 == null goto return
+NODE 5: $u-1#5 = specialinvoke this.<android.app.Application: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u6, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.AppDelegate.saveText ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.AppDelegate
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 <= 5 goto return
+NODE 4: $u-1#7 = virtualinvoke this.<com.v1_4.jmissioncontrol.com.AppDelegate: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u6, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.Act_ActivityBase.getLastLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.Act_ActivityBase
+NODE 2: $u3#4 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 3: if $u3#4 != null goto $u3#4 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 4: $u3#4 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 5: if $u3#4 == null goto return
+NODE 6: $u3#4 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 7: $u-1#13 = virtualinvoke $u3#4.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.v1_4.jmissioncontrol.com.Act_ActivityBase.startListening ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.v1_4.jmissioncontrol.com.Act_ActivityBase
+NODE 2: $u0 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 3: if $u0 == null goto return
+NODE 4: $u0 = this.<com.v1_4.jmissioncontrol.com.Act_ActivityBase: android.location.LocationManager locationManager>
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 0L, 0.0F, this)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

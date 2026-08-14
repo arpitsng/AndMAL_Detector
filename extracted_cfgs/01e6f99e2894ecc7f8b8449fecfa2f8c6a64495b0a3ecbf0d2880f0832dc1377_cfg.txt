@@ -1,0 +1,172 @@
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap P>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: biz.appvisor.push.android.sdk.AppVisorPushIntentService.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u16 := @parameter0: android.content.Context
+NODE 2: $u-1#47 = staticinvoke <biz.appvisor.push.android.sdk.e: java.lang.String f(android.content.Context)>($u16)
+NODE 3: $u-1#106 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#47)
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u-1#9 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u1 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.w.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.w
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.w: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: biz.appvisor.push.android.sdk.e.a ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: biz.appvisor.push.android.sdk.e.a ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#19 == null goto (branch)
+NODE 5: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: biz.appvisor.push.android.sdk.e.a ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: biz.appvisor.push.android.sdk.e.a ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#19 == null goto (branch)
+NODE 5: $u-1#19 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.c.c ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != null goto exitmonitor class "Lcom/a/a/a/c;"
+NODE 2: $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 3: if $u0#2 != null goto $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 4: $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.a.a.a.c.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 != null goto exitmonitor class "Lcom/a/a/a/c;"
+NODE 2: $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 3: if $u0#2 != null goto $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 4: $u0#2 = <com.a.a.a.c: java.lang.String b>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#2)
+NODE 6: $u-1#25 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method aa>
+NODE 2: $u0#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u0#3 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u0 < 7 goto return
+NODE 3: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method aa>
+NODE 4: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method aa>
+NODE 5: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method aa>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u0#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+NODE 8: goto [?= $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method aa>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.fcafe.ecapplico.rjpavenue.c.b.run ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u1 != null goto $u1 = new org.apache.http.client.methods.HttpPost
+NODE 2: $u1#9 = class "Ljava/net/URI;"
+NODE 3: $u-1 = virtualinvoke $u1#9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("host")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.fcafe.ecapplico.rjpavenue.c.ak.run ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.fcafe.ecapplico.rjpavenue.c.ak
+NODE 2: if $u-1#12 != 0 goto $u4 = new java.io.FileOutputStream
+NODE 3: $u0#16 = this.<com.fcafe.ecapplico.rjpavenue.c.ak: com.fcafe.ecapplico.rjpavenue.c.aj a>
+NODE 4: $u-1#17 = staticinvoke <com.fcafe.ecapplico.rjpavenue.c.aj: android.content.Context a(com.fcafe.ecapplico.rjpavenue.c.aj)>($u0#16)
+NODE 5: $u1 = this.<com.fcafe.ecapplico.rjpavenue.c.ak: java.lang.String d>
+NODE 6: $u-1#21 = virtualinvoke $u-1#17.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u1, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
