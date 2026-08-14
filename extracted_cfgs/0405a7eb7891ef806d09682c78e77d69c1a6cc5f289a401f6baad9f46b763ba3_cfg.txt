@@ -1,0 +1,636 @@
+=== FUNCTION: e.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ds")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("dy")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ds")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("dy")
+NODE 3: $u1 = newarray (java.lang.Class)[4]
+NODE 4: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#19 = newarray (java.lang.Object)[4]
+NODE 6: $u6 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#19)
+NODE 7: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ds")
+NODE 8: goto [?= $u1 = newarray (java.lang.Class)[4]]
+EDGE: 1 -> 2
+EDGE: 1 -> 7
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: e.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ds")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ds")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: e.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: e.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: dk.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: dk
+NODE 2: $u7 := @parameter0: ez
+NODE 3: if $u0 != null goto $u0#5 = (dm) $u7
+NODE 4: $u0#5 = (dm) $u7
+NODE 5: if $u-1 != $u2 goto $u0#14 = new ef
+NODE 6: $u1 = $u0#5.<dm: android.content.res.AssetManager a>
+NODE 7: $u-1#10 = virtualinvoke $u0#5.<dm: java.lang.String f()>()
+NODE 8: $u-1#12 = virtualinvoke $u1.<android.content.res.AssetManager: android.content.res.AssetFileDescriptor openFd(java.lang.String)>($u-1#10)
+NODE 9: $u4 = this.<dk: android.media.SoundPool b>
+NODE 10: $u-1#19 = virtualinvoke $u4.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#12, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: dk.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: dk
+NODE 2: $u7 := @parameter0: ez
+NODE 3: if $u0 != null goto $u0#5 = (dm) $u7
+NODE 4: $u0#5 = (dm) $u7
+NODE 5: $u4 = this.<dk: android.media.SoundPool b>
+NODE 6: $u-1#36 = virtualinvoke $u0#5.<dm: java.io.File e()>()
+NODE 7: $u-1#10 = virtualinvoke $u-1#36.<java.io.File: java.lang.String getPath()>()
+NODE 8: $u-1#19 = virtualinvoke $u4.<android.media.SoundPool: int load(java.lang.String,int)>($u-1#10, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: dn.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: do.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: do
+NODE 2: if $u14 != 0 goto $u-1#15 = this.<do: android.view.View b>
+NODE 3: if $u14 == 0 goto $u-1#15 = this.<do: android.view.View b>
+NODE 4: $u-1#15 = this.<do: android.view.View b>
+NODE 5: $u-1#24 = virtualinvoke $u-1#15.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#31 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setPreserveEGLContextOnPause", $u2)
+NODE 8: $u-1#15 = this.<do: android.view.View b>
+NODE 9: $u2#35 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#31.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#15, $u2#35)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u0 >= 11 goto $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#12 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: if $u0 > 13 goto $u2 = newarray (java.lang.Object)[1]
+NODE 9: $u2 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u0 >= 11 goto $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#12 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: if $u0 > 13 goto $u2 = newarray (java.lang.Object)[1]
+NODE 9: $u2 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u0 >= 19 goto $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#12 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: $u2 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 < 19 goto return
+NODE 2: $u-1#46 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("eh")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 < 19 goto return
+NODE 2: $u-1#46 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("eh")
+NODE 3: $u-1#48 = virtualinvoke $u-1#46.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 < 19 goto return
+NODE 2: $u-1#46 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("eh")
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#55 = virtualinvoke $u-1#46.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createListener", $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u0 < 19 goto return
+NODE 2: $u-1#46 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("eh")
+NODE 3: $u-1#48 = virtualinvoke $u-1#46.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 4: $u3 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#55 = virtualinvoke $u-1#46.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createListener", $u3)
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#55.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#48, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidGL20.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("gdx")
+=== END FUNCTION ===
+
+=== FUNCTION: ne.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter1: int
+NODE 2: $u4 := @parameter2: java.lang.Class
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u4, $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ne.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: ne
+NODE 2: $u5 := @parameter0: java.lang.Class
+NODE 3: $u2 = this.<ne: int b>
+NODE 4: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u5, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ne.d ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: ne
+NODE 2: $u6 := @parameter0: int
+NODE 3: $u1 = this.<ne: java.lang.Object[] a>
+NODE 4: $u-1 = virtualinvoke $u1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 6: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: nh.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter1: int
+NODE 2: $u4 := @parameter2: java.lang.Class
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u4, $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: nh.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter1: int
+NODE 2: $u5 := @parameter3: java.lang.Class
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u5, $u3)
+=== END FUNCTION ===
+
+=== FUNCTION: nh.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: nh
+NODE 2: $u0 = 0
+NODE 3: if $u0 >= $u4 goto $u0 = -1
+NODE 4: if $u5 != $u7 goto $u0 = $u0 + 1
+NODE 5: if $u0 != -1 goto $u3 = this.<nh: java.lang.Object[] a>
+NODE 6: $u0 = this.<nh: int c>
+NODE 7: if $u0 != $u4 goto $u0 = this.<nh: int c>
+NODE 8: $u0 = this.<nh: int c>
+NODE 9: $u1 = (float) $u0
+NODE 10: $u1 = $u1 * 1.75F
+NODE 11: $u0 = (int) $u1
+NODE 12: $u0 = staticinvoke <java.lang.Math: int max(int,int)>(8, $u0)
+NODE 13: $u3 = this.<nh: java.lang.Object[] a>
+NODE 14: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 16: $u5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u0)
+NODE 17: $u0 = $u0 + 1
+NODE 18: goto [?= (branch)]
+NODE 19: $u0 = 0
+NODE 20: if $u0 >= $u4 goto $u0 = -1
+NODE 21: if $u-1#48 != 0 goto (branch)
+NODE 22: $u0 = $u0 + 1
+NODE 23: goto [?= (branch)]
+NODE 24: $u0 = -1
+NODE 25: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 24
+EDGE: 4 -> 5
+EDGE: 4 -> 17
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 3
+EDGE: 19 -> 20
+EDGE: 20 -> 24
+EDGE: 21 -> 22
+EDGE: 21 -> 5
+EDGE: 22 -> 23
+EDGE: 23 -> 20
+EDGE: 24 -> 25
+EDGE: 25 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: nh.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: nh
+NODE 2: $u0 = 0
+NODE 3: if $u0 >= $u4 goto $u0 = -1
+NODE 4: if $u5 != $u7 goto $u0 = $u0 + 1
+NODE 5: if $u0 != -1 goto $u3 = this.<nh: java.lang.Object[] a>
+NODE 6: $u0 = this.<nh: int c>
+NODE 7: if $u0 != $u4 goto $u0 = this.<nh: int c>
+NODE 8: $u0 = this.<nh: int c>
+NODE 9: $u1 = (float) $u0
+NODE 10: $u1 = $u1 * 1.75F
+NODE 11: $u0 = (int) $u1
+NODE 12: $u0 = staticinvoke <java.lang.Math: int max(int,int)>(8, $u0)
+NODE 13: $u3 = this.<nh: java.lang.Object[] b>
+NODE 14: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 16: $u5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u0)
+NODE 17: $u0 = $u0 + 1
+NODE 18: goto [?= (branch)]
+NODE 19: $u0 = 0
+NODE 20: if $u0 >= $u4 goto $u0 = -1
+NODE 21: if $u-1#48 != 0 goto (branch)
+NODE 22: $u0 = $u0 + 1
+NODE 23: goto [?= (branch)]
+NODE 24: $u0 = -1
+NODE 25: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 24
+EDGE: 4 -> 5
+EDGE: 4 -> 17
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 3
+EDGE: 19 -> 20
+EDGE: 20 -> 24
+EDGE: 21 -> 22
+EDGE: 21 -> 5
+EDGE: 22 -> 23
+EDGE: 23 -> 20
+EDGE: 24 -> 25
+EDGE: 25 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: nr.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: nr
+NODE 2: $u11 := @parameter0: java.lang.Class
+NODE 3: $u13 := @parameter2: nw
+NODE 4: if $u-1 == 0 goto $u-1#12 = $u13
+NODE 5: $u0 = this.<nr: java.lang.String a>
+NODE 6: if $u0 != null goto $u0 = this.<nr: java.lang.String a>
+NODE 7: $u0 = null
+NODE 8: if $u0 == null goto (branch)
+NODE 9: $u0#11 = this.<nr: java.lang.String a>
+NODE 10: $u-1#12 = virtualinvoke $u13.<nw: nw a(java.lang.String)>($u0#11)
+NODE 11: if $u-1#12 != null goto $u2 = $u-1#12.<nw: nw h>
+NODE 12: $u0#14 = this.<nr: oj d>
+NODE 13: $u-1#15 = virtualinvoke $u0#14.<oj: java.lang.Object a(java.lang.Object)>($u0)
+NODE 14: $u11 = (java.lang.Class) $u-1#15
+NODE 15: if $u11 != null goto (branch)
+NODE 16: $u11 = staticinvoke <e: java.lang.Class a(java.lang.String)>($u0)
+NODE 17: $u0 = this.<nr: java.lang.String a>
+NODE 18: $u0 = virtualinvoke $u13.<nw: java.lang.String a(java.lang.String,java.lang.String)>($u0, null)
+NODE 19: goto [?= (branch)]
+NODE 20: goto [?= $u0#14 = this.<nr: oj d>]
+NODE 21: if $u-1 == 0 goto $u0#14 = this.<nr: oj e>
+NODE 22: $u-1#12 = virtualinvoke $u13.<nw: nw a(java.lang.String)>("items")
+NODE 23: if $u-1 == 0 goto $u-1 = virtualinvoke $u-1#12.<nw: boolean l()>()
+NODE 24: if $u11 == null goto $u11 = class "Lne;"
+NODE 25: if $u11 != class "Ljava/lang/Object;" goto (branch)
+NODE 26: $u11 = class "Lne;"
+NODE 27: if $u-1 == 0 goto $u0 = new pb
+NODE 28: $u11 = virtualinvoke $u11.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 29: if $u12 != null goto $u4 = $u-1#12.<nw: int i>
+NODE 30: $u4 = $u-1#12.<nw: int i>
+NODE 31: $u-1#15 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u11, $u4)
+NODE 32: $u-1#12 = $u13
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 4 -> 32
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 17
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 8
+EDGE: 20 -> 12
+EDGE: 21 -> 22
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 24 -> 26
+EDGE: 25 -> 26
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+=== END FUNCTION ===
+
+=== FUNCTION: ns.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: pv
+NODE 2: if $u-1#5 != 0 goto $u1#14 = 1
+NODE 3: if $u-1#5 == 0 goto $u1#14 = 0
+NODE 4: $u1#14 = 1
+NODE 5: $u1 = $u5.<pv: java.lang.reflect.Field a>
+NODE 6: $u-1#16 = virtualinvoke $u1.<java.lang.reflect.Field: java.lang.reflect.Type getGenericType()>()
+NODE 7: if $u-1#5 == 0 goto $u0 = null
+NODE 8: $u0#19 = (java.lang.reflect.ParameterizedType) $u-1#16
+NODE 9: $u-1#20 = interfaceinvoke $u0#19.<java.lang.reflect.ParameterizedType: java.lang.reflect.Type[] getActualTypeArguments()>()
+NODE 10: if $u3 < $u1#14 goto $u0 = null
+NODE 11: $u-1#16 = $u-1#20[$u1#14]
+NODE 12: $u1#14 = 0
+NODE 13: goto [?= $u1 = $u5.<pv: java.lang.reflect.Field a>]
+NODE 14: if $u-1#5 == 0 goto $u0 = null
+NODE 15: $u0#32 = (java.lang.reflect.GenericArrayType) $u-1#16
+NODE 16: $u-1#16 = interfaceinvoke $u0#32.<java.lang.reflect.GenericArrayType: java.lang.reflect.Type getGenericComponentType()>()
+NODE 17: if $u-1#5 == 0 goto $u0 = null
+NODE 18: $u0 = (java.lang.Class) $u-1#16
+NODE 19: $u-1#37 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u0, 0)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 3 -> 12
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 5
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: pc.b ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: pc
+NODE 2: $u2 := @parameter0: java.lang.String
+NODE 3: $u3 := @parameter1: java.lang.String
+NODE 4: $u4 := @parameter2: java.io.File
+NODE 5: $u4 = specialinvoke this.<pc: java.io.File a(java.lang.String,java.lang.String,java.io.File)>($u2, $u3, $u4)
+NODE 6: $u2 = virtualinvoke $u4.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 7: staticinvoke <java.lang.System: void load(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: pc.a ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u0 == 0 goto $u0 = <pc: boolean b>
+NODE 3: $u0#4 = new java.lang.StringBuilder
+NODE 4: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 5: if $u0 == 0 goto $u7 = ".dll"
+NODE 6: $u7 = "64.dll"
+NODE 7: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 8: $u7 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: if $u0 == 0 goto $u-1 = specialinvoke this.<pc: java.io.InputStream b(java.lang.String)>($u7)
+NODE 10: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u7)
+NODE 11: $u7 = ".dll"
+NODE 12: goto [?= $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)]
+NODE 13: if $u0 == 0 goto $u0 = <pc: boolean c>
+NODE 14: $u0#4 = new java.lang.StringBuilder
+NODE 15: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 16: if $u0 == 0 goto $u7 = ""
+NODE 17: $u0#24 = new java.lang.StringBuilder
+NODE 18: $u7 = <pc: java.lang.String h>
+NODE 19: $u0#24 = virtualinvoke $u0#24.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 20: $u7 = virtualinvoke $u0#24.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 21: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 22: if $u0 == 0 goto $u7 = ".so"
+NODE 23: $u7 = "64.so"
+NODE 24: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 25: $u7 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 26: $u7 = ""
+NODE 27: goto [?= $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)]
+NODE 28: $u7 = ".so"
+NODE 29: goto [?= $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)]
+NODE 30: if $u0 == 0 goto $u0#12 = <pc: java.util.HashSet i>
+NODE 31: $u0#4 = new java.lang.StringBuilder
+NODE 32: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 33: if $u0 == 0 goto $u7 = ".dylib"
+NODE 34: $u7 = "64.dylib"
+NODE 35: $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 36: $u7 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 37: $u7 = ".dylib"
+NODE 38: goto [?= $u0#4 = virtualinvoke $u0#4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)]
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 5 -> 11
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 7
+EDGE: 13 -> 14
+EDGE: 16 -> 17
+EDGE: 16 -> 26
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 22 -> 23
+EDGE: 22 -> 28
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 26 -> 27
+EDGE: 27 -> 21
+EDGE: 28 -> 29
+EDGE: 29 -> 24
+EDGE: 30 -> 31
+EDGE: 33 -> 34
+EDGE: 33 -> 37
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 37 -> 38
+EDGE: 38 -> 35
+=== END FUNCTION ===
+
+=== FUNCTION: pc.a ===
+SUSPICIOUS_API: load
+NODE 1: if $u-1#84 == null goto $u0#12 = <pc: java.util.HashSet i>
+NODE 2: $u1 = new java.io.File
+NODE 3: if $u0 == 0 goto $u2 = new no
+NODE 4: $u-1#50 = virtualinvoke $u1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 5: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1#50)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: pu.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: pu
+NODE 2: $u5 := @parameter0: java.lang.Object[]
+NODE 3: $u0 = this.<pu: java.lang.reflect.Constructor a>
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ql.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = 0
+NODE 2: $u-1 = staticinvoke <rf: rf[] values()>()
+NODE 3: if $u0 >= $u3 goto return
+NODE 4: $u3#69 = $u-1[$u0]
+NODE 5: $u-1#70 = virtualinvoke $u3#69.<rf: java.lang.Class a()>()
+NODE 6: if $u-1#70 == null goto $u0 = $u0 + 1
+NODE 7: $u5#74 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#75 = virtualinvoke $u-1#70.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("initialize", $u5#74)
+NODE 9: $u5#79 = newarray (java.lang.Object)[0]
+NODE 10: virtualinvoke $u-1#75.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u5#79)
+NODE 11: $u0 = $u0 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u0 = $u0 + 1]
+NODE 14: goto [?= $u0 = $u0 + 1]
+NODE 15: goto [?= $u0 = $u0 + 1]
+NODE 16: goto [?= $u0 = $u0 + 1]
+NODE 17: goto [?= $u0 = $u0 + 1]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 11
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 3
+EDGE: 13 -> 11
+EDGE: 14 -> 11
+EDGE: 15 -> 11
+EDGE: 16 -> 11
+EDGE: 17 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: rk.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter3: java.lang.Class
+NODE 2: $u0 = newarray (java.lang.Class)[2]
+NODE 3: $u-1 = virtualinvoke $u10.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0)
+NODE 4: if $u-1 != null goto $u2 = newarray (java.lang.Object)[2]
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#17 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.graphics.g2d.Gdx2DPixmap.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.graphics.g2d.Gdx2DPixmap
+NODE 2: $u4 := @parameter0: byte[]
+NODE 3: $u6 := @parameter2: int
+NODE 4: $u0 = this.<com.badlogic.gdx.graphics.g2d.Gdx2DPixmap: long[] f>
+NODE 5: $u-1 = staticinvoke <com.badlogic.gdx.graphics.g2d.Gdx2DPixmap: java.nio.ByteBuffer load(long[],byte[],int,int)>($u0, $u4, 0, $u6)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

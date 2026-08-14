@@ -1,0 +1,138 @@
+=== FUNCTION: com.appnext.appnextsdk.DownloadService.onHandleIntent ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.appnext.appnextsdk.DownloadService
+NODE 2: $u4 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".apk")
+NODE 4: $u-1#9 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: output = virtualinvoke this.<com.appnext.appnextsdk.DownloadService: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#9, 1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextReflectionHelper.classFound ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextReflectionHelper.getDeclaredMethodWithTraversal ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u5)
+NODE 5: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u5)
+NODE 6: clazz = virtualinvoke clazz.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: bass.manage.boost.MainActivity.isNetworkConnected ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: bass.manage.boost.MainActivity
+NODE 2: $u-1 = virtualinvoke this.<bass.manage.boost.MainActivity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: cm = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder.execute ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder
+NODE 2: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameterClasses>
+NODE 3: $u-1 = interfaceinvoke $u4.<java.util.List: int size()>()
+NODE 4: classArray = newarray (java.lang.Class)[$u-1]
+NODE 5: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameterClasses>
+NODE 6: $u-1#5 = interfaceinvoke $u4.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>(classArray)
+NODE 7: classArray = (java.lang.Class[]) $u-1#5
+NODE 8: $u4#8 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.Class mClass>
+NODE 9: $u5 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.String mMethodName>
+NODE 10: $u-1#9 = staticinvoke <com.appnext.appnextsdk.AppnextReflectionHelper: java.lang.reflect.Method getDeclaredMethodWithTraversal(java.lang.Class,java.lang.String,java.lang.Class[])>($u4#8, $u5, classArray)
+NODE 11: if $u4#10 == 0 goto $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameters>
+NODE 12: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameters>
+NODE 13: $u-1#5 = interfaceinvoke $u4.<java.util.List: java.lang.Object[] toArray()>()
+NODE 14: if $u4#10 == 0 goto $u-1#16 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.Object mInstance>
+NODE 15: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder.execute ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder
+NODE 2: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameterClasses>
+NODE 3: $u-1 = interfaceinvoke $u4.<java.util.List: int size()>()
+NODE 4: classArray = newarray (java.lang.Class)[$u-1]
+NODE 5: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameterClasses>
+NODE 6: $u-1#5 = interfaceinvoke $u4.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>(classArray)
+NODE 7: classArray = (java.lang.Class[]) $u-1#5
+NODE 8: $u4#8 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.Class mClass>
+NODE 9: $u5 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.String mMethodName>
+NODE 10: $u-1#9 = staticinvoke <com.appnext.appnextsdk.AppnextReflectionHelper: java.lang.reflect.Method getDeclaredMethodWithTraversal(java.lang.Class,java.lang.String,java.lang.Class[])>($u4#8, $u5, classArray)
+NODE 11: if $u4#10 == 0 goto $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameters>
+NODE 12: $u4 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.util.List mParameters>
+NODE 13: $u-1#5 = interfaceinvoke $u4.<java.util.List: java.lang.Object[] toArray()>()
+NODE 14: if $u4#10 == 0 goto $u-1#16 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.Object mInstance>
+NODE 15: $u-1#16 = this.<com.appnext.appnextsdk.AppnextReflectionHelper$MethodBuilder: java.lang.Object mInstance>
+NODE 16: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#16, $u-1#5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextGpsHelper.getAdvertisingId ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 = <com.appnext.appnextsdk.AppnextGpsHelper: java.lang.String sAdvertisingIdClientClassName>
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextGpsHelper.isGpsAvailable ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 = <com.appnext.appnextsdk.AppnextGpsHelper: java.lang.String sPlayServicesUtilClassName>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.AppnextGpsHelper.isLimitAdTrackingEnabled ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 = <com.appnext.appnextsdk.AppnextGpsHelper: java.lang.String sAdvertisingIdClientClassName>
+NODE 2: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.appnext.appnextsdk.ImageDownloader.downloadBitmap ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u9 != $u10 goto client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+NODE 2: client = staticinvoke <android.net.http.AndroidHttpClient: android.net.http.AndroidHttpClient newInstance(java.lang.String)>("Android")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

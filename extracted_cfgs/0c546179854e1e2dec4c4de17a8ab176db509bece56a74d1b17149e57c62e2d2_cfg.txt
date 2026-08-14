@@ -1,0 +1,983 @@
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getBandVer ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getBandVer ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getBandVer ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u7 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u7)
+NODE 5: $u6 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#4 = virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getImei ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 == null goto return null
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: tm = (android.telephony.TelephonyManager) $u-1
+NODE 5: if tm == null goto return null
+NODE 6: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getImsi ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 == null goto return null
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: tm = (android.telephony.TelephonyManager) $u-1
+NODE 5: if tm == null goto return null
+NODE 6: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getMacAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getMacAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifiManager = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke wifiManager.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#6 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo.getSDCardMemory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto availBlocks = sdCardInfo[0]
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.encrypt.TriDes.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u4 = <com.alipay.sdk.encrypt.TriDes: java.lang.String a>
+NODE 3: $u-1#7 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u4)
+NODE 4: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes()>()
+NODE 5: $u-1 = virtualinvoke $u-1#7.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.encrypt.TriDes.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u4 = <com.alipay.sdk.encrypt.TriDes: java.lang.String a>
+NODE 3: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>($u4)
+NODE 4: $u-1 = staticinvoke <com.alipay.sdk.encrypt.Base64: byte[] a(java.lang.String)>($u5)
+NODE 5: $u-1 = virtualinvoke $u-1#6.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.getNetworkState ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: if $u-1#9 == 0 goto $u-1#14 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#14 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: localConnectivityManager = (android.net.ConnectivityManager) $u-1#14
+NODE 5: if localConnectivityManager != null goto $u-1#21 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+NODE 6: $u-1#21 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.getNetworkState ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: if $u-1#9 == 0 goto $u-1#14 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#14 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: localConnectivityManager = (android.net.ConnectivityManager) $u-1#14
+NODE 5: if $u-1#21 == null goto $u-1#21 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 6: if $u-1#22 != $u6 goto $u-1#21 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 7: $u-1#21 = virtualinvoke localConnectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 7
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.getWifiAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 == null goto return "00-00-00-00-00-00"
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifimanage = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke wifimanage.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.getWifiAddress ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 == null goto return "00-00-00-00-00-00"
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifimanage = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke wifimanage.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: if $u-1#5 == null goto return "00-00-00-00-00-00"
+NODE 7: $u-1#6 = virtualinvoke $u-1#5.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.getWifiIpAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u4 == null goto return null
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: wifiManage = (android.net.wifi.WifiManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke wifiManage.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.NetworkUtils.isConnectInternet ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: conManager = (android.net.ConnectivityManager) $u-1
+NODE 4: if conManager == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke conManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.model.DataProfile.analysisServerRespond ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.DeviceInfo.<init> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.DeviceInfo.<init> ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.DeviceInfo.<init> ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#22 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#23 = virtualinvoke $u0#22.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.DeviceInfo.<init> ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0#22 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#23 = virtualinvoke $u0#22.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1#23.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.DeviceInfo.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.core.persistent.FastXmlSerializer.setOutput ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: if $u3 != null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u4)
+NODE 3: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.SecurityUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u6 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.SecurityUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u6 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.RecordHelper.startRecording ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u5 != null goto $u5#11 = new android.media.MediaRecorder
+NODE 2: $u5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.encrypt.Rsa.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1#11 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/ECB/PKCS1Padding")
+NODE 3: $u-1 = virtualinvoke $u7.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 4: $u-1#15 = virtualinvoke $u-1#11.<javax.crypto.Cipher: int getBlockSize()>()
+NODE 5: $u4 = 0
+NODE 6: $u0 = lengthof $u-1
+NODE 7: if $u4 >= $u0 goto $u2 = new java.lang.String
+NODE 8: $u0 = lengthof $u-1
+NODE 9: $u0 = $u0 - $u4
+NODE 10: if $u0 >= $u-1#15 goto $u0 = $u-1#15
+NODE 11: $u0 = lengthof $u-1
+NODE 12: $u0 = $u0 - $u4
+NODE 13: $u-1#25 = virtualinvoke $u-1#11.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u-1, $u4, $u0)
+NODE 14: $u4 = $u4 + $u-1#15
+NODE 15: goto [?= $u0 = lengthof $u-1]
+NODE 16: $u0 = $u-1#15
+NODE 17: goto [?= $u-1#25 = virtualinvoke $u-1#11.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u-1, $u4, $u0)]
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 16
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 6
+EDGE: 16 -> 17
+EDGE: 17 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.encrypt.Rsa.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1#11 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/ECB/PKCS1Padding")
+NODE 3: $u-1 = staticinvoke <com.alipay.sdk.encrypt.Base64: byte[] a(java.lang.String)>($u7)
+NODE 4: $u-1#14 = virtualinvoke $u-1#11.<javax.crypto.Cipher: int getBlockSize()>()
+NODE 5: $u4 = 0
+NODE 6: $u0#19 = lengthof $u-1
+NODE 7: if $u4 >= $u0#19 goto $u8 = new java.lang.String
+NODE 8: $u0#19 = lengthof $u-1
+NODE 9: $u0#19 = $u0#19 - $u4
+NODE 10: if $u0#19 >= $u-1#14 goto $u0#19 = $u-1#14
+NODE 11: $u0#19 = lengthof $u-1
+NODE 12: $u0#19 = $u0#19 - $u4
+NODE 13: $u-1#24 = virtualinvoke $u-1#11.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u-1, $u4, $u0#19)
+NODE 14: $u4 = $u4 + $u-1#14
+NODE 15: goto [?= $u0#19 = lengthof $u-1]
+NODE 16: $u0#19 = $u-1#14
+NODE 17: goto [?= $u-1#24 = virtualinvoke $u-1#11.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u-1, $u4, $u0#19)]
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 16
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 15 -> 6
+EDGE: 16 -> 17
+EDGE: 17 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.Utils.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: $u1 = new java.lang.StringBuilder
+NODE 3: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("777")
+NODE 4: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 6: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 8: virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.Utils.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u2)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" ")
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 7: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 9: virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.util.Utils.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(64)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.core.persistent.PersistentConfiguration.getRootFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.data.MspConfig.b ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.data.MspConfig.c ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.data.MspConfig.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u-1 = staticinvoke <com.alipay.sdk.sys.GlobalContext: com.alipay.sdk.sys.GlobalContext a()>()
+NODE 2: $u-1#3 = virtualinvoke $u-1.<com.alipay.sdk.sys.GlobalContext: android.content.Context b()>()
+NODE 3: $u-1#150 = virtualinvoke $u-1#3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u1#152 = (android.net.wifi.WifiManager) $u-1#150
+NODE 5: $u-1#153 = virtualinvoke $u1#152.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.data.MspConfig.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u-1 = staticinvoke <com.alipay.sdk.sys.GlobalContext: com.alipay.sdk.sys.GlobalContext a()>()
+NODE 2: $u-1#3 = virtualinvoke $u-1.<com.alipay.sdk.sys.GlobalContext: android.content.Context b()>()
+NODE 3: $u-1#150 = virtualinvoke $u-1#3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u1#152 = (android.net.wifi.WifiManager) $u-1#150
+NODE 5: $u-1#153 = virtualinvoke $u1#152.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: goto [?= $u-1#150 = virtualinvoke $u-1#3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.encrypt.Des.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1#5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("DES")
+NODE 3: if $u4 != 2 goto $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 4: $u-1 = staticinvoke <com.alipay.sdk.encrypt.Base64: byte[] a(java.lang.String)>($u5)
+NODE 5: $u-1 = virtualinvoke $u-1#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+NODE 6: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 7: goto [?= $u-1 = virtualinvoke $u-1#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)]
+EDGE: 3 -> 4
+EDGE: 3 -> 6
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.AESUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u6 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.AESUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u7 := @parameter1: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u6 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.sys.UserLocation.a ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: $u0 = (android.location.LocationManager) $u-1
+NODE 4: if $u-1#6 == 0 goto return
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.app.H5AuthActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.app.H5AuthActivity
+NODE 2: if $u-1#33 < 7 goto $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 3: $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 4: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#50 = virtualinvoke $u-1#19.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#54 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#54)
+NODE 8: if $u-1#57 == null goto $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 9: $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 10: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 11: $u2#63 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u-1#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#19, $u2#63)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.app.H5AuthActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.app.H5AuthActivity
+NODE 2: if $u-1#33 < 7 goto $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 3: $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 4: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#50 = virtualinvoke $u-1#19.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#54 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#54)
+NODE 8: if $u-1#57 == null goto $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 9: $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 10: $u-1#50 = virtualinvoke $u2.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u2#54 = newarray (java.lang.Class)[0]
+NODE 12: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("removeJavascriptInterface", $u2#54)
+NODE 13: if $u-1#57 == null goto return
+NODE 14: $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>
+NODE 15: $u2#63 = newarray (java.lang.Object)[1]
+NODE 16: virtualinvoke $u-1#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u2#63)
+NODE 17: goto [?= $u2 = this.<com.alipay.sdk.app.H5AuthActivity: android.webkit.WebView a>]
+EDGE: 2 -> 3
+EDGE: 2 -> 9
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 17 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.DeviceIdModel.Init ===
+SUSPICIOUS_API: getImei
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo getInstance()>()
+NODE 3: if arg == null goto $u3 = virtualinvoke $u-1.<com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: java.lang.String getImei(android.content.Context)>($u8)
+NODE 4: if $u-1#3 <= 0 goto $u3 = virtualinvoke $u-1.<com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: java.lang.String getImei(android.content.Context)>($u8)
+NODE 5: if $u-1#9 != 0 goto $u3 = virtualinvoke $u-1.<com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: java.lang.String getImei(android.content.Context)>($u8)
+NODE 6: $u3 = virtualinvoke $u-1.<com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: java.lang.String getImei(android.content.Context)>($u8)
+EDGE: 3 -> 6
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.DeviceIdModel.Init ===
+SUSPICIOUS_API: getImei
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo getInstance()>()
+NODE 3: $u3 = virtualinvoke $u-1.<com.alipay.mobilesecuritysdk.deviceID.CollectDeviceInfo: java.lang.String getImei(android.content.Context)>($u8)
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.DeviceIdModel.WriteDataToSdCard ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.deviceID.DeviceIdModel.readDataFromSdCard ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#4 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.model.CollectedInfo.GetWifiInfos ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u12.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wm = (android.net.wifi.WifiManager) $u-1
+NODE 4: if $u-1#6 == 0 goto return null
+NODE 5: $u-1#8 = virtualinvoke wm.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.model.CollectedInfo.collectLocateInfos ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1#14 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: lm = (android.location.LocationManager) $u-1#14
+NODE 4: if $u-1#18 == 0 goto $u-1#14 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: ls = new com.alipay.mobilesecuritysdk.model.SecLocationListener
+NODE 6: $u-1#22 = staticinvoke <android.os.Looper: android.os.Looper getMainLooper()>()
+NODE 7: virtualinvoke lm.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>("network", 300000L, 0.0F, ls, $u-1#22)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.model.CollectedInfo.collectLocateInfos ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u15 := @parameter0: android.content.Context
+NODE 2: $u-1#14 = virtualinvoke $u15.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: lm = (android.location.LocationManager) $u-1#14
+NODE 4: $u-1#24 = virtualinvoke lm.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.model.CollectedInfo.collectappInfos ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(4096)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd$3.onShow ===
+SUSPICIOUS_API: startRecording
+NODE 1: $u0 = <ACloud.MindMap.mainWnd: ACloud.MindMap.RecordHelper mRecorder>
+NODE 2: $u3 = <ACloud.MindMap.mainWnd: android.app.Activity thisActivity>
+NODE 3: virtualinvoke $u0.<ACloud.MindMap.RecordHelper: void startRecording(int,java.lang.String,android.content.Context)>(3, ".amr", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.OpenFileDialog$FileSelectView$1.compare ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ACloud.MindMap.OpenFileDialog$FileSelectView$1
+NODE 2: a := @parameter0: java.util.Map
+NODE 3: if a == null goto return 0
+NODE 4: if b != null goto $u9 = this.<ACloud.MindMap.OpenFileDialog$FileSelectView$1: java.lang.reflect.Method method>
+NODE 5: $u9 = this.<ACloud.MindMap.OpenFileDialog$FileSelectView$1: java.lang.reflect.Method method>
+NODE 6: $u10 = newarray (java.lang.Object)[1]
+NODE 7: $u-1 = virtualinvoke $u9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(a, $u10)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.OpenFileDialog$FileSelectView$1.compare ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ACloud.MindMap.OpenFileDialog$FileSelectView$1
+NODE 2: b := @parameter1: java.util.Map
+NODE 3: $u9 = this.<ACloud.MindMap.OpenFileDialog$FileSelectView$1: java.lang.reflect.Method method>
+NODE 4: $u10 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#16 = virtualinvoke $u9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(b, $u10)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.DeviceInfo._initDeviceMetadata ===
+SUSPICIOUS_API: getImei
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1#4 = staticinvoke <com.ta.utdid2.android.utils.PhoneInfoUtils: java.lang.String getImei(android.content.Context)>($u11)
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.DeviceInfo.getMetadataCheckSum ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u9 := @parameter0: com.ta.utdid2.device.Device
+NODE 2: $u-1 = virtualinvoke $u9.<com.ta.utdid2.device.Device: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.DeviceInfo.getMetadataCheckSum ===
+SUSPICIOUS_API: getImei
+NODE 1: $u9 := @parameter0: com.ta.utdid2.device.Device
+NODE 2: $u-1 = virtualinvoke $u9.<com.ta.utdid2.device.Device: java.lang.String getImei()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.SystemUtils.getRootFolder ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd$ThreadHandler.handleMessage ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#1911 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd$ThreadHandler.handleMessage ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u101 := @parameter0: android.os.Message
+NODE 2: $u-1 = virtualinvoke $u101.<android.os.Message: android.os.Bundle getData()>()
+NODE 3: $u-1#8 = virtualinvoke $u-1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("Title")
+NODE 4: $u-1#24 = virtualinvoke $u-1.<android.os.Bundle: java.lang.String getString(java.lang.String)>("Suffix")
+NODE 5: $u-1#3613 = staticinvoke <ACloud.MindMap.mainWnd$OpenFileDialogFragment: ACloud.MindMap.mainWnd$OpenFileDialogFragment newInstance(java.lang.String,java.lang.String)>($u-1#8, $u-1#24)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid._generateUtdid ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.ta.utdid2.device.UTUtdid
+NODE 2: $u14#13 = this.<com.ta.utdid2.device.UTUtdid: android.content.Context mContext>
+NODE 3: $u-1#14 = staticinvoke <com.ta.utdid2.android.utils.PhoneInfoUtils: java.lang.String getImei(android.content.Context)>($u14#13)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid.getMetadataCheckSum ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u9 := @parameter0: com.ta.utdid2.device.Device
+NODE 2: $u-1 = virtualinvoke $u9.<com.ta.utdid2.device.Device: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid.getMetadataCheckSum ===
+SUSPICIOUS_API: getImei
+NODE 1: $u9 := @parameter0: com.ta.utdid2.device.Device
+NODE 2: $u-1 = virtualinvoke $u9.<com.ta.utdid2.device.Device: java.lang.String getImei()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid.saveUtdidToTaoPPC ===
+SUSPICIOUS_API: getImei
+NODE 1: this := @this: com.ta.utdid2.device.UTUtdid
+NODE 2: if $u-1 == 0 goto $u5 = this.<com.ta.utdid2.device.UTUtdid: com.ta.utdid2.core.persistent.PersistentConfiguration mTaoPC>
+NODE 3: $u5#25 = this.<com.ta.utdid2.device.UTUtdid: android.content.Context mContext>
+NODE 4: lIMEI = staticinvoke <com.ta.utdid2.android.utils.PhoneInfoUtils: java.lang.String getImei(android.content.Context)>($u5#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid.saveUtdidToTaoPPC ===
+SUSPICIOUS_API: getImei
+NODE 1: if $u-1 == 0 goto (branch)
+NODE 2: if $u-1#18 == null goto $u0 = new com.ta.utdid2.device.Device
+NODE 3: if $u-1 != 0 goto return
+NODE 4: $u0 = new com.ta.utdid2.device.Device
+NODE 5: lD = $u0
+NODE 6: $u10 = virtualinvoke lD.<com.ta.utdid2.device.Device: java.lang.String getImei()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.device.UTUtdid.saveUtdidToTaoPPC ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: if $u-1 == 0 goto (branch)
+NODE 2: if $u-1#18 == null goto $u0 = new com.ta.utdid2.device.Device
+NODE 3: if $u-1 != 0 goto return
+NODE 4: $u0 = new com.ta.utdid2.device.Device
+NODE 5: lD = $u0
+NODE 6: $u10 = virtualinvoke lD.<com.ta.utdid2.device.Device: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("C_to_Android")
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("Android_to_C")
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.GetExternalPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.IsNetConnected ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u7 = <ACloud.MindMap.mainWnd: android.app.Activity thisActivity>
+NODE 2: $u-1 = virtualinvoke $u7.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: con = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke con.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.IsNetConnected ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u7 = <ACloud.MindMap.mainWnd: android.app.Activity thisActivity>
+NODE 2: $u-1 = virtualinvoke $u7.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: con = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#6 == null goto $u-1#6 = virtualinvoke con.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 5: $u-1#6 = virtualinvoke con.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: ACloud.MindMap.mainWnd.IsWifiConnected ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u3 = <ACloud.MindMap.mainWnd: android.app.Activity thisActivity>
+NODE 2: $u-1 = virtualinvoke $u3.<android.app.Activity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connManager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke connManager.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.app.H5PayActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.app.H5PayActivity
+NODE 2: if $u-1#45 < 7 goto $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 3: $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 4: $u-1#31 = virtualinvoke $u3.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#59 = virtualinvoke $u-1#31.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#63 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#66 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#63)
+NODE 8: if $u-1#66 == null goto $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 9: $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 10: $u-1#31 = virtualinvoke $u3.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 11: $u2#72 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u-1#66.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u2#72)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.app.H5PayActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.app.H5PayActivity
+NODE 2: if $u-1#45 < 7 goto $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 3: $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 4: $u-1#31 = virtualinvoke $u3.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#59 = virtualinvoke $u-1#31.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#63 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#66 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#63)
+NODE 8: if $u-1#66 == null goto $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 9: $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 10: $u-1#59 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u2#63 = newarray (java.lang.Class)[0]
+NODE 12: $u-1#66 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("removeJavascriptInterface", $u2#63)
+NODE 13: if $u-1#66 == null goto return
+NODE 14: $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>
+NODE 15: $u2#72 = newarray (java.lang.Object)[1]
+NODE 16: virtualinvoke $u-1#66.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u2#72)
+NODE 17: goto [?= $u3 = this.<com.alipay.sdk.app.H5PayActivity: android.webkit.WebView a>]
+EDGE: 2 -> 3
+EDGE: 2 -> 9
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 17 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.net.MspClient.f ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.alipay.sdk.net.MspClient
+NODE 2: $u0 = this.<com.alipay.sdk.net.MspClient: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.PhoneInfoUtils.getImei ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 == null goto $u-1#7 = staticinvoke <com.ta.utdid2.android.utils.StringUtils: boolean isEmpty(java.lang.String)>(imei)
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: tm = (android.telephony.TelephonyManager) $u-1
+NODE 5: if tm == null goto $u-1#7 = staticinvoke <com.ta.utdid2.android.utils.StringUtils: boolean isEmpty(java.lang.String)>(imei)
+NODE 6: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.ta.utdid2.android.utils.PhoneInfoUtils.getImsi ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u3 == null goto $u-1#7 = staticinvoke <com.ta.utdid2.android.utils.StringUtils: boolean isEmpty(java.lang.String)>(imsi)
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: tm = (android.telephony.TelephonyManager) $u-1
+NODE 5: if tm == null goto $u-1#7 = staticinvoke <com.ta.utdid2.android.utils.StringUtils: boolean isEmpty(java.lang.String)>(imsi)
+NODE 6: $u-1#6 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.auth.AuthActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.auth.AuthActivity
+NODE 2: if $u-1#33 < 7 goto $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 3: $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 4: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#50 = virtualinvoke $u-1#19.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#54 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#54)
+NODE 8: if $u-1#57 == null goto $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 9: $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 10: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 11: $u2#63 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u-1#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#19, $u2#63)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.sdk.auth.AuthActivity.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.alipay.sdk.auth.AuthActivity
+NODE 2: if $u-1#33 < 7 goto $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 3: $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 4: $u-1#19 = virtualinvoke $u2.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 5: $u-1#50 = virtualinvoke $u-1#19.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2#54 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setDomStorageEnabled", $u2#54)
+NODE 8: if $u-1#57 == null goto $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 9: $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 10: $u-1#50 = virtualinvoke $u2.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u2#54 = newarray (java.lang.Class)[0]
+NODE 12: $u-1#57 = virtualinvoke $u-1#50.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("removeJavascriptInterface", $u2#54)
+NODE 13: if $u-1#57 == null goto return
+NODE 14: $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>
+NODE 15: $u2#63 = newarray (java.lang.Object)[1]
+NODE 16: virtualinvoke $u-1#57.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u2#63)
+NODE 17: goto [?= $u2 = this.<com.alipay.sdk.auth.AuthActivity: android.webkit.WebView c>]
+EDGE: 2 -> 3
+EDGE: 2 -> 9
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 17 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.util.CommonUtils.GetSdCardFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#2 != 0 goto $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: if $u-1#2 == 0 goto return 0
+NODE 3: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.alipay.mobilesecuritysdk.util.CommonUtils.isNetWorkActive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u5 = virtualinvoke $u5.<android.content.Context: android.content.Context getApplicationContext()>()
+NODE 3: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivityManager = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#7 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

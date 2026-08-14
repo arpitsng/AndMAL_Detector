@@ -1,0 +1,490 @@
+=== FUNCTION: com.modernluxury.origin.StatsCollector.<init> ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.modernluxury.origin.StatsCollector
+NODE 2: $u0#29 = this.<com.modernluxury.origin.StatsCollector: android.location.LocationManager mGPSManager>
+NODE 3: if $u0#29 == null goto $u-1#10 = virtualinvoke $u-1.<com.modernluxury.ModernLuxuryApplication: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u0#29 = this.<com.modernluxury.origin.StatsCollector: android.location.LocationManager mGPSManager>
+NODE 5: $u-1#32 = virtualinvoke $u0#29.<android.location.LocationManager: java.util.List getProviders(boolean)>(0)
+NODE 6: if $u-1#15 <= 0 goto $u-1#10 = virtualinvoke $u-1.<com.modernluxury.ModernLuxuryApplication: android.content.pm.PackageManager getPackageManager()>()
+NODE 7: $u-1#35 = interfaceinvoke $u-1#32.<java.util.List: java.util.Iterator iterator()>()
+NODE 8: if $u-1#39 != 0 goto $u-1#27 = interfaceinvoke $u-1#35.<java.util.Iterator: java.lang.Object next()>()
+NODE 9: $u-1#27 = interfaceinvoke $u-1#35.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u-1#11 = (java.lang.String) $u-1#27
+NODE 11: $u0#29 = this.<com.modernluxury.origin.StatsCollector: android.location.LocationManager mGPSManager>
+NODE 12: virtualinvoke $u0#29.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1#11, 60000L, 1000.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.SubscriptionActivity$1.onClick ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#11 = newarray (int)[2]
+NODE 2: $u-1#16 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Ljava/lang/String;", $u-1#11)
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.NewIssueGalleryActivity$1.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.NewIssueGalleryActivity$1
+NODE 2: $u0 = this.<com.modernluxury.NewIssueGalleryActivity$1: com.modernluxury.NewIssueGalleryActivity this$0>
+NODE 3: $u-1#5 = staticinvoke <com.modernluxury.NewIssueGalleryActivity: com.modernluxury.downloader.IssuesListTimerDownloader access$22(com.modernluxury.NewIssueGalleryActivity)>($u0)
+NODE 4: virtualinvoke $u-1#5.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.NewIssueGalleryActivity.onCreate ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.NewIssueGalleryActivity
+NODE 2: $u-1#105 = this.<com.modernluxury.NewIssueGalleryActivity: com.modernluxury.downloader.IssuesListTimerDownloader mIssueListLoader>
+NODE 3: virtualinvoke $u-1#105.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.NewIssueGalleryActivity.onCreate ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.NewIssueGalleryActivity
+NODE 2: if $u-1#20 <= 0 goto $u-1#105 = this.<com.modernluxury.NewIssueGalleryActivity: com.modernluxury.downloader.IssuesListTimerDownloader mIssueListLoader>
+NODE 3: $u-1#105 = this.<com.modernluxury.NewIssueGalleryActivity: com.modernluxury.downloader.IssuesListTimerDownloader mIssueListLoader>
+NODE 4: virtualinvoke $u-1#105.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.HTML5WebView.init ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u4#30 = class "Landroid/webkit/CacheManager;"
+NODE 2: $u6#33 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#36 = virtualinvoke $u4#30.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setCacheDisabled", $u6#33)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.HTML5WebView.init ===
+SUSPICIOUS_API: invoke
+NODE 1: $u4#30 = class "Landroid/webkit/CacheManager;"
+NODE 2: $u6#33 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#36 = virtualinvoke $u4#30.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setCacheDisabled", $u6#33)
+NODE 4: $u5 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#36.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.pdf.PDF.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("pdfview2")
+=== END FUNCTION ===
+
+=== FUNCTION: com.brightcove.player.management.BrightcovePluginManager.checkForCrashlytics ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.crashlytics.android.Crashlytics")
+=== END FUNCTION ===
+
+=== FUNCTION: com.brightcove.player.management.BrightcovePluginManager.crashlyticsLog ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.brightcove.player.management.BrightcovePluginManager
+NODE 2: if $u1#10 == 0 goto return
+NODE 3: $u1#11 = this.<com.brightcove.player.management.BrightcovePluginManager: java.lang.reflect.Method crashlyticsLogMethod>
+NODE 4: if $u1#11 == null goto return
+NODE 5: $u1#11 = this.<com.brightcove.player.management.BrightcovePluginManager: java.lang.reflect.Method crashlyticsLogMethod>
+NODE 6: $u3 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u1#11.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.brightcove.player.management.BrightcovePluginManager.loadPropertiesInfo ===
+SUSPICIOUS_API: load
+NODE 1: props = new java.util.Properties
+NODE 2: $u2 = class "Lcom/brightcove/player/management/BrightcovePluginManager;"
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<java.lang.ClassLoader: java.io.InputStream getResourceAsStream(java.lang.String)>("build-version.properties")
+NODE 5: virtualinvoke props.<java.util.Properties: void load(java.io.InputStream)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.brightcove.player.view.BrightcoveVideoView.init ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.brightcove.player.view.BrightcoveVideoView
+NODE 2: $u3#5 = this.<com.brightcove.player.view.BrightcoveVideoView: java.lang.Class brightcoveSurfaceViewClass>
+NODE 3: $u-1 = virtualinvoke $u3#5.<java.lang.Class: java.lang.reflect.Constructor[] getConstructors()>()
+NODE 4: $u3#9 = $u-1[0]
+NODE 5: $u4 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#13 = virtualinvoke $u3#9.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.SubscriptionFormRequest.onDownloadCompleteListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.SubscriptionFormRequest.onDownloadCompleteListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.origin.ConnectivityMon.<init> ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.modernluxury.origin.ConnectivityMon
+NODE 2: $u1#9 = this.<com.modernluxury.origin.ConnectivityMon: android.net.ConnectivityManager mConnMan>
+NODE 3: $u-1#15 = virtualinvoke $u1#9.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.inapp.purchasing.ImplementationFactory.getInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: if $u3 != null goto exitmonitor class "Lcom/amazon/inapp/purchasing/ImplementationFactory;"
+NODE 3: $u-1 = staticinvoke <com.amazon.inapp.purchasing.ImplementationFactory: com.amazon.inapp.purchasing.ImplementationRegistry getImplementationRegistry()>()
+NODE 4: $u2 = interfaceinvoke $u-1.<com.amazon.inapp.purchasing.ImplementationRegistry: java.lang.Class getImplementation(java.lang.Class)>($u2)
+NODE 5: $u-1#6 = virtualinvoke $u2.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.PersistentUUIDStorage.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.PersistentUUIDStorage.getApplicationUUID ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.modernluxury.PersistentUUIDStorage
+NODE 2: if $u-1#14 == 0 goto (branch)
+NODE 3: if $u-1#14 == 0 goto (branch)
+NODE 4: if $u-1#14 == 0 goto (branch)
+NODE 5: if isStorageExistOnSD != 0 goto (branch)
+NODE 6: $u11#21 = this.<com.modernluxury.PersistentUUIDStorage: android.content.Context mContext>
+NODE 7: ifs1 = virtualinvoke $u11#21.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>(".mlid")
+NODE 8: if ifs == null goto (branch)
+NODE 9: goto [?= (branch)]
+NODE 10: goto [?= (branch)]
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= (branch)]
+EDGE: 2 -> 5
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 5
+EDGE: 9 -> 5
+EDGE: 10 -> 5
+EDGE: 11 -> 5
+EDGE: 12 -> 8
+EDGE: 13 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.PersistentUUIDStorage.getApplicationUUID ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.modernluxury.PersistentUUIDStorage
+NODE 2: if $u-1#14 == 0 goto (branch)
+NODE 3: if $u-1#14 == 0 goto (branch)
+NODE 4: if $u-1#14 == 0 goto (branch)
+NODE 5: if isStorageExistOnSD != 0 goto (branch)
+NODE 6: if ifs == null goto (branch)
+NODE 7: if isStorageExistOnSD != 0 goto (branch)
+NODE 8: if isStorageExistInternal != 0 goto (branch)
+NODE 9: if writeToSD == 0 goto (branch)
+NODE 10: if isStorageExistOnSD == 0 goto (branch)
+NODE 11: if ofs == null goto (branch)
+NODE 12: if writeInternal == 0 goto $u-1 = virtualinvoke uuid.<java.util.UUID: java.lang.String toString()>()
+NODE 13: $u11#21 = this.<com.modernluxury.PersistentUUIDStorage: android.content.Context mContext>
+NODE 14: ofs1 = virtualinvoke $u11#21.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>(".mlid", 0)
+NODE 15: if ifs == null goto (branch)
+NODE 16: goto [?= (branch)]
+NODE 17: goto [?= (branch)]
+NODE 18: goto [?= (branch)]
+NODE 19: goto [?= (branch)]
+NODE 20: goto [?= (branch)]
+NODE 21: goto [?= (branch)]
+NODE 22: goto [?= (branch)]
+NODE 23: goto [?= (branch)]
+NODE 24: goto [?= (branch)]
+NODE 25: goto [?= (branch)]
+EDGE: 2 -> 5
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 7
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+EDGE: 9 -> 12
+EDGE: 10 -> 12
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 5
+EDGE: 16 -> 5
+EDGE: 17 -> 5
+EDGE: 18 -> 5
+EDGE: 19 -> 7
+EDGE: 20 -> 12
+EDGE: 21 -> 11
+EDGE: 22 -> 11
+EDGE: 23 -> 6
+EDGE: 24 -> 15
+EDGE: 25 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.OnlineSearch.onDownloadToMemoryCompletionListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ModernLuxuryApplication.createCacheAndFilesDirectories ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto $u4 = virtualinvoke this.<com.modernluxury.ModernLuxuryApplication: java.io.File getCacheDir()>()
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.AuthorizationProcessor.onDownloadCompleteListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.omniture.android.AppMeasurement.getDefaultVisitorID ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: this := @this: com.omniture.android.AppMeasurement
+NODE 2: $u3 = this.<com.omniture.android.AppMeasurement: android.app.Application application>
+NODE 3: $u-1 = virtualinvoke $u3.<android.app.Application: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: telephony = (android.telephony.TelephonyManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke telephony.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.omniture.android.AppMeasurement.setupAccountVars ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: com.omniture.android.AppMeasurement
+NODE 2: allAccountVarKeys = new java.util.ArrayList
+NODE 3: $u-1#5 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: varNum = 0
+NODE 5: if varNum < $u-1 goto $u-1#7 = virtualinvoke allAccountVarKeys.<java.util.ArrayList: java.lang.Object get(int)>(varNum)
+NODE 6: $u-1#7 = virtualinvoke allAccountVarKeys.<java.util.ArrayList: java.lang.Object get(int)>(varNum)
+NODE 7: varKey = (java.lang.String) $u-1#7
+NODE 8: $u-1#11 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>(varKey)
+NODE 9: varNum = varNum + 1
+NODE 10: goto [?= (branch)]
+NODE 11: goto [?= varNum = varNum + 1]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+EDGE: 10 -> 5
+EDGE: 11 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.action.WebAction.changeScreen ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.modernluxury.ui.action.WebAction
+NODE 2: $u0 = this.<com.modernluxury.ui.action.WebAction: com.modernluxury.ui.HTML5WebView webView>
+NODE 3: virtualinvoke $u0.<com.modernluxury.ui.HTML5WebView: void invoke()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.action.WebAction.closeMediaDeck ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.action.WebAction.closeMediaDeck ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.modernluxury.ui.action.WebAction
+NODE 2: $u-1#16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+NODE 3: $u-1#19 = virtualinvoke $u-1#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPause", null)
+NODE 4: if $u-1#19 == null goto $u5 = this.<com.modernluxury.ui.action.WebAction: com.modernluxury.ui.HTML5WebView webView>
+NODE 5: $u5 = this.<com.modernluxury.ui.action.WebAction: com.modernluxury.ui.HTML5WebView webView>
+NODE 6: virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.MediaLinksDownloader.onDownloadToMemoryCompletionListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.HTML5WebView$MyWebChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.LinkFactory.parse ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.layer.LinksLayerViewgroup.init ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1 = class "Landroid/view/View;"
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setRight", $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.ui.layer.LinksLayerViewgroup.onLayout ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.modernluxury.ui.layer.LinksLayerViewgroup
+NODE 2: if $u24 != 0 goto $u-1#80 = virtualinvoke this.<com.modernluxury.ui.layer.LinksLayerViewgroup: android.view.View getChildAt(int)>(0)
+NODE 3: $u-1#80 = virtualinvoke this.<com.modernluxury.ui.layer.LinksLayerViewgroup: android.view.View getChildAt(int)>(0)
+NODE 4: iconLayout = (com.modernluxury.ui.layer.LinksLayerViewgroup$IconLayout) $u-1#80
+NODE 5: if $u30 == 0 goto virtualinvoke iconLayout.<com.modernluxury.ui.layer.LinksLayerViewgroup$IconLayout: void requestLayout()>()
+NODE 6: $u0#87 = this.<com.modernluxury.ui.layer.LinksLayerViewgroup: java.lang.reflect.Method mSetRightMethod>
+NODE 7: $u0#91 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u0#87.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(iconLayout, $u0#91)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.MagazineActivity.onCreate ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.MagazineActivity
+NODE 2: $u-1#51 = this.<com.modernluxury.MagazineActivity: com.modernluxury.downloader.IssuesListTimerDownloader downloader>
+NODE 3: virtualinvoke $u-1#51.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.MagazineActivity.onCreate ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.MagazineActivity
+NODE 2: if $u-1#6 <= 0 goto $u-1#51 = this.<com.modernluxury.MagazineActivity: com.modernluxury.downloader.IssuesListTimerDownloader downloader>
+NODE 3: $u-1#51 = this.<com.modernluxury.MagazineActivity: com.modernluxury.downloader.IssuesListTimerDownloader downloader>
+NODE 4: virtualinvoke $u-1#51.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.brightcove.player.event.RegisteringEventEmitter.convertEventsFromAnnotation ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.brightcove.player.event.RegisteringEventEmitter
+NODE 2: componentClass := @parameter0: java.lang.Class
+NODE 3: annotationClass := @parameter1: java.lang.Class
+NODE 4: $u-1 = specialinvoke this.<com.brightcove.player.event.RegisteringEventEmitter: java.util.List getAnnotations(java.lang.Class,java.lang.Class)>(componentClass, annotationClass)
+NODE 5: if $u-1#3 <= 0 goto $u10 = staticinvoke <com.brightcove.player.util.ErrorUtil: java.lang.String getMessage(java.lang.String)>("annotationRequired")
+NODE 6: $u-1#5 = interfaceinvoke $u-1.<java.util.List: java.util.Iterator iterator()>()
+NODE 7: if $u-1#6 == 0 goto return allEventTypes
+NODE 8: $u-1#8 = interfaceinvoke $u-1#5.<java.util.Iterator: java.lang.Object next()>()
+NODE 9: annotation = (java.lang.annotation.Annotation) $u-1#8
+NODE 10: componentClass = virtualinvoke annotation.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u10 = <com.brightcove.player.event.RegisteringEventEmitter: java.lang.String ANNOTATION_EVENTS_PROPERTY>
+NODE 12: $u11 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#16 = virtualinvoke componentClass.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u10, $u11)
+NODE 14: $u9 = newarray (java.lang.Object)[0]
+NODE 15: $u-1#8 = virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(annotation, $u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.MagazineActivity$2.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.modernluxury.MagazineActivity$2
+NODE 2: $u0 = this.<com.modernluxury.MagazineActivity$2: com.modernluxury.MagazineActivity this$0>
+NODE 3: $u-1#5 = staticinvoke <com.modernluxury.MagazineActivity: com.modernluxury.downloader.IssuesListTimerDownloader access$6(com.modernluxury.MagazineActivity)>($u0)
+NODE 4: virtualinvoke $u-1#5.<com.modernluxury.downloader.IssuesListTimerDownloader: void load()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.StorageSelectionActivity.checkStorages ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.HelpDownloader.onDownloadCompleteListener ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.OfflineSearchKeywordsLoader$OfflineSearchKeywordsParserThread.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.downloader.SlideShowDownloader$SlideshowParseRunnable.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.modernluxury.pdf.MuPDFCore.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("mupdf")
+=== END FUNCTION ===
+

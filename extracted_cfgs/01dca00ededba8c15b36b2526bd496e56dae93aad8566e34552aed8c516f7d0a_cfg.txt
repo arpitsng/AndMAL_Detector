@@ -1,0 +1,74 @@
+=== FUNCTION: im.delight.android.webview.AdvancedWebView$Browsers.getAlternative ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1#5 = virtualinvoke $u5.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#8 = virtualinvoke $u-1#5.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(128)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: im.delight.android.webview.AdvancedWebView$2.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: if $u0#2 == 0 goto $u0 = this.<im.delight.android.webview.AdvancedWebView$2: im.delight.android.webview.AdvancedWebView this$0>
+NODE 4: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.kalinkara.tesetturgiyim.TitleEditor.onPause ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.kalinkara.tesetturgiyim.TitleEditor
+NODE 2: if $u1 == null goto return
+NODE 3: values = new android.content.ContentValues
+NODE 4: $u-1#8 = virtualinvoke this.<com.kalinkara.tesetturgiyim.TitleEditor: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u2#10 = this.<com.kalinkara.tesetturgiyim.TitleEditor: android.net.Uri mUri>
+NODE 6: virtualinvoke $u-1#8.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2#10, values, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.kalinkara.tesetturgiyim.NoteEditor.cancelNote ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.kalinkara.tesetturgiyim.NoteEditor
+NODE 2: values = new android.content.ContentValues
+NODE 3: $u-1 = virtualinvoke this.<com.kalinkara.tesetturgiyim.NoteEditor: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2#7 = this.<com.kalinkara.tesetturgiyim.NoteEditor: android.net.Uri mUri>
+NODE 5: virtualinvoke $u-1.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2#7, values, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.kalinkara.tesetturgiyim.NoteEditor.performPaste ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.kalinkara.tesetturgiyim.NoteEditor
+NODE 2: $u-1 = virtualinvoke this.<com.kalinkara.tesetturgiyim.NoteEditor: java.lang.Object getSystemService(java.lang.String)>("clipboard")
+NODE 3: clipboard = (android.content.ClipboardManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke this.<com.kalinkara.tesetturgiyim.NoteEditor: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#7 = virtualinvoke clipboard.<android.content.ClipboardManager: android.content.ClipData getPrimaryClip()>()
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<android.content.ClipData: android.content.ClipData$Item getItemAt(int)>(0)
+NODE 7: $u-1#12 = virtualinvoke $u-1#11.<android.content.ClipData$Item: android.net.Uri getUri()>()
+NODE 8: if $u-1#16 == 0 goto (branch)
+NODE 9: $u2#18 = <com.kalinkara.tesetturgiyim.NoteEditor: java.lang.String[] PROJECTION>
+NODE 10: $u-1#20 = virtualinvoke $u-1#6.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#12, $u2#18, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.kalinkara.tesetturgiyim.NoteEditor.updateNote ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: com.kalinkara.tesetturgiyim.NoteEditor
+NODE 2: values = new android.content.ContentValues
+NODE 3: $u-1#18 = virtualinvoke this.<com.kalinkara.tesetturgiyim.NoteEditor: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u4 = this.<com.kalinkara.tesetturgiyim.NoteEditor: android.net.Uri mUri>
+NODE 5: virtualinvoke $u-1#18.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u4, values, null, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
