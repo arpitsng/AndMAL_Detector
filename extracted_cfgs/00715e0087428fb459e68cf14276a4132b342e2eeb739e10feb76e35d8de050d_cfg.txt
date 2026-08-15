@@ -1,0 +1,894 @@
+=== FUNCTION: com.google.zxing.client.android.common.PlatformSupportManager.build ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.google.zxing.client.android.common.PlatformSupportManager
+NODE 2: $u9 = this.<com.google.zxing.client.android.common.PlatformSupportManager: java.util.SortedMap implementations>
+NODE 3: $u-1 = interfaceinvoke $u9.<java.util.SortedMap: java.util.Set keySet()>()
+NODE 4: $u-1#4 = interfaceinvoke $u-1.<java.util.Set: java.util.Iterator iterator()>()
+NODE 5: if $u-1#5 == 0 goto className = <com.google.zxing.client.android.common.PlatformSupportManager: java.lang.String TAG>
+NODE 6: $u-1#7 = interfaceinvoke $u-1#4.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: minVersion = (java.lang.Integer) $u-1#7
+NODE 8: if $u9#10 < $u-1#11 goto $u-1#5 = interfaceinvoke $u-1#4.<java.util.Iterator: boolean hasNext()>()
+NODE 9: $u9 = this.<com.google.zxing.client.android.common.PlatformSupportManager: java.util.SortedMap implementations>
+NODE 10: $u-1#7 = interfaceinvoke $u9.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(minVersion)
+NODE 11: className = (java.lang.String) $u-1#7
+NODE 12: $u-1#17 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.common.PlatformSupportManager.build ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.zxing.client.android.common.PlatformSupportManager
+NODE 2: $u9 = this.<com.google.zxing.client.android.common.PlatformSupportManager: java.util.SortedMap implementations>
+NODE 3: $u-1 = interfaceinvoke $u9.<java.util.SortedMap: java.util.Set keySet()>()
+NODE 4: $u-1#4 = interfaceinvoke $u-1.<java.util.Set: java.util.Iterator iterator()>()
+NODE 5: if $u-1#5 == 0 goto className = <com.google.zxing.client.android.common.PlatformSupportManager: java.lang.String TAG>
+NODE 6: $u-1#7 = interfaceinvoke $u-1#4.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: minVersion = (java.lang.Integer) $u-1#7
+NODE 8: if $u9#10 < $u-1#11 goto $u-1#5 = interfaceinvoke $u-1#4.<java.util.Iterator: boolean hasNext()>()
+NODE 9: $u9 = this.<com.google.zxing.client.android.common.PlatformSupportManager: java.util.SortedMap implementations>
+NODE 10: $u-1#7 = interfaceinvoke $u9.<java.util.SortedMap: java.lang.Object get(java.lang.Object)>(minVersion)
+NODE 11: className = (java.lang.String) $u-1#7
+NODE 12: $u-1#17 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 13: $u10 = this.<com.google.zxing.client.android.common.PlatformSupportManager: java.lang.Class managedInterface>
+NODE 14: $u-1#17 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>($u10)
+NODE 15: $u9#42 = newarray (java.lang.Class)[0]
+NODE 16: $u-1#43 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u9#42)
+NODE 17: $u10#46 = newarray (java.lang.Object)[0]
+NODE 18: $u-1#7 = virtualinvoke $u-1#43.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u10#46)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.utils.GeneralUtils.getDeviceUUID ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 == null goto $u-1#10 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: if $u-1#7 != 0 goto $u-1#10 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u-1#10 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0 = (android.telephony.TelephonyManager) $u-1#10
+NODE 6: $u-1#4 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.utils.GeneralUtils.getRawResourses ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$raw")
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.utils.GeneralUtils.isAmazonDevice ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.amazon.device.messaging.ADM")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.pdf417.encoder.PDF417Writer.rotateArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u5 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#7 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u5, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaWebView.initWebViewSettings ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.CordovaWebView
+NODE 2: if $u-1 == 0 goto $u-1#3 = virtualinvoke this.<org.apache.cordova.CordovaWebView: android.webkit.WebSettings getSettings()>()
+NODE 3: $u-1#3 = virtualinvoke this.<org.apache.cordova.CordovaWebView: android.webkit.WebSettings getSettings()>()
+NODE 4: $u7#5 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u9 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#9 = virtualinvoke $u7#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setNavDump", $u9)
+NODE 7: if $u-1 == 0 goto virtualinvoke $u-1#3.<android.webkit.WebSettings: void setSaveFormData(boolean)>(0)
+NODE 8: $u7#26 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#3, $u7#26)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform.getNpnSelectedProtocol ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform
+NODE 2: $u4 = this.<com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform: java.lang.reflect.Method getMethod>
+NODE 3: $u6 = newarray (java.lang.Object)[1]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u6)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform.setNpnProtocols ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform
+NODE 2: $u6#19 = this.<com.squareup.okhttp.internal.Platform$JdkWithJettyNpnPlatform: java.lang.reflect.Method putMethod>
+NODE 3: $u8#22 = newarray (java.lang.Object)[2]
+NODE 4: virtualinvoke $u6#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u8#22)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.common.HybridBinarizer.calculateBlackPoints ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u19 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u19, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.PluginManager.instantiatePlugin ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: if $u-1 != 0 goto (branch)
+NODE 3: c = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.PluginManager.instantiatePlugin ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter0: java.lang.String
+NODE 2: c = null
+NODE 3: if $u-1 != 0 goto (branch)
+NODE 4: c = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u8)
+NODE 5: if $u-1 == 0 goto return null
+NODE 6: $u-1#12 = virtualinvoke c.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.PluginManager.exec ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.PluginManager
+NODE 2: $u1 := @parameter0: java.lang.String
+NODE 3: $u2 := @parameter1: java.lang.String
+NODE 4: $u3 := @parameter2: java.lang.String
+NODE 5: $u4 := @parameter3: java.lang.String
+NODE 6: virtualinvoke this.<org.apache.cordova.PluginManager: void exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u1, $u2, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.org.conscrypt.OpenSSLSocketImpl")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.harmony.xnet.provider.jsse.OpenSSLSocketImpl")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.eclipse.jetty.npn.NextProtoNego")
+NODE 2: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.eclipse.jetty.npn.NextProtoNego")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u0#36 = new java.lang.StringBuilder
+NODE 2: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("org.eclipse.jetty.npn.NextProtoNego")
+NODE 3: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$Provider")
+NODE 4: $u-1#42 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u16 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#42)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u0#36 = new java.lang.StringBuilder
+NODE 2: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("org.eclipse.jetty.npn.NextProtoNego")
+NODE 3: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$ClientProvider")
+NODE 4: $u-1#42 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u-1#53 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#42)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.findPlatform ===
+SUSPICIOUS_API: forName
+NODE 1: $u0#36 = new java.lang.StringBuilder
+NODE 2: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("org.eclipse.jetty.npn.NextProtoNego")
+NODE 3: $u0#36 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$ServerProvider")
+NODE 4: $u-1#42 = virtualinvoke $u0#36.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#42)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform.newDeflaterOutputStream ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform
+NODE 2: constructor = this.<com.squareup.okhttp.internal.Platform: java.lang.reflect.Constructor deflaterConstructor>
+NODE 3: if constructor != null goto $u2#13 = newarray (java.lang.Object)[3]
+NODE 4: $u2 = class "Ljava/util/zip/DeflaterOutputStream;"
+NODE 5: $u3 = newarray (java.lang.Class)[3]
+NODE 6: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3)
+NODE 7: constructor = $u-1
+NODE 8: $u2#13 = newarray (java.lang.Object)[3]
+NODE 9: $u-1#19 = virtualinvoke constructor.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 3 -> 8
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaResourceApi.mapUriToFile ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: org.apache.cordova.CordovaResourceApi
+NODE 2: $u10 := @parameter0: android.net.Uri
+NODE 3: $u0 = this.<org.apache.cordova.CordovaResourceApi: android.content.ContentResolver contentResolver>
+NODE 4: $u2 = <org.apache.cordova.CordovaResourceApi: java.lang.String[] LOCAL_FILE_PROJECTION>
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.inappbrowser.InAppBrowser$1.run ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1 == 0 goto (branch)
+NODE 2: if shouldAllowNavigation != null goto (branch)
+NODE 3: $u10#16 = class "Lorg/apache/cordova/Config;"
+NODE 4: $u12 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#22 = virtualinvoke $u10#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isUrlWhiteListed", $u12)
+NODE 6: $u11#25 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#29 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u11#25)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.inappbrowser.InAppBrowser$1.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.inappbrowser.InAppBrowser$1
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: if shouldAllowNavigation != null goto (branch)
+NODE 4: if shouldAllowNavigation != null goto $u0 = <java.lang.Boolean: java.lang.Boolean TRUE>
+NODE 5: $u10#34 = this.<org.apache.cordova.inappbrowser.InAppBrowser$1: org.apache.cordova.inappbrowser.InAppBrowser this$0>
+NODE 6: $u10#35 = $u10#34.<org.apache.cordova.inappbrowser.InAppBrowser: org.apache.cordova.CordovaWebView webView>
+NODE 7: $u10#16 = virtualinvoke $u10#35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u12 = newarray (java.lang.Class)[0]
+NODE 9: $u-1#22 = virtualinvoke $u10#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getPluginManager", $u12)
+NODE 10: $u10#34 = this.<org.apache.cordova.inappbrowser.InAppBrowser$1: org.apache.cordova.inappbrowser.InAppBrowser this$0>
+NODE 11: $u10#35 = $u10#34.<org.apache.cordova.inappbrowser.InAppBrowser: org.apache.cordova.CordovaWebView webView>
+NODE 12: $u11#25 = newarray (java.lang.Object)[0]
+NODE 13: $u-1#29 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u10#35, $u11#25)
+NODE 14: goto [?= (branch)]
+NODE 15: goto [?= (branch)]
+NODE 16: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 4
+EDGE: 15 -> 4
+EDGE: 16 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.inappbrowser.InAppBrowser$1.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.inappbrowser.InAppBrowser$1
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: if shouldAllowNavigation != null goto (branch)
+NODE 4: if shouldAllowNavigation != null goto $u0 = <java.lang.Boolean: java.lang.Boolean TRUE>
+NODE 5: $u10#34 = this.<org.apache.cordova.inappbrowser.InAppBrowser$1: org.apache.cordova.inappbrowser.InAppBrowser this$0>
+NODE 6: $u10#35 = $u10#34.<org.apache.cordova.inappbrowser.InAppBrowser: org.apache.cordova.CordovaWebView webView>
+NODE 7: $u10#16 = virtualinvoke $u10#35.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u12 = newarray (java.lang.Class)[0]
+NODE 9: $u-1#22 = virtualinvoke $u10#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getPluginManager", $u12)
+NODE 10: $u10#34 = this.<org.apache.cordova.inappbrowser.InAppBrowser$1: org.apache.cordova.inappbrowser.InAppBrowser this$0>
+NODE 11: $u10#35 = $u10#34.<org.apache.cordova.inappbrowser.InAppBrowser: org.apache.cordova.CordovaWebView webView>
+NODE 12: $u11#25 = newarray (java.lang.Object)[0]
+NODE 13: $u-1#29 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u10#35, $u11#25)
+NODE 14: pm = (org.apache.cordova.PluginManager) $u-1#29
+NODE 15: $u10#16 = virtualinvoke pm.<java.lang.Object: java.lang.Class getClass()>()
+NODE 16: $u12 = newarray (java.lang.Class)[1]
+NODE 17: $u-1#22 = virtualinvoke $u10#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("shouldAllowNavigation", $u12)
+NODE 18: $u11#25 = newarray (java.lang.Object)[1]
+NODE 19: $u-1#29 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(pm, $u11#25)
+NODE 20: goto [?= (branch)]
+NODE 21: goto [?= (branch)]
+NODE 22: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 20 -> 4
+EDGE: 21 -> 4
+EDGE: 22 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.getFreeDiskSpace ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto (branch)
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.getTempDirectoryPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.DirectoryManager.testFileExists ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 != 0 goto return 0
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.GeoLocationService.isNetworkConnected ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.arellomobile.android.push.GeoLocationService
+NODE 2: $u0 = this.<com.arellomobile.android.push.GeoLocationService: android.net.ConnectivityManager connectivityManager>
+NODE 3: $u-1 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.GeoLocationService.setPace ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.arellomobile.android.push.GeoLocationService
+NODE 2: $u1#18 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 3: $u-1#45 = virtualinvoke $u1#18.<android.location.LocationManager: java.util.List getAllProviders()>()
+NODE 4: $u-1#47 = interfaceinvoke $u-1#45.<java.util.List: java.util.Iterator iterator()>()
+NODE 5: if $u-1#29 == 0 goto return
+NODE 6: $u-1#50 = interfaceinvoke $u-1#47.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: $u-1 = (java.lang.String) $u-1#50
+NODE 8: if $u-1 == "passive" goto $u-1#29 = interfaceinvoke $u-1#47.<java.util.Iterator: boolean hasNext()>()
+NODE 9: $u1#18 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 10: virtualinvoke $u1#18.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1, 0L, 0.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.GeoLocationService.setPace ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.arellomobile.android.push.GeoLocationService
+NODE 2: if $u-1#29 == 0 goto $u1#18 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 3: $u1#18 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 4: $u1#62 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 5: $u1#19 = this.<com.arellomobile.android.push.GeoLocationService: android.location.Criteria criteria>
+NODE 6: $u-1 = virtualinvoke $u1#62.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1#19, 1)
+NODE 7: $u2 = this.<com.arellomobile.android.push.GeoLocationService: java.lang.Integer locationTimeout>
+NODE 8: $u-1#24 = virtualinvoke $u2.<java.lang.Integer: int intValue()>()
+NODE 9: $u-1#24 = $u-1#24 * 1000
+NODE 10: $u2#71 = (long) $u-1#24
+NODE 11: $u2 = this.<com.arellomobile.android.push.GeoLocationService: java.lang.Integer scaledDistanceFilter>
+NODE 12: $u-1#24 = virtualinvoke $u2.<java.lang.Integer: int intValue()>()
+NODE 13: $u4 = (float) $u-1#24
+NODE 14: virtualinvoke $u1#18.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1, $u2#71, $u4, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.GeoLocationService.getLastBestLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.arellomobile.android.push.GeoLocationService
+NODE 2: $u0#27 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 3: $u-1#28 = virtualinvoke $u0#27.<android.location.LocationManager: java.util.List getAllProviders()>()
+NODE 4: $u-1#30 = interfaceinvoke $u-1#28.<java.util.List: java.util.Iterator iterator()>()
+NODE 5: if $u-1#31 == 0 goto return $u3
+NODE 6: $u-1#33 = interfaceinvoke $u-1#30.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: $u-1#23 = (java.lang.String) $u-1#33
+NODE 8: $u0#27 = this.<com.arellomobile.android.push.GeoLocationService: android.location.LocationManager locationManager>
+NODE 9: $u-1#46 = virtualinvoke $u0#27.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#23)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.inappbrowser.InAppChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.history.HistoryManager.saveHistory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: historyRoot = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.history.HistoryManager.saveHistory ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#35 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.PushEventsTransmitter.transmit ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.arellomobile.android.push.PushwooshProxy")
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.PushEventsTransmitter.transmit ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.arellomobile.android.push.PushwooshProxy")
+NODE 2: if $u-1 == null goto virtualinvoke $u7.<android.content.Context: void startActivity(android.content.Intent)>($u1)
+NODE 3: $u3 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getInstanceOrNull", $u3)
+NODE 5: $u-1#14 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.PushEventsTransmitter.transmit ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.arellomobile.android.push.PushwooshProxy")
+NODE 2: if $u-1 == null goto virtualinvoke $u7.<android.content.Context: void startActivity(android.content.Intent)>($u1)
+NODE 3: $u3 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getInstanceOrNull", $u3)
+NODE 5: $u-1#14 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+NODE 6: if $u-1#14 == null goto virtualinvoke $u7.<android.content.Context: void startActivity(android.content.Intent)>($u1)
+NODE 7: $u3 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("checkMessage", $u3)
+NODE 9: $u3#22 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#14, $u3#22)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.radiusnetworks.ibeacon.service.IBeaconService.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.radiusnetworks.ibeacon.SimulatedScanData")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$Android23.enableTlsExtensions ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$Android23
+NODE 2: $u6 := @parameter0: javax.net.ssl.SSLSocket
+NODE 3: if $u-1 == 0 goto return
+NODE 4: $u1#4 = this.<com.squareup.okhttp.internal.Platform$Android23: java.lang.reflect.Method setUseSessionTickets>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$Android23.enableTlsExtensions ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$Android23
+NODE 2: $u6 := @parameter0: javax.net.ssl.SSLSocket
+NODE 3: $u1#4 = this.<com.squareup.okhttp.internal.Platform$Android23: java.lang.reflect.Method setHostname>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u1#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.MediaType.charset ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.squareup.okhttp.MediaType
+NODE 2: $u0 = this.<com.squareup.okhttp.MediaType: java.lang.String charset>
+NODE 3: if $u0 == null goto return null
+NODE 4: $u0 = this.<com.squareup.okhttp.MediaType: java.lang.String charset>
+NODE 5: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.MediaType.charset ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.squareup.okhttp.MediaType
+NODE 2: $u0 = this.<com.squareup.okhttp.MediaType: java.lang.String charset>
+NODE 3: if $u0 == null goto return $u-1
+NODE 4: $u0 = this.<com.squareup.okhttp.MediaType: java.lang.String charset>
+NODE 5: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$Android41.getNpnSelectedProtocol ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$Android41
+NODE 2: $u4 := @parameter0: javax.net.ssl.SSLSocket
+NODE 3: if $u-1 != 0 goto $u1#5 = this.<com.squareup.okhttp.internal.Platform$Android41: java.lang.reflect.Method getNpnSelectedProtocol>
+NODE 4: $u1#5 = this.<com.squareup.okhttp.internal.Platform$Android41: java.lang.reflect.Method getNpnSelectedProtocol>
+NODE 5: $u2 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#8 = virtualinvoke $u1#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$Android41.setNpnProtocols ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$Android41
+NODE 2: $u5 := @parameter0: javax.net.ssl.SSLSocket
+NODE 3: if $u-1 != 0 goto $u1#3 = this.<com.squareup.okhttp.internal.Platform$Android41: java.lang.reflect.Method setNpnProtocols>
+NODE 4: $u1#3 = this.<com.squareup.okhttp.internal.Platform$Android41: java.lang.reflect.Method setNpnProtocols>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u1#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.pdf417.encoder.BarcodeMatrix.getScaledMatrix ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u4#7 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#8 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u4#7, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: nl.xservices.plugins.SocialSharing.getDownloadDir ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: this := @this: nl.xservices.plugins.SocialSharing
+NODE 2: $u2 = this.<nl.xservices.plugins.SocialSharing: org.apache.cordova.CordovaWebView webView>
+NODE 3: $u-1 = virtualinvoke $u2.<org.apache.cordova.CordovaWebView: android.content.Context getContext()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.io.File getExternalFilesDir(java.lang.String)>(null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.qrcode.encoder.ByteMatrix.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 3: $u-1#3 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.arellomobile.android.push.AlarmReceiver.onReceive ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1#8 = staticinvoke <com.arellomobile.android.push.PushServiceHelper: java.lang.String getPushServiceClassName(android.content.Context)>($u3)
+NODE 3: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.CordovaBridge.jsExec ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: org.apache.cordova.CordovaBridge
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u8 := @parameter2: java.lang.String
+NODE 4: $u9 := @parameter3: java.lang.String
+NODE 5: $u10 := @parameter4: java.lang.String
+NODE 6: $u2#10 = this.<org.apache.cordova.CordovaBridge: org.apache.cordova.PluginManager pluginManager>
+NODE 7: virtualinvoke $u2#10.<org.apache.cordova.PluginManager: void exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String)>($u7, $u8, $u9, $u10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.encode.EncodeActivity.share ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: barcodesRoot = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.ShareActivity.showContactAsBarcode ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.zxing.client.android.share.ShareActivity
+NODE 2: $u26 := @parameter0: android.net.Uri
+NODE 3: if $u26 != null goto $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.ShareActivity.showContactAsBarcode ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.zxing.client.android.share.ShareActivity
+NODE 2: $u26 := @parameter0: android.net.Uri
+NODE 3: if $u26 != null goto $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, null, null, null)
+NODE 6: if $u-1#18 != 0 goto $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 7: $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u3 = interfaceinvoke $u-1#17.<android.database.Cursor: java.lang.String getString(int)>($u-1#21)
+NODE 9: $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("display_name")
+NODE 10: $u-1 = interfaceinvoke $u-1#17.<android.database.Cursor: java.lang.String getString(int)>($u-1#21)
+NODE 11: if $u-1 == null goto (branch)
+NODE 12: $u-1#21 = virtualinvoke $u-1.<java.lang.String: int length()>()
+NODE 13: if $u-1#21 <= 0 goto (branch)
+NODE 14: if $u-1#18 == 0 goto $u26 = <android.provider.ContactsContract$CommonDataKinds$StructuredPostal: android.net.Uri CONTENT_URI>
+NODE 15: $u26 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 16: $u4 = new java.lang.StringBuilder
+NODE 17: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id=")
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 19: $u-1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 20: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, $u-1, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 11 -> 14
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.ShareActivity.showContactAsBarcode ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.zxing.client.android.share.ShareActivity
+NODE 2: $u26 := @parameter0: android.net.Uri
+NODE 3: if $u26 != null goto $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, null, null, null)
+NODE 6: if $u-1#18 != 0 goto $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 7: $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u3 = interfaceinvoke $u-1#17.<android.database.Cursor: java.lang.String getString(int)>($u-1#21)
+NODE 9: $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("display_name")
+NODE 10: $u-1 = interfaceinvoke $u-1#17.<android.database.Cursor: java.lang.String getString(int)>($u-1#21)
+NODE 11: if $u-1 == null goto (branch)
+NODE 12: $u-1#21 = virtualinvoke $u-1.<java.lang.String: int length()>()
+NODE 13: if $u-1#21 <= 0 goto (branch)
+NODE 14: if $u-1#18 == 0 goto $u26 = <android.provider.ContactsContract$CommonDataKinds$StructuredPostal: android.net.Uri CONTENT_URI>
+NODE 15: if $u-1#17 == null goto $u26 = <android.provider.ContactsContract$CommonDataKinds$StructuredPostal: android.net.Uri CONTENT_URI>
+NODE 16: $u26 = <android.provider.ContactsContract$CommonDataKinds$StructuredPostal: android.net.Uri CONTENT_URI>
+NODE 17: $u4 = new java.lang.StringBuilder
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id=")
+NODE 19: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 20: $u-1 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 21: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, $u-1, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 11 -> 14
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 16
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.ShareActivity.showContactAsBarcode ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.zxing.client.android.share.ShareActivity
+NODE 2: $u26 := @parameter0: android.net.Uri
+NODE 3: if $u26 != null goto $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#11 = virtualinvoke this.<com.google.zxing.client.android.share.ShareActivity: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, null, null, null)
+NODE 6: if $u-1#18 != 0 goto $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 7: $u-1#21 = interfaceinvoke $u-1#17.<android.database.Cursor: int getColumnIndex(java.lang.String)>("_id")
+NODE 8: $u3 = interfaceinvoke $u-1#17.<android.database.Cursor: java.lang.String getString(int)>($u-1#21)
+NODE 9: if $u-1#17 == null goto $u26 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 10: $u26 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 11: $u4 = new java.lang.StringBuilder
+NODE 12: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id=")
+NODE 13: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 14: $u3 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: $u-1#17 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u26, null, $u3, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.radiusnetworks.bluetooth.BluetoothCrashResolver.loadState ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.radiusnetworks.bluetooth.BluetoothCrashResolver
+NODE 2: $u0 = this.<com.radiusnetworks.bluetooth.BluetoothCrashResolver: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("BluetoothCrashResolverState.txt")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.radiusnetworks.bluetooth.BluetoothCrashResolver.saveState ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.radiusnetworks.bluetooth.BluetoothCrashResolver
+NODE 2: $u1#5 = this.<com.radiusnetworks.bluetooth.BluetoothCrashResolver: android.content.Context context>
+NODE 3: $u-1#8 = virtualinvoke $u1#5.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("BluetoothCrashResolverState.txt", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.squareup.okhttp.internal.Platform$JettyNpnProvider.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.squareup.okhttp.internal.Platform$JettyNpnProvider
+NODE 2: $u9 := @parameter1: java.lang.reflect.Method
+NODE 3: $u10 := @parameter2: java.lang.Object[]
+NODE 4: if $u10 != null goto $u-1#5 = virtualinvoke $u-1.<java.lang.String: boolean equals(java.lang.Object)>("supports")
+NODE 5: $u10 = <com.squareup.okhttp.internal.Util: java.lang.String[] EMPTY_STRING_ARRAY>
+NODE 6: if $u-1#5 == 0 goto $u8 = virtualinvoke $u9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u10)
+NODE 7: if $u3#18 != 1 goto $u8 = virtualinvoke $u9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u10)
+NODE 8: $u8 = virtualinvoke $u9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u10)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 8
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.LoadPackagesAsyncTask.doInBackground ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: this := @this: com.google.zxing.client.android.share.LoadPackagesAsyncTask
+NODE 2: $u7 = this.<com.google.zxing.client.android.share.LoadPackagesAsyncTask: com.google.zxing.client.android.share.AppPickerActivity activity>
+NODE 3: $u-1 = virtualinvoke $u7.<com.google.zxing.client.android.share.AppPickerActivity: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#3 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: webViewClass = class "Landroid/webkit/WebView;"
+NODE 2: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mProvider")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: webViewClass = class "Landroid/webkit/WebView;"
+NODE 3: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mProvider")
+NODE 4: $u4 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: org.apache.cordova.NativeToJsMessageQueue this$0>
+NODE 5: $u-1 = staticinvoke <org.apache.cordova.NativeToJsMessageQueue: org.apache.cordova.CordovaWebView access$600(org.apache.cordova.NativeToJsMessageQueue)>($u4)
+NODE 6: $u-1#12 = virtualinvoke $u-1#6.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 7: $u-1#13 = virtualinvoke $u-1#12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: webViewClass = $u-1#13
+NODE 9: $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWebViewCore")
+NODE 10: goto [?= $u-1#6 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWebViewCore")]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.initReflection ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: webViewObject = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 3: if webViewObject == null goto return
+NODE 4: webViewObject = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 5: webViewClass = virtualinvoke webViewObject.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u6 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#27 = virtualinvoke webViewClass.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("sendMessage", $u6)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode.onNativeToJsMessageAvailable ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode
+NODE 2: $u3 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.reflect.Method sendMessageMethod>
+NODE 3: $u4 = this.<org.apache.cordova.NativeToJsMessageQueue$PrivateApiBridgeMode: java.lang.Object webViewCore>
+NODE 4: $u5 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.zxing.client.android.share.BookmarkPickerActivity.onCreate ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.google.zxing.client.android.share.BookmarkPickerActivity
+NODE 2: $u-1 = virtualinvoke this.<com.google.zxing.client.android.share.BookmarkPickerActivity: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.Browser: android.net.Uri BOOKMARKS_URI>
+NODE 4: $u2 = <com.google.zxing.client.android.share.BookmarkPickerActivity: java.lang.String[] BOOKMARK_PROJECTION>
+NODE 5: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "bookmark = 1", null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

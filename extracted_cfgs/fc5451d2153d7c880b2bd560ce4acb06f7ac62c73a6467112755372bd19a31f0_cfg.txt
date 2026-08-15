@@ -1,0 +1,62 @@
+=== FUNCTION: com.rock.music.shutter.go.locker.tools.FileCache.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#7 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.rock.music.shutter.go.locker.GoDownloadService.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.rock.music.shutter.go.locker.GOLockerInstallDialog.isCWWAPConnect ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: connectivity = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke connectivity.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.rock.music.shutter.go.locker.tools.CommonFunctions.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.rock.music.shutter.go.locker.tools.CommonFunctions
+NODE 2: $u1 = this.<com.rock.music.shutter.go.locker.tools.CommonFunctions: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.rock.music.shutter.go.locker.tools.CommonFunctions.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.rock.music.shutter.go.locker.tools.CommonFunctions
+NODE 2: $u1 = this.<com.rock.music.shutter.go.locker.tools.CommonFunctions: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#5 == null goto return 0
+NODE 6: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.rock.music.shutter.go.locker.tools.CommonFunctions.checkInternetConnection ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.rock.music.shutter.go.locker.tools.CommonFunctions
+NODE 2: $u1 = this.<com.rock.music.shutter.go.locker.tools.CommonFunctions: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: cm = (android.net.ConnectivityManager) $u-1
+NODE 5: if $u-1#9 == 0 goto return 0
+NODE 6: $u-1#5 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

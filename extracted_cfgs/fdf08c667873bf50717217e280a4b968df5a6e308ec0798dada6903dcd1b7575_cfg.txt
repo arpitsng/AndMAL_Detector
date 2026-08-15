@@ -1,0 +1,102 @@
+=== FUNCTION: com.qihoo.util.StubApplication.getNewAppInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u3 != null goto $u3 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 4: if $u-1 == null goto $u3 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 5: $u3#3 = <com.qihoo.util.StubApplication: java.lang.String strEntryApplication>
+NODE 6: $u-1#4 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u3#3)
+NODE 7: if $u-1#4 == null goto $u3 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 8: $u-1#5 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.StubApplication.attachBaseContext ===
+SUSPICIOUS_API: exec
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: $u-1#6 = virtualinvoke $u11.<android.content.Context: java.io.File getFilesDir()>()
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 4: $u-1#11 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 5: $u6 = new java.lang.StringBuilder
+NODE 6: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#8)
+NODE 7: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/libqupc.so")
+NODE 8: abi = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: virtualinvoke $u-1#11.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>(abi)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.StubApplication.attachBaseContext ===
+SUSPICIOUS_API: load
+NODE 1: $u6 = new java.lang.StringBuilder
+NODE 2: $u6 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/libprotectClass.so")
+NODE 3: $u-1#8 = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 4: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1#8)
+NODE 5: goto [?= $u6 = new java.lang.StringBuilder]
+NODE 6: goto [?= $u6 = new java.lang.StringBuilder]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 1
+EDGE: 6 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.StubApplication.attachBaseContext ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u5 == null goto $u5 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 2: $u5#46 = class "Landroid/app/Application;"
+NODE 3: $u7 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#50 = virtualinvoke $u5#46.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("attach", $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.StubApplication.attachBaseContext ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 2: if $u5 == null goto $u5 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 3: $u5#46 = class "Landroid/app/Application;"
+NODE 4: $u7 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#50 = virtualinvoke $u5#46.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("attach", $u7)
+NODE 6: $u5 = <com.qihoo.util.StubApplication: android.app.Application newApp>
+NODE 7: $u6#54 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#50.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u6#54)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.DefenceReport.run ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.qihoo.util.DefenceReport
+NODE 2: $u0 = this.<com.qihoo.util.DefenceReport: android.content.Context context>
+NODE 3: $u-1#8 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: telephonyManager = (android.telephony.TelephonyManager) $u-1#8
+NODE 5: if $u-1#51 == 0 goto (branch)
+NODE 6: if isHasRole == 0 goto $u34 = <com.qihoo.util.DefenceReport: java.util.concurrent.locks.Lock lock>
+NODE 7: $u-1#84 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.qihoo.util.DefenceReport.run ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: this := @this: com.qihoo.util.DefenceReport
+NODE 2: $u0 = this.<com.qihoo.util.DefenceReport: android.content.Context context>
+NODE 3: $u-1#8 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: telephonyManager = (android.telephony.TelephonyManager) $u-1#8
+NODE 5: $u-1#126 = virtualinvoke telephonyManager.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

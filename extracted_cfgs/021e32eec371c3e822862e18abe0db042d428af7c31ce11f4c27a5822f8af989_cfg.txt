@@ -1,0 +1,264 @@
+=== FUNCTION: org.cocos2dx.javascript.AppActivity.getSDCardPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#3 == 0 goto return null
+NODE 2: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.javascript.AppActivity.getHostIpAddress ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: org.cocos2dx.javascript.AppActivity
+NODE 2: $u-1 = virtualinvoke this.<org.cocos2dx.javascript.AppActivity: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: wifiMgr = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke wifiMgr.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.net.rr.a.c ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter0: byte[]
+NODE 2: $u-1 = staticinvoke <com.qq.e.comm.net.rr.a: javax.crypto.Cipher a()>()
+NODE 3: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.net.rr.a.d ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter0: byte[]
+NODE 2: $u-1 = staticinvoke <com.qq.e.comm.net.rr.a: javax.crypto.Cipher b()>()
+NODE 3: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#7 = staticinvoke <com.qq.e.comm.constants.CustomPkgConstants: java.lang.String getADActivityName()>()
+NODE 2: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#7 = staticinvoke <com.qq.e.comm.constants.CustomPkgConstants: java.lang.String getDownLoadServiceName()>()
+NODE 2: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.lib.Cocos2dxActivity.onLoadNativeLibraries ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: this := @this: org.cocos2dx.lib.Cocos2dxActivity
+NODE 2: $u-1 = virtualinvoke this.<org.cocos2dx.lib.Cocos2dxActivity: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#3 = virtualinvoke this.<org.cocos2dx.lib.Cocos2dxActivity: java.lang.String getPackageName()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: android.content.pm.ApplicationInfo getApplicationInfo(java.lang.String,int)>($u-1#3, 128)
+NODE 5: bundle = $u-1#4.<android.content.pm.ApplicationInfo: android.os.Bundle metaData>
+NODE 6: $u-1#3 = virtualinvoke bundle.<android.os.Bundle: java.lang.String getString(java.lang.String)>("android.app.lib_name")
+NODE 7: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u-1#3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.plugin.PM.getFactory ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: com.qq.e.comm.managers.plugin.PM
+NODE 2: $u5 := @parameter0: java.lang.Class
+NODE 3: $u-1 = <com.qq.e.comm.constants.Constants$PLUGIN: java.lang.String ASSET_PLUGIN_SIG>
+NODE 4: if $u-1 != null goto $u1 = this.<com.qq.e.comm.managers.plugin.PM: dalvik.system.DexClassLoader e>
+NODE 5: $u-1#8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u1 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 7: if $u1 != null goto $u0#21 = <com.qq.e.comm.managers.plugin.PM: java.util.Map i>
+NODE 8: $u1 = this.<com.qq.e.comm.managers.plugin.PM: dalvik.system.DexClassLoader e>
+NODE 9: goto [?= (branch)]
+NODE 10: $u0#21 = <com.qq.e.comm.managers.plugin.PM: java.util.Map i>
+NODE 11: $u-1#22 = interfaceinvoke $u0#21.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 12: $u-1 = (java.lang.String) $u-1#22
+NODE 13: if $u-1#25 == 0 goto $u-1#10 = (java.lang.ClassLoader) $u1
+NODE 14: $u-1#10 = (java.lang.ClassLoader) $u1
+NODE 15: $u-1#8 = virtualinvoke $u-1#10.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1)
+NODE 16: $u2 = newarray (java.lang.Class)[0]
+NODE 17: $u-1#51 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getInstance", $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 9 -> 7
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.plugin.PM.getFactory ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.qq.e.comm.managers.plugin.PM
+NODE 2: $u5 := @parameter0: java.lang.Class
+NODE 3: $u-1 = <com.qq.e.comm.constants.Constants$PLUGIN: java.lang.String ASSET_PLUGIN_SIG>
+NODE 4: if $u-1 != null goto $u1 = this.<com.qq.e.comm.managers.plugin.PM: dalvik.system.DexClassLoader e>
+NODE 5: $u-1#8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u1 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 7: if $u1 != null goto $u0#21 = <com.qq.e.comm.managers.plugin.PM: java.util.Map i>
+NODE 8: $u1 = this.<com.qq.e.comm.managers.plugin.PM: dalvik.system.DexClassLoader e>
+NODE 9: goto [?= (branch)]
+NODE 10: $u0#21 = <com.qq.e.comm.managers.plugin.PM: java.util.Map i>
+NODE 11: $u-1#22 = interfaceinvoke $u0#21.<java.util.Map: java.lang.Object get(java.lang.Object)>($u5)
+NODE 12: $u-1 = (java.lang.String) $u-1#22
+NODE 13: if $u-1#25 == 0 goto $u-1#10 = (java.lang.ClassLoader) $u1
+NODE 14: $u-1#10 = (java.lang.ClassLoader) $u1
+NODE 15: $u-1#8 = virtualinvoke $u-1#10.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1)
+NODE 16: $u2 = newarray (java.lang.Class)[0]
+NODE 17: $u-1#51 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getInstance", $u2)
+NODE 18: $u2#54 = newarray (java.lang.Object)[0]
+NODE 19: $u1 = virtualinvoke $u-1#51.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#8, $u2#54)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 9 -> 7
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.status.DeviceStatus.a ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.qq.e.comm.managers.status.DeviceStatus
+NODE 2: $u0 = this.<com.qq.e.comm.managers.status.DeviceStatus: android.content.Context n>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: $u0#5 = (android.location.LocationManager) $u-1
+NODE 5: if $u0#5 != null goto $u1 = new android.location.Criteria
+NODE 6: $u1 = new android.location.Criteria
+NODE 7: $u-1#13 = virtualinvoke $u0#5.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1, 1)
+NODE 8: $u-1#15 = virtualinvoke $u0#5.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.status.DeviceStatus.a ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.qq.e.comm.managers.status.DeviceStatus
+NODE 2: $u0 = this.<com.qq.e.comm.managers.status.DeviceStatus: android.content.Context n>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: $u0#5 = (android.location.LocationManager) $u-1
+NODE 5: if $u0#5 != null goto $u1 = new android.location.Criteria
+NODE 6: $u1 = new android.location.Criteria
+NODE 7: $u-1#13 = virtualinvoke $u0#5.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u1, 1)
+NODE 8: if $u-1#15 == null goto $u5 = new com.qq.e.comm.managers.status.DeviceStatus$1
+NODE 9: $u5 = new com.qq.e.comm.managers.status.DeviceStatus$1
+NODE 10: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1#13, 2000L, 7000.0F, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.status.DeviceStatus.getDataNet ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.qq.e.comm.managers.status.DeviceStatus
+NODE 2: $u0 = this.<com.qq.e.comm.managers.status.DeviceStatus: android.content.Context n>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0#4 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0#4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.status.DeviceStatus.getDid ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.qq.e.comm.managers.status.DeviceStatus
+NODE 2: if $u0 != null goto $u0 = this.<com.qq.e.comm.managers.status.DeviceStatus: java.lang.String j>
+NODE 3: $u0#2 = this.<com.qq.e.comm.managers.status.DeviceStatus: android.content.Context n>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0#6 = (android.telephony.TelephonyManager) $u-1
+NODE 6: $u0 = virtualinvoke $u0#6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.managers.status.DeviceStatus.getDid ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.qq.e.comm.managers.status.DeviceStatus
+NODE 2: if $u0 != null goto $u0 = this.<com.qq.e.comm.managers.status.DeviceStatus: java.lang.String j>
+NODE 3: $u0#2 = this.<com.qq.e.comm.managers.status.DeviceStatus: android.content.Context n>
+NODE 4: $u-1 = virtualinvoke $u0#2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0#6 = (android.telephony.TelephonyManager) $u-1
+NODE 6: if $u-1#9 == 0 goto $u0 = virtualinvoke $u0#6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 7: $u0 = virtualinvoke $u0#6.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.lib.Cocos2dxSound.createSoundIDFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.cocos2dx.lib.Cocos2dxSound
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 4: $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 5: $u-1#7 = virtualinvoke $u2.<android.media.SoundPool: int load(java.lang.String,int)>($u6, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.lib.Cocos2dxSound.createSoundIDFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.cocos2dx.lib.Cocos2dxSound
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 4: $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 5: $u3 = this.<org.cocos2dx.lib.Cocos2dxSound: android.content.Context mContext>
+NODE 6: $u-1#12 = virtualinvoke $u3.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 7: $u-1#14 = virtualinvoke $u-1#12.<android.content.res.AssetManager: android.content.res.AssetFileDescriptor openFd(java.lang.String)>($u6)
+NODE 8: $u-1#7 = virtualinvoke $u2.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#14, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.qq.e.comm.util.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: if $u3 == null goto return null
+NODE 3: $u-1 = staticinvoke <android.util.Base64: byte[] decode(java.lang.String,int)>($u5, 0)
+NODE 4: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/ECB/PKCS1Padding")
+NODE 5: $u-1 = virtualinvoke $u-1#6.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
