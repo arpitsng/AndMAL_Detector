@@ -1,0 +1,168 @@
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: java.util.HashMap P>
+NODE 4: $u-1 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u0 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.v.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.v
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.v: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.smartk.mobile.BaseApplication.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#22 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.b.r.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.b.s.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 5: $u3 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#8 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.b.t.b ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 > 0 goto $u0 = <com.singmate.b.t: int b>
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.b.t.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 > 0 goto $u0 = <com.singmate.b.t: int b>
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$dimen")
+NODE 3: $u-1#14 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.b.l.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u2 = new java.lang.StringBuilder
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 5: $u5 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.view.NClickGallery.onSingleTapUp ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Lcom/singmate/view/NClickGallery;"
+NODE 2: $u0 = virtualinvoke $u0.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mDownTouchPosition")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.c.e.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.singmate.c.e.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = new java.io.BufferedInputStream
+NODE 2: if $u-1#16 != 0 goto $u-1 = staticinvoke <com.singmate.c.e: java.lang.String a(java.io.InputStream)>($u1)
+NODE 3: $u-1 = staticinvoke <com.singmate.c.e: java.lang.String a(java.io.InputStream)>($u1)
+NODE 4: $u-1#72 = virtualinvoke $u-1.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ")
+NODE 5: $u5 = lengthof $u-1#72
+NODE 6: if 2 <= $u5 goto (branch)
+NODE 7: if 2 <= $u6#21 goto $u5 = $u5 + -2
+NODE 8: $u5 = $u5 + -2
+NODE 9: $u-1#108 = virtualinvoke $u-1#72.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u-1#108 = virtualinvoke $u-1#108.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 11: $u-1#84 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#108, $u5)
+NODE 12: goto [?= $u-1 = staticinvoke <com.singmate.c.e: java.lang.String a(java.io.InputStream)>($u1)]
+NODE 13: goto [?= $u-1 = staticinvoke <com.singmate.c.e: java.lang.String a(java.io.InputStream)>($u1)]
+NODE 14: if $u6#21 == 2 goto $u-1 = staticinvoke <com.singmate.c.e: java.lang.String a(java.io.InputStream)>($u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 3
+EDGE: 13 -> 3
+EDGE: 14 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#36 == 0 goto $u1 = null
+NODE 2: $u1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: a.a.a.b.b.a.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u2#12 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#13 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u2#12, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.smartk.mobile.PhoneMainActivityH8.onCreate ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("CooKaraClientLib")
+=== END FUNCTION ===
+

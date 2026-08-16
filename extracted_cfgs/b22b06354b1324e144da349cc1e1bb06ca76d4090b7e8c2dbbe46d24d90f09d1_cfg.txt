@@ -1,0 +1,15 @@
+=== FUNCTION: org.galexander.tunertime.Strobe.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("strobe-jni")
+=== END FUNCTION ===
+
+=== FUNCTION: org.galexander.tunertime.Strobe.sound_start ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.galexander.tunertime.Strobe
+NODE 2: if $u-1 == 1 goto $u0 = this.<org.galexander.tunertime.Strobe: android.media.AudioRecord recorder>
+NODE 3: $u0 = this.<org.galexander.tunertime.Strobe: android.media.AudioRecord recorder>
+NODE 4: virtualinvoke $u0.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

@@ -1,0 +1,113 @@
+=== FUNCTION: io.BasketWriter.saveBasket ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#5 == 0 goto $u11 = this.<io.BasketWriter: android.content.Context _context>
+NODE 2: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: io.BasketWriter.saveBasket ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: io.BasketWriter
+NODE 2: if $u-1#5 == 0 goto $u11 = this.<io.BasketWriter: android.content.Context _context>
+NODE 3: $u11 = this.<io.BasketWriter: android.content.Context _context>
+NODE 4: $u-1#8 = this.<io.BasketWriter: java.lang.String filename>
+NODE 5: fOut1 = virtualinvoke $u11.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#8, 1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: io.SQLStatmentWriter.writeStatement ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto staticinvoke <android.util.Log: int w(java.lang.String,java.lang.String)>("File", "Schreibe in /data")
+NODE 2: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: io.SQLStatmentWriter.writeStatement ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: io.SQLStatmentWriter
+NODE 2: $u11 = this.<io.SQLStatmentWriter: android.content.Context _context>
+NODE 3: $u-1#58 = virtualinvoke $u11.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("statements.sql", 32768)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: de.gelpke.dsa.handel.BasketView$7.onClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u1 = new java.io.File
+NODE 2: $u-1#13 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: database.DatabaseTaskSelectView$1.onClick ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: database.DatabaseTaskSelectView$1
+NODE 2: $u5 = this.<database.DatabaseTaskSelectView$1: database.DatabaseTaskSelectView this$0>
+NODE 3: $u-1 = virtualinvoke $u5.<database.DatabaseTaskSelectView: android.content.Context getApplicationContext()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: cm = (android.net.ConnectivityManager) $u-1#6
+NODE 6: $u-1#9 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: database.AndroidDatabaseHelper.openOrCreateDataBase ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: database.AndroidDatabaseHelper
+NODE 2: if $u-1#4 >= 40 goto $u11 = this.<database.AndroidDatabaseHelper: android.content.Context _context>
+NODE 3: $u11 = this.<database.AndroidDatabaseHelper: android.content.Context _context>
+NODE 4: $u-1#12 = virtualinvoke $u11.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 5: cm = (android.net.ConnectivityManager) $u-1#12
+NODE 6: $u-1#15 = virtualinvoke cm.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: de.gelpke.dsa.handel.Main.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: de.gelpke.dsa.handel.BasketView.getFiles ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#8 == 0 goto return $u-1
+NODE 2: $u-1#10 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: io.BasketReader.loadBasketFromSD ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: io.BasketReader.loadBasketFromSD ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: io.BasketReader
+NODE 2: if $u1 == 0 goto $u1#27 = this.<io.BasketReader: android.content.Context _context>
+NODE 3: $u1#27 = this.<io.BasketReader: android.content.Context _context>
+NODE 4: $u-1 = this.<io.BasketReader: java.lang.String filename>
+NODE 5: fis = virtualinvoke $u1#27.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: io.SQLStatmentReader.readStatements ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: io.SQLStatmentReader.readStatements ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: io.SQLStatmentReader
+NODE 2: if $u-1#4 == 0 goto $u14#21 = this.<io.SQLStatmentReader: android.content.Context _context>
+NODE 3: $u14#21 = this.<io.SQLStatmentReader: android.content.Context _context>
+NODE 4: $u-1#23 = virtualinvoke $u14#21.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("statements.sql")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

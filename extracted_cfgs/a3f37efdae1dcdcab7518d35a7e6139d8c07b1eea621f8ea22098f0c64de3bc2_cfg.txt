@@ -1,0 +1,193 @@
+=== FUNCTION: com.usbinterface.app.USB2SerialAdapter.<init> ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2 := @parameter0: com.usbinterface.app.CustomUsbDevice
+NODE 2: $u0 = $u2.<com.usbinterface.app.CustomUsbDevice: android.hardware.usb.UsbDevice mDevice>
+NODE 3: $u-1 = virtualinvoke $u0.<android.hardware.usb.UsbDevice: int getDeviceId()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.FileList$3.onClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.FileList$2.onClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#16 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ZTerminalActivity.changeSelectedAdapter ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: com.usbinterface.app.USB2SerialAdapter
+NODE 2: $u-1#3 = virtualinvoke $u4.<com.usbinterface.app.USB2SerialAdapter: int getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ZTerminalActivity.onAdapterConnected ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u7 := @parameter0: com.usbinterface.app.USB2SerialAdapter
+NODE 2: $u5 = virtualinvoke $u7.<com.usbinterface.app.USB2SerialAdapter: int getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ZTerminalActivity.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#177 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ZTerminalActivity.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#190 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ZTerminalActivity.onOptionsItemSelected ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: ZToutputFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.FileList.onClick ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: file = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.FileList.onCreate ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#32 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.usbinterface.app.USB2SerialInterface.autoConnect ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: j = 0
+NODE 2: if j >= $u-1#21 goto (branch)
+NODE 3: $u9#20 = <com.usbinterface.app.USB2SerialInterface: java.util.ArrayList mConnectedDevices>
+NODE 4: $u-1#15 = virtualinvoke $u9#20.<java.util.ArrayList: java.lang.Object get(int)>(j)
+NODE 5: $u9#27 = (com.usbinterface.app.CustomUsbDevice) $u-1#15
+NODE 6: $u9#28 = $u9#27.<com.usbinterface.app.CustomUsbDevice: android.hardware.usb.UsbDevice mDevice>
+NODE 7: $u-1#29 = virtualinvoke $u9#28.<android.hardware.usb.UsbDevice: int getDeviceId()>()
+NODE 8: if $u-1#29 == $u-1#31 goto $u-1#18 = 1
+NODE 9: j = j + 1
+NODE 10: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.usbinterface.app.USB2SerialInterface.autoConnect ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u9 = <com.usbinterface.app.USB2SerialInterface: android.hardware.usb.UsbManager mManager>
+NODE 2: $u-1 = virtualinvoke $u9.<android.hardware.usb.UsbManager: java.util.HashMap getDeviceList()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.util.HashMap: int size()>()
+NODE 4: if $u-1#4 != 0 goto keyNames = newarray (java.lang.String)[$u-1#4]
+NODE 5: keyNames = newarray (java.lang.String)[$u-1#4]
+NODE 6: i = 0
+NODE 7: if i >= $u-1#4 goto (branch)
+NODE 8: $u-1#8 = keyNames[i]
+NODE 9: $u-1#15 = virtualinvoke $u-1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u-1#8)
+NODE 10: device = (android.hardware.usb.UsbDevice) $u-1#15
+NODE 11: if $u-1#18 != 0 goto $u9#20 = <com.usbinterface.app.USB2SerialInterface: java.util.ArrayList mConnectedDevices>
+NODE 12: i = i + 1
+NODE 13: goto [?= (branch)]
+NODE 14: if j >= $u-1#21 goto (branch)
+NODE 15: $u-1#31 = virtualinvoke device.<android.hardware.usb.UsbDevice: int getDeviceId()>()
+NODE 16: goto [?= (branch)]
+NODE 17: if $u-1#18 != 0 goto i = i + 1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 7
+EDGE: 14 -> 17
+EDGE: 16 -> 14
+EDGE: 17 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.usbinterface.app.USB2SerialInterface.connectSpecific ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u10 = 0
+NODE 2: if $u10 >= $u9#17 goto (branch)
+NODE 3: $u9#25 = <com.usbinterface.app.USB2SerialInterface: java.util.ArrayList mConnectedDevices>
+NODE 4: $u-1#14 = virtualinvoke $u9#25.<java.util.ArrayList: java.lang.Object get(int)>($u10)
+NODE 5: $u9#32 = (com.usbinterface.app.CustomUsbDevice) $u-1#14
+NODE 6: $u9#33 = $u9#32.<com.usbinterface.app.CustomUsbDevice: android.hardware.usb.UsbDevice mDevice>
+NODE 7: $u-1#34 = virtualinvoke $u9#33.<android.hardware.usb.UsbDevice: int getDeviceId()>()
+NODE 8: if $u-1#34 == $u-1#36 goto alreadyConnected = 1
+NODE 9: $u10 = $u10 + 1
+NODE 10: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.usbinterface.app.USB2SerialInterface.connectSpecific ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u9 = <com.usbinterface.app.USB2SerialInterface: android.hardware.usb.UsbManager mManager>
+NODE 2: $u-1 = virtualinvoke $u9.<android.hardware.usb.UsbManager: java.util.HashMap getDeviceList()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.util.HashMap: int size()>()
+NODE 4: if $u-1#3 != 0 goto keyNames = newarray (java.lang.String)[$u-1#3]
+NODE 5: keyNames = newarray (java.lang.String)[$u-1#3]
+NODE 6: i = 0
+NODE 7: if i >= $u-1#3 goto (branch)
+NODE 8: $u-1#7 = keyNames[i]
+NODE 9: $u-1#14 = virtualinvoke $u-1.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u-1#7)
+NODE 10: device = (android.hardware.usb.UsbDevice) $u-1#14
+NODE 11: if $u9#17 != $u10 goto i = i + 1
+NODE 12: if $u9#17 == $u10 goto $u9#25 = <com.usbinterface.app.USB2SerialInterface: java.util.ArrayList mConnectedDevices>
+NODE 13: i = i + 1
+NODE 14: goto [?= (branch)]
+NODE 15: if $u10 >= $u9#17 goto (branch)
+NODE 16: $u-1#36 = virtualinvoke device.<android.hardware.usb.UsbDevice: int getDeviceId()>()
+NODE 17: goto [?= (branch)]
+NODE 18: if alreadyConnected != 0 goto i = i + 1
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 13
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 7
+EDGE: 15 -> 18
+EDGE: 17 -> 15
+EDGE: 18 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ExecTerminal.exec ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#16 = virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("sh")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.ExecTerminal.execSu ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1#13 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#16 = virtualinvoke $u-1#13.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("su")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.REDZelectronics.ZTerminal.UsbDeviceManager.getUsbInfoViaShell ===
+SUSPICIOUS_API: exec
+NODE 1: $u1 = new com.REDZelectronics.ZTerminal.ExecTerminal
+NODE 2: $u-1 = virtualinvoke $u1.<com.REDZelectronics.ZTerminal.ExecTerminal: java.lang.String exec(java.lang.String)>("for DEVICE in /sys/bus/usb/devices/*; do  echo __DEV_START__; [ -f $DEVICE/idProduct ] && echo PID: $(cat $DEVICE/idProduct); [ -f $DEVICE/idVendor ] && echo BUSNUM: $(cat $DEVICE/busnum); [ -f $DEVICE/idVendor ] && echo DEVCLASS: $(cat $DEVICE/bDeviceClass); [ -f $DEVICE/idVendor ] && echo DEVNUM: $(cat $DEVICE/devnum); [ -f $DEVICE/idVendor ] && echo DEVPROTOCOL: $(cat $DEVICE/bDeviceProtocol); [ -f $DEVICE/idVendor ] && echo DEVSUBCLASS: $(cat $DEVICE/bDeviceSubClass); [ -f $DEVICE/idVendor ] && echo MAXPOWER: $(cat $DEVICE/bMaxPower); [ -f $DEVICE/idVendor ] && echo SERIAL: $(cat $DEVICE/serial); [ -f $DEVICE/idVendor ] && echo SPEED: $(cat $DEVICE/speed); [ -f $DEVICE/idVendor ] && echo VERSION: $(cat $DEVICE/version); [ -f $DEVICE/idVendor ] && echo VID: $(cat $DEVICE/idVendor); [ -f $DEVICE/product ] && echo MANUFACTURER: $(cat $DEVICE/manufacturer); [ -f $DEVICE/product ] && echo PRODUCT: $(cat $DEVICE/product); echo __DEV_END__; done")
+=== END FUNCTION ===
+

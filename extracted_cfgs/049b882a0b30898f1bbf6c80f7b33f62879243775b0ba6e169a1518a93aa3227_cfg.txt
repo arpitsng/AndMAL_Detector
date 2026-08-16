@@ -1,0 +1,450 @@
+=== FUNCTION: com.extremefootball.WebLinkPage.openBook ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.MarshalFloat.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatGingerbread.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.imageaware.ImageViewAware.getImageViewFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter1: java.lang.String
+NODE 2: $u4 = class "Landroid/widget/ImageView;"
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.ImageLoader.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.EventManager.addCalanderEvent ===
+SUSPICIOUS_API: update
+NODE 1: $u12 := @parameter0: android.app.Activity
+NODE 2: $u13 := @parameter1: com.beans.addEventBean
+NODE 3: $u-1#12 = virtualinvoke $u12.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u0 = new java.lang.StringBuilder
+NODE 5: $u8 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/reminders")
+NODE 6: $u-1 = virtualinvoke $u8.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#11 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u-1)
+NODE 8: if $u-1#105 < 0 goto $u-1 = virtualinvoke $u13.<com.beans.addEventBean: java.lang.String getReminderId()>()
+NODE 9: $u1 = new android.content.ContentValues
+NODE 10: values = $u1
+NODE 11: $u-1 = virtualinvoke $u13.<com.beans.addEventBean: java.lang.String getReminderId()>()
+NODE 12: if $u-1 == null goto (branch)
+NODE 13: $u-1 = virtualinvoke $u13.<com.beans.addEventBean: java.lang.String getReminderId()>()
+NODE 14: $u-1#66 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u-1#11, $u-1)
+NODE 15: $u-1#105 = virtualinvoke $u-1#12.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u-1#66, values, null, null)
+EDGE: 1 -> 2
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.EventManager.getCalendarUriBase ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.provider.Calendar")
+=== END FUNCTION ===
+
+=== FUNCTION: org.xmlpull.v1.XmlPullParserFactory.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance(java.lang.String,java.lang.Class)>(null, null)
+=== END FUNCTION ===
+
+=== FUNCTION: org.xmlpull.v1.XmlPullParserFactory.newInstance ===
+SUSPICIOUS_API: forName
+NODE 1: $u20 := @parameter0: java.lang.String
+NODE 2: if $u-1#14 != null goto $u2 = new java.lang.StringBuffer
+NODE 3: $u2 = new java.lang.StringBuffer
+NODE 4: sb = $u2
+NODE 5: $u0 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 6: $u20 = $u0
+NODE 7: $u-1 = 0
+NODE 8: $u-1#39 = virtualinvoke $u20.<java.lang.String: int length()>()
+NODE 9: if $u-1 >= $u-1#39 goto (branch)
+NODE 10: $u-1#39 = virtualinvoke $u20.<java.lang.String: int indexOf(int,int)>(44, $u-1)
+NODE 11: cut = $u-1#39
+NODE 12: if $u-1#39 != -1 goto $u-1#51 = virtualinvoke $u20.<java.lang.String: java.lang.String substring(int,int)>($u-1, cut)
+NODE 13: cut = virtualinvoke $u20.<java.lang.String: int length()>()
+NODE 14: $u-1#51 = virtualinvoke $u20.<java.lang.String: java.lang.String substring(int,int)>($u-1, cut)
+NODE 15: $u-1#54 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#51)
+NODE 16: if $u21 == null goto $u-1 = cut + 1
+NODE 17: if $u0#57 == 0 goto (branch)
+NODE 18: if $u-1#9 != 0 goto $u-1 = cut + 1
+NODE 19: $u-1 = cut + 1
+NODE 20: goto [?= $u-1#39 = virtualinvoke $u20.<java.lang.String: int length()>()]
+NODE 21: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 12 -> 14
+EDGE: 13 -> 14
+EDGE: 16 -> 19
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 8
+EDGE: 21 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: org.xmlpull.v1.XmlPullParserFactory.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u20 := @parameter0: java.lang.String
+NODE 2: if $u-1#14 != null goto $u2 = new java.lang.StringBuffer
+NODE 3: $u2 = new java.lang.StringBuffer
+NODE 4: sb = $u2
+NODE 5: $u0 = virtualinvoke sb.<java.lang.StringBuffer: java.lang.String toString()>()
+NODE 6: $u20 = $u0
+NODE 7: $u-1 = 0
+NODE 8: $u-1#39 = virtualinvoke $u20.<java.lang.String: int length()>()
+NODE 9: if $u-1 >= $u-1#39 goto (branch)
+NODE 10: $u-1#39 = virtualinvoke $u20.<java.lang.String: int indexOf(int,int)>(44, $u-1)
+NODE 11: cut = $u-1#39
+NODE 12: if $u-1#39 != -1 goto $u-1#51 = virtualinvoke $u20.<java.lang.String: java.lang.String substring(int,int)>($u-1, cut)
+NODE 13: cut = virtualinvoke $u20.<java.lang.String: int length()>()
+NODE 14: $u-1#51 = virtualinvoke $u20.<java.lang.String: java.lang.String substring(int,int)>($u-1, cut)
+NODE 15: $u-1#54 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#51)
+NODE 16: $u-1#55 = virtualinvoke $u-1#54.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 17: if $u21 == null goto $u-1 = cut + 1
+NODE 18: if $u0#57 == 0 goto (branch)
+NODE 19: if $u-1#9 != 0 goto $u-1 = cut + 1
+NODE 20: $u-1 = cut + 1
+NODE 21: goto [?= $u-1#39 = virtualinvoke $u20.<java.lang.String: int length()>()]
+NODE 22: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 12 -> 14
+EDGE: 13 -> 14
+EDGE: 17 -> 20
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 8
+EDGE: 22 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: org.xmlpull.v1.XmlPullParserFactory.newPullParser ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.xmlpull.v1.XmlPullParserFactory
+NODE 2: $u-1 = 0
+NODE 3: if $u-1 >= $u-1#27 goto $u8#2 = new org.xmlpull.v1.XmlPullParserException
+NODE 4: $u8 = this.<org.xmlpull.v1.XmlPullParserFactory: java.util.Vector parserClasses>
+NODE 5: $u-1#30 = virtualinvoke $u8.<java.util.Vector: java.lang.Object elementAt(int)>($u-1)
+NODE 6: ppClass = (java.lang.Class) $u-1#30
+NODE 7: $u-1#30 = virtualinvoke ppClass.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: $u-1 = $u-1 + 1
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.xmlpull.v1.XmlPullParserFactory.newSerializer ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.xmlpull.v1.XmlPullParserFactory
+NODE 2: $u-1 = 0
+NODE 3: if $u-1 >= $u-1#27 goto $u5#2 = new org.xmlpull.v1.XmlPullParserException
+NODE 4: $u5 = this.<org.xmlpull.v1.XmlPullParserFactory: java.util.Vector serializerClasses>
+NODE 5: $u-1#30 = virtualinvoke $u5.<java.util.Vector: java.lang.Object elementAt(int)>($u-1)
+NODE 6: ppClass = (java.lang.Class) $u-1#30
+NODE 7: $u-1#30 = virtualinvoke ppClass.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 8: $u-1 = $u-1 + 1
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.Utils.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 = <com.utils.StaticData: android.content.Context appContext>
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: conMgr = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke conMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.Utils.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 = <com.utils.StaticData: android.content.Context appContext>
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: conMgr = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#5 == null goto return 0
+NODE 5: $u-1#5 = virtualinvoke conMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.utils.Utils.isOnline ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 = <com.utils.StaticData: android.content.Context appContext>
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: conMgr = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#9 == 0 goto return 0
+NODE 5: $u-1#5 = virtualinvoke conMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.extremefootball.WebLinkPage$DownloadFileFromURL.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.extremefootball.WebLinkPage$DownloadFileFromURL.doInBackground ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: direct = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.SoapSerializationEnvelope.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.SoapSerializationEnvelope.readInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.ksoap2.serialization.SoapSerializationEnvelope
+NODE 2: $u3 = this.<org.ksoap2.serialization.SoapSerializationEnvelope: java.util.Hashtable qNameToClass>
+NODE 3: $u0 = new org.ksoap2.serialization.SoapPrimitive
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>($u0)
+NODE 5: if $u2 == 0 goto $u2#18 = <org.ksoap2.serialization.SoapSerializationEnvelope: java.lang.Class class$org$ksoap2$serialization$SoapObject>
+NODE 6: obj#12 = (org.ksoap2.serialization.SoapObject) $u-1
+NODE 7: $u-1 = virtualinvoke obj#12.<org.ksoap2.serialization.SoapObject: org.ksoap2.serialization.SoapObject newInstance()>()
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.SoapSerializationEnvelope.readInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.ksoap2.serialization.SoapSerializationEnvelope
+NODE 2: $u3 = this.<org.ksoap2.serialization.SoapSerializationEnvelope: java.util.Hashtable qNameToClass>
+NODE 3: $u0 = new org.ksoap2.serialization.SoapPrimitive
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>($u0)
+NODE 5: if $u-1 != $u2#21 goto $u2#18 = (java.lang.Class) $u-1
+NODE 6: goto [?= (branch)]
+NODE 7: $u2#18 = (java.lang.Class) $u-1
+NODE 8: $u-1 = virtualinvoke $u2#18.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 5 -> 7
+EDGE: 6 -> 5
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.kobjects.pim.PimParser.readItem ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.kobjects.pim.PimParser
+NODE 2: if $u-1#4 != 0 goto $u6#8 = this.<org.kobjects.pim.PimParser: java.lang.Class type>
+NODE 3: $u6#8 = this.<org.kobjects.pim.PimParser: java.lang.Class type>
+NODE 4: $u-1#9 = virtualinvoke $u6#8.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: forName
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gcm.GCMRegistrar.setRetryBroadcastReceiver ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u5 != null goto exitmonitor class "Lcom/google/android/gcm/GCMRegistrar;"
+NODE 2: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 3: if $u5#2 != null goto $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 4: $u5#2 = <com.google.android.gcm.GCMRegistrar: java.lang.String sRetryReceiverClassName>
+NODE 5: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5#2)
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.SoapObject.class$ ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.ksoap2.serialization.SoapObject.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.ksoap2.serialization.SoapObject
+NODE 2: propIndex = 0
+NODE 3: if propIndex >= $u-1 goto propIndex = 0
+NODE 4: $u8#3 = this.<org.ksoap2.serialization.SoapObject: java.util.Vector properties>
+NODE 5: $u-1#7 = virtualinvoke $u8#3.<java.util.Vector: java.lang.Object elementAt(int)>(propIndex)
+NODE 6: propIndex = propIndex + 1
+NODE 7: if $u8#9 == 0 goto propIndex = propIndex + 1
+NODE 8: prop = (org.ksoap2.serialization.SoapObject) $u-1#7
+NODE 9: prop = virtualinvoke prop.<org.ksoap2.serialization.SoapObject: org.ksoap2.serialization.SoapObject newInstance()>()
+NODE 10: goto [?= propIndex = propIndex + 1]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 7 -> 6
+EDGE: 8 -> 9
+EDGE: 10 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompatHoneycombMR2.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u3.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.net.ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl.isActiveNetworkMetered ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.net.ConnectivityManager
+NODE 2: $u-1 = virtualinvoke $u4.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.cache.disc.impl.ext.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.cache.disc.impl.ext.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.extremefootball.WebLinkPage$1.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque
+NODE 2: a := @parameter0: java.lang.Object[]
+NODE 3: $u5 = lengthof a
+NODE 4: if $u5 >= $u6 goto p = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque$Node first>
+NODE 5: $u-1 = virtualinvoke a.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u5 = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: int count>
+NODE 8: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u5)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.kobjects.util.ChainedRuntimeException.create ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.kobjects.util.ChainedRuntimeExceptionSE")
+=== END FUNCTION ===
+
+=== FUNCTION: org.kobjects.util.ChainedRuntimeException.create ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.kobjects.util.ChainedRuntimeExceptionSE")
+NODE 2: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

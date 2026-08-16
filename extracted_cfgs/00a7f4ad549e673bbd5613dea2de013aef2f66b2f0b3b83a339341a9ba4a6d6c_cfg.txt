@@ -1,0 +1,704 @@
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsVersionInfoActivity.CheckAppStore ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u8 := @parameter0: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u8.<android.app.Activity: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.MyUtil.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.MyUtil.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.MyUtil.CheckAppStore ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u8 := @parameter0: android.app.Activity
+NODE 2: $u-1 = virtualinvoke $u8.<android.app.Activity: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.MyUtil.fileDownFromUrl ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u14 := @parameter2: java.lang.String
+NODE 3: $u-1#34 = virtualinvoke $u12.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u14, 0)
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.SeedCrypto.decodeBase64 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.SeedCrypto.decodeBase64 ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+NODE 2: parameterTypes = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("decodeBase64", parameterTypes)
+NODE 4: $u6 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#12 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.SeedCrypto.encodeBase64 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.SeedCrypto.encodeBase64 ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+NODE 2: parameterTypes = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("encodeBase64", parameterTypes)
+NODE 4: $u6 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#12 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsMainMenuActivity.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.AsyncTask")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.auth.AuthSchemeRegistry.getAuthScheme ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.auth.AuthSchemeRegistry
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: org.apache.http.params.HttpParams
+NODE 4: if $u5 != null goto $u1#4 = this.<org.apache.http.auth.AuthSchemeRegistry: java.util.Map registeredSchemes>
+NODE 5: $u1#4 = this.<org.apache.http.auth.AuthSchemeRegistry: java.util.Map registeredSchemes>
+NODE 6: $u2 = <java.util.Locale: java.util.Locale ENGLISH>
+NODE 7: $u-1 = virtualinvoke $u5.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u2)
+NODE 8: $u-1#8 = interfaceinvoke $u1#4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 9: factory = (org.apache.http.auth.AuthSchemeFactory) $u-1#8
+NODE 10: if factory == null goto $u1#13 = new java.lang.IllegalStateException
+NODE 11: $u-1#11 = interfaceinvoke factory.<org.apache.http.auth.AuthSchemeFactory: org.apache.http.auth.AuthScheme newInstance(org.apache.http.params.HttpParams)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsAddrMenuActivity.networkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.activity.LdsAddrMenuActivity
+NODE 2: $u-1 = virtualinvoke this.<egovframework.tcpor.mobile.lds.activity.LdsAddrMenuActivity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.parser.MimeTokenStream.getReader ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: org.apache.james.mime4j.parser.MimeTokenStream
+NODE 2: $u-1 = virtualinvoke this.<org.apache.james.mime4j.parser.MimeTokenStream: org.apache.james.mime4j.descriptor.BodyDescriptor getBodyDescriptor()>()
+NODE 3: $u-1#2 = interfaceinvoke $u-1.<org.apache.james.mime4j.descriptor.BodyDescriptor: java.lang.String getCharset()>()
+NODE 4: if $u-1#4 == 0 goto charset = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1#2)
+NODE 5: charset = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1#2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.result.LdsMapResultActivity.networkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.result.LdsMapResultActivity
+NODE 2: $u-1 = virtualinvoke this.<egovframework.tcpor.mobile.lds.result.LdsMapResultActivity: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#1656 == 0 goto $u-1#1679 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+NODE 2: $u-1#1679 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#1679 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#1679 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.getCharset ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: if $u6 != null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u6)
+NODE 3: $u6 = "ISO-8859-1"
+NODE 4: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.getCharset ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.util.CharsetUtil.getCharset ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.xml.XmlDataParseJindan.doInBackground ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.message.BodyFactory.toJavaCharset ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <org.apache.james.mime4j.util.CharsetUtil: java.lang.String toJavaCharset(java.lang.String)>($u4)
+NODE 3: if $u-1 != null goto (branch)
+NODE 4: if $u5 == 0 goto (branch)
+NODE 5: if $u-1#27 != 0 goto (branch)
+NODE 6: if $u5 != 0 goto $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1)
+NODE 7: if $u5 != 0 goto $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1)
+NODE 8: $u3 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 8
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.CloneUtils.clone ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.Object
+NODE 2: if $u4 == 0 goto $u3 = new java.lang.CloneNotSupportedException
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("clone", null)
+NODE 5: $u6 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.ldsutil.MyUtil.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity
+NODE 2: if $u-1 == 0 goto $u-1#33 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,java.lang.CharSequence,int)>(this, "GPS\uac00 \uaebc\uc838 \uc788\uc2b5\ub2c8\ub2e4.", 0)
+NODE 3: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 4: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 3000.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity
+NODE 2: if $u-1 == 0 goto $u0 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.app.ProgressDialog proDialog>
+NODE 3: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager netLoc>
+NODE 4: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 1000L, 3000.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity
+NODE 2: if $u-1 != 0 goto $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 3: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 4: if $u0#5 != null goto $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 5: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager netLoc>
+NODE 6: if $u0#5 != null goto $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 7: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager gpsLoc>
+NODE 8: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 1000L, 3000.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 7
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity
+NODE 2: $u0#5 = this.<egovframework.tcpor.mobile.lds.activity.LdsLocInfoActivity: android.location.LocationManager netLoc>
+NODE 3: virtualinvoke $u0#5.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 1000L, 3000.0F, this)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.util.WFSParser.getGeomList ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.SAXParserFactory: javax.xml.parsers.SAXParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.ldsutil.SeedCrypto.decodeBase64 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.ldsutil.SeedCrypto.decodeBase64 ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+NODE 2: parameterTypes = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("decodeBase64", parameterTypes)
+NODE 4: $u6 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#12 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.ldsutil.SeedCrypto.encodeBase64 ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.ldsutil.SeedCrypto.encodeBase64 ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.apache.commons.codec.binary.Base64")
+NODE 2: parameterTypes = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("encodeBase64", parameterTypes)
+NODE 4: $u6 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#12 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.JdkIdn.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.net.IDN")
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.client.utils.JdkIdn.toUnicode ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.apache.http.client.utils.JdkIdn
+NODE 2: $u2 = this.<org.apache.http.client.utils.JdkIdn: java.lang.reflect.Method toUnicode>
+NODE 3: $u4 = newarray (java.lang.Object)[1]
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.service.FileSaveService.getCompressViewImage ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u11 := @parameter0: android.app.Activity
+NODE 2: postfix = null
+NODE 3: if $u7 != $u13 goto $u7 = <android.graphics.Bitmap$CompressFormat: android.graphics.Bitmap$CompressFormat PNG>
+NODE 4: postfix = ".jpg"
+NODE 5: $u7#5 = new java.lang.StringBuilder
+NODE 6: $u7#5 = virtualinvoke $u7#5.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(postfix)
+NODE 7: postfix = virtualinvoke $u7#5.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#17 = virtualinvoke $u11.<android.app.Activity: java.io.FileOutputStream openFileOutput(java.lang.String,int)>(postfix, 0)
+NODE 9: if $u7 != $u13 goto $u7#5 = new java.lang.StringBuilder
+NODE 10: postfix = ".png"
+NODE 11: goto [?= $u7#5 = new java.lang.StringBuilder]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+EDGE: 9 -> 5
+EDGE: 10 -> 11
+EDGE: 11 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.layer.Tile.setTileDrawOrder ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u8#9 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#10 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u8#9, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.layer.Tile.setTileDrawOrder ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u8#9 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 3: $u-1#10 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u8#9, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.xml.XmlDataParse.networkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.xml.XmlDataParse
+NODE 2: $u3 = this.<egovframework.tcpor.mobile.lds.xml.XmlDataParse: android.content.Context context>
+NODE 3: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: manager = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#6 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.xml.XmlDataParse.doInBackground ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#28 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.XmlUtil.getDetailContent ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.XmlUtil.parseGuide ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.XmlUtil.parser ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.instantiate ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u3 = <android.support.v4.app.Fragment: java.util.HashMap sClassMap>
+NODE 4: $u-1 = virtualinvoke $u3.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: clazz = (java.lang.Class) $u-1
+NODE 6: if clazz != null goto $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u6.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u7)
+NODE 9: clazz = $u-1#7
+NODE 10: $u-1 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.util.SimpleXmlParserUtil.VOBuilder ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.util.SimpleXmlParserUtil.VOBuilder ===
+SUSPICIOUS_API: forName
+NODE 1: $u22 := @parameter1: java.lang.String
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u22)
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.util.SimpleXmlParserUtil.VOBuilder ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u22 := @parameter1: java.lang.String
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u22)
+NODE 3: if i < $u-1#15 goto $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 4: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.util.SimpleXmlParserUtil.VOBuilder ===
+SUSPICIOUS_API: invoke
+NODE 1: $u22 := @parameter1: java.lang.String
+NODE 2: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u22)
+NODE 3: $u-1#13 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method[] getDeclaredMethods()>()
+NODE 4: if i < $u-1#15 goto $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 5: $u-1#18 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u17#31 = 0
+NODE 7: if $u17#31 < $u-1#22 goto m = $u-1#13[$u17#31]
+NODE 8: m = $u-1#13[$u17#31]
+NODE 9: if $u-1#40 != 0 goto $u-1#37 = virtualinvoke m.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 10: $u17#31 = $u17#31 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: if $u-1#40 == 0 goto $u17#31 = $u17#31 + 1
+NODE 13: $u0 = newarray (java.lang.Object)[1]
+NODE 14: virtualinvoke m.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#18, $u0)
+NODE 15: goto [?= $u17#31 = $u17#31 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 7
+EDGE: 12 -> 10
+EDGE: 14 -> 15
+EDGE: 15 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.DefaultHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: org.apache.http.impl.client.DefaultHttpClient
+NODE 2: $u-1#12 = virtualinvoke this.<org.apache.http.impl.client.DefaultHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 3: $u-1#15 = interfaceinvoke $u-1#12.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 4: className = (java.lang.String) $u-1#15
+NODE 5: if className == null goto (branch)
+NODE 6: $u-1#18 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.DefaultHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.impl.client.DefaultHttpClient
+NODE 2: $u-1#12 = virtualinvoke this.<org.apache.http.impl.client.DefaultHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 3: $u-1#15 = interfaceinvoke $u-1#12.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 4: className = (java.lang.String) $u-1#15
+NODE 5: if className == null goto (branch)
+NODE 6: $u-1#18 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 7: $u-1#15 = virtualinvoke $u-1#18.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.impl.client.DefaultHttpClient.createClientConnectionManager ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.impl.client.DefaultHttpClient
+NODE 2: $u0 = new org.apache.http.conn.scheme.SchemeRegistry
+NODE 3: registry = $u0
+NODE 4: $u-1#12 = virtualinvoke this.<org.apache.http.impl.client.DefaultHttpClient: org.apache.http.params.HttpParams getParams()>()
+NODE 5: factory = null
+NODE 6: $u-1#15 = interfaceinvoke $u-1#12.<org.apache.http.params.HttpParams: java.lang.Object getParameter(java.lang.String)>("http.connection-manager.factory-class-name")
+NODE 7: className = (java.lang.String) $u-1#15
+NODE 8: if className == null goto (branch)
+NODE 9: $u-1#18 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(className)
+NODE 10: $u-1#15 = virtualinvoke $u-1#18.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 11: factory = (org.apache.http.conn.ClientConnectionManagerFactory) $u-1#15
+NODE 12: if factory == null goto $u7 = new org.apache.http.impl.conn.SingleClientConnManager
+NODE 13: $u-1#21 = interfaceinvoke factory.<org.apache.http.conn.ClientConnectionManagerFactory: org.apache.http.conn.ClientConnectionManager newInstance(org.apache.http.params.HttpParams,org.apache.http.conn.scheme.SchemeRegistry)>($u-1#12, registry)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 12
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.cookie.CookieSpecRegistry.getCookieSpec ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.apache.http.cookie.CookieSpecRegistry
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: org.apache.http.params.HttpParams
+NODE 4: if $u5 != null goto $u1#4 = this.<org.apache.http.cookie.CookieSpecRegistry: java.util.Map registeredSpecs>
+NODE 5: $u1#4 = this.<org.apache.http.cookie.CookieSpecRegistry: java.util.Map registeredSpecs>
+NODE 6: $u2 = <java.util.Locale: java.util.Locale ENGLISH>
+NODE 7: $u-1 = virtualinvoke $u5.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u2)
+NODE 8: $u-1#8 = interfaceinvoke $u1#4.<java.util.Map: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 9: factory = (org.apache.http.cookie.CookieSpecFactory) $u-1#8
+NODE 10: if factory == null goto $u1#13 = new java.lang.IllegalStateException
+NODE 11: $u-1#11 = interfaceinvoke factory.<org.apache.http.cookie.CookieSpecFactory: org.apache.http.cookie.CookieSpec newInstance(org.apache.http.params.HttpParams)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation
+NODE 2: if $u2#5 == 0 goto $u2 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil this$0>
+NODE 3: $u2 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil this$0>
+NODE 4: $u-1 = staticinvoke <egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationManager access$4(egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil)>($u2)
+NODE 5: gps_loc = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation.run ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation
+NODE 2: if $u2#5 == 0 goto (branch)
+NODE 3: $u2 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil$GetLastLocation: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil this$0>
+NODE 4: $u-1 = staticinvoke <egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationManager access$5(egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil)>($u2)
+NODE 5: net_loc = virtualinvoke $u-1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.storage.DefaultStorageProvider.initialize ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("org.apache.james.mime4j.defaultStorageProvider")
+NODE 2: if $u-1 == null goto $u3 = <org.apache.james.mime4j.storage.DefaultStorageProvider: org.apache.james.mime4j.storage.StorageProvider instance>
+NODE 3: $u-1#3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.james.mime4j.storage.DefaultStorageProvider.initialize ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.System: java.lang.String getProperty(java.lang.String)>("org.apache.james.mime4j.defaultStorageProvider")
+NODE 2: if $u-1 == null goto $u3 = <org.apache.james.mime4j.storage.DefaultStorageProvider: org.apache.james.mime4j.storage.StorageProvider instance>
+NODE 3: $u-1#3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 4: $u-1#5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil
+NODE 2: if $u-1#16 == 0 goto $u-1#16 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: boolean networkEnabled>
+NODE 3: $u0 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationManager mGpsLocMng>
+NODE 4: $u5 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationListener mGpsLocationListener>
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", 0L, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil.requestLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil
+NODE 2: if $u-1#16 == 0 goto specialinvoke this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: void timerStart()>()
+NODE 3: $u0 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationManager mNetLocMng>
+NODE 4: $u5 = this.<egovframework.tcpotal.mobile.cmm.util.CmmGpsUtil: android.location.LocationListener mNetworkLocationListener>
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", 0L, 0.0F, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.jhlabs.map.proj.ProjectionFactory.getNamedPROJ4Projection ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u3 = <com.jhlabs.map.proj.ProjectionFactory: java.util.Hashtable registry>
+NODE 3: if $u3 != null goto $u3 = <com.jhlabs.map.proj.ProjectionFactory: java.util.Hashtable registry>
+NODE 4: $u3 = <com.jhlabs.map.proj.ProjectionFactory: java.util.Hashtable registry>
+NODE 5: $u-1 = virtualinvoke $u3.<java.util.Hashtable: java.lang.Object get(java.lang.Object)>($u4)
+NODE 6: cls = (java.lang.Class) $u-1
+NODE 7: if cls == null goto return null
+NODE 8: $u-1 = virtualinvoke cls.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.CursorLoader.loadInBackground ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: android.support.v4.content.CursorLoader
+NODE 2: $u-1 = virtualinvoke this.<android.support.v4.content.CursorLoader: android.content.Context getContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = this.<android.support.v4.content.CursorLoader: android.net.Uri mUri>
+NODE 5: $u2 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mProjection>
+NODE 6: $u3 = this.<android.support.v4.content.CursorLoader: java.lang.String mSelection>
+NODE 7: $u4 = this.<android.support.v4.content.CursorLoader: java.lang.String[] mSelectionArgs>
+NODE 8: $u5 = this.<android.support.v4.content.CursorLoader: java.lang.String mSortOrder>
+NODE 9: $u-1#5 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsIntroActivity.IsWifiAvailable ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: netConnectMgr = (android.net.ConnectivityManager) $u-1
+NODE 4: if netConnectMgr != null goto $u-1#7 = virtualinvoke netConnectMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+NODE 5: $u-1#7 = virtualinvoke netConnectMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsIntroActivity.is3GAvailable ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: netConnectMgr = (android.net.ConnectivityManager) $u-1
+NODE 4: if netConnectMgr != null goto $u-1#7 = virtualinvoke netConnectMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 5: $u-1#7 = virtualinvoke netConnectMgr.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.activity.LdsIntroActivity.networkAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: manager = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke manager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: gov.mopas.mobile.gis.view.MapView.loadMapDataSet ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#4 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: egovframework.tcpor.mobile.lds.result.FragmentAdapter.getItem ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: egovframework.tcpor.mobile.lds.result.FragmentAdapter
+NODE 2: $u10 := @parameter0: int
+NODE 3: $u0 = $u10 + 1
+NODE 4: $u10 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: int count>
+NODE 5: $u2 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.util.Hashtable dataTable>
+NODE 6: $u3 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.util.ArrayList canControlData>
+NODE 7: $u4 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.util.ArrayList dongData>
+NODE 8: $u5 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.util.ArrayList informData>
+NODE 9: $u6 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.lang.String teamCode>
+NODE 10: $u7 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.lang.String pnu>
+NODE 11: $u8 = this.<egovframework.tcpor.mobile.lds.result.FragmentAdapter: java.lang.String avail>
+NODE 12: $u-1 = staticinvoke <egovframework.tcpor.mobile.lds.result.LdsDetailResultFragment: egovframework.tcpor.mobile.lds.result.LdsDetailResultFragment newInstance(int,int,java.util.Hashtable,java.util.ArrayList,java.util.ArrayList,java.util.ArrayList,java.lang.String,java.lang.String,java.lang.String)>($u0, $u10, $u2, $u3, $u4, $u5, $u6, $u7, $u8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
