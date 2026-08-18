@@ -1,0 +1,96 @@
+=== FUNCTION: com.cybera.ecby.FishGame.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ecgame")
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.cache.disc.impl.ext.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.cache.disc.impl.ext.Util.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.flying.general.ApiAndroid.GetMac ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2#3 = <com.flying.general.ApiAndroid: com.cybera.ecby.FishGame mainActivity>
+NODE 2: $u-1 = virtualinvoke $u2#3.<com.cybera.ecby.FishGame: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: tm = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#11 = virtualinvoke tm.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.imageaware.ImageViewAware.getImageViewFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter1: java.lang.String
+NODE 2: $u4 = class "Landroid/widget/ImageView;"
+NODE 3: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getExternalCacheDir ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.utils.StorageUtils.getOwnCacheDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.lib.Cocos2dxSound.createSoundIDFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.cocos2dx.lib.Cocos2dxSound
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 4: $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 5: $u-1#7 = virtualinvoke $u2.<android.media.SoundPool: int load(java.lang.String,int)>($u6, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.cocos2dx.lib.Cocos2dxSound.createSoundIDFromAsset ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.cocos2dx.lib.Cocos2dxSound
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 4: $u2 = this.<org.cocos2dx.lib.Cocos2dxSound: android.media.SoundPool mSoundPool>
+NODE 5: $u3 = this.<org.cocos2dx.lib.Cocos2dxSound: android.content.Context mContext>
+NODE 6: $u-1#12 = virtualinvoke $u3.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 7: $u-1#14 = virtualinvoke $u-1#12.<android.content.res.AssetManager: android.content.res.AssetFileDescriptor openFd(java.lang.String)>($u6)
+NODE 8: $u-1#7 = virtualinvoke $u2.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#14, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque.toArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque
+NODE 2: a := @parameter0: java.lang.Object[]
+NODE 3: $u5 = lengthof a
+NODE 4: if $u5 >= $u6 goto p = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque$Node first>
+NODE 5: $u-1 = virtualinvoke a.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u5 = this.<com.nostra13.universalimageloader.core.assist.deque.LinkedBlockingDeque: int count>
+NODE 8: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1, $u5)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+

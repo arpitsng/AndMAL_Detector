@@ -1,0 +1,26 @@
+=== FUNCTION: mono.MonoPackageManager.LoadApplication ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#24 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: mono.MonoPackageManager.LoadApplication ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u2#69 != 0 goto $u8 = 0
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("xamarin-app")
+NODE 3: goto [?= staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("xamarin-app")]
+EDGE: 1 -> 2
+EDGE: 3 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: mono.MonoPackageManager.LoadApplication ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("monodroid")
+=== END FUNCTION ===
+
+=== FUNCTION: mono.android.incrementaldeployment.IncrementalClassLoader.setParent ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Ljava/lang/ClassLoader;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("parent")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+

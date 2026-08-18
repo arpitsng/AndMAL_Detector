@@ -1,0 +1,171 @@
+=== FUNCTION: android.support.multidex.MultiDex$V19.makeDexElements ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: java.lang.Object
+NODE 2: $u1 = newarray (java.lang.Class)[3]
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Method access$200(java.lang.Object,java.lang.String,java.lang.Class[])>($u6, "makeDexElements", $u1)
+NODE 4: $u0 = newarray (java.lang.Object)[3]
+NODE 5: $u6 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u0)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.doInstallation ===
+SUSPICIOUS_API: load
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter4: java.lang.String
+NODE 3: $u8#35 = new android.support.multidex.MultiDexExtractor
+NODE 4: $u-1#38 = virtualinvoke $u8#35.<android.support.multidex.MultiDexExtractor: java.util.List load(android.content.Context,java.lang.String,boolean)>($u5, $u9, 0)
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.doInstallation ===
+SUSPICIOUS_API: load
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter4: java.lang.String
+NODE 3: $u8#35 = new android.support.multidex.MultiDexExtractor
+NODE 4: $u-1#38 = virtualinvoke $u8#35.<android.support.multidex.MultiDexExtractor: java.util.List load(android.content.Context,java.lang.String,boolean)>($u5, $u9, 1)
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.expandFieldArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Object
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u6 := @parameter2: java.lang.Object[]
+NODE 4: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Field findField(java.lang.Object,java.lang.String)>($u4, $u5)
+NODE 5: $u-1#4 = virtualinvoke $u-1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u4)
+NODE 6: $u0 = (java.lang.Object[]) $u-1#4
+NODE 7: $u-1#8 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#8 = virtualinvoke $u-1#8.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 9: $u2 = lengthof $u0
+NODE 10: $u3 = lengthof $u6
+NODE 11: $u2 = $u2 + $u3
+NODE 12: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#8, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter0: java.lang.Object
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: if $u-1 == null goto $u0 = new java.lang.NoSuchFieldException
+NODE 5: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u4)
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: goto [?= (branch)]
+NODE 8: goto [?= $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 4
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 := @parameter0: java.lang.Object
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if $u-1 == null goto $u0 = new java.lang.NoSuchMethodException
+NODE 6: $u-1#5 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u4, $u5)
+NODE 7: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 8: goto [?= (branch)]
+NODE 9: goto [?= $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: a.f.readObject ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "La/f;"
+NODE 2: $u-1#8 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("c")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("dalvik.system.DexPathList$Element")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14.makeDexElements ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.multidex.MultiDex$V14
+NODE 2: $u8 := @parameter0: java.util.List
+NODE 3: $u-1 = 0
+NODE 4: if $u-1 >= $u3 goto return $u0
+NODE 5: $u-1#6 = interfaceinvoke $u8.<java.util.List: java.lang.Object get(int)>($u-1)
+NODE 6: $u3#8 = (java.io.File) $u-1#6
+NODE 7: $u4 = this.<android.support.multidex.MultiDex$V14: android.support.multidex.MultiDex$V14$ElementConstructor elementConstructor>
+NODE 8: $u-1#9 = virtualinvoke $u3#8.<java.io.File: java.lang.String getPath()>()
+NODE 9: $u-1#11 = staticinvoke <android.support.multidex.MultiDex$V14: java.lang.String optimizedPathFor(java.io.File)>($u3#8)
+NODE 10: $u-1#12 = staticinvoke <dalvik.system.DexFile: dalvik.system.DexFile loadDex(java.lang.String,java.lang.String,int)>($u-1#9, $u-1#11, 0)
+NODE 11: $u-1#6 = interfaceinvoke $u4.<android.support.multidex.MultiDex$V14$ElementConstructor: java.lang.Object newInstance(java.io.File,dalvik.system.DexFile)>($u3#8, $u-1#12)
+NODE 12: $u-1 = $u-1 + 1
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: a.u.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.v.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = new org.json.JSONObject
+NODE 2: if $u-1#10 == 0 goto return
+NODE 3: $u-1 = virtualinvoke $u1.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("enumType")
+NODE 4: $u-1#177 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14$ICSElementConstructor.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.multidex.MultiDex$V14$ICSElementConstructor
+NODE 2: $u0 = this.<android.support.multidex.MultiDex$V14$ICSElementConstructor: java.lang.reflect.Constructor elementConstructor>
+NODE 3: $u1 = newarray (java.lang.Object)[3]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14$JBMR2ElementConstructor.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.multidex.MultiDex$V14$JBMR2ElementConstructor
+NODE 2: $u0 = this.<android.support.multidex.MultiDex$V14$JBMR2ElementConstructor: java.lang.reflect.Constructor elementConstructor>
+NODE 3: $u1 = newarray (java.lang.Object)[4]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14$JBMR11ElementConstructor.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.multidex.MultiDex$V14$JBMR11ElementConstructor
+NODE 2: $u0 = this.<android.support.multidex.MultiDex$V14$JBMR11ElementConstructor: java.lang.reflect.Constructor elementConstructor>
+NODE 3: $u1 = newarray (java.lang.Object)[3]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

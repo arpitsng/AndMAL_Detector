@@ -1,0 +1,1118 @@
+=== FUNCTION: anywheresoftware.b4a.objects.RemoteViewsWrapper.getIdForView ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 = new java.lang.StringBuilder
+NODE 2: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".R$id")
+NODE 3: $u3 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 4: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.RemoteViewsWrapper.UpdateWidget ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: anywheresoftware.b4a.BA
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$")
+NODE 4: $u3 = virtualinvoke $u5.<anywheresoftware.b4a.BA: java.lang.String getClassNameWithoutPackage()>()
+NODE 5: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 6: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("_BR")
+NODE 7: $u3 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.<clinit> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1#3 = class "Landroid/os/MessageQueue;"
+NODE 2: $u-1 = virtualinvoke $u1#3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("next", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.<clinit> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1#3 = class "Landroid/os/Message;"
+NODE 2: $u-1#12 = virtualinvoke $u1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("when")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.<clinit> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1#3 = class "Landroid/os/Message;"
+NODE 2: $u-1#12 = virtualinvoke $u1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("flags")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.<clinit> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u1#3 = class "Landroid/os/Message;"
+NODE 2: $u3 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u1#3.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("recycleUnchecked", $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.dismiss ===
+SUSPICIOUS_API: forName
+NODE 1: if $u2 == 0 goto <anywheresoftware.b4a.Msgbox: boolean isDismissing> = 1
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.debug.Debug")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.dismiss ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u2 == 0 goto <anywheresoftware.b4a.Msgbox: boolean isDismissing> = 1
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.debug.Debug")
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("hideProgressDialogToAvoidLeak", null)
+NODE 4: virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.recycle ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 := @parameter0: android.os.Message
+NODE 2: $u0 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method recycleUnchecked>
+NODE 3: if $u0 == null goto virtualinvoke $u2.<android.os.Message: void recycle()>()
+NODE 4: $u0 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method recycleUnchecked>
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.Msgbox.waitForMessage ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <android.os.Looper: android.os.MessageQueue myQueue()>()
+NODE 2: $u4 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method nextM>
+NODE 3: $u-1#4 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, null)
+NODE 4: if msg == null goto $u4 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method nextM>
+NODE 5: goto [?= $u4 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method nextM>]
+NODE 6: goto [?= $u4 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method nextM>]
+NODE 7: goto [?= $u4 = <anywheresoftware.b4a.Msgbox: java.lang.reflect.Method nextM>]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 2
+EDGE: 5 -> 2
+EDGE: 6 -> 2
+EDGE: 7 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.DynamicBuilder.build ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter1: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("type")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(cls)
+NODE 7: cls = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.DynamicBuilder.build ===
+SUSPICIOUS_API: invoke
+NODE 1: props := @parameter1: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("type")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u-1#6 == 0 goto $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u6 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(cls)
+NODE 7: cls = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#13 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 9: $u7 = newarray (java.lang.Class)[4]
+NODE 10: $u-1#25 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("build", $u7)
+NODE 11: $u7#28 = newarray (java.lang.Object)[4]
+NODE 12: $u10 = virtualinvoke $u-1#25.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u7#28)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ViewWrapper.buildNativeView ===
+SUSPICIOUS_API: newInstance
+NODE 1: cls := @parameter1: java.lang.Class
+NODE 2: props := @parameter2: java.util.HashMap
+NODE 3: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("nativeClass")
+NODE 4: overideClass = (java.lang.String) $u-1
+NODE 5: if overideClass == null goto (branch)
+NODE 6: if $u-1#6 == 0 goto (branch)
+NODE 7: $u4 = new java.lang.StringBuilder
+NODE 8: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(overideClass)
+NODE 9: overideClass = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: if $u11 != 0 goto $u4#20 = newarray (java.lang.Class)[1]
+NODE 11: if overideClass == null goto $u4#20 = newarray (java.lang.Class)[1]
+NODE 12: if $u-1#17 != 0 goto cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+NODE 13: $u4#20 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#22 = virtualinvoke cls.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u4#20)
+NODE 15: $u5#24 = newarray (java.lang.Object)[1]
+NODE 16: $u-1 = virtualinvoke $u-1#22.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5#24)
+NODE 17: cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+NODE 18: goto [?= $u4#20 = newarray (java.lang.Class)[1]]
+NODE 19: $u-1#17 = virtualinvoke overideClass.<java.lang.String: int lastIndexOf(java.lang.String)>(".")
+NODE 20: $u4 = new java.lang.StringBuilder
+NODE 21: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$")
+NODE 22: $u-1#17 = $u-1#17 + 1
+NODE 23: overideClass = virtualinvoke overideClass.<java.lang.String: java.lang.String substring(int)>($u-1#17)
+NODE 24: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(overideClass)
+NODE 25: overideClass = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 26: cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+NODE 27: goto [?= $u4#20 = newarray (java.lang.Class)[1]]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 10
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 10 -> 13
+EDGE: 11 -> 13
+EDGE: 12 -> 13
+EDGE: 12 -> 17
+EDGE: 14 -> 15
+EDGE: 17 -> 18
+EDGE: 18 -> 13
+EDGE: 19 -> 20
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ViewWrapper.buildNativeView ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter2: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("nativeClass")
+NODE 3: overideClass = (java.lang.String) $u-1
+NODE 4: if $u-1#6 == 0 goto (branch)
+NODE 5: $u4 = new java.lang.StringBuilder
+NODE 6: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(overideClass)
+NODE 7: overideClass = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: if $u-1#17 != 0 goto cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+NODE 9: cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ViewWrapper.buildNativeView ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter2: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("nativeClass")
+NODE 3: overideClass = (java.lang.String) $u-1
+NODE 4: if $u-1#6 == 0 goto (branch)
+NODE 5: $u4 = new java.lang.StringBuilder
+NODE 6: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(overideClass)
+NODE 7: overideClass = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#17 = virtualinvoke overideClass.<java.lang.String: int lastIndexOf(java.lang.String)>(".")
+NODE 9: $u4 = new java.lang.StringBuilder
+NODE 10: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("$")
+NODE 11: $u-1#17 = $u-1#17 + 1
+NODE 12: overideClass = virtualinvoke overideClass.<java.lang.String: java.lang.String substring(int)>($u-1#17)
+NODE 13: $u4 = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(overideClass)
+NODE 14: overideClass = virtualinvoke $u4.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 15: cls = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(overideClass)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ViewWrapper.findRadius ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: anywheresoftware.b4a.objects.ViewWrapper
+NODE 2: if $u7#7 == 0 goto $u-1 = virtualinvoke this.<anywheresoftware.b4a.objects.ViewWrapper: java.lang.Object getObject()>()
+NODE 3: $u-1 = virtualinvoke this.<anywheresoftware.b4a.objects.ViewWrapper: java.lang.Object getObject()>()
+NODE 4: $u7 = (android.view.View) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u7.<android.view.View: android.graphics.drawable.Drawable getBackground()>()
+NODE 6: g = (android.graphics.drawable.GradientDrawable) $u-1#5
+NODE 7: $u-1#17 = virtualinvoke g.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#20 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mGradientState")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ViewWrapper.findRadius ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: anywheresoftware.b4a.objects.ViewWrapper
+NODE 2: if $u7#7 == 0 goto $u-1 = virtualinvoke this.<anywheresoftware.b4a.objects.ViewWrapper: java.lang.Object getObject()>()
+NODE 3: $u-1 = virtualinvoke this.<anywheresoftware.b4a.objects.ViewWrapper: java.lang.Object getObject()>()
+NODE 4: $u7 = (android.view.View) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u7.<android.view.View: android.graphics.drawable.Drawable getBackground()>()
+NODE 6: g = (android.graphics.drawable.GradientDrawable) $u-1#5
+NODE 7: $u-1#17 = virtualinvoke g.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#20 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mGradientState")
+NODE 9: $u-1 = virtualinvoke $u-1#20.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>(g)
+NODE 10: $u-1#17 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u-1#20 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRadius")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ActivityWrapper.build ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#74 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.designer.Designer")
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.ActivityWrapper.build ===
+SUSPICIOUS_API: invoke
+NODE 1: $u15 := @parameter0: java.lang.Object
+NODE 2: v = (android.view.View) $u15
+NODE 3: $u-1#74 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.designer.Designer")
+NODE 4: $u12#95 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#96 = virtualinvoke $u-1#74.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("restartActivity", $u12#95)
+NODE 6: $u-1 = virtualinvoke v.<android.view.View: android.content.Context getContext()>()
+NODE 7: $u13 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#96.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u13)
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.main.afterFirstLayout ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.main
+NODE 2: if $u0#74 < 11 goto return
+NODE 3: $u0#76 = class "Landroid/app/Activity;"
+NODE 4: $u2#79 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#80 = virtualinvoke $u0#76.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("invalidateOptionsMenu", $u2#79)
+NODE 6: virtualinvoke $u-1#80.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.main.onCreateOptionsMenu ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u2 = <co.uk.leesbingo.remotecontrol.main: anywheresoftware.b4a.BA processBA>
+NODE 2: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActionBar")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.main.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.main
+NODE 2: $u8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#21 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getActionBar", $u4)
+NODE 5: $u4#24 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#25 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u4#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.main.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.main
+NODE 2: if $u-1 == 0 goto $u2 = <co.uk.leesbingo.remotecontrol.main: anywheresoftware.b4a.BA processBA>
+NODE 3: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActionBar")
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#14 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setHomeButtonEnabled", $u4)
+NODE 6: $u8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u4 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#21 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getActionBar", $u4)
+NODE 9: $u4#24 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#25 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u4#24)
+NODE 11: $u4#24 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#25, $u4#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.main.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.main
+NODE 2: $u10 := @parameter0: android.view.Menu
+NODE 3: if $u-1 == 0 goto $u2#40 = this.<co.uk.leesbingo.remotecontrol.main: java.util.ArrayList menuItems>
+NODE 4: $u2#40 = this.<co.uk.leesbingo.remotecontrol.main: java.util.ArrayList menuItems>
+NODE 5: if $u2#40 == null goto return 0
+NODE 6: $u2#40 = this.<co.uk.leesbingo.remotecontrol.main: java.util.ArrayList menuItems>
+NODE 7: $u-1#42 = virtualinvoke $u2#40.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 8: if $u-1 == 0 goto return 1
+NODE 9: $u-1#25 = interfaceinvoke $u-1#42.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u0 = (anywheresoftware.b4a.B4AMenuItem) $u-1#25
+NODE 11: $u2#49 = $u0.<anywheresoftware.b4a.B4AMenuItem: java.lang.String title>
+NODE 12: $u-1#50 = interfaceinvoke $u10.<android.view.Menu: android.view.MenuItem add(java.lang.CharSequence)>($u2#49)
+NODE 13: if $u-1 == 0 goto $u2#70 = new co.uk.leesbingo.remotecontrol.main$B4AMenuItemsClickListener
+NODE 14: $u6 = class "Landroid/view/MenuItem;"
+NODE 15: $u4 = newarray (java.lang.Class)[1]
+NODE 16: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setShowAsAction", $u4)
+NODE 17: $u4#24 = newarray (java.lang.Object)[1]
+NODE 18: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#50, $u4#24)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File$TextWriterWrapper.Initialize ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF8")
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File$TextWriterWrapper.Initialize2 ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u5)
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.afterFirstLayout ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.controlactivity
+NODE 2: if $u0#74 < 11 goto return
+NODE 3: $u0#76 = class "Landroid/app/Activity;"
+NODE 4: $u2#79 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#80 = virtualinvoke $u0#76.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("invalidateOptionsMenu", $u2#79)
+NODE 6: virtualinvoke $u-1#80.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.initializeProcessGlobals ===
+SUSPICIOUS_API: forName
+NODE 1: $u0 = new java.lang.StringBuilder
+NODE 2: $u1 = <anywheresoftware.b4a.BA: android.app.Application applicationContext>
+NODE 3: $u-1 = virtualinvoke $u1.<android.app.Application: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".main")
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.initializeProcessGlobals ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = new java.lang.StringBuilder
+NODE 2: $u1 = <anywheresoftware.b4a.BA: android.app.Application applicationContext>
+NODE 3: $u-1 = virtualinvoke $u1.<android.app.Application: java.lang.String getPackageName()>()
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".main")
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#12 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 8: $u2 = newarray (java.lang.Class)[0]
+NODE 9: $u-1#17 = virtualinvoke $u-1#12.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("initializeProcessGlobals", $u2)
+NODE 10: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.onCreateOptionsMenu ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u2 = <co.uk.leesbingo.remotecontrol.controlactivity: anywheresoftware.b4a.BA processBA>
+NODE 2: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActionBar")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.controlactivity
+NODE 2: $u8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u4 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#21 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getActionBar", $u4)
+NODE 5: $u4#24 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#25 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u4#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.controlactivity
+NODE 2: if $u-1 == 0 goto $u2 = <co.uk.leesbingo.remotecontrol.controlactivity: anywheresoftware.b4a.BA processBA>
+NODE 3: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActionBar")
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#14 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setHomeButtonEnabled", $u4)
+NODE 6: $u8 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u4 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#21 = virtualinvoke $u8.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getActionBar", $u4)
+NODE 9: $u4#24 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#25 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u4#24)
+NODE 11: $u4#24 = newarray (java.lang.Object)[1]
+NODE 12: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#25, $u4#24)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: co.uk.leesbingo.remotecontrol.controlactivity.onCreateOptionsMenu ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: co.uk.leesbingo.remotecontrol.controlactivity
+NODE 2: $u10 := @parameter0: android.view.Menu
+NODE 3: if $u-1 == 0 goto $u2#40 = this.<co.uk.leesbingo.remotecontrol.controlactivity: java.util.ArrayList menuItems>
+NODE 4: $u2#40 = this.<co.uk.leesbingo.remotecontrol.controlactivity: java.util.ArrayList menuItems>
+NODE 5: if $u2#40 == null goto return 0
+NODE 6: $u2#40 = this.<co.uk.leesbingo.remotecontrol.controlactivity: java.util.ArrayList menuItems>
+NODE 7: $u-1#42 = virtualinvoke $u2#40.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 8: if $u-1 == 0 goto return 1
+NODE 9: $u-1#25 = interfaceinvoke $u-1#42.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u0 = (anywheresoftware.b4a.B4AMenuItem) $u-1#25
+NODE 11: $u2#49 = $u0.<anywheresoftware.b4a.B4AMenuItem: java.lang.String title>
+NODE 12: $u-1#50 = interfaceinvoke $u10.<android.view.Menu: android.view.MenuItem add(java.lang.CharSequence)>($u2#49)
+NODE 13: if $u-1 == 0 goto $u2#70 = new co.uk.leesbingo.remotecontrol.controlactivity$B4AMenuItemsClickListener
+NODE 14: $u6 = class "Landroid/view/MenuItem;"
+NODE 15: $u4 = newarray (java.lang.Class)[1]
+NODE 16: $u-1#14 = virtualinvoke $u6.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setShowAsAction", $u4)
+NODE 17: $u4#24 = newarray (java.lang.Object)[1]
+NODE 18: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#50, $u4#24)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.loadLayoutHelper ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter0: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("type")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u41 == 0 goto $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u3#56 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(cls)
+NODE 7: cls = virtualinvoke $u3#56.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.loadLayoutHelper ===
+SUSPICIOUS_API: newInstance
+NODE 1: props := @parameter0: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("type")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u41 == 0 goto $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u3#56 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(cls)
+NODE 7: cls = virtualinvoke $u3#56.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 9: $u-1 = virtualinvoke $u-1#62.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.loadLayoutHelper ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter0: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("customType")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u-1#79 != 0 goto $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.loadLayoutHelper ===
+SUSPICIOUS_API: newInstance
+NODE 1: props := @parameter0: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("customType")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: if $u-1#79 != 0 goto $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 5: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>(cls)
+NODE 6: $u-1 = virtualinvoke $u-1#62.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#79 = virtualinvoke cls.<java.lang.String: int lastIndexOf(java.lang.String)>(".")
+NODE 8: if $u-1#79 <= -1 goto throw cnfe
+NODE 9: $u0 = new java.lang.StringBuilder
+NODE 10: $u4 = virtualinvoke cls.<java.lang.String: java.lang.String substring(int)>($u-1#79)
+NODE 11: $u3#56 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 12: $u4 = virtualinvoke $u3#56.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+NODE 14: goto [?= $u-1 = virtualinvoke $u-1#62.<java.lang.Class: java.lang.Object newInstance()>()]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.loadLayoutHelper ===
+SUSPICIOUS_API: forName
+NODE 1: props := @parameter0: java.util.HashMap
+NODE 2: $u-1 = virtualinvoke props.<java.util.HashMap: java.lang.Object get(java.lang.Object)>("customType")
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: $u-1#79 = virtualinvoke cls.<java.lang.String: int lastIndexOf(java.lang.String)>(".")
+NODE 5: if $u-1#79 <= -1 goto throw cnfe
+NODE 6: $u0 = new java.lang.StringBuilder
+NODE 7: $u4 = virtualinvoke cls.<java.lang.String: java.lang.String substring(int)>($u-1#79)
+NODE 8: $u3#56 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 9: $u4 = virtualinvoke $u3#56.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#62 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.runScripts ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 = new java.lang.StringBuilder
+NODE 2: sb = $u6
+NODE 3: if i < $u-1 goto $u-1#75 = virtualinvoke $u10.<java.lang.String: char charAt(int)>(i)
+NODE 4: $u1 = new java.lang.StringBuilder
+NODE 5: $u6 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".designerscripts.")
+NODE 6: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: sb = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 8: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u10)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.runScripts ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 = new java.lang.StringBuilder
+NODE 2: sb = $u6
+NODE 3: if i < $u-1 goto $u-1#75 = virtualinvoke $u10.<java.lang.String: char charAt(int)>(i)
+NODE 4: $u1 = new java.lang.StringBuilder
+NODE 5: $u6 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".designerscripts.")
+NODE 6: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: sb = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 8: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u10)
+NODE 10: $u10 = staticinvoke <anywheresoftware.b4a.keywords.LayoutBuilder: java.lang.String variantToMethod(anywheresoftware.b4a.keywords.LayoutValues)>(null)
+NODE 11: $u7 = newarray (java.lang.Class)[4]
+NODE 12: $u-1#33 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u10, $u7)
+NODE 13: $u7#37 = newarray (java.lang.Object)[4]
+NODE 14: virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u7#37)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.LayoutBuilder.runScripts ===
+SUSPICIOUS_API: invoke
+NODE 1: $u11 := @parameter1: anywheresoftware.b4a.keywords.LayoutValues
+NODE 2: $u6 = new java.lang.StringBuilder
+NODE 3: sb = $u6
+NODE 4: if i < $u-1 goto $u-1#75 = virtualinvoke $u10.<java.lang.String: char charAt(int)>(i)
+NODE 5: $u1 = new java.lang.StringBuilder
+NODE 6: $u6 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".designerscripts.")
+NODE 7: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: sb = virtualinvoke $u6.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u10)
+NODE 9: $u10 = virtualinvoke sb.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#19 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u10)
+NODE 11: $u10 = staticinvoke <anywheresoftware.b4a.keywords.LayoutBuilder: java.lang.String variantToMethod(anywheresoftware.b4a.keywords.LayoutValues)>($u11)
+NODE 12: $u7 = newarray (java.lang.Class)[4]
+NODE 13: $u-1#33 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u10, $u7)
+NODE 14: $u7#37 = newarray (java.lang.Object)[4]
+NODE 15: virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u7#37)
+NODE 16: goto [?= $u10 = staticinvoke <anywheresoftware.b4a.keywords.LayoutBuilder: java.lang.String variantToMethod(anywheresoftware.b4a.keywords.LayoutValues)>($u11)]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 16 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File.ReadMap2 ===
+SUSPICIOUS_API: load
+NODE 1: $u6 := @parameter0: java.lang.String
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <anywheresoftware.b4a.objects.streams.File: anywheresoftware.b4a.objects.streams.File$InputStreamWrapper OpenInput(java.lang.String,java.lang.String)>($u6, $u7)
+NODE 4: p = new java.util.Properties
+NODE 5: $u-1#3 = virtualinvoke $u-1.<anywheresoftware.b4a.objects.streams.File$InputStreamWrapper: java.lang.Object getObject()>()
+NODE 6: $u3 = (java.io.InputStream) $u-1#3
+NODE 7: virtualinvoke p.<java.util.Properties: void load(java.io.InputStream)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File.getDirDefaultExternal ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File.getDirRootExternal ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.Serial.Connect3 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.objects.Serial
+NODE 2: $u10 := @parameter1: java.lang.String
+NODE 3: $u2 = this.<anywheresoftware.b4a.objects.Serial: android.bluetooth.BluetoothAdapter blueAdapter>
+NODE 4: $u-1 = virtualinvoke $u2.<android.bluetooth.BluetoothAdapter: android.bluetooth.BluetoothDevice getRemoteDevice(java.lang.String)>($u10)
+NODE 5: $u2#3 = class "Landroid/bluetooth/BluetoothDevice;"
+NODE 6: $u4 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#5 = virtualinvoke $u2#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("createRfcommSocket", $u4)
+NODE 8: $u2#6 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#9 = virtualinvoke $u-1#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u2#6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.Serial.ConnectInsecure ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.objects.Serial
+NODE 2: $u11 := @parameter2: java.lang.String
+NODE 3: $u2 = this.<anywheresoftware.b4a.objects.Serial: android.bluetooth.BluetoothAdapter blueAdapter>
+NODE 4: $u-1 = virtualinvoke $u2.<android.bluetooth.BluetoothAdapter: android.bluetooth.BluetoothDevice getRemoteDevice(java.lang.String)>($u11)
+NODE 5: $u2#3 = class "Landroid/bluetooth/BluetoothDevice;"
+NODE 6: $u4 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#5 = virtualinvoke $u2#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("createInsecureRfcommSocket", $u4)
+NODE 8: $u2#6 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#9 = virtualinvoke $u-1#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u2#6)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.Serial.ListenInsecure ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.objects.Serial
+NODE 2: if $u1 == null goto $u1#2 = class "Landroid/bluetooth/BluetoothAdapter;"
+NODE 3: $u1#2 = class "Landroid/bluetooth/BluetoothAdapter;"
+NODE 4: $u3 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u1#2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("listenUsingInsecureRfcommOn", $u3)
+NODE 6: $u1#6 = this.<anywheresoftware.b4a.objects.Serial: android.bluetooth.BluetoothAdapter blueAdapter>
+NODE 7: $u2 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#10 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#6, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.ConnectorUtils.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF8")
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.BA.raiseEvent2 ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.BA
+NODE 2: $u12 := @parameter2: java.lang.String
+NODE 3: $u14 := @parameter4: java.lang.Object[]
+NODE 4: $u2#24 = this.<anywheresoftware.b4a.BA: java.util.HashMap htSubs>
+NODE 5: $u10 = virtualinvoke $u2#24.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u12)
+NODE 6: m = (java.lang.reflect.Method) $u10
+NODE 7: if m == null goto (branch)
+NODE 8: $u10 = this.<anywheresoftware.b4a.BA: java.lang.Object eventsTarget>
+NODE 9: $u10 = virtualinvoke m.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u10, $u14)
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.BA.runHook ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.BA
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: $u6 := @parameter1: java.lang.Object
+NODE 4: $u7 := @parameter2: java.lang.Object[]
+NODE 5: if $u-1 == 0 goto return 0
+NODE 6: $u2 = this.<anywheresoftware.b4a.BA: java.util.HashMap htSubs>
+NODE 7: $u-1#4 = virtualinvoke $u2.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u5)
+NODE 8: $u2#6 = (java.lang.reflect.Method) $u-1#4
+NODE 9: $u6 = virtualinvoke $u2#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.CustomViewWrapper.AfterDesignerScript ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: anywheresoftware.b4a.objects.CustomViewWrapper
+NODE 2: $u0 = this.<anywheresoftware.b4a.objects.CustomViewWrapper: java.lang.Object customObject>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: if $u0#28 == 0 goto $u3#45 = newarray (java.lang.Class)[3]
+NODE 5: if userClass == 0 goto $u3#45 = newarray (java.lang.Class)[3]
+NODE 6: $u3#45 = newarray (java.lang.Class)[3]
+NODE 7: $u-1#49 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("_initialize", $u3#45)
+NODE 8: $u0 = this.<anywheresoftware.b4a.objects.CustomViewWrapper: java.lang.Object customObject>
+NODE 9: $u5 = newarray (java.lang.Object)[3]
+NODE 10: virtualinvoke $u-1#49.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.B4XSerializator.readType ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: anywheresoftware.b4a.randomaccessfile.B4XSerializator
+NODE 2: $u-1 = specialinvoke this.<anywheresoftware.b4a.randomaccessfile.B4XSerializator: java.lang.Object readObject()>()
+NODE 3: cls = (java.lang.String) $u-1
+NODE 4: $u-1#4 = staticinvoke <anywheresoftware.b4a.randomaccessfile.RandomAccessFile: java.lang.Class readTypeClass(java.lang.String)>(cls)
+NODE 5: $u-1 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common$5.run ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: anywheresoftware.b4a.keywords.Common$5
+NODE 2: if $u-1 == 0 goto $u1#15 = this.<anywheresoftware.b4a.keywords.Common$5: anywheresoftware.b4a.BA val$mine>
+NODE 3: $u1#15 = this.<anywheresoftware.b4a.keywords.Common$5: anywheresoftware.b4a.BA val$mine>
+NODE 4: $u2 = this.<anywheresoftware.b4a.keywords.Common$5: java.lang.Object val$Component>
+NODE 5: $u-1#17 = staticinvoke <anywheresoftware.b4a.keywords.Common: android.content.Intent getComponentIntent(anywheresoftware.b4a.BA,java.lang.Object)>($u1#15, $u2)
+NODE 6: $u-1#18 = virtualinvoke $u-1#17.<android.content.Intent: android.content.ComponentName getComponent()>()
+NODE 7: if $u-1#18 != null goto $u2#10 = virtualinvoke $u-1#18.<android.content.ComponentName: java.lang.String getClassName()>()
+NODE 8: $u2#10 = virtualinvoke $u-1#18.<android.content.ComponentName: java.lang.String getClassName()>()
+NODE 9: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#10)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common$5.run ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: anywheresoftware.b4a.keywords.Common$5
+NODE 2: if $u-1 == 0 goto $u1#15 = this.<anywheresoftware.b4a.keywords.Common$5: anywheresoftware.b4a.BA val$mine>
+NODE 3: $u1#15 = this.<anywheresoftware.b4a.keywords.Common$5: anywheresoftware.b4a.BA val$mine>
+NODE 4: $u2 = this.<anywheresoftware.b4a.keywords.Common$5: java.lang.Object val$Component>
+NODE 5: $u-1#17 = staticinvoke <anywheresoftware.b4a.keywords.Common: android.content.Intent getComponentIntent(anywheresoftware.b4a.BA,java.lang.Object)>($u1#15, $u2)
+NODE 6: $u-1#18 = virtualinvoke $u-1#17.<android.content.Intent: android.content.ComponentName getComponent()>()
+NODE 7: if $u-1#18 != null goto $u2#10 = virtualinvoke $u-1#18.<android.content.ComponentName: java.lang.String getClassName()>()
+NODE 8: $u2#10 = virtualinvoke $u-1#18.<android.content.ComponentName: java.lang.String getClassName()>()
+NODE 9: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#10)
+NODE 10: $u-1#25 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mostCurrent")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common$5.run ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u1#32 = class "Landroid/app/Service;"
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u1#8 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".main")
+NODE 4: $u2#10 = virtualinvoke $u1#8.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#10)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common$5.run ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1 == 0 goto $u1#32 = class "Landroid/app/Service;"
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u1#8 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".main")
+NODE 4: $u2#10 = virtualinvoke $u1#8.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2#10)
+NODE 6: $u-1#48 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isAnyActivityVisible", null)
+NODE 7: $u2 = virtualinvoke $u-1#48.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File$TextReaderWrapper.Initialize ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF8")
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.streams.File$TextReaderWrapper.Initialize2 ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u5)
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common.StartServiceAtExact ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u3 >= 19 goto $u3#3 = <anywheresoftware.b4a.BA: android.app.Application applicationContext>
+NODE 2: $u3#3 = <anywheresoftware.b4a.BA: android.app.Application applicationContext>
+NODE 3: $u-1 = virtualinvoke $u3#3.<android.app.Application: java.lang.Object getSystemService(java.lang.String)>("alarm")
+NODE 4: am = (android.app.AlarmManager) $u-1
+NODE 5: $u-1#13 = virtualinvoke am.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u7 = newarray (java.lang.Class)[3]
+NODE 7: $u-1#20 = virtualinvoke $u-1#13.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setExact", $u7)
+NODE 8: $u6 = newarray (java.lang.Object)[3]
+NODE 9: virtualinvoke $u-1#20.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(am, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common.getComponentBA ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.Object
+NODE 2: if $u-1#20 == 0 goto return $u3
+NODE 3: $u1#22 = new java.lang.StringBuilder
+NODE 4: $u1#22 = virtualinvoke $u1#22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 5: $u-1#18 = (java.lang.String) $u4
+NODE 6: $u2 = <anywheresoftware.b4a.BA: java.util.Locale cul>
+NODE 7: $u-1#18 = virtualinvoke $u-1#18.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u2)
+NODE 8: $u1#22 = virtualinvoke $u1#22.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#18)
+NODE 9: $u-1#18 = virtualinvoke $u1#22.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: c = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#18)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common.getComponentIntent ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: anywheresoftware.b4a.BA
+NODE 2: $u-1 = $u4.<anywheresoftware.b4a.BA: java.lang.String className>
+NODE 3: $u5#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.keywords.Common.getComponentIntent ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter1: java.lang.Object
+NODE 2: $u2 = new java.lang.StringBuilder
+NODE 3: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 4: $u-1 = (java.lang.String) $u5
+NODE 5: $u3 = <anywheresoftware.b4a.BA: java.util.Locale cul>
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String toLowerCase(java.util.Locale)>($u3)
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 8: $u-1 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u5#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.objects.collections.List.sortList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: anywheresoftware.b4a.objects.collections.List
+NODE 2: $u5 := @parameter0: java.lang.String
+NODE 3: if $u-1 != 0 goto $u-1#4 = virtualinvoke this.<anywheresoftware.b4a.objects.collections.List: java.lang.Object Get(int)>(0)
+NODE 4: $u-1#4 = virtualinvoke this.<anywheresoftware.b4a.objects.collections.List: java.lang.Object Get(int)>(0)
+NODE 5: $u-1#5 = virtualinvoke $u-1#4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.AbsObjectWrapper.getObject ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.objects.ViewWrapper")
+NODE 2: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("anywheresoftware.b4a.objects.ViewWrapper")]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u11 := @parameter0: byte[]
+NODE 2: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u11 = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u11)
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u10 := @parameter0: byte[]
+NODE 2: $u-1#12 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5Padding")
+NODE 3: $u10 = virtualinvoke $u-1#12.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u10)
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.readArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u6 := @parameter0: java.io.ObjectInputStream
+NODE 2: $u-1 = virtualinvoke $u6.<java.io.ObjectInputStream: java.lang.Object readObject()>()
+NODE 3: c = (java.lang.Class) $u-1
+NODE 4: $u-1#4 = virtualinvoke $u6.<java.io.ObjectInputStream: int readInt()>()
+NODE 5: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>(c, $u-1#4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.readType ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u11 := @parameter0: java.io.ObjectInputStream
+NODE 2: $u-1 = virtualinvoke $u11.<java.io.ObjectInputStream: java.lang.Object readObject()>()
+NODE 3: className = (java.lang.String) $u-1
+NODE 4: $u-1#4 = staticinvoke <anywheresoftware.b4a.randomaccessfile.RandomAccessFile: java.lang.Class readTypeClass(java.lang.String)>(className)
+NODE 5: $u-1 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.readTypeClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u5 = <anywheresoftware.b4a.randomaccessfile.RandomAccessFile: java.util.concurrent.ConcurrentHashMap correctedClasses>
+NODE 3: if $u5 == null goto $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 4: if $u-1 == 0 goto $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 5: $u5 = <anywheresoftware.b4a.randomaccessfile.RandomAccessFile: java.util.concurrent.ConcurrentHashMap correctedClasses>
+NODE 6: $u-1#7 = virtualinvoke $u5.<java.util.concurrent.ConcurrentHashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 7: $u7 = (java.lang.String) $u-1#7
+NODE 8: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 8
+EDGE: 4 -> 5
+EDGE: 4 -> 8
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: anywheresoftware.b4a.randomaccessfile.RandomAccessFile.readTypeClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: if $u-1 == 0 goto $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 3: $u5 = <anywheresoftware.b4a.randomaccessfile.RandomAccessFile: java.util.concurrent.ConcurrentHashMap correctedClasses>
+NODE 4: $u-1#7 = virtualinvoke $u5.<java.util.concurrent.ConcurrentHashMap: java.lang.Object get(java.lang.Object)>($u7)
+NODE 5: $u7 = (java.lang.String) $u-1#7
+NODE 6: $u-1#14 = virtualinvoke $u7.<java.lang.String: int lastIndexOf(java.lang.String)>(".")
+NODE 7: if $u-1#14 <= -1 goto $u0 = new java.lang.StringBuilder
+NODE 8: $u0 = new java.lang.StringBuilder
+NODE 9: $u0 = virtualinvoke $u7.<java.lang.String: java.lang.String substring(int)>($u-1#14)
+NODE 10: $u5#16 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u0)
+NODE 11: $u0 = virtualinvoke $u5#16.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 12: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 13: $u0 = new java.lang.StringBuilder
+NODE 14: $u5#16 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".main$")
+NODE 15: $u5#16 = virtualinvoke $u5#16.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u7)
+NODE 16: $u0 = virtualinvoke $u5#16.<java.lang.StringBuilder: java.lang.String toString()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 13
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+=== END FUNCTION ===
+

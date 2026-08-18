@@ -1,0 +1,1703 @@
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.a ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u9, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: if $u7 == null goto return $u6
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: if $u-1 == null goto return $u6
+NODE 5: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 7: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.a ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u2 = newarray (java.lang.String)[2]
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "starred=?", $u4, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.b ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: if $u0 < 14 goto return null
+NODE 3: $u2 = newarray (java.lang.String)[1]
+NODE 4: $u-1 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$Profile: android.net.Uri CONTENT_URI>
+NODE 6: $u1 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u1, "data")
+NODE 7: $u-1#12 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.b ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: android.content.Context
+NODE 2: $u13 := @parameter1: java.lang.String
+NODE 3: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[6]
+NODE 5: $u3 = new java.lang.StringBuilder
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("contact_id")
+NODE 7: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" = \'")
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u13)
+NODE 9: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 10: $u13 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 12: $u-1#25 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u13, null, "data1 COLLATE LOCALIZED ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.c ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u1 = <android.provider.CallLog$Calls: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[3]
+NODE 5: $u-1#17 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, "date DESC")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.c ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u0 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 4: $u0 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 5: $u7 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u7)
+NODE 6: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u7)
+NODE 7: $u-1#21 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 8: $u2 = newarray (java.lang.String)[2]
+NODE 9: $u-1#25 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.c ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: long
+NODE 3: $u1 = <android.provider.ContactsContract$CommonDataKinds$Email: android.net.Uri CONTENT_URI>
+NODE 4: $u2 = newarray (java.lang.String)[4]
+NODE 5: $u0 = new java.lang.StringBuilder
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($u8)
+NODE 7: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 8: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#14 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 10: $u-1#16 = virtualinvoke $u-1#14.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u-1, null, "data1 COLLATE LOCALIZED ASC")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.d ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: long
+NODE 3: if $u0 <= 10 goto $u2 = newarray (java.lang.String)[2]
+NODE 4: $u2 = newarray (java.lang.String)[2]
+NODE 5: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 6: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 7: $u3 = new java.lang.StringBuilder
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($u8)
+NODE 9: $u-1#16 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1#19 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u-1#16, null, null)
+NODE 11: $u2 = newarray (java.lang.String)[2]
+NODE 12: goto [?= $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 3 -> 11
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 12 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.e ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: long
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 5: $u3 = new java.lang.StringBuilder
+NODE 6: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($u8)
+NODE 7: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" AND mimetype=\'vnd.android.cursor.item/photo\'")
+NODE 8: $u-1#11 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#14 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, $u-1#11, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.e ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u-1#12 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#12 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 6: $u2#15 = newarray (java.lang.String)[2]
+NODE 7: $u3 = new java.lang.StringBuilder
+NODE 8: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u9)
+NODE 9: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\' or data1 = \'+")
+NODE 10: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u9)
+NODE 11: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 12: $u9 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u-1#31 = virtualinvoke $u-1#12.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2#15, $u9, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.f ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u-1#5 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#5 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 6: $u-1#8 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u9)
+NODE 7: $u1 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u1, $u-1#8)
+NODE 8: $u2 = newarray (java.lang.String)[2]
+NODE 9: $u3 = new java.lang.StringBuilder
+NODE 10: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u9)
+NODE 11: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(" or display_name = +")
+NODE 12: $u3 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u9)
+NODE 13: $u9 = virtualinvoke $u3.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#26 = virtualinvoke $u-1#5.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u9, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.g ===
+SUSPICIOUS_API: query
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u-1#5 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#5 = virtualinvoke $u6.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 6: $u7 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u7)
+NODE 7: $u1 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u1, $u7)
+NODE 8: $u2 = newarray (java.lang.String)[2]
+NODE 9: $u-1#14 = virtualinvoke $u-1#5.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.e.h ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u0 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 4: $u0 = <android.provider.ContactsContract$PhoneLookup: android.net.Uri CONTENT_FILTER_URI>
+NODE 5: $u8 = staticinvoke <android.net.Uri: java.lang.String encode(java.lang.String)>($u8)
+NODE 6: $u0 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u0, $u8)
+NODE 7: $u2 = newarray (java.lang.String)[2]
+NODE 8: $u-1#11 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u-1#13 = virtualinvoke $u-1#11.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u0, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != 4 goto $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl"
+NODE 2: $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl_16"
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#3)
+NODE 4: $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl"
+NODE 5: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#3)]
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 != 4 goto $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl"
+NODE 2: $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl_16"
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#3)
+NODE 4: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lcom/revesoft/itelmobiledialer/util/g;")
+NODE 5: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u0#3 = "com.revesoft.itelmobiledialer.util.ContactWrapperImpl"
+NODE 7: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#3)]
+EDGE: 1 -> 2
+EDGE: 1 -> 6
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u2.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u3, 32768)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u-1#5 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u3, 0)
+NODE 4: $u-1#5 = virtualinvoke $u2.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u3, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1#8 != 0 goto $u0#7 = <com.revesoft.itelmobiledialer.util.y: java.lang.String c>
+NODE 3: if $u4 == null goto $u0#7 = <com.revesoft.itelmobiledialer.util.y: java.lang.String c>
+NODE 4: $u-1#11 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 5: $u0#13 = (android.telephony.TelephonyManager) $u-1#11
+NODE 6: if $u0#13 == null goto $u0#7 = <com.revesoft.itelmobiledialer.util.y: java.lang.String c>
+NODE 7: $u0#7 = virtualinvoke $u0#13.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 8: goto [?= $u0#7 = virtualinvoke $u0#13.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()]
+NODE 9: goto [?= $u0#7 = virtualinvoke $u0#13.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 7
+EDGE: 9 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1 == null goto (branch)
+NODE 3: if $u0 == 0 goto $u-1#11 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u-1#11 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 5: $u0#22 = (android.net.wifi.WifiManager) $u-1#11
+NODE 6: if $u0#22 == null goto $u0#7 = ""
+NODE 7: $u-1#23 = virtualinvoke $u0#22.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.a ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1 == null goto (branch)
+NODE 3: if $u0 == 0 goto $u-1#11 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u-1#11 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 5: $u0#22 = (android.net.wifi.WifiManager) $u-1#11
+NODE 6: if $u0#22 == null goto $u0#7 = ""
+NODE 7: $u-1#23 = virtualinvoke $u0#22.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 8: $u0#7 = virtualinvoke $u-1#23.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.b ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.b ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#5 == null goto $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 5: if $u-1#7 == 0 goto $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+NODE 6: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: if $u-1#5 == null goto $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 5: if $u-1#7 == 0 goto $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+NODE 6: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#21 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.c ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.y.d ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.signalling.SIPProvider.F ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.signalling.SIPProvider
+NODE 2: $u0 = this.<com.revesoft.itelmobiledialer.signalling.SIPProvider: android.content.Context ci>
+NODE 3: $u-1#6 = virtualinvoke $u0.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("STUN_INFO.txt")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.signalling.SIPProvider.G ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.signalling.SIPProvider
+NODE 2: $u1 = this.<com.revesoft.itelmobiledialer.signalling.SIPProvider: android.content.Context ci>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("STUN_INFO.txt", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.signalling.SIPProvider.run ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.signalling.SIPProvider
+NODE 2: $u0#205 = this.<com.revesoft.itelmobiledialer.signalling.SIPProvider: android.content.Context ci>
+NODE 3: $u-1#207 = virtualinvoke $u0#205.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("STUN_INFO.txt")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.signalling.SIPProvider.w ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.signalling.SIPProvider
+NODE 2: $u0 = this.<com.revesoft.itelmobiledialer.signalling.SIPProvider: com.revesoft.itelmobiledialer.service.DialerService cj>
+NODE 3: $u-1 = virtualinvoke $u0.<com.revesoft.itelmobiledialer.service.DialerService: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("LAST_CONTACT.txt", 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.SettingsCollector.collectGlobalSettings ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.provider.Settings$Global")
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.SettingsCollector.collectGlobalSettings ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.provider.Settings$Global")
+NODE 2: $u5 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#18 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getString", $u5)
+NODE 4: if $u-1#23 == 0 goto $u0 = $u0 + 1
+NODE 5: $u7 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#39 = virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u7)
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.service.b.onPerformSync ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.revesoft.itelmobiledialer.service.b
+NODE 2: $u9 = this.<com.revesoft.itelmobiledialer.service.b: android.content.Context b>
+NODE 3: $u-1#30 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2#32 = <android.provider.ContactsContract$RawContacts: android.net.Uri CONTENT_URI>
+NODE 5: $u3 = newarray (java.lang.String)[5]
+NODE 6: $u5 = newarray (java.lang.String)[3]
+NODE 7: $u-1#52 = virtualinvoke $u-1#30.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u2#32, $u3, "account_name= ? and account_type= ? and sync1= ?", $u5, null)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ai.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <android.support.v4.view.ai: java.lang.reflect.Field a>
+NODE 2: $u0#2 = class "Landroid/view/LayoutInflater;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mFactory2")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.media.c.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.revesoft.itelmobiledialer.media.c
+NODE 2: if $u5#105 < 16 goto $u5#98 = this.<com.revesoft.itelmobiledialer.media.c: android.media.AudioRecord k>
+NODE 3: if $u4#19 == 0 goto $u5#98 = this.<com.revesoft.itelmobiledialer.media.c: android.media.AudioRecord k>
+NODE 4: if $u5#108 == null goto $u5#98 = this.<com.revesoft.itelmobiledialer.media.c: android.media.AudioRecord k>
+NODE 5: if $u4#19 != 0 goto $u5#98 = this.<com.revesoft.itelmobiledialer.media.c: android.media.AudioRecord k>
+NODE 6: $u5#98 = this.<com.revesoft.itelmobiledialer.media.c: android.media.AudioRecord k>
+NODE 7: virtualinvoke $u5#98.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 6
+EDGE: 3 -> 6
+EDGE: 4 -> 6
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.b.g.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.b.g
+NODE 2: $u5 := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<android.support.v4.b.g: int a()>()
+NODE 4: if $u0 >= $u-1 goto (branch)
+NODE 5: $u-1#3 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#3 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#7 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#3, $u-1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivity.b ===
+SUSPICIOUS_API: sendTextMessage
+NODE 1: $u7 := @parameter0: com.revesoft.itelmobiledialer.dialer.SignupActivity
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u-1 = staticinvoke <com.revesoft.itelmobiledialer.util.y: java.lang.String a(android.content.Context)>($u7)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: $u-1#9 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()
+NODE 7: virtualinvoke $u-1#9.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>("01775848248", null, $u-1, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivity.onKeyDown ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivity.onKeyDown ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+NODE 3: $u-1#3 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.bumptech.glide.e.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.bumptech.glide.e.b.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.phonebook.ag.u ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.revesoft.itelmobiledialer.phonebook.ag
+NODE 2: $u-1 = virtualinvoke this.<com.revesoft.itelmobiledialer.phonebook.ag: android.content.Context i()>()
+NODE 3: $u2 = newarray (java.lang.String)[3]
+NODE 4: $u-1#10 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u1 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 6: $u4 = newarray (java.lang.String)[1]
+NODE 7: $u-1#18 = virtualinvoke $u-1#10.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, "starred=?", $u4, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bk.b ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchStartTemporaryDetach", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bk.b ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("dispatchFinishTemporaryDetach", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bk.dispatchFinishTemporaryDetach ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.bk
+NODE 2: $u4 := @parameter0: android.view.View
+NODE 3: if $u0 != 0 goto $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method c>
+NODE 4: $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method c>
+NODE 5: if $u0#2 == null goto virtualinvoke $u4.<android.view.View: void onFinishTemporaryDetach()>()
+NODE 6: $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method c>
+NODE 7: $u1 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u0#2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bk.dispatchStartTemporaryDetach ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.bk
+NODE 2: $u4 := @parameter0: android.view.View
+NODE 3: if $u0 != 0 goto $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method b>
+NODE 4: $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method b>
+NODE 5: if $u0#2 == null goto virtualinvoke $u4.<android.view.View: void onStartTemporaryDetach()>()
+NODE 6: $u0#2 = this.<android.support.v4.view.bk: java.lang.reflect.Method b>
+NODE 7: $u1 = newarray (java.lang.Object)[0]
+NODE 8: virtualinvoke $u0#2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bx.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 != null goto $u0 = <android.support.v4.view.bx: java.lang.reflect.Method a>
+NODE 2: $u0#2 = class "Landroid/view/ViewGroup;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u0 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.bx.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.view.ViewGroup
+NODE 2: $u0 = <android.support.v4.view.bx: java.lang.reflect.Method a>
+NODE 3: if $u0 != null goto $u0 = <android.support.v4.view.bx: java.lang.reflect.Method a>
+NODE 4: $u0 = <android.support.v4.view.bx: java.lang.reflect.Method a>
+NODE 5: $u1 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.DumpSysCollector.collectMemInfo ===
+SUSPICIOUS_API: exec
+NODE 1: $u0 = new java.util.ArrayList
+NODE 2: $u-1#9 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1 = interfaceinvoke $u0.<java.util.List: int size()>()
+NODE 4: $u4 = newarray (java.lang.String)[$u-1]
+NODE 5: $u-1#14 = interfaceinvoke $u0.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($u4)
+NODE 6: $u4 = (java.lang.String[]) $u-1#14
+NODE 7: $u-1#17 = virtualinvoke $u-1#9.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.sender.SenderService.getSenderInstances ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter1: java.util.List
+NODE 2: $u-1 = interfaceinvoke $u10.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: if $u-1#2 == 0 goto return $u2
+NODE 4: $u-1#4 = interfaceinvoke $u-1.<java.util.Iterator: java.lang.Object next()>()
+NODE 5: $u0 = (java.lang.Class) $u-1#4
+NODE 6: $u-1#4 = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.asyncloading.j.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.asyncloading.j.d ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 = new java.io.BufferedInputStream
+NODE 2: if $u-1#16 != 0 goto $u-1 = staticinvoke <com.revesoft.itelmobiledialer.asyncloading.j: java.lang.String a(java.io.InputStream)>($u1)
+NODE 3: $u-1 = staticinvoke <com.revesoft.itelmobiledialer.asyncloading.j: java.lang.String a(java.io.InputStream)>($u1)
+NODE 4: $u-1#72 = virtualinvoke $u-1.<java.lang.String: java.lang.String[] split(java.lang.String)>(" ")
+NODE 5: $u5 = lengthof $u-1#72
+NODE 6: if 2 <= $u5 goto (branch)
+NODE 7: if 2 <= $u6#21 goto $u5 = $u5 + -2
+NODE 8: $u5 = $u5 + -2
+NODE 9: $u-1#108 = virtualinvoke $u-1#72.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u-1#108 = virtualinvoke $u-1#108.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 11: $u-1#84 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#108, $u5)
+NODE 12: goto [?= $u-1 = staticinvoke <com.revesoft.itelmobiledialer.asyncloading.j: java.lang.String a(java.io.InputStream)>($u1)]
+NODE 13: goto [?= $u-1 = staticinvoke <com.revesoft.itelmobiledialer.asyncloading.j: java.lang.String a(java.io.InputStream)>($u1)]
+NODE 14: if $u6#21 == 2 goto $u-1 = staticinvoke <com.revesoft.itelmobiledialer.asyncloading.j: java.lang.String a(java.io.InputStream)>($u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 3
+EDGE: 13 -> 3
+EDGE: 14 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.asyncloading.p.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#39 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.v.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != null goto $u0 = <android.support.v4.app.v: java.lang.reflect.Field r>
+NODE 2: $u0#5 = class "Landroid/view/animation/Animation;"
+NODE 3: $u0 = virtualinvoke $u0#5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mListener")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.bumptech.glide.a.h.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.bumptech.glide.a.h.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.InviteFriendsActivity.a ===
+SUSPICIOUS_API: query
+NODE 1: $u12 := @parameter0: com.revesoft.itelmobiledialer.dialer.InviteFriendsActivity
+NODE 2: $u13 := @parameter1: java.util.ArrayList
+NODE 3: $u6 = 0
+NODE 4: if $u6 >= $u-1 goto $u6 = virtualinvoke $u8.<java.util.ArrayList: int size()>()
+NODE 5: $u-1#5 = virtualinvoke $u13.<java.util.ArrayList: java.lang.Object get(int)>($u6)
+NODE 6: $u0 = (java.lang.Long) $u-1#5
+NODE 7: $u-1#8 = virtualinvoke $u0.<java.lang.Long: long longValue()>()
+NODE 8: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 9: $u2 = newarray (java.lang.String)[4]
+NODE 10: $u0#13 = new java.lang.StringBuilder
+NODE 11: $u0#13 = virtualinvoke $u0#13.<java.lang.StringBuilder: java.lang.StringBuilder append(long)>($u-1#8)
+NODE 12: $u0#13 = virtualinvoke $u0#13.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("\'")
+NODE 13: $u-1#20 = virtualinvoke $u0#13.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 14: $u-1#22 = virtualinvoke $u12.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 15: $u-1#24 = virtualinvoke $u-1#22.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, $u-1#20, null, "data1 COLLATE LOCALIZED ASC")
+NODE 16: $u-1 = interfaceinvoke $u-1#24.<android.database.Cursor: int getColumnIndex(java.lang.String)>("data1")
+NODE 17: if $u-1#37 == 0 goto $u-1#20 = null
+NODE 18: $u-1#20 = interfaceinvoke $u-1#24.<android.database.Cursor: java.lang.String getString(int)>($u-1)
+NODE 19: if $u-1#20 == null goto $u6 = $u6 + 1
+NODE 20: $u6 = $u6 + 1
+NODE 21: $u-1#20 = null
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 17 -> 18
+EDGE: 17 -> 21
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.util.ReportUtils.getDeviceId ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u2 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.FileProvider.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#36 == 0 goto $u1 = null
+NODE 2: $u1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.phonebook.c.onPreDraw ===
+SUSPICIOUS_API: query
+NODE 1: $u-1#24 = staticinvoke <com.revesoft.itelmobiledialer.phonebook.a: android.content.Context D()>()
+NODE 2: $u1#26 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_URI>
+NODE 3: $u2 = newarray (java.lang.String)[2]
+NODE 4: $u-1#32 = virtualinvoke $u-1#24.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#34 = virtualinvoke $u-1#32.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#26, $u2, "has_phone_number = \'1\'", null, "display_name COLLATE LOCALIZED ASC")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.phonebook.c.onPreDraw ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.revesoft.itelmobiledialer.phonebook.c
+NODE 2: $u-1#24 = staticinvoke <com.revesoft.itelmobiledialer.phonebook.a: android.content.Context D()>()
+NODE 3: $u0#12 = this.<com.revesoft.itelmobiledialer.phonebook.c: com.revesoft.itelmobiledialer.phonebook.a a>
+NODE 4: $u-1#13 = staticinvoke <com.revesoft.itelmobiledialer.phonebook.a: android.widget.EditText a(com.revesoft.itelmobiledialer.phonebook.a)>($u0#12)
+NODE 5: $u-1#15 = virtualinvoke $u-1#13.<android.widget.EditText: android.text.Editable getText()>()
+NODE 6: $u-1 = virtualinvoke $u-1#15.<java.lang.Object: java.lang.String toString()>()
+NODE 7: $u1#26 = <android.provider.ContactsContract$Contacts: android.net.Uri CONTENT_FILTER_URI>
+NODE 8: $u1#26 = staticinvoke <android.net.Uri: android.net.Uri withAppendedPath(android.net.Uri,java.lang.String)>($u1#26, $u-1)
+NODE 9: $u2 = newarray (java.lang.String)[2]
+NODE 10: $u-1#32 = virtualinvoke $u-1#24.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u-1#34 = virtualinvoke $u-1#32.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1#26, $u2, "has_phone_number = \'1\'", null, "display_name COLLATE LOCALIZED ASC")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.afilechooser.FileChooserActivity.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.player.b.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#8 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.ReflectionCollector.collectStaticGettersResults ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u7.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 3: $u0 = 0
+NODE 4: if $u0 >= $u3 goto $u-1#7 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 5: $u4 = $u-1[$u0]
+NODE 6: if $u5 != 0 goto $u0 = $u0 + 1
+NODE 7: if $u-1#10 == 0 goto $u0 = $u0 + 1
+NODE 8: if $u-1#10 != 0 goto $u0 = $u0 + 1
+NODE 9: $u-1#27 = virtualinvoke $u4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+NODE 10: $u0 = $u0 + 1
+NODE 11: goto [?= (branch)]
+NODE 12: goto [?= $u0 = $u0 + 1]
+NODE 13: goto [?= $u0 = $u0 + 1]
+NODE 14: goto [?= $u0 = $u0 + 1]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 10
+EDGE: 7 -> 10
+EDGE: 8 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 4
+EDGE: 12 -> 10
+EDGE: 13 -> 10
+EDGE: 14 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.GeneratedMessage.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.reflect.Method
+NODE 2: $u4 := @parameter1: java.lang.Object
+NODE 3: $u5 := @parameter2: java.lang.Object[]
+NODE 4: $u4 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.bumptech.glide.d.f.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.au.<init> ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDisplayList", null)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.au.<init> ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u0 = class "Landroid/view/View;"
+NODE 2: $u-1#8 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRecreateDisplayList")
+NODE 3: goto [?= $u0 = class "Landroid/view/View;"]
+EDGE: 1 -> 2
+EDGE: 3 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.widget.au.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.widget.au
+NODE 2: $u5 := @parameter1: android.view.View
+NODE 3: $u0 = this.<android.support.v4.widget.au: java.lang.reflect.Method a>
+NODE 4: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, null)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.ITelMobileDialerGUI.onKeyDown ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u5 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u5.<android.view.KeyEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.ITelMobileDialerGUI.onKeyDown ===
+SUSPICIOUS_API: load
+NODE 1: $u5 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u5.<android.view.KeyEvent: int getDeviceId()>()
+NODE 3: $u-1#4 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ims.SendMessageActivity.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: android.net.Uri
+NODE 3: $u2 = newarray (java.lang.String)[1]
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ims.SendMessageActivity.c ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#28 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.b.d.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#29 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.b.d.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#29 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.ContactWrapperImpl.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ffmpeg.FFMPEGInterface.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ffmpeg_codec")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.cc.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0#3 != null goto $u0#3 = <android.support.v4.app.cc: java.lang.reflect.Field b>
+NODE 2: $u0#4 = class "Landroid/app/Notification;"
+NODE 3: $u0#3 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("extras")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.Options.onCreate ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.dialer.Options
+NODE 2: $u-1#13 = virtualinvoke this.<com.revesoft.itelmobiledialer.dialer.Options: java.io.FileInputStream openFileInput(java.lang.String)>("STUN_INFO.txt")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.a.a.j.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 != 0 goto $u-1 = <android.support.v4.a.a.j: java.lang.reflect.Method a>
+NODE 2: $u0#2 = class "Landroid/graphics/drawable/Drawable;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setLayoutDirection", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.a.a.j.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.graphics.drawable.Drawable
+NODE 2: if $u0 != 0 goto $u-1 = <android.support.v4.a.a.j: java.lang.reflect.Method a>
+NODE 3: $u-1 = <android.support.v4.a.a.j: java.lang.reflect.Method a>
+NODE 4: if $u-1 == null goto return
+NODE 5: $u-1 = <android.support.v4.a.a.j: java.lang.reflect.Method a>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.LogCatCollector.collectLogCat ===
+SUSPICIOUS_API: exec
+NODE 1: $u4 = new java.util.ArrayList
+NODE 2: $u3 = $u4
+NODE 3: $u-1#40 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 4: $u-1 = interfaceinvoke $u3.<java.util.List: int size()>()
+NODE 5: $u-1#21 = newarray (java.lang.String)[$u-1]
+NODE 6: $u-1#45 = interfaceinvoke $u3.<java.util.List: java.lang.Object[] toArray(java.lang.Object[])>($u-1#21)
+NODE 7: $u-1#21 = (java.lang.String[]) $u-1#45
+NODE 8: $u-1#48 = virtualinvoke $u-1#40.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u-1#21)
+NODE 9: goto [?= $u4 = new java.util.ArrayList]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.media.AudioInterface.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("audio-interface")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.GeneratedMessageLite$SerializedForm.readResolve ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: com.google.protobuf.GeneratedMessageLite$SerializedForm
+NODE 2: $u0 = this.<com.google.protobuf.GeneratedMessageLite$SerializedForm: java.lang.String messageClassName>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.GeneratedMessageLite$SerializedForm.readResolve ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.protobuf.GeneratedMessageLite$SerializedForm
+NODE 2: $u0 = this.<com.google.protobuf.GeneratedMessageLite$SerializedForm: java.lang.String messageClassName>
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 4: $u2 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("newBuilder", $u2)
+NODE 6: $u2#11 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#12 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.VideoCallFrameActivity.onKeyDown ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.VideoCallFrameActivity.onKeyDown ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+NODE 3: $u-1#3 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.file.CrashReportPersister.load ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.acra.file.CrashReportPersister
+NODE 2: $u2 = new java.io.InputStreamReader
+NODE 3: $u-1 = specialinvoke this.<org.acra.file.CrashReportPersister: org.acra.collector.CrashReportData load(java.io.Reader)>($u2)
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.encoding.a.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#33 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.sender.ReportDistributor.distribute ===
+SUSPICIOUS_API: load
+NODE 1: $u6 := @parameter0: java.io.File
+NODE 2: $u0#9 = new org.acra.file.CrashReportPersister
+NODE 3: $u-1#10 = virtualinvoke $u0#9.<org.acra.file.CrashReportPersister: org.acra.collector.CrashReportData load(java.io.File)>($u6)
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.GeneratedMessageLite.invokeOrDie ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.reflect.Method
+NODE 2: $u4 := @parameter1: java.lang.Object
+NODE 3: $u5 := @parameter2: java.lang.Object[]
+NODE 4: $u4 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.an.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.google.android.gms.internal.an
+NODE 2: $u5 := @parameter0: com.google.android.gms.internal.an$a
+NODE 3: $u-1 = virtualinvoke $u5.<com.google.android.gms.internal.an$a: java.lang.String f()>()
+NODE 4: $u1 = new java.lang.StringBuilder
+NODE 5: $u-1#16 = virtualinvoke $u-1.<java.lang.String: char charAt(int)>(0)
+NODE 6: $u-1#16 = staticinvoke <java.lang.Character: char toUpperCase(char)>($u-1#16)
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>($u-1#16)
+NODE 8: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(1)
+NODE 9: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 10: $u-1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1#3 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 12: $u2 = newarray (java.lang.Class)[0]
+NODE 13: $u-1#33 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1, $u2)
+NODE 14: $u1#36 = newarray (java.lang.Object)[0]
+NODE 15: $u-1#37 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1#36)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.a.e.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u3 != null goto $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.dialog.BaseCrashReportDialog.sendCrash ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.acra.dialog.BaseCrashReportDialog
+NODE 2: $u0 = new org.acra.file.CrashReportPersister
+NODE 3: if $u1 == 0 goto $u4 = this.<org.acra.dialog.BaseCrashReportDialog: java.io.File reportFile>
+NODE 4: $u4 = this.<org.acra.dialog.BaseCrashReportDialog: java.io.File reportFile>
+NODE 5: $u-1#15 = virtualinvoke $u0.<org.acra.file.CrashReportPersister: org.acra.collector.CrashReportData load(java.io.File)>($u4)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.Fragment.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <android.support.v4.app.Fragment: android.support.v4.b.m a>
+NODE 4: $u-1 = virtualinvoke $u0.<android.support.v4.b.m: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.MediaCodecListCollector.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.MediaCodecInfo$CodecCapabilities")
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.MediaCodecListCollector.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: if $u1#37 >= $u3 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.MediaCodecInfo$CodecProfileLevel")
+NODE 2: goto [?= (branch)]
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.media.MediaCodecInfo$CodecProfileLevel")
+EDGE: 1 -> 3
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.TelephonyInfo.a ===
+SUSPICIOUS_API: getLine1Number
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0#6 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#8 = virtualinvoke $u0#6.<android.telephony.TelephonyManager: java.lang.String getLine1Number()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.TelephonyInfo.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#7 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.String getName()>()
+NODE 6: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.util.TelephonyInfo.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u7 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#7 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.String getName()>()
+NODE 7: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+NODE 8: $u3 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#15 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u7, $u3)
+NODE 10: $u3#18 = newarray (java.lang.Object)[1]
+NODE 11: $u-1 = virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3#18)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.afilechooser.LocalStorageProvider.queryRoots ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivityWithSMS.onKeyDown ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivityWithSMS.onKeyDown ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+NODE 3: $u-1#3 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.SignupActivityWithSMS.onSignUp ===
+SUSPICIOUS_API: sendTextMessage
+NODE 1: this := @this: com.revesoft.itelmobiledialer.dialer.SignupActivityWithSMS
+NODE 2: if $u0#12 == 0 goto $u-1#41 = staticinvoke <android.widget.Toast: android.widget.Toast makeText(android.content.Context,int,int)>(this, 2131230999, 1)
+NODE 3: $u0#49 = new java.lang.StringBuilder
+NODE 4: $u-1#51 = staticinvoke <com.revesoft.itelmobiledialer.util.y: java.lang.String a(android.content.Context)>(this)
+NODE 5: $u0#49 = virtualinvoke $u0#49.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#51)
+NODE 6: $u-1#51 = virtualinvoke $u0#49.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 7: $u-1#57 = staticinvoke <android.telephony.SmsManager: android.telephony.SmsManager getDefault()>()
+NODE 8: $u-1#33 = staticinvoke <com.revesoft.itelmobiledialer.signalling.SIPProvider: com.revesoft.itelmobiledialer.signalling.StunInfo a()>()
+NODE 9: $u0#35 = $u-1#33.<com.revesoft.itelmobiledialer.signalling.StunInfo: java.util.ArrayList signupNumbers>
+NODE 10: $u-1 = virtualinvoke $u0#35.<java.util.ArrayList: java.lang.Object get(int)>(0)
+NODE 11: $u1#65 = (java.lang.String) $u-1
+NODE 12: virtualinvoke $u-1#57.<android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>($u1#65, null, $u-1#51, null, null)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.d.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#14 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#14 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#52 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 7: if $u9#27 != 1 goto $u3 = $u3 + 1
+NODE 8: if $u-1#20 == 8 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 11: if $u9#27 >= $u-1#20 goto $u3 = $u3 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: $u3 = $u3 + 1
+NODE 14: goto [?= (branch)]
+NODE 15: $u-1#52 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#56 = $u-1#52[$u3]
+NODE 19: $u-1#8 = virtualinvoke $u0#56.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#8 = virtualinvoke $u-1#8.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: $u9 = "has"
+NODE 23: $u-1#66 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#8)
+NODE 24: if $u-1#20 == 0 goto $u9 = new java.lang.String
+NODE 25: $u9 = virtualinvoke $u9.<java.lang.String: java.lang.String concat(java.lang.String)>($u-1#66)
+NODE 26: $u8 = newarray (java.lang.Class)[0]
+NODE 27: $u0#56 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u9, $u8)
+NODE 28: $u8#76 = newarray (java.lang.Object)[0]
+NODE 29: $u-1#39 = virtualinvoke $u0#56.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#76)
+NODE 30: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 31: $u3 = $u3 + 1
+NODE 32: goto [?= (branch)]
+NODE 33: $u9 = new java.lang.String
+NODE 34: goto [?= $u8 = newarray (java.lang.Class)[0]]
+NODE 35: goto [?= $u3 = $u3 + 1]
+NODE 36: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 13
+EDGE: 7 -> 13
+EDGE: 8 -> 13
+EDGE: 9 -> 13
+EDGE: 10 -> 13
+EDGE: 11 -> 13
+EDGE: 12 -> 11
+EDGE: 13 -> 14
+EDGE: 14 -> 5
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 31
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 24 -> 25
+EDGE: 24 -> 33
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 17
+EDGE: 34 -> 26
+EDGE: 35 -> 31
+EDGE: 36 -> 31
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.d.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter1: java.lang.Object
+NODE 2: if $u11 == null goto $u-1#14 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#14 = virtualinvoke $u12.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = 0
+NODE 5: if $u3 >= $u7 goto $u-1#52 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 7: if $u9#27 != 1 goto $u3 = $u3 + 1
+NODE 8: if $u-1#20 == 8 goto $u3 = $u3 + 1
+NODE 9: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 10: if $u0 != 0 goto $u3 = $u3 + 1
+NODE 11: if $u9#27 >= $u-1#20 goto $u3 = $u3 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: $u3 = $u3 + 1
+NODE 14: goto [?= (branch)]
+NODE 15: $u-1#52 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 16: $u3 = 0
+NODE 17: if $u3 >= $u7 goto (branch)
+NODE 18: $u0#56 = $u-1#52[$u3]
+NODE 19: $u-1#8 = virtualinvoke $u0#56.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 20: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 21: $u-1#8 = virtualinvoke $u-1#8.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 22: if $u0 == 0 goto $u3 = $u3 + 1
+NODE 23: $u9 = "get"
+NODE 24: $u-1#66 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#8)
+NODE 25: if $u-1#20 == 0 goto $u9 = new java.lang.String
+NODE 26: $u9 = virtualinvoke $u9.<java.lang.String: java.lang.String concat(java.lang.String)>($u-1#66)
+NODE 27: $u8 = newarray (java.lang.Class)[0]
+NODE 28: $u0#56 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u9, $u8)
+NODE 29: $u8#76 = newarray (java.lang.Object)[0]
+NODE 30: $u-1#39 = virtualinvoke $u0#56.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12, $u8#76)
+NODE 31: $u3 = $u3 + 1
+NODE 32: goto [?= (branch)]
+NODE 33: goto [?= $u3 = $u3 + 1]
+NODE 34: $u9 = new java.lang.String
+NODE 35: goto [?= $u8 = newarray (java.lang.Class)[0]]
+NODE 36: goto [?= $u3 = $u3 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 15
+EDGE: 6 -> 13
+EDGE: 7 -> 13
+EDGE: 8 -> 13
+EDGE: 9 -> 13
+EDGE: 10 -> 13
+EDGE: 11 -> 13
+EDGE: 12 -> 11
+EDGE: 13 -> 14
+EDGE: 14 -> 5
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 20 -> 31
+EDGE: 22 -> 23
+EDGE: 22 -> 31
+EDGE: 23 -> 24
+EDGE: 25 -> 26
+EDGE: 25 -> 34
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 31 -> 32
+EDGE: 32 -> 17
+EDGE: 33 -> 31
+EDGE: 35 -> 27
+EDGE: 36 -> 31
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.calllog.aj.onChange ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.revesoft.itelmobiledialer.calllog.aj
+NODE 2: $u0 = this.<com.revesoft.itelmobiledialer.calllog.aj: android.content.Context a>
+NODE 3: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.CallLog$Calls: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, "date DESC")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.CrashReportDataFactory.getBuildConfigClass ===
+SUSPICIOUS_API: forName
+NODE 1: this := @this: org.acra.collector.CrashReportDataFactory
+NODE 2: if $u-1 == null goto $u0#7 = new java.lang.StringBuilder
+NODE 3: if $u-1#5 != 0 goto $u0#7 = new java.lang.StringBuilder
+NODE 4: $u0#7 = new java.lang.StringBuilder
+NODE 5: $u1 = this.<org.acra.collector.CrashReportDataFactory: android.content.Context context>
+NODE 6: $u3 = virtualinvoke $u1.<android.content.Context: java.lang.String getPackageName()>()
+NODE 7: $u0#7 = virtualinvoke $u0#7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 8: $u0#7 = virtualinvoke $u0#7.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".BuildConfig")
+NODE 9: $u-1#16 = virtualinvoke $u0#7.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#16)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.CrashReportDataFactory.createCrashData ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: org.acra.collector.CrashReportDataFactory
+NODE 2: if $u-1#15 == 0 goto $u0#5 = <org.acra.ReportField: org.acra.ReportField APPLICATION_LOG>
+NODE 3: $u0#13 = this.<org.acra.collector.CrashReportDataFactory: android.content.Context context>
+NODE 4: $u-1#6 = staticinvoke <org.acra.util.ReportUtils: java.lang.String getDeviceId(android.content.Context)>($u0#13)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.ErrorReporter.getReportPrimer ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: org.acra.config.ACRAConfiguration
+NODE 2: $u-1 = virtualinvoke $u5.<org.acra.config.ACRAConfiguration: java.lang.Class reportPrimerClass()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ims.cp.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#25 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.decoding.FFMPEGDecoder.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ffmpeg")
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.video.decoding.FFMPEGDecoder.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ffmpeg_decoder")
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ims.bb.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.ims.bb.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#5 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.afilechooser.c.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u3 == null goto $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.afilechooser.g.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#31 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.afilechooser.g.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: android.net.Uri
+NODE 3: $u9 := @parameter2: java.lang.String
+NODE 4: $u10 := @parameter3: java.lang.String[]
+NODE 5: $u2 = newarray (java.lang.String)[1]
+NODE 6: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#8 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, $u2, $u9, $u10, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.acra.collector.LogFileCollector.getReader ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: if $u-1 == 0 goto $u0 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u5)
+NODE 4: $u0 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.CallFrameGUIActivity.onKeyDown ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.dialer.CallFrameGUIActivity.onKeyDown ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter1: android.view.KeyEvent
+NODE 2: $u-1 = virtualinvoke $u4.<android.view.KeyEvent: int getDeviceId()>()
+NODE 3: $u-1#3 = staticinvoke <android.view.KeyCharacterMap: android.view.KeyCharacterMap load(int)>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.apache.http.entity.mime.e.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("US-ASCII")
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.newMessaging.a.<init> ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.newMessaging.a
+NODE 2: $u4 = this.<com.revesoft.itelmobiledialer.newMessaging.a: android.content.Context f>
+NODE 3: $u-1 = virtualinvoke $u4.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("MSG_QUEUE.txt")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.newMessaging.a.b ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.newMessaging.a
+NODE 2: $u1 = this.<com.revesoft.itelmobiledialer.newMessaging.a: android.content.Context f>
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("MSG_QUEUE.txt", 0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.z.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u0#2 != null goto $u2 = <com.google.android.gms.internal.z: android.content.Context a>
+NODE 3: $u2 = staticinvoke <com.google.android.gms.common.e: android.content.Context b(android.content.Context)>($u2)
+NODE 4: if $u2 != null goto $u2 = <com.google.android.gms.internal.z: android.content.Context a>
+NODE 5: $u2 = <com.google.android.gms.internal.z: android.content.Context a>
+NODE 6: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 7: $u-1#11 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.google.android.gms.common.ui.SignInButtonCreatorImpl")
+NODE 8: $u-1#13 = virtualinvoke $u-1#11.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 2 -> 5
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.service.ag.a ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.revesoft.itelmobiledialer.service.ag
+NODE 2: $u0 = this.<com.revesoft.itelmobiledialer.service.ag: com.revesoft.itelmobiledialer.service.DialerService a>
+NODE 3: if $u0 == null goto <com.revesoft.itelmobiledialer.service.DialerService: com.revesoft.itelmobiledialer.util.v s> = $u6
+NODE 4: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 5: if $u-1 == null goto <com.revesoft.itelmobiledialer.service.DialerService: com.revesoft.itelmobiledialer.util.v s> = $u6
+NODE 6: $u-1 = virtualinvoke $u0.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u1 = <android.provider.ContactsContract$CommonDataKinds$Phone: android.net.Uri CONTENT_URI>
+NODE 8: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.revesoft.itelmobiledialer.service.ag.a ===
+SUSPICIOUS_API: openFileInput
+NODE 1: this := @this: com.revesoft.itelmobiledialer.service.ag
+NODE 2: $u0 = this.<com.revesoft.itelmobiledialer.service.ag: com.revesoft.itelmobiledialer.service.DialerService a>
+NODE 3: $u-1#34 = virtualinvoke $u0.<com.revesoft.itelmobiledialer.service.DialerService: java.io.FileInputStream openFileInput(java.lang.String)>("LAST_CONTACT.txt")
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.f.a ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.ContentResolver
+NODE 2: $u9 := @parameter1: android.net.Uri
+NODE 3: $u10 := @parameter2: java.lang.String[]
+NODE 4: $u11 := @parameter3: java.lang.String
+NODE 5: $u12 := @parameter4: java.lang.String[]
+NODE 6: $u13 := @parameter5: java.lang.String
+NODE 7: $u14 := @parameter6: android.support.v4.os.a
+NODE 8: if $u14 == null goto $u-1 = null
+NODE 9: $u-1 = virtualinvoke $u14.<android.support.v4.os.a: java.lang.Object c()>()
+NODE 10: $u6 = (android.os.CancellationSignal) $u-1
+NODE 11: $u-1#6 = virtualinvoke $u8.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String,android.os.CancellationSignal)>($u9, $u10, $u11, $u12, $u13, $u6)
+NODE 12: $u-1 = null
+NODE 13: goto [?= $u6 = (android.os.CancellationSignal) $u-1]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 8 -> 12
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.content.e.a ===
+SUSPICIOUS_API: query
+NODE 1: $u2 := @parameter0: android.content.ContentResolver
+NODE 2: $u3 := @parameter1: android.net.Uri
+NODE 3: $u4 := @parameter2: java.lang.String[]
+NODE 4: $u5 := @parameter3: java.lang.String
+NODE 5: $u6 := @parameter4: java.lang.String[]
+NODE 6: $u7 := @parameter5: java.lang.String
+NODE 7: if $u8 == null goto $u-1#4 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, $u4, $u5, $u6, $u7)
+NODE 8: if $u-1 == 0 goto $u-1#4 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, $u4, $u5, $u6, $u7)
+NODE 9: $u-1#4 = virtualinvoke $u2.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u3, $u4, $u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 9
+EDGE: 8 -> 9
+=== END FUNCTION ===
+

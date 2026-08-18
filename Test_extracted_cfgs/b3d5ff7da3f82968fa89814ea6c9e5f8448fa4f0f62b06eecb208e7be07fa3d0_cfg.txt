@@ -1,0 +1,362 @@
+=== FUNCTION: ch.qos.logback.core.util.Loader.loadClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: if $u0 == 0 goto $u-1#5 = staticinvoke <ch.qos.logback.core.util.Loader: java.lang.ClassLoader getTCL()>()
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.util.Loader.loadClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+NODE 3: goto [?= $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)]
+EDGE: 3 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.util.StringToObjectConverter.convertByValueOfMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter1: java.lang.Class
+NODE 2: $u2 = <ch.qos.logback.core.joran.util.StringToObjectConverter: java.lang.Class[] STING_CLASS_PARAMETER>
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("valueOf", $u2)
+NODE 4: $u2#7 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.util.StringToObjectConverter.convertToCharset ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.android.SystemPropertiesProxy.get ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ch.qos.logback.core.android.SystemPropertiesProxy
+NODE 2: $u2 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.Class SystemProperties>
+NODE 3: if $u2 == null goto return null
+NODE 4: $u0 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.reflect.Method getString>
+NODE 5: if $u0 != null goto $u0 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.reflect.Method getString>
+NODE 6: $u0 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.reflect.Method getString>
+NODE 7: $u2 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.Class SystemProperties>
+NODE 8: $u3 = newarray (java.lang.Object)[2]
+NODE 9: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.android.SystemPropertiesProxy.getBoolean ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ch.qos.logback.core.android.SystemPropertiesProxy
+NODE 2: $u1 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.reflect.Method getBoolean>
+NODE 3: $u2 = this.<ch.qos.logback.core.android.SystemPropertiesProxy: java.lang.Class SystemProperties>
+NODE 4: $u3 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#12 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.splashtop.streamer.platform.a.b ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: com.splashtop.streamer.platform.a
+NODE 2: $u0 = this.<com.splashtop.streamer.platform.a: android.media.AudioRecord a>
+NODE 3: virtualinvoke $u0.<android.media.AudioRecord: void startRecording()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.classic.spi.PackagingDataCalculator.bestEffortLoadClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: if $u-1#7 == $u3 goto (branch)
+NODE 3: if $u0 == null goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+NODE 4: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.classic.util.ContextSelectorStaticBinder.dynamicalContextSelector ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <ch.qos.logback.core.util.Loader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 3: $u1 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u0 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#9 = virtualinvoke $u-1#6.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.c.d.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v4.c.d
+NODE 2: $u4 := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<android.support.v4.c.d: int a()>()
+NODE 4: if $u1 >= $u-1 goto $u1 = 0
+NODE 5: $u-1#5 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#5 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#5, $u-1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.android.CommonPathUtil.getExternalStorageDirectoryPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u-1#5 = staticinvoke <ch.qos.logback.core.util.OptionHelper: java.lang.String getEnv(java.lang.String)>("EXTERNAL_STORAGE")
+NODE 2: $u-1#3 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.android.CommonPathUtil.getMountedExternalStorageDirectoryPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 != 0 goto $u-1#12 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: if $u-1 == 0 goto return null
+NODE 3: $u-1#12 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.action.NestedComplexPropertyIA.begin ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: ch.qos.logback.core.joran.action.NestedComplexPropertyIA
+NODE 2: $u7 := @parameter0: ch.qos.logback.core.joran.spi.InterpretationContext
+NODE 3: $u9 := @parameter2: org.xml.sax.Attributes
+NODE 4: $u0 = this.<ch.qos.logback.core.joran.action.NestedComplexPropertyIA: java.util.Stack actionDataStack>
+NODE 5: $u-1 = virtualinvoke $u0.<java.util.Stack: java.lang.Object peek()>()
+NODE 6: $u0#7 = (ch.qos.logback.core.joran.action.IADataForComplexProperty) $u-1
+NODE 7: $u-1#9 = interfaceinvoke $u9.<org.xml.sax.Attributes: java.lang.String getValue(java.lang.String)>("class")
+NODE 8: $u-1#9 = virtualinvoke $u7.<ch.qos.logback.core.joran.spi.InterpretationContext: java.lang.String subst(java.lang.String)>($u-1#9)
+NODE 9: if $u-1#14 != 0 goto $u2#19 = $u0#7.<ch.qos.logback.core.joran.action.IADataForComplexProperty: ch.qos.logback.core.joran.util.PropertySetter parentBean>
+NODE 10: $u2 = this.<ch.qos.logback.core.joran.action.NestedComplexPropertyIA: ch.qos.logback.core.Context context>
+NODE 11: $u-1#17 = staticinvoke <ch.qos.logback.core.util.Loader: java.lang.Class loadClass(java.lang.String,ch.qos.logback.core.Context)>($u-1#9, $u2)
+NODE 12: $u2#19 = $u0#7.<ch.qos.logback.core.joran.action.IADataForComplexProperty: ch.qos.logback.core.joran.util.PropertySetter parentBean>
+NODE 13: $u-1#20 = virtualinvoke $u0#7.<ch.qos.logback.core.joran.action.IADataForComplexProperty: java.lang.String getComplexPropertyName()>()
+NODE 14: $u-1#22 = virtualinvoke $u0#7.<ch.qos.logback.core.joran.action.IADataForComplexProperty: ch.qos.logback.core.util.AggregationType getAggregationType()>()
+NODE 15: $u-1#24 = virtualinvoke $u7.<ch.qos.logback.core.joran.spi.InterpretationContext: ch.qos.logback.core.joran.spi.DefaultNestedComponentRegistry getDefaultNestedComponentRegistry()>()
+NODE 16: $u-1#17 = virtualinvoke $u2#19.<ch.qos.logback.core.joran.util.PropertySetter: java.lang.Class getClassNameViaImplicitRules(java.lang.String,ch.qos.logback.core.util.AggregationType,ch.qos.logback.core.joran.spi.DefaultNestedComponentRegistry)>($u-1#20, $u-1#22, $u-1#24)
+NODE 17: if $u-1#14 == 0 goto $u-1 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 18: $u-1 = virtualinvoke $u-1#17.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 9 -> 12
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.util.OptionHelper.instantiateByClassNameAndParameter ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter2: java.lang.ClassLoader
+NODE 3: if $u2 != null goto $u-1 = virtualinvoke $u4.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u2)
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u2)
+NODE 5: if $u-1#9 != 0 goto (branch)
+NODE 6: if $u5 != null goto $u0 = newarray (java.lang.Class)[1]
+NODE 7: $u6 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.util.OptionHelper.instantiateByClassNameAndParameter ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter2: java.lang.ClassLoader
+NODE 3: if $u2 != null goto $u-1 = virtualinvoke $u4.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u2)
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u2)
+NODE 5: if $u-1#9 != 0 goto (branch)
+NODE 6: if $u5 != null goto $u0 = newarray (java.lang.Class)[1]
+NODE 7: $u0 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0)
+NODE 9: $u3#18 = newarray (java.lang.Object)[1]
+NODE 10: $u6 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#18)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: b.a.a.a.c.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-16LE")
+=== END FUNCTION ===
+
+=== FUNCTION: b.a.a.a.c.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.action.PropertyAction.loadAndSetProperties ===
+SUSPICIOUS_API: load
+NODE 1: $u3 := @parameter1: java.io.InputStream
+NODE 2: $u0 = new java.util.Properties
+NODE 3: virtualinvoke $u0.<java.util.Properties: void load(java.io.InputStream)>($u3)
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.classic.spi.ThrowableProxy.<init> ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: java.lang.Throwable
+NODE 2: if $r0 == null goto $u1 = <ch.qos.logback.classic.spi.ThrowableProxy: java.lang.reflect.Method GET_SUPPRESSED_METHOD>
+NODE 3: $u1 = <ch.qos.logback.classic.spi.ThrowableProxy: java.lang.reflect.Method GET_SUPPRESSED_METHOD>
+NODE 4: if $u1 == null goto return
+NODE 5: $u1 = <ch.qos.logback.classic.spi.ThrowableProxy: java.lang.reflect.Method GET_SUPPRESSED_METHOD>
+NODE 6: $u2#25 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#26 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.app.a$a.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.os.Bundle
+NODE 2: if $u0 != 0 goto $u-1 = <android.support.v4.app.a$a: java.lang.reflect.Method a>
+NODE 3: $u-1 = <android.support.v4.app.a$a: java.lang.reflect.Method a>
+NODE 4: if $u-1 == null goto return null
+NODE 5: $u-1 = <android.support.v4.app.a$a: java.lang.reflect.Method a>
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#18 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 != 0 goto $u-1#20 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.file.Path")
+NODE 2: $u-1#20 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.file.Path")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.file.Files")
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.io.File
+NODE 2: $u2 = class "Ljava/io/File;"
+NODE 3: $u6 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#28 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("toPath", $u6)
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#35 = virtualinvoke $u-1#28.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter1: java.io.File
+NODE 2: $u2 = class "Ljava/io/File;"
+NODE 3: $u6 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#28 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("toPath", $u6)
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#38 = virtualinvoke $u-1#28.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.file.Files")
+NODE 2: $u6 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#32 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getFileStore", $u6)
+NODE 4: $u1 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#35 = virtualinvoke $u-1#32.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u1)
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.rolling.helper.FileStoreUtil.areOnSameFileStore ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("java.nio.file.Files")
+NODE 2: $u6 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#32 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getFileStore", $u6)
+NODE 4: $u1 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#38 = virtualinvoke $u-1#32.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u1)
+=== END FUNCTION ===
+
+=== FUNCTION: org.slf4j.helpers.SubstituteLogger.log ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.slf4j.helpers.SubstituteLogger
+NODE 2: if $u-1 == 0 goto return
+NODE 3: $u0 = this.<org.slf4j.helpers.SubstituteLogger: java.lang.reflect.Method logMethodCache>
+NODE 4: $u1 = this.<org.slf4j.helpers.SubstituteLogger: org.slf4j.Logger _delegate>
+NODE 5: $u2 = newarray (java.lang.Object)[1]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.util.PropertySetter.isUnequivocallyInstantiable ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: if $u-1 == 0 goto $u-1#3 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u-1#3 = virtualinvoke $u3.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.util.PropertySetter.invokeMethodWithSingleParameterOnThisObject ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ch.qos.logback.core.joran.util.PropertySetter
+NODE 2: $u5 := @parameter0: java.lang.reflect.Method
+NODE 3: $u1 = this.<ch.qos.logback.core.joran.util.PropertySetter: java.lang.Object obj>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.joran.util.PropertySetter.setProperty ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: ch.qos.logback.core.joran.util.PropertySetter
+NODE 2: $u4 := @parameter0: ch.qos.logback.core.joran.util.PropertyDescriptor
+NODE 3: $u-1 = virtualinvoke $u4.<ch.qos.logback.core.joran.util.PropertyDescriptor: java.lang.reflect.Method getWriteMethod()>()
+NODE 4: if $u-1#20 != null goto $u5#29 = this.<ch.qos.logback.core.joran.util.PropertySetter: java.lang.Object obj>
+NODE 5: $u5#29 = this.<ch.qos.logback.core.joran.util.PropertySetter: java.lang.Object obj>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5#29, $u1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: ch.qos.logback.core.net.ssl.KeyStoreFactoryBean.createKeyStore ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: ch.qos.logback.core.net.ssl.KeyStoreFactoryBean
+NODE 2: $u-1 = virtualinvoke this.<ch.qos.logback.core.net.ssl.KeyStoreFactoryBean: java.lang.String getLocation()>()
+NODE 3: $u-1#8 = staticinvoke <ch.qos.logback.core.util.LocationUtil: java.net.URL urlForResource(java.lang.String)>($u-1)
+NODE 4: $u-1#10 = virtualinvoke $u-1#8.<java.net.URL: java.io.InputStream openStream()>()
+NODE 5: $u-1#12 = specialinvoke this.<ch.qos.logback.core.net.ssl.KeyStoreFactoryBean: java.security.KeyStore newKeyStore()>()
+NODE 6: $u-1 = virtualinvoke this.<ch.qos.logback.core.net.ssl.KeyStoreFactoryBean: java.lang.String getPassword()>()
+NODE 7: $u-1#16 = virtualinvoke $u-1.<java.lang.String: char[] toCharArray()>()
+NODE 8: virtualinvoke $u-1#12.<java.security.KeyStore: void load(java.io.InputStream,char[])>($u-1#10, $u-1#16)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+

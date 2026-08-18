@@ -1,0 +1,86 @@
+=== FUNCTION: ioio.lib.impl.SequencerImpl.createChannel ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 = <ioio.lib.impl.SequencerImpl: ioio.lib.impl.SequencerImpl$ClassMapEntry[] CLASS_MAP>
+NODE 2: $u1 = 0
+NODE 3: if $u1 >= $u3 goto $u1 = new java.lang.IllegalArgumentException
+NODE 4: $u0 = $u2[$u1]
+NODE 5: if $u-1 == 0 goto $u1 = $u1 + 1
+NODE 6: $u4 = $u0.<ioio.lib.impl.SequencerImpl$ClassMapEntry: java.lang.Class channelClass>
+NODE 7: $u5 = newarray (java.lang.Class)[2]
+NODE 8: $u-1#14 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u5)
+NODE 9: $u4#17 = newarray (java.lang.Object)[2]
+NODE 10: $u-1#20 = virtualinvoke $u-1#14.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4#17)
+NODE 11: $u1 = $u1 + 1
+NODE 12: goto [?= (branch)]
+NODE 13: goto [?= $u1 = $u1 + 1]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 11
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 11 -> 12
+EDGE: 12 -> 3
+EDGE: 13 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: org.narroginglidingclub.xcsoar.InternalGPS.run ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: org.narroginglidingclub.xcsoar.InternalGPS
+NODE 2: $u0 = this.<org.narroginglidingclub.xcsoar.InternalGPS: android.location.LocationManager locationManager>
+NODE 3: $u0#5 = this.<org.narroginglidingclub.xcsoar.InternalGPS: java.lang.String locationProvider>
+NODE 4: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u0#5, 1000L, 0.0F, this)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.narroginglidingclub.xcsoar.NetUtil.getNetState ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 = <org.narroginglidingclub.xcsoar.NetUtil: android.net.ConnectivityManager cm>
+NODE 2: if $u1 != null goto $u1 = <org.narroginglidingclub.xcsoar.NetUtil: android.net.ConnectivityManager cm>
+NODE 3: $u1 = <org.narroginglidingclub.xcsoar.NetUtil: android.net.ConnectivityManager cm>
+NODE 4: $u-1 = virtualinvoke $u1.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ioio.lib.util.IOIOConnectionRegistry.addBootstrap ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: ioio.lib.util.IOIOConnectionRegistry.addBootstrap ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 3: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lioio/lib/spi/IOIOConnectionBootstrap;")
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.narroginglidingclub.xcsoar.Loader.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("xcsoar")
+=== END FUNCTION ===
+
+=== FUNCTION: ioio.lib.android.accessory.Adapter.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.hardware.usb.UsbManager")
+=== END FUNCTION ===
+
+=== FUNCTION: org.narroginglidingclub.xcsoar.MyService.createNotificationOld ===
+SUSPICIOUS_API: invoke
+NODE 1: $u0 = new android.app.Notification
+NODE 2: $u1 = class "Landroid/app/Notification;"
+NODE 3: $u3 = newarray (java.lang.Class)[4]
+NODE 4: $u-1#17 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setLatestEventInfo", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[4]
+NODE 6: virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u2)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

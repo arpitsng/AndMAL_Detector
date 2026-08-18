@@ -1,0 +1,50 @@
+=== FUNCTION: com.evbadroid.proxymon.ProxyActivity.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.evbadroid.proxymon.ProxyActivity.c ===
+SUSPICIOUS_API: exec
+NODE 1: if $u-1#41 == 0 goto $u2#45 = this.<com.evbadroid.proxymon.ProxyActivity: com.evbadroid.proxymon.B Q>
+NODE 2: $u-1#72 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u1 = newarray (java.lang.String)[1]
+NODE 4: $u-1 = virtualinvoke $u-1#72.<java.lang.Runtime: java.lang.Process exec(java.lang.String[])>($u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.evbadroid.proxymon.ProxyActivity.h ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#76 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: com.evbadroid.proxymon.ProxyActivity.h ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1#76 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u4 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#85 = virtualinvoke $u-1#76.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u4)
+NODE 4: $u4#89 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#94 = virtualinvoke $u-1#85.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4#89)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.evbadroid.proxymon.ProxyActivity.onCreate ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.evbadroid.proxymon.ProxyActivity
+NODE 2: $u0#46 = <com.evbadroid.proxymon.ProxyActivity: java.io.File b>
+NODE 3: $u0#40 = virtualinvoke $u0#46.<java.io.File: java.lang.String getName()>()
+NODE 4: $u-1#57 = virtualinvoke this.<com.evbadroid.proxymon.ProxyActivity: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u0#40, 0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.b.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u8 := @parameter2: java.lang.String
+NODE 2: $u-1#5 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA")
+NODE 3: $u-1#18 = staticinvoke <com.evbadroid.a.a: byte[] a(java.lang.String)>($u8)
+NODE 4: $u-1#18 = virtualinvoke $u-1#5.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1#18)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

@@ -1,0 +1,547 @@
+=== FUNCTION: ac.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u5 := @parameter1: java.lang.String
+NODE 3: $u0 = <ac: cu a>
+NODE 4: $u-1 = virtualinvoke $u0.<cu: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0#4 = (java.lang.Class) $u-1
+NODE 6: if $u0#4 != null goto $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u-1#5 = virtualinvoke $u4.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#5.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u5)
+NODE 9: $u0#4 = $u-1#7
+NODE 10: $u-1 = virtualinvoke $u0#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 10
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: ap.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0#12 != null goto $u0#12 = <ap: java.lang.reflect.Field a>
+NODE 2: $u0#13 = class "Landroid/view/animation/Animation;"
+NODE 3: $u0#12 = virtualinvoke $u0#13.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mListener")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cc.a ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cc.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cc.a ===
+SUSPICIOUS_API: query
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u10, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cd.a ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u9 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#3 = staticinvoke <android.provider.DocumentsContract: java.lang.String getDocumentId(android.net.Uri)>($u9)
+NODE 5: $u-1#5 = staticinvoke <android.provider.DocumentsContract: android.net.Uri buildChildDocumentsUriUsingTree(android.net.Uri,java.lang.String)>($u9, $u-1#3)
+NODE 6: $u2 = newarray (java.lang.String)[1]
+NODE 7: $u-1#13 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#5, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cl.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: cl
+NODE 2: $u5 := @parameter0: java.lang.Object[]
+NODE 3: $u-1 = virtualinvoke this.<cl: int a()>()
+NODE 4: if $u0 >= $u-1 goto (branch)
+NODE 5: $u-1#3 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#3 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 7: $u-1#7 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#3, $u-1)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: dy.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <dy: java.lang.reflect.Field a>
+NODE 2: $u0#2 = class "Landroid/view/LayoutInflater;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mFactory2")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: fd.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u2#3 != null goto $u2#3 = <fd: java.lang.reflect.Field a>
+NODE 2: $u2#4 = class "Landroid/view/View;"
+NODE 3: $u2#3 = virtualinvoke $u2#4.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mAccessibilityDelegate")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: fl.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <fl: java.lang.reflect.Field a>
+NODE 2: $u0#2 = class "Landroid/view/View;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mMinWidth")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: fl.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != 0 goto $u-1 = <fl: java.lang.reflect.Field b>
+NODE 2: $u0#2 = class "Landroid/view/View;"
+NODE 3: $u-1 = virtualinvoke $u0#2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mMinHeight")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cz.chladek.mobiusactioncam.FirmwareUpdateActivity.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#15 = staticinvoke <javax.xml.parsers.DocumentBuilderFactory: javax.xml.parsers.DocumentBuilderFactory newInstance()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cz.chladek.uvc.UVCCamera.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("usb")
+=== END FUNCTION ===
+
+=== FUNCTION: cz.chladek.uvc.UVCCamera.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("uvc")
+=== END FUNCTION ===
+
+=== FUNCTION: cz.chladek.uvc.UVCCamera.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("uvcp")
+=== END FUNCTION ===
+
+=== FUNCTION: na.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: na
+NODE 2: $u0 = this.<na: java.lang.Class a>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: nf.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: if $u-1#5 == 0 goto $u-1#5 = virtualinvoke $u-1.<java.lang.String: boolean startsWith(java.lang.String)>("file:///android_asset/")
+NODE 4: $u-1 = virtualinvoke $u10.<android.net.Uri: java.lang.String getAuthority()>()
+NODE 5: if $u-1#5 == 0 goto $u-1#43 = virtualinvoke $u9.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 6: $u-1#12 = virtualinvoke $u9.<android.content.Context: android.content.res.Resources getResources()>()
+NODE 7: $u-1#15 = virtualinvoke $u10.<android.net.Uri: java.util.List getPathSegments()>()
+NODE 8: $u-1#17 = interfaceinvoke $u-1#15.<java.util.List: int size()>()
+NODE 9: if $u-1#17 != 2 goto (branch)
+NODE 10: if $u-1#5 == 0 goto (branch)
+NODE 11: $u-1#19 = interfaceinvoke $u-1#15.<java.util.List: java.lang.Object get(int)>(1)
+NODE 12: $u-1#8 = (java.lang.String) $u-1#19
+NODE 13: $u-1#17 = virtualinvoke $u-1#12.<android.content.res.Resources: int getIdentifier(java.lang.String,java.lang.String,java.lang.String)>($u-1#8, "drawable", $u-1)
+NODE 14: $u-1#12 = virtualinvoke $u9.<android.content.Context: android.content.res.Resources getResources()>()
+NODE 15: $u-1#32 = virtualinvoke $u-1#12.<android.content.res.Resources: java.io.InputStream openRawResource(int)>($u-1#17)
+NODE 16: $u-1#34 = staticinvoke <android.graphics.BitmapRegionDecoder: android.graphics.BitmapRegionDecoder newInstance(java.io.InputStream,boolean)>($u-1#32, 0)
+NODE 17: $u-1#43 = virtualinvoke $u9.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 18: $u-1#12 = virtualinvoke $u-1#43.<android.content.pm.PackageManager: android.content.res.Resources getResourcesForApplication(java.lang.String)>($u-1)
+NODE 19: goto [?= $u-1#15 = virtualinvoke $u10.<android.net.Uri: java.util.List getPathSegments()>()]
+NODE 20: if $u-1#17 != 1 goto $u-1#17 = 0
+NODE 21: if $u-1#5 == 0 goto $u-1#17 = 0
+NODE 22: $u-1#19 = interfaceinvoke $u-1#15.<java.util.List: java.lang.Object get(int)>(0)
+NODE 23: $u-1 = (java.lang.String) $u-1#19
+NODE 24: $u-1#17 = staticinvoke <java.lang.Integer: int parseInt(java.lang.String)>($u-1)
+NODE 25: goto [?= $u-1#12 = virtualinvoke $u9.<android.content.Context: android.content.res.Resources getResources()>()]
+NODE 26: $u-1#17 = 0
+NODE 27: goto [?= $u-1#12 = virtualinvoke $u9.<android.content.Context: android.content.res.Resources getResources()>()]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 5 -> 17
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 20
+EDGE: 10 -> 11
+EDGE: 10 -> 20
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 7
+EDGE: 20 -> 26
+EDGE: 21 -> 22
+EDGE: 21 -> 26
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 14
+EDGE: 26 -> 27
+EDGE: 27 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: nf.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u-1 = virtualinvoke $u10.<android.net.Uri: java.lang.String toString()>()
+NODE 4: if $u-1#5 == 0 goto $u-1#5 = virtualinvoke $u-1.<java.lang.String: boolean startsWith(java.lang.String)>("file://")
+NODE 5: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(22)
+NODE 6: $u-1#64 = virtualinvoke $u9.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 7: $u-1#32 = virtualinvoke $u-1#64.<android.content.res.AssetManager: java.io.InputStream open(java.lang.String,int)>($u-1, 1)
+NODE 8: $u-1#34 = staticinvoke <android.graphics.BitmapRegionDecoder: android.graphics.BitmapRegionDecoder newInstance(java.io.InputStream,boolean)>($u-1#32, 0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: nf.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter1: android.net.Uri
+NODE 2: $u-1 = virtualinvoke $u10.<android.net.Uri: java.lang.String toString()>()
+NODE 3: if $u-1#5 == 0 goto $u-1#32 = null
+NODE 4: $u-1 = virtualinvoke $u-1.<java.lang.String: java.lang.String substring(int)>(7)
+NODE 5: $u-1#34 = staticinvoke <android.graphics.BitmapRegionDecoder: android.graphics.BitmapRegionDecoder newInstance(java.lang.String,boolean)>($u-1, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: nf.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u10 := @parameter1: android.net.Uri
+NODE 3: $u-1#79 = virtualinvoke $u9.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#81 = virtualinvoke $u-1#79.<android.content.ContentResolver: java.io.InputStream openInputStream(android.net.Uri)>($u10)
+NODE 5: $u-1#34 = staticinvoke <android.graphics.BitmapRegionDecoder: android.graphics.BitmapRegionDecoder newInstance(java.io.InputStream,boolean)>($u-1#81, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: ng.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: ng
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.String
+NODE 4: if $u4 != null goto $u0 = this.<ng: javax.crypto.Cipher a>
+NODE 5: $u0 = this.<ng: javax.crypto.Cipher a>
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 9: $u4 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 10: $u-1 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 11: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: ng.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: ng
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u1 = this.<ng: javax.crypto.Cipher b>
+NODE 4: $u-1 = staticinvoke <ob: byte[] a(java.lang.String)>($u4)
+NODE 5: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: qq.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u4 >= 4096 goto $u-1#65 = newarray (int)[2]
+NODE 2: goto [?= (branch)]
+NODE 3: $u-1#65 = newarray (int)[2]
+NODE 4: $u7 = <java.lang.Integer: java.lang.Class TYPE>
+NODE 5: $u-1#6 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u7, $u-1#65)
+EDGE: 1 -> 3
+EDGE: 2 -> 1
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: rp.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#7 != null goto exitmonitor this
+NODE 2: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v7.widget.RecyclerView.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: android.support.v7.widget.RecyclerView
+NODE 2: $u11 := @parameter0: android.content.Context
+NODE 3: $u12 := @parameter1: android.util.AttributeSet
+NODE 4: $u13 := @parameter2: int
+NODE 5: if $u12 == null goto virtualinvoke this.<android.support.v7.widget.RecyclerView: void setDescendantFocusability(int)>(262144)
+NODE 6: $u0#20 = <jd: int[] RecyclerView>
+NODE 7: $u-1 = virtualinvoke $u11.<android.content.Context: android.content.res.TypedArray obtainStyledAttributes(android.util.AttributeSet,int[],int,int)>($u12, $u0#20, $u13, 0)
+NODE 8: $u0#31 = <jd: int RecyclerView_layoutManager>
+NODE 9: $u-1#64 = virtualinvoke $u-1.<android.content.res.TypedArray: java.lang.String getString(int)>($u0#31)
+NODE 10: if $u-1#64 == null goto $u0#31 = <android.os.Build$VERSION: int SDK_INT>
+NODE 11: $u-1#64 = virtualinvoke $u-1#64.<java.lang.String: java.lang.String trim()>()
+NODE 12: $u0#31 = virtualinvoke $u-1#64.<java.lang.String: int length()>()
+NODE 13: if $u0#31 == 0 goto $u0#31 = <android.os.Build$VERSION: int SDK_INT>
+NODE 14: $u-1#74 = virtualinvoke $u-1#64.<java.lang.String: char charAt(int)>(0)
+NODE 15: $u0#31 = (int) $u-1#74
+NODE 16: if $u0#31 != 46 goto $u-1#29 = virtualinvoke $u-1#64.<java.lang.String: boolean contains(java.lang.CharSequence)>(".")
+NODE 17: $u23 = new java.lang.StringBuilder
+NODE 18: $u-1#77 = virtualinvoke $u11.<android.content.Context: java.lang.String getPackageName()>()
+NODE 19: $u3#76 = virtualinvoke $u23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#77)
+NODE 20: $u3#76 = virtualinvoke $u3#76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#64)
+NODE 21: $u-1#64 = virtualinvoke $u3#76.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 22: if $u-1#29 == 0 goto $u-1#90 = virtualinvoke $u11.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 23: $u-1#88 = virtualinvoke this.<java.lang.Object: java.lang.Class getClass()>()
+NODE 24: $u-1#90 = virtualinvoke $u-1#88.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 25: $u-1#88 = virtualinvoke $u-1#90.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#64)
+NODE 26: $u-1#88 = virtualinvoke $u-1#88.<java.lang.Class: java.lang.Class asSubclass(java.lang.Class)>(class "Lla;")
+NODE 27: $u0#98 = <android.support.v7.widget.RecyclerView: java.lang.Class[] a>
+NODE 28: $u-1#99 = virtualinvoke $u-1#88.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0#98)
+NODE 29: $u0#102 = newarray (java.lang.Object)[4]
+NODE 30: $u-1#56 = virtualinvoke $u-1#99.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u0#102)
+NODE 31: if $u-1#29 == 0 goto $u23 = new java.lang.StringBuilder
+NODE 32: $u23 = new java.lang.StringBuilder
+NODE 33: $u-1#88 = class "Landroid/support/v7/widget/RecyclerView;"
+NODE 34: $u-1#128 = virtualinvoke $u-1#88.<java.lang.Class: java.lang.Package getPackage()>()
+NODE 35: $u-1#77 = virtualinvoke $u-1#128.<java.lang.Package: java.lang.String getName()>()
+NODE 36: $u3#76 = virtualinvoke $u23.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#77)
+NODE 37: $u3#76 = virtualinvoke $u3#76.<java.lang.StringBuilder: java.lang.StringBuilder append(char)>(46)
+NODE 38: $u3#76 = virtualinvoke $u3#76.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1#64)
+NODE 39: $u-1#64 = virtualinvoke $u3#76.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 40: $u-1#90 = virtualinvoke $u11.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 41: goto [?= $u-1#88 = virtualinvoke $u-1#90.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#64)]
+NODE 42: $u0#98 = newarray (java.lang.Class)[0]
+NODE 43: $u-1#99 = virtualinvoke $u-1#88.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u0#98)
+NODE 44: $u0#102 = null
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 22 -> 23
+EDGE: 22 -> 40
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 31 -> 32
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 35 -> 36
+EDGE: 36 -> 37
+EDGE: 37 -> 38
+EDGE: 38 -> 39
+EDGE: 40 -> 41
+EDGE: 41 -> 25
+EDGE: 42 -> 43
+EDGE: 43 -> 44
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method a>
+NODE 2: $u0#4 = class "Landroid/view/ViewGroup;"
+NODE 3: $u2 = newarray (java.lang.Class)[1]
+NODE 4: $u0#3 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setChildrenDrawingOrderEnabled", $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.v4.view.ViewPager.setChildrenDrawingOrderEnabledCompat ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: android.support.v4.view.ViewPager
+NODE 2: if $u0 < 7 goto return
+NODE 3: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method a>
+NODE 4: if $u0#3 != null goto $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method a>
+NODE 5: $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method a>
+NODE 6: $u1 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u0#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(this, $u1)
+NODE 8: goto [?= $u0#3 = this.<android.support.v4.view.ViewPager: java.lang.reflect.Method a>]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: wv.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: wv.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: wv.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#17 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: wv.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: wv.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#22 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: xc.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u0 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 2: if $u-1#10 == null goto $u0 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u0 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: xc.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u0 == null goto $u-1#10 = staticinvoke <java.lang.System: java.lang.String getenv(java.lang.String)>("EXTERNAL_STORAGE")
+NODE 2: $u0 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: xh.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ce")
+=== END FUNCTION ===
+
+=== FUNCTION: xh.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ce")
+NODE 2: $u2 = newarray (java.lang.Class)[3]
+NODE 3: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u2)
+NODE 4: $u2#16 = newarray (java.lang.Object)[3]
+NODE 5: $u-1#23 = virtualinvoke $u-1#12.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#16)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: yu.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 = class "Ljava/io/RandomAccessFile;"
+NODE 2: $u-1#9 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("fd")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.a ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+NODE 2: $u8 := @parameter0: java.lang.String
+NODE 3: if $u-1 == 0 goto $u-1 = virtualinvoke $u8.<java.lang.String: boolean startsWith(java.lang.String)>("file:///")
+NODE 4: $u2 = newarray (java.lang.String)[1]
+NODE 5: $u-1#10 = virtualinvoke this.<com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView: android.content.Context getContext()>()
+NODE 6: $u-1#12 = virtualinvoke $u-1#10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 7: $u-1#14 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>($u8)
+NODE 8: $u-1#18 = virtualinvoke $u-1#12.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#14, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.graphics.Canvas
+NODE 2: if $u0 < 14 goto $u0#29 = new android.graphics.Point
+NODE 3: $u0#3 = class "Landroid/graphics/Canvas;"
+NODE 4: $u2 = newarray (java.lang.Class)[0]
+NODE 5: $u-1 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getMaximumBitmapWidth", $u2)
+NODE 6: $u1 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#11 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.graphics.Canvas
+NODE 2: $u0#3 = class "Landroid/graphics/Canvas;"
+NODE 3: $u2 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u0#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getMaximumBitmapHeight", $u2)
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.os.AsyncTask
+NODE 2: $u0#4 = class "Landroid/os/AsyncTask;"
+NODE 3: $u3 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#20 = virtualinvoke $u0#4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("executeOnExecutor", $u3)
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: virtualinvoke $u-1#20.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u2)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

@@ -1,0 +1,525 @@
+=== FUNCTION: com.badlogic.gdx.utils.reflect.ClassReflection.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.reflect.ClassReflection.d ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Class
+NODE 2: $u-1 = virtualinvoke $u4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.maps.tiled.TiledMapTileLayer.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u-1#5 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>(class "Lcom/badlogic/gdx/maps/tiled/TiledMapTileLayer$Cell;", $u-1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidAudio.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidAudio
+NODE 2: $u7 := @parameter0: com.badlogic.gdx.files.FileHandle
+NODE 3: if $u0 != null goto $u0#5 = (com.badlogic.gdx.backends.android.AndroidFileHandle) $u7
+NODE 4: $u0#5 = (com.badlogic.gdx.backends.android.AndroidFileHandle) $u7
+NODE 5: if $u-1 != $u2 goto $u0#11 = new com.badlogic.gdx.backends.android.AndroidSound
+NODE 6: $u-1#9 = virtualinvoke $u0#5.<com.badlogic.gdx.backends.android.AndroidFileHandle: android.content.res.AssetFileDescriptor g()>()
+NODE 7: $u4 = this.<com.badlogic.gdx.backends.android.AndroidAudio: android.media.SoundPool b>
+NODE 8: $u-1#16 = virtualinvoke $u4.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#9, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidAudio.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidAudio
+NODE 2: $u7 := @parameter0: com.badlogic.gdx.files.FileHandle
+NODE 3: if $u0 != null goto $u0#5 = (com.badlogic.gdx.backends.android.AndroidFileHandle) $u7
+NODE 4: $u0#5 = (com.badlogic.gdx.backends.android.AndroidFileHandle) $u7
+NODE 5: $u4 = this.<com.badlogic.gdx.backends.android.AndroidAudio: android.media.SoundPool b>
+NODE 6: $u-1#35 = virtualinvoke $u0#5.<com.badlogic.gdx.backends.android.AndroidFileHandle: java.io.File f()>()
+NODE 7: $u-1#29 = virtualinvoke $u-1#35.<java.io.File: java.lang.String getPath()>()
+NODE 8: $u-1#16 = virtualinvoke $u4.<android.media.SoundPool: int load(java.lang.String,int)>($u-1#29, 1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.SharedLibraryLoader.b ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.utils.SharedLibraryLoader
+NODE 2: $u2 := @parameter0: java.lang.String
+NODE 3: $u3 := @parameter1: java.lang.String
+NODE 4: $u4 := @parameter2: java.io.File
+NODE 5: $u4 = specialinvoke this.<com.badlogic.gdx.utils.SharedLibraryLoader: java.io.File a(java.lang.String,java.lang.String,java.io.File)>($u2, $u3, $u4)
+NODE 6: $u2 = virtualinvoke $u4.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 7: staticinvoke <java.lang.System: void load(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.SharedLibraryLoader.d ===
+SUSPICIOUS_API: load
+NODE 1: if $u-1#37 == null goto return
+NODE 2: $u1 = new java.io.File
+NODE 3: if $u-1#35 == 0 goto $u0 = new com.badlogic.gdx.utils.GdxRuntimeException
+NODE 4: $u7 = virtualinvoke $u1.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 5: staticinvoke <java.lang.System: void load(java.lang.String)>($u7)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.SharedLibraryLoader.b ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: this := @this: com.badlogic.gdx.utils.SharedLibraryLoader
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u0 == 0 goto $u6 = virtualinvoke this.<com.badlogic.gdx.utils.SharedLibraryLoader: java.lang.String a(java.lang.String)>($u6)
+NODE 4: $u6 = virtualinvoke this.<com.badlogic.gdx.utils.SharedLibraryLoader: java.lang.String a(java.lang.String)>($u6)
+NODE 5: if $u0 == 0 goto specialinvoke this.<com.badlogic.gdx.utils.SharedLibraryLoader: void d(java.lang.String)>($u6)
+NODE 6: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidFiles.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.Json.getDefaultValues ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.Json
+NODE 2: $u8 := @parameter0: java.lang.Class
+NODE 3: if $u1 == 0 goto $u-1 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u8)
+NODE 4: $u-1 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u8)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.Json.readValue ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.Json
+NODE 2: $u9 := @parameter0: java.lang.Class
+NODE 3: $u11 := @parameter2: com.badlogic.gdx.utils.JsonValue
+NODE 4: if $u-1 == 0 goto $u2 = $u11
+NODE 5: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 6: if $u0 != null goto $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 7: $u0 = null
+NODE 8: if $u0 == null goto (branch)
+NODE 9: $u-1#10 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Class getClass(java.lang.String)>($u0)
+NODE 10: $u9 = $u-1#10
+NODE 11: if $u-1#10 != null goto (branch)
+NODE 12: $u9 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: java.lang.Class a(java.lang.String)>($u0)
+NODE 13: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 14: $u0 = virtualinvoke $u11.<com.badlogic.gdx.utils.JsonValue: java.lang.String a(java.lang.String,java.lang.String)>($u0, null)
+NODE 15: goto [?= (branch)]
+NODE 16: if $u-1 == 0 goto $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+NODE 17: $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 8
+EDGE: 16 -> 17
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.Json.readValue ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.Json
+NODE 2: $u9 := @parameter0: java.lang.Class
+NODE 3: $u11 := @parameter2: com.badlogic.gdx.utils.JsonValue
+NODE 4: if $u-1 == 0 goto $u2 = $u11
+NODE 5: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 6: if $u0 != null goto $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 7: $u0 = null
+NODE 8: if $u0 == null goto (branch)
+NODE 9: $u-1#10 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Class getClass(java.lang.String)>($u0)
+NODE 10: $u9 = $u-1#10
+NODE 11: if $u-1#10 != null goto (branch)
+NODE 12: $u9 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: java.lang.Class a(java.lang.String)>($u0)
+NODE 13: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 14: $u0 = virtualinvoke $u11.<com.badlogic.gdx.utils.JsonValue: java.lang.String a(java.lang.String,java.lang.String)>($u0, null)
+NODE 15: goto [?= (branch)]
+NODE 16: if $u-1 == 0 goto $u-1 = virtualinvoke $u2.<com.badlogic.gdx.utils.JsonValue: boolean n()>()
+NODE 17: if $u9 == null goto $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 18: if $u9 != class "Ljava/lang/Object;" goto (branch)
+NODE 19: $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 20: if $u-1 == 0 goto $u-1 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: boolean a(java.lang.Class,java.lang.Class)>(class "Lcom/badlogic/gdx/utils/Queue;", $u9)
+NODE 21: if $u9 != class "Lcom/badlogic/gdx/utils/Array;" goto $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+NODE 22: $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 8
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 17 -> 19
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.Json.readValue ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.Json
+NODE 2: $u9 := @parameter0: java.lang.Class
+NODE 3: $u11 := @parameter2: com.badlogic.gdx.utils.JsonValue
+NODE 4: if $u-1 == 0 goto $u2 = $u11
+NODE 5: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 6: if $u0 != null goto $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 7: $u0 = null
+NODE 8: if $u0 == null goto (branch)
+NODE 9: $u-1#10 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Class getClass(java.lang.String)>($u0)
+NODE 10: $u9 = $u-1#10
+NODE 11: if $u-1#10 != null goto (branch)
+NODE 12: $u9 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: java.lang.Class a(java.lang.String)>($u0)
+NODE 13: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 14: $u0 = virtualinvoke $u11.<com.badlogic.gdx.utils.JsonValue: java.lang.String a(java.lang.String,java.lang.String)>($u0, null)
+NODE 15: goto [?= (branch)]
+NODE 16: if $u-1 == 0 goto $u-1 = virtualinvoke $u2.<com.badlogic.gdx.utils.JsonValue: boolean n()>()
+NODE 17: if $u9 == null goto $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 18: if $u9 != class "Ljava/lang/Object;" goto (branch)
+NODE 19: $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 20: if $u-1 == 0 goto $u-1 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: boolean a(java.lang.Class,java.lang.Class)>(class "Ljava/util/Collection;", $u9)
+NODE 21: if $u9 != class "Lcom/badlogic/gdx/utils/Queue;" goto $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+NODE 22: $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 8
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 17 -> 19
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.Json.readValue ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.Json
+NODE 2: $u9 := @parameter0: java.lang.Class
+NODE 3: $u11 := @parameter2: com.badlogic.gdx.utils.JsonValue
+NODE 4: if $u-1 == 0 goto $u2 = $u11
+NODE 5: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 6: if $u0 != null goto $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 7: $u0 = null
+NODE 8: if $u0 == null goto (branch)
+NODE 9: $u-1#10 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Class getClass(java.lang.String)>($u0)
+NODE 10: $u9 = $u-1#10
+NODE 11: if $u-1#10 != null goto (branch)
+NODE 12: $u9 = staticinvoke <com.badlogic.gdx.utils.reflect.ClassReflection: java.lang.Class a(java.lang.String)>($u0)
+NODE 13: $u0 = this.<com.badlogic.gdx.utils.Json: java.lang.String typeName>
+NODE 14: $u0 = virtualinvoke $u11.<com.badlogic.gdx.utils.JsonValue: java.lang.String a(java.lang.String,java.lang.String)>($u0, null)
+NODE 15: goto [?= (branch)]
+NODE 16: if $u-1 == 0 goto $u-1 = virtualinvoke $u2.<com.badlogic.gdx.utils.JsonValue: boolean n()>()
+NODE 17: if $u9 == null goto $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 18: if $u9 != class "Ljava/lang/Object;" goto (branch)
+NODE 19: $u9 = class "Lcom/badlogic/gdx/utils/Array;"
+NODE 20: if $u-1 == 0 goto $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+NODE 21: $u-1#15 = virtualinvoke this.<com.badlogic.gdx.utils.Json: java.lang.Object newInstance(java.lang.Class)>($u9)
+EDGE: 1 -> 2
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 13
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 8
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 17 -> 19
+EDGE: 18 -> 19
+EDGE: 20 -> 21
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.reflect.Method.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.utils.reflect.Method
+NODE 2: $u5 := @parameter0: java.lang.Object
+NODE 3: $u6 := @parameter1: java.lang.Object[]
+NODE 4: $u0 = this.<com.badlogic.gdx.utils.reflect.Method: java.lang.reflect.Method a>
+NODE 5: $u5 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.assets.loaders.SkinLoader.b ===
+SUSPICIOUS_API: load
+NODE 1: $u7 := @parameter2: com.badlogic.gdx.files.FileHandle
+NODE 2: $u2#18 = new com.badlogic.gdx.scenes.scene2d.ui.Skin
+NODE 3: if $u1 == null goto virtualinvoke $u2#18.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u7)
+NODE 4: if $u-1#22 == 0 goto virtualinvoke $u2#18.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u7)
+NODE 5: virtualinvoke $u2#18.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u7)
+EDGE: 3 -> 5
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.graphics.g2d.Gdx2DPixmap.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.graphics.g2d.Gdx2DPixmap
+NODE 2: $u4 := @parameter0: byte[]
+NODE 3: $u5 := @parameter1: int
+NODE 4: $u6 := @parameter2: int
+NODE 5: $u0 = this.<com.badlogic.gdx.graphics.g2d.Gdx2DPixmap: long[] f>
+NODE 6: $u-1 = staticinvoke <com.badlogic.gdx.graphics.g2d.Gdx2DPixmap: java.nio.ByteBuffer load(long[],byte[],int,int)>($u0, $u4, $u5, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.scenes.scene2d.ui.Skin.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.scenes.scene2d.ui.Skin
+NODE 2: $u3 := @parameter0: com.badlogic.gdx.files.FileHandle
+NODE 3: if $u-1#14 == 0 goto virtualinvoke this.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u3)
+NODE 4: virtualinvoke this.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.scenes.scene2d.ui.Skin.<init> ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.badlogic.gdx.scenes.scene2d.ui.Skin
+NODE 2: $u2 := @parameter0: com.badlogic.gdx.files.FileHandle
+NODE 3: virtualinvoke this.<com.badlogic.gdx.scenes.scene2d.ui.Skin: void load(com.badlogic.gdx.files.FileHandle)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidFragmentApplication.c ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidFragmentApplication
+NODE 2: if $u-1 >= 19 goto $u0 = this.<com.badlogic.gdx.backends.android.AndroidFragmentApplication: com.badlogic.gdx.backends.android.AndroidGraphics a>
+NODE 3: $u0 = this.<com.badlogic.gdx.backends.android.AndroidFragmentApplication: com.badlogic.gdx.backends.android.AndroidGraphics a>
+NODE 4: $u-1#5 = virtualinvoke $u0.<com.badlogic.gdx.backends.android.AndroidGraphics: android.view.View u()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#12 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: $u3#16 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u3#16)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.reflect.Constructor.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.badlogic.gdx.utils.reflect.Constructor
+NODE 2: $u5 := @parameter0: java.lang.Object[]
+NODE 3: $u0 = this.<com.badlogic.gdx.utils.reflect.Constructor: java.lang.reflect.Constructor a>
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 < 19 goto return
+NODE 2: $u-1#57 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidVisibilityListener")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1 < 19 goto return
+NODE 2: $u-1#57 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidVisibilityListener")
+NODE 3: $u-1#59 = virtualinvoke $u-1#57.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u-1 < 19 goto return
+NODE 2: $u-1#57 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidVisibilityListener")
+NODE 3: $u3 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#64 = virtualinvoke $u-1#57.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createListener", $u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.a ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1 < 19 goto return
+NODE 2: $u-1#57 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidVisibilityListener")
+NODE 3: $u-1#59 = virtualinvoke $u-1#57.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 4: $u3 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#64 = virtualinvoke $u-1#57.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("createListener", $u3)
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1#64.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#59, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u-1 >= 11 goto $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#13 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: if $u-1 > 13 goto $u2 = newarray (java.lang.Object)[1]
+NODE 9: $u2 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u-1 >= 11 goto $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#13 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: if $u-1 > 13 goto $u2 = newarray (java.lang.Object)[1]
+NODE 9: $u2 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidApplication.c ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidApplication
+NODE 2: if $u-1 >= 19 goto $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 3: $u-1#4 = virtualinvoke this.<com.badlogic.gdx.backends.android.AndroidApplication: android.view.Window getWindow()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<android.view.Window: android.view.View getDecorView()>()
+NODE 5: $u1 = class "Landroid/view/View;"
+NODE 6: $u3 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#13 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSystemUiVisibility", $u3)
+NODE 8: $u3#17 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u3#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidGL20.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("gdx")
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidInputFactory.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInput")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInputThreePlus")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidInputFactory.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInput")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInputThreePlus")
+NODE 3: $u1 = newarray (java.lang.Class)[4]
+NODE 4: $u-1#16 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1#19 = newarray (java.lang.Object)[4]
+NODE 6: $u6 = virtualinvoke $u-1#16.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#19)
+NODE 7: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInput")
+NODE 8: goto [?= $u1 = newarray (java.lang.Class)[4]]
+EDGE: 1 -> 2
+EDGE: 1 -> 7
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidInputFactory.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 < 12 goto $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInput")
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.badlogic.gdx.backends.android.AndroidInput")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.utils.reflect.ArrayReflection.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u1 := @parameter0: java.lang.Class
+NODE 2: $u2 := @parameter1: int
+NODE 3: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.badlogic.gdx.backends.android.AndroidGraphics.k ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.badlogic.gdx.backends.android.AndroidGraphics
+NODE 2: if $u0#4 != 0 goto $u0#3 = this.<com.badlogic.gdx.backends.android.AndroidGraphics: android.view.View b>
+NODE 3: if $u0#4 == 0 goto return
+NODE 4: $u0#3 = this.<com.badlogic.gdx.backends.android.AndroidGraphics: android.view.View b>
+NODE 5: $u-1 = virtualinvoke $u0#3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u2 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#15 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setPreserveEGLContextOnPause", $u2)
+NODE 8: $u0#3 = this.<com.badlogic.gdx.backends.android.AndroidGraphics: android.view.View b>
+NODE 9: $u2#19 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0#3, $u2#19)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+

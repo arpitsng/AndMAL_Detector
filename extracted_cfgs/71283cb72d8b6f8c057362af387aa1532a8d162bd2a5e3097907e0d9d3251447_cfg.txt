@@ -1,0 +1,17 @@
+=== FUNCTION: com.choijongmo.kr.web.MainActivity.onPause ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+=== END FUNCTION ===
+
+=== FUNCTION: com.choijongmo.kr.web.MainActivity.onPause ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.choijongmo.kr.web.MainActivity
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.webkit.WebView")
+NODE 3: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onPause", null)
+NODE 4: $u2 = this.<com.choijongmo.kr.web.MainActivity: android.webkit.WebView webview>
+NODE 5: virtualinvoke $u-1#6.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+

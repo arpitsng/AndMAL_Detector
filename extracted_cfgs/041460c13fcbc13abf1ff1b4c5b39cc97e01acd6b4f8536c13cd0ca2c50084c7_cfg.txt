@@ -1,0 +1,63 @@
+=== FUNCTION: a.a.a.a.a.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: a.a.a.a.a.a
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u5 := @parameter1: java.lang.String
+NODE 4: if $u4 != null goto $u0 = this.<a.a.a.a.a.a: javax.crypto.Cipher b>
+NODE 5: $u0 = this.<a.a.a.a.a.a: javax.crypto.Cipher b>
+NODE 6: $u1 = new java.lang.StringBuilder
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("com.android.vending.licensing.AESObfuscator-1|")
+NODE 8: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u5)
+NODE 9: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u4)
+NODE 10: $u4 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 11: $u-1 = virtualinvoke $u4.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 12: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: a.a.a.a.a.a.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: this := @this: a.a.a.a.a.a
+NODE 2: $u4 := @parameter0: java.lang.String
+NODE 3: $u1 = this.<a.a.a.a.a.a: javax.crypto.Cipher c>
+NODE 4: $u-1 = staticinvoke <a.a.a.a.a.a.a: byte[] a(java.lang.String)>($u4)
+NODE 5: $u-1 = virtualinvoke $u1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: online.andengdev.RunDex.t.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: online.andengdev.RunDex.t
+NODE 2: $u0 = new dalvik.system.DexClassLoader
+NODE 3: $u3 = this.<online.andengdev.RunDex.t: java.lang.String b>
+NODE 4: $u-1#16 = virtualinvoke $u0.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u3)
+NODE 5: $u3#20 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#23 = virtualinvoke $u-1#16.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("main", $u3#20)
+NODE 7: $u3 = this.<online.andengdev.RunDex.t: java.lang.String d>
+NODE 8: if $u3 == null goto $u6 = newarray (java.lang.Object)[1]
+NODE 9: $u6 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#23.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u6)
+NODE 11: goto [?= $u3 = this.<online.andengdev.RunDex.t: java.lang.String d>]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: online.andengdev.RunDex.a.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+

@@ -1,0 +1,61 @@
+=== FUNCTION: gnu.gforth.Gforth.get_gforth_gz ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: gnu.gforth.Gforth
+NODE 2: $u-1#21 = virtualinvoke this.<gnu.gforth.Gforth: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("gforth.gz", 0)
+=== END FUNCTION ===
+
+=== FUNCTION: gnu.gforth.Gforth.onCreate ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: this := @this: gnu.gforth.Gforth
+NODE 2: libname = "gforth"
+NODE 3: $u-1#33 = virtualinvoke this.<gnu.gforth.Gforth: android.content.pm.PackageManager getPackageManager()>()
+NODE 4: $u-1#35 = virtualinvoke this.<gnu.gforth.Gforth: android.content.Intent getIntent()>()
+NODE 5: $u-1#37 = virtualinvoke $u-1#35.<android.content.Intent: android.content.ComponentName getComponent()>()
+NODE 6: $u-1#40 = virtualinvoke $u-1#33.<android.content.pm.PackageManager: android.content.pm.ActivityInfo getActivityInfo(android.content.ComponentName,int)>($u-1#37, 128)
+NODE 7: $u5#41 = $u-1#40.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 8: if $u5#41 == null goto $u-1#6 = this.<gnu.gforth.Gforth: boolean libloaded>
+NODE 9: $u5#41 = $u-1#40.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 10: $u5#13 = virtualinvoke $u5#41.<android.os.Bundle: java.lang.String getString(java.lang.String)>("android.app.lib_name")
+NODE 11: if $u5#13 == null goto $u5#41 = $u-1#40.<android.content.pm.ActivityInfo: android.os.Bundle metaData>
+NODE 12: libname = $u5#13
+NODE 13: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>(libname)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: gnu.gforth.Gforth$1.run ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: gnu.gforth.Gforth$1
+NODE 2: $u0 = this.<gnu.gforth.Gforth$1: gnu.gforth.Gforth this$0>
+NODE 3: $u-1 = staticinvoke <gnu.gforth.Gforth: android.location.LocationManager access$400(gnu.gforth.Gforth)>($u0)
+NODE 4: $u0 = this.<gnu.gforth.Gforth$1: gnu.gforth.Gforth this$0>
+NODE 5: $u-1#5 = staticinvoke <gnu.gforth.Gforth: java.lang.String access$000(gnu.gforth.Gforth)>($u0)
+NODE 6: $u0 = this.<gnu.gforth.Gforth$1: gnu.gforth.Gforth this$0>
+NODE 7: $u-1#8 = staticinvoke <gnu.gforth.Gforth: long access$100(gnu.gforth.Gforth)>($u0)
+NODE 8: $u0 = this.<gnu.gforth.Gforth$1: gnu.gforth.Gforth this$0>
+NODE 9: $u-1#11 = staticinvoke <gnu.gforth.Gforth: double access$200(gnu.gforth.Gforth)>($u0)
+NODE 10: $u4 = (float) $u-1#11
+NODE 11: $u0 = this.<gnu.gforth.Gforth$1: gnu.gforth.Gforth this$0>
+NODE 12: $u0 = staticinvoke <gnu.gforth.Gforth: gnu.gforth.Gforth access$300(gnu.gforth.Gforth)>($u0)
+NODE 13: virtualinvoke $u-1.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>($u-1#5, $u-1#8, $u4, $u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+=== END FUNCTION ===
+

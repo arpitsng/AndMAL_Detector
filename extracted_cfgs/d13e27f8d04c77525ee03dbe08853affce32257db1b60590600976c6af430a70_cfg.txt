@@ -1,0 +1,823 @@
+=== FUNCTION: com.facebook.ads.internal.g.e.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.facebook.ads.internal.g.e
+NODE 2: $u0 = this.<com.facebook.ads.internal.g.e: android.net.ConnectivityManager e>
+NODE 3: $u-1 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.places.internal.LocationScannerImpl.getFreshLocation ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.facebook.places.internal.LocationScannerImpl
+NODE 2: handlerThread = new android.os.HandlerThread
+NODE 3: $u0 = this.<com.facebook.places.internal.LocationScannerImpl: java.util.List enabledProviders>
+NODE 4: $u-1 = interfaceinvoke $u0.<java.util.List: java.util.Iterator iterator()>()
+NODE 5: if $u-1#5 == 0 goto $u-1#7 = this.<com.facebook.places.internal.LocationScannerImpl: java.lang.Object scanLock>
+NODE 6: $u-1#7 = interfaceinvoke $u-1.<java.util.Iterator: java.lang.Object next()>()
+NODE 7: provider = (java.lang.String) $u-1#7
+NODE 8: $u0#10 = this.<com.facebook.places.internal.LocationScannerImpl: android.location.LocationManager locationManager>
+NODE 9: $u-1#13 = virtualinvoke handlerThread.<android.os.HandlerThread: android.os.Looper getLooper()>()
+NODE 10: virtualinvoke $u0#10.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener,android.os.Looper)>(provider, 100L, 0.0F, this, $u-1#13)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.places.internal.LocationScannerImpl.getLastLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.facebook.places.internal.LocationScannerImpl
+NODE 2: $u9 := @parameter0: java.lang.String
+NODE 3: $u1 = this.<com.facebook.places.internal.LocationScannerImpl: android.location.LocationManager locationManager>
+NODE 4: $u-1 = virtualinvoke $u1.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.i.b.o.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.AttributionIdentifiers.getAttributionIdentifiers ===
+SUSPICIOUS_API: getAndroidId
+NODE 1: $u16 := @parameter0: android.content.Context
+NODE 2: if $u0#7 == null goto $u0#7 = staticinvoke <com.facebook.internal.AttributionIdentifiers: com.facebook.internal.AttributionIdentifiers getAndroidId(android.content.Context)>($u16)
+NODE 3: if $u-1#55 >= 0 goto $u0#7 = staticinvoke <com.facebook.internal.AttributionIdentifiers: com.facebook.internal.AttributionIdentifiers getAndroidId(android.content.Context)>($u16)
+NODE 4: $u0#7 = staticinvoke <com.facebook.internal.AttributionIdentifiers: com.facebook.internal.AttributionIdentifiers getAndroidId(android.content.Context)>($u16)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.AttributionIdentifiers.getAttributionIdentifiers ===
+SUSPICIOUS_API: query
+NODE 1: $u16 := @parameter0: android.content.Context
+NODE 2: projection = newarray (java.lang.String)[3]
+NODE 3: providerUri = null
+NODE 4: if $u-1#30 == null goto $u-1#26 = virtualinvoke $u16.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 5: providerUri = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.facebook.katana.provider.AttributionIdProvider")
+NODE 6: if $u0 == null goto (branch)
+NODE 7: if providerUri != null goto $u-1#45 = virtualinvoke $u16.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 8: if $u-1#30 == null goto $u0 = staticinvoke <com.facebook.internal.AttributionIdentifiers: java.lang.String getInstallerPackageName(android.content.Context)>($u16)
+NODE 9: providerUri = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.facebook.wakizashi.provider.AttributionIdProvider")
+NODE 10: $u-1#45 = virtualinvoke $u16.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u-1#49 = virtualinvoke $u-1#45.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>(providerUri, projection, null, null, null)
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.Utility.getContentSize ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.net.Uri
+NODE 2: $u-1 = staticinvoke <com.facebook.FacebookSdk: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u8, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.Utility.getMethodQuietly ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.Utility.invokeMethodQuietly ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 := @parameter0: java.lang.Object
+NODE 2: $u3 := @parameter1: java.lang.reflect.Method
+NODE 3: $u4 := @parameter2: java.lang.Object[]
+NODE 4: $u2 = virtualinvoke $u3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.Utility.refreshAvailableExternalStorage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u2 = <com.facebook.internal.Utility: long availableExternalStorageGB>
+NODE 2: $u-1#3 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.Utility.refreshTotalExternalStorage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto $u2 = <com.facebook.internal.Utility: long totalExternalStorageGB>
+NODE 2: $u-1#3 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.ads.mediation.customevent.CustomEventAdapter.zzh ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.ads.mediation.customevent.CustomEventAdapter.zzh ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.h.a.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.youtube.AndroidyoutubeBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.cloudpush.CloudpushBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("facebook.FacebookBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("fh.imagefactory.ImagefactoryBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.imagefactory.ImageFactoryBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("yy.logcatcher.TilogcatcherBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.sq.TisqBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.utterance.UtteranceBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.alarmmanager.AlarmmanagerBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("net.iamyellow.tiws.TiwsBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.tracker.AndroidTrackerBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.map.MapBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.chart.MpandroidchartBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.badger.TestbadgerBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.android.tools.AndroidtoolsBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.activityevents.ActivityEventsBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.openurl.OpenurlBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.playservices.PlayServicesBootstrap")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.youtube.AndroidyoutubeModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.youtube.AndroidyoutubeModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("facebook.TiFacebookModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("facebook.TiFacebookModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("fh.imagefactory.ImagefactoryModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("fh.imagefactory.ImagefactoryModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("yy.logcatcher.TilogcatcherModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("yy.logcatcher.TilogcatcherModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.sq.TisqModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("ti.sq.TisqModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.utterance.UtteranceModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.utterance.UtteranceModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.tracker.AndroidTrackerModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.tracker.AndroidTrackerModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.chart.MpandroidchartModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.chart.MpandroidchartModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.badger.TestbadgerModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.badger.TestbadgerModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.android.tools.AndroidtoolsModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("bencoding.android.tools.AndroidtoolsModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.activityevents.ActivityEventsModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.activityevents.ActivityEventsModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.openurl.OpenurlModule")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.LifeTimeVltApplication.onCreate ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.trainerize.openurl.OpenurlModule")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#84 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("onAppCreate", $u3)
+NODE 4: $u4 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u-1#84.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.zziz.zzdm ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = class "Lcom/google/android/gms/internal/zziz;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u0 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.google.android.gms.ads.internal.ClientApi")
+NODE 4: $u-1#7 = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.adapters.q.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.facebook.ads.internal.adapters.q
+NODE 2: $u2 = this.<com.facebook.ads.internal.adapters.q: com.inmobi.ads.InMobiNative b>
+NODE 3: virtualinvoke $u2.<com.inmobi.ads.InMobiNative: void load()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.adapters.d.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <com.facebook.ads.internal.adapters.f: java.util.List a()>()
+NODE 2: $u-1#5 = interfaceinvoke $u-1.<java.util.List: java.util.Iterator iterator()>()
+NODE 3: if $u-1#6 == 0 goto return
+NODE 4: $u-1#8 = interfaceinvoke $u-1#5.<java.util.Iterator: java.lang.Object next()>()
+NODE 5: $u0#10 = (com.facebook.ads.internal.adapters.f) $u-1#8
+NODE 6: if $u1 != null goto (branch)
+NODE 7: $u4#19 = $u0#10.<com.facebook.ads.internal.adapters.f: java.lang.String j>
+NODE 8: $u-1#20 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4#19)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.adapters.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: com.facebook.ads.internal.adapters.e
+NODE 2: $u4 := @parameter1: com.facebook.ads.internal.server.AdPlacementType
+NODE 3: $u-1 = staticinvoke <com.facebook.ads.internal.adapters.d: com.facebook.ads.internal.adapters.f b(com.facebook.ads.internal.adapters.e,com.facebook.ads.internal.server.AdPlacementType)>($u3, $u4)
+NODE 4: if $u0#5 != null goto $u-1#8 = virtualinvoke $u0#5.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 5: $u0#6 = $u-1.<com.facebook.ads.internal.adapters.f: java.lang.String j>
+NODE 6: $u0#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.adapters.d.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: com.facebook.ads.internal.adapters.e
+NODE 2: $u4 := @parameter1: com.facebook.ads.internal.server.AdPlacementType
+NODE 3: $u-1 = staticinvoke <com.facebook.ads.internal.adapters.d: com.facebook.ads.internal.adapters.f b(com.facebook.ads.internal.adapters.e,com.facebook.ads.internal.server.AdPlacementType)>($u3, $u4)
+NODE 4: if $u-1#3 == 0 goto return null
+NODE 5: $u0#5 = $u-1.<com.facebook.ads.internal.adapters.f: java.lang.Class i>
+NODE 6: if $u0#5 != null goto $u-1#8 = virtualinvoke $u0#5.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 7: $u0#6 = $u-1.<com.facebook.ads.internal.adapters.f: java.lang.String j>
+NODE 8: $u0#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0#6)
+NODE 9: $u-1#8 = virtualinvoke $u0#5.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 6 -> 9
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.AccessTokenManager.loadCurrentAccessToken ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.facebook.AccessTokenManager
+NODE 2: $u2 = this.<com.facebook.AccessTokenManager: com.facebook.AccessTokenCache accessTokenCache>
+NODE 3: $u-1 = virtualinvoke $u2.<com.facebook.AccessTokenCache: com.facebook.AccessToken load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.y.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.y.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u8 := @parameter2: java.lang.String
+NODE 2: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u8)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.y.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 3: $u1 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u1)
+NODE 5: $u2 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#19 = virtualinvoke $u-1#9.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.y.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u7)
+NODE 3: $u1 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u1)
+NODE 5: $u1 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#13 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getUserAgentString", $u1)
+NODE 7: $u2 = newarray (java.lang.Object)[2]
+NODE 8: $u-1#19 = virtualinvoke $u-1#9.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+NODE 9: $u2 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#19 = virtualinvoke $u-1#13.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#19, $u2)
+EDGE: 2 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.y.c ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u-1 == 0 goto $u-1#6 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u-1#6 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#6
+NODE 5: $u-1#9 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.h.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.webkit.WebView
+NODE 2: $u-1 = virtualinvoke $u5.<android.webkit.WebView: android.webkit.WebSettings getSettings()>()
+NODE 3: if $u1 < 21 goto $u1#6 = class "Landroid/webkit/WebSettings;"
+NODE 4: $u1#6 = class "Landroid/webkit/WebSettings;"
+NODE 5: $u3 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#10 = virtualinvoke $u1#6.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setMixedContentMode", $u3)
+NODE 7: $u2 = newarray (java.lang.Object)[1]
+NODE 8: virtualinvoke $u-1#10.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.g.a ===
+SUSPICIOUS_API: query
+NODE 1: $u7 := @parameter0: android.content.ContentResolver
+NODE 2: $u2 = newarray (java.lang.String)[3]
+NODE 3: $u-1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.facebook.katana.provider.AttributionIdProvider")
+NODE 4: $u-1#15 = virtualinvoke $u7.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.g.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u1 := @parameter0: java.lang.Object
+NODE 2: $u2 := @parameter1: java.lang.reflect.Method
+NODE 3: $u3 := @parameter2: java.lang.Object[]
+NODE 4: $u1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.g.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u0 = new java.lang.StringBuilder
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u2)
+NODE 5: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".")
+NODE 6: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u3)
+NODE 7: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 8: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.g.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.o.a ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: if $u-1#6 == 0 goto $u1 = null
+NODE 3: $u-1#9 = virtualinvoke $u8.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("crasheslog")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.util.o.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u5 := @parameter1: android.content.Context
+NODE 2: $u-1#5 = virtualinvoke $u5.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("crasheslog", 32768)
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.AssetCryptImpl.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.AssetCryptImpl.filterDataInRange ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.appcelerator.titanium.TiVerify")
+=== END FUNCTION ===
+
+=== FUNCTION: com.trainerize.lifetime.AssetCryptImpl.filterDataInRange ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("org.appcelerator.titanium.TiVerify")
+NODE 2: $u2 = newarray (java.lang.Class)[3]
+NODE 3: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("filterDataInRange", $u2)
+NODE 4: $u2#17 = newarray (java.lang.Object)[3]
+NODE 5: $u-1#25 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u2#17)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.appevents.AppEventsLogger$PersistedAppSessionInfo.restoreAppSessionInformation ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("AppEventsLogger.persistedsessioninfo")
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.appevents.AppEventsLogger$PersistedAppSessionInfo.saveAppSessionInformation ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("AppEventsLogger.persistedsessioninfo", 0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.internal.NativeProtocol.fetchAllAvailableProtocolVersionsForAppInfo ===
+SUSPICIOUS_API: query
+NODE 1: $u15 := @parameter0: com.facebook.internal.NativeProtocol$NativeAppInfo
+NODE 2: $u-1 = staticinvoke <com.facebook.FacebookSdk: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: projection = newarray (java.lang.String)[1]
+NODE 5: $u-1#6 = staticinvoke <com.facebook.internal.NativeProtocol: android.net.Uri buildPlatformProviderVersionURI(com.facebook.internal.NativeProtocol$NativeAppInfo)>($u15)
+NODE 6: if pInfo == null goto (branch)
+NODE 7: $u-1#25 = virtualinvoke $u-1#3.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#6, projection, null, null, null)
+NODE 8: goto [?= (branch)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+EDGE: 8 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ProfileManager.loadCurrentProfile ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.facebook.ProfileManager
+NODE 2: $u2 = this.<com.facebook.ProfileManager: com.facebook.ProfileCache profileCache>
+NODE 3: $u-1 = virtualinvoke $u2.<com.facebook.ProfileCache: com.facebook.Profile load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.mediation.customevent.CustomEventAdapter.zzh ===
+SUSPICIOUS_API: forName
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.ads.mediation.customevent.CustomEventAdapter.zzh ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u3)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.zzaiy.zzaa ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1#6 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 3: $u0 = (android.view.WindowManager) $u-1#6
+NODE 4: $u-1#9 = interfaceinvoke $u0.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 5: if $u-1#11 == 0 goto $u0#18 = class "Landroid/view/Display;"
+NODE 6: $u0#18 = class "Landroid/view/Display;"
+NODE 7: $u5 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#22 = virtualinvoke $u0#18.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRawHeight", $u5)
+NODE 9: $u1#25 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#6 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u1#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.gms.internal.zzaiy.zzaa ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1#6 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 3: $u0 = (android.view.WindowManager) $u-1#6
+NODE 4: $u-1#9 = interfaceinvoke $u0.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 5: $u0#18 = class "Landroid/view/Display;"
+NODE 6: $u5 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#22 = virtualinvoke $u0#18.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRawWidth", $u5)
+NODE 8: $u1#25 = newarray (java.lang.Object)[0]
+NODE 9: $u-1#6 = virtualinvoke $u-1#22.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u1#25)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.appevents.AppEventStore.readAndClearStore ===
+SUSPICIOUS_API: openFileInput
+NODE 1: $u-1 = staticinvoke <com.facebook.FacebookSdk: android.content.Context getApplicationContext()>()
+NODE 2: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.io.FileInputStream openFileInput(java.lang.String)>("AppEventsLogger.persistedevents")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.appevents.AppEventStore.saveEventsToDisk ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: $u-1 = staticinvoke <com.facebook.FacebookSdk: android.content.Context getApplicationContext()>()
+NODE 2: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.io.FileOutputStream openFileOutput(java.lang.String,int)>("AppEventsLogger.persistedevents", 0)
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.f.j.d ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.LegacyTokenHelper.deserializeKey ===
+SUSPICIOUS_API: forName
+NODE 1: json = new org.json.JSONObject
+NODE 2: if $u-1#13 == 0 goto return
+NODE 3: $u-1 = virtualinvoke json.<org.json.JSONObject: java.lang.String getString(java.lang.String)>("enumType")
+NODE 4: $u-1#312 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.ads.internal.b.e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#6 = newarray (int)[2]
+NODE 2: $u1#8 = <java.lang.Boolean: java.lang.Class TYPE>
+NODE 3: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1#8, $u-1#6)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.places.internal.WifiScannerImpl.getConnectedWifi ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: this := @this: com.facebook.places.internal.WifiScannerImpl
+NODE 2: $u3 = this.<com.facebook.places.internal.WifiScannerImpl: android.net.wifi.WifiManager wifiManager>
+NODE 3: $u-1 = virtualinvoke $u3.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.messenger.MessengerUtils.getAllAvailableProtocolVersions ===
+SUSPICIOUS_API: query
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 3: $u-1#4 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://com.facebook.orca.provider.MessengerPlatformProvider/versions")
+NODE 4: projection = newarray (java.lang.String)[1]
+NODE 5: $u-1#10 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1#4, projection, null, null, null)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.facebook.AccessTokenCache.getLegacyAccessToken ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: com.facebook.AccessTokenCache
+NODE 2: $u-1 = specialinvoke this.<com.facebook.AccessTokenCache: com.facebook.LegacyTokenHelper getTokenCachingStrategy()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<com.facebook.LegacyTokenHelper: android.os.Bundle load()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

@@ -1,0 +1,122 @@
+=== FUNCTION: android.support.multidex.MultiDexExtractor.apply ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 := @parameter0: android.content.SharedPreferences$Editor
+NODE 2: $u0 = <android.support.multidex.MultiDexExtractor: java.lang.reflect.Method sApplyMethod>
+NODE 3: if $u0 == null goto interfaceinvoke $u2.<android.content.SharedPreferences$Editor: boolean commit()>()
+NODE 4: $u0 = <android.support.multidex.MultiDexExtractor: java.lang.reflect.Method sApplyMethod>
+NODE 5: $u1 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V19.makeDexElements ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: $u2 = newarray (java.lang.Class)[3]
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Method access$500(java.lang.Object,java.lang.String,java.lang.Class[])>($u8, "makeDexElements", $u2)
+NODE 4: $u1 = newarray (java.lang.Object)[3]
+NODE 5: $u8 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex$V14.makeDexElements ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Method access$500(java.lang.Object,java.lang.String,java.lang.Class[])>($u7, "makeDexElements", $u2)
+NODE 4: $u1 = newarray (java.lang.Object)[2]
+NODE 5: $u7 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u7, $u1)
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.expandFieldArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: $u-1 = staticinvoke <android.support.multidex.MultiDex: java.lang.reflect.Field findField(java.lang.Object,java.lang.String)>($u7, $u8)
+NODE 5: $u-1#2 = virtualinvoke $u-1.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u7)
+NODE 6: $u3 = (java.lang.Object[]) $u-1#2
+NODE 7: $u-1#7 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 9: $u4 = lengthof $u3
+NODE 10: $u5 = lengthof $u9
+NODE 11: $u5 = $u4 + $u5
+NODE 12: $u-1#2 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#7, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: if $u-1 == null goto $u2#9 = new java.lang.NoSuchFieldException
+NODE 5: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+NODE 6: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 7: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.findMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: parameterTypes := @parameter2: java.lang.Class[]
+NODE 4: $u-1 = virtualinvoke $u5.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: if $u-1 == null goto $u2#9 = new java.lang.NoSuchMethodException
+NODE 6: $u-1#3 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u6, parameterTypes)
+NODE 7: $u-1 = virtualinvoke $u-1.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 8: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.install ===
+SUSPICIOUS_API: load
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: if $u7#8 >= 4 goto $u-1 = staticinvoke <android.support.multidex.MultiDex: android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context)>($u11)
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context)>($u11)
+NODE 4: dexDir = new java.io.File
+NODE 5: $u-1#94 = staticinvoke <android.support.multidex.MultiDexExtractor: java.util.List load(android.content.Context,android.content.pm.ApplicationInfo,java.io.File,boolean)>($u11, $u-1, dexDir, 0)
+NODE 6: goto [?= dexDir = new java.io.File]
+EDGE: 2 -> 3
+EDGE: 6 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: android.support.multidex.MultiDex.install ===
+SUSPICIOUS_API: load
+NODE 1: $u11 := @parameter0: android.content.Context
+NODE 2: if $u7#8 >= 4 goto $u-1 = staticinvoke <android.support.multidex.MultiDex: android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context)>($u11)
+NODE 3: $u-1 = staticinvoke <android.support.multidex.MultiDex: android.content.pm.ApplicationInfo getApplicationInfo(android.content.Context)>($u11)
+NODE 4: dexDir = new java.io.File
+NODE 5: goto [?= dexDir = new java.io.File]
+NODE 6: $u-1#94 = staticinvoke <android.support.multidex.MultiDexExtractor: java.util.List load(android.content.Context,android.content.pm.ApplicationInfo,java.io.File,boolean)>($u11, $u-1, dexDir, 1)
+EDGE: 2 -> 3
+EDGE: 5 -> 4
+=== END FUNCTION ===
+

@@ -1,0 +1,629 @@
+=== FUNCTION: org.andengine.d.a.a.e.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andenginephysicsbox2dextension")
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.android.g.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u5 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.android.g.a.b ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter0: byte[]
+NODE 2: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u5 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.util.BufferUtils.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andengine")
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.a.c.b.a ===
+SUSPICIOUS_API: load
+NODE 1: $u4 := @parameter0: org.andengine.a.c.c
+NODE 2: $u5 := @parameter1: android.content.Context
+NODE 3: $u6 := @parameter2: java.lang.String
+NODE 4: $u-1 = virtualinvoke $u4.<org.andengine.a.c.c: android.media.SoundPool c()>()
+NODE 5: $u-1#3 = virtualinvoke $u5.<android.content.Context: android.content.res.AssetManager getAssets()>()
+NODE 6: $u2 = new java.lang.StringBuilder
+NODE 7: $u2 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u6)
+NODE 8: $u6 = virtualinvoke $u2.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u-1#13 = virtualinvoke $u-1#3.<android.content.res.AssetManager: android.content.res.AssetFileDescriptor openFd(java.lang.String)>($u6)
+NODE 10: $u-1#16 = virtualinvoke $u-1.<android.media.SoundPool: int load(android.content.res.AssetFileDescriptor,int)>($u-1#13, 1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.andengine.opengl.GLES20Fix.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("andengine")
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.venezia.service.verify.IApplicationVerificationService$Stub.onTransact ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: this := @this: com.amazon.venezia.service.verify.IApplicationVerificationService$Stub
+NODE 2: $u-1#6 = virtualinvoke this.<com.amazon.venezia.service.verify.IApplicationVerificationService$Stub: java.lang.String getDeviceId()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.android.c.a.a ===
+SUSPICIOUS_API: openFileOutput
+NODE 1: this := @this: com.amazon.android.c.a
+NODE 2: $u0 = new java.util.Random
+NODE 3: $u-1 = virtualinvoke $u0.<java.util.Random: int nextInt(int)>(99999)
+NODE 4: $u1 = new java.lang.StringBuilder
+NODE 5: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("s-")
+NODE 6: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(int)>($u-1)
+NODE 7: $u1 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>(".amzst")
+NODE 8: $u-1#14 = virtualinvoke $u1.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 9: $u1#16 = this.<com.amazon.android.c.a: android.app.Application d>
+NODE 10: $u-1#18 = virtualinvoke $u1#16.<android.app.Application: java.io.FileOutputStream openFileOutput(java.lang.String,int)>($u-1#14, 0)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.android.licensing.n.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: $u0 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u6, $u0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.amazon.android.licensing.n.execute ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <com.amazon.android.framework.util.c: java.lang.Class a(java.lang.String)>("com.amazon.drm.AmazonLicenseVerificationCallback")
+NODE 2: if $u-1 != null goto $u-1#5 = staticinvoke <com.amazon.android.licensing.n: java.lang.reflect.Method a(java.lang.Class,java.lang.String)>($u-1, "onDRMSuccess")
+NODE 3: $u-1#5 = staticinvoke <com.amazon.android.licensing.n: java.lang.reflect.Method a(java.lang.Class,java.lang.String)>($u-1, "onDRMSuccess")
+NODE 4: if $u1 == 0 goto $u2#21 = newarray (java.lang.Object)[0]
+NODE 5: $u2#21 = newarray (java.lang.Object)[0]
+NODE 6: virtualinvoke $u-1#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#21)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u0 != null goto return
+NODE 3: $u7#3 = (android.content.Context) $u7
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7#3)
+NODE 5: $u-1#7 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(244)
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u0 != null goto return
+NODE 3: $u7#3 = (android.content.Context) $u7
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7#3)
+NODE 5: $u-1#7 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 6: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u0 != null goto return
+NODE 3: $u7#3 = (android.content.Context) $u7
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7#3)
+NODE 5: $u-1#7 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(244)
+NODE 6: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+NODE 7: $u-1#11 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7#3)
+NODE 8: $u-1#7 = virtualinvoke $u-1#11.<qor.mqvs.skm.d: java.lang.String b(int)>(245)
+NODE 9: $u3 = newarray (java.lang.Class)[0]
+NODE 10: $u-1#18 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#7, $u3)
+NODE 11: $u7 = virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u7 := @parameter0: java.lang.Object
+NODE 2: if $u0 != null goto return
+NODE 3: $u7#3 = (android.content.Context) $u7
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7#3)
+NODE 5: $u-1#7 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 6: $u-1#23 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#7)
+NODE 7: $u3 = newarray (java.lang.Class)[4]
+NODE 8: $u-1#34 = virtualinvoke $u-1#23.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3)
+NODE 9: $u2 = newarray (java.lang.Object)[4]
+NODE 10: $u7 = virtualinvoke $u-1#34.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#8 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(248)
+NODE 6: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#8 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(248)
+NODE 6: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+NODE 7: $u-1#8 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(249)
+NODE 8: $u4 = newarray (java.lang.Class)[0]
+NODE 9: $u-1#17 = virtualinvoke $u-1#10.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#8, $u4)
+NODE 10: $u5 = newarray (java.lang.Object)[0]
+NODE 11: $u9 = virtualinvoke $u-1#17.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#8 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(248)
+NODE 6: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+NODE 7: $u-1#8 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(250)
+NODE 8: $u-1#27 = virtualinvoke $u-1#10.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u-1#8)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(251)
+NODE 6: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(251)
+NODE 6: $u-1#8 = $u-1#5
+NODE 7: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+NODE 8: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(252)
+NODE 9: $u-1#8 = $u-1#5
+NODE 10: goto [?= $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(251)
+NODE 6: $u-1#8 = $u-1#5
+NODE 7: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)
+NODE 8: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(253)
+NODE 9: $u-1#27 = virtualinvoke $u-1#10.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u-1#5)
+NODE 10: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(252)
+NODE 11: $u-1#8 = $u-1#5
+NODE 12: goto [?= $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#8)]
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 6: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u9 := @parameter0: java.lang.Object
+NODE 2: if $u10 == 0 goto return
+NODE 3: $u9#2 = (android.content.Context) $u9
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u9#2)
+NODE 5: $u-1#5 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 6: $u-1#10 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 7: $u4 = newarray (java.lang.Class)[4]
+NODE 8: $u-1#67 = virtualinvoke $u-1#10.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u4)
+NODE 9: $u5 = newarray (java.lang.Object)[4]
+NODE 10: $u9 = virtualinvoke $u-1#67.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = <qor.mqvs.skm.b: java.lang.String b>
+NODE 3: if $u0 != null goto return
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u5)
+NODE 5: $u0 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(254)
+NODE 6: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.b ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = <qor.mqvs.skm.b: java.lang.String b>
+NODE 3: if $u0 != null goto return
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u5)
+NODE 5: $u0 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(254)
+NODE 6: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 7: $u2 = newarray (java.lang.Class)[2]
+NODE 8: $u0 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(255)
+NODE 9: $u-1#18 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u0, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.b.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u0 = <qor.mqvs.skm.b: java.lang.String b>
+NODE 3: if $u0 != null goto return
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u5)
+NODE 5: $u0 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(254)
+NODE 6: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u0)
+NODE 7: $u2 = newarray (java.lang.Class)[2]
+NODE 8: $u0 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(255)
+NODE 9: $u-1#18 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u0, $u2)
+NODE 10: $u2#21 = newarray (java.lang.Object)[2]
+NODE 11: $u-1#29 = virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u5, $u2#21)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7)
+NODE 3: $u-1#4 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 4: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u8 := @parameter1: java.lang.Object
+NODE 3: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7)
+NODE 4: $u-1#4 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(246)
+NODE 5: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#4)
+NODE 6: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u7)
+NODE 7: $u-1#4 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(247)
+NODE 8: $u4 = newarray (java.lang.Class)[1]
+NODE 9: $u-1#15 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u-1#4, $u4)
+NODE 10: $u3 = newarray (java.lang.Object)[1]
+NODE 11: $u8 = virtualinvoke $u-1#15.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u1 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u1)
+NODE 5: $u-1#6 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(233)
+NODE 6: $u-1#9 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#6, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u1 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u1)
+NODE 5: $u-1#6 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(233)
+NODE 6: $u-1#9 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#6, null)
+NODE 7: $u1#12 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 8: virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#12, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[3]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#10 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#10)
+NODE 6: $u-1#14 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(232)
+NODE 7: $u-1#16 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[3]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#10 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#10)
+NODE 6: $u-1#14 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(232)
+NODE 7: $u-1#16 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u0)
+NODE 8: $u1 = newarray (java.lang.Object)[3]
+NODE 9: $u2#30 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 10: virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#30, $u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: if $u5 != null goto $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u1 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 6: $u1#9 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: if $u5 != null goto $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u1 = newarray (java.lang.Class)[2]
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u1)
+NODE 6: $u1#9 = newarray (java.lang.Object)[2]
+NODE 7: $u-1#12 = virtualinvoke $u-1.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#9)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[2]
+NODE 3: $u1 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2)
+NODE 6: $u-1#12 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(230)
+NODE 7: $u-1#14 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#12, $u0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[2]
+NODE 3: $u1 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2)
+NODE 6: $u-1#12 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(230)
+NODE 7: $u-1#14 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#12, $u0)
+NODE 8: $u1#18 = newarray (java.lang.Object)[2]
+NODE 9: $u2#22 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 10: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#22, $u1#18)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[3]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#10 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#10)
+NODE 6: $u-1#14 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(230)
+NODE 7: $u-1#16 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[3]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#10 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#10)
+NODE 6: $u-1#14 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(230)
+NODE 7: $u-1#16 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#14, $u0)
+NODE 8: $u1 = newarray (java.lang.Object)[3]
+NODE 9: $u2#27 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 10: virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#27, $u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[1]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#6 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#6)
+NODE 6: $u-1#10 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(231)
+NODE 7: $u-1#12 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#10, $u0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = newarray (java.lang.Class)[1]
+NODE 3: $u2 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 4: $u2#6 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 5: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u2#6)
+NODE 6: $u-1#10 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(231)
+NODE 7: $u-1#12 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#10, $u0)
+NODE 8: $u1 = newarray (java.lang.Object)[1]
+NODE 9: $u2#20 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 10: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#20, $u1)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.b ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u1 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u1)
+NODE 5: $u-1#6 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(234)
+NODE 6: $u-1#9 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#6, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: qor.mqvs.skm.c.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: qor.mqvs.skm.c
+NODE 2: $u0 = this.<qor.mqvs.skm.c: java.lang.Class b>
+NODE 3: $u1 = this.<qor.mqvs.skm.c: android.content.Context a>
+NODE 4: $u-1 = staticinvoke <qor.mqvs.skm.d: qor.mqvs.skm.d a(android.content.Context)>($u1)
+NODE 5: $u-1#6 = virtualinvoke $u-1.<qor.mqvs.skm.d: java.lang.String b(int)>(234)
+NODE 6: $u-1#9 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1#6, null)
+NODE 7: $u1#12 = this.<qor.mqvs.skm.c: java.lang.Object c>
+NODE 8: virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#12, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+

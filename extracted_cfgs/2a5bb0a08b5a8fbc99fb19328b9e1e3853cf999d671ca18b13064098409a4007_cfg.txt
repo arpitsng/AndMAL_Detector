@@ -1,0 +1,1076 @@
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtLoader.loadApplication ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u17 := @parameter0: android.os.Bundle
+NODE 2: classLoader = new dalvik.system.DexClassLoader
+NODE 3: $u-1#7 = virtualinvoke $u17.<android.os.Bundle: java.lang.String getString(java.lang.String)>("loader.class.name")
+NODE 4: $u-1#122 = virtualinvoke classLoader.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#7)
+NODE 5: $u-1#123 = virtualinvoke $u-1#122.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtLoader.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u17 := @parameter0: android.os.Bundle
+NODE 2: classLoader = new dalvik.system.DexClassLoader
+NODE 3: $u-1#7 = virtualinvoke $u17.<android.os.Bundle: java.lang.String getString(java.lang.String)>("loader.class.name")
+NODE 4: $u-1#122 = virtualinvoke classLoader.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#7)
+NODE 5: $u-1#123 = virtualinvoke $u-1#122.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1#122 = virtualinvoke $u-1#123.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u13 = newarray (java.lang.Class)[3]
+NODE 8: $u-1#136 = virtualinvoke $u-1#122.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("loadApplication", $u13)
+NODE 9: $u11#138 = newarray (java.lang.Object)[3]
+NODE 10: $u-1#144 = virtualinvoke $u-1#136.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#123, $u11#138)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtLoader.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u17 := @parameter0: android.os.Bundle
+NODE 2: classLoader = new dalvik.system.DexClassLoader
+NODE 3: $u-1#7 = virtualinvoke $u17.<android.os.Bundle: java.lang.String getString(java.lang.String)>("loader.class.name")
+NODE 4: $u-1#122 = virtualinvoke classLoader.<dalvik.system.DexClassLoader: java.lang.Class loadClass(java.lang.String)>($u-1#7)
+NODE 5: $u-1#123 = virtualinvoke $u-1#122.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 6: $u-1#122 = virtualinvoke $u-1#123.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u13 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#136 = virtualinvoke $u-1#122.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("startApplication", $u13)
+NODE 9: $u11#138 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#123 = virtualinvoke $u-1#136.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#123, $u11#138)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtServiceDelegate.loadApplication ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u14 := @parameter1: java.lang.ClassLoader
+NODE 2: $u15 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#20 = virtualinvoke $u15.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u1 = 0
+NODE 6: if $u1 >= $u3 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0 = $u-1#20[$u1]
+NODE 8: if $u-1#26 != 0 goto $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 9: $u1 = $u1 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 12: $u-1#31 = virtualinvoke $u-1#29.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: goto [?= $u1 = $u1 + 1]
+NODE 14: goto [?= $u1 = $u1 + 1]
+NODE 15: goto [?= $u1 = $u1 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 13 -> 9
+EDGE: 14 -> 9
+EDGE: 15 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtServiceDelegate.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u14 := @parameter1: java.lang.ClassLoader
+NODE 2: $u15 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#20 = virtualinvoke $u15.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u1 = 0
+NODE 6: if $u1 >= $u3 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0 = $u-1#20[$u1]
+NODE 8: if $u-1#26 != 0 goto $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 9: $u1 = $u1 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 12: $u-1#31 = virtualinvoke $u-1#29.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: $u6 = newarray (java.lang.Class)[2]
+NODE 14: $u-1#40 = virtualinvoke $u-1#29.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setService", $u6)
+NODE 15: $u6#43 = newarray (java.lang.Object)[2]
+NODE 16: virtualinvoke $u-1#40.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u6#43)
+NODE 17: goto [?= $u1 = $u1 + 1]
+NODE 18: goto [?= $u1 = $u1 + 1]
+NODE 19: goto [?= $u1 = $u1 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 17 -> 9
+EDGE: 18 -> 9
+EDGE: 19 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtServiceDelegate.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u14 := @parameter1: java.lang.ClassLoader
+NODE 2: $u15 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#20 = virtualinvoke $u15.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u1 = 0
+NODE 6: if $u1 >= $u3 goto $u-1#61 = virtualinvoke $u15.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0 = $u-1#20[$u1]
+NODE 8: if $u-1#26 != 0 goto $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 9: $u1 = $u1 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#29 = virtualinvoke $u14.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0)
+NODE 12: $u-1#31 = virtualinvoke $u-1#29.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: $u6 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#40 = virtualinvoke $u-1#29.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setContext", $u6)
+NODE 15: $u6#43 = newarray (java.lang.Object)[1]
+NODE 16: virtualinvoke $u-1#40.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#31, $u6#43)
+NODE 17: goto [?= $u1 = $u1 + 1]
+NODE 18: goto [?= $u1 = $u1 + 1]
+NODE 19: goto [?= $u1 = $u1 + 1]
+NODE 20: goto [?= $u6 = newarray (java.lang.Class)[1]]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 9
+EDGE: 18 -> 9
+EDGE: 19 -> 9
+EDGE: 20 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative$3.run ===
+SUSPICIOUS_API: load
+NODE 1: $u2 = new java.io.File
+NODE 2: if $u-1#4 != 0 goto $u1#62 = $u2
+NODE 3: $u1#62 = new java.io.File
+NODE 4: if $u-1#4 == 0 goto $u1 = new java.lang.StringBuilder
+NODE 5: $u-1#18 = virtualinvoke $u1#62.<java.io.File: java.lang.String getAbsolutePath()>()
+NODE 6: staticinvoke <java.lang.System: void load(java.lang.String)>($u-1#18)
+NODE 7: $u1#62 = $u2
+NODE 8: goto [?= $u1#62 = new java.io.File]
+NODE 9: $u1#62 = $u2
+EDGE: 2 -> 9
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 8 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative$2.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.qtproject.qt5.android.QtNative$2
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtNative$2: java.util.ArrayList val$libraries>
+NODE 3: if $u0 != null goto $u0 = this.<org.qtproject.qt5.android.QtNative$2: java.util.ArrayList val$libraries>
+NODE 4: $u0 = this.<org.qtproject.qt5.android.QtNative$2: java.util.ArrayList val$libraries>
+NODE 5: $u-1 = virtualinvoke $u0.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 6: if $u-1#4 == 0 goto return
+NODE 7: $u-1#6 = interfaceinvoke $u-1.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: $u0#8 = (java.lang.String) $u-1#6
+NODE 9: if $u-1#4 == 0 goto $u4 = new java.lang.StringBuilder
+NODE 10: staticinvoke <java.lang.System: void load(java.lang.String)>($u0#8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative$5.run ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: org.qtproject.qt5.android.QtNative$5
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtNative$5: java.lang.String val$mainLibraryPath>
+NODE 3: staticinvoke <java.lang.System: void load(java.lang.String)>($u0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtMessageDialogHelper$1.run ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#175 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtMessageDialogHelper$1.run ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#175 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 2: $u-1#178 = virtualinvoke $u-1#175.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("borderlessButtonStyle")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.dispatchGenericMotionEvent ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: if $u2 == 0 goto $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_dispatchGenericMotionEvent>
+NODE 3: if $u2 == 0 goto $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_dispatchGenericMotionEvent>
+NODE 4: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_dispatchGenericMotionEvent>
+NODE 5: $u2#6 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 6: $u3 = newarray (java.lang.Object)[1]
+NODE 7: $u-1 = virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2#6, $u3)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.dispatchKeyEvent ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: if $u0 == 0 goto $u0#34 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_dispatchKeyEvent>
+NODE 3: $u0#34 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_dispatchKeyEvent>
+NODE 4: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 5: $u3 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#39 = virtualinvoke $u0#34.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.loadApplication ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u13 := @parameter1: java.lang.ClassLoader
+NODE 2: $u14 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#16 = virtualinvoke $u14.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u3 = 0
+NODE 6: if $u3 >= $u5 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0#20 = $u-1#16[$u3]
+NODE 8: if $u-1#21 != 0 goto $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 9: $u3 = $u3 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 12: $u-1#26 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: goto [?= $u3 = $u3 + 1]
+NODE 14: goto [?= $u3 = $u3 + 1]
+NODE 15: goto [?= $u3 = $u3 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 13 -> 9
+EDGE: 14 -> 9
+EDGE: 15 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u13 := @parameter1: java.lang.ClassLoader
+NODE 2: $u14 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#16 = virtualinvoke $u14.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u3 = 0
+NODE 6: if $u3 >= $u5 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0#20 = $u-1#16[$u3]
+NODE 8: if $u-1#21 != 0 goto $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 9: $u3 = $u3 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 12: $u-1#26 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: $u8 = newarray (java.lang.Class)[2]
+NODE 14: $u-1#35 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setActivity", $u8)
+NODE 15: $u8#38 = newarray (java.lang.Object)[2]
+NODE 16: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u8#38)
+NODE 17: goto [?= $u3 = $u3 + 1]
+NODE 18: goto [?= $u3 = $u3 + 1]
+NODE 19: goto [?= $u3 = $u3 + 1]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 14 -> 15
+EDGE: 17 -> 9
+EDGE: 18 -> 9
+EDGE: 19 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.loadApplication ===
+SUSPICIOUS_API: invoke
+NODE 1: $u13 := @parameter1: java.lang.ClassLoader
+NODE 2: $u14 := @parameter2: android.os.Bundle
+NODE 3: if $u-1 == 0 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 4: $u-1#16 = virtualinvoke $u14.<android.os.Bundle: java.lang.String[] getStringArray(java.lang.String)>("static.init.classes")
+NODE 5: $u3 = 0
+NODE 6: if $u3 >= $u5 goto $u-1#56 = virtualinvoke $u14.<android.os.Bundle: java.util.ArrayList getStringArrayList(java.lang.String)>("native.libraries")
+NODE 7: $u0#20 = $u-1#16[$u3]
+NODE 8: if $u-1#21 != 0 goto $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 9: $u3 = $u3 + 1
+NODE 10: goto [?= (branch)]
+NODE 11: $u-1#24 = virtualinvoke $u13.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>($u0#20)
+NODE 12: $u-1#26 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 13: $u8 = newarray (java.lang.Class)[1]
+NODE 14: $u-1#35 = virtualinvoke $u-1#24.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setContext", $u8)
+NODE 15: $u8#38 = newarray (java.lang.Object)[1]
+NODE 16: virtualinvoke $u-1#35.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#26, $u8#38)
+NODE 17: goto [?= $u3 = $u3 + 1]
+NODE 18: goto [?= $u3 = $u3 + 1]
+NODE 19: goto [?= $u3 = $u3 + 1]
+NODE 20: goto [?= $u8 = newarray (java.lang.Class)[1]]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 8 -> 11
+EDGE: 9 -> 10
+EDGE: 10 -> 6
+EDGE: 11 -> 12
+EDGE: 14 -> 15
+EDGE: 16 -> 17
+EDGE: 17 -> 9
+EDGE: 18 -> 9
+EDGE: 19 -> 9
+EDGE: 20 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onActivityResult ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onActivityResult>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[3]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onConfigurationChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onConfigurationChanged>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onRestoreInstanceState ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onRestoreInstanceState>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onRetainNonConfigurationInstance ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onRetainNonConfigurationInstance>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[0]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onSaveInstanceState ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onSaveInstanceState>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.onWindowFocusChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.qtproject.qt5.android.QtActivityDelegate
+NODE 2: $u0 = this.<org.qtproject.qt5.android.QtActivityDelegate: java.lang.reflect.Method m_super_onWindowFocusChanged>
+NODE 3: $u1 = this.<org.qtproject.qt5.android.QtActivityDelegate: android.app.Activity m_activity>
+NODE 4: $u2 = newarray (java.lang.Object)[1]
+NODE 5: virtualinvoke $u0.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtActivityDelegate.setFullScreen ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0#9 < 19 goto $u0#25 = this.<org.qtproject.qt5.android.QtActivityDelegate: org.qtproject.qt5.android.QtLayout m_layout>
+NODE 2: $u0#11 = class "Landroid/view/View;"
+NODE 3: $u-1#13 = virtualinvoke $u0#11.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("SYSTEM_UI_FLAG_IMMERSIVE_STICKY")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtActivityLoader.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#15 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$style")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtActivityLoader.onCreate ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#15 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$style")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtActivityLoader.onCreate ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.bindings.QtActivityLoader
+NODE 2: $u-1#15 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$style")
+NODE 3: $u-1#27 = this.<org.qtproject.qt5.android.bindings.QtActivityLoader: java.lang.String QT_ANDROID_DEFAULT_THEME>
+NODE 4: f = virtualinvoke $u-1#15.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u-1#27)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.multimedia.QtCameraListener.setupPreviewCallback ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u2#35 == null goto $u-1#40 = newarray (int)[2]
+NODE 2: if $u-1#7 == $u0 goto virtualinvoke $u9.<android.hardware.Camera: void setPreviewCallbackWithBuffer(android.hardware.Camera$PreviewCallback)>(this)
+NODE 3: $u-1#40 = newarray (int)[2]
+NODE 4: $u2#42 = <java.lang.Byte: java.lang.Class TYPE>
+NODE 5: $u-1#43 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u2#42, $u-1#40)
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative.checkSelfPermission ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <org.qtproject.qt5.android.QtNative: android.content.Context getContext()>()
+NODE 2: if $u3 < 23 goto $u-1#21 = virtualinvoke $u-1.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u3#5 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_checkSelfPermissionMethod>
+NODE 4: if $u3#5 != null goto $u3#5 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_checkSelfPermissionMethod>
+NODE 5: $u3#5 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_checkSelfPermissionMethod>
+NODE 6: $u4 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#16 = virtualinvoke $u3#5.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative.sendTouchEvent ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u13 := @parameter0: android.view.MotionEvent
+NODE 2: if $u-1 == 0 goto staticinvoke <org.qtproject.qt5.android.QtNative: void touchBegin(int)>($u14)
+NODE 3: if $u5 == 0 goto staticinvoke <org.qtproject.qt5.android.QtNative: void touchBegin(int)>($u14)
+NODE 4: $u-1#7 = virtualinvoke $u13.<android.view.MotionEvent: int getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtNative.updatePrimaryClip ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u0#6 < 26 goto $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>
+NODE 2: $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>
+NODE 3: if $u0#8 != null goto $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>
+NODE 4: $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>
+NODE 5: if $u0#8 == null goto $u-1#28 = virtualinvoke $u6.<android.content.ClipData: android.content.ClipData$Item getItemAt(int)>(0)
+NODE 6: $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>
+NODE 7: $u2 = <org.qtproject.qt5.android.QtNative: android.app.Activity m_activity>
+NODE 8: $u-1#22 = virtualinvoke $u2.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 9: $u3 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u0#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#22, $u3)
+NODE 11: goto [?= $u0#8 = <org.qtproject.qt5.android.QtNative: java.lang.reflect.Method m_addItemMethod>]
+EDGE: 1 -> 2
+EDGE: 1 -> 4
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 11 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.multimedia.QtMultimediaUtils.getDefaultMediaDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractWindow ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractWindow ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u0 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#6 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("Window")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractWindow ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("windowBackground")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractWindow ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("windowFrame")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getClass ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getRotateDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.graphics.drawable.RotateDrawable
+NODE 2: if $u3 >= 23 goto $u-1#59 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#59 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u6 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#64 = virtualinvoke $u-1#59.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDrawable", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#13 = virtualinvoke $u-1#64.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u8, $u5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getStateListDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter0: java.lang.Object
+NODE 2: $u12#3 = (android.graphics.drawable.StateListDrawable) $u12
+NODE 3: $u10 = class "Landroid/graphics/drawable/StateListDrawable;"
+NODE 4: $u4 = newarray (java.lang.Class)[0]
+NODE 5: $u-1 = virtualinvoke $u10.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getStateCount", $u4)
+NODE 6: $u2 = newarray (java.lang.Object)[0]
+NODE 7: $u12 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12#3, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getStateListDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter0: java.lang.Object
+NODE 2: $u12#3 = (android.graphics.drawable.StateListDrawable) $u12
+NODE 3: $u10 = class "Landroid/graphics/drawable/StateListDrawable;"
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u10.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getStateDrawable", $u4)
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: $u12 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12#3, $u2)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getStateListDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u12 := @parameter0: java.lang.Object
+NODE 2: $u12#3 = (android.graphics.drawable.StateListDrawable) $u12
+NODE 3: $u9 = class "Landroid/graphics/drawable/StateListDrawable;"
+NODE 4: $u4 = newarray (java.lang.Class)[1]
+NODE 5: $u-1 = virtualinvoke $u9.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getStateSet", $u4)
+NODE 6: $u2 = newarray (java.lang.Object)[1]
+NODE 7: $u12 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u12#3, $u2)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getVPath ===
+SUSPICIOUS_API: invoke
+NODE 1: $u13 := @parameter0: java.lang.Object
+NODE 2: $u-1 = virtualinvoke $u13.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u3#47 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#48 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isClipPath", $u3#47)
+NODE 5: $u0 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#9 = virtualinvoke $u-1#48.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u13, $u0)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.stateSetUnion ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u0 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("ViewDrawableStates")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractAbsSeekBar ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractAbsSeekBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractAbsSeekBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("SeekBar")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractAbsSeekBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: if $u-1#31 == null goto $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 4: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("SeekBar_thumbOffset")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCalendar ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCalendar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCalendar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("CalendarView")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCalendar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: if $u-1#31 == null goto $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 4: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("CalendarView_dateTextAppearance")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCalendar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("CalendarView_weekDayTextAppearance")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCheckedTextView ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCheckedTextView ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 2: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("textViewStyle")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCheckedTextView ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#9 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("CheckedTextView")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCompoundButton ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCompoundButton ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractCompoundButton ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("CompoundButton")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractImageViewInformations ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractImageViewInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractImageViewInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("ImageView")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractListView ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractListView ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractListView ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("ListView")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractProgressBarInfo ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractProgressBarInfo ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u10)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractProgressBarInfo ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("ProgressBar")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractSwitch ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractSwitch ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$attr")
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractSwitch ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("Switch")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractSwitch ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: if $u-1#27 == null goto $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("Switch_switchTextAppearance")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTabBar ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTabBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTabBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("LinearLayout")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearance ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u0 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TextAppearance")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearanceInformations ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearanceInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u23 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u23)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearanceInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TextView")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearanceInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: if -1 != $u26 goto (branch)
+NODE 3: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 4: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TextView_textAppearance")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractTextAppearanceInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#14 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("TextAppearance")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractToolBar ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractToolBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter1: java.lang.String
+NODE 2: $u-1#6 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.R$attr")
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u8)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractToolBar ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u-1#6 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1#8 = virtualinvoke $u-1#6.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("ActionBar")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.extractViewInformations ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: this := @this: org.qtproject.qt5.android.ExtractStyle
+NODE 2: $u0 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class styleableClass>
+NODE 3: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("View")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getAccessibleField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u11 := @parameter0: java.lang.Object
+NODE 2: if $u1 == 0 goto $u2#74 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class rippleDrawableClass>
+NODE 3: $u1#59 = (android.graphics.drawable.BitmapDrawable) $u11
+NODE 4: if $u3 < 18 goto $u3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 5: $u2#74 = class "Landroid/graphics/drawable/BitmapDrawable;"
+NODE 6: $u7 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#78 = virtualinvoke $u2#74.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("hasAntiAlias", $u7)
+NODE 8: $u6 = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#78.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#59, $u6)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u11 := @parameter0: java.lang.Object
+NODE 2: if $u1 == 0 goto $u2#74 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class rippleDrawableClass>
+NODE 3: $u1#59 = (android.graphics.drawable.BitmapDrawable) $u11
+NODE 4: $u2#74 = class "Landroid/graphics/drawable/BitmapDrawable;"
+NODE 5: $u7 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#78 = virtualinvoke $u2#74.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("hasMipMap", $u7)
+NODE 7: $u6 = newarray (java.lang.Object)[0]
+NODE 8: $u-1 = virtualinvoke $u-1#78.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#59, $u6)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u11 := @parameter0: java.lang.Object
+NODE 2: if $u1 == 0 goto $u2#74 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class rippleDrawableClass>
+NODE 3: $u1#59 = (android.graphics.drawable.BitmapDrawable) $u11
+NODE 4: if $u3 < 21 goto (branch)
+NODE 5: $u2#74 = class "Landroid/graphics/drawable/BitmapDrawable;"
+NODE 6: $u7 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#78 = virtualinvoke $u2#74.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getTintMode", $u7)
+NODE 8: $u6 = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#78.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#59, $u6)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getDrawable ===
+SUSPICIOUS_API: invoke
+NODE 1: $u11 := @parameter0: java.lang.Object
+NODE 2: if $u1 == 0 goto $u2#74 = this.<org.qtproject.qt5.android.ExtractStyle: java.lang.Class rippleDrawableClass>
+NODE 3: $u1#59 = (android.graphics.drawable.BitmapDrawable) $u11
+NODE 4: $u2#74 = class "Landroid/graphics/drawable/BitmapDrawable;"
+NODE 5: $u7 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#78 = virtualinvoke $u2#74.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getTint", $u7)
+NODE 7: $u6 = newarray (java.lang.Object)[0]
+NODE 8: $u-1 = virtualinvoke $u-1#78.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1#59, $u6)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.getField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.ExtractStyle.tryGetAccessibleField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: java.lang.Class
+NODE 2: $u6 := @parameter1: java.lang.String
+NODE 3: if $u5 != null goto $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+NODE 4: $u-1 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtMessageDialogHelper.getStyledDrawable ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.QtMessageDialogHelper.getStyledDrawable ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.R$attr")
+NODE 3: $u-1#6 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u5)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtApplication.invokeDelegateMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u2 := @parameter0: java.lang.reflect.Method
+NODE 2: $u3 := @parameter1: java.lang.Object[]
+NODE 3: $u-1 = <org.qtproject.qt5.android.bindings.QtApplication: java.lang.Object m_delegateObject>
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.qtproject.qt5.android.bindings.QtApplication.setQtContextDelegate ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: delegateMethods = new java.util.ArrayList
+NODE 3: if $u8 >= $u11 goto $u-1#29 = virtualinvoke delegateMethods.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 4: goto [?= (branch)]
+NODE 5: $u-1#29 = virtualinvoke delegateMethods.<java.util.ArrayList: java.util.Iterator iterator()>()
+NODE 6: if $u-1#14 == 0 goto return
+NODE 7: $u15 = interfaceinvoke $u-1#29.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: m = (java.lang.reflect.Method) $u15
+NODE 9: $u-1 = virtualinvoke m.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 10: $u-1#38 = virtualinvoke m.<java.lang.reflect.Method: java.lang.Class[] getParameterTypes()>()
+NODE 11: virtualinvoke clazz.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u-1, $u-1#38)
+EDGE: 3 -> 5
+EDGE: 4 -> 3
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+

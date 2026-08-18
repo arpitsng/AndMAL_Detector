@@ -1,0 +1,290 @@
+=== FUNCTION: com.phonegap.NetworkManager.execute ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.phonegap.NetworkManager
+NODE 2: $u4#11 = this.<com.phonegap.NetworkManager: android.net.ConnectivityManager sockMan>
+NODE 3: $u-1#12 = virtualinvoke $u4#11.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.DirectoryManager.getFreeDiskSpace ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#4 == 0 goto (branch)
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.DirectoryManager.getTempDirectoryPath ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#9 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.DirectoryManager.testFileExists ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 != 0 goto return 0
+NODE 2: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.api.PluginManager.addPlugin ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.phonegap.api.PluginManager
+NODE 2: $u8 := @parameter1: java.lang.String
+NODE 3: $u-1 = specialinvoke this.<com.phonegap.api.PluginManager: java.lang.Class getClassByName(java.lang.String)>($u8)
+NODE 4: if $u-1#2 == 0 goto return null
+NODE 5: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.api.PluginManager.getClassByName ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: if $u2 == null goto return null
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.FileUtils.atRootDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.FileUtils.atRootDirectory ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#21 != 0 goto return 1
+NODE 2: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#34 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.FileUtils.requestFileSystem ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#7 == 0 goto $u3 = new java.lang.StringBuilder
+NODE 2: $u-1#11 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.CameraLauncher.queryImgDB ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.phonegap.CameraLauncher
+NODE 2: $u0 = this.<com.phonegap.CameraLauncher: com.phonegap.api.PhonegapActivity ctx>
+NODE 3: $u-1 = virtualinvoke $u0.<com.phonegap.api.PhonegapActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.MediaStore$Images$Media: android.net.Uri EXTERNAL_CONTENT_URI>
+NODE 5: $u2 = newarray (java.lang.String)[1]
+NODE 6: $u-1#6 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, $u2, null, null, null)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.CameraLauncher.execute ===
+SUSPICIOUS_API: takePicture
+NODE 1: this := @this: com.phonegap.CameraLauncher
+NODE 2: $u11 := @parameter1: org.json.JSONArray
+NODE 3: if $u-1 == 0 goto r = new com.phonegap.api.PluginResult
+NODE 4: srcType = 1
+NODE 5: destType = 1
+NODE 6: $u-1#12 = virtualinvoke $u11.<org.json.JSONArray: org.json.JSONObject optJSONObject(int)>(0)
+NODE 7: if $u-1#12 == null goto (branch)
+NODE 8: srcType = virtualinvoke $u-1#12.<org.json.JSONObject: int getInt(java.lang.String)>("sourceType")
+NODE 9: destType = virtualinvoke $u-1#12.<org.json.JSONObject: int getInt(java.lang.String)>("destinationType")
+NODE 10: if srcType != 1 goto (branch)
+NODE 11: srcType = this.<com.phonegap.CameraLauncher: int encodingType>
+NODE 12: virtualinvoke this.<com.phonegap.CameraLauncher: void takePicture(int,int)>(destType, srcType)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 10
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.AudioHandler.startRecordingAudio ===
+SUSPICIOUS_API: startRecording
+NODE 1: $u4 := @parameter1: java.lang.String
+NODE 2: if $u-1 == 0 goto audio = new com.phonegap.AudioPlayer
+NODE 3: audio = new com.phonegap.AudioPlayer
+NODE 4: virtualinvoke audio.<com.phonegap.AudioPlayer: void startRecording(java.lang.String)>($u4)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.AudioPlayer.<init> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.NetworkListener.getLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.phonegap.NetworkListener
+NODE 2: $u0 = this.<com.phonegap.NetworkListener: android.location.LocationManager mLocMan>
+NODE 3: $u-1 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("network")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.NetworkListener.start ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.phonegap.NetworkListener
+NODE 2: $u7 := @parameter0: int
+NODE 3: $u0 = this.<com.phonegap.NetworkListener: android.location.LocationManager mLocMan>
+NODE 4: $u2 = (long) $u7
+NODE 5: virtualinvoke $u0.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("network", $u2, 0.0F, this)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.GpsListener.getLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: this := @this: com.phonegap.GpsListener
+NODE 2: $u0 = this.<com.phonegap.GpsListener: android.location.LocationManager mLocMan>
+NODE 3: $u-1 = virtualinvoke $u0.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>("gps")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.GpsListener.start ===
+SUSPICIOUS_API: requestLocationUpdates
+NODE 1: this := @this: com.phonegap.GpsListener
+NODE 2: $u7 := @parameter0: int
+NODE 3: $u0#3 = this.<com.phonegap.GpsListener: android.location.LocationManager mLocMan>
+NODE 4: $u2 = (long) $u7
+NODE 5: virtualinvoke $u0#3.<android.location.LocationManager: void requestLocationUpdates(java.lang.String,long,float,android.location.LocationListener)>("gps", $u2, 0.0F, this)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.CordovaChromeClient.onGeolocationPermissionsShowPrompt ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.String
+NODE 2: $u4 := @parameter1: android.webkit.GeolocationPermissions$Callback
+NODE 3: interfaceinvoke $u4.<android.webkit.GeolocationPermissions$Callback: void invoke(java.lang.String,boolean,boolean)>($u3, 1, 0)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.CordovaChromeClient.onJsPrompt ===
+SUSPICIOUS_API: exec
+NODE 1: this := @this: com.phonegap.CordovaChromeClient
+NODE 2: $u17 := @parameter2: java.lang.String
+NODE 3: if $u-1 == 0 goto (branch)
+NODE 4: array = new org.json.JSONArray
+NODE 5: $u16 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(0)
+NODE 6: $u18 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(1)
+NODE 7: $u1#7 = virtualinvoke array.<org.json.JSONArray: java.lang.String getString(int)>(2)
+NODE 8: reqOk = virtualinvoke array.<org.json.JSONArray: boolean getBoolean(int)>(3)
+NODE 9: $u1 = this.<com.phonegap.CordovaChromeClient: com.phonegap.DroidGap ctx>
+NODE 10: $u1#39 = $u1.<com.phonegap.DroidGap: com.phonegap.api.PluginManager pluginManager>
+NODE 11: $u16 = virtualinvoke $u1#39.<com.phonegap.api.PluginManager: java.lang.String exec(java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean)>($u16, $u18, $u1#7, $u17, reqOk)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.ContactAccessorSdk5.getContactById ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.phonegap.ContactAccessorSdk5
+NODE 2: $u0 = this.<com.phonegap.ContactAccessorSdk5: android.app.Activity mApp>
+NODE 3: $u-1 = virtualinvoke $u0.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 5: $u4 = newarray (java.lang.String)[1]
+NODE 6: $u-1#5 = virtualinvoke $u-1.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, "contact_id = ? ", $u4, "contact_id ASC")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.ContactAccessorSdk5.search ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.phonegap.ContactAccessorSdk5
+NODE 2: $u20 := @parameter0: org.json.JSONArray
+NODE 3: $u21 := @parameter1: org.json.JSONObject
+NODE 4: if $u21 == null goto $u-1 = "%"
+NODE 5: $u-1 = virtualinvoke $u21.<org.json.JSONObject: java.lang.String optString(java.lang.String)>("filter")
+NODE 6: if $u-1#8 != 0 goto $u3#41 = new java.lang.StringBuilder
+NODE 7: $u-1 = "%"
+NODE 8: $u-1#18 = specialinvoke this.<com.phonegap.ContactAccessorSdk5: com.phonegap.ContactAccessor$WhereOptions buildWhereClause(org.json.JSONArray,java.lang.String)>($u20, $u-1)
+NODE 9: $u3 = this.<com.phonegap.ContactAccessorSdk5: android.app.Activity mApp>
+NODE 10: $u-1#21 = virtualinvoke $u3.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 11: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 12: $u5 = newarray (java.lang.String)[1]
+NODE 13: $u-1#28 = virtualinvoke $u-1#18.<com.phonegap.ContactAccessor$WhereOptions: java.lang.String getWhere()>()
+NODE 14: $u-1#30 = virtualinvoke $u-1#18.<com.phonegap.ContactAccessor$WhereOptions: java.lang.String[] getWhereArgs()>()
+NODE 15: $u-1#33 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, $u5, $u-1#28, $u-1#30, "contact_id ASC")
+NODE 16: $u3#41 = new java.lang.StringBuilder
+NODE 17: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 18: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 19: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 20: $u-1 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 21: $u-1 = "%"
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 21
+EDGE: 6 -> 7
+EDGE: 6 -> 16
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.phonegap.ContactAccessorSdk5.search ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.phonegap.ContactAccessorSdk5
+NODE 2: $u21 := @parameter1: org.json.JSONObject
+NODE 3: if $u21 == null goto $u-1 = "%"
+NODE 4: $u-1 = virtualinvoke $u21.<org.json.JSONObject: java.lang.String optString(java.lang.String)>("filter")
+NODE 5: if $u-1#8 != 0 goto $u3#41 = new java.lang.StringBuilder
+NODE 6: $u-1 = "%"
+NODE 7: contactIds = new java.util.HashSet
+NODE 8: $u3#41 = new java.lang.StringBuilder
+NODE 9: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 10: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u-1)
+NODE 11: $u3#41 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("%")
+NODE 12: $u-1 = virtualinvoke $u3#41.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 13: $u-1 = "%"
+NODE 14: $u-1#18 = specialinvoke this.<com.phonegap.ContactAccessorSdk5: com.phonegap.ContactAccessor$WhereOptions buildIdClause(java.util.Set,java.lang.String)>(contactIds, $u-1)
+NODE 15: $u3 = this.<com.phonegap.ContactAccessorSdk5: android.app.Activity mApp>
+NODE 16: $u-1#21 = virtualinvoke $u3.<android.app.Activity: android.content.ContentResolver getContentResolver()>()
+NODE 17: $u4 = <android.provider.ContactsContract$Data: android.net.Uri CONTENT_URI>
+NODE 18: $u-1 = virtualinvoke $u-1#18.<com.phonegap.ContactAccessor$WhereOptions: java.lang.String getWhere()>()
+NODE 19: $u5 = virtualinvoke $u-1#18.<com.phonegap.ContactAccessor$WhereOptions: java.lang.String[] getWhereArgs()>()
+NODE 20: $u-1#33 = virtualinvoke $u-1#21.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u4, null, $u-1, $u5, "contact_id ASC")
+EDGE: 3 -> 4
+EDGE: 3 -> 13
+EDGE: 5 -> 6
+EDGE: 5 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+=== END FUNCTION ===
+

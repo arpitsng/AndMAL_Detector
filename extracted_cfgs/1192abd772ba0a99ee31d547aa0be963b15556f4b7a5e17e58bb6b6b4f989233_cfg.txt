@@ -1,0 +1,2446 @@
+=== FUNCTION: com.dataeye.tracking.b.c.b ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.dataeye.tracking.b.c
+NODE 2: $u7 := @parameter0: java.lang.Object
+NODE 3: $u8 = virtualinvoke this.<com.dataeye.tracking.b.c: int a(int,int,boolean)>(0, 0, 1)
+NODE 4: if $u8 >= 0 goto $u-1#16 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1#16 = virtualinvoke $u7.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#18 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#16, $u8)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.b.c.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: com.dataeye.tracking.b.f
+NODE 2: if $u-1 == 0 goto (branch)
+NODE 3: $u-1#4 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#6 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getLastLocation ===
+SUSPICIOUS_API: getLastKnownLocation
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u0 != 0 goto $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 3: if $u0 != 0 goto $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 4: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("location")
+NODE 5: $u0#12 = (android.location.LocationManager) $u-1
+NODE 6: if $u0#12 != null goto $u2 = new android.location.Criteria
+NODE 7: $u2 = new android.location.Criteria
+NODE 8: $u-1#18 = virtualinvoke $u0#12.<android.location.LocationManager: java.lang.String getBestProvider(android.location.Criteria,boolean)>($u2, 1)
+NODE 9: if $u-1#18 != null goto $u-1#21 = virtualinvoke $u0#12.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#18)
+NODE 10: $u-1#21 = virtualinvoke $u0#12.<android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>($u-1#18)
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getScreenInch ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 3: $u0 = (android.view.WindowManager) $u-1
+NODE 4: $u-1#6 = interfaceinvoke $u0.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 5: $u0#43 = class "Landroid/view/Display;"
+NODE 6: $u4#46 = newarray (java.lang.Class)[0]
+NODE 7: $u-1#53 = virtualinvoke $u0#43.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRawWidth", $u4#46)
+NODE 8: $u1 = newarray (java.lang.Object)[0]
+NODE 9: $u-1 = virtualinvoke $u-1#53.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getScreenInch ===
+SUSPICIOUS_API: invoke
+NODE 1: $u6 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u6.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("window")
+NODE 3: $u0 = (android.view.WindowManager) $u-1
+NODE 4: $u-1#6 = interfaceinvoke $u0.<android.view.WindowManager: android.view.Display getDefaultDisplay()>()
+NODE 5: if $u0#9 < 14 goto $u0#9 = $u3.<android.util.DisplayMetrics: int widthPixels>
+NODE 6: $u0#43 = class "Landroid/view/Display;"
+NODE 7: $u4#46 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#47 = virtualinvoke $u0#43.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getRawHeight", $u4#46)
+NODE 9: $u1 = newarray (java.lang.Object)[0]
+NODE 10: $u-1 = virtualinvoke $u-1#47.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getStoragePath ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.storage.StorageVolume")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getStoragePath ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("storage")
+NODE 3: $u0 = (android.os.storage.StorageManager) $u-1
+NODE 4: $u-1#9 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u6 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#14 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getVolumeList", $u6)
+NODE 7: $u5 = newarray (java.lang.Object)[0]
+NODE 8: $u-1 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.DeviceUtils.getStoragePath ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: $u1 = 0
+NODE 3: $u-1 = virtualinvoke $u7.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("storage")
+NODE 4: $u0 = (android.os.storage.StorageManager) $u-1
+NODE 5: $u-1#7 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.storage.StorageVolume")
+NODE 6: $u-1#9 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u6 = newarray (java.lang.Class)[0]
+NODE 8: $u-1#14 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getVolumeList", $u6)
+NODE 9: $u6 = newarray (java.lang.Class)[0]
+NODE 10: $u-1#19 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getPath", $u6)
+NODE 11: $u5 = newarray (java.lang.Object)[0]
+NODE 12: $u-1 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u5)
+NODE 13: if $u1 >= $u-1#25 goto return $u2
+NODE 14: $u-1#27 = staticinvoke <java.lang.reflect.Array: java.lang.Object get(java.lang.Object,int)>($u-1, $u1)
+NODE 15: $u5 = newarray (java.lang.Object)[0]
+NODE 16: $u-1#27 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#27, $u5)
+NODE 17: $u1 = $u1 + 1
+NODE 18: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 17 -> 18
+EDGE: 18 -> 13
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V14_22.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sPathListField>
+NODE 2: $u0#2 = class "Ldalvik/system/DexClassLoader;"
+NODE 3: $u0#2 = virtualinvoke $u0#2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 4: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "pathList")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V14_22.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u5 := @parameter0: java.lang.ClassLoader
+NODE 2: $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sPathListField>
+NODE 3: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sPathListField>
+NODE 4: $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sPathListField>
+NODE 5: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.reflect.Field)>($u5, $u0)
+NODE 6: if $u-1 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sNativeLibDirsField>
+NODE 7: $u0 = <net.wequick.small.internal.LibMergeCompat$V14_22: java.lang.reflect.Field sNativeLibDirsField>
+NODE 8: if $u0 != null goto $u-1#18 = interfaceinvoke $u6.<java.util.List: java.lang.Object[] toArray()>()
+NODE 9: $u0#2 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "nativeLibraryDirectories")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.RSAUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter1: byte[]
+NODE 2: if $u2 != null goto $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 4: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.RSAUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter1: byte[]
+NODE 2: if $u2 != null goto $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 4: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.RSAUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter1: byte[]
+NODE 2: if $u2 != null goto $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 4: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.RSAUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter1: byte[]
+NODE 2: if $u2 != null goto $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 3: $u-1 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("RSA/None/PKCS1Padding")
+NODE 4: $u3 = virtualinvoke $u-1.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.Object
+NODE 2: $u5 := @parameter1: java.lang.reflect.Field
+NODE 3: $u-1 = virtualinvoke $u5.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u4)
+NODE 4: $u0 = (java.lang.Object[]) $u-1
+NODE 5: $u1 = lengthof $u0
+NODE 6: if $u1 != 0 goto $u-1#7 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#7 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1#7 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 9: $u1 = lengthof $u0
+NODE 10: $u1 = $u1 + -1
+NODE 11: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#7, $u1)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.e.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: java.lang.Object
+NODE 2: $u6 := @parameter1: java.lang.reflect.Field
+NODE 3: $u7 := @parameter2: java.lang.Object[]
+NODE 4: $u-1 = virtualinvoke $u6.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u5)
+NODE 5: $u0 = (java.lang.Object[]) $u-1
+NODE 6: $u-1#5 = virtualinvoke $u0.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#5 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 8: $u2 = lengthof $u0
+NODE 9: $u3 = lengthof $u7
+NODE 10: $u2 = $u2 + $u3
+NODE 11: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#5, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = class "Landroid/content/res/AssetManager;"
+NODE 2: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("currentActivityThread", $u2)
+NODE 4: $u2#12 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#13 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+NODE 3: $u2 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("currentActivityThread", $u2)
+NODE 5: $u2#12 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#13 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#12)
+NODE 7: if $u-1#13 == null goto $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 8: $u-1 = virtualinvoke $u4.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u-1#20 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getField(java.lang.String)>("mLoadedApk")
+NODE 10: $u-1#13 = virtualinvoke $u-1#20.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u4)
+NODE 11: $u-1 = virtualinvoke $u-1#13.<java.lang.Object: java.lang.Class getClass()>()
+NODE 12: $u-1#20 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mActivityThread")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0#9 == null goto $u-1#71 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ResourcesManager")
+NODE 2: if $u-1#14 == 0 goto $u-1#71 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ResourcesManager")
+NODE 3: $u-1#71 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ResourcesManager")
+EDGE: 1 -> 3
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.app.ActivityThread")
+NODE 2: $u2 = newarray (java.lang.Class)[0]
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("currentApplication", $u2)
+NODE 4: $u2#12 = newarray (java.lang.Object)[0]
+NODE 5: $u-1#13 = virtualinvoke $u-1#7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u2#12)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("token")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#9 = staticinvoke <net.wequick.small.Small: android.app.Application getContext()>()
+NODE 2: $u-1#6 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u-1#9)
+NODE 3: $u-1 = virtualinvoke $u-1#6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mActivities")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("token")
+NODE 4: $u-1#6 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(java.lang.reflect.Field,java.lang.Object)>($u-1#4, $u8)
+NODE 5: $u0 = (android.os.IBinder) $u-1#6
+NODE 6: $u-1#9 = staticinvoke <net.wequick.small.Small: android.app.Application getContext()>()
+NODE 7: $u-1#6 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u-1#9)
+NODE 8: $u-1 = virtualinvoke $u-1#6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mActivities")
+NODE 10: $u-1#6 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(java.lang.reflect.Field,java.lang.Object)>($u-1#4, $u-1#6)
+NODE 11: $u1 = (java.util.Map) $u-1#6
+NODE 12: $u-1#6 = interfaceinvoke $u1.<java.util.Map: java.lang.Object get(java.lang.Object)>($u0)
+NODE 13: $u-1 = virtualinvoke $u-1#6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 14: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("activity")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: if $u-1#33 != 0 goto $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("results")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: if $u-1#33 != 0 goto $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("results")
+NODE 5: $u8 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(java.lang.reflect.Field,java.lang.Object)>($u-1#4, $u8)
+NODE 6: $u1#43 = (java.util.List) $u8
+NODE 7: $u-1#44 = interfaceinvoke $u1#43.<java.util.List: java.util.Iterator iterator()>()
+NODE 8: if $u-1#33 == 0 goto $u1#80 = new android.util.Pair
+NODE 9: $u8 = interfaceinvoke $u-1#44.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mRequestCode")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: if $u-1#33 != 0 goto $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("results")
+NODE 5: $u8 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(java.lang.reflect.Field,java.lang.Object)>($u-1#4, $u8)
+NODE 6: $u1#43 = (java.util.List) $u8
+NODE 7: $u-1#44 = interfaceinvoke $u1#43.<java.util.List: java.util.Iterator iterator()>()
+NODE 8: if $u-1#33 == 0 goto $u1#80 = new android.util.Pair
+NODE 9: $u8 = interfaceinvoke $u-1#44.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mResultCode")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u8 := @parameter0: java.lang.Object
+NODE 2: if $u-1#33 != 0 goto $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("results")
+NODE 5: $u8 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(java.lang.reflect.Field,java.lang.Object)>($u-1#4, $u8)
+NODE 6: $u1#43 = (java.util.List) $u8
+NODE 7: $u-1#44 = interfaceinvoke $u1#43.<java.util.List: java.util.Iterator iterator()>()
+NODE 8: if $u-1#33 == 0 goto $u1#80 = new android.util.Pair
+NODE 9: $u8 = interfaceinvoke $u-1#44.<java.util.Iterator: java.lang.Object next()>()
+NODE 10: $u-1 = virtualinvoke $u8.<java.lang.Object: java.lang.Class getClass()>()
+NODE 11: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mData")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.a.d.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u1 := @parameter0: java.lang.reflect.Method
+NODE 2: $u2 := @parameter1: java.lang.Object
+NODE 3: $u3 := @parameter2: java.lang.Object[]
+NODE 4: $u2 = virtualinvoke $u1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.ResMergeCompat$V19_23.mergeResources ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u-1#6 = staticinvoke <net.wequick.small.internal.ResMergeCompat: java.lang.Object access$800()>()
+NODE 2: $u-1#6 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.String)>($u-1#6, "mActiveResources")
+NODE 3: $u0 = (android.util.ArrayMap) $u-1#6
+NODE 4: $u-1#12 = virtualinvoke $u0.<android.util.ArrayMap: java.util.Collection values()>()
+NODE 5: $u-1#14 = interfaceinvoke $u-1#12.<java.util.Collection: java.util.Iterator iterator()>()
+NODE 6: if $u-1#16 == 0 goto return
+NODE 7: $u-1#6 = interfaceinvoke $u-1#14.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: $u0#20 = (java.lang.ref.WeakReference) $u-1#6
+NODE 9: $u-1#6 = virtualinvoke $u0#20.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 10: $u0#23 = (android.content.res.Resources) $u-1#6
+NODE 11: $u-1#6 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.String)>($u0#23, "mTypedArrayPool")
+NODE 12: if $u-1#6 == null goto $u-1#39 = virtualinvoke $u0#23.<android.content.res.Resources: android.content.res.Configuration getConfiguration()>()
+NODE 13: $u-1#28 = virtualinvoke $u-1#6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 14: $u1 = newarray (java.lang.Class)[0]
+NODE 15: $u-1#33 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1#28, "acquire", $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.ResMergeCompat$V19_23.mergeResources ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1#6 = staticinvoke <net.wequick.small.internal.ResMergeCompat: java.lang.Object access$800()>()
+NODE 2: $u-1#6 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.String)>($u-1#6, "mActiveResources")
+NODE 3: $u0 = (android.util.ArrayMap) $u-1#6
+NODE 4: $u-1#12 = virtualinvoke $u0.<android.util.ArrayMap: java.util.Collection values()>()
+NODE 5: $u-1#14 = interfaceinvoke $u-1#12.<java.util.Collection: java.util.Iterator iterator()>()
+NODE 6: if $u-1#16 == 0 goto return
+NODE 7: $u-1#6 = interfaceinvoke $u-1#14.<java.util.Iterator: java.lang.Object next()>()
+NODE 8: $u0#20 = (java.lang.ref.WeakReference) $u-1#6
+NODE 9: $u-1#6 = virtualinvoke $u0#20.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 10: $u0#23 = (android.content.res.Resources) $u-1#6
+NODE 11: $u-1#6 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.String)>($u0#23, "mTypedArrayPool")
+NODE 12: if $u-1#6 == null goto $u-1#39 = virtualinvoke $u0#23.<android.content.res.Resources: android.content.res.Configuration getConfiguration()>()
+NODE 13: $u-1#28 = virtualinvoke $u-1#6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 14: $u1 = newarray (java.lang.Class)[0]
+NODE 15: $u-1#33 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1#28, "acquire", $u1)
+NODE 16: $u3 = newarray (java.lang.Object)[0]
+NODE 17: $u-1#37 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u3)
+NODE 18: if $u-1#37 != null goto $u3 = newarray (java.lang.Object)[0]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V26_.makeDexElement ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != null goto $u0#5 = <net.wequick.small.internal.DexMergeCompat$V26_: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("dalvik.system.DexPathList$Element")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V26_.makeDexElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u0 != null goto $u0#5 = <net.wequick.small.internal.DexMergeCompat$V26_: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u0#5 = <net.wequick.small.internal.DexMergeCompat$V26_: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 3: if $u0#5 != null goto $u0#5 = <net.wequick.small.internal.DexMergeCompat$V26_: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 4: $u0#5 = <net.wequick.small.internal.DexMergeCompat$V26_: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 5: $u1#13 = newarray (java.lang.Object)[2]
+NODE 6: $u-1 = virtualinvoke $u0#5.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#13)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.i.run ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.i
+NODE 2: $u1 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 3: $u-1 = $u1.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 4: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.i.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.i
+NODE 2: $u0#12 = newarray (java.lang.Class)[2]
+NODE 3: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 4: $u-1 = $u0.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 5: $u-1#98 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("initAndSetCurrent", $u0#12)
+NODE 6: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 7: $u-1#9 = staticinvoke <org.egret.launcher.egret_android_launcher.h: java.lang.Object b(org.egret.launcher.egret_android_launcher.h)>($u0)
+NODE 8: $u2#104 = newarray (java.lang.Object)[2]
+NODE 9: virtualinvoke $u-1#98.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u2#104)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.i.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.i
+NODE 2: if $u1#24 != 1 goto $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 3: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 4: $u-1 = $u0.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 5: $u0#12 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#98 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("cleanGameCache", $u0#12)
+NODE 7: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 8: $u-1#9 = staticinvoke <org.egret.launcher.egret_android_launcher.h: java.lang.Object b(org.egret.launcher.egret_android_launcher.h)>($u0)
+NODE 9: $u2#104 = newarray (java.lang.Object)[0]
+NODE 10: virtualinvoke $u-1#98.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u2#104)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.i.run ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.i
+NODE 2: if $u1#24 != 1 goto $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 3: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 4: $u-1 = $u0.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 5: $u0#12 = newarray (java.lang.Class)[0]
+NODE 6: $u-1#98 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getFrameLayout", $u0#12)
+NODE 7: $u0 = this.<org.egret.launcher.egret_android_launcher.i: org.egret.launcher.egret_android_launcher.h c>
+NODE 8: $u-1#9 = staticinvoke <org.egret.launcher.egret_android_launcher.h: java.lang.Object b(org.egret.launcher.egret_android_launcher.h)>($u0)
+NODE 9: $u2#104 = newarray (java.lang.Object)[0]
+NODE 10: $u-1#9 = virtualinvoke $u-1#98.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u2#104)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 = <net.wequick.small.b: java.util.concurrent.ConcurrentHashMap d>
+NODE 2: if $u1 != null goto $u1 = <net.wequick.small.b: java.util.concurrent.ConcurrentHashMap d>
+NODE 3: $u1 = <net.wequick.small.b: java.util.concurrent.ConcurrentHashMap d>
+NODE 4: $u-1 = virtualinvoke $u1.<java.util.concurrent.ConcurrentHashMap: java.util.Collection values()>()
+NODE 5: if $u-1#11 <= 0 goto $u-1#17 = interfaceinvoke $u-1.<java.util.Collection: java.util.Iterator iterator()>()
+NODE 6: $u-1#17 = interfaceinvoke $u-1.<java.util.Collection: java.util.Iterator iterator()>()
+NODE 7: if $u-1#20 == 0 goto $u0#82 = <net.wequick.small.b: java.util.List l>
+NODE 8: $u-1#22 = interfaceinvoke $u-1#17.<java.util.Iterator: java.lang.Object next()>()
+NODE 9: $u0 = (net.wequick.small.b$d) $u-1#22
+NODE 10: $u-1#15 = $u0.<net.wequick.small.b$d: java.lang.String c>
+NODE 11: if $u-1#15 == null goto $u-1#20 = interfaceinvoke $u-1#17.<java.util.Iterator: boolean hasNext()>()
+NODE 12: $u-1#78 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#15)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0#82 == null goto <net.wequick.small.b: java.util.concurrent.ConcurrentHashMap d> = null
+NODE 2: $u-1#22 = <net.wequick.small.b: java.lang.Object j>
+NODE 3: $u-1#78 = virtualinvoke $u-1#22.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u2#88 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#93 = virtualinvoke $u-1#78.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("installContentProviders", $u2#88)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u0#82 == null goto <net.wequick.small.b: java.util.concurrent.ConcurrentHashMap d> = null
+NODE 2: $u-1#22 = <net.wequick.small.b: java.lang.Object j>
+NODE 3: $u-1#78 = virtualinvoke $u-1#22.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u2#88 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#93 = virtualinvoke $u-1#78.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("installContentProviders", $u2#88)
+NODE 6: $u-1#22 = <net.wequick.small.b: java.lang.Object j>
+NODE 7: $u-1#29 = newarray (java.lang.Object)[2]
+NODE 8: virtualinvoke $u-1#93.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#22, $u-1#29)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: android.app.Application
+NODE 2: $u-1 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u10)
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mInstrumentation")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: android.app.Application
+NODE 2: $u-1 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u10)
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mH")
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1#7 = class "Landroid/os/Handler;"
+NODE 2: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mCallback")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: android.app.Application
+NODE 2: $u-1 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u10)
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mBoundApplication")
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: android.app.Application
+NODE 2: $u-1 = staticinvoke <net.wequick.small.a.d: java.lang.Object a(android.content.Context)>($u10)
+NODE 3: $u-1#7 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mBoundApplication")
+NODE 5: $u-1#13 = virtualinvoke $u-1#10.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 6: $u-1#7 = virtualinvoke $u-1#13.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#10 = virtualinvoke $u-1#7.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("providers")
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.AESUtils.decrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: if $u7 == null goto $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5PADDING")
+NODE 4: $u0 = $u-1#6
+NODE 5: $u-1 = staticinvoke <android.util.Base64: byte[] decode(java.lang.String,int)>($u5, 2)
+NODE 6: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+NODE 7: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 8: $u0 = $u-1#6
+EDGE: 2 -> 3
+EDGE: 2 -> 7
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.AESUtils.encrypt ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: if $u7 == null goto $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 3: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES/CBC/PKCS5PADDING")
+NODE 4: $u0 = $u-1#6
+NODE 5: $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")
+NODE 6: $u-1 = virtualinvoke $u0.<javax.crypto.Cipher: byte[] doFinal(byte[])>($u-1)
+NODE 7: $u-1#6 = staticinvoke <javax.crypto.Cipher: javax.crypto.Cipher getInstance(java.lang.String)>("AES")
+NODE 8: $u0 = $u-1#6
+NODE 9: goto [?= $u-1 = virtualinvoke $u5.<java.lang.String: byte[] getBytes(java.lang.String)>("UTF-8")]
+EDGE: 2 -> 3
+EDGE: 2 -> 7
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.NotchPhoneUtils.HasNotchVivo ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u10.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("android.util.FtFeature")
+NODE 4: $u7 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#9 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("isFeatureSupport", $u7)
+NODE 6: $u6 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#16 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.NotchPhoneUtils.HasNotchXiaoMi ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.NotchPhoneUtils.HasNotchXiaoMi ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u7 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#12 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getInt", $u7)
+NODE 4: $u4 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#21 = virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u4)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.NotchPhoneUtils.getNotchSizeAtHuawei ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.huawei.android.util.HwNotchSizeUtil")
+NODE 4: $u8 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#9 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getNotchSize", $u8)
+NODE 6: $u7 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#12 = virtualinvoke $u-1#9.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u7)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.NotchPhoneUtils.hasNotchAtHuawei ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u8.<android.content.Context: java.lang.ClassLoader getClassLoader()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.huawei.android.util.HwNotchSizeUtil")
+NODE 4: $u7 = newarray (java.lang.Class)[0]
+NODE 5: $u-1#8 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("hasNotchInScreen", $u7)
+NODE 6: $u6 = newarray (java.lang.Object)[0]
+NODE 7: $u-1#11 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#4, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.api.DCMessageReceiver.onReceive ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1#4 == 0 goto return
+NODE 3: $u-1#7 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1#7
+NODE 5: $u-1#10 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.u.b ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.wifi.WifiInfo getWifiInfo(android.content.Context)>($u2)
+NODE 3: if $u-1 == null goto return null
+NODE 4: $u-1#4 = virtualinvoke $u-1.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.t.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#4 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1 == 0 goto $u-1#7 = null
+NODE 3: $u-1#5 = staticinvoke <cn.testin.analysis.data.common.utils.DeviceUtils: android.telephony.TelephonyManager getTelephonyManager(android.content.Context)>($u4)
+NODE 4: $u-1#7 = virtualinvoke $u-1#5.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.TelephonyManager")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#7 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u-1#7 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0 = (android.telephony.TelephonyManager) $u-1#7
+NODE 5: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.TelephonyManager")
+NODE 6: if $u3 <= 21 goto $u3 = <android.os.Build$VERSION: int SDK_INT>
+NODE 7: $u4 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#19 = virtualinvoke $u-1#11.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u4)
+NODE 9: $u3#22 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#7 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#7 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u-1#7 = virtualinvoke $u8.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 4: $u0 = (android.telephony.TelephonyManager) $u-1#7
+NODE 5: $u-1#11 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.TelephonyManager")
+NODE 6: if $u3 != 21 goto $u0#28 = null
+NODE 7: $u4 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#19 = virtualinvoke $u-1#11.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u4)
+NODE 9: $u3#22 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#7 = virtualinvoke $u-1#19.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u0, $u3#22)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.b ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <android.telephony.SubscriptionManager: android.telephony.SubscriptionManager 'from'(android.content.Context)>($u5)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.String getName()>()
+NODE 5: $u-1#3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <android.telephony.SubscriptionManager: android.telephony.SubscriptionManager 'from'(android.content.Context)>($u5)
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.String getName()>()
+NODE 5: $u-1#3 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1#5)
+NODE 6: $u2 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#14 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSubId", $u2)
+NODE 8: $u2#17 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#22 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u2#17)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.c ===
+SUSPICIOUS_API: query
+NODE 1: $u8 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <android.net.Uri: android.net.Uri parse(java.lang.String)>("content://telephony/siminfo")
+NODE 3: $u-1#4 = virtualinvoke $u8.<android.content.Context: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u4 = newarray (java.lang.String)[1]
+NODE 5: $u-1#10 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u-1, null, "sim_id = ?", $u4, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.s.e ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u5 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u5.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.fillDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 2: $u0#2 = class "Ldalvik/system/DexClassLoader;"
+NODE 3: $u0#2 = virtualinvoke $u0#2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 4: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "pathList")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.fillDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u4 := @parameter0: java.lang.ClassLoader
+NODE 2: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 3: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 4: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u4)
+NODE 6: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sDexElementsField>
+NODE 7: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sDexElementsField>
+NODE 8: $u0#2 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "dexElements")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.makeDexElement ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0 != null goto $u0#7 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u0 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("dalvik.system.DexPathList$Element")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.makeDexElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0#7 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u1#18 = newarray (java.lang.Object)[4]
+NODE 3: $u-1#21 = virtualinvoke $u0#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#18)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.makeDexElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0#7 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u1#18 = newarray (java.lang.Object)[3]
+NODE 3: $u-1#21 = virtualinvoke $u0#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#18)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.makeDexElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#25 == 0 goto $u0#7 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 2: $u0#7 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Constructor sDexElementConstructor>
+NODE 3: $u1#18 = newarray (java.lang.Object)[3]
+NODE 4: $u-1#21 = virtualinvoke $u0#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#18)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.removeDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 2: $u0#2 = class "Ldalvik/system/DexClassLoader;"
+NODE 3: $u0#2 = virtualinvoke $u0#2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 4: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "pathList")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V14_25.removeDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u4 := @parameter0: java.lang.ClassLoader
+NODE 2: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 3: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 4: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sPathListField>
+NODE 5: $u-1 = virtualinvoke $u0.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u4)
+NODE 6: $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sDexElementsField>
+NODE 7: if $u0 != null goto $u0 = <net.wequick.small.internal.DexMergeCompat$V14_25: java.lang.reflect.Field sDexElementsField>
+NODE 8: $u0#2 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#2, "dexElements")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b$1.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: net.wequick.small.b$1
+NODE 2: $u7 := @parameter1: java.lang.reflect.Method
+NODE 3: $u8 := @parameter2: java.lang.Object[]
+NODE 4: if $u-1#4 == 0 goto $u6 = this.<net.wequick.small.b$1: java.lang.Object a>
+NODE 5: if $u8 == null goto $u6 = this.<net.wequick.small.b$1: java.lang.Object a>
+NODE 6: if $u2 <= 0 goto $u6 = this.<net.wequick.small.b$1: java.lang.Object a>
+NODE 7: if $u1 >= $u2 goto $u6 = this.<net.wequick.small.b$1: java.lang.Object a>
+NODE 8: goto [?= (branch)]
+NODE 9: $u6 = this.<net.wequick.small.b$1: java.lang.Object a>
+NODE 10: $u6 = virtualinvoke $u7.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u6, $u8)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 4 -> 9
+EDGE: 5 -> 9
+EDGE: 6 -> 9
+EDGE: 7 -> 9
+EDGE: 8 -> 7
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.w.a ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.data.common.utils.DeviceUtils: android.telephony.TelephonyManager getTelephonyManager(android.content.Context)>($u3)
+NODE 3: if $u0 == 0 goto return $u4
+NODE 4: $u-1#11 = virtualinvoke $u-1.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.w.a ===
+SUSPICIOUS_API: getSimSerialNumber
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.data.common.utils.DeviceUtils: android.telephony.TelephonyManager getTelephonyManager(android.content.Context)>($u3)
+NODE 3: $u-1#11 = virtualinvoke $u-1.<android.telephony.TelephonyManager: java.lang.String getSimSerialNumber()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.v.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u0#3 != null goto $u0#3 = this.<cn.testin.analysis.data.v: java.lang.reflect.Method k>
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.v.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: cn.testin.analysis.data.v
+NODE 2: if $u0 <= 25 goto $u0#28 = this.<cn.testin.analysis.data.v: java.util.Properties j>
+NODE 3: $u0#3 = this.<cn.testin.analysis.data.v: java.lang.reflect.Method k>
+NODE 4: if $u0#3 != null goto $u0#3 = this.<cn.testin.analysis.data.v: java.lang.reflect.Method k>
+NODE 5: $u0#3 = this.<cn.testin.analysis.data.v: java.lang.reflect.Method k>
+NODE 6: $u2 = this.<cn.testin.analysis.data.v: java.lang.reflect.Method k>
+NODE 7: $u3#19 = newarray (java.lang.Object)[2]
+NODE 8: $u-1#23 = virtualinvoke $u0#3.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u2, $u3#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.v.a ===
+SUSPICIOUS_API: load
+NODE 1: this := @this: cn.testin.analysis.data.v
+NODE 2: if $u-1#34 != 0 goto $u0#28 = this.<cn.testin.analysis.data.v: java.util.Properties j>
+NODE 3: $u0#28 = this.<cn.testin.analysis.data.v: java.util.Properties j>
+NODE 4: $u3#38 = new java.io.FileInputStream
+NODE 5: virtualinvoke $u0#28.<java.util.Properties: void load(java.io.InputStream)>($u3#38)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.content.FileProvider.parsePathStrategy ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#26 == 0 goto $u6 = "external-files-path"
+NODE 2: $u0#28 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.b$c.callActivityOnCreate ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if this == null goto $u-1#53 = staticinvoke <net.wequick.small.Small: java.util.Map getSetUpActivityLifecycleCallbacks()>()
+NODE 2: $u-1#14 = class "Landroid/app/Activity;"
+NODE 3: $u-1#44 = virtualinvoke $u-1#14.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mInstrumentation")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V9_13.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter0: java.lang.ClassLoader
+NODE 2: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V9_13: java.lang.reflect.Field sLibraryPathElementsField>
+NODE 3: $u-1 = virtualinvoke $u6.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, "libraryPathElements")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V9_13.expandDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: java.lang.ClassLoader
+NODE 2: if $u3 != null goto $u3 = <net.wequick.small.internal.DexMergeCompat$V9_13: java.lang.reflect.Field sFilesField>
+NODE 3: $u-1 = virtualinvoke $u10.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, "mFiles")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V9_13.expandDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: java.lang.ClassLoader
+NODE 2: $u-1 = virtualinvoke $u10.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, "mPaths")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V9_13.expandDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: java.lang.ClassLoader
+NODE 2: $u-1 = virtualinvoke $u10.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, "mZips")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.DexMergeCompat$V9_13.expandDexPathList ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u10 := @parameter0: java.lang.ClassLoader
+NODE 2: $u-1 = virtualinvoke $u10.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, "mDexs")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.content.EnvironmentCompat.getStorageState ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u4 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.db.SqLiteDataAccess.query ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: cn.testin.analysis.data.common.db.SqLiteDataAccess
+NODE 2: $u7 := @parameter0: android.net.Uri
+NODE 3: $u8 := @parameter1: java.lang.String[]
+NODE 4: $u9 := @parameter2: java.lang.String
+NODE 5: $u10 := @parameter3: java.lang.String[]
+NODE 6: $u11 := @parameter4: java.lang.String
+NODE 7: $u0 = this.<cn.testin.analysis.data.common.db.SqLiteDataAccess: android.content.ContentResolver contentResolver>
+NODE 8: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u7, $u8, $u9, $u10, $u11)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.db.SqLiteDataAccess.update ===
+SUSPICIOUS_API: update
+NODE 1: this := @this: cn.testin.analysis.data.common.db.SqLiteDataAccess
+NODE 2: $u2 := @parameter0: android.net.Uri
+NODE 3: $u3 := @parameter1: android.content.ContentValues
+NODE 4: $u4 := @parameter2: java.lang.String
+NODE 5: $u5 := @parameter3: java.lang.String[]
+NODE 6: $u0 = this.<cn.testin.analysis.data.common.db.SqLiteDataAccess: android.content.ContentResolver contentResolver>
+NODE 7: $u-1 = virtualinvoke $u0.<android.content.ContentResolver: int update(android.net.Uri,android.content.ContentValues,java.lang.String,java.lang.String[])>($u2, $u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.a.w.a ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u1 := @parameter0: android.content.Context
+NODE 2: if $u1 == null goto return 0
+NODE 3: $u-1 = virtualinvoke $u1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 5: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.a.w.b ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.a.w.e ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#5 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.UpgradeManager.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.UpgradeManager.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone")
+NODE 3: $u0 = (android.telephony.TelephonyManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.TestinDataApi.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("cn.testin.analysis.bug.BugOutApi")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.TestinDataApi.initYouguo ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("cn.testin.analysis.youguo.YouguoApi")
+NODE 2: staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("cn.testin.analysis.youguo.YouguoApi")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.c.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u2)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.NativeLauncher.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("launcher")
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.MainActivity.checkDeviceHasNavigationBar ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1#6 <= 0 goto $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.runtimeFaXing15.MainActivity.checkDeviceHasNavigationBar ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1#6 <= 0 goto $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u-1#9 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 3: $u7 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#14 = virtualinvoke $u-1#9.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u7)
+NODE 5: $u6 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#19 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#9, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.h.d ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.h
+NODE 2: $u0#9 = newarray (java.lang.Class)[2]
+NODE 3: $u1 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 4: $u-1#16 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setRuntimeInterface", $u0#9)
+NODE 5: $u4 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Object c>
+NODE 6: $u5 = newarray (java.lang.Object)[2]
+NODE 7: virtualinvoke $u-1#16.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u4, $u5)
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.h.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.h
+NODE 2: $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 3: if $u0 != null goto $u0#3 = newarray (java.lang.Class)[2]
+NODE 4: $u0#3 = newarray (java.lang.Class)[2]
+NODE 5: $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("callEgretInterface", $u0#3)
+NODE 7: $u1 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Object c>
+NODE 8: $u2 = newarray (java.lang.Object)[2]
+NODE 9: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.h.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.h
+NODE 2: $u0 = newarray (java.lang.Class)[1]
+NODE 3: $u2 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setGameExiting", $u0)
+NODE 5: $u1 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Object c>
+NODE 6: $u2#11 = newarray (java.lang.Object)[1]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#11)
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.h.b ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.h
+NODE 2: $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 3: $u2 = newarray (java.lang.Class)[0]
+NODE 4: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("pause", $u2)
+NODE 5: $u1 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Object c>
+NODE 6: $u2#8 = newarray (java.lang.Object)[0]
+NODE 7: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#8)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.egret_android_launcher.h.c ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: org.egret.launcher.egret_android_launcher.h
+NODE 2: $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 3: if $u0 != null goto $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 4: $u0 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Class b>
+NODE 5: $u2 = newarray (java.lang.Class)[0]
+NODE 6: $u-1 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("resume", $u2)
+NODE 7: $u1 = this.<org.egret.launcher.egret_android_launcher.h: java.lang.Object c>
+NODE 8: $u2#9 = newarray (java.lang.Object)[0]
+NODE 9: virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u1, $u2#9)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: org.egret.launcher.versioncontroller1_0.a.a ===
+SUSPICIOUS_API: doFinal
+NODE 1: $u3 := @parameter0: byte[]
+NODE 2: $u4 := @parameter1: javax.crypto.Cipher
+NODE 3: $u5 := @parameter2: int
+NODE 4: $u0 = 0
+NODE 5: $u1 = lengthof $u3
+NODE 6: if $u0 >= $u1 goto $u3 = virtualinvoke $u2.<java.io.ByteArrayOutputStream: byte[] toByteArray()>()
+NODE 7: $u1 = lengthof $u3
+NODE 8: $u1 = $u1 - $u0
+NODE 9: if $u1 < $u5 goto $u-1 = virtualinvoke $u4.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u3, $u0, $u1)
+NODE 10: $u1 = $u5
+NODE 11: $u-1 = virtualinvoke $u4.<javax.crypto.Cipher: byte[] doFinal(byte[],int,int)>($u3, $u0, $u1)
+NODE 12: $u0 = $u0 + $u5
+NODE 13: goto [?= $u1 = lengthof $u3]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 12 -> 13
+EDGE: 13 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.y.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.policy.DecorView")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.y.a ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.policy.DecorView")
+NODE 2: if $u-1#6 == 0 goto return null
+NODE 3: $u-1#9 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWindow")
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.y.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.bug.y: android.view.WindowManager c(android.content.Context)>($u9)
+NODE 3: if $u-1#12 == 0 goto $u6 = "mWindowManager"
+NODE 4: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mGlobal")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.y.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.bug.y: android.view.WindowManager c(android.content.Context)>($u9)
+NODE 3: $u0 = null
+NODE 4: if $u2 >= $u4 goto (branch)
+NODE 5: if $u-1#12 == 0 goto $u6 = "mWindowManager"
+NODE 6: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mGlobal")
+NODE 8: $u0 = $u5
+NODE 9: if $u0 != null goto virtualinvoke $u0.<java.lang.reflect.Field: void setAccessible(boolean)>(1)
+NODE 10: $u0#18 = $u-1
+NODE 11: $u-1#3 = virtualinvoke $u0#18.<java.lang.Object: java.lang.Class getClass()>()
+NODE 12: $u0 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mViews")
+NODE 13: if $u-1#12 == 0 goto $u2 = $u2 + 1
+NODE 14: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 15: $u5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWindowManager")
+NODE 16: $u0 = $u5
+NODE 17: goto [?= (branch)]
+NODE 18: goto [?= (branch)]
+NODE 19: $u0#18 = virtualinvoke $u0.<java.lang.reflect.Field: java.lang.Object get(java.lang.Object)>($u-1)
+NODE 20: goto [?= $u-1#3 = virtualinvoke $u0#18.<java.lang.Object: java.lang.Class getClass()>()]
+NODE 21: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 4 -> 9
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 9
+EDGE: 18 -> 4
+EDGE: 19 -> 20
+EDGE: 20 -> 11
+EDGE: 21 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.y.b ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <cn.testin.analysis.bug.y: android.view.WindowManager c(android.content.Context)>($u9)
+NODE 3: if $u-1#12 == 0 goto $u2 = $u2 + 1
+NODE 4: $u-1#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u5 = virtualinvoke $u-1#3.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("mWindowManager")
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.ReflectionUnseal.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("anfan")
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.ReflectionUnseal.a ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u0 < 0 goto exitmonitor class "Lnet/wequick/small/ReflectionUnseal;"
+NODE 2: $u1 = class "Landroid/content/pm/ApplicationInfo;"
+NODE 3: $u4#16 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#18 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHiddenApiEnforcementPolicy", $u4#16)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.ReflectionUnseal.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u7 := @parameter0: android.content.Context
+NODE 2: if $u0 >= 28 goto (branch)
+NODE 3: if $u7 != null goto $u-1 = virtualinvoke $u7.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 4: $u-1 = virtualinvoke $u7.<android.content.Context: android.content.pm.ApplicationInfo getApplicationInfo()>()
+NODE 5: if $u0 < 0 goto exitmonitor class "Lnet/wequick/small/ReflectionUnseal;"
+NODE 6: $u1 = class "Landroid/content/pm/ApplicationInfo;"
+NODE 7: $u4#16 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#18 = virtualinvoke $u1.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("setHiddenApiEnforcementPolicy", $u4#16)
+NODE 9: $u3#21 = newarray (java.lang.Object)[1]
+NODE 10: virtualinvoke $u-1#18.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u3#21)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.u.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1#6 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#8 = staticinvoke <java.util.Locale: java.util.Locale getDefault()>()
+NODE 3: $u6 = newarray (java.lang.Object)[2]
+NODE 4: $u-1#23 = staticinvoke <java.lang.String: java.lang.String format(java.util.Locale,java.lang.String,java.lang.Object[])>($u-1#8, "logcat -v time -t %d %d", $u6)
+NODE 5: $u-1#25 = virtualinvoke $u-1#6.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u-1#23)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V26_.makeLibElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = <net.wequick.small.internal.LibMergeCompat$V26_: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 2: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V26_: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 3: if $u-1 == null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V26_: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 4: $u0 = <net.wequick.small.internal.LibMergeCompat$V26_: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 5: $u1#10 = newarray (java.lang.Object)[1]
+NODE 6: $u-1#11 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1#10)
+EDGE: 1 -> 2
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.classFrom ===
+SUSPICIOUS_API: forName
+NODE 1: $u1 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getDeclaredField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: if $u2 != null goto $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+NODE 4: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>($u3)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getDeclaredField ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: if $u0 != null goto (branch)
+NODE 4: $u2 = virtualinvoke $u2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 5: if $u2 == null goto (branch)
+NODE 6: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u2, $u3)
+NODE 7: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getDeclaredMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u4 := @parameter2: java.lang.Class[]
+NODE 4: if $u2 != null goto $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u3, $u4)
+NODE 5: $u-1 = virtualinvoke $u2.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getDeclaredMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u2 := @parameter0: java.lang.Class
+NODE 2: $u3 := @parameter1: java.lang.String
+NODE 3: $u4 := @parameter2: java.lang.Class[]
+NODE 4: if $u0 != null goto (branch)
+NODE 5: $u2 = virtualinvoke $u2.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 6: if $u2 == null goto (branch)
+NODE 7: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u2, $u3, $u4)
+NODE 8: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 := @parameter0: java.lang.Object
+NODE 2: $u2 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.getStaticFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.invokeMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.Object
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: $u6 := @parameter3: java.lang.Object[]
+NODE 5: if $u3 != null goto $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 7: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u4, $u5)
+NODE 8: $u3 = virtualinvoke $u-1#4.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u3, $u6)
+NODE 9: $u-1#4 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.invokeMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 := @parameter0: java.lang.Object
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: if $u3 != null goto $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 5: $u-1 = virtualinvoke $u3.<java.lang.Object: java.lang.Class getClass()>()
+NODE 6: $u-1#4 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u-1, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.invokeStaticMethod ===
+SUSPICIOUS_API: invoke
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: $u6 := @parameter3: java.lang.Object[]
+NODE 5: $u-1 = virtualinvoke $u3.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u4, $u5)
+NODE 6: if $u-1 == null goto return null
+NODE 7: $u-1#4 = virtualinvoke $u-1.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u6)
+NODE 8: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u3, $u4, $u5)
+NODE 9: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.invokeStaticMethod ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u5 := @parameter2: java.lang.Class[]
+NODE 4: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Method getDeclaredMethod(java.lang.Class,java.lang.String,java.lang.Class[])>($u3, $u4, $u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.objectFromClassName ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Class classFrom(java.lang.String)>($u2)
+NODE 3: if $u-1 != null goto (branch)
+NODE 4: if $u3 != null goto $u-1#4 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object invokeStaticMethod(java.lang.Class,java.lang.String,java.lang.Class[],java.lang.Object[])>($u-1, $u3, $u4, $u5)
+NODE 5: $u-1#4 = virtualinvoke $u-1.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.setFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u1 := @parameter0: java.lang.Object
+NODE 2: $u2 := @parameter1: java.lang.String
+NODE 3: $u-1 = virtualinvoke $u1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u-1#3 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u-1, $u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.Reflect.setStaticFieldValue ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u3 := @parameter0: java.lang.Class
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u3, $u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.bug.d.b ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: if $u1 != 0 goto staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("bugout-ndk")
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("bugout-ndk")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.os.SystemProperties")
+NODE 2: $u3 = newarray (java.lang.Class)[1]
+NODE 3: $u-1#8 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("get", $u3)
+NODE 4: $u3#12 = newarray (java.lang.Object)[1]
+NODE 5: $u-1#14 = virtualinvoke $u-1#8.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>(null, $u3#12)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.a ===
+SUSPICIOUS_API: exec
+NODE 1: $u7 := @parameter0: java.lang.String
+NODE 2: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 3: $u-1#3 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>($u7)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.a ===
+SUSPICIOUS_API: getInstalledPackages
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledPackages(int)>(0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.c ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.c ===
+SUSPICIOUS_API: getMacAddress
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u2.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u0 = (android.net.wifi.WifiManager) $u-1
+NODE 4: $u-1#6 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 5: $u-1#8 = virtualinvoke $u-1#6.<android.net.wifi.WifiInfo: java.lang.String getMacAddress()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.e ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u4.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 3: $u0 = (android.net.ConnectivityManager) $u-1
+NODE 4: $u-1#7 = virtualinvoke $u0.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.f.f ===
+SUSPICIOUS_API: exec
+NODE 1: $u-1 = staticinvoke <java.lang.Runtime: java.lang.Runtime getRuntime()>()
+NODE 2: $u-1#6 = virtualinvoke $u-1.<java.lang.Runtime: java.lang.Process exec(java.lang.String)>("cat /sys/class/net/wlan0/address ")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.e.b ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1 == 0 goto (branch)
+NODE 2: $u0 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.o.a ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 == 0 goto $u-1#27 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager a(android.content.Context,java.lang.String)>($u5, $u6)
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.PhoneFactory")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.o.a ===
+SUSPICIOUS_API: invoke
+NODE 1: if $u-1 == 0 goto $u-1#27 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager a(android.content.Context,java.lang.String)>($u5, $u6)
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.PhoneFactory")
+NODE 3: $u2 = newarray (java.lang.Class)[2]
+NODE 4: $u-1#14 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getServiceName", $u2)
+NODE 5: $u2#17 = newarray (java.lang.Object)[2]
+NODE 6: $u-1#24 = virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#5, $u2#17)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u6 = <com.dataeye.tracking.sdk.a.b.n: java.lang.String[] a>
+NODE 3: $u0#11 = 0
+NODE 4: if $u0#11 < $u7 goto $u8 = $u6[$u0#11]
+NODE 5: $u8 = $u6[$u0#11]
+NODE 6: $u-1#48 = staticinvoke <com.dataeye.tracking.sdk.a.b.o: android.telephony.TelephonyManager a(android.content.Context,java.lang.String)>($u10, $u8)
+NODE 7: if $u-1#48 == null goto $u0#11 = $u0#11 + 1
+NODE 8: $u8 = virtualinvoke $u-1#48.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 9: if $u8 == null goto $u0#11 = $u0#11 + 1
+NODE 10: if $u0 == 0 goto $u0#11 = $u0#11 + 1
+NODE 11: $u0#11 = $u0#11 + 1
+NODE 12: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.MSimTelephonyManager")
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.MSimTelephonyManager")
+NODE 3: $u-1#6 = virtualinvoke $u9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone_msim")
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: $u2 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDeviceId", $u2)
+NODE 7: $u0 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#26 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.MSimTelephonyManager")
+NODE 3: $u-1#6 = virtualinvoke $u9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone_msim")
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: $u2 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDeviceId", $u2)
+NODE 7: $u0 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#6 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.MSimTelephonyManager")
+NODE 3: $u-1#6 = virtualinvoke $u9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone_msim")
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: if $u10 != 1 goto $u0#28 = ""
+NODE 6: $u2 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u2)
+NODE 8: $u0 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#26 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.a ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("android.telephony.MSimTelephonyManager")
+NODE 3: $u-1#6 = virtualinvoke $u9.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("phone_msim")
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: if $u10 != 1 goto $u0#28 = ""
+NODE 6: $u2 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#21 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u2)
+NODE 8: $u0 = newarray (java.lang.Object)[1]
+NODE 9: $u-1#6 = virtualinvoke $u-1#21.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#6, $u0)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.b ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u4 = <com.dataeye.tracking.sdk.a.b.n: java.lang.String[] a>
+NODE 3: $u0#10 = 0
+NODE 4: if $u0#10 < $u5 goto $u6 = $u4[$u0#10]
+NODE 5: $u6 = $u4[$u0#10]
+NODE 6: $u-1#39 = staticinvoke <com.dataeye.tracking.sdk.a.b.o: android.telephony.TelephonyManager a(android.content.Context,java.lang.String)>($u9, $u6)
+NODE 7: if $u-1#39 == null goto $u0#10 = $u0#10 + 1
+NODE 8: $u6 = virtualinvoke $u-1#39.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+NODE 9: if $u6 == null goto $u0#10 = $u0#10 + 1
+NODE 10: if $u0 == 0 goto $u0#10 = $u0#10 + 1
+NODE 11: $u0#10 = $u0#10 + 1
+NODE 12: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 7 -> 11
+EDGE: 8 -> 9
+EDGE: 9 -> 11
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.b ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 != null goto $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.Phone")
+NODE 2: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.Phone")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.b ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: $u0#25 = ""
+NODE 2: if $u10 != 0 goto (branch)
+NODE 3: $u0#25 = "getDeviceIdGemini"
+NODE 4: $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 5: $u6 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#29 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u0#25, $u6)
+NODE 7: goto [?= $u0#25 = ""]
+NODE 8: if $u10 != 1 goto $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 9: $u0#25 = "getSubscriberIdGemini"
+NODE 10: goto [?= $u5 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 2 -> 8
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 7 -> 1
+EDGE: 8 -> 9
+EDGE: 8 -> 4
+EDGE: 9 -> 10
+EDGE: 10 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: $u0#25 = ""
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: $u0#25 = "getDeviceIdGemini"
+NODE 6: $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 7: $u6 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#29 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u0#25, $u6)
+NODE 9: $u0#32 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#13 = virtualinvoke $u-1#29.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#32)
+NODE 11: goto [?= $u0#25 = ""]
+NODE 12: if $u10 != 1 goto $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 13: $u0#25 = "getSubscriberIdGemini"
+NODE 14: goto [?= $u5 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 12
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 12 -> 6
+EDGE: 13 -> 14
+EDGE: 14 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.b ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: $u0#25 = ""
+NODE 4: if $u10 != 0 goto (branch)
+NODE 5: $u0#25 = "getDeviceIdGemini"
+NODE 6: $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 7: $u6 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#29 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>($u0#25, $u6)
+NODE 9: $u0#32 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#13 = virtualinvoke $u-1#29.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#32)
+NODE 11: goto [?= $u0#25 = ""]
+NODE 12: if $u10 != 1 goto $u5 = class "Landroid/telephony/TelephonyManager;"
+NODE 13: $u0#25 = "getSubscriberIdGemini"
+NODE 14: goto [?= $u5 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 4 -> 12
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 12 -> 6
+EDGE: 13 -> 14
+EDGE: 14 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 != null goto $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.Phone")
+NODE 2: $u8 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.Phone")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 8 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 8 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: $u0#34 = (android.telephony.TelephonyManager) $u-1#12
+NODE 9: if $u11 != 0 goto (branch)
+NODE 10: $u-1#43 = virtualinvoke $u0#34.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 11: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 11 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: getDeviceId
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: $u-1 = (android.telephony.TelephonyManager) $u-1#12
+NODE 9: $u-1#47 = virtualinvoke $u-1.<android.telephony.TelephonyManager: java.lang.String getDeviceId()>()
+NODE 10: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 10 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: $u0#34 = (android.telephony.TelephonyManager) $u-1#12
+NODE 9: if $u11 != 0 goto (branch)
+NODE 10: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+NODE 11: if $u11 != 1 goto $u-1#47 = ""
+NODE 12: $u-1#43 = virtualinvoke $u0#34.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 9 -> 11
+EDGE: 10 -> 3
+EDGE: 11 -> 12
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.c ===
+SUSPICIOUS_API: getSubscriberId
+NODE 1: $u10 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u10)
+NODE 3: $u4 = class "Landroid/telephony/TelephonyManager;"
+NODE 4: $u6 = newarray (java.lang.Class)[1]
+NODE 5: $u-1#27 = virtualinvoke $u4.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("getDefault", $u6)
+NODE 6: $u5 = newarray (java.lang.Object)[1]
+NODE 7: $u-1#12 = virtualinvoke $u-1#27.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u5)
+NODE 8: $u-1 = (android.telephony.TelephonyManager) $u-1#12
+NODE 9: goto [?= $u4 = class "Landroid/telephony/TelephonyManager;"]
+NODE 10: $u-1#47 = virtualinvoke $u-1.<android.telephony.TelephonyManager: java.lang.String getSubscriberId()>()
+EDGE: 3 -> 4
+EDGE: 7 -> 8
+EDGE: 9 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: forName
+NODE 1: if $u-1 != null goto $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.PhoneConstants")
+NODE 2: $u-1#5 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.android.internal.telephony.PhoneConstants")
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u10 != 0 goto (branch)
+NODE 2: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 3: $u6 = newarray (java.lang.Class)[1]
+NODE 4: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDeviceId", $u6)
+NODE 5: goto [?= (branch)]
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 5 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: if $u10 != 0 goto (branch)
+NODE 4: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 5: $u6 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDeviceId", $u6)
+NODE 7: $u0#36 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#12 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#36)
+NODE 9: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 9 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: if $u10 != 0 goto (branch)
+NODE 4: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 5: $u6 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getDeviceId", $u6)
+NODE 7: $u0#36 = newarray (java.lang.Object)[1]
+NODE 8: $u-1#12 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#36)
+NODE 9: goto [?= (branch)]
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 9 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: getDeclaredMethod
+NODE 1: if $u10 != 0 goto (branch)
+NODE 2: goto [?= (branch)]
+NODE 3: if $u10 != 1 goto $u0#40 = ""
+NODE 4: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 5: $u6 = newarray (java.lang.Class)[1]
+NODE 6: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u6)
+EDGE: 1 -> 3
+EDGE: 2 -> 1
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: if $u10 != 0 goto (branch)
+NODE 4: goto [?= (branch)]
+NODE 5: if $u10 != 1 goto $u0#40 = ""
+NODE 6: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 7: $u6 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u6)
+NODE 9: $u0#36 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#12 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#36)
+EDGE: 3 -> 5
+EDGE: 4 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: com.dataeye.tracking.sdk.a.b.n.d ===
+SUSPICIOUS_API: invoke
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = staticinvoke <com.dataeye.tracking.sdk.a.b.n: android.telephony.TelephonyManager e(android.content.Context)>($u9)
+NODE 3: if $u10 != 0 goto (branch)
+NODE 4: goto [?= (branch)]
+NODE 5: if $u10 != 1 goto $u0#40 = ""
+NODE 6: $u-1#5 = class "Landroid/telephony/TelephonyManager;"
+NODE 7: $u6 = newarray (java.lang.Class)[1]
+NODE 8: $u-1#33 = virtualinvoke $u-1#5.<java.lang.Class: java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])>("getSubscriberId", $u6)
+NODE 9: $u0#36 = newarray (java.lang.Object)[1]
+NODE 10: $u-1#12 = virtualinvoke $u-1#33.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1, $u0#36)
+EDGE: 3 -> 5
+EDGE: 4 -> 3
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V23_25.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 2: $u0#3 = class "Ldalvik/system/DexClassLoader;"
+NODE 3: $u0#3 = virtualinvoke $u0#3.<java.lang.Class: java.lang.Class getSuperclass()>()
+NODE 4: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#3, "pathList")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V23_25.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter0: java.lang.ClassLoader
+NODE 2: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 3: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 4: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 5: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.reflect.Field)>($u6, $u0)
+NODE 6: if $u-1 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sNativeLibDirsField>
+NODE 7: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sNativeLibDirsField>
+NODE 8: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sNativeLibDirsField>
+NODE 9: $u0#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 10: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#3, "nativeLibraryDirectories")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V23_25.expandNativeLibraryDirectories ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: $u6 := @parameter0: java.lang.ClassLoader
+NODE 2: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 3: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 4: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sPathListField>
+NODE 5: $u-1 = staticinvoke <com.anfeng.pay.Reflect: java.lang.Object getFieldValue(java.lang.Object,java.lang.reflect.Field)>($u6, $u0)
+NODE 6: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sNativeLibPathElementsField>
+NODE 7: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Field sNativeLibPathElementsField>
+NODE 8: $u0#3 = virtualinvoke $u-1.<java.lang.Object: java.lang.Class getClass()>()
+NODE 9: $u0 = staticinvoke <com.anfeng.pay.Reflect: java.lang.reflect.Field getDeclaredField(java.lang.Class,java.lang.String)>($u0#3, "nativeLibraryPathElements")
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.internal.LibMergeCompat$V23_25.makeLibElement ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 2: if $u0 != null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 3: if $u-1 == null goto $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 4: $u0 = <net.wequick.small.internal.LibMergeCompat$V23_25: java.lang.reflect.Constructor sLibElementConstructor>
+NODE 5: $u1 = newarray (java.lang.Object)[4]
+NODE 6: $u-1#16 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 4
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.NetUtils.getCurrentNetType ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#5 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u4)
+NODE 3: $u-1#5 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u4)
+NODE 4: if $u-1#5 == null goto return -3
+NODE 5: $u-1#7 = virtualinvoke $u-1#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.NetUtils.getWifiInfo ===
+SUSPICIOUS_API: getConnectionInfo
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#6 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 3: $u-1#6 = virtualinvoke $u3.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("wifi")
+NODE 4: $u0 = (android.net.wifi.WifiManager) $u-1#6
+NODE 5: if $u-1 != 0 goto $u-1#11 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+NODE 6: $u-1#11 = virtualinvoke $u0.<android.net.wifi.WifiManager: android.net.wifi.WifiInfo getConnectionInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.NetUtils.getWifiName ===
+SUSPICIOUS_API: getNetworkInfo
+NODE 1: $u4 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#8 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u4)
+NODE 3: $u-1#8 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u4)
+NODE 4: $u-1#11 = virtualinvoke $u-1#8.<android.net.ConnectivityManager: android.net.NetworkInfo getNetworkInfo(int)>(1)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: cn.testin.analysis.data.common.utils.NetUtils.isNetAvailable ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: $u2 := @parameter0: android.content.Context
+NODE 2: if $u-1 != 0 goto $u-1#5 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u2)
+NODE 3: $u-1#5 = staticinvoke <cn.testin.analysis.data.common.utils.NetUtils: android.net.ConnectivityManager getConnectivityManager(android.content.Context)>($u2)
+NODE 4: if $u-1#5 == null goto return 1
+NODE 5: $u-1#7 = virtualinvoke $u-1#5.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: net.wequick.small.Bundle.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u-1#25 == 0 goto virtualinvoke $u2.<java.io.OutputStream: void write(byte[],int,int)>($u0#33, 0, 2)
+NODE 2: $u0 = class "Landroid/util/Base64OutputStream;"
+NODE 3: $u3 = newarray (java.lang.Class)[3]
+NODE 4: $u-1#51 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3)
+NODE 5: $u3#54 = newarray (java.lang.Object)[3]
+NODE 6: $u-1#64 = virtualinvoke $u-1#51.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u3#54)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.content.ContextCompat.getExternalFilesDirs ===
+SUSPICIOUS_API: getExternalFilesDir
+NODE 1: $u3 := @parameter0: android.content.Context
+NODE 2: $u4 := @parameter1: java.lang.String
+NODE 3: $u-1#8 = virtualinvoke $u3.<android.content.Context: java.io.File getExternalFilesDir(java.lang.String)>($u4)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.anfeng.pay.content.ContextCompat.getObbDirs ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u0 < 19 goto (branch)
+NODE 2: if $u0 < 11 goto $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+NODE 3: $u-1#6 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+

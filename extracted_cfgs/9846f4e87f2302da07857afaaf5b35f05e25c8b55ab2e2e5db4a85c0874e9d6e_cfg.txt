@@ -1,0 +1,371 @@
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 := @parameter0: android.content.pm.ApplicationInfo
+NODE 2: if $u-1 == 0 goto return
+NODE 3: $u0 = $u1.<android.content.pm.ApplicationInfo: java.lang.String nativeLibraryDir>
+NODE 4: $u-1 = staticinvoke <com.unity3d.player.NativeLoader: boolean load(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.loadLibraryStatic ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.Gyroscope$1.onSensorChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: cn.easyar.engine.Gyroscope$1
+NODE 2: $u7 := @parameter0: android.hardware.SensorEvent
+NODE 3: $u0 = this.<cn.easyar.engine.Gyroscope$1: cn.easyar.engine.Gyroscope$IOnUpdated val$onUpdated>
+NODE 4: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 5: $u1#3 = $u1[0]
+NODE 6: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 7: $u2 = $u1[1]
+NODE 8: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 9: $u3 = $u1[2]
+NODE 10: $u4 = $u7.<android.hardware.SensorEvent: long timestamp>
+NODE 11: interfaceinvoke $u0.<cn.easyar.engine.Gyroscope$IOnUpdated: void invoke(float,float,float,long)>($u1#3, $u2, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.a.c ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.unity3d.player.a
+NODE 2: if $u0 != null goto $u0#31 = this.<com.unity3d.player.a: android.hardware.camera2.CameraCaptureSession u>
+NODE 3: $u0#3 = this.<com.unity3d.player.a: android.graphics.Rect h>
+NODE 4: $u-1 = virtualinvoke $u0#3.<android.graphics.Rect: int width()>()
+NODE 5: $u0#3 = this.<com.unity3d.player.a: android.graphics.Rect h>
+NODE 6: $u-1#7 = virtualinvoke $u0#3.<android.graphics.Rect: int height()>()
+NODE 7: $u0 = staticinvoke <android.media.ImageReader: android.media.ImageReader newInstance(int,int,int,int)>($u-1, $u-1#7, 35, 2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.o.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.unity3d.player.o
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: if $u-1 != 0 goto $u0 = this.<com.unity3d.player.o: java.util.HashMap a>
+NODE 4: $u0 = this.<com.unity3d.player.o: java.util.HashMap a>
+NODE 5: $u-1#15 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u6)
+NODE 6: $u0#17 = (com.unity3d.player.o$a) $u-1#15
+NODE 7: if $u2#26 != 0 goto $u2 = $u0#17.<com.unity3d.player.o$a: java.lang.reflect.Method b>
+NODE 8: $u2 = $u0#17.<com.unity3d.player.o$a: java.lang.reflect.Method b>
+NODE 9: $u-1#15 = this.<com.unity3d.player.o: java.lang.Object c>
+NODE 10: $u7 = newarray (java.lang.Object)[0]
+NODE 11: $u-1#15 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#15, $u7)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.o.a ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: com.unity3d.player.o
+NODE 2: $u6 := @parameter0: java.lang.String
+NODE 3: $u7 := @parameter1: java.lang.Object[]
+NODE 4: if $u-1 != 0 goto $u0 = this.<com.unity3d.player.o: java.util.HashMap a>
+NODE 5: $u0 = this.<com.unity3d.player.o: java.util.HashMap a>
+NODE 6: $u-1#15 = virtualinvoke $u0.<java.util.HashMap: java.lang.Object get(java.lang.Object)>($u6)
+NODE 7: $u0#17 = (com.unity3d.player.o$a) $u-1#15
+NODE 8: if $u2#26 != 0 goto $u2 = $u0#17.<com.unity3d.player.o$a: java.lang.reflect.Method b>
+NODE 9: $u2 = $u0#17.<com.unity3d.player.o$a: java.lang.reflect.Method b>
+NODE 10: $u-1#15 = this.<com.unity3d.player.o: java.lang.Object c>
+NODE 11: $u-1#15 = virtualinvoke $u2.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#15, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper$1.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u0 = class "Ljava/lang/invoke/MethodHandles$Lookup;"
+NODE 2: $u2 = newarray (java.lang.Class)[2]
+NODE 3: $u-1#12 = virtualinvoke $u0.<java.lang.Class: java.lang.reflect.Constructor getDeclaredConstructor(java.lang.Class[])>($u2)
+NODE 4: $u2#16 = newarray (java.lang.Object)[2]
+NODE 5: $u-1#22 = virtualinvoke $u-1#12.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2#16)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.AttitudeSensor$1.onSensorChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: cn.easyar.engine.AttitudeSensor$1
+NODE 2: $u10 := @parameter0: android.hardware.SensorEvent
+NODE 3: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 4: $u3#5 = $u3[0]
+NODE 5: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 6: $u4 = $u3[0]
+NODE 7: $u3#5 = $u3#5 * $u4
+NODE 8: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 9: $u4 = $u3[1]
+NODE 10: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 11: $u5 = $u3[1]
+NODE 12: $u4 = $u4 * $u5
+NODE 13: $u3#5 = $u3#5 + $u4
+NODE 14: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 15: $u4 = $u3[2]
+NODE 16: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 17: $u5 = $u3[2]
+NODE 18: $u4 = $u4 * $u5
+NODE 19: $u3#5 = $u3#5 + $u4
+NODE 20: $u3#5 = 1.0F - $u3#5
+NODE 21: $u3#5 = staticinvoke <java.lang.Math: float max(float,float)>(0.0F, $u3#5)
+NODE 22: $u1 = this.<cn.easyar.engine.AttitudeSensor$1: cn.easyar.engine.AttitudeSensor$IOnUpdated val$onUpdated>
+NODE 23: $u2 = (double) $u3#5
+NODE 24: $u2 = staticinvoke <java.lang.Math: double sqrt(double)>($u2)
+NODE 25: $u3#5 = (float) $u2
+NODE 26: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 27: $u4 = $u3[0]
+NODE 28: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 29: $u5 = $u3[1]
+NODE 30: $u3 = $u10.<android.hardware.SensorEvent: float[] values>
+NODE 31: $u5#33 = $u3[2]
+NODE 32: $u6 = $u10.<android.hardware.SensorEvent: long timestamp>
+NODE 33: interfaceinvoke $u1.<cn.easyar.engine.AttitudeSensor$IOnUpdated: void invoke(float,float,float,float,long)>($u3#5, $u4, $u5, $u5#33, $u6)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 21 -> 22
+EDGE: 22 -> 23
+EDGE: 23 -> 24
+EDGE: 24 -> 25
+EDGE: 25 -> 26
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.Accelerometer$1.onSensorChanged ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: cn.easyar.engine.Accelerometer$1
+NODE 2: $u7 := @parameter0: android.hardware.SensorEvent
+NODE 3: $u0 = this.<cn.easyar.engine.Accelerometer$1: cn.easyar.engine.Accelerometer$IOnUpdated val$onUpdated>
+NODE 4: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 5: $u1#3 = $u1[0]
+NODE 6: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 7: $u2 = $u1[1]
+NODE 8: $u1 = $u7.<android.hardware.SensorEvent: float[] values>
+NODE 9: $u3 = $u1[2]
+NODE 10: $u4 = $u7.<android.hardware.SensorEvent: long timestamp>
+NODE 11: interfaceinvoke $u0.<cn.easyar.engine.Accelerometer$IOnUpdated: void invoke(float,float,float,long)>($u1#3, $u2, $u3, $u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.GoogleVrProxy.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u8 := @parameter0: java.lang.ClassLoader
+NODE 2: $u-1 = virtualinvoke $u8.<java.lang.ClassLoader: java.lang.Class loadClass(java.lang.String)>("com.unity3d.unitygvr.GoogleVR")
+NODE 3: $u3 = newarray (java.lang.Class)[0]
+NODE 4: $u-1#7 = virtualinvoke $u-1.<java.lang.Class: java.lang.reflect.Constructor getConstructor(java.lang.Class[])>($u3)
+NODE 5: $u4 = newarray (java.lang.Object)[0]
+NODE 6: $u-1#11 = virtualinvoke $u-1#7.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.GoogleVrProxy.setVideoLocationTransform ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1 = newarray (int)[2]
+NODE 2: $u1 = <java.lang.Float: java.lang.Class TYPE>
+NODE 3: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: $u0 = $u5[0]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.String: int length()>()
+NODE 5: if $u0 >= $u-1 goto return null
+NODE 6: $u0 = $u5[0]
+NODE 7: $u-1#7 = virtualinvoke $u4.<java.lang.String: char charAt(int)>($u0)
+NODE 8: $u0 = (int) $u-1#7
+NODE 9: if $u0 == 40 goto $u0 = $u5[0]
+NODE 10: $u0 = (int) $u-1#7
+NODE 11: if $u0 == 41 goto $u0 = $u5[0]
+NODE 12: $u0 = (int) $u-1#7
+NODE 13: if $u0 != 76 goto $u0 = (int) $u-1#7
+NODE 14: $u0 = $u5[0]
+NODE 15: $u0 = virtualinvoke $u4.<java.lang.String: int indexOf(int,int)>(59, $u0)
+NODE 16: if $u0 == -1 goto return null
+NODE 17: $u-1 = $u5[0]
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u0)
+NODE 19: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String replace(char,char)>(47, 46)
+NODE 20: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 3
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: if $u0 != 91 goto $u0 = new java.lang.StringBuilder
+NODE 4: $u-1#25 = staticinvoke <com.unity3d.player.ReflectionHelper: java.lang.Class a(java.lang.String,int[])>($u4, $u5)
+NODE 5: $u-1#48 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#25, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.fmod.a.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.fmod.a
+NODE 2: $u0#4 = this.<org.fmod.a: android.media.AudioRecord h>
+NODE 3: virtualinvoke $u0#4.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.CameraDevice.requestPermissions ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter0: long
+NODE 2: $u7 = <android.os.Build$VERSION: int SDK_INT>
+NODE 3: if $u7 < 23 goto staticinvoke <cn.easyar.engine.CameraDevice: void onPermissionCallback(long,int,java.lang.String)>($u10, 0, "")
+NODE 4: $u-1 = staticinvoke <cn.easyar.engine.EasyAR: java.lang.ref.WeakReference getInitializeActivity()>()
+NODE 5: $u-1#5 = virtualinvoke $u-1.<java.lang.ref.WeakReference: java.lang.Object get()>()
+NODE 6: context = (android.app.Activity) $u-1#5
+NODE 7: if context != null goto permissions = new java.util.ArrayList
+NODE 8: permissions = new java.util.ArrayList
+NODE 9: $u7 = virtualinvoke context.<android.app.Activity: int checkSelfPermission(java.lang.String)>("android.permission.CAMERA")
+NODE 10: if $u7 == 0 goto $u7 = virtualinvoke permissions.<java.util.ArrayList: int size()>()
+NODE 11: $u7 = virtualinvoke permissions.<java.util.ArrayList: int size()>()
+NODE 12: if $u7 != 0 goto $u7 = virtualinvoke permissions.<java.util.ArrayList: int size()>()
+NODE 13: $u7 = virtualinvoke permissions.<java.util.ArrayList: int size()>()
+NODE 14: requests = newarray (java.lang.String)[$u7]
+NODE 15: $u-1#19 = virtualinvoke context.<android.app.Activity: android.app.FragmentManager getFragmentManager()>()
+NODE 16: callback = new cn.easyar.engine.CameraDevice$2
+NODE 17: $u-1#20 = staticinvoke <cn.easyar.engine.PermissionFragment: cn.easyar.engine.PermissionFragment newInstance(long,java.lang.String[],cn.easyar.engine.PermissionFragment$PermissionCallback,android.app.FragmentManager)>($u10, requests, callback, $u-1#19)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 9 -> 10
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 15 -> 16
+=== END FUNCTION ===
+
+=== FUNCTION: bitter.jnibridge.JNIBridge$a.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: bitter.jnibridge.JNIBridge$a
+NODE 2: $u0 = this.<bitter.jnibridge.JNIBridge$a: java.lang.reflect.Constructor c>
+NODE 3: $u2 = newarray (java.lang.Object)[2]
+NODE 4: $u-1#9 = virtualinvoke $u0.<java.lang.reflect.Constructor: java.lang.Object newInstance(java.lang.Object[])>($u2)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bitter.jnibridge.JNIBridge$a.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bitter.jnibridge.JNIBridge$a
+NODE 2: $u8 := @parameter1: java.lang.reflect.Method
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: if $u0 != 0 goto $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 5: $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 6: $u-1 = virtualinvoke $u8.<java.lang.reflect.Method: java.lang.Class getDeclaringClass()>()
+NODE 7: $u-1#7 = staticinvoke <bitter.jnibridge.JNIBridge: java.lang.Object invoke(long,java.lang.Class,java.lang.reflect.Method,java.lang.Object[])>($u2, $u-1, $u8, $u9)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.EasyAR.loadLibraries ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("EasyAR")
+=== END FUNCTION ===
+
+=== FUNCTION: cn.easyar.engine.EasyAR.loadLibraries ===
+SUSPICIOUS_API: load
+NODE 1: $u2 := @parameter0: java.lang.String
+NODE 2: $u0 = new java.lang.StringBuilder
+NODE 3: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>($u2)
+NODE 4: $u0 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.StringBuilder append(java.lang.String)>("/libEasyAR.so")
+NODE 5: $u2 = virtualinvoke $u0.<java.lang.StringBuilder: java.lang.String toString()>()
+NODE 6: staticinvoke <java.lang.System: void load(java.lang.String)>($u2)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

@@ -1,0 +1,34 @@
+=== FUNCTION: com.google.android.apps.analytics.AdHitIdGenerator.<init> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>("com.google.ads.AdRequest")
+=== END FUNCTION ===
+
+=== FUNCTION: com.tju.android.webcams.activity.LeysinWebcams.doSaveImage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#10 == 0 goto (branch)
+NODE 2: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.tju.android.webcams.activity.LeysinWebcams.doSaveThumbnail2SD ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1#14 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.tju.android.webcams.activity.LeysinWebcams.doShareImage ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#10 == 0 goto (branch)
+NODE 2: shareDir = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.android.apps.analytics.GoogleAnalyticsTracker.dispatch ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.google.android.apps.analytics.GoogleAnalyticsTracker
+NODE 2: if $u2 == 0 goto $u2#10 = this.<com.google.android.apps.analytics.GoogleAnalyticsTracker: android.net.ConnectivityManager connectivityManager>
+NODE 3: $u2#10 = this.<com.google.android.apps.analytics.GoogleAnalyticsTracker: android.net.ConnectivityManager connectivityManager>
+NODE 4: $u-1 = virtualinvoke $u2#10.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+

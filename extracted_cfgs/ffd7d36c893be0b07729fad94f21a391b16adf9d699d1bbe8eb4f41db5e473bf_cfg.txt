@@ -1,0 +1,33 @@
+=== FUNCTION: com.slidingbits.briteli.Browser.onCreate ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.slidingbits.briteli.Browser
+NODE 2: $u-1 = virtualinvoke this.<com.slidingbits.briteli.Browser: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#5 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivityManager = (android.net.ConnectivityManager) $u-1#5
+NODE 5: if connectivityManager == null goto virtualinvoke this.<com.slidingbits.briteli.Browser: void setContentView(int)>(2130903040)
+NODE 6: $u-1#8 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+
+=== FUNCTION: com.slidingbits.briteli.Launcher.<clinit> ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: rFile = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.slidingbits.briteli.Launcher.onCreate ===
+SUSPICIOUS_API: getActiveNetworkInfo
+NODE 1: this := @this: com.slidingbits.briteli.Launcher
+NODE 2: $u-1 = virtualinvoke this.<com.slidingbits.briteli.Launcher: android.content.Context getApplicationContext()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.Context: java.lang.Object getSystemService(java.lang.String)>("connectivity")
+NODE 4: connectivityManager = (android.net.ConnectivityManager) $u-1#4
+NODE 5: if connectivityManager == null goto virtualinvoke this.<com.slidingbits.briteli.Launcher: void setContentView(int)>(2130903041)
+NODE 6: $u-1#7 = virtualinvoke connectivityManager.<android.net.ConnectivityManager: android.net.NetworkInfo getActiveNetworkInfo()>()
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+=== END FUNCTION ===
+

@@ -1,0 +1,17 @@
+=== FUNCTION: com.presonus.ucremote.UCRemote.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("ucremoteapp")
+=== END FUNCTION ===
+
+=== FUNCTION: com.ccl.FrameworkActivity.getUserName ===
+SUSPICIOUS_API: query
+NODE 1: this := @this: com.ccl.FrameworkActivity
+NODE 2: if $u-1 == 0 goto return ""
+NODE 3: $u-1#4 = virtualinvoke this.<com.ccl.FrameworkActivity: android.content.ContentResolver getContentResolver()>()
+NODE 4: $u1 = <android.provider.ContactsContract$Profile: android.net.Uri CONTENT_URI>
+NODE 5: $u-1#6 = virtualinvoke $u-1#4.<android.content.ContentResolver: android.database.Cursor query(android.net.Uri,java.lang.String[],java.lang.String,java.lang.String[],java.lang.String)>($u1, null, null, null, null)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
