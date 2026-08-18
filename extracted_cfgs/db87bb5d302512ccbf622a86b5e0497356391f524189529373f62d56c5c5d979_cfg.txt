@@ -1,0 +1,553 @@
+=== FUNCTION: com.google.vr.cardboard.ConfigUtils.getConfigFile ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: $u-1 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.ConfigUtils.readFromInputStream ===
+SUSPICIOUS_API: newInstance
+NODE 1: clazz := @parameter0: java.lang.Class
+NODE 2: if $u12 != -1 goto $u-1#28 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u-1#28 = virtualinvoke clazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.MessageNano.mergeFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter1: byte[]
+NODE 2: $u6 := @parameter2: int
+NODE 3: $u7 := @parameter3: int
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[],int,int)>($u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.MessageNano.toByteArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter1: byte[]
+NODE 2: $u6 := @parameter2: int
+NODE 3: $u7 := @parameter3: int
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.nano.CodedOutputByteBufferNano: com.google.protobuf.nano.CodedOutputByteBufferNano newInstance(byte[],int,int)>($u5, $u6, $u7)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.MessageNanoPrinter.print ===
+SUSPICIOUS_API: invoke
+NODE 1: $u29 := @parameter1: java.lang.Object
+NODE 2: if $u28 == null goto $u-1#19 = virtualinvoke $u29.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#19 = virtualinvoke $u29.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u22 = 0
+NODE 5: if $u22 >= $u0#23 goto $u-1#71 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u0 == 0 goto $u25 = $u-1#28 & 1
+NODE 7: $u22 = $u22 + 1
+NODE 8: goto [?= (branch)]
+NODE 9: if $u25 != 1 goto $u22 = $u22 + 1
+NODE 10: if $u-1#28 == 8 goto $u22 = $u22 + 1
+NODE 11: if $u0 != 0 goto $u22 = $u22 + 1
+NODE 12: if $u0 != 0 goto $u22 = $u22 + 1
+NODE 13: goto [?= $u22 = $u22 + 1]
+NODE 14: if $u25 >= $u-1#28 goto $u22 = $u22 + 1
+NODE 15: goto [?= (branch)]
+NODE 16: goto [?= $u22 = $u22 + 1]
+NODE 17: $u-1#71 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 18: $u22 = 0
+NODE 19: if $u22 >= $u0#23 goto (branch)
+NODE 20: method = $u-1#71[$u22]
+NODE 21: $u-1#11 = virtualinvoke method.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 22: if $u0 == 0 goto $u22 = $u22 + 1
+NODE 23: $u-1#11 = virtualinvoke $u-1#11.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 24: $u0#31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#11)
+NODE 25: if $u-1#28 == 0 goto $u0#31 = new java.lang.String
+NODE 26: $u0#96 = "has"
+NODE 27: $u0#31 = virtualinvoke $u0#96.<java.lang.String: java.lang.String concat(java.lang.String)>($u0#31)
+NODE 28: $u0#102 = newarray (java.lang.Class)[0]
+NODE 29: method = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u0#31, $u0#102)
+NODE 30: $u0#110 = newarray (java.lang.Object)[0]
+NODE 31: $u-1#52 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u29, $u0#110)
+NODE 32: if $u0 != 0 goto $u0#31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#11)
+NODE 33: $u22 = $u22 + 1
+NODE 34: goto [?= (branch)]
+NODE 35: $u0#31 = new java.lang.String
+NODE 36: goto [?= $u0#102 = newarray (java.lang.Class)[0]]
+NODE 37: goto [?= $u22 = $u22 + 1]
+NODE 38: goto [?= $u22 = $u22 + 1]
+NODE 39: goto [?= $u22 = $u22 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 17
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 7
+EDGE: 10 -> 7
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+EDGE: 13 -> 7
+EDGE: 14 -> 7
+EDGE: 15 -> 14
+EDGE: 16 -> 7
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 22 -> 23
+EDGE: 22 -> 33
+EDGE: 23 -> 24
+EDGE: 25 -> 26
+EDGE: 25 -> 35
+EDGE: 26 -> 27
+EDGE: 27 -> 28
+EDGE: 28 -> 29
+EDGE: 29 -> 30
+EDGE: 30 -> 31
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 19
+EDGE: 36 -> 28
+EDGE: 37 -> 33
+EDGE: 38 -> 33
+EDGE: 39 -> 33
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.MessageNanoPrinter.print ===
+SUSPICIOUS_API: invoke
+NODE 1: $u29 := @parameter1: java.lang.Object
+NODE 2: if $u28 == null goto $u-1#19 = virtualinvoke $u29.<java.lang.Object: java.lang.Class getClass()>()
+NODE 3: $u-1#19 = virtualinvoke $u29.<java.lang.Object: java.lang.Class getClass()>()
+NODE 4: $u22 = 0
+NODE 5: if $u22 >= $u0#23 goto $u-1#71 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 6: if $u0 == 0 goto $u25 = $u-1#28 & 1
+NODE 7: $u22 = $u22 + 1
+NODE 8: goto [?= (branch)]
+NODE 9: if $u25 != 1 goto $u22 = $u22 + 1
+NODE 10: if $u-1#28 == 8 goto $u22 = $u22 + 1
+NODE 11: if $u0 != 0 goto $u22 = $u22 + 1
+NODE 12: if $u0 != 0 goto $u22 = $u22 + 1
+NODE 13: goto [?= $u22 = $u22 + 1]
+NODE 14: if $u25 >= $u-1#28 goto $u22 = $u22 + 1
+NODE 15: goto [?= (branch)]
+NODE 16: goto [?= $u22 = $u22 + 1]
+NODE 17: $u-1#71 = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method[] getMethods()>()
+NODE 18: $u22 = 0
+NODE 19: if $u22 >= $u0#23 goto (branch)
+NODE 20: method = $u-1#71[$u22]
+NODE 21: $u-1#11 = virtualinvoke method.<java.lang.reflect.Method: java.lang.String getName()>()
+NODE 22: if $u0 == 0 goto $u22 = $u22 + 1
+NODE 23: $u-1#11 = virtualinvoke $u-1#11.<java.lang.String: java.lang.String substring(int)>(3)
+NODE 24: if $u0 != 0 goto $u0#31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#11)
+NODE 25: $u22 = $u22 + 1
+NODE 26: goto [?= (branch)]
+NODE 27: goto [?= $u22 = $u22 + 1]
+NODE 28: $u0#31 = staticinvoke <java.lang.String: java.lang.String valueOf(java.lang.Object)>($u-1#11)
+NODE 29: if $u-1#28 == 0 goto $u0#31 = new java.lang.String
+NODE 30: $u0#96 = "get"
+NODE 31: $u0#31 = virtualinvoke $u0#96.<java.lang.String: java.lang.String concat(java.lang.String)>($u0#31)
+NODE 32: $u0#102 = newarray (java.lang.Class)[0]
+NODE 33: method = virtualinvoke $u-1#19.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>($u0#31, $u0#102)
+NODE 34: $u0#110 = newarray (java.lang.Object)[0]
+NODE 35: $u-1#52 = virtualinvoke method.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u29, $u0#110)
+NODE 36: goto [?= $u22 = $u22 + 1]
+NODE 37: $u0#31 = new java.lang.String
+NODE 38: goto [?= $u0#102 = newarray (java.lang.Class)[0]]
+NODE 39: goto [?= $u22 = $u22 + 1]
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 17
+EDGE: 6 -> 7
+EDGE: 7 -> 8
+EDGE: 8 -> 5
+EDGE: 9 -> 7
+EDGE: 10 -> 7
+EDGE: 11 -> 7
+EDGE: 12 -> 7
+EDGE: 13 -> 7
+EDGE: 14 -> 7
+EDGE: 15 -> 14
+EDGE: 16 -> 7
+EDGE: 18 -> 19
+EDGE: 19 -> 20
+EDGE: 20 -> 21
+EDGE: 22 -> 23
+EDGE: 22 -> 25
+EDGE: 24 -> 25
+EDGE: 24 -> 28
+EDGE: 25 -> 26
+EDGE: 26 -> 19
+EDGE: 27 -> 25
+EDGE: 29 -> 30
+EDGE: 29 -> 37
+EDGE: 30 -> 31
+EDGE: 31 -> 32
+EDGE: 32 -> 33
+EDGE: 33 -> 34
+EDGE: 34 -> 35
+EDGE: 36 -> 25
+EDGE: 38 -> 32
+EDGE: 39 -> 25
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.unity.GoogleUnityActivity.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("gvrunity")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.unity.GoogleUnityActivity.getClassNamed ===
+SUSPICIOUS_API: forName
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: if $u5 == null goto return null
+NODE 3: $u-1 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u5)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.android.ParcelableMessageNanoCreator.createFromParcel ===
+SUSPICIOUS_API: forName
+NODE 1: $u10 := @parameter0: android.os.Parcel
+NODE 2: $u-1 = virtualinvoke $u10.<android.os.Parcel: java.lang.String readString()>()
+NODE 3: $u-1#4 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.android.ParcelableMessageNanoCreator.createFromParcel ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u10 := @parameter0: android.os.Parcel
+NODE 2: $u-1 = virtualinvoke $u10.<android.os.Parcel: java.lang.String readString()>()
+NODE 3: $u-1#4 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u-1)
+NODE 4: $u-1#5 = virtualinvoke $u-1#4.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.android.ParcelableMessageNanoCreator.newArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.nano.android.ParcelableMessageNanoCreator
+NODE 2: $u2 := @parameter0: int
+NODE 3: $u0 = this.<com.google.protobuf.nano.android.ParcelableMessageNanoCreator: java.lang.Class mClazz>
+NODE 4: $u-1 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u0, $u2)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.ndk.base.GvrApi.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("gvr")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.CodedOutputByteBufferNano.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: byte[]
+NODE 2: $u1 = lengthof $u2
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.nano.CodedOutputByteBufferNano: com.google.protobuf.nano.CodedOutputByteBufferNano newInstance(byte[],int,int)>($u2, 0, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: forName
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: $u0 = $u5[0]
+NODE 4: $u-1 = virtualinvoke $u4.<java.lang.String: int length()>()
+NODE 5: if $u0 >= $u-1 goto return null
+NODE 6: $u0 = $u5[0]
+NODE 7: $u-1#7 = virtualinvoke $u4.<java.lang.String: char charAt(int)>($u0)
+NODE 8: $u0 = (int) $u-1#7
+NODE 9: if $u0 == 40 goto $u0 = $u5[0]
+NODE 10: $u0 = (int) $u-1#7
+NODE 11: if $u0 == 41 goto $u0 = $u5[0]
+NODE 12: $u0 = (int) $u-1#7
+NODE 13: if $u0 != 76 goto $u0 = (int) $u-1#7
+NODE 14: $u0 = $u5[0]
+NODE 15: $u0 = virtualinvoke $u4.<java.lang.String: int indexOf(int,int)>(59, $u0)
+NODE 16: if $u0 == -1 goto return null
+NODE 17: $u-1 = $u5[0]
+NODE 18: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String substring(int,int)>($u-1, $u0)
+NODE 19: $u4 = virtualinvoke $u4.<java.lang.String: java.lang.String replace(char,char)>(47, 46)
+NODE 20: $u-1#25 = staticinvoke <java.lang.Class: java.lang.Class forName(java.lang.String)>($u4)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+EDGE: 9 -> 3
+EDGE: 10 -> 11
+EDGE: 11 -> 12
+EDGE: 11 -> 3
+EDGE: 12 -> 13
+EDGE: 13 -> 14
+EDGE: 14 -> 15
+EDGE: 15 -> 16
+EDGE: 16 -> 17
+EDGE: 17 -> 18
+EDGE: 19 -> 20
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.ReflectionHelper.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u4 := @parameter0: java.lang.String
+NODE 2: $u5 := @parameter1: int[]
+NODE 3: if $u0 != 91 goto $u0 = new java.lang.StringBuilder
+NODE 4: $u-1#25 = staticinvoke <com.unity3d.player.ReflectionHelper: java.lang.Class a(java.lang.String,int[])>($u4, $u5)
+NODE 5: $u-1#46 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u-1#25, 0)
+EDGE: 1 -> 2
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: org.fmod.a.run ===
+SUSPICIOUS_API: startRecording
+NODE 1: this := @this: org.fmod.a
+NODE 2: $u0#4 = this.<org.fmod.a: android.media.AudioRecord h>
+NODE 3: virtualinvoke $u0#4.<android.media.AudioRecord: void startRecording()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension$PrimitiveExtension.readDataInto ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: com.google.protobuf.nano.UnknownFieldData
+NODE 2: if $u2 != $u3 goto $u2#3 = $u5.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 3: $u2#3 = $u5.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[])>($u2#3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension$PrimitiveExtension.readDataInto ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u5 := @parameter0: com.google.protobuf.nano.UnknownFieldData
+NODE 2: if $u2 != $u3 goto $u2#3 = $u5.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 3: $u2#3 = $u5.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 4: $u-1 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[])>($u2#3)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.platform.unity.UnityVrActivityListener.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("gvrunity")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.InternalNano.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("UTF-8")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.InternalNano.<clinit> ===
+SUSPICIOUS_API: forName
+NODE 1: $u-1 = staticinvoke <java.nio.charset.Charset: java.nio.charset.Charset forName(java.lang.String)>("ISO-8859-1")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.audio.unity.GvrAudio.<clinit> ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>("audioplugingvrunity")
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.AndroidNCompat.checkForVrCorePresence ===
+SUSPICIOUS_API: getInstalledApplications
+NODE 1: $u9 := @parameter0: android.content.Context
+NODE 2: $u-1 = virtualinvoke $u9.<android.content.Context: android.content.pm.PackageManager getPackageManager()>()
+NODE 3: $u-1#4 = virtualinvoke $u-1.<android.content.pm.PackageManager: java.util.List getInstalledApplications(int)>(0)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.AndroidNCompat.isVrReady ===
+SUSPICIOUS_API: getDeclaredField
+NODE 1: if $u5 == 0 goto return 0
+NODE 2: $u5#9 = class "Landroid/content/pm/PackageManager;"
+NODE 3: $u-1 = virtualinvoke $u5#9.<java.lang.Class: java.lang.reflect.Field getDeclaredField(java.lang.String)>("FEATURE_VR_MODE_HIGH_PERFORMANCE")
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.AndroidNCompat.setSustainedPerformanceMode ===
+SUSPICIOUS_API: invoke
+NODE 1: $u8 := @parameter0: android.app.Activity
+NODE 2: if $u-1 != 0 goto $u-1#3 = virtualinvoke $u8.<android.app.Activity: android.view.Window getWindow()>()
+NODE 3: $u-1#3 = virtualinvoke $u8.<android.app.Activity: android.view.Window getWindow()>()
+NODE 4: if $u-1#3 != null goto $u3#7 = class "Landroid/view/Window;"
+NODE 5: $u3#7 = class "Landroid/view/Window;"
+NODE 6: $u5 = newarray (java.lang.Class)[1]
+NODE 7: $u-1#12 = virtualinvoke $u3#7.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setSustainedPerformanceMode", $u5)
+NODE 8: $u3#15 = newarray (java.lang.Object)[1]
+NODE 9: virtualinvoke $u-1#12.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u-1#3, $u3#15)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.AndroidNCompat.setVrModeEnabled ===
+SUSPICIOUS_API: invoke
+NODE 1: $u10 := @parameter0: android.app.Activity
+NODE 2: if $u-1 != 0 goto $u5 = class "Landroid/app/Activity;"
+NODE 3: $u5 = class "Landroid/app/Activity;"
+NODE 4: $u7 = newarray (java.lang.Class)[2]
+NODE 5: $u-1#14 = virtualinvoke $u5.<java.lang.Class: java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])>("setVrModeEnabled", $u7)
+NODE 6: $u5#19 = newarray (java.lang.Object)[2]
+NODE 7: virtualinvoke $u-1#14.<java.lang.reflect.Method: java.lang.Object invoke(java.lang.Object,java.lang.Object[])>($u10, $u5#19)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vr.cardboard.ContentProviderVrParamsProvider.readParams ===
+SUSPICIOUS_API: newInstance
+NODE 1: protoClazz := @parameter0: java.lang.Class
+NODE 2: if $u-1#9 != null goto $u-1#11 = virtualinvoke protoClazz.<java.lang.Class: java.lang.Object newInstance()>()
+NODE 3: $u-1#11 = virtualinvoke protoClazz.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()
+NODE 2: goto [?= $u-1#10 = staticinvoke <org.xmlpull.v1.XmlPullParserFactory: org.xmlpull.v1.XmlPullParserFactory newInstance()>()]
+EDGE: 2 -> 1
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: load
+NODE 1: $u1 := @parameter0: android.content.pm.ApplicationInfo
+NODE 2: if $u-1 == 0 goto return
+NODE 3: $u0 = $u1.<android.content.pm.ApplicationInfo: java.lang.String nativeLibraryDir>
+NODE 4: $u-1 = staticinvoke <com.unity3d.player.NativeLoader: boolean load(java.lang.String)>($u0)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.a ===
+SUSPICIOUS_API: getExternalStorageDirectory
+NODE 1: if $u-1#13 == 0 goto $u2 = virtualinvoke $u1.<java.util.Vector: int size()>()
+NODE 2: $u-1#15 = staticinvoke <android.os.Environment: java.io.File getExternalStorageDirectory()>()
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.unity3d.player.UnityPlayer.loadLibraryStatic ===
+SUSPICIOUS_API: loadLibrary
+NODE 1: $u5 := @parameter0: java.lang.String
+NODE 2: staticinvoke <java.lang.System: void loadLibrary(java.lang.String)>($u5)
+EDGE: 1 -> 2
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension.getRepeatedValueFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.nano.Extension
+NODE 2: resultList = new java.util.ArrayList
+NODE 3: i = 0
+NODE 4: if i >= $u-1 goto i = interfaceinvoke resultList.<java.util.List: int size()>()
+NODE 5: if $u-1 == 0 goto i = i + 1
+NODE 6: i = i + 1
+NODE 7: i = interfaceinvoke resultList.<java.util.List: int size()>()
+NODE 8: $u6 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 9: $u6 = virtualinvoke $u6.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 10: $u-1#4 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int)>($u6, i)
+EDGE: 4 -> 7
+EDGE: 5 -> 6
+EDGE: 8 -> 9
+EDGE: 9 -> 10
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension.getSingularValueFrom ===
+SUSPICIOUS_API: newInstance
+NODE 1: unknownFields := @parameter0: java.util.List
+NODE 2: if $u-1 == 0 goto $u-1#4 = interfaceinvoke unknownFields.<java.util.List: int size()>()
+NODE 3: $u-1#4 = interfaceinvoke unknownFields.<java.util.List: int size()>()
+NODE 4: $u-1#4 = $u-1#4 + -1
+NODE 5: $u-1#7 = interfaceinvoke unknownFields.<java.util.List: java.lang.Object get(int)>($u-1#4)
+NODE 6: lastData = (com.google.protobuf.nano.UnknownFieldData) $u-1#7
+NODE 7: $u2 = lastData.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 8: $u-1#12 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[])>($u2)
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 7 -> 8
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension.readData ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.nano.Extension
+NODE 2: if $u4 == 0 goto $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 3: $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 4: $u4#2 = virtualinvoke $u4#2.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 5: $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 6: $u-1#34 = virtualinvoke $u4#2.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 2 -> 5
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension.readData ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.nano.Extension
+NODE 2: if $u4 == 0 goto $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 3: $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 4: $u4#2 = virtualinvoke $u4#2.<java.lang.Class: java.lang.Class getComponentType()>()
+NODE 5: $u4#2 = this.<com.google.protobuf.nano.Extension: java.lang.Class clazz>
+NODE 6: $u-1#34 = virtualinvoke $u4#2.<java.lang.Class: java.lang.Object newInstance()>()
+EDGE: 2 -> 3
+EDGE: 2 -> 5
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.Extension.readDataInto ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: com.google.protobuf.nano.UnknownFieldData
+NODE 2: $u0 = $u2.<com.google.protobuf.nano.UnknownFieldData: byte[] bytes>
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[])>($u0)
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.FieldData.toByteArray ===
+SUSPICIOUS_API: newInstance
+NODE 1: this := @this: com.google.protobuf.nano.FieldData
+NODE 2: $u-1 = virtualinvoke this.<com.google.protobuf.nano.FieldData: int computeSerializedSize()>()
+NODE 3: result = newarray (byte)[$u-1]
+NODE 4: $u-1#2 = staticinvoke <com.google.protobuf.nano.CodedOutputByteBufferNano: com.google.protobuf.nano.CodedOutputByteBufferNano newInstance(byte[])>(result)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 3 -> 4
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.vrtoolkit.cardboard.SensorReadingStats.<init> ===
+SUSPICIOUS_API: newInstance
+NODE 1: if $u3 >= 1 goto (branch)
+NODE 2: if $u4 >= 1 goto $u-1 = newarray (int)[2]
+NODE 3: $u-1 = newarray (int)[2]
+NODE 4: $u1 = <java.lang.Float: java.lang.Class TYPE>
+NODE 5: $u-1#9 = staticinvoke <java.lang.reflect.Array: java.lang.Object newInstance(java.lang.Class,int[])>($u1, $u-1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+=== END FUNCTION ===
+
+=== FUNCTION: com.google.protobuf.nano.CodedInputByteBufferNano.newInstance ===
+SUSPICIOUS_API: newInstance
+NODE 1: $u2 := @parameter0: byte[]
+NODE 2: $u1 = lengthof $u2
+NODE 3: $u-1 = staticinvoke <com.google.protobuf.nano.CodedInputByteBufferNano: com.google.protobuf.nano.CodedInputByteBufferNano newInstance(byte[],int,int)>($u2, 0, $u1)
+EDGE: 1 -> 2
+EDGE: 2 -> 3
+=== END FUNCTION ===
+
+=== FUNCTION: bitter.jnibridge.JNIBridge$a.invoke ===
+SUSPICIOUS_API: invoke
+NODE 1: this := @this: bitter.jnibridge.JNIBridge$a
+NODE 2: $u8 := @parameter1: java.lang.reflect.Method
+NODE 3: $u9 := @parameter2: java.lang.Object[]
+NODE 4: if $u0 != 0 goto $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 5: $u2 = this.<bitter.jnibridge.JNIBridge$a: long b>
+NODE 6: $u-1 = virtualinvoke $u8.<java.lang.reflect.Method: java.lang.Class getDeclaringClass()>()
+NODE 7: $u-1#7 = staticinvoke <bitter.jnibridge.JNIBridge: java.lang.Object invoke(long,java.lang.Class,java.lang.reflect.Method,java.lang.Object[])>($u2, $u-1, $u8, $u9)
+EDGE: 2 -> 3
+EDGE: 4 -> 5
+EDGE: 5 -> 6
+EDGE: 6 -> 7
+=== END FUNCTION ===
+
