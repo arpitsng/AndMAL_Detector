@@ -234,21 +234,40 @@ def main() -> None:
 
     info(f"{len(records)} prediction(s) loaded.")
 
-    # ── Check if ground truth is available ────────────────────────────────────
-    has_gt = all("ground_truth" in r for r in records)
+    # ── Check if ground truth is available (auto-lookup from CSV if missing) ──
+    for r in records:
+        if "ground_truth" not in r:
+            # Try finding ground truth from test_1.csv or train.csv
+            sha = r.get("sha256", "").strip().lower()
+            for csv_name in ("test_1.csv", "train.csv", "split_laptop1.csv", "split_laptop2.csv"):
+                csv_file = PROJECT_ROOT / "data" / csv_name
+                if csv_file.is_file():
+                    import pandas as pd
+                    df_tmp = pd.read_csv(csv_file, usecols=["sha256", "label", "family"])
+                    df_tmp["sha256"] = df_tmp["sha256"].str.strip().str.lower()
+                    row_match = df_tmp[df_tmp["sha256"] == sha]
+                    if not row_match.empty:
+                        lbl = row_match.iloc[0]["label"]
+                        r["ground_truth"] = "MALWARE" if lbl == 1.0 else "BENIGN"
+                        if "family" not in r:
+                            r["family"] = str(row_match.iloc[0]["family"])
+                        break
+
+    has_gt = any("ground_truth" in r for r in records)
     if not has_gt:
-        warn("No ground_truth field found. Showing prediction distribution only.")
+        warn("No ground_truth found in JSONL or CSVs. Showing prediction distribution only.")
         preds = Counter(r.get("prediction", "UNKNOWN") for r in records)
         console.print(f"\n  Predictions: {dict(preds)}")
         console.print(f"  Total: {len(records)}")
         return
 
-    # ── Compute metrics ───────────────────────────────────────────────────────
-    y_true = [r["ground_truth"] for r in records]
-    y_pred = [r["prediction"] for r in records]
+    # Filter only records that have ground_truth
+    eval_records = [r for r in records if "ground_truth" in r]
+    y_true = [r["ground_truth"] for r in eval_records]
+    y_pred = [r["prediction"] for r in eval_records]
 
     metrics = compute_metrics(y_true, y_pred)
-    family_analysis = per_family_analysis(records)
+    family_analysis = per_family_analysis(eval_records)
 
     # ── Print results ─────────────────────────────────────────────────────────
     banner("LAMD Evaluation Results")

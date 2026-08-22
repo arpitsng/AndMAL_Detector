@@ -40,6 +40,7 @@ os.environ["HF_ENDPOINT"] = os.environ.get("HF_ENDPOINT", "https://hf-mirror.com
 
 from pathlib import Path
 from dataclasses import dataclass, field
+from collections import defaultdict
 
 import pandas as pd
 # pyrefly: ignore [missing-import]
@@ -604,15 +605,31 @@ class OllamaBackend(LLMBackend):
     actually configured Ollama to accept.
     """
 
-    def __init__(self, model: str = "llama3", host: str = "http://localhost:11434"):
+    def __init__(self, model: str = None, host: str = "http://localhost:11434"):
         import requests
-        self.model = model
-        self.host = host
+        self.host = host.rstrip("/")
         self._requests = requests
         self.num_ctx = int(os.environ.get("OLLAMA_NUM_CTX", "32768"))
         self.timeout = int(os.environ.get("OLLAMA_TIMEOUT", "600"))
         # 15% headroom for system+template+RAG context+response.
         self.MAX_CONTEXT_TOKENS = int(self.num_ctx * 0.85)
+
+        # Auto-detect model if not explicitly specified
+        if not model:
+            model = os.environ.get("OLLAMA_MODEL", "").strip()
+
+        if not model:
+            try:
+                tags_resp = self._requests.get(f"{self.host}/api/tags", timeout=5)
+                if tags_resp.status_code == 200:
+                    models = tags_resp.json().get("models", [])
+                    if models:
+                        model = models[0].get("name", "llama3")
+            except Exception:
+                pass
+
+        self.model = model or "llama3"
+        print(f"    [INFO] Initialized Ollama backend (model: {self.model}, num_ctx: {self.num_ctx}, host: {self.host})")
 
     def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
         response = self._requests.post(
@@ -632,7 +649,130 @@ class OllamaBackend(LLMBackend):
         return response.json()["message"]["content"].strip()
 
 
-def create_backend(backend_name: str) -> LLMBackend:
+MODEL_ALIASES = {
+    "qwen2.5:32b": "Qwen/Qwen2.5-32B-Instruct",
+    "qwen2.5-coder:32b": "Qwen/Qwen2.5-Coder-32B-Instruct",
+    "qwen2.5:14b": "Qwen/Qwen2.5-14B-Instruct",
+    "qwen2.5-coder:14b": "Qwen/Qwen2.5-Coder-14B-Instruct",
+    "qwen2.5:7b": "Qwen/Qwen2.5-7B-Instruct",
+    "qwen2.5-coder:7b": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "qwen2.5:3b": "Qwen/Qwen2.5-3B-Instruct",
+    "qwen2.5:1.5b": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+}
+
+
+class LocalGPUBackend:
+    """
+    Native Multi-GPU CUDA backend using PyTorch + HuggingFace Transformers.
+    Directly offloads and balances model layers across dual Quadro RTX 5000 GPUs.
+    Bypasses Ollama Windows DLL discovery issues with 100% hardware acceleration.
+    """
+    def __init__(self, model_name: str | None = None, load_in_4bit: bool = False):
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer
+        
+        raw_name = (model_name or os.environ.get("LOCAL_MODEL", "Qwen/Qwen2.5-Coder-7B-Instruct")).strip()
+        self.model_name = MODEL_ALIASES.get(raw_name.lower(), raw_name)
+        
+        self.device_count = torch.cuda.device_count()
+        print(f"    [INFO] Initializing Native Dual-GPU Local Backend ({self.device_count} GPUs detected)...")
+        for i in range(self.device_count):
+            prop = torch.cuda.get_device_properties(i)
+            print(f"           GPU {i}: {prop.name} ({prop.total_memory / (1024**3):.1f} GB VRAM)")
+
+        print(f"    [INFO] Loading '{self.model_name}' with device_map='auto' across all GPUs...")
+        try:
+            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, trust_remote_code=True)
+            self.model = AutoModelForCausalLM.from_pretrained(
+                self.model_name,
+                device_map="auto",
+                dtype=torch.float16,
+                trust_remote_code=True,
+            )
+            self.MAX_CONTEXT_TOKENS = 32768
+            device_map = getattr(self.model, "hf_device_map", "cuda")
+            print(f"    [OK] Model successfully loaded & balanced across GPUs: {device_map}")
+        except Exception as e:
+            print(f"    [ERROR] Failed to load local model '{self.model_name}': {e}", file=sys.stderr)
+            raise e
+
+    def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
+        import torch
+        messages = [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ]
+        text = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        inputs = self.tokenizer([text], return_tensors="pt").to("cuda")
+        eos_id = self.tokenizer.eos_token_id
+        with torch.no_grad():
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=384,
+                temperature=temperature if temperature > 0 else None,
+                do_sample=(temperature > 0),
+                eos_token_id=eos_id,
+                pad_token_id=eos_id,
+            )
+        response = self.tokenizer.decode(outputs[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
+        return response.strip()
+
+
+class LlamaCppBackend:
+    """
+    Local GGUF backend using llama-cpp-python with dual-GPU tensor splitting.
+    Executes the 18.5 GB Qwen 2.5 32B model with 50/50 VRAM distribution across
+    GPU 0 (Quadro RTX 5000) and GPU 1 (Quadro RTX 5000).
+    """
+    def __init__(self, model_path: str | None = None, n_ctx: int | None = None):
+        torch_lib = PROJECT_ROOT / "venv" / "Lib" / "site-packages" / "torch" / "lib"
+        if torch_lib.is_dir():
+            os.add_dll_directory(str(torch_lib))
+            os.environ["PATH"] = str(torch_lib) + ";" + os.environ.get("PATH", "")
+
+        from llama_cpp import Llama
+
+        default_blob = Path.home() / ".ollama" / "models" / "blobs" / "sha256-eabc98a9bcbfce7fd70f3e07de599f8fda98120fefed5881934161ede8bd1a41"
+        target_model = model_path or str(default_blob)
+        if not os.path.isfile(target_model):
+            # Check model aliases
+            if target_model.lower() in ("qwen2.5:32b", "qwen2.5-32b", "32b"):
+                target_model = str(default_blob)
+
+        if n_ctx is None:
+            n_ctx = int(os.environ.get("LOCAL_NUM_CTX", "16384"))
+
+        print(f"    [INFO] Initializing Native Dual-GPU GGUF Engine (llama.cpp CUDA)...")
+        print(f"           Model Path   : {target_model}")
+        print(f"           Tensor Split : [0.5, 0.5] (GPU 0 & GPU 1)")
+        print(f"           Context Size : {n_ctx}")
+
+        self.llm = Llama(
+            model_path=target_model,
+            n_gpu_layers=-1,          # Offload 100% of layers to GPU VRAM
+            tensor_split=[0.5, 0.5],  # 50% on GPU 0 (16GB), 50% on GPU 1 (16GB)
+            n_ctx=n_ctx,
+            flash_attn=True,
+            verbose=False,
+        )
+        self.MAX_CONTEXT_TOKENS = int(n_ctx * 0.85)
+        print(f"    [OK] Qwen 2.5 32B GGUF successfully loaded and balanced across Dual GPUs!")
+
+    def chat(self, system: str, user: str, temperature: float = 0.1) -> str:
+        messages = [
+            {"role": "system", "content": system},
+            {"role": "user", "content": user},
+        ]
+        response = self.llm.create_chat_completion(
+            messages=messages,
+            max_tokens=1024,
+            temperature=temperature if temperature > 0 else 0.0,
+        )
+        return response["choices"][0]["message"]["content"].strip()
+
+
+
+def create_backend(backend_name: str, model_override: str = None) -> LLMBackend:
     """Factory to create the appropriate LLM backend."""
     load_dotenv(PROJECT_ROOT / ".env")
 
@@ -641,7 +781,8 @@ def create_backend(backend_name: str) -> LLMBackend:
         if not key:
             print("[ERROR] OPENAI_API_KEY not found in .env", file=sys.stderr)
             sys.exit(1)
-        return OpenAIBackend(api_key=key)
+        model = model_override or os.environ.get("OPENAI_MODEL", "gpt-4o-mini").strip()
+        return OpenAIBackend(api_key=key, model=model)
 
     elif backend_name in ("openrouter", "nemotron", "nvidia"):
         keys = [
@@ -672,7 +813,7 @@ def create_backend(backend_name: str) -> LLMBackend:
                 valid_nvidia_keys = [single_nv]
 
         if valid_nvidia_keys and (backend_name == "nvidia" or not valid_keys):
-            model = os.environ.get("NVIDIA_MODEL", "nvidia/llama-3.1-nemotron-70b-instruct").strip()
+            model = model_override or os.environ.get("NVIDIA_MODEL", "nvidia/llama-3.1-nemotron-70b-instruct").strip()
             print(f"    [INFO] Initialized NVIDIA backend with {len(valid_nvidia_keys)} rotating key(s) (model: {model}).")
             return NvidiaBackend(api_keys=valid_nvidia_keys, model=model)
 
@@ -681,14 +822,11 @@ def create_backend(backend_name: str) -> LLMBackend:
             sys.exit(1)
 
         default_model = "nvidia/nemotron-3-ultra-550b-a55b:free"
-        model = os.environ.get("OPENROUTER_MODEL", default_model).strip()
+        model = model_override or os.environ.get("OPENROUTER_MODEL", default_model).strip()
         print(f"    [INFO] Initialized OpenRouter/Nemotron backend with {len(valid_keys)} rotating key(s) (model: {model}).")
         return OpenRouterBackend(api_keys=valid_keys, model=model)
 
     elif backend_name == "groq":
-        # Supports GROQ_API_KEY1..5 for multi-key rotation (same pattern as
-        # Gemini), falling back to a single GROQ_API_KEY for backward
-        # compatibility with existing .env files.
         keys = [
             os.environ.get("GROQ_API_KEY1", "").strip(),
             os.environ.get("GROQ_API_KEY2", "").strip(),
@@ -706,7 +844,7 @@ def create_backend(backend_name: str) -> LLMBackend:
             print("[ERROR] No GROQ_API_KEY (or GROQ_API_KEY1..5) found in .env", file=sys.stderr)
             sys.exit(1)
 
-        model = os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b").strip()
+        model = model_override or os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b").strip()
         print(f"    [INFO] Initialized Groq backend with {len(valid_keys)} rotating key(s) (model: {model}).")
         return GroqBackend(api_keys=valid_keys, model=model)
 
@@ -722,14 +860,35 @@ def create_backend(backend_name: str) -> LLMBackend:
             print("[ERROR] No GEMINI_API_KEY1/2/3 found in .env", file=sys.stderr)
             sys.exit(1)
 
-        model = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash").strip()
+        model = model_override or os.environ.get("GEMINI_MODEL", "gemini-3.5-flash").strip()
         print(f"    [INFO] Initialized Gemini backend with {len(valid_keys)} rotating keys (model: {model}).")
         return GeminiBackend(api_keys=valid_keys, model=model)
 
     elif backend_name == "ollama":
-        model = os.environ.get("OLLAMA_MODEL", "llama3").strip()
+        model = model_override or os.environ.get("OLLAMA_MODEL", "").strip()
         host = os.environ.get("OLLAMA_HOST", "http://localhost:11434").strip()
         return OllamaBackend(model=model, host=host)
+
+    elif backend_name in ("gguf", "llama-cpp", "llama_cpp", "local-gguf", "32b"):
+        model_path = model_override or os.environ.get("GGUF_MODEL", "")
+        try:
+            return LlamaCppBackend(model_path=model_path if model_path else None)
+        except Exception as e:
+            import traceback
+            print(f"[ERROR] Failed to initialize Dual-GPU GGUF backend: {e}", file=sys.stderr)
+            traceback.print_exc()
+            sys.exit(1)
+
+    elif backend_name in ("local", "gpu", "transformers"):
+        model = model_override or os.environ.get("LOCAL_MODEL", "Qwen/Qwen2.5-Coder-7B-Instruct").strip()
+        load_in_4bit = bool(os.environ.get("LOAD_IN_4BIT", "0") == "1")
+        try:
+            return LocalGPUBackend(model_name=model, load_in_4bit=load_in_4bit)
+        except Exception as e:
+            import traceback
+            print(f"[ERROR] Failed to initialize local GPU backend: {e}", file=sys.stderr)
+            traceback.print_exc()
+            sys.exit(1)
 
     else:
         print(f"[ERROR] Unknown backend: {backend_name}", file=sys.stderr)
@@ -802,6 +961,160 @@ def parse_cfg_file(cfg_path: Path) -> list[FunctionSlice]:
         ))
 
     return slices
+
+
+# =============================================================================
+#  Function Call Graph (FCG) & Tier 2 API Intent Mapping
+# =============================================================================
+
+INVOKE_REGEX = re.compile(
+    r'(?:virtualinvoke|staticinvoke|interfaceinvoke|specialinvoke|dynamicinvoke)\s+[^<]*<([^:]+):\s*([^\s(]+)\s+([^(]+)\(([^)]*)\)>'
+)
+
+HIGH_RISK_APIS = {
+    "sendTextMessage", "sendMultipartTextMessage", "DexClassLoader", "dalvik.system.DexClassLoader",
+    "getDeviceId", "getSubscriberId", "getSimSerialNumber", "getLine1Number", "getMacAddress",
+    "exec", "loadLibrary", "openFileOutput", "getOutputStream", "openConnection",
+    "loadClass", "setComponentEnabledSetting", "getLastKnownLocation", "requestLocationUpdates"
+}
+
+
+def extract_invokes(nodes: list[str]) -> list[dict]:
+    """Extract method call signatures from Jimple IR node statements."""
+    calls = []
+    for node in nodes:
+        for match in INVOKE_REGEX.finditer(node):
+            decl_class, ret_type, method_name, params = match.groups()
+            calls.append({
+                "declaring_class": decl_class.strip(),
+                "method_name": method_name.strip(),
+                "full_signature": f"{decl_class.strip()}.{method_name.strip()}",
+            })
+    return calls
+
+
+def build_fcg_representation(
+    slices: list[FunctionSlice], max_content_tokens: int = 14000
+) -> tuple[str, int, list[str]]:
+    """
+    Groups sliced functions by Suspicious API and structures them into
+    Function Call Graphs (FCGs) with explicit caller -> callee call chains
+    to reveal the high-level intent behind sensitive API invocations.
+
+    Returns:
+      (fcg_formatted_text, total_included_functions, unique_api_names)
+    """
+    if not slices:
+        return "No functions to analyze.", 0, []
+
+    fn_name_to_slice = {s.function_name: s for s in slices}
+    class_to_slices = defaultdict(list)
+    for s in slices:
+        cls = s.function_name.rsplit(".", 1)[0] if "." in s.function_name else s.function_name
+        class_to_slices[cls].append(s)
+
+    # Build caller -> callee graph between sliced functions
+    callees_by_caller = defaultdict(set)
+    callers_by_callee = defaultdict(set)
+
+    for s in slices:
+        invokes = extract_invokes(s.nodes)
+        for inv in invokes:
+            callee_sig = inv["full_signature"]
+            callee_cls = inv["declaring_class"]
+            callee_method = inv["method_name"]
+
+            if callee_sig in fn_name_to_slice:
+                callees_by_caller[s.function_name].add(callee_sig)
+                callers_by_callee[callee_sig].add(s.function_name)
+            elif callee_cls in class_to_slices:
+                for candidate in class_to_slices[callee_cls]:
+                    if candidate.function_name.endswith("." + callee_method) or candidate.function_name == callee_sig:
+                        callees_by_caller[s.function_name].add(candidate.function_name)
+                        callers_by_callee[candidate.function_name].add(s.function_name)
+
+    # Group slices by suspicious API
+    api_groups = defaultdict(list)
+    for s in slices:
+        api_groups[s.suspicious_api].append(s)
+
+    # Prioritize high-risk APIs first, then larger groups
+    def api_sort_key(item):
+        api_name, group = item
+        is_high = 1 if api_name in HIGH_RISK_APIS or any(hr in api_name for hr in HIGH_RISK_APIS) else 0
+        return (is_high, len(group))
+
+    sorted_api_groups = sorted(api_groups.items(), key=api_sort_key, reverse=True)
+
+    formatted_blocks = []
+    total_tokens = 0
+    included_fns = set()
+    unique_apis_included = []
+
+    for api_idx, (api_name, group_slices) in enumerate(sorted_api_groups, 1):
+        # Discover call chains involving these functions
+        chains = []
+        for fn in group_slices:
+            callers = callers_by_callee.get(fn.function_name, set())
+            callees = callees_by_caller.get(fn.function_name, set())
+            if callers:
+                for c in sorted(callers):
+                    chains.append(f"  [CALL CHAIN] {c} --> {fn.function_name} (invokes {api_name})")
+            if callees:
+                for c in sorted(callees):
+                    chains.append(f"  [CALL CHAIN] {fn.function_name} (invokes {api_name}) --> {c}")
+
+        chains = sorted(set(chains))
+        chain_summary = "\n".join(chains[:10]) if chains else "  (Isolated invocation / intra-component)"
+
+        group_header = (
+            f"\n{'='*75}\n"
+            f"=== API GROUP {api_idx}: {api_name} ({len(group_slices)} function(s)) ===\n"
+            f"FUNCTION CALL GRAPH (FCG) RELATIONSHIPS:\n"
+            f"{chain_summary}\n"
+            f"{'='*75}\n"
+        )
+
+        group_body_parts = []
+        for s in group_slices:
+            if s.function_name in included_fns:
+                continue
+
+            # Annotate function with call relationships
+            callers = sorted(callers_by_callee.get(s.function_name, set()))
+            callees = sorted(callees_by_caller.get(s.function_name, set()))
+
+            fn_header = f"--- FUNCTION: {s.function_name} ---\n"
+            fn_header += f"SUSPICIOUS_API: {s.suspicious_api}\n"
+            if callers:
+                fn_header += f"CALLED_BY: {', '.join(callers)}\n"
+            if callees:
+                fn_header += f"CALLS: {', '.join(callees)}\n"
+
+            # Raw nodes and edges
+            node_edge_text = "\n".join(s.nodes + s.edges)
+            if len(node_edge_text) > 8000:
+                node_edge_text = node_edge_text[:8000] + "\n... [truncated] ..."
+
+            fn_block = f"{fn_header}{node_edge_text}\n--- END FUNCTION ---\n"
+            block_tokens = count_tokens(fn_block)
+
+            if total_tokens + block_tokens > max_content_tokens:
+                break
+
+            group_body_parts.append(fn_block)
+            total_tokens += block_tokens
+            included_fns.add(s.function_name)
+
+        if group_body_parts:
+            formatted_blocks.append(group_header + "\n".join(group_body_parts))
+            unique_apis_included.append(api_name)
+
+        if total_tokens >= max_content_tokens:
+            break
+
+    full_text = "\n".join(formatted_blocks)
+    return full_text, len(included_fns), unique_apis_included
 
 
 # =============================================================================
@@ -1069,7 +1382,8 @@ def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> T
 
 def analyse_one_apk(
     llm: LLMBackend, sha256: str, cfg_path: Path,
-    verify_drc: bool = True, verbose: bool = True
+    verify_drc: bool = True, verbose: bool = True,
+    no_filter: bool = False,
 ) -> Tier3Result | None:
     """
     Runs the full 3-tier pipeline for a single APK.
@@ -1080,6 +1394,7 @@ def analyse_one_apk(
         cfg_path:   Path to the sliced CFG text file
         verify_drc: Whether to run factual consistency verification
         verbose:    Print progress
+        no_filter:  Disable framework filtering, keeping all functions
 
     Returns:
         Tier3Result with the final prediction, or None on failure.
@@ -1099,42 +1414,58 @@ def analyse_one_apk(
                            analysis="No suspicious APIs found.")
 
     # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
-    slices, original_count, unique_count = preprocess_slices(slices)
+    slices, original_count, unique_count = preprocess_slices(slices, no_filter=no_filter)
 
     if verbose and original_count > 0:
-        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} filtered")
+        filter_status = "unfiltered" if no_filter else "filtered"
+        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} {filter_status}")
 
     tier1_results: list[Tier1Result] = []
-    for func_slice in slices:
+    total_slices = len(slices)
+    if verbose:
+        print(f"\n    [Phase 1 / Tier 1] Analyzing {total_slices} function slices...", flush=True)
+
+    for idx, func_slice in enumerate(slices, 1):
         try:
+            t_t1 = time.time()
             t1 = run_tier1(llm, func_slice)
+            t1_dur = time.time() - t_t1
+
+            func_short = func_slice.function_name
+            if len(func_short) > 42:
+                func_short = func_short[:20] + "..." + func_short[-19:]
+
+            if verbose:
+                print(f"      [Tier 1] [{idx:>3}/{total_slices}] {func_short:<45} | API: {func_slice.suspicious_api:<22} -> Risk: {t1.risk_level:<8} ({t1_dur:.1f}s)", flush=True)
 
             if verify_drc:
                 # Layer 1: free formatting sanity check (no LLM call).
                 is_sane, reason = sanity_check_tier1(func_slice, t1.summary)
                 if not is_sane:
                     if verbose:
-                        print(f"    [SANITY] Retrying {func_slice.function_name}: {reason}")
+                        print(f"        [SANITY] Format check failed ({reason}) -> Retrying...", flush=True)
                     t1 = run_tier1(llm, func_slice)  # retry once
                 else:
-                    # Layer 2: real factual-consistency check (1 extra LLM
-                    # call) — catches well-formatted but hallucinated claims
-                    # that the free check above cannot see.
+                    # Layer 2: real factual-consistency check (1 extra LLM call)
                     try:
+                        t_drc = time.time()
                         is_consistent, drc_reason = verify_consistency(llm, func_slice, t1.summary)
+                        drc_dur = time.time() - t_drc
                         if not is_consistent:
                             if verbose:
-                                print(f"    [DRC] Retrying {func_slice.function_name}: {drc_reason}")
+                                print(f"        [DRC]    INCONSISTENT ({drc_reason}) -> Retrying... ({drc_dur:.1f}s)", flush=True)
                             t1 = run_tier1(llm, func_slice)  # retry once
+                        else:
+                            if verbose:
+                                print(f"        [DRC]    Verified Consistent [OK] ({drc_dur:.1f}s)", flush=True)
                     except Exception as e:
                         if verbose:
-                            print(f"    [WARN] DRC verification call failed for "
-                                  f"{func_slice.function_name}, keeping original summary: {e}")
+                            print(f"        [DRC]    Verification call warning: {e}", flush=True)
 
             tier1_results.append(t1)
         except Exception as e:
             if verbose:
-                print(f"    [ERROR] Tier 1 failed for {func_slice.function_name}: {e}")
+                print(f"      [ERROR] Tier 1 failed for {func_slice.function_name}: {e}", flush=True)
 
     if not tier1_results:
         return Tier3Result(sha256=sha256, prediction="BENIGN",
@@ -1147,13 +1478,21 @@ def analyse_one_apk(
         api_groups.setdefault(t1.suspicious_api, []).append(t1)
 
     tier2_results: list[Tier2Result] = []
-    for api_name, functions in api_groups.items():
+    total_apis = len(api_groups)
+    if verbose:
+        print(f"\n    [Phase 2 / Tier 2] Aggregating {total_apis} API group(s)...", flush=True)
+
+    for api_idx, (api_name, functions) in enumerate(api_groups.items(), 1):
         try:
+            t_t2 = time.time()
             t2 = run_tier2(llm, api_name, functions)
+            t2_dur = time.time() - t_t2
+            if verbose:
+                print(f"      [Tier 2] [{api_idx:>2}/{total_apis}] API: {api_name:<28} ({len(functions):>2} funcs) -> Risk: {t2.risk_level:<8} ({t2_dur:.1f}s)", flush=True)
             tier2_results.append(t2)
         except Exception as e:
             if verbose:
-                print(f"    [ERROR] Tier 2 failed for {api_name}: {e}")
+                print(f"      [ERROR] Tier 2 failed for {api_name}: {e}", flush=True)
 
     if not tier2_results:
         return Tier3Result(sha256=sha256, prediction="BENIGN",
@@ -1161,18 +1500,28 @@ def analyse_one_apk(
 
     # ── Tier 3: APK-level prediction ──────────────────────────────────────────
     try:
+        if verbose:
+            print(f"\n    [Phase 3 / Tier 3] Synthesizing holistic APK verdict...", flush=True)
+        t_t3 = time.time()
         result = run_tier3(llm, sha256, tier2_results)
+        t3_dur = time.time() - t_t3
+        if verbose and result:
+            print(f"      [Tier 3] Verdict: {result.prediction:<8} ({t3_dur:.1f}s)\n", flush=True)
         return result
     except Exception as e:
         if verbose:
-            print(f"    [ERROR] Tier 3 failed: {e}")
+            print(f"    [ERROR] Tier 3 failed: {e}", flush=True)
         return None
 
 
-# --- Global RAG Clients (v2: hybrid function-level embeddings) ---
-_q_client = None
+# --- Global RAG Clients (v3: LOCAL FAISS — no cloud dependency) ---
+_faiss_index = None
+_faiss_metadata = None
+_faiss_label_indices = None
 _embed_model = None
 _rag_hybrid_mod = None  # lazy-loaded 6_build_qdrant_db module for hybrid vector construction
+
+_LOCAL_DB_DIR = PROJECT_ROOT / "data" / "rag_local"
 
 def _get_hybrid_mod():
     """Lazy-load 6_build_qdrant_db.py to reuse its linearize_slice / extract_graph_features."""
@@ -1186,9 +1535,46 @@ def _get_hybrid_mod():
     return _rag_hybrid_mod
 
 def get_rag_clients():
-    """Return (QdrantClient, TextEmbedding) or (None, None) if not configured."""
-    global _q_client, _embed_model
-    if _q_client is None:
+    """Return (faiss_index, TextEmbedding) using LOCAL FAISS index, or (None, None) if not built."""
+    global _faiss_index, _faiss_metadata, _faiss_label_indices, _embed_model
+    if _faiss_index is None:
+        faiss_path = _LOCAL_DB_DIR / "faiss_index.bin"
+        meta_path = _LOCAL_DB_DIR / "metadata.pkl"
+        label_path = _LOCAL_DB_DIR / "label_indices.pkl"
+
+        if not faiss_path.is_file():
+            # Fallback: try Qdrant cloud if local index not available
+            return _get_qdrant_fallback()
+
+        import faiss
+        import pickle as _pkl
+        from fastembed import TextEmbedding
+
+        _faiss_index = faiss.read_index(str(faiss_path))
+        with open(meta_path, "rb") as f:
+            _faiss_metadata = _pkl.load(f)
+        with open(label_path, "rb") as f:
+            _faiss_label_indices = _pkl.load(f)
+
+        model_dir = Path(__file__).resolve().parent.parent / "fastembed_models" / "bge-small-en"
+        if (model_dir / "fast-bge-small-en").is_dir():
+            model_dir = model_dir / "fast-bge-small-en"
+
+        kwargs = {
+            "model_name": "BAAI/bge-small-en",
+            "providers": ["CUDAExecutionProvider", "CPUExecutionProvider"]
+        }
+        if model_dir.is_dir() and any(model_dir.glob("*.onnx")):
+            kwargs["specific_model_path"] = str(model_dir)
+
+        _embed_model = TextEmbedding(**kwargs)
+    return _faiss_index, _embed_model
+
+
+def _get_qdrant_fallback():
+    """Fallback to Qdrant cloud if local FAISS index not built yet."""
+    global _embed_model
+    try:
         load_dotenv(PROJECT_ROOT / ".env")
         from qdrant_client import QdrantClient
         from fastembed import TextEmbedding
@@ -1196,23 +1582,18 @@ def get_rag_clients():
         qdrant_api_key = os.environ.get("QDRANT_API_KEY")
         qdrant_port = int(os.environ.get("QDRANT_PORT", "443"))
         if qdrant_url and qdrant_api_key:
-            _q_client = QdrantClient(
-                url=qdrant_url, api_key=qdrant_api_key,
-                port=qdrant_port, timeout=15,
-            )
+            qc = QdrantClient(url=qdrant_url, api_key=qdrant_api_key, port=qdrant_port, timeout=15)
             model_dir = Path(__file__).resolve().parent.parent / "fastembed_models" / "bge-small-en"
             if (model_dir / "fast-bge-small-en").is_dir():
                 model_dir = model_dir / "fast-bge-small-en"
-
-            kwargs = {
-                "model_name": "BAAI/bge-small-en",
-                "providers": ["CUDAExecutionProvider", "CPUExecutionProvider"]
-            }
+            kwargs = {"model_name": "BAAI/bge-small-en", "providers": ["CUDAExecutionProvider", "CPUExecutionProvider"]}
             if model_dir.is_dir() and any(model_dir.glob("*.onnx")):
                 kwargs["specific_model_path"] = str(model_dir)
-
             _embed_model = TextEmbedding(**kwargs)
-    return _q_client, _embed_model
+            return qc, _embed_model
+    except Exception:
+        pass
+    return None, None
 
 
 def build_hybrid_vector(func_slice: FunctionSlice, embed_model) -> list[float]:
@@ -1330,21 +1711,13 @@ SENSITIVE_APIS = ALWAYS_SENSITIVE_APIS + REFLECTION_DYNAMIC_LOADING_APIS
 
 def preprocess_slices(
     slices: list[FunctionSlice],
+    no_filter: bool = False,
 ) -> tuple[list[FunctionSlice], int, int]:
     """
     Shared pre-processing: deduplication + framework filtering.
 
-    Framework-package functions are dropped UNLESS they hit an
-    ALWAYS_SENSITIVE_APIS call. Reflection/dynamic-loading calls
-    (REFLECTION_DYNAMIC_LOADING_APIS) do NOT override the framework drop —
-    inside named SDK packages they're almost always benign compatibility
-    boilerplate (see the module-level comment above). Reflection in
-    application-owned or unknown/obfuscated packages is untouched by this
-    filter and is always kept, which is exactly where reflection-based
-    evasion actually matters.
-
-    Returns:
-        (filtered_slices, original_count, unique_count)
+    If no_filter is True, framework filtering is completely bypassed and
+    all unique function slices are retained.
     """
     original_count = len(slices)
 
@@ -1359,9 +1732,11 @@ def preprocess_slices(
 
     unique_count = len(unique_slices)
 
+    if no_filter:
+        return unique_slices, original_count, unique_count
+
     # Framework/SDK filter — drop framework-package functions unless they
-    # hit a high-value (non-reflection) sensitive API. Reflection calls do
-    # NOT rescue a function from the framework drop (see module comment).
+    # hit a high-value (non-reflection) sensitive API.
     filtered: list[FunctionSlice] = []
     for s in unique_slices:
         api_lower = s.suspicious_api.lower()
@@ -1518,17 +1893,10 @@ def ensure_cfg_extracted(sha256: str, cfg_dir: Path | None = None, verbose: bool
 
 def analyse_one_apk_single_call(
     llm: LLMBackend, sha256: str, cfg_path: Path,
-    verbose: bool = True
+    verbose: bool = True, no_filter: bool = False,
 ) -> Tier3Result | None:
     """
-    Analyses an APK by sending ALL filtered CFGs in a single LLM call.
-
-    This leverages large-context models (Gemini 3.5 Flash: 1M tokens) to
-    avoid the 300+ individual calls of the 3-tier pipeline. ALL unique,
-    non-framework functions are included — no arbitrary cap.
-
-    Returns:
-        Tier3Result with the final prediction, or None on failure.
+    Single-call pipeline: sends ALL non-framework CFGs + RAG context in ONE prompt.
     """
     # ── Parse CFG file ────────────────────────────────────────────────────────
     try:
@@ -1545,10 +1913,11 @@ def analyse_one_apk_single_call(
                            analysis="No suspicious APIs found.")
 
     # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
-    slices, original_count, unique_count = preprocess_slices(slices)
+    slices, original_count, unique_count = preprocess_slices(slices, no_filter=no_filter)
 
     if verbose and original_count > 0:
-        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} filtered", flush=True)
+        filter_status = "unfiltered" if no_filter else "filtered"
+        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} {filter_status}", flush=True)
 
     if not slices:
         if verbose:
@@ -1556,64 +1925,38 @@ def analyse_one_apk_single_call(
         return Tier3Result(sha256=sha256, prediction="BENIGN",
                            analysis="All functions were framework/SDK code.")
 
-    # ── Build single prompt with ALL CFGs ─────────────────────────────────────
-    # Include as many filtered functions as fit within THIS backend's real
-    # budget (see LLMBackend.MAX_CONTEXT_TOKENS / per-subclass overrides),
-    # using real token counts (count_tokens) rather than a chars/N guess —
-    # that guess was measured to be off by up to ~1.9x on Jimple IR text,
-    # which is exactly what caused real Groq 413 errors this session.
-    # Gemini's 800K-token budget tolerates "send everything," but Groq's
-    # real rate-limit-derived budget (4K) needs every token accounted for.
+    # ── Build single prompt with FCG-Structured API Groups ───────────────────
+    # Groups functions by Suspicious API and maps caller -> callee FCG call chains
+    # to make the behavioral intent immediately visible to the LLM.
     MAX_TOTAL_TOKENS = getattr(llm, "MAX_CONTEXT_TOKENS", LLMBackend.MAX_CONTEXT_TOKENS)
     TEMPLATE_OVERHEAD_TOKENS = 1_500  # fixed system+template text + RAG context, measured ~1035 + margin
     content_budget = max(500, MAX_TOTAL_TOKENS - TEMPLATE_OVERHEAD_TOKENS)
 
-    all_cfg_parts = []
-    total_tokens = 0
-    included_count = 0
-
-    for s in slices:
-        text = s.raw_text
-        # Truncate individual functions longer than 8K chars (rough
-        # anti-pathological-outlier guard — the real budget check below is
-        # what actually governs how many functions get included).
-        if len(text) > 8000:
-            text = text[:8000] + "\n... [truncated] ...\n=== END FUNCTION ===\n"
-
-        func_tokens = count_tokens(text)
-        if total_tokens + func_tokens > content_budget:
-            if verbose:
-                print(f"    [INFO] Token budget reached at {included_count}/{len(slices)} functions "
-                      f"({total_tokens}/{content_budget} tokens)", flush=True)
-            break
-
-        all_cfg_parts.append(text)
-        total_tokens += func_tokens
-        included_count += 1
-
-    all_cfgs_text = "\n".join(all_cfg_parts)
-
-    # Collect unique API names for context
-    api_set = sorted(set(s.suspicious_api for s in slices[:included_count]))
-    api_list = ", ".join(api_set) if api_set else "None"
+    all_cfgs_text, included_count, unique_apis = build_fcg_representation(
+        slices, max_content_tokens=content_budget
+    )
+    api_list = ", ".join(unique_apis) if unique_apis else "None"
+    total_tokens = count_tokens(all_cfgs_text)
 
     if verbose:
-        print(f"    [INFO] Sending {included_count} functions (~{total_tokens} tokens, budget {MAX_TOTAL_TOKENS}) in single call", flush=True)
+        print(f"    [INFO] Sending {included_count} functions across {len(unique_apis)} API group(s) "
+              f"(~{total_tokens} tokens, budget {MAX_TOTAL_TOKENS}) in FCG-structured single call", flush=True)
 
-    # ── RAG Retrieval v2 (Hybrid Function-Level + Stratified) ────────────────
-    # Instead of one whole-APK query, sample up to 10 of the most suspicious
-    # function slices, build a hybrid vector for each, and do STRATIFIED
-    # retrieval: top-3 MALWARE + top-3 BENIGN matches per function.
-    # This guarantees the LLM always sees both perspectives regardless of
-    # class imbalance in the database.
+    # ── RAG Retrieval v3 (LOCAL FAISS + Stratified) ───────────────────────────
+    # Uses local FAISS index — zero cloud dependency, instant queries.
+    # Stratified: top-3 MALWARE + top-3 BENIGN matches per query function.
     rag_context = "No similar CFGs found in knowledge base."
     try:
-        qc, em = get_rag_clients()
-        if qc and em:
-            from qdrant_client.models import FieldCondition, MatchValue, Filter
+        rag_client, em = get_rag_clients()
+        if rag_client and em:
+            import numpy as _np
+
+            # Detect whether we're using local FAISS or Qdrant fallback
+            _using_local_faiss = _faiss_index is not None
 
             if verbose:
-                print(f"    [INFO] Querying RAG knowledge base (hybrid v2, stratified)...", flush=True)
+                mode_str = "local FAISS" if _using_local_faiss else "Qdrant cloud (fallback)"
+                print(f"    [INFO] Querying RAG knowledge base ({mode_str}, stratified)...", flush=True)
 
             # Sample up to 10 slices for per-function querying
             query_slices = slices[:min(included_count, 10)]
@@ -1626,25 +1969,52 @@ def analyse_one_apk_single_call(
                 except Exception:
                     continue  # skip if hybrid vector construction fails
 
-                # Stratified: top-3 MALWARE matches + top-3 BENIGN matches
-                for gt_label in ("MALWARE", "BENIGN"):
-                    try:
-                        results = qc.query_points(
-                            collection_name="lamd_cfgs",
-                            query=hybrid_vec,
-                            query_filter=Filter(
-                                must=[FieldCondition(key="ground_truth", match=MatchValue(value=gt_label))]
-                            ),
-                            limit=3,
-                        ).points
-                    except Exception:
-                        results = []
+                if _using_local_faiss:
+                    # Local FAISS stratified search
+                    query_vec = _np.array([hybrid_vec], dtype=_np.float32)
+                    # L2-normalize query vector (index vectors are already normalized)
+                    norm = _np.linalg.norm(query_vec)
+                    if norm > 0:
+                        query_vec = query_vec / norm
 
-                    for hit in results:
-                        dedup_key = f"{hit.payload.get('sha256', '')}:{hit.payload.get('function_name', '')}"
-                        if dedup_key not in seen_keys:
-                            seen_keys.add(dedup_key)
-                            all_rag_hits.append((hit.score, hit.payload, qs.function_name))
+                    for gt_label in ("MALWARE", "BENIGN"):
+                        try:
+                            # Search full index, then filter by label from metadata
+                            scores, indices = _faiss_index.search(query_vec, 100)  # oversample to find 3 per label
+                            count = 0
+                            for score, idx in zip(scores[0], indices[0]):
+                                if idx < 0 or count >= 3:
+                                    break
+                                payload = _faiss_metadata[idx]
+                                if payload.get("ground_truth", "") != gt_label:
+                                    continue
+                                dedup_key = f"{payload.get('sha256', '')}:{payload.get('function_name', '')}"
+                                if dedup_key not in seen_keys:
+                                    seen_keys.add(dedup_key)
+                                    all_rag_hits.append((float(score), payload, qs.function_name))
+                                    count += 1
+                        except Exception:
+                            continue
+                else:
+                    # Qdrant cloud fallback path
+                    from qdrant_client.models import FieldCondition, MatchValue, Filter
+                    for gt_label in ("MALWARE", "BENIGN"):
+                        try:
+                            results = rag_client.query_points(
+                                collection_name="lamd_cfgs",
+                                query=hybrid_vec,
+                                query_filter=Filter(
+                                    must=[FieldCondition(key="ground_truth", match=MatchValue(value=gt_label))]
+                                ),
+                                limit=3,
+                            ).points
+                        except Exception:
+                            results = []
+                        for hit in results:
+                            dedup_key = f"{hit.payload.get('sha256', '')}:{hit.payload.get('function_name', '')}"
+                            if dedup_key not in seen_keys:
+                                seen_keys.add(dedup_key)
+                                all_rag_hits.append((hit.score, hit.payload, qs.function_name))
 
             if all_rag_hits:
                 # Sort by score descending, take top 6 overall
@@ -1755,8 +2125,12 @@ def main() -> None:
              "malware logs), 'direct' (single-shot on CFG without tiers)."
     )
     parser.add_argument(
-        "--backend", choices=["openai", "gemini", "ollama", "groq", "openrouter", "nemotron", "nvidia"], default="openai",
-        help="LLM backend to use (default: openai)."
+        "--backend", choices=["openai", "gemini", "ollama", "groq", "openrouter", "nemotron", "nvidia", "local", "gpu", "gguf", "llama-cpp", "32b"], default="gguf",
+        help="LLM backend to use (default: gguf). Use 'gguf' or '32b' for native dual-GPU Qwen 2.5 32B execution."
+    )
+    parser.add_argument(
+        "--model", type=str, default=None,
+        help="Custom model name to override the default for the chosen backend (e.g. qwen2.5:32b, gemini-2.5-flash)."
     )
     parser.add_argument(
         "--csv", type=Path, default=TRAIN_CSV,
@@ -1777,6 +2151,10 @@ def main() -> None:
     parser.add_argument(
         "--no-drc", action="store_true",
         help="Skip factual consistency verification (faster but less reliable)."
+    )
+    parser.add_argument(
+        "--no-filter", action="store_true",
+        help="Disable framework filtering: keep 100%% of raw sliced CFG functions without dropping anything."
     )
     parser.add_argument(
         "--single", action="store_true",
@@ -1879,7 +2257,7 @@ def main() -> None:
     # ── Mode: CFG analysis (full tier-wise pipeline) ──────────────────────────
     if args.mode in ("cfg", "direct"):
         # Create the LLM backend
-        llm = create_backend(args.backend)
+        llm = create_backend(args.backend, model_override=args.model)
         ok(f"LLM backend '{args.backend}' initialized.")
         if args.single:
             budget = getattr(llm, "MAX_CONTEXT_TOKENS", LLMBackend.MAX_CONTEXT_TOKENS)
@@ -1982,6 +2360,7 @@ def main() -> None:
                         result = analyse_one_apk_single_call(
                             llm, sha256, cfg_path,
                             verbose=True,
+                            no_filter=args.no_filter,
                         )
                     else:
                         # Full tier-wise pipeline
@@ -1989,6 +2368,7 @@ def main() -> None:
                             llm, sha256, cfg_path,
                             verify_drc=not args.no_drc,
                             verbose=True,
+                            no_filter=args.no_filter,
                         )
 
                     if result is None:
@@ -2044,4 +2424,10 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        print(f"\n[FATAL ERROR] {e}", file=sys.stderr)
+        traceback.print_exc()
+        sys.exit(1)

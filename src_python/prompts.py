@@ -291,89 +291,71 @@ def classify_api_type(api_name: str) -> str:
 
 
 # =============================================================================
-#  Single-Call Analysis (Full APK in one LLM call)
+#  Single-Call Analysis (Full APK in one LLM call with FCG API Intent Mapping)
 # =============================================================================
 
 SINGLE_CALL_SYSTEM = (
-    "You are a cybersecurity expert specializing in Android malware detection. "
-    "You analyze backward-sliced Control Flow Graphs (CFGs) extracted from "
-    "Android APKs. You will receive ALL the CFG slices from a single application "
-    "and must determine if the application is MALWARE or BENIGN.\n\n"
-    "IMPORTANT: Err on the side of caution. If the evidence is ambiguous but "
-    "leans toward malicious behavior, classify as MALWARE with MEDIUM confidence. "
-    "Only classify as BENIGN if you are confident the app has a clear, legitimate purpose "
-    "and the suspicious APIs are used in standard, expected ways."
+    "You are a principal cybersecurity researcher specializing in Android static binary analysis. "
+    "You analyze backward-sliced Control Flow Graphs (Jimple IR CFGs) structured into Function Call Graphs (FCGs) "
+    "extracted from an Android application. "
+    "You will receive all CFG slices grouped by Suspicious API, along with caller -> callee call chains.\n\n"
+    "DECISION METHODOLOGY:\n"
+    "1. **Analyze API Intent via FCG Call Chains**: For each suspicious API group, examine its call chain "
+    "(CALLS / CALLED_BY) and data-flow to determine WHY the application invokes the API:\n"
+    "   - **MALWARE Intent**: The call chain connects sensitive data sources (IMEI/IMSI, SMS, location) to network sinks "
+    "     or dynamic bytecode execution (e.g., payload downloading via openConnection/openFileOutput feeding into DexClassLoader/loadClass).\n"
+    "   - **BENIGN Intent**: The call chain is confined to standard framework operations: UI fragment initialization, "
+    "     view inflation, ContentProvider queries (CursorLoader -> query), activity navigation, local caching, or app protection without exfiltration.\n"
+    "2. Determine whether the application is MALWARE or BENIGN based strictly on verifiable data-flow evidence."
 )
 
 SINGLE_CALL_TEMPLATE = """\
-Analyze ALL of the following backward-sliced Control Flow Graphs (CFGs) extracted
-from a single Android application. Each CFG slice shows Jimple IR statements
-that are data-flow relevant to a suspicious API call site.
+Analyze ALL of the following backward-sliced Control Flow Graphs (CFGs) grouped by
+Suspicious API and structured with Function Call Graph (FCG) caller/callee relationships.
+Each CFG slice shows Jimple IR statements that are data-flow relevant to a suspicious API call site.
 
-CALIBRATION — These patterns are COMMON in benign apps (do NOT flag alone):
-- Reflection in well-known standard libraries (android.support, com.google.android.gms).
-- Network checks (getActiveNetworkInfo) for standard connectivity monitoring.
-- Storage access (getExternalStorageDirectory) for standard app file caching.
-- Device ID access (getDeviceId) by well-known, named analytics SDKs (e.g., com.flurry, com.crashlytics).
+=============================================================================
+ CALIBRATION RULES (Distinguish Legitimate Frameworks from Real Malware)
+=============================================================================
 
-KNOWN MALWARE FAMILY PATTERNS:
+A. LEGITIMATE BENIGN INTENT PATTERNS (Do NOT flag as malware):
+1. **Standard UI & Framework Reflection**:
+   - `loadClass` or `newInstance` inside `android.support.*`, `androidx.*`, `com.google.android.gms.*`, or `com.alibaba.fastjson.*` for fragment instantiation, view inflation, or JSON serialization.
+2. **Activity Routing & Commercial App Protectors**:
+   - Modular navigation (e.g., `com.alibaba.android.arouter`) using reflection to find activities.
+   - Commercial app protectors (e.g., `com.secneo`, `com.tencent.StubShell`, `com.qihoo.util`) that protect code integrity or load native libraries (`loadLibrary`) WITHOUT exfiltrating private user data.
+3. **Local File & Network Operations**:
+   - `openFileInput`, `openFileOutput`, `getExternalStorageDirectory` used for standard app caching or configuration.
+   - `getActiveNetworkInfo`, `openConnection` for standard connectivity monitoring or REST API requests.
+4. **Input Device ID**:
+   - `getDeviceId` called on `android.view.InputDevice` or within `KeyEvent` handling (this is an input device identifier, NOT a telephony IMEI).
 
-1. **Dowgin & Airpush** (Adware/Spyware): Masquerade as ad networks but harvest
-   device identifiers (IMEI, MAC) using reflection. Look for obfuscated packages
-   (e.g., `a.b.c`, `com.bu.a`) using `Class.forName`/`getMethod` to dynamically
-   load sensitive APIs in the background.
+B. MALICIOUS INTENT PATTERNS (FLAG AS MALWARE):
+1. **Dnotua & Anydown (Silent Downloaders / Droppers)**:
+   - Network download (`openConnection` / `openFileOutput`) feeding directly into `DexClassLoader`, `loadClass`, or dynamic execution to run external payloads in the background. Often embedded within disguised or custom support classes.
+2. **Dowgin, Airpush, Viser, Kuguo (Adware / Spyware / Harvesters)**:
+   - Reading sensitive telephony hardware identifiers (`TelephonyManager.getDeviceId` [IMEI], `getSubscriberId` [IMSI], `getSimSerialNumber`, `getLine1Number`, `getMacAddress`) in background services and transmitting them via `openConnection` or `getOutputStream`.
+3. **SMSReg & UMPay (SMS Fraud)**:
+   - Calling `sendTextMessage`, `SmsManager`, or registering background SMS receivers without explicit user consent flow.
+4. **Ewind, Geinimi, Mobby (Trojans / Botnets / Backdoors)**:
+   - Shell command execution (`Runtime.getRuntime().exec`), C2 communication, or payload unpacking combined with device surveillance.
+5. **HiddenAd & FakeApp (Stealth Adware / Phishing)**:
+   - Programmatically hiding the launcher icon (`setComponentEnabledSetting`) right after launch, or impersonating system/banking dialogs.
 
-2. **Dnotua & Anydown** (Silent Downloaders): Background services collecting
-   location or network data, coupled with dynamic code loading from untrusted
-   sources. Often have minimal UI but heavy background activity.
-
-3. **TencentProtect / Commercial Packers**: Packers like `com.tencent.StubShell`
-   or `com.secneo` combined with heavy data harvesting and no clear benign purpose.
-
-4. **Revmob & Domob** (Aggressive Ad Networks): Excessive ad injection, silent
-   ad loading in background, tracking beacons. Look for packages like
-   `com.revmob`, `cn.domob` accessing device IDs, installing shortcuts, or
-   displaying ads without user interaction.
-
-5. **SMSReg** (SMS Fraud): Silent SMS sending or interception. Look for
-   `sendTextMessage`, `SmsManager`, or `BroadcastReceiver` for SMS_RECEIVED
-   without clear user consent flow.
-
-6. **HiddenAd** (Stealth Adware): Hides the app icon after install, displays
-   ads aggressively. Look for `setComponentEnabledSetting` to disable launcher
-   activity, combined with ad SDK initialization.
-
-7. **Ramnit** (File Infector): Unusual file I/O patterns combined with exec()
-   calls, native library loading, or attempts to modify other app files.
-
-8. **Kuguo & Feiwo** (Chinese Adware): Similar to Dowgin. Heavy use of Chinese
-   ad SDKs with device fingerprinting. Look for packages like `com.kuguo`,
-   `com.feiwo` harvesting IMEI/IMSI.
-
-9. **Deng & Scamapp** (Data Harvesters): Silently collect contacts, SMS, call
-   logs, and transmit them. Look for ContentResolver queries to `content://sms`,
-   `content://contacts`, `content://call_log` combined with network operations.
-
-10. **Gappusin** (Aggressive PUP): Installs additional apps without consent,
-    modifies browser settings, pushes notifications aggressively.
-
-FLAG AS MALWARE if you find ANY of these combinations:
-- Reflection/Dynamic loading in OBFUSCATED or UNKNOWN packages accessing sensitive data.
-- Collecting sensitive data (contacts, SMS, call logs, device IDs) without clear user-facing purpose.
-- Heavy obfuscation + encrypted payloads + background execution.
-- Silent SMS sending or interception.
-- Hidden app icon + aggressive ad display.
-- Unknown packages harvesting IMEI, IMSI, MAC address, or subscriber ID.
-- Dynamic code loading (DexClassLoader, loadClass) from non-standard sources.
+=============================================================================
+ DECISION SUMMARY:
+ - FLAG MALWARE: If you find active payload delivery (dynamic dex downloading/loading), exfiltration of private telephony IDs, silent SMS, or backdoor execution.
+ - FLAG BENIGN: If API calls are standard framework plumbing (UI reflection, activity routing, local caching, commercial packers without exfiltration).
+=============================================================================
 
 === RAG KNOWLEDGE BASE MATCHES ===
-Here are the 3 most structurally similar CFGs from our known malware/benign database:
+Here are the most structurally similar CFGs from our known malware/benign database:
 {rag_context}
 ================================
 
-=== BEGIN CFG SLICES ===
+=== BEGIN API-GROUPED FUNCTION CALL GRAPHS (FCGs) & CFG SLICES ===
 {all_cfgs}
-=== END CFG SLICES ===
+=== END FUNCTION CALL GRAPHS & CFG SLICES ===
 
 Total functions analyzed: {func_count}
 Suspicious APIs found: {api_list}
@@ -387,5 +369,5 @@ KEY_FINDINGS:
 - <finding 1>
 - <finding 2>
 - <finding 3>
-EVIDENCE: <2-3 sentences explaining your reasoning, citing specific function names or APIs>
+EVIDENCE: <2-3 sentences explaining your reasoning, citing specific API groups, call chains, or function names>
 """
