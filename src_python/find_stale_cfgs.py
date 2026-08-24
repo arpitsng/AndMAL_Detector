@@ -43,7 +43,10 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CFG_DIR = PROJECT_ROOT / "extracted_cfgs"
 
 # Keep in sync with Slicer/src/main/java/CfgSerializer.java SLICER_VERSION.
-CURRENT_SLICER_VERSION = 2
+# v3: BackwardSlicer now resolves undeclared (parameter-sourced) variables
+# inter-procedurally into callers (paper Appendix D) — see CallerIndex.java.
+# v4: SuspiciousApiList now also seeds on ClipboardManager.getPrimaryClip.
+CURRENT_SLICER_VERSION = 4
 
 # API names that only the current (or later) slicer can ever seed on — see
 # SuspiciousApiList.java. Any of these appearing as a SUSPICIOUS_API value

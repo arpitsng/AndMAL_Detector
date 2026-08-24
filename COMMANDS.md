@@ -139,7 +139,30 @@ python src_python/5_evaluate.py --predictions results/predictions_train.jsonl
 
 ---
 
-## 6. Utilities & Dataset Splitting
+## 6. Phase 5 — Interactive Chatbot (local web UI)
+
+A local web chat interface, scoped ONLY to Android APK malware analysis (it
+will refuse anything else). Lets you analyze an APK by SHA-256 hash or by
+uploading an `.apk` file directly, ask about past results, or ask aggregate
+questions ("how many false negatives so far").
+
+```bash
+# Start the server (opens on http://127.0.0.1:8765)
+python src_python/9_chatbot_server.py
+```
+
+Environment variables (optional, in `.env` or the shell):
+- `ANALYSIS_BACKEND` — backend used to actually analyze a new APK (default
+  `gguf`, the local Qwen model — matches the real deployment). Falls back to
+  Gemini automatically, with a note in the chat log, if unavailable.
+- `CHATBOT_PORT` — default `8765`.
+
+The chat model used for conversation (explaining findings, answering
+aggregate questions) is chosen per-message in the UI: Gemini or Groq.
+
+---
+
+## 7. Utilities & Dataset Splitting
 
 ```bash
 # Create balanced train/test or laptop splits
@@ -151,7 +174,7 @@ python src_python/test_pipeline.py
 
 ---
 
-## 7. Command Reference Summary
+## 8. Command Reference Summary
 
 | Parameter | Options / Type | Description |
 |---|---|---|

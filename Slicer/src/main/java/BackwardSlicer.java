@@ -5,9 +5,11 @@ import soot.Unit;
 import soot.Value;
 import soot.ValueBox;
 import soot.jimple.GotoStmt;
+import soot.jimple.IdentityStmt;
 import soot.jimple.IfStmt;
 import soot.jimple.InstanceInvokeExpr;
 import soot.jimple.InvokeExpr;
+import soot.jimple.ParameterRef;
 import soot.jimple.Stmt;
 import soot.toolkits.graph.ExceptionalUnitGraph;
 import soot.toolkits.scalar.SimpleLocalDefs;
@@ -18,44 +20,37 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
- * <b>Algorithm 1 — Intra-procedural Backward Program Slicing</b>
- * (as described in the LAMD paper, Section 3.1).
+ * <b>Algorithm 1 — Backward Program Slicing, with inter-procedural
+ * resolution</b> (as described in the LAMD paper, Section 3.2.2 / Appendix D).
  *
  * <h2>Goal</h2>
  * Given a suspicious API call site (the <em>slicing criterion</em>), compute
- * the minimal subset of Jimple statements inside the same method that are
- * <em>data-flow or control-dependence</em> relevant to that call.  This
- * produces the "Sliced CFG" that will be serialised and sent to the LLM.
+ * the minimal subset of Jimple statements that are <em>data-flow or
+ * control-dependence</em> relevant to that call. This produces the "Sliced
+ * CFG" that will be serialised and sent to the LLM.
  *
- * <h2>Algorithm (pseudo-code)</h2>
- * <pre>
- * Input:  criterion = (method, callSite, suspiciousCall)
- * Output: slice  — set of relevant {@link Unit}s
- *
- * slice    ← { callSite }
- * relevant ← args(suspiciousCall) ∪ { base object if instance invoke }
- * worklist ← { callSite }
- *
- * while worklist ≠ ∅:
- *   unit ← pop(worklist)
- *
- *   // ── Data-flow backward step ──────────────────────────────────────
- *   for each Value v used in unit  where  v ∈ relevant:
- *     for each defUnit that defines v and reaches unit (SimpleLocalDefs):
- *       if defUnit ∉ slice:
- *         slice.add(defUnit)
- *         worklist.add(defUnit)
- *         add all Local values used in defUnit to relevant
- *
- *   // ── Control-dependence step ──────────────────────────────────────
- *   for each predecessor pred of unit in the CFG:
- *     if pred is IfStmt or GotoStmt and pred ∉ slice:
- *       slice.add(pred)
- *       worklist.add(pred)
- * </pre>
+ * <h2>Two stages</h2>
+ * <ol>
+ *   <li><b>Intra-procedural slice</b> ({@link #slice(SliceCriterion)}): the
+ *       original single-method BFS over data-flow and control-dependence
+ *       predecessors.</li>
+ *   <li><b>Inter-procedural resolution</b> ({@link #sliceInterProcedural}):
+ *       per the paper's Appendix D — "If undeclared variables remain in a
+ *       sliced function, inter-procedural backward slicing is recursively
+ *       applied to its callers until all variables are resolved." A local is
+ *       "undeclared" here exactly when its only reaching definition inside
+ *       the slice is an {@link IdentityStmt} binding a method parameter
+ *       ({@link ParameterRef}) — i.e. its value comes from outside the
+ *       method. For each such parameter, {@link CallerIndex} finds every
+ *       app-scope call site invoking this method, and the same intra-
+ *       procedural slicing procedure is re-run there, seeded from the actual
+ *       argument expression — recursively, bounded by depth/fan-in/budget
+ *       caps so one heavily-called utility method can't blow up runtime.</li>
+ * </ol>
  *
  * <h2>Soot classes used</h2>
  * <ul>
@@ -63,76 +58,242 @@ import java.util.Set;
  *       exceptional control flow (try/catch). Used for predecessor queries
  *       in the control-dependence step.</li>
  *   <li>{@link SimpleLocalDefs} — efficient, intra-procedural reaching-
- *       definition analysis.  {@code getDefsOfAt(local, unit)} answers
+ *       definition analysis. {@code getDefsOfAt(local, unit)} answers
  *       "which statements could have last defined {@code local} when
  *       execution reaches {@code unit}?"</li>
  *   <li>{@link InstanceInvokeExpr} — allows extraction of the implicit
  *       {@code this} / base-object receiver so it is also tracked backward.</li>
  * </ul>
- *
- * <h2>Scope</h2>
- * Analysis is <em>intra-procedural</em>: the slicer does not follow call
- * edges into other methods.  This is sufficient for the majority of Android
- * privacy leaks and keeps analysis tractable on large APKs.
  */
 public final class BackwardSlicer {
 
     private BackwardSlicer() { /* static utility class */ }
 
+    // Caps bounding the inter-procedural resolution so a heavily fanned-in
+    // utility/wrapper method can't cause unbounded recursion or runtime blowup.
+    private static final int MAX_DEPTH = 3;
+    private static final int MAX_CALLERS_PER_PARAM = 5;
+    private static final int MAX_TOTAL_CALLER_METHODS = 15;
+
     // ─────────────────────────────────────────────────────────────────────────
-    // Public API
+    // Result type for inter-procedural slicing
     // ─────────────────────────────────────────────────────────────────────────
 
     /**
-     * Computes the backward slice for a single suspicious API call site.
-     *
-     * <p>The returned set is ordered by insertion (a {@link LinkedHashSet}),
-     * preserving roughly the BFS discovery order which approximates reverse
-     * data-flow order.  {@link CfgSerializer} re-sorts by unit position when
-     * emitting NODE lines.
+     * One method's contribution to an inter-procedural slice: either the
+     * original method containing the suspicious call ({@code label ==
+     * "callee"}), or a caller method whose slice resolves one of the
+     * callee's undeclared parameters.
+     */
+    public static final class MethodSlice {
+        private final SootMethod method;
+        private final Set<Unit> units;
+        private final String label;
+
+        public MethodSlice(SootMethod method, Set<Unit> units, String label) {
+            this.method = method;
+            this.units = units;
+            this.label = label;
+        }
+
+        public SootMethod getMethod() { return method; }
+        public Set<Unit> getUnits() { return units; }
+        public String getLabel() { return label; }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Public API — intra-procedural (original entry point, unchanged)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Computes the intra-procedural backward slice for a single suspicious
+     * API call site.
      *
      * @param criterion the slicing seed produced by {@link ApiScanner}
-     * @return set of all Jimple units that are data-flow or control-dependence
-     *         relevant to the suspicious call
+     * @return set of all Jimple units in {@code criterion}'s own method that
+     *         are data-flow or control-dependence relevant to the suspicious
+     *         call
      */
     public static Set<Unit> slice(SliceCriterion criterion) {
         SootMethod method  = criterion.getMethod();
         Stmt       callSite = criterion.getCallSite();
         InvokeExpr ie       = criterion.getInvokeExpr();
-
         Body body = method.getActiveBody();
 
-        // ── Build intra-procedural analysis structures ────────────────────────
-        ExceptionalUnitGraph graph = new ExceptionalUnitGraph(body);
-        SimpleLocalDefs      defs  = new SimpleLocalDefs(graph);
-
-        // ── Initialise the worklist, slice, and relevant-variable set ─────────
-        Set<Unit>   slice          = new LinkedHashSet<>();
-        Set<Local>  relevantLocals = new HashSet<>();
-        Deque<Unit> worklist       = new ArrayDeque<>();
-
-        // Seed: the call site itself is always in the slice.
-        slice.add(callSite);
-        worklist.add(callSite);
-
-        // Seed relevant locals: the arguments passed to the suspicious call.
-        // These are the variables whose definitions we want to trace backward.
+        Set<Local> seedRelevant = new HashSet<>();
         for (Value arg : ie.getArgs()) {
             if (arg instanceof Local) {
-                relevantLocals.add((Local) arg);
+                seedRelevant.add((Local) arg);
             }
         }
-
         // Also seed: the base ("receiver") object for instance method calls.
         // e.g. for  $mgr.getDeviceId()  we also track $mgr backward.
         if (ie instanceof InstanceInvokeExpr) {
             Value base = ((InstanceInvokeExpr) ie).getBase();
             if (base instanceof Local) {
-                relevantLocals.add((Local) base);
+                seedRelevant.add((Local) base);
             }
         }
 
-        // ── Main backward traversal (BFS) ─────────────────────────────────────
+        return sliceCore(body, callSite, seedRelevant);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Public API — inter-procedural resolution
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Computes the intra-procedural slice for {@code criterion}, then
+     * recursively resolves any undeclared (parameter-sourced) variables by
+     * slicing into callers — per the paper's Appendix D. Best-effort: any
+     * failure during the inter-procedural step leaves the intra-procedural
+     * primary slice untouched and simply stops expanding further.
+     *
+     * @param criterion   the slicing seed produced by {@link ApiScanner}
+     * @param callerIndex app-scope caller index from {@link CallerIndex#build()}
+     * @return ordered list of {@link MethodSlice}s: element 0 is always the
+     *         primary (callee) method; any further elements are resolved
+     *         callers.
+     */
+    public static List<MethodSlice> sliceInterProcedural(
+            SliceCriterion criterion,
+            Map<SootMethod, List<CallerIndex.CallEdge>> callerIndex) {
+
+        List<MethodSlice> results = new ArrayList<>();
+        Set<Unit> primary = slice(criterion);
+        results.add(new MethodSlice(criterion.getMethod(), primary, "callee"));
+
+        try {
+            Set<SootMethod> visited = new HashSet<>();
+            visited.add(criterion.getMethod());
+            int[] remainingBudget = { MAX_TOTAL_CALLER_METHODS };
+            resolveCallers(criterion.getMethod(), primary, callerIndex, results, visited, 1, remainingBudget);
+        } catch (Exception e) {
+            // Best-effort: keep the intra-procedural primary slice on any failure.
+        }
+
+        return results;
+    }
+
+    /**
+     * Finds locals in {@code methodSlice} whose only reaching definition is
+     * an unresolved method parameter, and — for each — recursively slices
+     * into every known caller of {@code method}, seeded from the actual
+     * argument expression at that call site.
+     */
+    private static void resolveCallers(
+            SootMethod method,
+            Set<Unit> methodSlice,
+            Map<SootMethod, List<CallerIndex.CallEdge>> callerIndex,
+            List<MethodSlice> results,
+            Set<SootMethod> visited,
+            int depth,
+            int[] remainingBudget) {
+
+        if (depth > MAX_DEPTH || remainingBudget[0] <= 0) {
+            return;
+        }
+
+        // An "undeclared variable" (paper's term) is exactly a local whose
+        // defining unit — already present in the slice, since the intra-
+        // procedural BFS walks every reaching definition backward — is an
+        // IdentityStmt binding a formal parameter. Such a unit has no
+        // further Local uses of its own, so the BFS naturally treats it as
+        // a leaf: it can't resolve any further within this method.
+        List<Integer> unresolvedParamIndices = new ArrayList<>();
+        for (Unit u : methodSlice) {
+            if (u instanceof IdentityStmt) {
+                IdentityStmt id = (IdentityStmt) u;
+                if (id.getRightOp() instanceof ParameterRef) {
+                    unresolvedParamIndices.add(((ParameterRef) id.getRightOp()).getIndex());
+                }
+            }
+        }
+        if (unresolvedParamIndices.isEmpty()) {
+            return;
+        }
+
+        List<CallerIndex.CallEdge> callers = callerIndex.get(method);
+        if (callers == null || callers.isEmpty()) {
+            return;
+        }
+
+        for (int paramIdx : unresolvedParamIndices) {
+            int callersUsed = 0;
+            for (CallerIndex.CallEdge edge : callers) {
+                if (callersUsed >= MAX_CALLERS_PER_PARAM || remainingBudget[0] <= 0) {
+                    break;
+                }
+
+                SootMethod callerMethod = edge.getCaller();
+                if (visited.contains(callerMethod)) {
+                    // Already resolved (or on the current recursion path) —
+                    // skip to avoid cycles and redundant work.
+                    continue;
+                }
+
+                InvokeExpr callerIe = edge.getInvokeExpr();
+                List<Value> args = callerIe.getArgs();
+                if (paramIdx < 0 || paramIdx >= args.size()) {
+                    continue;
+                }
+                Value argVal = args.get(paramIdx);
+                if (!(argVal instanceof Local)) {
+                    // Constant / field / new-expr argument — nothing further
+                    // to trace backward; the value itself IS the answer and
+                    // is already visible at the call site once we include it.
+                    continue;
+                }
+
+                Body callerBody;
+                try {
+                    callerBody = callerMethod.getActiveBody();
+                } catch (Exception e) {
+                    continue;
+                }
+
+                Set<Local> seedRelevant = new HashSet<>();
+                seedRelevant.add((Local) argVal);
+                Set<Unit> callerSlice;
+                try {
+                    callerSlice = sliceCore(callerBody, edge.getCallSite(), seedRelevant);
+                } catch (Exception e) {
+                    continue;
+                }
+
+                visited.add(callerMethod);
+                remainingBudget[0]--;
+                callersUsed++;
+
+                results.add(new MethodSlice(
+                        callerMethod, callerSlice,
+                        "caller, resolves parameter p" + paramIdx + " of " + method.getName()));
+
+                resolveCallers(callerMethod, callerSlice, callerIndex, results, visited, depth + 1, remainingBudget);
+            }
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // Shared BFS core (used by both the primary slice and caller resolution)
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Runs the backward BFS (data-flow + control-dependence) within a single
+     * method body, starting from {@code seedUnit} with {@code seedRelevant}
+     * as the initial set of relevant locals.
+     */
+    private static Set<Unit> sliceCore(Body body, Unit seedUnit, Set<Local> seedRelevant) {
+        ExceptionalUnitGraph graph = new ExceptionalUnitGraph(body);
+        SimpleLocalDefs      defs  = new SimpleLocalDefs(graph);
+
+        Set<Unit>   slice          = new LinkedHashSet<>();
+        Set<Local>  relevantLocals = new HashSet<>(seedRelevant);
+        Deque<Unit> worklist       = new ArrayDeque<>();
+
+        slice.add(seedUnit);
+        worklist.add(seedUnit);
+
         while (!worklist.isEmpty()) {
             Unit unit = worklist.poll();
 
@@ -221,7 +382,7 @@ public final class BackwardSlicer {
      *
      * <p>If a branch statement (if / goto) is an immediate predecessor of
      * {@code unit} in the CFG, that branch controls whether {@code unit} is
-     * executed.  Including it in the slice preserves the conditional structure
+     * executed. Including it in the slice preserves the conditional structure
      * of the CFG that the LLM needs to understand the program's logic.
      *
      * <p>Example: if an {@code if-eq} guards the block that calls

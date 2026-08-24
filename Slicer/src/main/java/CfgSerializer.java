@@ -43,8 +43,16 @@ public final class CfgSerializer {
      * manifest file to stay in sync with extracted_cfgs/ across machines —
      * the version travels with the CFG file itself, which matters given
      * these get merged across multiple laptops/servers via git.
+     *
+     * v3: BackwardSlicer now resolves undeclared (parameter-sourced)
+     * variables inter-procedurally into callers (paper Appendix D). A slice
+     * can now span multiple methods; see writeOneSlice()'s "--- METHOD ---"
+     * sub-sections.
+     * v4: SuspiciousApiList now also seeds on ClipboardManager.getPrimaryClip
+     * — the paper's own named example (Section 3.2.1) of a sensitive API
+     * that bypasses permission enforcement.
      */
-    public static final int SLICER_VERSION = 2;
+    public static final int SLICER_VERSION = 4;
 
     /**
      * Writes all sliced CFGs for a single APK into {@code outputPath}.
@@ -80,9 +88,8 @@ public final class CfgSerializer {
             throws IOException {
 
         SliceCriterion criterion = sr.getCriterion();
-        Set<Unit> slice          = sr.getSlice();
+        List<BackwardSlicer.MethodSlice> methodSlices = sr.getMethodSlices();
         SootMethod method        = criterion.getMethod();
-        Body body                = method.getActiveBody();
 
         // ── Header ───────────────────────────────────────────────────────────
         String methodSig = method.getDeclaringClass().getName()
@@ -98,6 +105,35 @@ public final class CfgSerializer {
         w.newLine();
         w.write("SUSPICIOUS_API: " + apiName);
         w.newLine();
+
+        // Only emit "--- METHOD ---" sub-headers when the slice actually
+        // spans more than one method (inter-procedural resolution kicked
+        // in). The common single-method case stays byte-identical to the
+        // pre-v3 output shape.
+        boolean multiMethod = methodSlices.size() > 1;
+        for (BackwardSlicer.MethodSlice ms : methodSlices) {
+            if (multiMethod) {
+                String subSig = ms.getMethod().getDeclaringClass().getName()
+                        + "." + ms.getMethod().getName();
+                w.write("--- METHOD: " + subSig + " (" + ms.getLabel() + ") ---");
+                w.newLine();
+            }
+            writeMethodSlice(w, ms.getMethod(), ms.getUnits());
+        }
+
+        w.write("=== END FUNCTION ===");
+        w.newLine();
+    }
+
+    /**
+     * Emits NODE/EDGE lines for one method's contribution to a slice.
+     * Node IDs restart at 1 for each method — safe because the Python
+     * consumer only collects NODE/EDGE lines as text, it doesn't build a
+     * cross-method graph object.
+     */
+    private static void writeMethodSlice(BufferedWriter w, SootMethod method, Set<Unit> slice)
+            throws IOException {
+        Body body = method.getActiveBody();
 
         // ── Build program-order node list ─────────────────────────────────────
         // Walk body units in their original order; assign sequential IDs only
@@ -133,9 +169,6 @@ public final class CfgSerializer {
                 }
             }
         }
-
-        w.write("=== END FUNCTION ===");
-        w.newLine();
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -143,18 +176,19 @@ public final class CfgSerializer {
     // ─────────────────────────────────────────────────────────────────────────
 
     /**
-     * Simple pair of a slicing criterion and its computed slice.
+     * Pair of a slicing criterion and its computed (possibly inter-
+     * procedural, multi-method) slice.
      */
     public static final class SliceResult {
         private final SliceCriterion criterion;
-        private final Set<Unit> slice;
+        private final List<BackwardSlicer.MethodSlice> methodSlices;
 
-        public SliceResult(SliceCriterion criterion, Set<Unit> slice) {
+        public SliceResult(SliceCriterion criterion, List<BackwardSlicer.MethodSlice> methodSlices) {
             this.criterion = criterion;
-            this.slice     = slice;
+            this.methodSlices = methodSlices;
         }
 
         public SliceCriterion getCriterion() { return criterion; }
-        public Set<Unit>      getSlice()     { return slice; }
+        public List<BackwardSlicer.MethodSlice> getMethodSlices() { return methodSlices; }
     }
 }

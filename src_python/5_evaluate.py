@@ -107,6 +107,10 @@ def generate_report(
     metrics: dict, family_analysis: dict, records: list[dict], output_path: Path
 ) -> None:
     """Generates a markdown evaluation report."""
+    unparsed_count = sum(
+        1 for r in records
+        if r.get("prediction") not in ("MALWARE", "BENIGN")
+    )
     lines = [
         "# LAMD Evaluation Report",
         "",
@@ -121,6 +125,7 @@ def generate_report(
         f"| **F1 Score** | {metrics['f1']*100:.2f}% |",
         f"| **FPR** | {metrics['fpr']*100:.2f}% |",
         f"| **FNR** | {metrics['fnr']*100:.2f}% |",
+        f"| **Unparsed (UNKNOWN)** | {unparsed_count} (excluded from the metrics above, not counted as BENIGN) |",
         "",
         "## Confusion Matrix",
         "",
@@ -269,12 +274,21 @@ def main() -> None:
     metrics = compute_metrics(y_true, y_pred)
     family_analysis = per_family_analysis(eval_records)
 
+    # Predictions that are neither "MALWARE" nor "BENIGN" (e.g. "UNKNOWN" from
+    # an LLM response that couldn't be parsed even after retry) are correctly
+    # excluded from tp/tn/fp/fn by compute_metrics rather than being silently
+    # miscounted — but that also makes them invisible unless surfaced here.
+    unparsed_count = sum(1 for p in y_pred if p not in ("MALWARE", "BENIGN"))
+
     # ── Print results ─────────────────────────────────────────────────────────
     banner("LAMD Evaluation Results")
     console.print()
     console.print(metrics_table(metrics))
     console.print()
     console.print(confusion_table(metrics))
+    if unparsed_count:
+        warn(f"{unparsed_count} prediction(s) were UNKNOWN (unparseable even after retry) "
+             f"and excluded from the metrics above — not counted as BENIGN.")
 
     if family_analysis:
         console.print()

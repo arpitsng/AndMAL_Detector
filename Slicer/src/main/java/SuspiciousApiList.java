@@ -110,7 +110,11 @@ public final class SuspiciousApiList {
             "getMethod",
 
             // Content provider (contacts, call-log, SMS inbox, etc.)
-            "query"
+            "query",
+
+            // Clipboard access — the paper's own named example (Section 3.2.1)
+            // of a sensitive API that bypasses permission enforcement.
+            "getPrimaryClip"
     ));
 
     // ── 2b. Context-dependent names with a NARROW, dedicated fragment gate ─────
@@ -160,7 +164,8 @@ public final class SuspiciousApiList {
             "Camera",
             "CameraManager",
             "Environment",
-            "Context"          // openFileOutput, openFileInput
+            "Context",         // openFileOutput, openFileInput
+            "ClipboardManager" // getPrimaryClip
     ));
 
     // ──────────────────────────────────────────────────────────────────────────

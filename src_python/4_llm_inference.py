@@ -53,13 +53,12 @@ sys.path.insert(0, str(PROJECT_ROOT / "src_python"))
 from prompts import (
     TIER1_SYSTEM, TIER1_USER_TEMPLATE,
     TIER2_SYSTEM, TIER2_USER_TEMPLATE,
+    TIER2_BATCH_SYSTEM, TIER2_BATCH_USER_TEMPLATE,
     TIER3_SYSTEM, TIER3_USER_TEMPLATE,
     DRC_SYSTEM, DRC_USER_TEMPLATE,
     DRC_VERIFY_SYSTEM, DRC_VERIFY_USER_TEMPLATE,
     DIRECT_ANALYSIS_SYSTEM, DIRECT_ANALYSIS_TEMPLATE,
     SINGLE_CALL_SYSTEM, SINGLE_CALL_TEMPLATE,
-    BULK_CHUNK_SYSTEM, BULK_CHUNK_TEMPLATE,
-    BULK_AGGREGATION_SYSTEM, BULK_AGGREGATION_TEMPLATE,
     format_api_summaries_for_tier3, classify_api_type,
 )
 from console_ui import (
@@ -1079,7 +1078,17 @@ def build_fcg_representation(
 
         group_body_parts = []
         for s in group_slices:
-            if s.function_name in included_fns:
+            # Keyed by (function_name, suspicious_api), NOT function_name
+            # alone: a single method can be the target of two different
+            # suspicious-API slicing criteria (e.g. one function that both
+            # opens a connection AND writes to its output stream produces
+            # two distinct FunctionSlice entries — one per API — each with
+            # its own NODE/EDGE content specific to that API's data flow).
+            # Deduping by function_name alone would silently drop the
+            # second API's entire group whenever it was that function's
+            # only member, discarding real per-API signal.
+            slice_key = (s.function_name, s.suspicious_api)
+            if slice_key in included_fns:
                 continue
 
             # Annotate function with call relationships
@@ -1106,7 +1115,7 @@ def build_fcg_representation(
 
             group_body_parts.append(fn_block)
             total_tokens += block_tokens
-            included_fns.add(s.function_name)
+            included_fns.add(slice_key)
 
         if group_body_parts:
             formatted_blocks.append(group_header + "\n".join(group_body_parts))
@@ -1117,57 +1126,6 @@ def build_fcg_representation(
 
     full_text = "\n".join(formatted_blocks)
     return full_text, len(included_fns), unique_apis_included
-
-
-def partition_slices_into_fcg_chunks(
-    slices: list[FunctionSlice], max_tokens_per_chunk: int = 13500
-) -> list[list[FunctionSlice]]:
-    """
-    Partitions all slices into cohesive FCG chunks that fit within max_tokens_per_chunk.
-    Guarantees 100% function coverage with ZERO functions dropped or omitted.
-    Keeps API groups and caller->callee chains together whenever possible.
-    """
-    if not slices:
-        return []
-
-    # 1. Group slices by API
-    api_groups = defaultdict(list)
-    for s in slices:
-        api_groups[s.suspicious_api].append(s)
-
-    # Sort APIs: High-risk first, then by size
-    def api_sort_key(item):
-        api_name, group = item
-        is_high = 1 if api_name in HIGH_RISK_APIS or any(hr in api_name for hr in HIGH_RISK_APIS) else 0
-        return (is_high, len(group))
-
-    sorted_api_groups = sorted(api_groups.items(), key=api_sort_key, reverse=True)
-
-    chunks = []
-    current_chunk = []
-    current_tokens = 0
-
-    for api_name, group_slices in sorted_api_groups:
-        for s in group_slices:
-            # Estimate raw function token size (bounded by 8K char truncation)
-            node_edge_text = "\n".join(s.nodes + s.edges)
-            if len(node_edge_text) > 8000:
-                node_edge_text = node_edge_text[:8000]
-            fn_block = f"--- FUNCTION: {s.function_name} ---\nSUSPICIOUS_API: {s.suspicious_api}\n{node_edge_text}\n--- END FUNCTION ---\n"
-            s_tokens = count_tokens(fn_block)
-
-            if current_tokens + s_tokens > max_tokens_per_chunk and current_chunk:
-                chunks.append(current_chunk)
-                current_chunk = [s]
-                current_tokens = s_tokens
-            else:
-                current_chunk.append(s)
-                current_tokens += s_tokens
-
-    if current_chunk:
-        chunks.append(current_chunk)
-
-    return chunks
 
 
 # =============================================================================
@@ -1205,7 +1163,7 @@ def run_tier1(llm: LLMBackend, func_slice: FunctionSlice) -> Tier1Result:
 
 
 # =============================================================================
-#  Sanity Check (replaces complex DRC — works with any model size)
+#  Free formatting sanity check (Layer 1 — no LLM call)
 # =============================================================================
 
 def sanity_check_tier1(func_slice: FunctionSlice, tier1_summary: str) -> tuple[bool, str]:
@@ -1240,18 +1198,244 @@ def sanity_check_tier1(func_slice: FunctionSlice, tier1_summary: str) -> tuple[b
     return True, "OK"
 
 
+# =============================================================================
+#  Data Relationship Coverage (DRC) — paper Section 3.3.4 / Appendix C, Eq. 1
+# =============================================================================
+# DRC = #{correctly reconstructed dependencies} / #{all ground-truth
+# dependencies}, threshold θ = 0.95. The paper prompts the LLM to identify
+# variable dependencies from the sliced CFG (DRC_USER_TEMPLATE, already
+# defined above and — until this fix — never actually called) and checks
+# whether it "accurately reconstructs variable dependencies."
+#
+# The missing piece was the ground truth to compare against. Soot already
+# computed the real data-flow relationships during slicing, but didn't
+# serialize them — so this re-derives them by parsing the same Jimple
+# NODE/EDGE text the LLM sees, using the exact 5 categories from Table 7 /
+# DRC_USER_TEMPLATE (Direct, Transitive, Conditional, Parallel, Derived).
+# This is a heuristic re-parse (regex over Jimple, not a full grammar), the
+# same tradeoff extract_invokes()/build_fcg_representation() already accept
+# elsewhere in this file — good enough to score LLM recall against, not a
+# claim of perfect precision on every exotic Jimple construct.
+
+DRC_THRESHOLD = 0.95
+
+_DRC_VAR_TOKEN_RE = re.compile(r"\$?[A-Za-z_][\w#-]*")
+_DRC_ARITH_OP_RE = re.compile(r"\s[+\-*/%]\s")  # spaced operator — NOT the '-' inside "$u-1"
+
+
+_DRC_KEYWORDS = {
+    "if", "goto", "return", "new", "newarray", "newmultiarray", "null",
+    "this", "virtualinvoke", "staticinvoke", "specialinvoke",
+    "interfaceinvoke", "dynamicinvoke", "instanceof", "true", "false",
+    "class", "lengthof", "cmp", "cmpg", "cmpl",
+    # Java primitive type names — never dotted, so the qualified-name
+    # stripper above doesn't catch them (e.g. "newarray (int)[2]").
+    "int", "long", "short", "byte", "char", "boolean", "float", "double", "void",
+}
+
+
+def _drc_extract_vars(text: str) -> set[str]:
+    """
+    Variable-like tokens in `text`, with everything that ISN'T a Jimple
+    local stripped out first: <...> method/field signatures, quoted string
+    literals, and dotted qualified type names (java.lang.Object etc — a
+    Jimple local never contains a '.', so any dotted identifier chain is
+    always a type/package reference, never a variable).
+    """
+    text = re.sub(r"<[^>]*>", " ", text)
+    text = re.sub(r'"[^"]*"', " ", text)
+    text = re.sub(r"\b[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+\b", " ", text)
+    return {
+        tok for tok in _DRC_VAR_TOKEN_RE.findall(text)
+        if tok.lower() not in _DRC_KEYWORDS and not tok.lstrip("$").lstrip("-").isdigit()
+    }
+
+
+def extract_ground_truth_dependencies(func_slice: FunctionSlice) -> dict[str, set[str]]:
+    """
+    Re-derives the 5 dependency categories (paper Table 7) directly from the
+    sliced CFG's own NODE/EDGE text, to use as ground truth for scoring the
+    LLM's DRC response against.
+    """
+    deps: dict[str, set[str]] = {
+        "direct": set(), "transitive": set(), "conditional": set(),
+        "parallel": set(), "derived": set(),
+    }
+
+    nodes = func_slice.nodes
+    if not nodes:
+        return deps
+
+    # ── Locate the final invocation node (the one containing the suspicious API) ──
+    api_short = func_slice.suspicious_api.split(".")[-1] if func_slice.suspicious_api else ""
+    final_node = None
+    for line in nodes:
+        if api_short and api_short in line and "invoke" in line.lower():
+            final_node = line  # last match wins — the invocation is usually the terminal slice node
+    if final_node is None:
+        final_node = nodes[-1]
+
+    # ── Direct: variables passed as arguments (or the instance receiver) to
+    #    that final call — mirrors exactly what BackwardSlicer.slice() seeds
+    #    as relevantLocals in the first place. ──
+    call_match = re.search(r"<[^>]+>\(([^()]*)\)", final_node)
+    if call_match:
+        deps["direct"] |= _drc_extract_vars(call_match.group(1))
+    recv_match = re.search(r"(?:virtualinvoke|specialinvoke|interfaceinvoke)\s+([\w$#-]+)\.<", final_node)
+    if recv_match:
+        deps["direct"] |= _drc_extract_vars(recv_match.group(1))
+
+    # ── Build a def-map: variable -> (line_index, rhs_text) for the LAST
+    #    assignment to that variable at or before the final node (adequate
+    #    approximation since the slice already contains only relevant units,
+    #    in program order). ──
+    final_idx = nodes.index(final_node) if final_node in nodes else len(nodes) - 1
+    def_map: dict[str, str] = {}
+    for idx, line in enumerate(nodes[:final_idx + 1]):
+        body = line.split(":", 2)[-1].strip() if line.startswith("NODE") else line
+        m = re.match(r"^([\w$#-]+)\s*=\s*(.+)$", body)
+        if m:
+            def_map[m.group(1)] = m.group(2)
+
+    # ── Transitive / Derived: walk each direct variable's definition and
+    #    classify what feeds it. Derived = the RHS is an arithmetic
+    #    expression (spaced +/-/*/%, distinct from '-' inside a local name
+    #    like "$u-1"); otherwise (copy, field read, invoke result) = Transitive. ──
+    receiver_groups: dict[str, set[str]] = {}
+    for var in list(deps["direct"]):
+        rhs = def_map.get(var)
+        if not rhs:
+            continue
+        rhs_vars = _drc_extract_vars(rhs) - {var}
+        if _DRC_ARITH_OP_RE.search(rhs):
+            deps["derived"] |= rhs_vars
+        else:
+            deps["transitive"] |= rhs_vars
+
+        recv = re.search(r"(?:virtualinvoke|specialinvoke|interfaceinvoke)\s+([\w$#-]+)\.<", rhs)
+        if recv:
+            receiver_groups.setdefault(recv.group(1), set()).add(var)
+
+    # ── Parallel: 2+ direct/transitive variables assigned via calls on the
+    #    SAME receiver object (a shared source). ──
+    for receiver, group_vars in receiver_groups.items():
+        if len(group_vars) > 1:
+            deps["parallel"] |= group_vars
+
+    # ── Conditional: variables in any branch (if/goto) node present in the
+    #    slice — these are exactly the control-dependence nodes
+    #    performControlDependenceStep() already included. ──
+    for line in nodes:
+        body = line.split(":", 2)[-1].strip() if line.startswith("NODE") else line
+        m = re.match(r"^if\s+(.+?)\s+goto\b", body)
+        if m:
+            deps["conditional"] |= _drc_extract_vars(m.group(1))
+
+    return deps
+
+
+def parse_drc_response(response: str) -> dict[str, set[str]]:
+    """Parses the LLM's DRC_USER_TEMPLATE response (`<type>: <var1>, <var2>`
+    lines) into the same {category: {vars}} shape as the ground truth."""
+    claimed: dict[str, set[str]] = {
+        "direct": set(), "transitive": set(), "conditional": set(),
+        "parallel": set(), "derived": set(),
+    }
+    for line in response.split("\n"):
+        line = line.strip().lstrip("-*").strip()
+        m = re.match(r"^\**\s*(Direct|Transitive|Conditional|Parallel|Derived)\**\s*:\s*(.+)$", line, re.IGNORECASE)
+        if not m:
+            continue
+        category = m.group(1).lower()
+        for raw_var in re.split(r"[,\s]+", m.group(2)):
+            raw_var = raw_var.strip().strip(".").lstrip("$")
+            if raw_var and raw_var.lower() not in ("none", "n/a", "-"):
+                claimed[category].add(raw_var)
+    return claimed
+
+
+def compute_drc_score(ground_truth: dict[str, set[str]], claimed: dict[str, set[str]]) -> tuple[float, str]:
+    """
+    DRC = #{correctly reconstructed dependencies} / #{all ground-truth
+    dependencies} (paper Eq. 1), pooled across all 5 categories into one
+    scalar score to compare against θ=0.95. Variable names are compared
+    with the '$' sigil stripped on both sides (the LLM often echoes Jimple
+    locals without it) — everything else stays case-sensitive, matching
+    real Java/Jimple identifier semantics.
+
+    Returns (score, human_readable_detail). An empty ground truth (nothing
+    to verify — e.g. a suspicious call with only constant arguments) scores
+    1.0 rather than being undefined.
+    """
+    def norm(vs: set[str]) -> set[str]:
+        return {v.lstrip("$") for v in vs}
+
+    total = 0
+    correct = 0
+    missed_detail = []
+    for category, gt_vars in ground_truth.items():
+        gt_vars = norm(gt_vars)
+        claimed_vars = norm(claimed.get(category, set()))
+        total += len(gt_vars)
+        hit = gt_vars & claimed_vars
+        correct += len(hit)
+        missed = gt_vars - claimed_vars
+        if missed:
+            missed_detail.append(f"{category}: missed {sorted(missed)}")
+
+    if total == 0:
+        return 1.0, "No ground-truth dependencies to verify (trivial slice)"
+
+    score = correct / total
+    detail = f"{correct}/{total} dependencies matched"
+    if missed_detail:
+        detail += " — " + "; ".join(missed_detail)
+    return score, detail
+
+
+def run_drc_check(llm: LLMBackend, func_slice: FunctionSlice) -> tuple[bool, str, float]:
+    """
+    The paper's actual DRC verification: prompts the LLM (DRC_USER_TEMPLATE)
+    to identify variable dependencies in the sliced CFG, scores its answer
+    against dependencies re-derived from the CFG itself
+    (extract_ground_truth_dependencies), and applies the paper's θ=0.95
+    threshold. Costs one extra LLM call per function, only when verify_drc=True.
+
+    Returns (is_consistent, reason, score).
+    """
+    ground_truth = extract_ground_truth_dependencies(func_slice)
+
+    cfg_text = func_slice.raw_text
+    if len(cfg_text) > 4000:
+        cfg_text = cfg_text[:4000] + "\n... [truncated] ..."
+
+    prompt = DRC_USER_TEMPLATE.format(
+        function_name=func_slice.function_name,
+        cfg_content=cfg_text,
+    )
+    response = llm.chat(DRC_SYSTEM, prompt, temperature=0.0)
+    claimed = parse_drc_response(response)
+
+    score, detail = compute_drc_score(ground_truth, claimed)
+    is_consistent = score >= DRC_THRESHOLD
+    # ASCII-only: this string gets printed via a raw print() in the Tier 1
+    # loop, which on a default Windows console (cp1252) crashes on 'θ'/'—'.
+    reason = f"DRC={score:.2f} (threshold={DRC_THRESHOLD}) - {detail}"
+    return is_consistent, reason, score
+
+
 def verify_consistency(
     llm: LLMBackend, func_slice: FunctionSlice, tier1_summary: str
 ) -> tuple[bool, str]:
     """
-    Real factual-consistency check: an LLM call that compares the Tier 1
-    summary against the CFG it was generated from, looking for claims not
-    actually supported by the code (hallucination).
-
-    This is the genuine DRC verification described in the LAMD writeup —
-    sanity_check_tier1() above is a free formatting check and cannot catch
-    this class of error (a well-formatted summary can still invent details).
-    Costs one extra LLM call per function, only when verify_drc=True.
+    Supplementary hallucination check — NOT the paper's DRC mechanism (see
+    run_drc_check() above for that). This asks the LLM directly whether a
+    Tier 1 summary's claims are supported by the code, which catches a
+    different failure mode than DRC: DRC scores whether variable
+    *relationships* were reconstructed correctly, this catches invented
+    *details* (e.g. "hardcoded premium number") that DRC's dependency-only
+    view wouldn't flag either way. Available as an extra opt-in layer;
+    not called by the default Tier 1 loop (see analyse_one_apk).
 
     Returns (is_consistent, reason).
     """
@@ -1286,6 +1470,22 @@ def verify_consistency(
 #  Tier 2 — API-Level Aggregation
 # =============================================================================
 
+def _extract_tier2_risk(response: str) -> str:
+    """Parses a RISK_LEVEL/RISK line out of a Tier-2-shaped LLM response."""
+    for line in response.split("\n"):
+        if "RISK_LEVEL:" in line.upper() or "RISK:" in line.upper():
+            if "CRITICAL" in line.upper():
+                return "CRITICAL"
+            elif "HIGH" in line.upper():
+                return "HIGH"
+            elif "MEDIUM" in line.upper():
+                return "MEDIUM"
+            elif "LOW" in line.upper():
+                return "LOW"
+            break
+    return "UNKNOWN"
+
+
 def run_tier2(
     llm: LLMBackend, api_name: str, function_summaries: list[Tier1Result]
 ) -> Tier2Result:
@@ -1304,26 +1504,315 @@ def run_tier2(
     )
     response = llm.chat(TIER2_SYSTEM, prompt)
 
-    # Extract risk level
-    risk = "UNKNOWN"
-    for line in response.split("\n"):
-        if "RISK_LEVEL:" in line.upper() or "RISK:" in line.upper():
-            if "CRITICAL" in line.upper():
-                risk = "CRITICAL"
-            elif "HIGH" in line.upper():
-                risk = "HIGH"
-            elif "MEDIUM" in line.upper():
-                risk = "MEDIUM"
-            elif "LOW" in line.upper():
-                risk = "LOW"
-            break
-
     return Tier2Result(
         api_name=api_name,
         api_type=api_type,
         summary=response,
-        risk_level=risk,
+        risk_level=_extract_tier2_risk(response),
     )
+
+
+# =============================================================================
+#  Tier 2 (bulk path) — API-Level Aggregation directly from sliced FCG content
+# =============================================================================
+# Used by the hybrid/HBCR pipeline for large APKs where a full per-function
+# Tier 1 pass would be too slow. Restores the paper's API-intent-aggregation
+# step (Section 3.3.2) that the old chunk-based bulk pipeline skipped
+# entirely — one LLM call per suspicious API GROUP (never split across
+# unrelated chunks), keeping call count at O(#distinct suspicious APIs)
+# instead of O(#functions).
+
+_RISK_ORDER = {"UNKNOWN": -1, "LOW": 0, "MEDIUM": 1, "HIGH": 2, "CRITICAL": 3}
+
+
+def _split_group_into_subchunks(
+    group_slices: list[FunctionSlice], max_tokens_per_subchunk: int
+) -> list[list[FunctionSlice]]:
+    """
+    Splits ONE (oversized) suspicious-API group's functions into token-bounded
+    sub-chunks, preserving function order. Only used as a fallback when a
+    single API group's own functions don't fit within one call's budget —
+    the common case (a group that fits) never goes through this.
+    """
+    subchunks: list[list[FunctionSlice]] = []
+    current: list[FunctionSlice] = []
+    current_tokens = 0
+
+    for s in group_slices:
+        node_edge_text = "\n".join(s.nodes + s.edges)
+        if len(node_edge_text) > 8000:
+            node_edge_text = node_edge_text[:8000]
+        fn_block = f"--- FUNCTION: {s.function_name} ---\nSUSPICIOUS_API: {s.suspicious_api}\n{node_edge_text}\n--- END FUNCTION ---\n"
+        s_tokens = count_tokens(fn_block)
+
+        if current_tokens + s_tokens > max_tokens_per_subchunk and current:
+            subchunks.append(current)
+            current = [s]
+            current_tokens = s_tokens
+        else:
+            current.append(s)
+            current_tokens += s_tokens
+
+    if current:
+        subchunks.append(current)
+
+    return subchunks
+
+
+def _merge_tier2_group_results(api_name: str, sub_results: list[Tier2Result]) -> Tier2Result:
+    """Merges per-sub-chunk Tier2Results for ONE oversized API group into one."""
+    best = max(sub_results, key=lambda r: _RISK_ORDER.get(r.risk_level, -1))
+    combined_summary = "\n\n".join(
+        f"[Part {i}/{len(sub_results)} — Risk: {r.risk_level}]\n{r.summary}"
+        for i, r in enumerate(sub_results, 1)
+    )
+    return Tier2Result(
+        api_name=api_name,
+        api_type=sub_results[0].api_type,
+        summary=combined_summary,
+        risk_level=best.risk_level,
+    )
+
+
+# Hard cap on how many of one API's call sites get individually analyzed in
+# the bulk path. Without this, a pathological APK can blow the sub-chunk
+# fallback below out to thousands of LLM calls for ONE api group — verified
+# directly: a real sample in test_extracted_cfgs/ has 10,789 forName() call
+# sites and 10,750 invoke() call sites alone (98.9% of all 26,810 functions
+# in that one APK), almost certainly templated/generated reflection glue.
+# Evenly sampling down to a bounded representative subset keeps runtime/cost
+# bounded while still capturing the pattern — near-identical call sites are
+# highly redundant by construction, so a representative sample carries most
+# of the signal a full pass would.
+MAX_FUNCTIONS_PER_GROUP_ANALYSIS = 200
+
+# Second, independent bound: caps LLM calls per group directly regardless of
+# backend context size. A tight-context backend (e.g. Groq's real 4K-token
+# budget) can still split even the post-sampling 200-function cap above into
+# many sub-chunks; this guarantees at most this many extra calls per group
+# no matter how small the backend's context window is.
+MAX_SUBCHUNKS_PER_GROUP = 8
+
+
+def _sample_group(group_slices: list[FunctionSlice], cap: int) -> tuple[list[FunctionSlice], int]:
+    """Evenly samples down to `cap` functions if the group exceeds it.
+    Returns (sampled_slices, original_count)."""
+    original_count = len(group_slices)
+    if original_count <= cap:
+        return group_slices, original_count
+    step = original_count / cap
+    sampled = [group_slices[int(i * step)] for i in range(cap)]
+    return sampled, original_count
+
+
+def run_tier2_from_group(
+    llm: LLMBackend, api_name: str, group_slices: list[FunctionSlice],
+    content_budget: int, verbose: bool = True,
+) -> Tier2Result:
+    """
+    Bulk-path Tier 2: aggregates ALL functions calling one suspicious API
+    directly from their sliced FCG content (skipping the per-function Tier 1
+    LLM pass) into a single structured API-intent summary — the same shape
+    `run_tier2` produces, so downstream (Tier 3) can't tell the difference.
+    """
+    group_slices, original_group_count = _sample_group(group_slices, MAX_FUNCTIONS_PER_GROUP_ANALYSIS)
+    sampled = original_group_count > len(group_slices)
+    if sampled and verbose:
+        print(f"        [WARN] API group '{api_name}' has {original_group_count} call sites — "
+              f"sampled down to {len(group_slices)} representative site(s) to bound cost/runtime", flush=True)
+
+    fcg_text, included, _ = build_fcg_representation(group_slices, max_content_tokens=content_budget)
+    api_type = classify_api_type(api_name)
+
+    def _annotate(result: Tier2Result, analyzed_count: int) -> Tier2Result:
+        if not sampled:
+            return result
+        note = (f"\n\n[NOTE: this API has {original_group_count} call sites in the APK; "
+                 f"analysis is based on {analyzed_count} representative sampled site(s).]")
+        return Tier2Result(
+            api_name=result.api_name, api_type=result.api_type,
+            summary=result.summary + note, risk_level=result.risk_level,
+        )
+
+    if included >= len(group_slices):
+        # Whole (possibly sampled) group fits in one call — the common case.
+        prompt = TIER2_USER_TEMPLATE.format(
+            api_name=api_name, api_type=api_type,
+            function_summaries=fcg_text, usage_count=len(group_slices),
+        )
+        response = llm.chat(TIER2_SYSTEM, prompt)
+        return _annotate(Tier2Result(
+            api_name=api_name, api_type=api_type,
+            summary=response, risk_level=_extract_tier2_risk(response),
+        ), analyzed_count=len(group_slices))
+
+    # Oversized (post-sampling) group: split into sub-chunks, analyze each,
+    # merge — but the API grouping itself is never broken (every sub-chunk
+    # is still 100% this one API's functions).
+    subchunks = _split_group_into_subchunks(group_slices, max_tokens_per_subchunk=content_budget)
+    if len(subchunks) > MAX_SUBCHUNKS_PER_GROUP:
+        if verbose:
+            print(f"        [WARN] API group '{api_name}' split into {len(subchunks)} sub-chunks — "
+                  f"capping to {MAX_SUBCHUNKS_PER_GROUP} to bound cost/runtime", flush=True)
+        subchunks = subchunks[:MAX_SUBCHUNKS_PER_GROUP]
+        sampled = True  # partial coverage — make sure the result gets annotated
+    elif verbose:
+        print(f"        [INFO] API group '{api_name}' ({len(group_slices)} funcs) exceeds budget — "
+              f"split into {len(subchunks)} sub-chunk(s) of this SAME API", flush=True)
+
+    analyzed_count = sum(len(sc) for sc in subchunks)
+    sub_results: list[Tier2Result] = []
+    for idx, sub in enumerate(subchunks, 1):
+        sub_text, _, _ = build_fcg_representation(sub, max_content_tokens=content_budget + 2000)
+        prompt = TIER2_USER_TEMPLATE.format(
+            api_name=f"{api_name} (part {idx}/{len(subchunks)})", api_type=api_type,
+            function_summaries=sub_text, usage_count=len(sub),
+        )
+        try:
+            response = llm.chat(TIER2_SYSTEM, prompt)
+        except Exception as e:
+            response = f"RISK_LEVEL: UNKNOWN\nOVERALL_INTENT: Analysis failed: {e}"
+        sub_results.append(Tier2Result(
+            api_name=api_name, api_type=api_type,
+            summary=response, risk_level=_extract_tier2_risk(response),
+        ))
+
+    return _annotate(_merge_tier2_group_results(api_name, sub_results), analyzed_count=analyzed_count)
+
+
+# =============================================================================
+#  Tier 2 (batched) — several SMALL API groups analyzed in one call
+# =============================================================================
+# Pure call-count optimization: many suspicious-API groups in the bulk path
+# have only 1-4 functions, each still paying the same fixed per-call
+# overhead as a large group. Batching several small groups into one request
+# never changes what gets analyzed or how — each API's content and output
+# are exactly as they'd be individually, just packaged together — and any
+# API whose result can't be confidently parsed back out of the batch
+# response is transparently reprocessed individually, so nothing is ever
+# silently dropped or blended between APIs.
+
+def parse_tier2_batch_response(response: str) -> dict[str, str]:
+    """Splits a TIER2_BATCH_USER_TEMPLATE response into {api_name: block_text}."""
+    blocks: dict[str, str] = {}
+    pattern = re.compile(
+        r"===\s*API_RESULT:\s*(.+?)\s*===(.*?)===\s*END API_RESULT\s*===",
+        re.DOTALL,
+    )
+    for m in pattern.finditer(response):
+        api_name = m.group(1).strip()
+        content = m.group(2).strip()
+        if api_name and content:
+            blocks[api_name] = content
+    return blocks
+
+
+def partition_groups_for_batching(
+    api_groups: dict[str, list[FunctionSlice]], content_budget: int,
+) -> tuple[list[list[str]], list[str]]:
+    """
+    Splits API groups into (a) batches of small groups to analyze together
+    in one call each, and (b) groups that keep their own individual call —
+    exactly as before batching existed. A group is "small" only if its own
+    formatted content is comfortably under a quarter of the budget — kept
+    conservative, since that's what keeps any ONE api's content simple
+    enough for the model to reliably keep separate from its batch-mates.
+    batch_target is deliberately much larger (most of the budget): packing
+    MORE small (individually-simple) groups into one call is where the real
+    call-count savings come from, and the eligibility bar above is what
+    keeps that safe — not the batch size itself.
+    """
+    small_threshold = max(500, content_budget // 4)
+    batch_target = max(1000, int(content_budget * 0.85))
+
+    small: list[tuple[str, int]] = []
+    standalone: list[str] = []
+    for api_name, group_slices in api_groups.items():
+        text, _, _ = build_fcg_representation(group_slices, max_content_tokens=content_budget)
+        tokens = count_tokens(text)
+        if tokens <= small_threshold:
+            small.append((api_name, tokens))
+        else:
+            standalone.append(api_name)
+
+    # Greedy bin-packing, largest-small-first.
+    small.sort(key=lambda x: -x[1])
+    batches: list[list[str]] = []
+    batch_tokens: list[int] = []
+    for api_name, tokens in small:
+        placed = False
+        for i in range(len(batches)):
+            if batch_tokens[i] + tokens <= batch_target:
+                batches[i].append(api_name)
+                batch_tokens[i] += tokens
+                placed = True
+                break
+        if not placed:
+            batches.append([api_name])
+            batch_tokens.append(tokens)
+
+    # A "batch" of exactly one API gains nothing over an individual call —
+    # unwrap those back into the standalone path rather than paying the
+    # (slightly larger) batch-template overhead for zero benefit.
+    real_batches = [b for b in batches if len(b) > 1]
+    unwrapped_singletons = [b[0] for b in batches if len(b) == 1]
+
+    return real_batches, standalone + unwrapped_singletons
+
+
+def run_tier2_batch(
+    llm: LLMBackend, groups: list[tuple[str, list[FunctionSlice]]],
+    content_budget: int, verbose: bool = True,
+) -> dict[str, Tier2Result]:
+    """
+    Analyzes several small suspicious-API groups in ONE LLM call. Falls back
+    to run_tier2_from_group individually for any API missing or unparseable
+    in the batch response — the safety net that guarantees batching can only
+    ever cost time savings on failure, never coverage.
+    """
+    all_slices = [s for _, group_slices in groups for s in group_slices]
+    grouped_content, _, _ = build_fcg_representation(all_slices, max_content_tokens=content_budget)
+    api_names = [name for name, _ in groups]
+
+    prompt = TIER2_BATCH_USER_TEMPLATE.format(
+        group_count=len(api_names),
+        grouped_content=grouped_content,
+    )
+
+    response = ""
+    try:
+        response = llm.chat(TIER2_BATCH_SYSTEM, prompt)
+    except Exception as e:
+        if verbose:
+            print(f"        [WARN] Batch Tier 2 call failed ({e}) — falling back to "
+                  f"individual calls for all {len(api_names)} API(s) in this batch", flush=True)
+
+    parsed_blocks = parse_tier2_batch_response(response) if response else {}
+
+    results: dict[str, Tier2Result] = {}
+    missing: list[str] = []
+    for api_name, group_slices in groups:
+        block = parsed_blocks.get(api_name)
+        if block is None:
+            missing.append(api_name)
+            continue
+        api_type = classify_api_type(api_name)
+        results[api_name] = Tier2Result(
+            api_name=api_name, api_type=api_type,
+            summary=block, risk_level=_extract_tier2_risk(block),
+        )
+
+    if missing:
+        if verbose:
+            print(f"        [WARN] Batch response missing/unparseable for {len(missing)} "
+                  f"API(s) {missing} — falling back to individual calls for those only", flush=True)
+        group_map = dict(groups)
+        for api_name in missing:
+            results[api_name] = run_tier2_from_group(
+                llm, api_name, group_map[api_name], content_budget, verbose=verbose
+            )
+
+    return results
 
 
 # =============================================================================
@@ -1338,6 +1827,31 @@ MALWARE_SIGNAL_KEYWORDS = (
 )
 
 
+def _parse_marker_value(response: str, marker_prefixes: tuple[str, ...]) -> str:
+    """
+    Extracts the value following a marker line, handling both inline style
+    ('CONFIDENCE: HIGH') and bold-header-with-value-on-next-line style
+    ('**Confidence:**\\nHIGH' — what TIER3_USER_TEMPLATE uses for
+    **Final Prediction:**/**Confidence:**, mirroring the "structured marker"
+    lookup `parse_final_prediction` already does for the prediction itself).
+    Returns "" if no marker line is found or it has no value anywhere nearby.
+    """
+    lines = response.split("\n")
+    for i, line in enumerate(lines):
+        stripped = line.strip().strip("*").strip()
+        upper = stripped.upper()
+        if any(upper.startswith(p) for p in marker_prefixes):
+            candidate = stripped.split(":", 1)[1].strip() if ":" in stripped else ""
+            if not candidate:
+                for nxt_line in lines[i + 1 : i + 3]:
+                    nxt = nxt_line.strip().strip("*").strip()
+                    if nxt:
+                        candidate = nxt
+                        break
+            return candidate
+    return ""
+
+
 def parse_final_prediction(response: str, verbose: bool = True, context: str = "") -> str:
     """
     Robustly extracts MALWARE/BENIGN from an LLM response.
@@ -1350,9 +1864,14 @@ def parse_final_prediction(response: str, verbose: bool = True, context: str = "
          (handles minor formatting drift from (1)).
       3. Keyword-density fallback: MALWARE if >= 2 malware-indicator
          keywords appear anywhere in the response.
-      4. BENIGN, loudly logged — this means the LLM's output didn't match
-         any expected format and the result should be treated with
-         suspicion, not silently trusted.
+      4. "UNKNOWN", loudly logged — this means the LLM's output didn't match
+         any expected format. Deliberately NOT "BENIGN": on a dataset where
+         BENIGN is the ~90% majority class, silently coding an unparseable
+         response as BENIGN inflates accuracy while quietly hiding false
+         negatives — exactly the failure mode this was causing. Callers
+         should retry once (see `_retry_prediction_parse`) and, failing
+         that, record "UNKNOWN" so it's excluded from strict metrics rather
+         than miscounted as a free correct answer.
     """
     lines = response.split("\n")
 
@@ -1404,9 +1923,44 @@ def parse_final_prediction(response: str, verbose: bool = True, context: str = "
 
     if verbose:
         print(f"\n    [WARN] {context}Could not confidently parse a prediction; "
-              f"defaulting to BENIGN. Response head: {response[:150]!r}",
+              f"recording UNKNOWN (not BENIGN). Response head: {response[:150]!r}",
               file=sys.stderr, flush=True)
-    return "BENIGN"
+    return "UNKNOWN"
+
+
+def _retry_prediction_parse(
+    llm: LLMBackend, system: str, original_prompt: str, previous_response: str,
+    context: str = "",
+) -> tuple[str, str]:
+    """
+    One retry when `parse_final_prediction` couldn't confidently extract a
+    verdict. Appends a stricter formatting instruction and asks again.
+
+    Returns (prediction, response_to_store). On a second parse failure,
+    prediction is "UNKNOWN" — never silently "BENIGN" (see the docstring on
+    `parse_final_prediction` for why that matters on this dataset).
+    """
+    retry_prompt = (
+        original_prompt
+        + "\n\n--- IMPORTANT ---\n"
+          "Your previous response did not include a clear verdict line. "
+          "Restate your final verdict as EXACTLY one line in the form:\n"
+          "PREDICTION: MALWARE\nor\nPREDICTION: BENIGN"
+    )
+    try:
+        retry_response = llm.chat(system, retry_prompt, temperature=0.0)
+    except Exception as e:
+        print(f"\n    [WARN] {context}Retry call for unparsed prediction failed: {e}",
+              file=sys.stderr, flush=True)
+        return "UNKNOWN", previous_response
+
+    retry_prediction = parse_final_prediction(retry_response, context=context)
+    if retry_prediction != "UNKNOWN":
+        return retry_prediction, retry_response
+
+    print(f"\n    [WARN] {context}Retry also failed to parse a verdict — recording UNKNOWN.",
+          file=sys.stderr, flush=True)
+    return "UNKNOWN", previous_response + "\n\n[RETRY RESPONSE]\n" + retry_response
 
 
 def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> Tier3Result:
@@ -1420,12 +1974,20 @@ def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> T
     prompt = TIER3_USER_TEMPLATE.format(api_summaries=api_text)
     response = llm.chat(TIER3_SYSTEM, prompt)
 
-    prediction = parse_final_prediction(response, context=f"[Tier3 {sha256[:12]}] ")
+    context = f"[Tier3 {sha256[:12]}] "
+    prediction = parse_final_prediction(response, context=context)
+    if prediction == "UNKNOWN":
+        prediction, response = _retry_prediction_parse(llm, TIER3_SYSTEM, prompt, response, context=context)
+
+    confidence = _parse_marker_value(response, ("CONFIDENCE",)).upper() or "UNKNOWN"
+    if confidence == "UNKNOWN" and prediction == "MALWARE":
+        confidence = "MEDIUM"
 
     return Tier3Result(
         sha256=sha256,
         prediction=prediction,
         analysis=response,
+        confidence=confidence,
     )
 
 
@@ -1499,18 +2061,20 @@ def analyse_one_apk(
                         print(f"        [SANITY] Format check failed ({reason}) -> Retrying...", flush=True)
                     t1 = run_tier1(llm, func_slice)  # retry once
                 else:
-                    # Layer 2: real factual-consistency check (1 extra LLM call)
+                    # Layer 2: paper's actual DRC check (1 extra LLM call) —
+                    # score the LLM's reconstructed dependencies against the
+                    # slice's real ones, retry if below θ=0.95.
                     try:
                         t_drc = time.time()
-                        is_consistent, drc_reason = verify_consistency(llm, func_slice, t1.summary)
+                        is_consistent, drc_reason, drc_score = run_drc_check(llm, func_slice)
                         drc_dur = time.time() - t_drc
                         if not is_consistent:
                             if verbose:
-                                print(f"        [DRC]    INCONSISTENT ({drc_reason}) -> Retrying... ({drc_dur:.1f}s)", flush=True)
+                                print(f"        [DRC]    BELOW THRESHOLD ({drc_reason}) -> Retrying... ({drc_dur:.1f}s)", flush=True)
                             t1 = run_tier1(llm, func_slice)  # retry once
                         else:
                             if verbose:
-                                print(f"        [DRC]    Verified Consistent [OK] ({drc_dur:.1f}s)", flush=True)
+                                print(f"        [DRC]    {drc_reason} [OK] ({drc_dur:.1f}s)", flush=True)
                     except Exception as e:
                         if verbose:
                             print(f"        [DRC]    Verification call warning: {e}", flush=True)
@@ -1693,6 +2257,23 @@ FRAMEWORK_PREFIXES = (
     'org.apache.', 'dalvik.'
 )
 
+# Catches a RELOCATED/shaded copy of AndroidX/Support library — e.g. build
+# tooling (ProGuard/R8 package relocation) renaming the top-level package to
+# something like "fgl.android.support.transition.*" while keeping the
+# "android.support"/"androidx" segment intact internally. FRAMEWORK_PREFIXES
+# above only matches when that segment is at the very START of the name (the
+# normal, non-relocated case); this catches it anywhere else too. Verified
+# directly this session: one real sample had 184 of its 504 post-filter
+# functions in exactly this pattern, ~97% pure reflection
+# (invoke/getDeclaredMethod/newInstance/getDeclaredField/forName/loadClass) —
+# the same well-established "framework reflection is noise" reasoning
+# FRAMEWORK_PREFIXES already applies, just for a relocated copy of a library
+# already on that list. Carries the same (already-accepted) risk profile as
+# the rest of this mechanism: ALWAYS_SENSITIVE_APIS still bypasses this
+# regardless of package name, so genuinely sensitive behavior inside a
+# relocated support-library class is still never dropped.
+_SHADED_ANDROIDX_RE = re.compile(r"\.androidx\.|\.android\.support\.")
+
 # Pure reflection / native-lib-loading APIs — the single largest category
 # of slices produced by the Java slicer (~75% of all suspicious-API slices
 # in the full corpus). The overwhelming majority of these, inside NAMED
@@ -1793,7 +2374,10 @@ def preprocess_slices(
     filtered: list[FunctionSlice] = []
     for s in unique_slices:
         api_lower = s.suspicious_api.lower()
-        if s.function_name.startswith(FRAMEWORK_PREFIXES):
+        is_framework = s.function_name.startswith(FRAMEWORK_PREFIXES) or bool(
+            _SHADED_ANDROIDX_RE.search(s.function_name)
+        )
+        if is_framework:
             is_always_sensitive = any(api in api_lower for api in ALWAYS_SENSITIVE_APIS)
             if not is_always_sensitive:
                 continue
@@ -1941,34 +2525,6 @@ def ensure_cfg_extracted(sha256: str, cfg_dir: Path | None = None, verbose: bool
 
 
 # =============================================================================
-#  Single-Call Pipeline — One APK, One LLM Call
-# =============================================================================
-
-def analyse_one_apk_single_call(
-    llm: LLMBackend, sha256: str, cfg_path: Path,
-    verbose: bool = True, no_filter: bool = False,
-) -> Tier3Result | None:
-    """
-    Single-call pipeline: sends ALL non-framework CFGs + RAG context in ONE prompt.
-    """
-    # ── Parse CFG file ────────────────────────────────────────────────────────
-    try:
-        slices = parse_cfg_file(cfg_path)
-    except Exception as e:
-        if verbose:
-            print(f"  [ERROR] Cannot parse {cfg_path.name}: {e}")
-        return None
-
-    if not slices:
-        if verbose:
-            print(f"  [SKIP] No suspicious APIs in {sha256[:16]}...", flush=True)
-        return Tier3Result(sha256=sha256, prediction="BENIGN",
-                           analysis="No suspicious APIs found.")
-
-    # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
-    slices, original_count, unique_count = preprocess_slices(slices, no_filter=no_filter)
-
-# =============================================================================
 #  RAG Retrieval Helper
 # =============================================================================
 
@@ -2080,10 +2636,16 @@ def analyse_one_apk_single_call(
     verbose: bool = True, no_filter: bool = False,
 ) -> Tier3Result | None:
     """
-    Hierarchical Bulk-Chunked Code Reasoning (HBCR):
-      - If functions fit in 1 prompt (<= budget) -> Process in 1 Single Call (~2-4s).
-      - If functions exceed budget -> Partition into K FCG chunks (100% full coverage,
-        zero dropped functions) -> Analyze chunks in bulk -> Synthesize final verdict.
+    Hybrid pipeline:
+      - If all functions fit in one prompt -> single call (~2-4s), same as before.
+      - If they exceed the budget -> group by suspicious API (never split one
+        API's functions across calls), run one Tier-2 API-intent call per
+        group (`run_tier2_from_group`), then feed every API's Tier2Result into
+        the SAME `run_tier3` the plain 3-tier pipeline uses for the final
+        verdict. This keeps call count at O(#distinct suspicious APIs) instead
+        of O(#functions) while preserving the paper's Tier-2 API-intent-
+        aggregation signal, which the previous token-chunked bulk path (binary
+        per-chunk YES/NO) discarded entirely.
     """
     # ── Parse CFG file ────────────────────────────────────────────────────────
     try:
@@ -2116,16 +2678,14 @@ def analyse_one_apk_single_call(
     TEMPLATE_OVERHEAD_TOKENS = 1_500
     content_budget = max(500, MAX_TOTAL_TOKENS - TEMPLATE_OVERHEAD_TOKENS)
 
-    # Partition all slices into FCG chunks with 100% coverage
-    chunks = partition_slices_into_fcg_chunks(slices, max_tokens_per_chunk=content_budget)
+    all_cfgs_text, included_count, unique_apis = build_fcg_representation(
+        slices, max_content_tokens=content_budget
+    )
 
     # ──────────────────────────────────────────────────────────────────────────
     # CASE 1: Single Call Path (All functions fit within token budget)
     # ──────────────────────────────────────────────────────────────────────────
-    if len(chunks) <= 1:
-        all_cfgs_text, included_count, unique_apis = build_fcg_representation(
-            slices, max_content_tokens=content_budget
-        )
+    if included_count >= len(slices):
         api_list = ", ".join(unique_apis) if unique_apis else "None"
         total_tokens = count_tokens(all_cfgs_text)
 
@@ -2149,14 +2709,12 @@ def analyse_one_apk_single_call(
                 print(f"    [ERROR] Single-call analysis failed: {e}")
             return None
 
-        confidence = "UNKNOWN"
-        for line in response.split("\n"):
-            line_stripped = line.strip()
-            if line_stripped.upper().startswith("CONFIDENCE:"):
-                confidence = line_stripped.split(":", 1)[1].strip().upper()
-                break
+        confidence = _parse_marker_value(response, ("CONFIDENCE",)).upper() or "UNKNOWN"
 
         prediction = parse_final_prediction(response, context=f"[single-call {sha256[:12]}] ")
+        if prediction == "UNKNOWN":
+            prediction, response = _retry_prediction_parse(llm, SINGLE_CALL_SYSTEM, prompt, response,
+                                                             context=f"[single-call {sha256[:12]}] ")
         if confidence == "UNKNOWN" and prediction == "MALWARE":
             confidence = "MEDIUM"
 
@@ -2168,100 +2726,78 @@ def analyse_one_apk_single_call(
         )
 
     # ──────────────────────────────────────────────────────────────────────────
-    # CASE 2: Multi-Chunk Bulk Path (Large APK exceeding token budget)
+    # CASE 2: API-Grouped Bulk Path (functions exceed the single-call budget)
     # ──────────────────────────────────────────────────────────────────────────
     total_fns = len(slices)
+    api_groups: dict[str, list[FunctionSlice]] = {}
+    for s in slices:
+        api_groups.setdefault(s.suspicious_api, []).append(s)
+
+    # Batch small groups together (pure call-count optimization — never
+    # changes what gets analyzed; see run_tier2_batch's safety-net fallback
+    # for any API that doesn't parse cleanly out of a batch).
+    batches, standalone_apis = partition_groups_for_batching(api_groups, content_budget)
+    total_steps = len(batches) + len(standalone_apis)
+
     if verbose:
-        print(f"    [INFO] Bulk Mode: Partitioned {total_fns} functions into {len(chunks)} FCG chunks "
-              f"(100% full coverage, 0 dropped)", flush=True)
+        batched_count = sum(len(b) for b in batches)
+        print(f"    [INFO] Bulk Mode: {total_fns} functions across {len(api_groups)} suspicious API "
+              f"group(s) exceed the single-call budget — running Tier 2: "
+              f"{len(standalone_apis)} individually, {batched_count} API(s) combined into "
+              f"{len(batches)} batch call(s)...", flush=True)
 
-    chunk_reports = []
-    suspicious_found_in_any_chunk = False
+    tier2_results: list[Tier2Result] = []
+    step = 0
 
-    for chunk_idx, chunk_slices in enumerate(chunks, 1):
-        chunk_cfgs, chunk_fn_count, chunk_apis = build_fcg_representation(
-            chunk_slices, max_content_tokens=content_budget + 2000
-        )
-        chunk_api_list = ", ".join(chunk_apis) if chunk_apis else "None"
-        chunk_tokens = count_tokens(chunk_cfgs)
-
-        if verbose:
-            print(f"    [INFO] Analyzing Chunk {chunk_idx}/{len(chunks)} "
-                  f"({chunk_fn_count} fns, ~{chunk_tokens} tokens, APIs: {chunk_api_list})...", flush=True)
-
-        chunk_prompt = BULK_CHUNK_TEMPLATE.format(
-            chunk_id=chunk_idx,
-            total_chunks=len(chunks),
-            chunk_cfgs=chunk_cfgs,
-            func_count=chunk_fn_count,
-            api_list=chunk_api_list,
-        )
-
+    for batch_api_names in batches:
+        step += 1
+        batch_groups = [(name, api_groups[name]) for name in batch_api_names]
         try:
-            chunk_resp = llm.chat(BULK_CHUNK_SYSTEM, chunk_prompt)
+            t_t2 = time.time()
+            batch_results = run_tier2_batch(llm, batch_groups, content_budget, verbose=verbose)
+            t2_dur = time.time() - t_t2
+            if verbose:
+                print(f"      [Tier 2] [{step:>2}/{total_steps}] BATCH ({len(batch_api_names)} APIs): "
+                      f"{', '.join(batch_api_names)} -> {len(batch_results)} result(s) ({t2_dur:.1f}s)", flush=True)
+            tier2_results.extend(batch_results.values())
         except Exception as e:
             if verbose:
-                print(f"    [WARN] Chunk {chunk_idx} failed: {e}")
-            chunk_resp = f"CHUNK_ID: {chunk_idx}/{len(chunks)}\nSUSPICIOUS_BEHAVIOR_FOUND: UNKNOWN\nCHUNK_SUMMARY: Analysis encountered error: {e}"
+                print(f"      [ERROR] Tier 2 batch failed for {batch_api_names}: {e}", flush=True)
 
-        if "SUSPICIOUS_BEHAVIOR_FOUND: YES" in chunk_resp.upper() or "SUSPICIOUS_BEHAVIORS_FOUND: YES" in chunk_resp.upper():
-            suspicious_found_in_any_chunk = True
+    for api_name in standalone_apis:
+        step += 1
+        group_slices = api_groups[api_name]
+        try:
+            t_t2 = time.time()
+            t2 = run_tier2_from_group(llm, api_name, group_slices, content_budget, verbose=verbose)
+            t2_dur = time.time() - t_t2
+            if verbose:
+                print(f"      [Tier 2] [{step:>2}/{total_steps}] API: {api_name:<28} "
+                      f"({len(group_slices):>2} funcs) -> Risk: {t2.risk_level:<8} ({t2_dur:.1f}s)", flush=True)
+            tier2_results.append(t2)
+        except Exception as e:
+            if verbose:
+                print(f"      [ERROR] Tier 2 (bulk) failed for {api_name}: {e}", flush=True)
 
-        report_block = (
-            f"--- CHUNK {chunk_idx}/{len(chunks)} ({chunk_fn_count} functions, APIs: {chunk_api_list}) ---\n"
-            f"{chunk_resp.strip()}"
-        )
-        chunk_reports.append(report_block)
-
-    # Retrieve RAG context across all functions in the APK
-    rag_context = retrieve_rag_context_for_slices(slices, query_count=12, verbose=verbose)
-
-    # Synthesize all chunk findings into final APK verdict
-    all_reports_text = "\n\n".join(chunk_reports)
-    agg_prompt = BULK_AGGREGATION_TEMPLATE.format(
-        total_chunks=len(chunks),
-        total_functions=total_fns,
-        all_chunk_reports=all_reports_text,
-        rag_context=rag_context,
-    )
+    if not tier2_results:
+        return Tier3Result(sha256=sha256, prediction="BENIGN",
+                           analysis="All API group analyses failed.")
 
     if verbose:
-        print(f"    [INFO] Synthesizing {len(chunks)} chunk reports for final APK verdict...", flush=True)
+        print(f"\n    [Phase 3 / Tier 3] Synthesizing holistic APK verdict from "
+              f"{len(tier2_results)} API group(s)...", flush=True)
 
     try:
-        final_response = llm.chat(BULK_AGGREGATION_SYSTEM, agg_prompt)
+        result = run_tier3(llm, sha256, tier2_results)
     except Exception as e:
         if verbose:
-            print(f"    [ERROR] Aggregation synthesis failed: {e}")
-        pred = "MALWARE" if suspicious_found_in_any_chunk else "BENIGN"
-        return Tier3Result(
-            sha256=sha256,
-            prediction=pred,
-            analysis=f"PREDICTION: {pred}\nCONFIDENCE: LOW\nEVIDENCE: Synthesis call failed ({e}). Fallback to chunk consensus.\n\n" + all_reports_text,
-            confidence="LOW",
-        )
+            print(f"    [ERROR] Tier 3 failed: {e}")
+        return None
 
-    confidence = "UNKNOWN"
-    for line in final_response.split("\n"):
-        line_stripped = line.strip()
-        if line_stripped.upper().startswith("CONFIDENCE:"):
-            confidence = line_stripped.split(":", 1)[1].strip().upper()
-            break
+    if verbose and result:
+        print(f"      [Tier 3] Verdict: {result.prediction:<8}\n", flush=True)
 
-    prediction = parse_final_prediction(final_response, context=f"[bulk-synthesis {sha256[:12]}] ")
-    if confidence == "UNKNOWN" and prediction == "MALWARE":
-        confidence = "MEDIUM"
-
-    full_analysis = f"=== HIERARCHICAL BULK CHUNK ANALYSIS ({len(chunks)} chunks, {total_fns} functions) ===\n\n"
-    full_analysis += f"{final_response}\n\n"
-    full_analysis += f"=== INDIVIDUAL CHUNK EVIDENCE ===\n{all_reports_text}"
-
-    return Tier3Result(
-        sha256=sha256,
-        prediction=prediction,
-        analysis=full_analysis,
-        confidence=confidence,
-    )
+    return result
 
 
 

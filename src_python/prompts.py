@@ -160,6 +160,48 @@ RISK_LEVEL: <LOW/MEDIUM/HIGH/CRITICAL with justification>
 """
 
 # =============================================================================
+#  Tier 2 (batched) — several small API groups analyzed in ONE call
+# =============================================================================
+# Pure engineering optimization for the hybrid pipeline: many suspicious-API
+# groups have very few functions (1-4), so a full separate LLM call for each
+# is dominated by fixed per-call overhead rather than content volume.
+# Batching several of these into one call cuts round-trip count without
+# changing WHAT gets analyzed or losing per-API separation in the output —
+# each API still gets analyzed on its own dedicated content, just packaged
+# into a shared request/response. Never used for large groups (those still
+# get their own call, same as before).
+
+TIER2_BATCH_SYSTEM = (
+    "You are a cybersecurity expert specializing in Android malware analysis. "
+    "You will analyze SEVERAL independent suspicious APIs in this one request, "
+    "each with its own function call graph content. Treat each API completely "
+    "independently — do not let evidence from one API's functions influence "
+    "your assessment of a different API. Produce exactly one result block per "
+    "API listed, in the exact format shown, using the EXACT API name given as "
+    "the block's identifier."
+)
+
+TIER2_BATCH_USER_TEMPLATE = """\
+Below are {group_count} independent suspicious APIs found in an Android application. \
+For EACH one, a backward-sliced control flow graph was analyzed for all functions \
+that invoke it. Analyze each API's intent completely independently of the others.
+
+{grouped_content}
+
+Provide EXACTLY {group_count} result blocks, one per API listed above, in this \
+EXACT format (repeat for each API, using its exact name from the list):
+
+=== API_RESULT: <api_name> ===
+API_NAME: <api_name>
+API_TYPE: <access or transfer>
+USAGE_COUNT: <N> function(s)
+OVERALL_INTENT: <2-3 sentence description of why the app uses this API>
+SUSPICIOUS_PATTERNS: <any concerning patterns across functions, or "None detected">
+RISK_LEVEL: <LOW/MEDIUM/HIGH/CRITICAL with justification>
+=== END API_RESULT ===
+"""
+
+# =============================================================================
 #  Tier 3 — APK-Level Malware Judgement
 # =============================================================================
 
@@ -168,9 +210,19 @@ TIER3_SYSTEM = (
     "Determine whether the application is MALWARE or BENIGN, citing indicators "
     "of compromise, evidence, and malicious patterns if present. Give a final "
     "prediction and key findings of your analysis. "
-    "IMPORTANT: Be balanced in your assessment. Many legitimate apps use "
-    "reflection, network checks, and storage access. Only classify as MALWARE "
-    "if there are CLEAR malicious indicators."
+    "IMPORTANT: Weigh the evidence proportionally in both directions — but "
+    "'proportional' means weighing CONCRETE evidence, not adding up generic "
+    "facts. Reflection, minified/short class names, dynamic class loading, "
+    "and reading a sensitive API are baseline noise present in nearly every "
+    "production Android app (ad SDKs, analytics, crash reporting, app "
+    "frameworks); citing several of these together is still citing zero real "
+    "evidence, no matter how the count looks. Only count something as an "
+    "indicator if you can name the SPECIFIC value and where it concretely "
+    "goes (e.g. 'the IMEI read in X is passed as an argument into the HTTP "
+    "call in Y', not 'the app reads the IMEI and also uses reflection'). "
+    "Don't require 100% certainty before calling something MALWARE — but "
+    "don't manufacture certainty out of volume of unrelated, individually "
+    "ordinary observations either."
 )
 
 TIER3_USER_TEMPLATE = """\
@@ -178,22 +230,55 @@ You are analyzing an Android application for potential malware behavior.
 Below are the API-level intent summaries for all suspicious APIs found
 in this application.
 
-CALIBRATION — Common BENIGN patterns (do NOT flag these alone as malware):
-- Reflection (forName, newInstance, getDeclaredMethod): Used by nearly all
-  apps for plugin systems, dependency injection, and compatibility layers.
-- Network checks (getActiveNetworkInfo): Standard Android behavior for
-  any app that uses the internet.
-- Storage access (getExternalStorageDirectory): Normal for apps that
-  save files, photos, or cache data.
-- Class loading (DexClassLoader): Commonly used by app frameworks like
-  React Native, Flutter, and game engines to load bundled code.
+CALIBRATION — these are BASELINE NOISE, never indicators, regardless of how
+many call sites there are or how "obfuscated"/minified the class names look
+(ProGuard/R8 minification to single-letter names is normal in nearly every
+production APK and is NOT evidence of malicious obfuscation on its own):
+- Reflection (forName, newInstance, getDeclaredMethod, getDeclaredField,
+  invoke): used by nearly all apps for plugin systems, dependency injection,
+  serialization, and compatibility layers. Extensive/repeated use across
+  many functions does NOT make this more suspicious — ad SDKs (AppLovin,
+  Unity Ads, Google Ads/GMS), analytics, and crash reporters commonly have
+  hundreds of reflection call sites and are still ordinary, benign SDKs.
+- Dynamic class loading (DexClassLoader, loadClass): commonly used by app
+  frameworks (React Native, Flutter, Unity, Adobe AIR) and mediation/ad SDKs
+  to load their own bundled code — not remote/attacker code.
+- Network checks (getActiveNetworkInfo) and ordinary network requests
+  (openConnection/connect/getOutputStream to fetch ads, configs, or content):
+  standard behavior for any internet-connected app.
+- Storage access (getExternalStorageDirectory, openFileOutput/Input): normal
+  for apps that cache files, images, or config.
+- Reading ONE sensitive value (device ID, location, etc.) in isolation, with
+  no traced destination for that value: this is a fact about the code, not
+  an indicator — nearly every analytics/ads SDK reads a device identifier
+  for attribution. It only becomes relevant once you can point to where that
+  specific value goes (see below).
 
-Only classify as MALWARE if you find CLEAR indicators such as:
-- Sending premium SMS without user consent
-- Covert data exfiltration to remote servers
-- Dynamic loading of remote/encrypted payloads from unknown URLs
-- Accessing sensitive data (contacts, SMS, calls) without clear user purpose
-- Hiding functionality through heavy obfuscation + suspicious network activity
+Indicators that actually drive a MALWARE verdict — each one requires you to
+name the SPECIFIC data/action and its concrete destination or effect, not a
+category of API:
+- HIGH confidence alone: sending premium-rate SMS without a visible user
+  consent flow; a SPECIFIC sensitive value (IMEI, contacts, SMS content)
+  demonstrably passed into a network-send call in the same or a connected
+  function (name both the source and the sink function); dynamically
+  loading a class from a value that is itself downloaded over the network
+  or decoded/decrypted at runtime (not a bundled/local resource); disabling
+  the launcher icon or hiding the app right after install.
+- MEDIUM confidence alone, but can combine with another indicator on THIS
+  list (not with baseline-noise items above): a runtime-decoded or
+  runtime-constructed string (e.g. built from a byte array or XORed at
+  runtime) used as a class name, URL, or command — i.e. the code is
+  actively hiding a literal from static inspection, not merely minified;
+  a content-provider query against contacts/SMS/call-log whose result is
+  then written to a file or network call you can point to; shell command
+  execution (Runtime.exec) with an argument that isn't a fixed, readable
+  string.
+
+Two or more items from the MEDIUM list above, naming concrete values and
+destinations, are legitimate grounds for MALWARE at MEDIUM confidence. Items
+from the CALIBRATION list never count toward this, individually or stacked —
+if the only things you can point to are baseline-noise items, the correct
+verdict is BENIGN, even if there are many of them.
 
 {api_summaries}
 
@@ -203,6 +288,9 @@ Based on ALL the above API analysis results, provide your final assessment:
 
 **Final Prediction:**
 <MALWARE or BENIGN>
+
+**Confidence:**
+<HIGH, MEDIUM, or LOW>
 
 **Application Purpose:**
 <1-2 sentence description of what the app appears to do>
@@ -372,93 +460,4 @@ KEY_FINDINGS:
 EVIDENCE: <2-3 sentences explaining your reasoning, citing specific API groups, call chains, or function names>
 """
 
-
-# =============================================================================
-#  Bulk-Chunked Code Reasoning (HBCR) — For Large APKs
-# =============================================================================
-
-BULK_CHUNK_SYSTEM = (
-    "You are a cybersecurity expert specializing in Android static binary analysis. "
-    "You are analyzing a partitioned chunk of backward-sliced Control Flow Graphs (CFGs) "
-    "structured into Function Call Graphs (FCGs) for an Android application.\n\n"
-    "YOUR TASK:\n"
-    "Analyze the FCG call chains and Jimple IR statements in this chunk. Determine whether "
-    "this chunk contains any malicious behavior patterns (dropper payload downloading/loading, "
-    "telephony identifier exfiltration, silent SMS, backdoor execution) or consists entirely "
-    "of benign framework plumbing (UI reflection, activity routing, local caching)."
-)
-
-BULK_CHUNK_TEMPLATE = """\
-You are analyzing Chunk {chunk_id} of {total_chunks} for an Android application.
-Below are the FCG-structured CFG slices assigned to this chunk.
-
-=============================================================================
- CALIBRATION RULES
-=============================================================================
-- BENIGN INTENT: Standard UI reflection (androidx, support), activity routing (ARouter),
-  commercial packers (com.secneo, com.tencent.StubShell) without data theft, local file caching.
-- MALICIOUS INTENT: Network downloads feeding into DexClassLoader/loadClass (droppers like dnotua),
-  telephony hardware ID harvesting (TelephonyManager.getDeviceId/getSubscriberId sent over network),
-  silent SMS (sendTextMessage), command execution (Runtime.exec).
-
-=== BEGIN CHUNK {chunk_id}/{total_chunks} FCG SLICES ===
-{chunk_cfgs}
-=== END CHUNK {chunk_id}/{total_chunks} FCG SLICES ===
-
-Total functions in this chunk: {func_count}
-Suspicious APIs in this chunk: {api_list}
-
-Provide your chunk analysis in EXACTLY this format:
-
-CHUNK_ID: {chunk_id}/{total_chunks}
-SUSPICIOUS_BEHAVIOR_FOUND: <YES or NO>
-SUSPICIOUS_CHAINS:
-- <specific suspicious call chain or "None detected">
-BENIGN_FRAMEWORKS_IDENTIFIED:
-- <identified benign frameworks or "None">
-CHUNK_SUMMARY: <2-3 sentences summarizing the functions analyzed in this chunk and their behavioral intent>
-"""
-
-BULK_AGGREGATION_SYSTEM = (
-    "You are a principal cybersecurity architect specializing in Android malware detection. "
-    "You synthesize chunk-by-chunk static analysis findings from an Android application "
-    "to determine the final APK-level verdict: MALWARE or BENIGN."
-)
-
-BULK_AGGREGATION_TEMPLATE = """\
-You have analyzed all {total_chunks} chunks of an Android application covering all {total_functions} functions.
-Below is the synthesized evidence gathered from each chunk analysis:
-
-=============================================================================
- CHUNK-BY-CHUNK ANALYSIS FINDINGS
-=============================================================================
-{all_chunk_reports}
-
-=============================================================================
- RAG KNOWLEDGE BASE MATCHES
-=============================================================================
-{rag_context}
-
-=============================================================================
- DECISION CRITERIA
-=============================================================================
-- Classify as MALWARE if any chunk demonstrated verifiable malicious payload delivery
-  (dynamic dex loading from network), private telephony exfiltration (IMEI/IMSI to server),
-  silent SMS fraud, or backdoor execution.
-- Classify as BENIGN if all functions across all chunks represent standard framework plumbing,
-  UI reflection, activity routing, local caching, or commercial packers without exfiltration.
-
-Provide your final APK assessment in EXACTLY this format:
-
-=== FINAL APPLICATION ANALYSIS ===
-
-PREDICTION: <MALWARE or BENIGN>
-CONFIDENCE: <HIGH, MEDIUM, or LOW>
-APP_PURPOSE: <1-2 sentence description of what the application does>
-KEY_FINDINGS:
-- <finding 1>
-- <finding 2>
-- <finding 3>
-EVIDENCE: <2-3 sentences synthesizing the verifiable evidence across all analyzed chunks>
-"""
 

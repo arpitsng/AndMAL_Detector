@@ -1,11 +1,11 @@
-import soot.Unit;
+import soot.SootMethod;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Entry point for the LAMD backward-slicing pipeline.
@@ -15,7 +15,9 @@ import java.util.Set;
  *   <li>Configure Soot for APK analysis ({@link SootSetup}).</li>
  *   <li>Run Soot packs to build method bodies and call graph.</li>
  *   <li>Scan all application classes for suspicious API call sites ({@link ApiScanner}).</li>
- *   <li>Compute the backward slice for each call site ({@link BackwardSlicer}).</li>
+ *   <li>Build an app-scope caller index ({@link CallerIndex}).</li>
+ *   <li>Compute the backward slice for each call site, resolving undeclared
+ *       variables into callers as needed ({@link BackwardSlicer}).</li>
  *   <li>Serialise all sliced CFGs to a text file ({@link CfgSerializer}).</li>
  * </ol>
  *
@@ -86,7 +88,19 @@ public class Main {
             return;
         }
 
-        // ── Step 3: Backward-slice each call site ─────────────────────────────
+        // ── Step 3: Build the app-scope caller index ──────────────────────────
+        // Used for inter-procedural resolution (Appendix D) — resolving which
+        // app methods call into a method that has undeclared/parameter-sourced
+        // variables feeding a suspicious API. Deliberately NOT Soot's whole-
+        // program call graph (see SootSetup.set_whole_program(false) comment).
+        System.out.println("[*] Building app-scope caller index...");
+        Map<SootMethod, List<CallerIndex.CallEdge>> callerIndex = CallerIndex.build();
+        System.out.println("[*] Caller index built (" + callerIndex.size()
+                + " distinct callee method(s) with known app-scope callers).");
+        System.out.println();
+
+        // ── Step 4: Backward-slice each call site (with inter-procedural
+        //            resolution into callers where needed) ───────────────────
         System.out.println("[*] Computing backward slices...");
         List<CfgSerializer.SliceResult> results = new ArrayList<>();
         int done = 0;
@@ -94,10 +108,16 @@ public class Main {
         for (SliceCriterion criterion : criteria) {
             done++;
             try {
-                Set<Unit> slice = BackwardSlicer.slice(criterion);
-                results.add(new CfgSerializer.SliceResult(criterion, slice));
-                System.out.printf("  [%d/%d] Sliced: %s (%d units)%n",
-                        done, criteria.size(), criterion, slice.size());
+                List<BackwardSlicer.MethodSlice> methodSlices =
+                        BackwardSlicer.sliceInterProcedural(criterion, callerIndex);
+                results.add(new CfgSerializer.SliceResult(criterion, methodSlices));
+
+                int totalUnits = 0;
+                for (BackwardSlicer.MethodSlice ms : methodSlices) {
+                    totalUnits += ms.getUnits().size();
+                }
+                System.out.printf("  [%d/%d] Sliced: %s (%d unit(s) across %d method(s))%n",
+                        done, criteria.size(), criterion, totalUnits, methodSlices.size());
             } catch (Exception e) {
                 System.err.printf("  [%d/%d] FAILED: %s — %s%n",
                         done, criteria.size(), criterion, e.getMessage());
@@ -108,7 +128,7 @@ public class Main {
                 + " of " + criteria.size() + " succeeded.");
         System.out.println();
 
-        // ── Step 4: Serialise to output file ──────────────────────────────────
+        // ── Step 5: Serialise to output file ──────────────────────────────────
         System.out.println("[*] Writing sliced CFGs to: " + outputTxtFile);
         try {
             CfgSerializer.write(results, Paths.get(outputTxtFile));
