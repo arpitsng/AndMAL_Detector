@@ -371,3 +371,94 @@ KEY_FINDINGS:
 - <finding 3>
 EVIDENCE: <2-3 sentences explaining your reasoning, citing specific API groups, call chains, or function names>
 """
+
+
+# =============================================================================
+#  Bulk-Chunked Code Reasoning (HBCR) — For Large APKs
+# =============================================================================
+
+BULK_CHUNK_SYSTEM = (
+    "You are a cybersecurity expert specializing in Android static binary analysis. "
+    "You are analyzing a partitioned chunk of backward-sliced Control Flow Graphs (CFGs) "
+    "structured into Function Call Graphs (FCGs) for an Android application.\n\n"
+    "YOUR TASK:\n"
+    "Analyze the FCG call chains and Jimple IR statements in this chunk. Determine whether "
+    "this chunk contains any malicious behavior patterns (dropper payload downloading/loading, "
+    "telephony identifier exfiltration, silent SMS, backdoor execution) or consists entirely "
+    "of benign framework plumbing (UI reflection, activity routing, local caching)."
+)
+
+BULK_CHUNK_TEMPLATE = """\
+You are analyzing Chunk {chunk_id} of {total_chunks} for an Android application.
+Below are the FCG-structured CFG slices assigned to this chunk.
+
+=============================================================================
+ CALIBRATION RULES
+=============================================================================
+- BENIGN INTENT: Standard UI reflection (androidx, support), activity routing (ARouter),
+  commercial packers (com.secneo, com.tencent.StubShell) without data theft, local file caching.
+- MALICIOUS INTENT: Network downloads feeding into DexClassLoader/loadClass (droppers like dnotua),
+  telephony hardware ID harvesting (TelephonyManager.getDeviceId/getSubscriberId sent over network),
+  silent SMS (sendTextMessage), command execution (Runtime.exec).
+
+=== BEGIN CHUNK {chunk_id}/{total_chunks} FCG SLICES ===
+{chunk_cfgs}
+=== END CHUNK {chunk_id}/{total_chunks} FCG SLICES ===
+
+Total functions in this chunk: {func_count}
+Suspicious APIs in this chunk: {api_list}
+
+Provide your chunk analysis in EXACTLY this format:
+
+CHUNK_ID: {chunk_id}/{total_chunks}
+SUSPICIOUS_BEHAVIOR_FOUND: <YES or NO>
+SUSPICIOUS_CHAINS:
+- <specific suspicious call chain or "None detected">
+BENIGN_FRAMEWORKS_IDENTIFIED:
+- <identified benign frameworks or "None">
+CHUNK_SUMMARY: <2-3 sentences summarizing the functions analyzed in this chunk and their behavioral intent>
+"""
+
+BULK_AGGREGATION_SYSTEM = (
+    "You are a principal cybersecurity architect specializing in Android malware detection. "
+    "You synthesize chunk-by-chunk static analysis findings from an Android application "
+    "to determine the final APK-level verdict: MALWARE or BENIGN."
+)
+
+BULK_AGGREGATION_TEMPLATE = """\
+You have analyzed all {total_chunks} chunks of an Android application covering all {total_functions} functions.
+Below is the synthesized evidence gathered from each chunk analysis:
+
+=============================================================================
+ CHUNK-BY-CHUNK ANALYSIS FINDINGS
+=============================================================================
+{all_chunk_reports}
+
+=============================================================================
+ RAG KNOWLEDGE BASE MATCHES
+=============================================================================
+{rag_context}
+
+=============================================================================
+ DECISION CRITERIA
+=============================================================================
+- Classify as MALWARE if any chunk demonstrated verifiable malicious payload delivery
+  (dynamic dex loading from network), private telephony exfiltration (IMEI/IMSI to server),
+  silent SMS fraud, or backdoor execution.
+- Classify as BENIGN if all functions across all chunks represent standard framework plumbing,
+  UI reflection, activity routing, local caching, or commercial packers without exfiltration.
+
+Provide your final APK assessment in EXACTLY this format:
+
+=== FINAL APPLICATION ANALYSIS ===
+
+PREDICTION: <MALWARE or BENIGN>
+CONFIDENCE: <HIGH, MEDIUM, or LOW>
+APP_PURPOSE: <1-2 sentence description of what the application does>
+KEY_FINDINGS:
+- <finding 1>
+- <finding 2>
+- <finding 3>
+EVIDENCE: <2-3 sentences synthesizing the verifiable evidence across all analyzed chunks>
+"""
+

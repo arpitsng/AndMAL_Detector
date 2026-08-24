@@ -58,6 +58,8 @@ from prompts import (
     DRC_VERIFY_SYSTEM, DRC_VERIFY_USER_TEMPLATE,
     DIRECT_ANALYSIS_SYSTEM, DIRECT_ANALYSIS_TEMPLATE,
     SINGLE_CALL_SYSTEM, SINGLE_CALL_TEMPLATE,
+    BULK_CHUNK_SYSTEM, BULK_CHUNK_TEMPLATE,
+    BULK_AGGREGATION_SYSTEM, BULK_AGGREGATION_TEMPLATE,
     format_api_summaries_for_tier3, classify_api_type,
 )
 from console_ui import (
@@ -1117,6 +1119,57 @@ def build_fcg_representation(
     return full_text, len(included_fns), unique_apis_included
 
 
+def partition_slices_into_fcg_chunks(
+    slices: list[FunctionSlice], max_tokens_per_chunk: int = 13500
+) -> list[list[FunctionSlice]]:
+    """
+    Partitions all slices into cohesive FCG chunks that fit within max_tokens_per_chunk.
+    Guarantees 100% function coverage with ZERO functions dropped or omitted.
+    Keeps API groups and caller->callee chains together whenever possible.
+    """
+    if not slices:
+        return []
+
+    # 1. Group slices by API
+    api_groups = defaultdict(list)
+    for s in slices:
+        api_groups[s.suspicious_api].append(s)
+
+    # Sort APIs: High-risk first, then by size
+    def api_sort_key(item):
+        api_name, group = item
+        is_high = 1 if api_name in HIGH_RISK_APIS or any(hr in api_name for hr in HIGH_RISK_APIS) else 0
+        return (is_high, len(group))
+
+    sorted_api_groups = sorted(api_groups.items(), key=api_sort_key, reverse=True)
+
+    chunks = []
+    current_chunk = []
+    current_tokens = 0
+
+    for api_name, group_slices in sorted_api_groups:
+        for s in group_slices:
+            # Estimate raw function token size (bounded by 8K char truncation)
+            node_edge_text = "\n".join(s.nodes + s.edges)
+            if len(node_edge_text) > 8000:
+                node_edge_text = node_edge_text[:8000]
+            fn_block = f"--- FUNCTION: {s.function_name} ---\nSUSPICIOUS_API: {s.suspicious_api}\n{node_edge_text}\n--- END FUNCTION ---\n"
+            s_tokens = count_tokens(fn_block)
+
+            if current_tokens + s_tokens > max_tokens_per_chunk and current_chunk:
+                chunks.append(current_chunk)
+                current_chunk = [s]
+                current_tokens = s_tokens
+            else:
+                current_chunk.append(s)
+                current_tokens += s_tokens
+
+    if current_chunk:
+        chunks.append(current_chunk)
+
+    return chunks
+
+
 # =============================================================================
 #  Tier 1 — Function-Level Analysis
 # =============================================================================
@@ -1915,72 +1968,43 @@ def analyse_one_apk_single_call(
     # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
     slices, original_count, unique_count = preprocess_slices(slices, no_filter=no_filter)
 
-    if verbose and original_count > 0:
-        filter_status = "unfiltered" if no_filter else "filtered"
-        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} {filter_status}", flush=True)
+# =============================================================================
+#  RAG Retrieval Helper
+# =============================================================================
 
-    if not slices:
-        if verbose:
-            print(f"  [SKIP] All functions filtered out for {sha256[:16]}...", flush=True)
-        return Tier3Result(sha256=sha256, prediction="BENIGN",
-                           analysis="All functions were framework/SDK code.")
-
-    # ── Build single prompt with FCG-Structured API Groups ───────────────────
-    # Groups functions by Suspicious API and maps caller -> callee FCG call chains
-    # to make the behavioral intent immediately visible to the LLM.
-    MAX_TOTAL_TOKENS = getattr(llm, "MAX_CONTEXT_TOKENS", LLMBackend.MAX_CONTEXT_TOKENS)
-    TEMPLATE_OVERHEAD_TOKENS = 1_500  # fixed system+template text + RAG context, measured ~1035 + margin
-    content_budget = max(500, MAX_TOTAL_TOKENS - TEMPLATE_OVERHEAD_TOKENS)
-
-    all_cfgs_text, included_count, unique_apis = build_fcg_representation(
-        slices, max_content_tokens=content_budget
-    )
-    api_list = ", ".join(unique_apis) if unique_apis else "None"
-    total_tokens = count_tokens(all_cfgs_text)
-
-    if verbose:
-        print(f"    [INFO] Sending {included_count} functions across {len(unique_apis)} API group(s) "
-              f"(~{total_tokens} tokens, budget {MAX_TOTAL_TOKENS}) in FCG-structured single call", flush=True)
-
-    # ── RAG Retrieval v3 (LOCAL FAISS + Stratified) ───────────────────────────
-    # Uses local FAISS index — zero cloud dependency, instant queries.
-    # Stratified: top-3 MALWARE + top-3 BENIGN matches per query function.
+def retrieve_rag_context_for_slices(
+    slices: list[FunctionSlice], query_count: int = 10, verbose: bool = True
+) -> str:
+    """Retrieve stratified top MALWARE and BENIGN matches from FAISS / Qdrant knowledge base."""
     rag_context = "No similar CFGs found in knowledge base."
     try:
         rag_client, em = get_rag_clients()
         if rag_client and em:
             import numpy as _np
-
-            # Detect whether we're using local FAISS or Qdrant fallback
             _using_local_faiss = _faiss_index is not None
-
             if verbose:
                 mode_str = "local FAISS" if _using_local_faiss else "Qdrant cloud (fallback)"
                 print(f"    [INFO] Querying RAG knowledge base ({mode_str}, stratified)...", flush=True)
 
-            # Sample up to 10 slices for per-function querying
-            query_slices = slices[:min(included_count, 10)]
-            all_rag_hits = []  # (score, payload, query_func_name)
-            seen_keys = set()  # deduplicate by sha256+function
+            query_slices = slices[:min(len(slices), query_count)]
+            all_rag_hits = []
+            seen_keys = set()
 
             for qs in query_slices:
                 try:
                     hybrid_vec = build_hybrid_vector(qs, em)
                 except Exception:
-                    continue  # skip if hybrid vector construction fails
+                    continue
 
                 if _using_local_faiss:
-                    # Local FAISS stratified search
                     query_vec = _np.array([hybrid_vec], dtype=_np.float32)
-                    # L2-normalize query vector (index vectors are already normalized)
                     norm = _np.linalg.norm(query_vec)
                     if norm > 0:
                         query_vec = query_vec / norm
 
                     for gt_label in ("MALWARE", "BENIGN"):
                         try:
-                            # Search full index, then filter by label from metadata
-                            scores, indices = _faiss_index.search(query_vec, 100)  # oversample to find 3 per label
+                            scores, indices = _faiss_index.search(query_vec, 100)
                             count = 0
                             for score, idx in zip(scores[0], indices[0]):
                                 if idx < 0 or count >= 3:
@@ -1996,7 +2020,6 @@ def analyse_one_apk_single_call(
                         except Exception:
                             continue
                 else:
-                    # Qdrant cloud fallback path
                     from qdrant_client.models import FieldCondition, MatchValue, Filter
                     for gt_label in ("MALWARE", "BENIGN"):
                         try:
@@ -2017,14 +2040,11 @@ def analyse_one_apk_single_call(
                                 all_rag_hits.append((hit.score, hit.payload, qs.function_name))
 
             if all_rag_hits:
-                # Sort by score descending, take top 6 overall
                 all_rag_hits.sort(key=lambda x: x[0], reverse=True)
                 top_hits = all_rag_hits[:6]
-
                 rag_parts = []
                 mal_count = sum(1 for _, p, _ in top_hits if p.get("ground_truth") == "MALWARE")
                 ben_count = sum(1 for _, p, _ in top_hits if p.get("ground_truth") == "BENIGN")
-
                 rag_parts.append(f"[RAG Summary: {mal_count} MALWARE matches, {ben_count} BENIGN matches]")
 
                 for idx, (score, payload, query_fn) in enumerate(top_hits, 1):
@@ -2042,49 +2062,207 @@ def analyse_one_apk_single_call(
                         f"  CFG Snippet: {preview}..."
                     )
                 rag_context = "\n\n".join(rag_parts)
-
                 if verbose:
-                    print(f"    [INFO] RAG: {len(top_hits)} matches ({mal_count} MAL, {ben_count} BEN) "
-                          f"from {len(query_slices)} function queries", flush=True)
+                    print(f"    [INFO] RAG: {len(top_hits)} matches ({mal_count} MAL, {ben_count} BEN) from {len(query_slices)} function queries", flush=True)
     except Exception as e:
         if verbose:
             print(f"    [WARN] RAG Retrieval failed (skipping): {e}")
 
-    # ── Single LLM call ───────────────────────────────────────────────────────
-    prompt = SINGLE_CALL_TEMPLATE.format(
-        rag_context=rag_context,
-        all_cfgs=all_cfgs_text,
-        func_count=included_count,
-        api_list=api_list,
-    )
-    
+    return rag_context
+
+
+# =============================================================================
+#  Hierarchical Bulk-Chunked Code Reasoning (HBCR)
+# =============================================================================
+
+def analyse_one_apk_single_call(
+    llm: LLMBackend, sha256: str, cfg_path: Path,
+    verbose: bool = True, no_filter: bool = False,
+) -> Tier3Result | None:
+    """
+    Hierarchical Bulk-Chunked Code Reasoning (HBCR):
+      - If functions fit in 1 prompt (<= budget) -> Process in 1 Single Call (~2-4s).
+      - If functions exceed budget -> Partition into K FCG chunks (100% full coverage,
+        zero dropped functions) -> Analyze chunks in bulk -> Synthesize final verdict.
+    """
+    # ── Parse CFG file ────────────────────────────────────────────────────────
     try:
-        response = llm.chat(SINGLE_CALL_SYSTEM, prompt)
+        slices = parse_cfg_file(cfg_path)
     except Exception as e:
         if verbose:
-            print(f"    [ERROR] Single-call analysis failed: {e}")
+            print(f"  [ERROR] Cannot parse {cfg_path.name}: {e}")
         return None
 
-    # ── Parse response ────────────────────────────────────────────────────────
+    if not slices:
+        if verbose:
+            print(f"  [SKIP] No suspicious APIs in {sha256[:16]}...", flush=True)
+        return Tier3Result(sha256=sha256, prediction="BENIGN",
+                           analysis="No suspicious APIs found.")
+
+    # ── Pre-Processing: Deduplication & Framework Filtering ───────────────────
+    slices, original_count, unique_count = preprocess_slices(slices, no_filter=no_filter)
+
+    if verbose and original_count > 0:
+        filter_status = "unfiltered" if no_filter else "filtered"
+        print(f"    [INFO] CFGs: {original_count} raw -> {unique_count} unique -> {len(slices)} {filter_status}", flush=True)
+
+    if not slices:
+        if verbose:
+            print(f"  [SKIP] All functions filtered out for {sha256[:16]}...", flush=True)
+        return Tier3Result(sha256=sha256, prediction="BENIGN",
+                           analysis="All functions were framework/SDK code.")
+
+    MAX_TOTAL_TOKENS = getattr(llm, "MAX_CONTEXT_TOKENS", LLMBackend.MAX_CONTEXT_TOKENS)
+    TEMPLATE_OVERHEAD_TOKENS = 1_500
+    content_budget = max(500, MAX_TOTAL_TOKENS - TEMPLATE_OVERHEAD_TOKENS)
+
+    # Partition all slices into FCG chunks with 100% coverage
+    chunks = partition_slices_into_fcg_chunks(slices, max_tokens_per_chunk=content_budget)
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # CASE 1: Single Call Path (All functions fit within token budget)
+    # ──────────────────────────────────────────────────────────────────────────
+    if len(chunks) <= 1:
+        all_cfgs_text, included_count, unique_apis = build_fcg_representation(
+            slices, max_content_tokens=content_budget
+        )
+        api_list = ", ".join(unique_apis) if unique_apis else "None"
+        total_tokens = count_tokens(all_cfgs_text)
+
+        if verbose:
+            print(f"    [INFO] Sending {included_count}/{len(slices)} functions across {len(unique_apis)} API group(s) "
+                  f"(~{total_tokens} tokens, budget {MAX_TOTAL_TOKENS}) in single call", flush=True)
+
+        rag_context = retrieve_rag_context_for_slices(slices, query_count=10, verbose=verbose)
+
+        prompt = SINGLE_CALL_TEMPLATE.format(
+            rag_context=rag_context,
+            all_cfgs=all_cfgs_text,
+            func_count=included_count,
+            api_list=api_list,
+        )
+
+        try:
+            response = llm.chat(SINGLE_CALL_SYSTEM, prompt)
+        except Exception as e:
+            if verbose:
+                print(f"    [ERROR] Single-call analysis failed: {e}")
+            return None
+
+        confidence = "UNKNOWN"
+        for line in response.split("\n"):
+            line_stripped = line.strip()
+            if line_stripped.upper().startswith("CONFIDENCE:"):
+                confidence = line_stripped.split(":", 1)[1].strip().upper()
+                break
+
+        prediction = parse_final_prediction(response, context=f"[single-call {sha256[:12]}] ")
+        if confidence == "UNKNOWN" and prediction == "MALWARE":
+            confidence = "MEDIUM"
+
+        return Tier3Result(
+            sha256=sha256,
+            prediction=prediction,
+            analysis=response,
+            confidence=confidence,
+        )
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # CASE 2: Multi-Chunk Bulk Path (Large APK exceeding token budget)
+    # ──────────────────────────────────────────────────────────────────────────
+    total_fns = len(slices)
+    if verbose:
+        print(f"    [INFO] Bulk Mode: Partitioned {total_fns} functions into {len(chunks)} FCG chunks "
+              f"(100% full coverage, 0 dropped)", flush=True)
+
+    chunk_reports = []
+    suspicious_found_in_any_chunk = False
+
+    for chunk_idx, chunk_slices in enumerate(chunks, 1):
+        chunk_cfgs, chunk_fn_count, chunk_apis = build_fcg_representation(
+            chunk_slices, max_content_tokens=content_budget + 2000
+        )
+        chunk_api_list = ", ".join(chunk_apis) if chunk_apis else "None"
+        chunk_tokens = count_tokens(chunk_cfgs)
+
+        if verbose:
+            print(f"    [INFO] Analyzing Chunk {chunk_idx}/{len(chunks)} "
+                  f"({chunk_fn_count} fns, ~{chunk_tokens} tokens, APIs: {chunk_api_list})...", flush=True)
+
+        chunk_prompt = BULK_CHUNK_TEMPLATE.format(
+            chunk_id=chunk_idx,
+            total_chunks=len(chunks),
+            chunk_cfgs=chunk_cfgs,
+            func_count=chunk_fn_count,
+            api_list=chunk_api_list,
+        )
+
+        try:
+            chunk_resp = llm.chat(BULK_CHUNK_SYSTEM, chunk_prompt)
+        except Exception as e:
+            if verbose:
+                print(f"    [WARN] Chunk {chunk_idx} failed: {e}")
+            chunk_resp = f"CHUNK_ID: {chunk_idx}/{len(chunks)}\nSUSPICIOUS_BEHAVIOR_FOUND: UNKNOWN\nCHUNK_SUMMARY: Analysis encountered error: {e}"
+
+        if "SUSPICIOUS_BEHAVIOR_FOUND: YES" in chunk_resp.upper() or "SUSPICIOUS_BEHAVIORS_FOUND: YES" in chunk_resp.upper():
+            suspicious_found_in_any_chunk = True
+
+        report_block = (
+            f"--- CHUNK {chunk_idx}/{len(chunks)} ({chunk_fn_count} functions, APIs: {chunk_api_list}) ---\n"
+            f"{chunk_resp.strip()}"
+        )
+        chunk_reports.append(report_block)
+
+    # Retrieve RAG context across all functions in the APK
+    rag_context = retrieve_rag_context_for_slices(slices, query_count=12, verbose=verbose)
+
+    # Synthesize all chunk findings into final APK verdict
+    all_reports_text = "\n\n".join(chunk_reports)
+    agg_prompt = BULK_AGGREGATION_TEMPLATE.format(
+        total_chunks=len(chunks),
+        total_functions=total_fns,
+        all_chunk_reports=all_reports_text,
+        rag_context=rag_context,
+    )
+
+    if verbose:
+        print(f"    [INFO] Synthesizing {len(chunks)} chunk reports for final APK verdict...", flush=True)
+
+    try:
+        final_response = llm.chat(BULK_AGGREGATION_SYSTEM, agg_prompt)
+    except Exception as e:
+        if verbose:
+            print(f"    [ERROR] Aggregation synthesis failed: {e}")
+        pred = "MALWARE" if suspicious_found_in_any_chunk else "BENIGN"
+        return Tier3Result(
+            sha256=sha256,
+            prediction=pred,
+            analysis=f"PREDICTION: {pred}\nCONFIDENCE: LOW\nEVIDENCE: Synthesis call failed ({e}). Fallback to chunk consensus.\n\n" + all_reports_text,
+            confidence="LOW",
+        )
+
     confidence = "UNKNOWN"
-    for line in response.split("\n"):
+    for line in final_response.split("\n"):
         line_stripped = line.strip()
         if line_stripped.upper().startswith("CONFIDENCE:"):
             confidence = line_stripped.split(":", 1)[1].strip().upper()
             break
 
-    prediction = parse_final_prediction(response, context=f"[single-call {sha256[:12]}] ")
+    prediction = parse_final_prediction(final_response, context=f"[bulk-synthesis {sha256[:12]}] ")
     if confidence == "UNKNOWN" and prediction == "MALWARE":
-        # Keyword-density fallback fired inside parse_final_prediction with no
-        # explicit CONFIDENCE: line — flag it as lower-confidence downstream.
         confidence = "MEDIUM"
+
+    full_analysis = f"=== HIERARCHICAL BULK CHUNK ANALYSIS ({len(chunks)} chunks, {total_fns} functions) ===\n\n"
+    full_analysis += f"{final_response}\n\n"
+    full_analysis += f"=== INDIVIDUAL CHUNK EVIDENCE ===\n{all_reports_text}"
 
     return Tier3Result(
         sha256=sha256,
         prediction=prediction,
-        analysis=response,
+        analysis=full_analysis,
         confidence=confidence,
     )
+
 
 
 # =============================================================================
