@@ -240,9 +240,13 @@ production APK and is NOT evidence of malicious obfuscation on its own):
   many functions does NOT make this more suspicious — ad SDKs (AppLovin,
   Unity Ads, Google Ads/GMS), analytics, and crash reporters commonly have
   hundreds of reflection call sites and are still ordinary, benign SDKs.
-- Dynamic class loading (DexClassLoader, loadClass): commonly used by app
-  frameworks (React Native, Flutter, Unity, Adobe AIR) and mediation/ad SDKs
-  to load their own bundled code — not remote/attacker code.
+- Dynamic class loading (DexClassLoader, loadClass) IS baseline noise ONLY
+  when the loaded target is a hardcoded, readable literal you can point to
+  that names a recognizable bundled/framework package (react native,
+  flutter, unity, adobe air, a known ad/mediation SDK, or the app's own
+  package). Frameworks and SDKs load their OWN bundled code this way — that
+  specific, confirmable case is not suspicious, no matter how many times it
+  happens.
 - Network checks (getActiveNetworkInfo) and ordinary network requests
   (openConnection/connect/getOutputStream to fetch ads, configs, or content):
   standard behavior for any internet-connected app.
@@ -272,13 +276,40 @@ category of API:
   a content-provider query against contacts/SMS/call-log whose result is
   then written to a file or network call you can point to; shell command
   execution (Runtime.exec) with an argument that isn't a fixed, readable
-  string.
+  string; DexClassLoader/loadClass where the loaded target does NOT meet
+  the baseline-noise bar above — i.e. you cannot point to a hardcoded,
+  readable literal naming a recognizable bundled package for what's being
+  loaded. Do not require proof it's malicious (a traced network download)
+  before counting this one — an app dynamically loading code whose origin
+  you cannot confirm as its own bundled resource is exactly the
+  second-stage-payload-dropper pattern this system exists to catch, and
+  demanding a fully traced download chain before flagging it is how real
+  droppers get missed. This item alone, even without a second indicator,
+  is legitimate grounds for MALWARE at MEDIUM confidence.
 
 Two or more items from the MEDIUM list above, naming concrete values and
-destinations, are legitimate grounds for MALWARE at MEDIUM confidence. Items
-from the CALIBRATION list never count toward this, individually or stacked —
-if the only things you can point to are baseline-noise items, the correct
-verdict is BENIGN, even if there are many of them.
+destinations, are legitimate grounds for MALWARE at MEDIUM confidence — the
+unresolved-origin DexClassLoader item is the one exception explicitly noted
+above that can stand alone. Items from the CALIBRATION list never count
+toward this, individually or stacked — if the only things you can point to
+are baseline-noise items, the correct verdict is BENIGN, even if there are
+many of them.
+
+"Privacy-invasive" is not the same question as "malware," and this system
+answers only the malware question. Aggressive tracking, lack of an explicit
+consent dialog, frequent location polling, or broad data collection are
+normal (if sometimes distasteful) behavior for real ad and analytics SDKs —
+that is a grayware/PUP judgment, not evidence of malware, and is OUT OF
+SCOPE here. If your own Application Purpose assessment concludes this is a
+recognized legitimate category (ad network, analytics, game engine, utility
+app) and the only things you can cite beyond that are vague words like
+"privacy concern," "without consent," "could be misused," or "aggressive
+tracking" — with no concrete indicator from the MEDIUM/HIGH list above —
+the correct verdict is BENIGN. Do not let your own conclusion that the app
+is legitimate coexist with a MALWARE verdict; if you write that the app's
+purpose looks legitimate, that should be reflected in the final prediction,
+not overridden by a restatement of the same baseline-noise APIs in more
+alarming language.
 
 {api_summaries}
 

@@ -484,7 +484,7 @@ class GeminiBackend(LLMBackend):
 
     MAX_CONTEXT_TOKENS = 800_000  # within Gemini's 1M ctx — this is the one empirically validated at real scale (80% acc, 15-sample run)
 
-    def __init__(self, api_keys: list[str], model: str = "gemini-3.5-flash"):
+    def __init__(self, api_keys: list[str], model: str = "gemini-2.5-flash"):
         # pyrefly: ignore [missing-import]
         from google import genai
         # pyrefly: ignore [missing-import]
@@ -1838,13 +1838,16 @@ def _parse_marker_value(response: str, marker_prefixes: tuple[str, ...]) -> str:
     """
     lines = response.split("\n")
     for i, line in enumerate(lines):
-        stripped = line.strip().strip("*").strip()
+        # .replace, not .strip: a model can bold the value separately from
+        # the label ("**Confidence:** **HIGH**"), leaving a mid-string "**"
+        # that .strip("*") (edges only) would never touch.
+        stripped = line.strip().replace("*", "").strip()
         upper = stripped.upper()
         if any(upper.startswith(p) for p in marker_prefixes):
             candidate = stripped.split(":", 1)[1].strip() if ":" in stripped else ""
             if not candidate:
                 for nxt_line in lines[i + 1 : i + 3]:
-                    nxt = nxt_line.strip().strip("*").strip()
+                    nxt = nxt_line.strip().replace("*", "").strip()
                     if nxt:
                         candidate = nxt
                         break
@@ -1963,6 +1966,39 @@ def _retry_prediction_parse(
     return "UNKNOWN", previous_response + "\n\n[RETRY RESPONSE]\n" + retry_response
 
 
+def _truncate_api_summaries_for_budget(api_summaries: list[dict], budget_tokens: int) -> str:
+    """
+    Fits all API summaries within budget_tokens by proportionally capping
+    each summary's length — never by dropping an entire API group. Breadth
+    of coverage across suspicious APIs matters more for catching real
+    malware than the full depth of any single summary, so every group still
+    gets *some* representation in the final verdict rather than some being
+    silently omitted (or, without this function at all, the whole Tier 3
+    call failing outright on constrained-context backends — verified
+    directly: a 29-API-group sample overflowed a 16K-token local model's
+    context and failed the entire sample).
+    """
+    n = len(api_summaries)
+    if n == 0:
+        return format_api_summaries_for_tier3(api_summaries)
+
+    per_summary_chars = max(240, (budget_tokens // n) * 3)  # ~3 chars/token, conservative
+
+    capped = []
+    for api in api_summaries:
+        summary = api["summary"]
+        if len(summary) > per_summary_chars:
+            summary = summary[:per_summary_chars] + "\n... [truncated for context budget]"
+        capped.append({**api, "summary": summary})
+
+    text = format_api_summaries_for_tier3(capped)
+    # Pathological last resort (e.g. very long api_name/api_type values) —
+    # hard-truncate the whole assembled text rather than risk overflow.
+    if count_tokens(text) > budget_tokens:
+        text = text[: budget_tokens * 3] + "\n... [truncated for context budget]"
+    return text
+
+
 def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> Tier3Result:
     """Final malware/benign prediction for one APK."""
     api_summaries = [
@@ -1970,6 +2006,16 @@ def run_tier3(llm: LLMBackend, sha256: str, api_results: list[Tier2Result]) -> T
         for r in api_results
     ]
     api_text = format_api_summaries_for_tier3(api_summaries)
+
+    # Guard against overflowing constrained-context backends (e.g. local
+    # Qwen at 16K tokens) when there are many API groups or verbose merged
+    # summaries — cap total size instead of letting the call fail outright.
+    max_tokens = getattr(llm, "MAX_CONTEXT_TOKENS", LLMBackend.MAX_CONTEXT_TOKENS)
+    template_overhead = count_tokens(TIER3_USER_TEMPLATE.format(api_summaries=""))
+    response_reserve = 1500
+    budget = max(500, max_tokens - template_overhead - response_reserve)
+    if count_tokens(api_text) > budget:
+        api_text = _truncate_api_summaries_for_budget(api_summaries, budget)
 
     prompt = TIER3_USER_TEMPLATE.format(api_summaries=api_text)
     response = llm.chat(TIER3_SYSTEM, prompt)
