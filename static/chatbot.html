@@ -3,240 +3,210 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAMD — AI Android Malware Detection & Analysis</title>
+  <title>LAMD — Android Malware Analysis Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070a12;
-      --bg-card: rgba(14, 20, 36, 0.75);
-      --bg-card-hover: rgba(20, 30, 52, 0.85);
-      --border: rgba(56, 75, 112, 0.35);
-      --border-focus: #00d2ff;
-      --primary: #00d2ff;
-      --primary-glow: rgba(0, 210, 255, 0.25);
-      --accent: #7928ca;
-      --danger: #ff3366;
-      --danger-glow: rgba(255, 51, 102, 0.3);
-      --success: #00f2aa;
-      --success-glow: rgba(0, 242, 170, 0.3);
-      --warning: #ffb800;
-      --text: #f0f4fc;
-      --text-muted: #8c9cb8;
-      --radius: 12px;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --border-focus: #3b82f6;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --danger-bg: #fef2f2;
+      --danger-text: #b91c1c;
+      --danger-border: #fecaca;
+      --success-bg: #f0fdf4;
+      --success-text: #15803d;
+      --success-border: #bbf7d0;
+      --radius: 8px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(0, 210, 255, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(121, 40, 202, 0.08) 0%, transparent 45%);
+      line-height: 1.5;
     }
 
-    /* Header */
+    /* Top Navigation Header */
     header {
-      background: rgba(10, 15, 28, 0.8);
-      backdrop-filter: blur(16px);
+      background: var(--surface);
       border-bottom: 1px solid var(--border);
-      padding: 16px 32px;
+      padding: 14px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
     }
 
-    .brand {
+    .header-brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .header-logo {
+      width: 28px;
+      height: 28px;
+      background: var(--primary);
+      color: white;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
-      box-shadow: 0 0 16px var(--primary-glow);
-    }
-    .brand-title {
       font-weight: 700;
-      font-size: 17px;
-      letter-spacing: -0.3px;
+      font-size: 14px;
     }
-    .brand-subtitle {
-      font-size: 11px;
+    .header-title {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text-main);
+    }
+    .header-subtitle {
+      font-size: 12px;
       color: var(--text-muted);
-      font-weight: 400;
     }
 
     .header-controls {
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-    .model-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 6px 12px;
+      gap: 12px;
       font-size: 13px;
+      color: var(--text-muted);
     }
     select {
-      background: transparent;
-      border: none;
-      color: var(--primary);
-      font-weight: 600;
-      font-family: inherit;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 6px 10px;
+      border-radius: 6px;
       font-size: 13px;
-      cursor: pointer;
+      font-family: inherit;
       outline: none;
+      cursor: pointer;
     }
-    select option {
-      background: #0e1424;
-      color: var(--text);
+    select:focus {
+      border-color: var(--border-focus);
     }
 
     /* Main Container */
     .container {
-      max-width: 1100px;
-      margin: 28px auto;
+      max-width: 900px;
+      margin: 32px auto;
       padding: 0 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
       flex: 1;
     }
 
-    /* Glass Card */
+    /* Clean White Card */
     .card {
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
+      background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-      transition: border-color 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
     /* Tabs */
     .tab-bar {
       display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 6px;
+      margin-bottom: 18px;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
     .tab-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-weight: 500;
       font-size: 13px;
       cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      transition: background 0.15s, color 0.15s;
     }
     .tab-btn:hover {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      background: #f1f5f9;
     }
     .tab-btn.active {
-      background: var(--primary-glow);
+      background: #eff6ff;
       color: var(--primary);
-      border: 1px solid rgba(0, 210, 255, 0.4);
+      font-weight: 600;
     }
 
-    /* Input Fields */
+    /* Inputs */
     .input-group {
       display: flex;
-      gap: 12px;
-      align-items: center;
+      gap: 10px;
     }
     .text-input {
       flex: 1;
-      background: rgba(8, 12, 22, 0.85);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
-      color: var(--text);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: var(--text-main);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
+      font-size: 13px;
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.15s;
     }
     .text-input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 12px var(--primary-glow);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 1px var(--border-focus);
     }
     .btn {
-      background: linear-gradient(135deg, var(--primary), #0099ff);
-      color: #050a14;
-      font-weight: 700;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 500;
       border: none;
-      border-radius: 10px;
-      padding: 14px 28px;
-      font-size: 14px;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 13.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 16px var(--primary-glow);
+      gap: 6px;
+      transition: background 0.15s;
     }
     .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.45);
+      background: var(--primary-hover);
     }
     .btn:disabled {
-      opacity: 0.5;
+      opacity: 0.6;
       cursor: not-allowed;
-      transform: none;
     }
 
-    /* Drop Zone */
+    /* Drag & Drop */
     .drop-zone {
-      border: 2px dashed rgba(56, 75, 112, 0.6);
+      border: 1.5px dashed var(--border);
       border-radius: var(--radius);
-      padding: 36px 20px;
+      padding: 32px 20px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-      background: rgba(8, 12, 22, 0.4);
+      background: #fafafa;
+      transition: border-color 0.15s, background 0.15s;
     }
     .drop-zone:hover, .drop-zone.dragover {
       border-color: var(--primary);
-      background: rgba(0, 210, 255, 0.04);
-    }
-    .drop-zone-icon {
-      font-size: 36px;
-      margin-bottom: 8px;
-      color: var(--primary);
+      background: #f0f7ff;
     }
     .drop-zone-text {
-      font-size: 14px;
-      color: var(--text);
+      font-size: 13.5px;
       font-weight: 500;
+      color: var(--text-main);
     }
     .drop-zone-sub {
       font-size: 12px;
@@ -244,275 +214,240 @@
       margin-top: 4px;
     }
 
-    /* Sample Pills */
+    /* Samples */
     .sample-section {
       margin-top: 16px;
     }
     .sample-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
+      font-size: 11.5px;
       color: var(--text-muted);
       margin-bottom: 8px;
-      font-weight: 600;
+      font-weight: 500;
     }
     .sample-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
     .pill {
-      background: rgba(255, 255, 255, 0.04);
+      background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 11.5px;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
       color: var(--text-muted);
       cursor: pointer;
-      transition: all 0.2s ease;
       font-family: 'JetBrains Mono', monospace;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      transition: border-color 0.15s, color 0.15s;
     }
     .pill:hover {
       border-color: var(--primary);
-      color: var(--text);
-      background: rgba(0, 210, 255, 0.08);
+      color: var(--primary);
+      background: #eff6ff;
     }
-    .pill-malware { border-left: 3px solid var(--danger); }
-    .pill-benign { border-left: 3px solid var(--success); }
 
-    /* Procedural Progress Tracker */
+    /* Step-by-Step Progress */
     .progress-box {
       display: none;
-      background: rgba(8, 14, 26, 0.95);
+      background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
-      margin-top: 20px;
+      padding: 16px;
+      margin-top: 16px;
     }
     .progress-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      color: var(--text-main);
+      margin-bottom: 12px;
     }
     .step-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 8px;
     }
     .step-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       font-size: 13px;
     }
     .step-icon {
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 10px;
       flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      background: #e2e8f0;
+      color: #64748b;
+      margin-top: 2px;
     }
     .step-item.running .step-icon {
-      border-color: var(--primary);
+      background: #dbeafe;
       color: var(--primary);
-      animation: pulse 1.5s infinite;
-      box-shadow: 0 0 10px var(--primary-glow);
+      font-weight: bold;
     }
     .step-item.done .step-icon {
-      background: var(--success);
-      color: #050a14;
-      border-color: var(--success);
+      background: #dcfce7;
+      color: #15803d;
       font-weight: bold;
     }
     .step-item.error .step-icon {
-      background: var(--danger);
-      color: white;
-      border-color: var(--danger);
-    }
-    .step-content {
-      flex: 1;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: bold;
     }
     .step-name {
-      font-weight: 600;
-      color: var(--text);
+      font-weight: 500;
+      color: var(--text-main);
     }
     .step-detail {
       font-size: 11.5px;
       color: var(--text-muted);
-      margin-top: 2px;
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.8; }
     }
 
     /* Verdict Card */
     .verdict-card {
       display: none;
-      animation: fadeIn 0.4s ease;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .verdict-header {
+    .verdict-banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 18px;
     }
-    .verdict-header.malware {
-      background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.05));
-      border: 1px solid var(--danger);
-      box-shadow: 0 0 24px var(--danger-glow);
+    .verdict-banner.malware {
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger-text);
     }
-    .verdict-header.benign {
-      background: linear-gradient(135deg, rgba(0, 242, 170, 0.2), rgba(0, 242, 170, 0.05));
-      border: 1px solid var(--success);
-      box-shadow: 0 0 24px var(--success-glow);
+    .verdict-banner.benign {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success-text);
     }
-    .verdict-tag {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .verdict-badge {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
     }
-    .verdict-header.malware .verdict-tag { color: var(--danger); }
-    .verdict-header.benign .verdict-tag { color: var(--success); }
-
     .confidence-badge {
       font-size: 12px;
       font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .section-title {
-      font-size: 12px;
-      font-weight: 700;
+    .field-title {
+      font-size: 11.5px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.5px;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .purpose-box {
-      font-size: 14.5px;
-      line-height: 1.6;
-      color: var(--text);
-      margin-bottom: 20px;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 14px 16px;
-      border-radius: 8px;
-      border-left: 3px solid var(--primary);
+    .purpose-text {
+      font-size: 14px;
+      color: var(--text-main);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-bottom: 18px;
     }
-
     .findings-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 20px;
+      gap: 6px;
+      margin-bottom: 18px;
     }
     .findings-list li {
       font-size: 13.5px;
-      line-height: 1.5;
-      padding: 10px 14px;
-      background: rgba(255, 255, 255, 0.02);
+      padding: 8px 12px;
+      background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
     .findings-list li::before {
       content: "•";
       color: var(--primary);
-      font-size: 18px;
-      line-height: 1;
+      font-weight: bold;
     }
 
-    /* Accordion / Details */
+    /* Collapsible Details */
     details {
-      background: rgba(8, 12, 22, 0.6);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      margin-bottom: 12px;
-      overflow: hidden;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      background: var(--surface);
     }
     summary {
-      padding: 12px 16px;
+      padding: 10px 14px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
+      color: var(--text-main);
       cursor: pointer;
-      color: var(--primary);
-      outline: none;
       user-select: none;
     }
-    .code-block {
-      padding: 14px 16px;
+    summary:hover {
+      background: #f8fafc;
+    }
+    .details-body {
+      padding: 12px 14px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      background: #050811;
-      color: #c9d1d9;
+      font-size: 12px;
+      background: #f8fafc;
+      color: #334155;
       white-space: pre-wrap;
       word-wrap: break-word;
-      max-height: 280px;
-      overflow-y: auto;
       border-top: 1px solid var(--border);
+      max-height: 240px;
+      overflow-y: auto;
     }
 
-    /* Follow-up Q&A Drawer */
+    /* Q&A Section */
     .qa-box {
-      margin-top: 24px;
+      margin-top: 20px;
       border-top: 1px solid var(--border);
-      padding-top: 20px;
+      padding-top: 16px;
     }
     .qa-feed {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 14px;
-      max-height: 300px;
+      gap: 10px;
+      margin-bottom: 12px;
+      max-height: 250px;
       overflow-y: auto;
     }
     .qa-msg {
-      padding: 10px 14px;
-      border-radius: 8px;
+      padding: 8px 12px;
+      border-radius: 6px;
       font-size: 13px;
       line-height: 1.5;
     }
     .qa-msg.user {
-      background: rgba(0, 210, 255, 0.12);
-      border: 1px solid rgba(0, 210, 255, 0.3);
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
       align-self: flex-end;
       max-width: 80%;
     }
     .qa-msg.bot {
-      background: rgba(255, 255, 255, 0.04);
+      background: #f8fafc;
       border: 1px solid var(--border);
+      color: #1e293b;
       align-self: flex-start;
       max-width: 90%;
       white-space: pre-wrap;
@@ -523,29 +458,28 @@
       padding: 18px;
       font-size: 12px;
       color: var(--text-muted);
-      border-top: 1px solid rgba(56, 75, 112, 0.2);
+      border-top: 1px solid var(--border);
+      background: var(--surface);
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand">
-      <div class="brand-icon">🛡️</div>
+    <div class="header-brand">
+      <div class="header-logo">L</div>
       <div>
-        <div class="brand-title">LAMD Analyst</div>
-        <div class="brand-subtitle">AI-Powered Android Binary Malware Detection</div>
+        <div class="header-title">LAMD Analyst</div>
+        <div class="header-subtitle">Android APK Malware Detection System</div>
       </div>
     </div>
     <div class="header-controls">
-      <div class="model-badge">
-        <span>Reasoning Engine:</span>
-        <select id="backend-select">
-          <option value="gemini">Gemini 2.5 Flash (Cloud)</option>
-          <option value="groq">Groq Llama 3.3 (Fast Cloud)</option>
-          <option value="gguf">Local Dual-GPU Qwen 32B</option>
-        </select>
-      </div>
+      <span>Model:</span>
+      <select id="backend-select">
+        <option value="gemini">Gemini 2.5 Flash</option>
+        <option value="groq">Groq (Llama 3.3)</option>
+        <option value="gguf">Local Dual-GPU (Qwen 32B)</option>
+      </select>
     </div>
   </header>
 
@@ -554,24 +488,20 @@
     <!-- Input Card -->
     <div class="card">
       <div class="tab-bar">
-        <button class="tab-btn active" id="tab-hash" onclick="switchTab('hash')">🔍 Analyze by SHA-256 Hash</button>
-        <button class="tab-btn" id="tab-file" onclick="switchTab('file')">📦 Analyze by APK Upload</button>
+        <button class="tab-btn active" id="tab-hash" onclick="switchTab('hash')">Analyze by SHA-256 Hash</button>
+        <button class="tab-btn" id="tab-file" onclick="switchTab('file')">Upload APK File</button>
       </div>
 
       <!-- Hash Input Mode -->
       <div id="hash-mode">
         <div class="input-group">
-          <input type="text" id="hash-input" class="text-input" placeholder="Paste 64-character SHA-256 hash (e.g. 50a440e0b42c8d234d7d91e6b36e344e...)" autocomplete="off">
-          <button class="btn" id="analyze-btn" onclick="startHashAnalysis()">
-            <span>⚡ Analyze</span>
-          </button>
+          <input type="text" id="hash-input" class="text-input" placeholder="Paste 64-character SHA-256 hash..." autocomplete="off">
+          <button class="btn" id="analyze-btn" onclick="startHashAnalysis()">Analyze</button>
         </div>
 
         <div class="sample-section">
-          <div class="sample-label">Quick Test Samples (Click to Analyze):</div>
-          <div class="sample-pills" id="sample-pills">
-            <!-- Populated via JS -->
-          </div>
+          <div class="sample-label">Test Samples:</div>
+          <div class="sample-pills" id="sample-pills"></div>
         </div>
       </div>
 
@@ -579,53 +509,43 @@
       <div id="file-mode" style="display: none;">
         <input type="file" id="apk-file-input" accept=".apk" style="display: none;" onchange="handleFileSelected(this.files[0])">
         <div class="drop-zone" id="drop-zone" onclick="document.getElementById('apk-file-input').click()">
-          <div class="drop-zone-icon">📥</div>
-          <div class="drop-zone-text" id="drop-zone-text">Click or Drag & Drop an Android .APK file here</div>
-          <div class="drop-zone-sub">Max size 150 MB — Parsed locally with Soot Backward Program Slicer</div>
+          <div class="drop-zone-text" id="drop-zone-text">Click or drag & drop an .apk file to analyze</div>
+          <div class="drop-zone-sub">Parsed locally using backward program slicing</div>
         </div>
       </div>
 
-      <!-- Live Procedural Progress Widget -->
+      <!-- Step-by-Step Progress -->
       <div class="progress-box" id="progress-box">
-        <div class="progress-title">
-          <span>⚙️ Execution Pipeline in Progress</span>
-        </div>
-        <div class="step-list" id="step-list">
-          <!-- Dynamically updated -->
-        </div>
+        <div class="progress-title">Analysis Pipeline Progress</div>
+        <div class="step-list" id="step-list"></div>
       </div>
     </div>
 
-    <!-- Results Verdict Card -->
+    <!-- Analysis Verdict Card -->
     <div class="card verdict-card" id="verdict-card">
-      <div class="verdict-header" id="verdict-header">
-        <div class="verdict-tag" id="verdict-tag">MALWARE DETECTED</div>
+      <div class="verdict-banner" id="verdict-banner">
+        <div class="verdict-badge" id="verdict-badge">MALWARE DETECTED</div>
         <div class="confidence-badge" id="confidence-badge">CONFIDENCE: HIGH</div>
       </div>
 
-      <div class="section-title">Application Purpose & Behavior</div>
-      <div class="purpose-box" id="purpose-box">Loading purpose...</div>
+      <div class="field-title">Application Purpose</div>
+      <div class="purpose-text" id="purpose-box">Loading purpose...</div>
 
-      <div class="section-title">Key Indicators of Compromise (IoCs) & Findings</div>
+      <div class="field-title">Key Indicators & Findings</div>
       <ul class="findings-list" id="findings-list"></ul>
 
       <details>
-        <summary>📊 Function Call Graph (FCG) & Sliced Call Chains</summary>
-        <div class="code-block" id="fcg-block">No FCG data available.</div>
-      </details>
-
-      <details>
-        <summary>📝 Full Technical Explanation & Synthesis</summary>
-        <div class="code-block" id="analysis-block">No analysis text available.</div>
+        <summary>Technical Analysis & Evidence</summary>
+        <div class="details-body" id="analysis-block">No analysis text available.</div>
       </details>
 
       <!-- Follow-up Q&A -->
       <div class="qa-box">
-        <div class="section-title">Ask Questions About This APK</div>
+        <div class="field-title">Ask Questions About This APK</div>
         <div class="qa-feed" id="qa-feed"></div>
         <div class="input-group">
-          <input type="text" id="qa-input" class="text-input" placeholder="Ask anything (e.g. 'Why was this flagged?', 'Explain the loadClass call chain')...">
-          <button class="btn" id="qa-send-btn" onclick="sendQuestion()">Ask AI</button>
+          <input type="text" id="qa-input" class="text-input" placeholder="Ask a question about this verdict...">
+          <button class="btn" id="qa-send-btn" onclick="sendQuestion()">Ask</button>
         </div>
       </div>
     </div>
@@ -633,14 +553,13 @@
   </div>
 
   <footer>
-    LAMD Framework · Context-driven Android Malware Detection with LLMs & Function Call Graphs · 100% Offline / Cloud Hybrid
+    LAMD Framework · Static Slicing + LLM Code Reasoning
   </footer>
 
   <script>
     let currentSha = null;
     let activeJobTimer = null;
 
-    // Load sample pills on start
     async function loadSamples() {
       try {
         const resp = await fetch('/api/samples');
@@ -650,8 +569,8 @@
 
         data.malware.forEach(item => {
           const pill = document.createElement('div');
-          pill.className = 'pill pill-malware';
-          pill.innerHTML = `🚨 ${item.family}: ${item.sha256.substring(0, 8)}...`;
+          pill.className = 'pill';
+          pill.innerText = `Malware (${item.family}): ${item.sha256.substring(0, 8)}...`;
           pill.onclick = () => {
             document.getElementById('hash-input').value = item.sha256;
             startHashAnalysis();
@@ -661,8 +580,8 @@
 
         data.benign.forEach(item => {
           const pill = document.createElement('div');
-          pill.className = 'pill pill-benign';
-          pill.innerHTML = `✅ ${item.family}: ${item.sha256.substring(0, 8)}...`;
+          pill.className = 'pill';
+          pill.innerText = `Benign: ${item.sha256.substring(0, 8)}...`;
           pill.onclick = () => {
             document.getElementById('hash-input').value = item.sha256;
             startHashAnalysis();
@@ -681,7 +600,6 @@
       document.getElementById('file-mode').style.display = mode === 'file' ? 'block' : 'none';
     }
 
-    // Drag and Drop
     const dropZone = document.getElementById('drop-zone');
     dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
@@ -696,7 +614,7 @@
         alert('Please select a valid Android .apk file.');
         return;
       }
-      document.getElementById('drop-zone-text').innerText = `Uploading & analyzing: ${file.name} (${Math.round(file.size/1024)} KB)...`;
+      document.getElementById('drop-zone-text').innerText = `Uploading: ${file.name} (${Math.round(file.size/1024)} KB)...`;
       
       const formData = new FormData();
       formData.append('file', file);
@@ -776,7 +694,7 @@
           const resp = await fetch(`/api/status/${jobId}`);
           const job = await resp.json();
 
-          renderSteps(job.steps, job.current_step);
+          renderSteps(job.steps);
 
           if (job.status === 'done') {
             clearInterval(activeJobTimer);
@@ -785,7 +703,7 @@
           } else if (job.status === 'error') {
             clearInterval(activeJobTimer);
             hideProgress();
-            alert('Analysis encountered an error: ' + job.error);
+            alert('Analysis error: ' + job.error);
           }
         } catch (e) {
           console.error('Polling error:', e);
@@ -793,7 +711,7 @@
       }, 1000);
     }
 
-    function renderSteps(steps, currentStep) {
+    function renderSteps(steps) {
       const container = document.getElementById('step-list');
       container.innerHTML = '';
 
@@ -803,12 +721,12 @@
 
         let icon = idx + 1;
         if (step.status === 'done') icon = '✓';
-        if (step.status === 'running') icon = '⚙';
-        if (step.status === 'error') icon = '✗';
+        if (step.status === 'running') icon = '●';
+        if (step.status === 'error') icon = '✕';
 
         item.innerHTML = `
           <div class="step-icon">${icon}</div>
-          <div class="step-content">
+          <div>
             <div class="step-name">${step.name}</div>
             <div class="step-detail">${step.detail || ''}</div>
           </div>
@@ -819,13 +737,13 @@
 
     function renderVerdict(res) {
       const card = document.getElementById('verdict-card');
-      const header = document.getElementById('verdict-header');
-      const tag = document.getElementById('verdict-tag');
+      const banner = document.getElementById('verdict-banner');
+      const badge = document.getElementById('verdict-badge');
       const conf = document.getElementById('confidence-badge');
 
       const isMalware = (res.prediction || '').toUpperCase() === 'MALWARE';
-      header.className = `verdict-header ${isMalware ? 'malware' : 'benign'}`;
-      tag.innerHTML = isMalware ? '🚨 MALWARE DETECTED' : '✅ BENIGN APPLICATION';
+      banner.className = `verdict-banner ${isMalware ? 'malware' : 'benign'}`;
+      badge.innerText = isMalware ? 'MALWARE DETECTED' : 'BENIGN APPLICATION';
       conf.innerText = `CONFIDENCE: ${(res.confidence || 'HIGH').toUpperCase()}`;
 
       document.getElementById('purpose-box').innerText = res.app_purpose || 'Standard application functionality detected.';
@@ -838,10 +756,8 @@
         list.appendChild(li);
       });
 
-      document.getElementById('fcg-block').innerText = res.fcg_preview || 'No Function Call Graph available.';
       document.getElementById('analysis-block').innerText = res.evidence || res.analysis || 'No detailed analysis.';
 
-      // Clear QA feed
       document.getElementById('qa-feed').innerHTML = '';
       card.style.display = 'block';
       card.scrollIntoView({ behavior: 'smooth' });
@@ -854,17 +770,15 @@
 
       const feed = document.getElementById('qa-feed');
 
-      // User bubble
       const uMsg = document.createElement('div');
       uMsg.className = 'qa-msg user';
       uMsg.innerText = question;
       feed.appendChild(uMsg);
       input.value = '';
 
-      // Bot thinking bubble
       const bMsg = document.createElement('div');
       bMsg.className = 'qa-msg bot';
-      bMsg.innerText = 'Analyzing code reasoning...';
+      bMsg.innerText = 'Analyzing...';
       feed.appendChild(bMsg);
       feed.scrollTop = feed.scrollHeight;
 
@@ -881,7 +795,7 @@
         const data = await resp.json();
         bMsg.innerText = data.reply;
       } catch (e) {
-        bMsg.innerText = 'Error getting answer: ' + e;
+        bMsg.innerText = 'Error: ' + e;
       }
       feed.scrollTop = feed.scrollHeight;
     }
@@ -894,7 +808,6 @@
       if (e.key === 'Enter') startHashAnalysis();
     });
 
-    // Start
     loadSamples();
   </script>
 </body>
