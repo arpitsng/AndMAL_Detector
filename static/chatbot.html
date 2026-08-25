@@ -1,657 +1,628 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAMD — Android Malware Analysis Portal</title>
+  <title>LAMD — APK Malware Analysis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --border: #e2e8f0;
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f9f9fb;
+      --surface-2: #f1f3f5;
+      --border: #e5e7eb;
       --border-focus: #3b82f6;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
+      --text: #0d0d0d;
+      --text-muted: #6b7280;
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      --chatbar-bg: #f4f4f5;
+      --msg-user: #f4f4f5;
+      --msg-bot: #ffffff;
       --danger-bg: #fef2f2;
       --danger-text: #b91c1c;
       --danger-border: #fecaca;
       --success-bg: #f0fdf4;
       --success-text: #15803d;
       --success-border: #bbf7d0;
-      --radius: 8px;
+      --step-bg: #f8fafc;
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #212121;
+      --surface: #2f2f2f;
+      --surface-2: #383838;
+      --border: #424242;
+      --border-focus: #60a5fa;
+      --text: #ececec;
+      --text-muted: #b4b4b4;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --chatbar-bg: #2f2f2f;
+      --msg-user: #2f2f2f;
+      --msg-bot: #212121;
+      --danger-bg: #451a1a;
+      --danger-text: #f87171;
+      --danger-border: #7f1d1d;
+      --success-bg: #143521;
+      --success-text: #4ade80;
+      --success-border: #166534;
+      --step-bg: #2a2a2a;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
-      color: var(--text-main);
+      color: var(--text);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.5;
+      overflow: hidden;
+      transition: background 0.2s, color 0.2s;
     }
 
-    /* Top Navigation Header */
+    /* Top Bar */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 28px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .header-logo {
-      width: 28px;
-      height: 28px;
-      background: var(--primary);
-      color: white;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      flex-shrink: 0;
     }
     .header-title {
       font-weight: 600;
       font-size: 15px;
-      color: var(--text-main);
-    }
-    .header-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .header-controls {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 13px;
+      gap: 8px;
+    }
+    .header-title span.badge {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--surface-2);
       color: var(--text-muted);
     }
-    select {
-      background: var(--surface);
+    .theme-toggle-btn {
+      background: transparent;
       border: 1px solid var(--border);
-      color: var(--text-main);
+      color: var(--text);
       padding: 6px 10px;
       border-radius: 6px;
       font-size: 13px;
-      font-family: inherit;
-      outline: none;
-      cursor: pointer;
-    }
-    select:focus {
-      border-color: var(--border-focus);
-    }
-
-    /* Main Container */
-    .container {
-      max-width: 900px;
-      margin: 32px auto;
-      padding: 0 20px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      flex: 1;
-    }
-
-    /* Clean White Card */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    }
-
-    /* Tabs */
-    .tab-bar {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-    }
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-    }
-    .tab-btn:hover {
-      color: var(--text-main);
-      background: #f1f5f9;
-    }
-    .tab-btn.active {
-      background: #eff6ff;
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    /* Inputs */
-    .input-group {
-      display: flex;
-      gap: 10px;
-    }
-    .text-input {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 10px 14px;
-      color: var(--text-main);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    .text-input:focus {
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 1px var(--border-focus);
-    }
-    .btn {
-      background: var(--primary);
-      color: #ffffff;
-      font-weight: 500;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 20px;
-      font-size: 13.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
       transition: background 0.15s;
     }
-    .btn:hover {
-      background: var(--primary-hover);
-    }
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .theme-toggle-btn:hover {
+      background: var(--surface);
     }
 
-    /* Drag & Drop */
-    .drop-zone {
-      border: 1.5px dashed var(--border);
-      border-radius: var(--radius);
-      padding: 32px 20px;
-      text-align: center;
-      cursor: pointer;
-      background: #fafafa;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .drop-zone:hover, .drop-zone.dragover {
-      border-color: var(--primary);
-      background: #f0f7ff;
-    }
-    .drop-zone-text {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--text-main);
-    }
-    .drop-zone-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* Samples */
-    .sample-section {
-      margin-top: 16px;
-    }
-    .sample-label {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .sample-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .pill {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 4px 10px;
-      font-size: 12px;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-family: 'JetBrains Mono', monospace;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .pill:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      background: #eff6ff;
-    }
-
-    /* Step-by-Step Progress */
-    .progress-box {
-      display: none;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-      margin-top: 16px;
-    }
-    .progress-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 12px;
-    }
-    .step-list {
+    /* Chat Messages Stream */
+    #chat-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 20px;
+      scroll-behavior: smooth;
     }
-    .step-item {
+    .chat-inner {
+      max-width: 768px;
+      width: 100%;
+      margin: 0 auto;
       display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
+      flex-direction: column;
+      gap: 20px;
     }
-    .step-icon {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
+
+    /* Welcome Empty State */
+    .welcome-screen {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 10px;
-      flex-shrink: 0;
-      background: #e2e8f0;
-      color: #64748b;
-      margin-top: 2px;
+      margin: auto 0;
+      text-align: center;
+      padding: 40px 16px;
     }
-    .step-item.running .step-icon {
-      background: #dbeafe;
-      color: var(--primary);
-      font-weight: bold;
+    .welcome-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
     }
-    .step-item.done .step-icon {
-      background: #dcfce7;
-      color: #15803d;
-      font-weight: bold;
+    .welcome-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .step-item.error .step-icon {
-      background: #fee2e2;
-      color: #b91c1c;
-      font-weight: bold;
+    .welcome-sub {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 24px;
+      line-height: 1.5;
     }
-    .step-name {
-      font-weight: 500;
-      color: var(--text-main);
+    .sample-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+      width: 100%;
+      max-width: 600px;
     }
-    .step-detail {
+    .sample-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12.5px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .sample-card:hover {
+      border-color: var(--primary);
+      background: var(--surface-2);
+    }
+    .sample-card-title {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .sample-card-desc {
       font-size: 11.5px;
       color: var(--text-muted);
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* Verdict Card */
-    .verdict-card {
-      display: none;
+    /* Message Bubbles */
+    .msg-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
     }
-    .verdict-banner {
+    .msg-row.user {
+      justify-content: flex-end;
+    }
+    .msg-row.bot {
+      justify-content: flex-start;
+    }
+
+    .msg-bubble {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      word-wrap: break-word;
+    }
+    .msg-row.user .msg-bubble {
+      background: var(--msg-user);
+      color: var(--text);
+      border-bottom-right-radius: 4px;
+    }
+    .msg-row.bot .msg-bubble {
+      background: var(--msg-bot);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Live Procedural Steps */
+    .step-tracker {
+      background: var(--step-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12.5px;
+    }
+    .step-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-status-icon {
+      font-size: 12px;
+      font-weight: bold;
+      width: 16px;
+      text-align: center;
+    }
+    .step-line.done .step-status-icon { color: var(--success-text); }
+    .step-line.running .step-status-icon { color: var(--primary); }
+    .step-line.pending .step-status-icon { color: var(--text-muted); }
+    .step-name { font-weight: 500; }
+    .step-detail { color: var(--text-muted); font-size: 11.5px; font-family: 'JetBrains Mono', monospace; margin-left: auto; }
+
+    /* Verdict Card Inside Message */
+    .verdict-box {
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .verdict-header {
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px;
-      border-radius: 6px;
-      margin-bottom: 18px;
-    }
-    .verdict-banner.malware {
-      background: var(--danger-bg);
-      border: 1px solid var(--danger-border);
-      color: var(--danger-text);
-    }
-    .verdict-banner.benign {
-      background: var(--success-bg);
-      border: 1px solid var(--success-border);
-      color: var(--success-text);
-    }
-    .verdict-badge {
-      font-size: 16px;
       font-weight: 700;
-      letter-spacing: -0.2px;
+      font-size: 14px;
     }
-    .confidence-badge {
-      font-size: 12px;
+    .verdict-header.malware {
+      background: var(--danger-bg);
+      color: var(--danger-text);
+      border: 1px solid var(--danger-border);
+    }
+    .verdict-header.benign {
+      background: var(--success-bg);
+      color: var(--success-text);
+      border: 1px solid var(--success-border);
+    }
+    .confidence-tag {
+      font-size: 11.5px;
       font-weight: 600;
-      padding: 3px 8px;
+      padding: 2px 6px;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(0, 0, 0, 0.06);
     }
 
-    .field-title {
+    .verdict-section-title {
       font-size: 11.5px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
+      margin-top: 14px;
       margin-bottom: 6px;
     }
-    .purpose-text {
-      font-size: 14px;
-      color: var(--text-main);
-      background: #f8fafc;
+    .verdict-purpose {
+      font-size: 13.5px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-radius: 6px;
-      margin-bottom: 18px;
+      line-height: 1.5;
     }
     .findings-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 18px;
+      gap: 4px;
     }
     .findings-list li {
-      font-size: 13.5px;
-      padding: 8px 12px;
-      background: #f8fafc;
+      font-size: 13px;
+      padding: 6px 10px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 4px;
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 6px;
     }
     .findings-list li::before {
       content: "•";
       color: var(--primary);
       font-weight: bold;
     }
-
-    /* Collapsible Details */
     details {
+      margin-top: 10px;
       border: 1px solid var(--border);
       border-radius: 6px;
-      margin-bottom: 14px;
       background: var(--surface);
     }
     summary {
-      padding: 10px 14px;
-      font-size: 13px;
+      padding: 8px 12px;
+      font-size: 12.5px;
       font-weight: 500;
-      color: var(--text-main);
       cursor: pointer;
       user-select: none;
     }
-    summary:hover {
-      background: #f8fafc;
-    }
-    .details-body {
-      padding: 12px 14px;
+    .details-text {
+      padding: 10px 12px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      background: #f8fafc;
-      color: #334155;
+      font-size: 11.5px;
       white-space: pre-wrap;
       word-wrap: break-word;
       border-top: 1px solid var(--border);
-      max-height: 240px;
+      max-height: 220px;
       overflow-y: auto;
+      color: var(--text-muted);
     }
 
-    /* Q&A Section */
-    .qa-box {
-      margin-top: 20px;
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
+    /* Fixed Bottom Chatbar (ChatGPT Style) */
+    .chatbar-container {
+      padding: 12px 16px 20px;
+      background: var(--bg);
+      flex-shrink: 0;
     }
-    .qa-feed {
+    .chatbar-box {
+      max-width: 768px;
+      margin: 0 auto;
+      background: var(--chatbar-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 10px 14px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 12px;
-      max-height: 250px;
-      overflow-y: auto;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      transition: border-color 0.15s;
     }
-    .qa-msg {
-      padding: 8px 12px;
-      border-radius: 6px;
-      font-size: 13px;
+    .chatbar-box:focus-within {
+      border-color: var(--border-focus);
+    }
+    .chatbar-input-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    textarea#msg-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      resize: none;
+      outline: none;
+      max-height: 140px;
+      min-height: 24px;
       line-height: 1.5;
     }
-    .qa-msg.user {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1e3a8a;
-      align-self: flex-end;
-      max-width: 80%;
+    textarea#msg-input::placeholder {
+      color: var(--text-muted);
     }
-    .qa-msg.bot {
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      color: #1e293b;
-      align-self: flex-start;
-      max-width: 90%;
-      white-space: pre-wrap;
+    .chatbar-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+      border-top: 1px solid var(--border);
     }
-
-    footer {
-      text-align: center;
-      padding: 18px;
+    .chatbar-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .upload-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .upload-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+    .model-select-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       font-size: 12px;
       color: var(--text-muted);
-      border-top: 1px solid var(--border);
-      background: var(--surface);
+    }
+    .model-select-wrapper select {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+    .send-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+      flex-shrink: 0;
+    }
+    .send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .chatbar-disclaimer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Bar -->
   <header>
-    <div class="header-brand">
-      <div class="header-logo">L</div>
-      <div>
-        <div class="header-title">LAMD Analyst</div>
-        <div class="header-subtitle">Android APK Malware Detection System</div>
-      </div>
+    <div class="header-title">
+      LAMD Analyst
+      <span class="badge">Malware Detection</span>
     </div>
-    <div class="header-controls">
-      <span>Model:</span>
-      <select id="backend-select">
-        <option value="gemini">Gemini 2.5 Flash</option>
-        <option value="groq">Groq (Llama 3.3)</option>
-        <option value="gguf">Local Dual-GPU (Qwen 32B)</option>
-      </select>
-    </div>
+    <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">
+      <span id="theme-icon">🌙</span>
+      <span id="theme-text">Dark</span>
+    </button>
   </header>
 
-  <div class="container">
-
-    <!-- Input Card -->
-    <div class="card">
-      <div class="tab-bar">
-        <button class="tab-btn active" id="tab-hash" onclick="switchTab('hash')">Analyze by SHA-256 Hash</button>
-        <button class="tab-btn" id="tab-file" onclick="switchTab('file')">Upload APK File</button>
-      </div>
-
-      <!-- Hash Input Mode -->
-      <div id="hash-mode">
-        <div class="input-group">
-          <input type="text" id="hash-input" class="text-input" placeholder="Paste 64-character SHA-256 hash..." autocomplete="off">
-          <button class="btn" id="analyze-btn" onclick="startHashAnalysis()">Analyze</button>
+  <!-- Messages Stream -->
+  <div id="chat-container">
+    <div class="chat-inner" id="chat-inner">
+      <!-- Initial Welcome State -->
+      <div class="welcome-screen" id="welcome-screen">
+        <div class="welcome-icon">🛡️</div>
+        <div class="welcome-title">Android APK Malware Analysis</div>
+        <div class="welcome-sub">
+          Paste a SHA-256 hash, upload an APK file, or select a sample below to inspect code behavior and detect threats.
         </div>
-
-        <div class="sample-section">
-          <div class="sample-label">Test Samples:</div>
-          <div class="sample-pills" id="sample-pills"></div>
-        </div>
-      </div>
-
-      <!-- File Upload Mode -->
-      <div id="file-mode" style="display: none;">
-        <input type="file" id="apk-file-input" accept=".apk" style="display: none;" onchange="handleFileSelected(this.files[0])">
-        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('apk-file-input').click()">
-          <div class="drop-zone-text" id="drop-zone-text">Click or drag & drop an .apk file to analyze</div>
-          <div class="drop-zone-sub">Parsed locally using backward program slicing</div>
-        </div>
-      </div>
-
-      <!-- Step-by-Step Progress -->
-      <div class="progress-box" id="progress-box">
-        <div class="progress-title">Analysis Pipeline Progress</div>
-        <div class="step-list" id="step-list"></div>
-      </div>
-    </div>
-
-    <!-- Analysis Verdict Card -->
-    <div class="card verdict-card" id="verdict-card">
-      <div class="verdict-banner" id="verdict-banner">
-        <div class="verdict-badge" id="verdict-badge">MALWARE DETECTED</div>
-        <div class="confidence-badge" id="confidence-badge">CONFIDENCE: HIGH</div>
-      </div>
-
-      <div class="field-title">Application Purpose</div>
-      <div class="purpose-text" id="purpose-box">Loading purpose...</div>
-
-      <div class="field-title">Key Indicators & Findings</div>
-      <ul class="findings-list" id="findings-list"></ul>
-
-      <details>
-        <summary>Technical Analysis & Evidence</summary>
-        <div class="details-body" id="analysis-block">No analysis text available.</div>
-      </details>
-
-      <!-- Follow-up Q&A -->
-      <div class="qa-box">
-        <div class="field-title">Ask Questions About This APK</div>
-        <div class="qa-feed" id="qa-feed"></div>
-        <div class="input-group">
-          <input type="text" id="qa-input" class="text-input" placeholder="Ask a question about this verdict...">
-          <button class="btn" id="qa-send-btn" onclick="sendQuestion()">Ask</button>
+        <div class="sample-grid" id="sample-grid">
+          <!-- Populated dynamically -->
         </div>
       </div>
     </div>
-
   </div>
 
-  <footer>
-    LAMD Framework · Static Slicing + LLM Code Reasoning
-  </footer>
+  <!-- Bottom Input Bar (ChatGPT Style) -->
+  <div class="chatbar-container">
+    <div class="chatbar-box">
+      <div class="chatbar-input-row">
+        <textarea id="msg-input" rows="1" placeholder="Paste a SHA-256 hash or ask a question..." oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="send-btn" onclick="handleSend()" title="Send">↑</button>
+      </div>
+
+      <div class="chatbar-footer">
+        <div class="chatbar-tools">
+          <input type="file" id="apk-file-input" accept=".apk" style="display:none;" onchange="handleFileUpload(this.files[0])">
+          <button class="upload-btn" onclick="document.getElementById('apk-file-input').click()" title="Upload APK file">📎 Upload APK</button>
+          
+          <div class="model-select-wrapper">
+            <span>Model:</span>
+            <select id="backend-select">
+              <option value="gemini">Gemini 2.5 Flash</option>
+              <option value="groq">Groq (Llama 3.3)</option>
+              <option value="gguf">Local Dual-GPU (32B)</option>
+            </select>
+          </div>
+        </div>
+        <span id="upload-status" style="font-size:11.5px; color:var(--text-muted);"></span>
+      </div>
+    </div>
+    <div class="chatbar-disclaimer">
+      LAMD analyzes Android APK bytecode using backward program slicing & LLMs.
+    </div>
+  </div>
 
   <script>
     let currentSha = null;
     let activeJobTimer = null;
 
+    // Theme Switcher
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('lamd-theme', theme);
+      const isDark = theme === 'dark';
+      document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+      document.getElementById('theme-text').innerText = isDark ? 'Light' : 'Dark';
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      setTheme(current === 'light' ? 'dark' : 'light');
+    }
+
+    // Auto-resize textarea
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+    }
+
+    // Load sample cards
     async function loadSamples() {
       try {
         const resp = await fetch('/api/samples');
         const data = await resp.json();
-        const container = document.getElementById('sample-pills');
-        container.innerHTML = '';
+        const grid = document.getElementById('sample-grid');
+        grid.innerHTML = '';
 
-        data.malware.forEach(item => {
-          const pill = document.createElement('div');
-          pill.className = 'pill';
-          pill.innerText = `Malware (${item.family}): ${item.sha256.substring(0, 8)}...`;
-          pill.onclick = () => {
-            document.getElementById('hash-input').value = item.sha256;
-            startHashAnalysis();
-          };
-          container.appendChild(pill);
+        data.malware.slice(0, 2).forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'sample-card';
+          card.innerHTML = `
+            <div class="sample-card-title">🚨 Malware: ${item.family}</div>
+            <div class="sample-card-desc">${item.sha256.substring(0, 16)}...</div>
+          `;
+          card.onclick = () => submitHash(item.sha256);
+          grid.appendChild(card);
         });
 
-        data.benign.forEach(item => {
-          const pill = document.createElement('div');
-          pill.className = 'pill';
-          pill.innerText = `Benign: ${item.sha256.substring(0, 8)}...`;
-          pill.onclick = () => {
-            document.getElementById('hash-input').value = item.sha256;
-            startHashAnalysis();
-          };
-          container.appendChild(pill);
+        data.benign.slice(0, 2).forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'sample-card';
+          card.innerHTML = `
+            <div class="sample-card-title">✅ Benign: ${item.family}</div>
+            <div class="sample-card-desc">${item.sha256.substring(0, 16)}...</div>
+          `;
+          card.onclick = () => submitHash(item.sha256);
+          grid.appendChild(card);
         });
       } catch (e) {
         console.error('Failed to load samples:', e);
       }
     }
 
-    function switchTab(mode) {
-      document.getElementById('tab-hash').classList.toggle('active', mode === 'hash');
-      document.getElementById('tab-file').classList.toggle('active', mode === 'file');
-      document.getElementById('hash-mode').style.display = mode === 'hash' ? 'block' : 'none';
-      document.getElementById('file-mode').style.display = mode === 'file' ? 'block' : 'none';
+    function removeWelcome() {
+      const w = document.getElementById('welcome-screen');
+      if (w) w.remove();
     }
 
-    const dropZone = document.getElementById('drop-zone');
-    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-    dropZone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropZone.classList.remove('dragover');
-      if (e.dataTransfer.files.length) handleFileSelected(e.dataTransfer.files[0]);
-    });
-
-    async function handleFileSelected(file) {
-      if (!file || !file.name.endsWith('.apk')) {
-        alert('Please select a valid Android .apk file.');
-        return;
-      }
-      document.getElementById('drop-zone-text').innerText = `Uploading: ${file.name} (${Math.round(file.size/1024)} KB)...`;
-      
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('backend', document.getElementById('backend-select').value);
-
-      try {
-        showProgress();
-        const resp = await fetch('/api/upload', { method: 'POST', body: formData });
-        const data = await resp.json();
-
-        if (data.status === 'cached') {
-          hideProgress();
-          renderVerdict(data.result);
-        } else if (data.job_id) {
-          currentSha = data.sha256;
-          pollJob(data.job_id);
-        } else {
-          alert(data.error || 'Upload failed.');
-          hideProgress();
-        }
-      } catch (e) {
-        alert('Error uploading file: ' + e);
-        hideProgress();
-      }
+    function appendUserMessage(text) {
+      removeWelcome();
+      const inner = document.getElementById('chat-inner');
+      const row = document.createElement('div');
+      row.className = 'msg-row user';
+      row.innerHTML = `<div class="msg-bubble">${escapeHtml(text)}</div>`;
+      inner.appendChild(row);
+      scrollToBottom();
     }
 
-    async function startHashAnalysis() {
-      const sha = document.getElementById('hash-input').value.trim();
-      if (!sha || sha.length !== 64) {
-        alert('Please enter a valid 64-character SHA-256 hash.');
-        return;
-      }
+    function appendBotMessage(initialHtml = '') {
+      removeWelcome();
+      const inner = document.getElementById('chat-inner');
+      const row = document.createElement('div');
+      row.className = 'msg-row bot';
+      const bubble = document.createElement('div');
+      bubble.className = 'msg-bubble';
+      bubble.innerHTML = initialHtml;
+      row.appendChild(bubble);
+      inner.appendChild(row);
+      scrollToBottom();
+      return bubble;
+    }
 
+    function scrollToBottom() {
+      const c = document.getElementById('chat-container');
+      c.scrollTop = c.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.innerText = text;
+      return div.innerHTML;
+    }
+
+    // Submit Hash
+    async function submitHash(sha) {
+      appendUserMessage(`Analyze SHA-256: ${sha}`);
       currentSha = sha;
       const backend = document.getElementById('backend-select').value;
-      showProgress();
-      document.getElementById('verdict-card').style.display = 'none';
+      const botBubble = appendBotMessage('<div class="step-tracker">Checking database & local CFG caches...</div>');
 
       try {
         const resp = await fetch('/api/analyze', {
@@ -662,31 +633,90 @@
         const data = await resp.json();
 
         if (data.status === 'cached') {
-          hideProgress();
-          renderVerdict(data.result);
+          renderVerdictInBubble(botBubble, data.result, "Loaded from cache (0 LLM tokens wasted)");
         } else if (data.job_id) {
-          pollJob(data.job_id);
+          pollJobProgress(data.job_id, botBubble);
         } else {
-          alert(data.error || 'Analysis request failed.');
-          hideProgress();
+          botBubble.innerHTML = `<span style="color:var(--danger-text);">Error: ${data.error || 'Request failed'}</span>`;
         }
       } catch (e) {
-        alert('Error initiating analysis: ' + e);
-        hideProgress();
+        botBubble.innerHTML = `<span style="color:var(--danger-text);">Network error: ${e}</span>`;
       }
     }
 
-    function showProgress() {
-      document.getElementById('progress-box').style.display = 'block';
-      document.getElementById('analyze-btn').disabled = true;
+    // Handle File Upload
+    async function handleFileUpload(file) {
+      if (!file || !file.name.endsWith('.apk')) {
+        alert('Please select a valid Android .apk file.');
+        return;
+      }
+      appendUserMessage(`Uploaded APK: ${file.name} (${Math.round(file.size/1024)} KB)`);
+      const backend = document.getElementById('backend-select').value;
+      const botBubble = appendBotMessage('<div class="step-tracker">Uploading APK to analyzer...</div>');
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('backend', backend);
+
+      try {
+        const resp = await fetch('/api/upload', { method: 'POST', body: formData });
+        const data = await resp.json();
+
+        if (data.status === 'cached') {
+          currentSha = data.result.sha256;
+          renderVerdictInBubble(botBubble, data.result, "Previously analyzed APK");
+        } else if (data.job_id) {
+          currentSha = data.sha256;
+          pollJobProgress(data.job_id, botBubble);
+        } else {
+          botBubble.innerHTML = `<span style="color:var(--danger-text);">Upload failed: ${data.error || 'Unknown error'}</span>`;
+        }
+      } catch (e) {
+        botBubble.innerHTML = `<span style="color:var(--danger-text);">Error: ${e}</span>`;
+      }
     }
 
-    function hideProgress() {
-      document.getElementById('progress-box').style.display = 'none';
-      document.getElementById('analyze-btn').disabled = false;
+    // Handle General Send (Hash or Follow-up Q&A)
+    async function handleSend() {
+      const input = document.getElementById('msg-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      input.style.height = 'auto';
+
+      // Check if text contains a 64-char hex SHA-256
+      const shaMatch = text.match(/[a-fA-F0-9]{64}/);
+      if (shaMatch) {
+        submitHash(shaMatch[0].toLowerCase());
+        return;
+      }
+
+      // Otherwise, it's a follow-up question
+      appendUserMessage(text);
+      const botBubble = appendBotMessage('Thinking...');
+      const backend = document.getElementById('backend-select').value;
+
+      try {
+        const resp = await fetch('/api/explain', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            sha256: currentSha || '',
+            question: text,
+            backend: backend
+          })
+        });
+        const data = await resp.json();
+        botBubble.innerText = data.reply || 'No response produced.';
+      } catch (e) {
+        botBubble.innerHTML = `<span style="color:var(--danger-text);">Error: ${e}</span>`;
+      }
+      scrollToBottom();
     }
 
-    function pollJob(jobId) {
+    // Poll Job Progress
+    function pollJobProgress(jobId, bubbleEl) {
       if (activeJobTimer) clearInterval(activeJobTimer);
 
       activeJobTimer = setInterval(async () => {
@@ -694,16 +724,32 @@
           const resp = await fetch(`/api/status/${jobId}`);
           const job = await resp.json();
 
-          renderSteps(job.steps);
+          // Render live steps inside bubble
+          let stepsHtml = '<div class="step-tracker">';
+          (job.steps || []).forEach((step) => {
+            let icon = '○';
+            if (step.status === 'done') icon = '✓';
+            if (step.status === 'running') icon = '●';
+            if (step.status === 'error') icon = '✕';
+
+            stepsHtml += `
+              <div class="step-line ${step.status}">
+                <span class="step-status-icon">${icon}</span>
+                <span class="step-name">${step.name}</span>
+                <span class="step-detail">${step.detail || ''}</span>
+              </div>
+            `;
+          });
+          stepsHtml += '</div>';
+          bubbleEl.innerHTML = stepsHtml;
+          scrollToBottom();
 
           if (job.status === 'done') {
             clearInterval(activeJobTimer);
-            hideProgress();
-            renderVerdict(job.result);
+            renderVerdictInBubble(bubbleEl, job.result);
           } else if (job.status === 'error') {
             clearInterval(activeJobTimer);
-            hideProgress();
-            alert('Analysis error: ' + job.error);
+            bubbleEl.innerHTML += `<div style="color:var(--danger-text); margin-top:8px;">✕ Analysis failed: ${escapeHtml(job.error)}</div>`;
           }
         } catch (e) {
           console.error('Polling error:', e);
@@ -711,103 +757,52 @@
       }, 1000);
     }
 
-    function renderSteps(steps) {
-      const container = document.getElementById('step-list');
-      container.innerHTML = '';
-
-      steps.forEach((step, idx) => {
-        const item = document.createElement('div');
-        item.className = `step-item ${step.status}`;
-
-        let icon = idx + 1;
-        if (step.status === 'done') icon = '✓';
-        if (step.status === 'running') icon = '●';
-        if (step.status === 'error') icon = '✕';
-
-        item.innerHTML = `
-          <div class="step-icon">${icon}</div>
-          <div>
-            <div class="step-name">${step.name}</div>
-            <div class="step-detail">${step.detail || ''}</div>
-          </div>
-        `;
-        container.appendChild(item);
-      });
-    }
-
-    function renderVerdict(res) {
-      const card = document.getElementById('verdict-card');
-      const banner = document.getElementById('verdict-banner');
-      const badge = document.getElementById('verdict-badge');
-      const conf = document.getElementById('confidence-badge');
-
+    function renderVerdictInBubble(bubbleEl, res, note = '') {
       const isMalware = (res.prediction || '').toUpperCase() === 'MALWARE';
-      banner.className = `verdict-banner ${isMalware ? 'malware' : 'benign'}`;
-      badge.innerText = isMalware ? 'MALWARE DETECTED' : 'BENIGN APPLICATION';
-      conf.innerText = `CONFIDENCE: ${(res.confidence || 'HIGH').toUpperCase()}`;
+      const statusClass = isMalware ? 'malware' : 'benign';
+      const tagText = isMalware ? 'MALWARE DETECTED' : 'BENIGN APPLICATION';
+      const conf = (res.confidence || 'HIGH').toUpperCase();
 
-      document.getElementById('purpose-box').innerText = res.app_purpose || 'Standard application functionality detected.';
-
-      const list = document.getElementById('findings-list');
-      list.innerHTML = '';
+      let findingsHtml = '';
       (res.key_findings || []).forEach(f => {
-        const li = document.createElement('li');
-        li.innerText = f;
-        list.appendChild(li);
+        findingsHtml += `<li>${escapeHtml(f)}</li>`;
       });
 
-      document.getElementById('analysis-block').innerText = res.evidence || res.analysis || 'No detailed analysis.';
+      let noteHtml = note ? `<div style="font-size:11.5px; color:var(--text-muted); margin-bottom:8px;">${note}</div>` : '';
 
-      document.getElementById('qa-feed').innerHTML = '';
-      card.style.display = 'block';
-      card.scrollIntoView({ behavior: 'smooth' });
+      bubbleEl.innerHTML = `
+        ${noteHtml}
+        <div class="verdict-box">
+          <div class="verdict-header ${statusClass}">
+            <span>${tagText}</span>
+            <span class="confidence-tag">CONFIDENCE: ${conf}</span>
+          </div>
+        </div>
+
+        <div class="verdict-section-title">Application Purpose</div>
+        <div class="verdict-purpose">${escapeHtml(res.app_purpose || 'Standard application behavior.')}</div>
+
+        ${findingsHtml ? `<div class="verdict-section-title">Key Indicators & Findings</div><ul class="findings-list">${findingsHtml}</ul>` : ''}
+
+        <details>
+          <summary>Technical Analysis & Evidence</summary>
+          <div class="details-text">${escapeHtml(res.evidence || res.analysis || 'No detailed analysis text.')}</div>
+        </details>
+      `;
+      scrollToBottom();
     }
 
-    async function sendQuestion() {
-      const input = document.getElementById('qa-input');
-      const question = input.value.trim();
-      if (!question || !currentSha) return;
-
-      const feed = document.getElementById('qa-feed');
-
-      const uMsg = document.createElement('div');
-      uMsg.className = 'qa-msg user';
-      uMsg.innerText = question;
-      feed.appendChild(uMsg);
-      input.value = '';
-
-      const bMsg = document.createElement('div');
-      bMsg.className = 'qa-msg bot';
-      bMsg.innerText = 'Analyzing...';
-      feed.appendChild(bMsg);
-      feed.scrollTop = feed.scrollHeight;
-
-      try {
-        const resp = await fetch('/api/explain', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            sha256: currentSha,
-            question: question,
-            backend: document.getElementById('backend-select').value
-          })
-        });
-        const data = await resp.json();
-        bMsg.innerText = data.reply;
-      } catch (e) {
-        bMsg.innerText = 'Error: ' + e;
+    // Keyboard support: Enter to send, Shift+Enter for newline
+    document.getElementById('msg-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSend();
       }
-      feed.scrollTop = feed.scrollHeight;
-    }
-
-    document.getElementById('qa-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') sendQuestion();
     });
 
-    document.getElementById('hash-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') startHashAnalysis();
-    });
-
+    // Init theme from localStorage or system preference
+    const savedTheme = localStorage.getItem('lamd-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
     loadSamples();
   </script>
 </body>
