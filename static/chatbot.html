@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAMD — APK Malware Analysis</title>
+  <title>Malware Detector</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,45 +11,45 @@
     :root[data-theme="light"] {
       --bg: #ffffff;
       --surface: #f9f9fb;
-      --surface-2: #f1f3f5;
+      --surface-2: #f3f4f6;
       --border: #e5e7eb;
-      --border-focus: #3b82f6;
-      --text: #0d0d0d;
+      --border-focus: #2563eb;
+      --text: #111827;
       --text-muted: #6b7280;
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
       --chatbar-bg: #f4f4f5;
-      --msg-user: #f4f4f5;
+      --msg-user: #f3f4f6;
       --msg-bot: #ffffff;
       --danger-bg: #fef2f2;
-      --danger-text: #b91c1c;
+      --danger-text: #991b1b;
       --danger-border: #fecaca;
       --success-bg: #f0fdf4;
-      --success-text: #15803d;
+      --success-text: #166534;
       --success-border: #bbf7d0;
-      --step-bg: #f8fafc;
+      --step-bg: #f9fafb;
     }
 
     :root[data-theme="dark"] {
-      --bg: #212121;
-      --surface: #2f2f2f;
-      --surface-2: #383838;
-      --border: #424242;
-      --border-focus: #60a5fa;
-      --text: #ececec;
-      --text-muted: #b4b4b4;
+      --bg: #18181b;
+      --surface: #27272a;
+      --surface-2: #3f3f46;
+      --border: #3f3f46;
+      --border-focus: #3b82f6;
+      --text: #f4f4f5;
+      --text-muted: #a1a1aa;
       --primary: #3b82f6;
       --primary-hover: #60a5fa;
-      --chatbar-bg: #2f2f2f;
-      --msg-user: #2f2f2f;
-      --msg-bot: #212121;
+      --chatbar-bg: #27272a;
+      --msg-user: #27272a;
+      --msg-bot: #18181b;
       --danger-bg: #451a1a;
       --danger-text: #f87171;
       --danger-border: #7f1d1d;
       --success-bg: #143521;
       --success-text: #4ade80;
       --success-border: #166534;
-      --step-bg: #2a2a2a;
+      --step-bg: #202024;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -61,12 +61,11 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      transition: background 0.2s, color 0.2s;
     }
 
     /* Top Bar */
     header {
-      padding: 12px 24px;
+      padding: 14px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -77,33 +76,30 @@
     .header-title {
       font-weight: 600;
       font-size: 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .header-title span.badge {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: var(--surface-2);
-      color: var(--text-muted);
+      color: var(--text);
+      letter-spacing: -0.2px;
     }
     .theme-toggle-btn {
       background: transparent;
       border: 1px solid var(--border);
-      color: var(--text);
-      padding: 6px 10px;
+      color: var(--text-muted);
+      width: 32px;
+      height: 32px;
       border-radius: 6px;
-      font-size: 13px;
-      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: background 0.15s;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
     }
     .theme-toggle-btn:hover {
       background: var(--surface);
+      color: var(--text);
+    }
+    .theme-toggle-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
 
     /* Chat Messages Stream */
@@ -113,7 +109,6 @@
       padding: 24px 16px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
       scroll-behavior: smooth;
     }
     .chat-inner {
@@ -122,65 +117,17 @@
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
+      min-height: 100%;
     }
 
-    /* Welcome Empty State */
-    .welcome-screen {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+    /* Minimal Empty State */
+    .empty-state {
       margin: auto 0;
       text-align: center;
-      padding: 40px 16px;
-    }
-    .welcome-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-    }
-    .welcome-title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .welcome-sub {
-      font-size: 13.5px;
       color: var(--text-muted);
-      max-width: 460px;
-      margin-bottom: 24px;
-      line-height: 1.5;
-    }
-    .sample-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 8px;
-      width: 100%;
-      max-width: 600px;
-    }
-    .sample-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 14px;
-      text-align: left;
-      font-size: 12.5px;
-      cursor: pointer;
-      transition: border-color 0.15s, background 0.15s;
-    }
-    .sample-card:hover {
-      border-color: var(--primary);
-      background: var(--surface-2);
-    }
-    .sample-card-title {
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 2px;
-    }
-    .sample-card-desc {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      padding: 40px 0;
     }
 
     /* Message Bubbles */
@@ -199,7 +146,7 @@
     .msg-bubble {
       max-width: 85%;
       padding: 12px 16px;
-      border-radius: 12px;
+      border-radius: 10px;
       font-size: 14px;
       line-height: 1.6;
       word-wrap: break-word;
@@ -207,22 +154,20 @@
     .msg-row.user .msg-bubble {
       background: var(--msg-user);
       color: var(--text);
-      border-bottom-right-radius: 4px;
     }
     .msg-row.bot .msg-bubble {
       background: var(--msg-bot);
       color: var(--text);
       border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
       width: 100%;
       max-width: 100%;
     }
 
-    /* Live Procedural Steps */
+    /* Live Procedural Step Tracker */
     .step-tracker {
       background: var(--step-bg);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 6px;
       padding: 12px 14px;
       margin-bottom: 12px;
       display: flex;
@@ -236,22 +181,21 @@
       gap: 8px;
     }
     .step-status-icon {
-      font-size: 12px;
-      font-weight: bold;
+      font-size: 11px;
       width: 16px;
       text-align: center;
     }
-    .step-line.done .step-status-icon { color: var(--success-text); }
-    .step-line.running .step-status-icon { color: var(--primary); }
+    .step-line.done .step-status-icon { color: var(--success-text); font-weight: bold; }
+    .step-line.running .step-status-icon { color: var(--primary); font-weight: bold; }
     .step-line.pending .step-status-icon { color: var(--text-muted); }
     .step-name { font-weight: 500; }
     .step-detail { color: var(--text-muted); font-size: 11.5px; font-family: 'JetBrains Mono', monospace; margin-left: auto; }
 
-    /* Verdict Card Inside Message */
+    /* Verdict Card */
     .verdict-box {
-      border-radius: 8px;
+      border-radius: 6px;
       overflow: hidden;
-      margin-top: 6px;
+      margin-bottom: 12px;
     }
     .verdict-header {
       padding: 10px 14px;
@@ -259,7 +203,7 @@
       align-items: center;
       justify-content: space-between;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13.5px;
     }
     .verdict-header.malware {
       background: var(--danger-bg);
@@ -272,20 +216,20 @@
       border: 1px solid var(--success-border);
     }
     .confidence-tag {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       padding: 2px 6px;
       border-radius: 4px;
-      background: rgba(0, 0, 0, 0.06);
+      background: rgba(0, 0, 0, 0.05);
     }
 
-    .verdict-section-title {
+    .verdict-title {
       font-size: 11.5px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
-      margin-top: 14px;
+      margin-top: 12px;
       margin-bottom: 6px;
     }
     .verdict-purpose {
@@ -294,7 +238,6 @@
       border: 1px solid var(--border);
       padding: 10px 12px;
       border-radius: 6px;
-      line-height: 1.5;
     }
     .findings-list {
       list-style: none;
@@ -342,7 +285,7 @@
       color: var(--text-muted);
     }
 
-    /* Fixed Bottom Chatbar (ChatGPT Style) */
+    /* Fixed Bottom Chatbar */
     .chatbar-container {
       padding: 12px 16px 20px;
       background: var(--bg);
@@ -353,13 +296,11 @@
       margin: 0 auto;
       background: var(--chatbar-bg);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 10px 14px;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-      transition: border-color 0.15s;
     }
     .chatbar-box:focus-within {
       border-color: var(--border-focus);
@@ -402,10 +343,10 @@
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 16px;
+      font-size: 12.5px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 4px;
       padding: 4px 6px;
       border-radius: 4px;
       transition: background 0.15s, color 0.15s;
@@ -436,13 +377,15 @@
       background: var(--primary);
       color: white;
       border: none;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      border-radius: 6px;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
       transition: background 0.15s, opacity 0.15s;
       flex-shrink: 0;
     }
@@ -450,46 +393,29 @@
       opacity: 0.4;
       cursor: not-allowed;
     }
-    .chatbar-disclaimer {
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
   </style>
 </head>
 <body>
 
   <!-- Top Bar -->
   <header>
-    <div class="header-title">
-      LAMD Analyst
-      <span class="badge">Malware Detection</span>
-    </div>
-    <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()">
-      <span id="theme-icon">🌙</span>
-      <span id="theme-text">Dark</span>
+    <div class="header-title">Malware Detector</div>
+    <button class="theme-toggle-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle Theme">
+      <svg id="theme-icon-sun" viewBox="0 0 24 24" style="display:none;"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+      <svg id="theme-icon-moon" viewBox="0 0 24 24"><path d="M12.3 2a10 10 0 0 0-.19 20 10 10 0 0 0 8.39-4.52.75.75 0 0 0-.8-1.1A8.5 8.5 0 0 1 11.5 3.5a8.39 8.39 0 0 1 1.9-.22.75.75 0 0 0 .65-1.12A10 10 0 0 0 12.3 2z"/></svg>
     </button>
   </header>
 
   <!-- Messages Stream -->
   <div id="chat-container">
     <div class="chat-inner" id="chat-inner">
-      <!-- Initial Welcome State -->
-      <div class="welcome-screen" id="welcome-screen">
-        <div class="welcome-icon">🛡️</div>
-        <div class="welcome-title">Android APK Malware Analysis</div>
-        <div class="welcome-sub">
-          Paste a SHA-256 hash, upload an APK file, or select a sample below to inspect code behavior and detect threats.
-        </div>
-        <div class="sample-grid" id="sample-grid">
-          <!-- Populated dynamically -->
-        </div>
+      <div class="empty-state" id="empty-state">
+        Paste a SHA-256 hash or upload an APK file to analyze.
       </div>
     </div>
   </div>
 
-  <!-- Bottom Input Bar (ChatGPT Style) -->
+  <!-- Bottom Input Bar -->
   <div class="chatbar-container">
     <div class="chatbar-box">
       <div class="chatbar-input-row">
@@ -500,7 +426,7 @@
       <div class="chatbar-footer">
         <div class="chatbar-tools">
           <input type="file" id="apk-file-input" accept=".apk" style="display:none;" onchange="handleFileUpload(this.files[0])">
-          <button class="upload-btn" onclick="document.getElementById('apk-file-input').click()" title="Upload APK file">📎 Upload APK</button>
+          <button class="upload-btn" onclick="document.getElementById('apk-file-input').click()">📎 Upload APK</button>
           
           <div class="model-select-wrapper">
             <span>Model:</span>
@@ -511,11 +437,7 @@
             </select>
           </div>
         </div>
-        <span id="upload-status" style="font-size:11.5px; color:var(--text-muted);"></span>
       </div>
-    </div>
-    <div class="chatbar-disclaimer">
-      LAMD analyzes Android APK bytecode using backward program slicing & LLMs.
     </div>
   </div>
 
@@ -528,8 +450,8 @@
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('lamd-theme', theme);
       const isDark = theme === 'dark';
-      document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
-      document.getElementById('theme-text').innerText = isDark ? 'Light' : 'Dark';
+      document.getElementById('theme-icon-sun').style.display = isDark ? 'block' : 'none';
+      document.getElementById('theme-icon-moon').style.display = isDark ? 'none' : 'block';
     }
 
     function toggleTheme() {
@@ -543,47 +465,13 @@
       el.style.height = Math.min(el.scrollHeight, 140) + 'px';
     }
 
-    // Load sample cards
-    async function loadSamples() {
-      try {
-        const resp = await fetch('/api/samples');
-        const data = await resp.json();
-        const grid = document.getElementById('sample-grid');
-        grid.innerHTML = '';
-
-        data.malware.slice(0, 2).forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'sample-card';
-          card.innerHTML = `
-            <div class="sample-card-title">🚨 Malware: ${item.family}</div>
-            <div class="sample-card-desc">${item.sha256.substring(0, 16)}...</div>
-          `;
-          card.onclick = () => submitHash(item.sha256);
-          grid.appendChild(card);
-        });
-
-        data.benign.slice(0, 2).forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'sample-card';
-          card.innerHTML = `
-            <div class="sample-card-title">✅ Benign: ${item.family}</div>
-            <div class="sample-card-desc">${item.sha256.substring(0, 16)}...</div>
-          `;
-          card.onclick = () => submitHash(item.sha256);
-          grid.appendChild(card);
-        });
-      } catch (e) {
-        console.error('Failed to load samples:', e);
-      }
-    }
-
-    function removeWelcome() {
-      const w = document.getElementById('welcome-screen');
-      if (w) w.remove();
+    function clearEmptyState() {
+      const empty = document.getElementById('empty-state');
+      if (empty) empty.remove();
     }
 
     function appendUserMessage(text) {
-      removeWelcome();
+      clearEmptyState();
       const inner = document.getElementById('chat-inner');
       const row = document.createElement('div');
       row.className = 'msg-row user';
@@ -593,7 +481,7 @@
     }
 
     function appendBotMessage(initialHtml = '') {
-      removeWelcome();
+      clearEmptyState();
       const inner = document.getElementById('chat-inner');
       const row = document.createElement('div');
       row.className = 'msg-row bot';
@@ -637,7 +525,7 @@
         } else if (data.job_id) {
           pollJobProgress(data.job_id, botBubble);
         } else {
-          botBubble.innerHTML = `<span style="color:var(--danger-text);">Error: ${data.error || 'Request failed'}</span>`;
+          botBubble.innerHTML = `<span style="color:var(--danger-text);">${data.error || 'Please provide a valid SHA-256 hash or upload an APK file to analyze.'}</span>`;
         }
       } catch (e) {
         botBubble.innerHTML = `<span style="color:var(--danger-text);">Network error: ${e}</span>`;
@@ -669,14 +557,14 @@
           currentSha = data.sha256;
           pollJobProgress(data.job_id, botBubble);
         } else {
-          botBubble.innerHTML = `<span style="color:var(--danger-text);">Upload failed: ${data.error || 'Unknown error'}</span>`;
+          botBubble.innerHTML = `<span style="color:var(--danger-text);">${data.error || 'Upload failed.'}</span>`;
         }
       } catch (e) {
         botBubble.innerHTML = `<span style="color:var(--danger-text);">Error: ${e}</span>`;
       }
     }
 
-    // Handle General Send (Hash or Follow-up Q&A)
+    // Handle General Send
     async function handleSend() {
       const input = document.getElementById('msg-input');
       const text = input.value.trim();
@@ -692,9 +580,16 @@
         return;
       }
 
-      // Otherwise, it's a follow-up question
+      // If no active SHA has been analyzed yet, remind user to provide SHA or APK
+      if (!currentSha) {
+        appendUserMessage(text);
+        appendBotMessage('Please provide a valid SHA-256 hash or upload an APK file to analyze.');
+        return;
+      }
+
+      // Otherwise, it's a follow-up question about the current analyzed APK
       appendUserMessage(text);
-      const botBubble = appendBotMessage('Thinking...');
+      const botBubble = appendBotMessage('Analyzing...');
       const backend = document.getElementById('backend-select').value;
 
       try {
@@ -702,7 +597,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            sha256: currentSha || '',
+            sha256: currentSha,
             question: text,
             backend: backend
           })
@@ -724,7 +619,6 @@
           const resp = await fetch(`/api/status/${jobId}`);
           const job = await resp.json();
 
-          // Render live steps inside bubble
           let stepsHtml = '<div class="step-tracker">';
           (job.steps || []).forEach((step) => {
             let icon = '○';
@@ -779,10 +673,10 @@
           </div>
         </div>
 
-        <div class="verdict-section-title">Application Purpose</div>
+        <div class="verdict-title">Application Purpose</div>
         <div class="verdict-purpose">${escapeHtml(res.app_purpose || 'Standard application behavior.')}</div>
 
-        ${findingsHtml ? `<div class="verdict-section-title">Key Indicators & Findings</div><ul class="findings-list">${findingsHtml}</ul>` : ''}
+        ${findingsHtml ? `<div class="verdict-title">Key Indicators & Findings</div><ul class="findings-list">${findingsHtml}</ul>` : ''}
 
         <details>
           <summary>Technical Analysis & Evidence</summary>
@@ -800,10 +694,9 @@
       }
     });
 
-    // Init theme from localStorage or system preference
+    // Init theme
     const savedTheme = localStorage.getItem('lamd-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(savedTheme);
-    loadSamples();
   </script>
 </body>
 </html>

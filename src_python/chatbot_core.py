@@ -108,10 +108,7 @@ def get_llm_backend(name: str = "gemini"):
 
 _SHA256_RE = re.compile(r"\b[a-fA-F0-9]{64}\b")
 
-_OFFTOPIC_REFUSAL = (
-    "I am the **LAMD APK Malware Analyst**, specialized strictly in Android binary analysis. "
-    "Please provide a SHA-256 hash or upload an `.apk` file to analyze, or ask about past detection findings."
-)
+_OFFTOPIC_REFUSAL = "Please provide a valid SHA-256 hash or upload an APK file to analyze."
 
 EXPLAIN_SYSTEM_PROMPT = """\
 You are an expert Android malware analyst explaining static binary analysis findings from the LAMD detector.
