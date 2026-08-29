@@ -149,22 +149,7 @@ public final class SuspiciousApiList {
     // ── 3. Declaring-class name fragments for context matching ─────────────────
 
     private static final Set<String> SENSITIVE_CLASS_FRAGMENTS = new HashSet<>(Arrays.asList(
-            "TelephonyManager",
-            "LocationManager",
-            "SmsManager",
-            "NetworkInfo",
-            "ConnectivityManager",
-            "WifiManager",
-            "WifiInfo",
-            "Runtime",
-            "Cipher",
-            "ContentResolver",
-            "PackageManager",
-            "MediaRecorder",
-            "Camera",
-            "CameraManager",
-            "Environment",
-            "Context",         // openFileOutput, openFileInput
+3        // openFileOutput, openFileInput
             "ClipboardManager" // getPrimaryClip
     ));
 

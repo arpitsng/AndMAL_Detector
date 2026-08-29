@@ -1,189 +1,129 @@
-# LAMD Android Malware Detection — Commands Guide
+# 📖 AndMAL_Detector — CLI Command Reference
 
-This document lists all execution commands for every stage of the LAMD pipeline, including data preparation, CFG extraction, RAG indexing, LLM inference, and evaluation.
+This guide contains the complete list of execution commands for each phase of the Android Malware Detection pipeline.
 
 ---
 
-## 1. Environment & Setup
-
-Make sure dependencies are installed and API keys are set in `.env`:
+## 1. Environment Setup
 
 ```bash
+# Clone the repository
+git clone https://github.com/arpitsng/AndMAL_Detector.git
+cd AndMAL_Detector
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### `.env` File Template:
-```ini
-# AndroZoo API Key (for downloading APKs)
-ANDROZOO_API_KEY=your_androzoo_key_here
+---
 
-# Google Gemini (Supports up to 3 rotating API keys for high throughput)
-GEMINI_API_KEY1=your_gemini_key_1
-GEMINI_API_KEY2=your_gemini_key_2
-GEMINI_API_KEY3=your_gemini_key_3
-GEMINI_MODEL=gemini-2.5-flash
+## 2. Phase 1: APK Download & Slicing (Static Analysis)
 
-# OpenAI / Groq / OpenRouter (Optional alternative backends)
-OPENAI_API_KEY=sk-...
-GROQ_API_KEY=gsk-...
-GROQ_MODEL=llama-3.1-8b-instant
-OPENROUTER_API_KEY=sk-or-...
+Downloads APKs from AndroZoo, runs the Soot Java Slicer to trace suspicious API calls, and outputs backward-sliced Jimple Control Flow Graphs (CFGs).
 
-# Qdrant Vector Database (For RAG few-shot retrieval)
-QDRANT_URL=https://your-cluster.aws.cloud.qdrant.io
-QDRANT_API_KEY=your_qdrant_api_key
+```bash
+# 1. Download sample APKs from AndroZoo
+python src_python/1_download_apk.py --limit 10
+
+# 2. Extract backward-sliced CFGs for a dataset
+python src_python/2_extract_cfg.py --csv data/test_1.csv --limit 20
+
+# 3. Process with custom offset and limit
+python src_python/2_extract_cfg.py --csv data/train.csv --offset 100 --limit 50
 ```
 
 ---
 
-## 2. Phase 1 — APK Download & CFG Extraction
+## 3. Phase 2: Vector Store Indexing (RAG Knowledge Base)
 
-Extracts backward-sliced Control Flow Graphs (CFGs) for suspicious APIs using the Soot Java Slicer. Automatically downloads the APK, slices it, saves the CFG to `extracted_cfgs/{sha256}_cfg.txt`, and deletes the APK to save disk space.
-
-```bash
-# Run on full dataset (auto-skips already extracted CFGs)
-python src_python/2_extract_cfg.py
-
-# Run on a custom CSV (e.g. split partition)
-python src_python/2_extract_cfg.py --csv data/split_laptop1.csv
-
-# Process a slice with offset and limit (e.g. samples 2000 to 2050)
-python src_python/2_extract_cfg.py --csv data/train.csv --offset 2000 --limit 50
-```
-
----
-
-## 3. Phase 2 — RAG Knowledge Base Construction (v2 Hybrid)
-
-Builds a function-level Qdrant vector database using **hybrid embeddings** (384-dim semantic + 25-dim graph-structural = 409-dim vectors). Each function slice gets its own vector instead of one per APK, with stratified retrieval (top-3 MALWARE + top-3 BENIGN matches) at query time.
+Builds hybrid embeddings (semantic code tokens + graph structure) and indexes them into Qdrant Cloud or a local SQLite vector database for few-shot retrieval.
 
 ```bash
-# Build / rebuild the Qdrant RAG vector database (deletes old, creates new)
+# Build local SQLite vector database
+python src_python/6_build_local_db.py
+
+# Index into Qdrant Cloud vector cluster
 python src_python/6_build_qdrant_db.py
 ```
 
 ---
 
-## 4. Phase 3 — LLM Inference
+## 4. Phase 3: LLM Inference
 
-### Mode A: Single-Call RAG Pipeline (Recommended — Fast & Cost Effective)
-Leverages large-context LLMs (Gemini 2.5 Flash) and Qdrant RAG vector search to perform classification in **1 API call per APK**.
+### Option A: Local Dual-GPU Acceleration (Qwen 2.5 32B via GGUF CUDA)
+Runs natively inside Python across dual NVIDIA GPUs (`tensor_split=[0.5, 0.5]`):
 
 ```bash
-# Single-Call with Gemini + RAG (with offset and limit)
-python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/train.csv --offset 2000 --limit 20 --single
+# Single-Call HBCR Inference on test samples
+python src_python/4_llm_inference.py --mode cfg --backend gguf --single --csv data/test_1.csv --cfg-dir extracted_cfgs --output results/predictions.jsonl
 
-# Single-Call with NVIDIA Nemotron via OpenRouter (with 3 rotating keys)
-python src_python/4_llm_inference.py --mode cfg --backend nemotron --csv data/test_1.csv --cfg-dir test_extracted_cfgs --offset 15 --limit 50 --single --resume
+# Resume interrupted inference
+python src_python/4_llm_inference.py --mode cfg --backend gguf --single --csv data/test_1.csv --cfg-dir extracted_cfgs --output results/predictions.jsonl --resume
+```
 
-# Single-Call on test dataset using custom CFG directory (e.g. test_extracted_cfgs)
-python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/test_1.csv --cfg-dir test_extracted_cfgs --offset 0 --limit 15 --single
+### Option B: Cloud API Backends (Gemini / OpenAI / Groq)
 
-# Single-Call on a split file with resume support
-python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/split_laptop1.csv --single --resume
+```bash
+# Google Gemini 2.5 Flash
+python src_python/4_llm_inference.py --mode cfg --backend gemini --single --csv data/test_1.csv --cfg-dir extracted_cfgs --output results/predictions.jsonl
 
-# Single-Call with custom CFG dir and custom output file
-python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/test_1.csv --cfg-dir test_extracted_cfgs --single --output results/test_predictions.jsonl
+# OpenAI GPT-4o-mini
+python src_python/4_llm_inference.py --mode cfg --backend openai --single --csv data/test_1.csv --cfg-dir extracted_cfgs --output results/predictions.jsonl
+
+# Groq Llama 3.3 70B
+python src_python/4_llm_inference.py --mode cfg --backend groq --single --csv data/test_1.csv --cfg-dir extracted_cfgs --output results/predictions.jsonl
+```
+
+### Option C: 3-Tier Step-by-Step Reasoning (Standard LAMD)
+
+```bash
+# Multi-tier reasoning: Function-level -> API-level -> App-level
+python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/test_1.csv --limit 10
 ```
 
 ---
 
-### Mode B: Full 3-Tier Sequential Pipeline (Standard LAMD Paper)
-Executes Tier 1 (Function-level analysis) $\rightarrow$ Tier 2 (API-group intent) $\rightarrow$ Tier 3 (APK-level verdict). Requires ~20–30 API calls per APK.
+## 5. Phase 4: Evaluation & Reporting
+
+Calculates Accuracy, Precision, Recall, F1 Score, False Positive Rate (FPR), False Negative Rate (FNR), and per-family detection breakdowns.
 
 ```bash
-# 3-Tier Pipeline with Gemini (Multi-key rotation)
-python src_python/4_llm_inference.py --mode cfg --backend gemini --csv data/train.csv --offset 2000 --limit 10
-
-# 3-Tier Pipeline with OpenAI GPT-4o-mini
-python src_python/4_llm_inference.py --mode cfg --backend openai --csv data/train.csv --limit 10
-
-# 3-Tier Pipeline with Groq (Free Llama-3.1-8B)
-python src_python/4_llm_inference.py --mode cfg --backend groq --csv data/train.csv --limit 10
-
-# Disable Sanity Check (faster)
-python src_python/4_llm_inference.py --mode cfg --backend gemini --no-drc --limit 10
+# Evaluate predictions file and generate Markdown report
+python src_python/5_evaluate.py --predictions results/predictions.jsonl
 ```
 
 ---
 
-### Mode C: Pre-Computed Malware Logs Mode
-Parses existing raw analysis logs in `lamd/malware_logs/`:
+## 6. Phase 5: Interactive Threat Analysis Chatbot
+
+Launches the local FastAPI web server for inspecting APK verdicts and interactive threat analysis:
 
 ```bash
-python src_python/4_llm_inference.py --mode logs --offset 0 --limit 100 --output results/predictions_logs.jsonl
-```
-
----
-
-### Mode D: Direct Single-Shot Mode
-Directly evaluates truncated CFGs in a single shot without RAG or tier breakdown:
-
-```bash
-python src_python/4_llm_inference.py --mode direct --backend gemini --csv data/train.csv --limit 10
-```
-
----
-
-## 5. Phase 4 — Evaluation & Performance Metrics
-
-Computes Accuracy, Precision, Recall, F1 Score, False Positive Rate (FPR), False Negative Rate (FNR), and per-family detection rates.
-
-```bash
-# Evaluate predictions from a split run
-python src_python/5_evaluate.py --predictions results/predictions_split_laptop1.jsonl
-
-# Evaluate predictions from train/test runs
-python src_python/5_evaluate.py --predictions results/predictions_train.jsonl
-```
-
----
-
-## 6. Phase 5 — Interactive Chatbot (local web UI)
-
-A local web chat interface, scoped ONLY to Android APK malware analysis (it
-will refuse anything else). Lets you analyze an APK by SHA-256 hash or by
-uploading an `.apk` file directly, ask about past results, or ask aggregate
-questions ("how many false negatives so far").
-
-```bash
-# Start the server (opens on http://127.0.0.1:8765)
+# Start the web server (accessible at http://localhost:8765)
 python src_python/9_chatbot_server.py
 ```
 
-Environment variables (optional, in `.env` or the shell):
-- `ANALYSIS_BACKEND` — backend used to actually analyze a new APK (default
-  `gguf`, the local Qwen model — matches the real deployment). Falls back to
-  Gemini automatically, with a note in the chat log, if unavailable.
-- `CHATBOT_PORT` — default `8765`.
-
-The chat model used for conversation (explaining findings, answering
-aggregate questions) is chosen per-message in the UI: Gemini or Groq.
-
 ---
 
-## 7. Utilities & Dataset Splitting
-
-```bash
-# Create balanced train/test or laptop splits
-python src_python/make_balanced_splits.py
-
-# Run quick end-to-end pipeline test
-python src_python/test_pipeline.py
-```
-
----
-
-## 8. Command Reference Summary
+## 7. Command Parameters Summary
 
 | Parameter | Options / Type | Description |
-|---|---|---|
-| `--mode` | `cfg`, `logs`, `direct` | `cfg`: Extracted CFGs, `logs`: Log files, `direct`: Direct prompt |
-| `--backend` | `gemini`, `openai`, `groq`, `openrouter`, `ollama` | LLM backend to query |
-| `--single` | Flag (Boolean) | Enables 1-call APK inference + Qdrant RAG retrieval |
-| `--csv` | File Path (e.g. `data/train.csv`) | CSV file with SHA256 hashes and ground-truth labels |
-| `--offset` | Integer (e.g. `2000`) | Skip the first N samples |
-| `--limit` | Integer (e.g. `20`) | Number of samples to process |
-| `--resume` | Flag (Boolean) | Skips already-analyzed samples in output JSONL |
-| `--output` | File Path | Output JSONL file path for predictions |
-| `--no-drc` | Flag (Boolean) | Skip consistency check / sanity verification |
+| :--- | :--- | :--- |
+| `--mode` | `cfg`, `logs`, `direct` | Execution mode (`cfg` for sliced Jimple graphs) |
+| `--backend` | `gguf`, `gemini`, `openai`, `groq`, `ollama` | LLM inference backend |
+| `--single` | Flag | Enables HBCR graph-connected single-call inference |
+| `--csv` | File Path | Input CSV with `sha256`, `label`, `family` columns |
+| `--cfg-dir` | Directory Path | Directory containing extracted `*_cfg.txt` files |
+| `--output` | File Path | Destination `.jsonl` path for predictions |
+| `--offset` | Integer | Number of records to skip from beginning |
+| `--limit` | Integer | Maximum number of records to process |
+| `--resume` | Flag | Skips samples already present in output file |
