@@ -439,8 +439,10 @@ Each CFG slice shows Jimple IR statements that are data-flow relevant to a suspi
 
 A. LEGITIMATE BENIGN INTENT PATTERNS (Do NOT flag as malware):
 1. **Standard UI & Framework Reflection**:
-   - `loadClass` or `newInstance` inside `android.support.*`, `androidx.*`, `com.google.android.gms.*`, or `com.alibaba.fastjson.*` for fragment instantiation, view inflation, or JSON serialization.
-2. **Activity Routing & Commercial App Protectors**:
+   - `loadClass` or `newInstance` inside `android.support.*`, `androidx.*`, or `com.alibaba.fastjson.*` for fragment instantiation, view inflation, or JSON serialization.
+   - Genuine Google Play Services SDK operations interacting with official system framework services WITHOUT loading unverified external DEX/JAR payloads from app-private files.
+2. **Activity Routing, Native NDK Libraries & Commercial App Protectors**:
+   - `System.loadLibrary` / `System.load` loading bundled native C/C++ shared libraries (e.g., Unity, Unreal, React Native, media decoders) from the APK's `lib/` directory is standard Android NDK behavior, NOT a dropper.
    - Modular navigation (e.g., `com.alibaba.android.arouter`) using reflection to find activities.
    - Commercial app protectors (e.g., `com.secneo`, `com.tencent.StubShell`, `com.qihoo.util`) that protect code integrity or load native libraries (`loadLibrary`) WITHOUT exfiltrating private user data.
 3. **Local File & Network Operations**:
@@ -450,8 +452,9 @@ A. LEGITIMATE BENIGN INTENT PATTERNS (Do NOT flag as malware):
    - `getDeviceId` called on `android.view.InputDevice` or within `KeyEvent` handling (this is an input device identifier, NOT a telephony IMEI).
 
 B. MALICIOUS INTENT PATTERNS (FLAG AS MALWARE):
-1. **Dnotua & Anydown (Silent Downloaders / Droppers)**:
-   - Network download (`openConnection` / `openFileOutput`) feeding directly into `DexClassLoader`, `loadClass`, or dynamic execution to run external payloads in the background. Often embedded within disguised or custom support classes.
+1. **Dnotua & Anydown (Silent Downloaders / Disguised Droppers)**:
+   - Dynamic class loading (`DexClassLoader`, `PathClassLoader`, `loadClass`) or reflection loading executable code from local files (`/data/data/`, cache, assets) or network streams.
+   - NOTE: Dnotua frequently disguises its droppers inside spoofed Google Play Services (`com.google.android.gms.internal...`) or helper namespaces to evade analysis. If dynamic code loading or hidden payload execution is present, FLAG AS MALWARE.
 2. **Dowgin, Airpush, Viser, Kuguo (Adware / Spyware / Harvesters)**:
    - Reading sensitive telephony hardware identifiers (`TelephonyManager.getDeviceId` [IMEI], `getSubscriberId` [IMSI], `getSimSerialNumber`, `getLine1Number`, `getMacAddress`) in background services and transmitting them via `openConnection` or `getOutputStream`.
 3. **SMSReg & UMPay (SMS Fraud)**:
@@ -492,3 +495,101 @@ EVIDENCE: <2-3 sentences explaining your reasoning, citing specific API groups, 
 """
 
 
+# =============================================================================
+#  HBCR — Cluster-Level Sub-Graph Reasoning
+# =============================================================================
+# Used when an APK exceeds the single-call token budget and is partitioned
+# into graph-connected clusters. Each cluster is analyzed independently
+# with full caller->callee context preserved within it, plus boundary
+# bridge stubs for cross-cluster edges so the LLM knows connections exist.
+
+CLUSTER_SYSTEM = (
+    "You are a principal cybersecurity researcher specializing in Android static binary analysis. "
+    "You are analyzing ONE connected subsystem (cluster) of an Android application's backward-sliced "
+    "Control Flow Graphs (Jimple IR). This cluster contains functions that are connected by caller -> callee "
+    "relationships or shared data-flow resources (file paths, crypto outputs, dynamic class targets).\n\n"
+    "Your job is to produce a concise, evidence-based behavioral summary of THIS cluster only. "
+    "Do NOT issue a final MALWARE/BENIGN verdict — that is done later when all clusters are combined. "
+    "Focus on:\n"
+    "1. What this subsystem DOES (its functional purpose).\n"
+    "2. Whether any data flows from sensitive sources to network/execution sinks WITHIN this cluster.\n"
+    "3. Whether any cross-cluster boundary calls suggest payload handoff to another subsystem.\n\n"
+    "CALIBRATION: Reflection (forName, newInstance, invoke, getDeclaredMethod) for standard UI or lifecycle "
+    "operations is baseline noise. HOWEVER, dynamic class loading (DexClassLoader, PathClassLoader, loadClass) "
+    "or reflection executing runtime methods — even if disguised within com.google.android.gms.* or helper packages "
+    "(frequently spoofed by Dnotua/Anydown trojan droppers) — MUST be flagged as HIGH RISK if it loads dynamic DEX/JAR payloads "
+    "or executes hidden binary components."
+)
+
+CLUSTER_USER_TEMPLATE = """\
+Analyze the following connected cluster of backward-sliced Control Flow Graphs (CFGs) \
+from an Android application. These functions are grouped because they share caller -> callee \
+call edges or data-flow resources (shared file paths, crypto outputs, class loading targets).
+
+Cluster ID: {cluster_id}
+Functions in this cluster: {func_count}
+Suspicious APIs in this cluster: {api_list}
+{boundary_info}
+
+=== RAG KNOWLEDGE BASE MATCHES ===
+{rag_context}
+===================================
+
+=== CLUSTER CFG CONTENT ===
+{cluster_content}
+=== END CLUSTER ===
+
+Provide your analysis in EXACTLY this format:
+
+CLUSTER_PURPOSE: <1-2 sentences: what does this subsystem do?>
+SENSITIVE_DATA_FLOWS: <List any concrete data flows from sensitive sources to sinks, or "None detected">
+SUSPICIOUS_INDICATORS: <List any concrete suspicious patterns (payload delivery, exfiltration, SMS fraud), or "None detected">
+BENIGN_INDICATORS: <List evidence this is standard framework/SDK behavior, or "None">
+RISK_LEVEL: <LOW / MEDIUM / HIGH with brief justification>
+"""
+
+# =============================================================================
+#  HBCR — Global Synthesis (Holistic APK Verdict from Cluster Summaries)
+# =============================================================================
+# Combines all cluster summaries into one final MALWARE/BENIGN verdict.
+# Uses the same calibrated baseline-noise rules as TIER3 and SINGLE_CALL.
+
+SYNTHESIS_SYSTEM = (
+    "You are a principal cybersecurity researcher making the FINAL malware/benign verdict "
+    "for an Android application. You are given behavioral summaries of ALL connected subsystems "
+    "(clusters) of the app, each already analyzed for suspicious data flows and indicators.\n\n"
+    "DECISION METHODOLOGY:\n"
+    "1. Review each cluster's findings holistically — a benign cluster and a malicious cluster "
+    "can coexist in the same app (e.g., a legitimate game with a hidden payload dropper).\n"
+    "2. Cross-cluster connections (boundary bridges) are critical: a download in Cluster A feeding "
+    "into dynamic execution in Cluster B is the classic dropper pattern.\n"
+    "3. Apply the same calibration rules: reflection, minified names, standard SDK behavior, and "
+    "reading one sensitive value with no traced destination are baseline noise, not indicators.\n"
+    "4. Issue MALWARE only when you can name SPECIFIC concrete indicators (exfiltration chains, "
+    "payload delivery, SMS fraud, backdoor execution) with evidence from the cluster summaries.\n"
+    "5. Issue BENIGN when cluster summaries show only standard framework/SDK behavior."
+)
+
+SYNTHESIS_USER_TEMPLATE = """\
+You are making the FINAL verdict for an Android application. Below are the behavioral \
+summaries of ALL {cluster_count} connected subsystems (clusters) found in this app.
+
+=== CLUSTER SUMMARIES ===
+{cluster_summaries}
+=== END CLUSTER SUMMARIES ===
+
+{cross_cluster_connections}
+
+Based on ALL cluster summaries and their cross-cluster connections, provide your final assessment:
+
+=== FINAL APPLICATION ANALYSIS ===
+
+PREDICTION: <MALWARE or BENIGN>
+CONFIDENCE: <HIGH, MEDIUM, or LOW>
+APP_PURPOSE: <1-2 sentence description of what this app appears to do>
+KEY_FINDINGS:
+- <finding 1>
+- <finding 2>
+- <finding 3>
+EVIDENCE: <2-3 sentences explaining your reasoning, citing specific clusters, data flows, or cross-cluster connections>
+"""
